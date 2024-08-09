@@ -1,0 +1,52 @@
+========================================
+    use crate::rustc_demangle;
+    use std::ffi::CString;
+    use std::os::raw::{c_char, c_int};
+
+    #[test]
+    fn demangle_rust_symbol() {
+        let mangled = CString::new("_ZN3foo3barE").expect("CString::new failed");
+        let mangled_ptr: *const c_char = mangled.as_ptr();
+
+        let mut out = vec![0u8; 128];
+        let out_ptr = out.as_mut_ptr() as *mut c_char;
+
+        unsafe {
+            let result = rustc_demangle(mangled_ptr, out_ptr, out.len());
+            assert_eq!(result, 1);
+
+            let demangled_str = std::ffi::CStr::from_ptr(out_ptr).to_str().unwrap();
+            assert_eq!(demangled_str, "foo::bar\0");
+        }
+    }
+
+    #[test]
+    fn non_rust_symbol() {
+        let non_rust = CString::new("NotRustSymbol").expect("CString::new failed");
+        let non_rust_ptr: *const c_char = non_rust.as_ptr();
+
+        let mut out = vec![0u8; 128];
+        let out_ptr = out.as_mut_ptr() as *mut c_char;
+
+        unsafe {
+            let result = rustc_demangle(non_rust_ptr, out_ptr, out.len());
+            assert_eq!(result, 0);
+        }
+    }
+
+    #[test]
+    fn buffer_too_small() {
+        let mangled = CString::new("_ZN3foo3barE").expect("CString::new failed");
+        let mangled_ptr: *const c_char = mangled.as_ptr();
+
+        let mut out = vec![0u8; 4];  // deliberately small buffer
+        let out_ptr = out.as_mut_ptr() as *mut c_char;
+
+        unsafe {
+            let result = rustc_demangle(mangled_ptr, out_ptr, out.len());
+            assert_eq!(result, 0);
+        }
+    }
+}
+True
+rustc-demangle rustc-demangle-capi 1 1

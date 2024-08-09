@@ -1,0 +1,99 @@
+json serde_json . ['/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/de.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/map.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/number.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/value/index.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/value/de.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/value/mod.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/value/partial_eq.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/value/ser.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/value/from.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/iter.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/macros.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/lexical/algorithm.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/lexical/num.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/lexical/bignum.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/lexical/large_powers.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/lexical/shift.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/lexical/rounding.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/lexical/small_powers.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/lexical/exponent.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/lexical/large_powers64.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/lexical/large_powers32.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/lexical/parse.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/lexical/cached_float80.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/lexical/errors.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/lexical/digit.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/lexical/mod.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/lexical/float.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/lexical/math.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/lexical/cached.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/lexical/bhcomp.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/error.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/features_check/error.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/features_check/mod.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/raw.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/io/core.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/io/mod.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/lib.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/ser.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/read.rs']
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/de.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/map.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/number.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/value/index.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/value/de.rs
+err tests_rug_178 test_rug
+err tests_rug_188 test_deserialize_tuple_struct
+err tests_rug_213 test_deserialize_newtype_struct
+err tests_rug_223 test_rug
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/value/mod.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/value/partial_eq.rs
+err tests_llm_16_758 test_eq
+err tests_rug_259 test_eq
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/value/ser.rs
+err tests_llm_16_375 serialize_struct_test
+err tests_llm_16_376_llm_16_376 test_serialize_struct_variant
+err tests_llm_16_379 test_serialize_tuple_variant
+err tests_llm_16_385 test_serialize_unit_struct
+err tests_llm_16_393 test_serialize_struct_variant_serialize_field
+err tests_llm_16_414_llm_16_414 test_serialize_newtype_struct
+err tests_llm_16_414_llm_16_414 test_serialize_newtype_struct_string
+err tests_llm_16_414_llm_16_414 test_serialize_newtype_struct_map
+err tests_llm_16_421 test_serialize_struct_variant
+err tests_llm_16_423 test_serialize_tuple_struct
+err tests_llm_16_432 test_serialize_unit_variant
+err tests_rug_281 test_serialize_tuple_variant
+err tests_rug_299 test_serialize_bytes
+err tests_rug_303 test_serialize_tuple_struct
+err tests_rug_304 test_serialize_field
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/value/from.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/iter.rs
+err tests_llm_16_498 test_col
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/macros.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/lexical/algorithm.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/lexical/num.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/lexical/bignum.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/lexical/large_powers.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/lexical/shift.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/lexical/rounding.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/lexical/small_powers.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/lexical/exponent.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/lexical/large_powers64.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/lexical/large_powers32.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/lexical/parse.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/lexical/cached_float80.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/lexical/errors.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/lexical/digit.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/lexical/mod.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/lexical/float.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/lexical/math.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/lexical/cached.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/lexical/bhcomp.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/error.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/features_check/error.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/features_check/mod.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/raw.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/io/core.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/io/mod.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/lib.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/ser.rs
+err tests_llm_16_66 test_serialize_struct_normal
+err tests_llm_16_77_llm_16_77 test_serialize_unit_struct
+err tests_llm_16_242_llm_16_242 serialize_field_map
+err tests_llm_16_270_llm_16_270 test_serialize_tuple_struct
+err tests_llm_16_589_llm_16_589 test_with_indent
+err tests_llm_16_599 test_to_string_pretty_struct
+err tests_llm_16_599 test_to_string_pretty_map
+err tests_llm_16_599 test_to_string_pretty_value
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/json/./src/read.rs
+err tests_llm_16_202 test_discard
+err tests_llm_16_209 position_at_start
+err tests_llm_16_209 position_after_one_line
+err tests_llm_16_209 position_after_some_content
+err tests_llm_16_209 position_across_multiple_lines
+err tests_llm_16_212 test_byte_offset_at_start
+err tests_llm_16_212 test_byte_offset_after_read
+err tests_llm_16_212 test_byte_offset_after_partial_read
+err tests_llm_16_212 test_byte_offset_after_discard
+err tests_llm_16_214 discard_advances_index
+err tests_llm_16_214 discard_at_end_of_input
+err tests_llm_16_214 discard_multiple_times
+err tests_llm_16_219 test_peek_at_beginning
+err tests_llm_16_219 test_peek_at_end
+err tests_llm_16_225 slice_read_discard_empty_slice
+err tests_llm_16_225 slice_read_discard_non_empty_slice
+err tests_llm_16_547 position_of_index_at_end
+err tests_rug_310 test_rug
+err tests_rug_313 test_ignore_escape
+err tests_rug_325 test_rug
+err tests_rug_327 test_peek_position
+err tests_rug_328 test_rug
+err tests_rug_329 test_ignore_str
+err tests_rug_330 test_rug
+err tests_rug_335 test_rug
+err tests_rug_339 test_peek_position
+err tests_rug_340 test_byte_offset
+err tests_rug_342 test_parse_str_raw
+done

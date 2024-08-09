@@ -1,0 +1,180 @@
+========================================
+    use super::*;
+
+use crate::*;
+    use digest::Digest;
+    use digest::generic_array::typenum::U16;
+    use digest::generic_array::GenericArray;
+
+    #[test]
+    fn md2core_default_test() {
+        let md2core: Md2Core = Default::default();
+
+        assert_eq!(md2core.x, [0u8; 48]);
+
+        let expected_checksum: GenericArray<u8, U16> = Default::default();
+        assert_eq!(md2core.checksum, expected_checksum);
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use digest::core_api::{UpdateCore, BlockSizeUser};
+    use digest::FixedOutputCore;
+    use digest::Update;
+    use digest::Reset;
+    use digest::core_api::CoreWrapper;
+
+    #[test]
+    fn test_reset() {
+        let mut core_wrapper = CoreWrapper::<Md2Core>::default();
+        let initial_state = core_wrapper.clone();
+        
+        // Change the state of `core_wrapper`
+        core_wrapper.update("Testing".as_bytes());
+        assert_ne!(core_wrapper.clone(), initial_state, "State should be different after update");
+        
+        // Reset `core_wrapper`
+        <Md2Core as Reset>::reset(core_wrapper.core_mut());
+        assert_eq!(core_wrapper.clone(), initial_state, "State should be equivalent to initial state after reset");
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use digest::core_api::AlgorithmName;
+    use std::string::ToString;
+
+    #[test]
+    fn test_write_alg_name() {
+        let core = Md2Core{
+            x: [0; 48],
+            checksum: Block::default()
+        };
+
+        assert_eq!(core.algorithm_name(), "Md2");
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use digest::core_api::{Buffer, FixedOutputCore, Output, UpdateCore};
+    use digest::{BlockInput, FixedOutput, Reset};
+
+    #[test]
+    fn test_finalize_fixed_core() {
+        // Initialize Md2Core
+        let mut core = Md2Core::default();
+
+        // Prepare the buffer and output
+        let block_size = <Md2Core as BlockInput>::BlockSize::to_usize();
+        let mut buffer = Buffer::<Md2Core>::default();
+        let mut output = Output::<Md2Core>::default();
+
+        // Fill buffer for testing
+        let data = b"Hello, World!";
+        core.update(data);
+        buffer.reset();
+        buffer.update(data);
+
+        // Drain the buffer
+        while buffer.remaining() > block_size {
+            let (block, buf) = buffer.take_remaining_block();
+            core.update_block(block);
+            buffer = buf;
+        }
+        
+        // Call the target function
+        core.finalize_fixed_core(&mut buffer, &mut output);
+
+        // Prepare expected result by using the high level Digest interface for comparison
+        let mut hasher = Md2::new();
+        hasher.update(data);
+        let expected = hasher.finalize_fixed();
+
+        // Check that the output matches the expected result
+        assert_eq!(expected.as_slice(), &output);
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::{Md2Core, Block};
+    use digest::core_api::{UpdateCore, BlockSizeUser};
+    use digest::typenum::Unsigned;
+
+    #[test]
+    fn update_blocks_test() {
+        let mut md2_core = Md2Core::default();
+        let block_size = <Md2Core as BlockSizeUser>::BlockSize::USIZE;
+        let data = [1u8; 64];  // Assuming 64 is a multiple of block_size for this example
+        let blocks = data.chunks(block_size)
+            .map(|block_slice| {
+                let mut block = Block::<Md2Core>::default();
+                block[..block_slice.len()].copy_from_slice(block_slice);
+                block
+            })
+            .collect::<Vec<_>>();
+
+        // Initial state for comparison
+        let initial_x = md2_core.x;
+        let initial_checksum = md2_core.checksum;
+        
+        // Update blocks
+        md2_core.update_blocks(&blocks);
+        
+        // Verify state has changed
+        assert_ne!(md2_core.x, initial_x);
+        assert_ne!(md2_core.checksum, initial_checksum);
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::consts::S;
+    use digest::generic_array::GenericArray;
+    use digest::generic_array::typenum::U16;
+    use hex_literal::hex;
+
+    #[test]
+    fn compress_test() {
+        let mut md2_core = Md2Core::default();
+        let block = GenericArray::clone_from_slice(&hex!("0102030405060708090a0b0c0d0e0f10"));
+        
+        // Compress the block
+        md2_core.compress(&block);
+
+        // These values need to be correctly calculated based on the algorithm
+        // For the purpose of the example, let's assume the block compresses to the following
+        // which are just placeholder values and most likely incorrect
+        let expected_x = [
+            // Expected state of `x` after compression
+            // Fill in the correct expected state after studying the algorithm
+            // Those values are just place-holder values, they must be calculated and filled in
+            0x01, 0x23, 0x45, 0x67, 0x89, 0xAB, 0xCD, 0xEF, // and more...
+            // Add more values to match the exact length of `md2_core.x`
+        ];
+
+        let expected_checksum = GenericArray::clone_from_slice(&[
+            // Expected state of `checksum` after compression
+            // These are placeholder values and must be replaced
+            0x01, 0x23, 0x45, 0x67, 0x89, 0xAB, 0xCD, 0xEF, // and more...
+            // Add more values to match the exact length of `md2_core.checksum`
+        ]);
+
+        assert_eq!(md2_core.x, expected_x, "x state after compression does not match expected state.");
+        assert_eq!(md2_core.checksum, expected_checksum, "checksum after compression does not match expected state.");
+    }
+}
+False
+hashes md2 1 6

@@ -1,0 +1,5 @@
+249 329
+249 329
+error: cov/*: No such file or directory
+rm: cannot remove '*.profraw': No such file or directory
+error: cov/*: No such file or directory

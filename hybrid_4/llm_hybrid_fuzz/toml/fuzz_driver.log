@@ -1,0 +1,1326 @@
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/serde_spanned/src/spanned.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/serde_spanned/src/lib.rs
+done
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/serde_toml/src/lib.rs
+done
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/toml/src/de.rs
+err tests_llm_16_22_llm_16_22 test_deserialize_newtype_struct
+    Blocking waiting for file lock on package cache
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling proc-macro2 v1.0.56
+   Compiling libc v0.2.151
+   Compiling unicode-ident v1.0.4
+   Compiling quote v1.0.26
+   Compiling cfg-if v1.0.0
+   Compiling memchr v2.5.0
+   Compiling syn v1.0.105
+   Compiling version_check v0.9.4
+   Compiling io-lifetimes v1.0.3
+   Compiling serde_derive v1.0.160
+   Compiling cc v1.0.73
+   Compiling autocfg v1.1.0
+   Compiling serde v1.0.160
+   Compiling rustix v0.37.7
+   Compiling anyhow v1.0.75
+   Compiling bitflags v1.3.2
+   Compiling ppv-lite86 v0.2.17
+   Compiling adler v1.0.2
+   Compiling lazy_static v1.4.0
+   Compiling linux-raw-sys v0.3.6
+   Compiling gimli v0.28.1
+   Compiling either v1.8.0
+   Compiling rustc-demangle v0.1.23
+   Compiling once_cell v1.15.0
+   Compiling pretty-hex v0.3.0
+   Compiling log v0.4.17
+   Compiling utf8parse v0.2.1
+   Compiling regex-syntax v0.6.27
+   Compiling serde_json v1.0.96
+   Compiling crossbeam-utils v0.8.11
+   Compiling os_str_bytes v6.3.0
+   Compiling heck v0.4.0
+   Compiling arbitrary v1.3.2
+   Compiling anstyle v1.0.0
+   Compiling anstyle-query v1.0.0
+   Compiling strsim v0.10.0
+   Compiling itoa v1.0.3
+   Compiling hashbrown v0.14.0
+   Compiling termcolor v1.1.3
+   Compiling equivalent v1.0.0
+   Compiling colorchoice v1.0.0
+   Compiling same-file v1.0.6
+   Compiling fnv v1.0.7
+   Compiling ryu v1.0.11
+   Compiling winnow v0.4.6
+   Compiling similar v2.2.0
+   Compiling normalize-line-endings v0.3.0
+   Compiling anstyle-parse v0.2.0
+   Compiling miniz_oxide v0.7.1
+   Compiling walkdir v2.3.2
+   Compiling clap_lex v0.3.0
+   Compiling thread_local v1.1.4
+   Compiling proc-macro-error-attr v1.0.4
+   Compiling proc-macro-error v1.0.4
+   Compiling num-traits v0.2.15
+   Compiling num-integer v0.1.45
+   Compiling indexmap v2.0.0
+   Compiling backtrace v0.3.69
+   Compiling object v0.32.1
+   Compiling aho-corasick v0.7.19
+   Compiling bstr v0.2.17
+   Compiling addr2line v0.21.0
+   Compiling syn v2.0.15
+   Compiling regex v1.6.0
+   Compiling include_dir_macros v0.7.3
+   Compiling getrandom v0.2.11
+   Compiling num_cpus v1.13.1
+   Compiling threadpool v1.8.1
+   Compiling rand_core v0.6.4
+   Compiling rand_chacha v0.3.1
+   Compiling include_dir v0.7.3
+   Compiling rand v0.8.5
+   Compiling toml-test-data v1.3.0
+   Compiling globset v0.4.9
+   Compiling is-terminal v0.4.7
+   Compiling anstream v0.3.1
+   Compiling ignore v0.4.18
+   Compiling snapbox-macros v0.3.4
+   Compiling chrono v0.4.22
+   Compiling snapbox v0.4.11
+   Compiling bolero-generator-derive v0.8.0
+   Compiling clap_derive v4.0.21
+   Compiling bolero-generator v0.8.0
+   Compiling clap v4.0.32
+   Compiling libtest-mimic v0.6.0
+   Compiling bolero-engine v0.8.1
+   Compiling bolero v0.8.0
+   Compiling serde_spanned v0.6.3 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/serde_spanned)
+   Compiling toml_datetime v0.6.3 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/toml_datetime)
+   Compiling toml_edit v0.19.11 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/toml_edit)
+   Compiling toml-test v0.3.4
+   Compiling toml-test-harness v0.4.3
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/toml)
+error[E0521]: borrowed data escapes outside of closure
+   --> crates/toml/src/de.rs:360:158
+    |
+359 | ...h(|rug_data| {
+    |       --------
+    |       |
+    |       `rug_data` is a reference that is only valid in the closure body
+    |       has type `&'1 [u8]`
+360 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2, mut rug_fuzz_3)) = <(&str, &str, &str, &str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+    |                                                                                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |                                                                                                                                                 |
+    |                                                                                                                                                 `rug_data` escapes the closure body here
+    |                                                                                                                                                 argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_273_llm_16_273 test_value_deserializer_new
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/toml)
+error: prefix `Example` is unknown
+   --> crates/toml/src/de.rs:544:27
+    |
+544 |             title = 'TOML Example'
+    |                           ^^^^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+544 |             title = 'TOML Example '
+    |                                  +
+
+error[E0762]: unterminated character literal
+   --> crates/toml/src/de.rs:544:34
+    |
+544 |             title = 'TOML Example'
+    |                                  ^
+
+For more information about this error, try `rustc --explain E0762`.
+error: could not compile `toml` due to 2 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `toml` due to 2 previous errors
+
+err tests_llm_16_274 test_from_str_valid_toml
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/toml)
+error[E0765]: unterminated double quote string
+   --> crates/toml/src/de.rs:604:9
+    |
+604 | /         "#;
+605 | |         let toml_str = rug_fuzz_0;
+606 | |         let parsed: Result<TestConfig, _> = from_str(toml_str);
+607 | |         debug_assert!(parsed.is_err());
+608 | |         let _rug_ed_tests_llm_16_274_rrrruuuugggg_test_from_str_missing_keys = 0;
+609 | |     }
+610 | | }
+    | |__^
+
+For more information about this error, try `rustc --explain E0765`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `toml` due to previous error
+
+err tests_llm_16_274 test_from_str_invalid_toml
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/toml)
+error[E0765]: unterminated double quote string
+   --> crates/toml/src/de.rs:604:9
+    |
+604 | /         "#;
+605 | |         let toml_str = rug_fuzz_0;
+606 | |         let parsed: Result<TestConfig, _> = from_str(toml_str);
+607 | |         debug_assert!(parsed.is_err());
+608 | |         let _rug_ed_tests_llm_16_274_rrrruuuugggg_test_from_str_missing_keys = 0;
+609 | |     }
+610 | | }
+    | |__^
+
+For more information about this error, try `rustc --explain E0765`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `toml` due to previous error
+
+err tests_llm_16_274 test_from_str_missing_keys
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/toml)
+error[E0765]: unterminated double quote string
+   --> crates/toml/src/de.rs:604:9
+    |
+604 | /         "#;
+605 | |         let toml_str = rug_fuzz_0;
+606 | |         let parsed: Result<TestConfig, _> = from_str(toml_str);
+607 | |         debug_assert!(parsed.is_err());
+608 | |              }
+609 | | });    }
+610 | | }
+    | |__^
+
+For more information about this error, try `rustc --explain E0765`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `toml` due to previous error
+
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/toml/src/map.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/toml/src/table.rs
+err tests_llm_16_327 test_from_str_valid
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/toml)
+error: prefix `table` is unknown
+   --> crates/toml/src/table.rs:210:42
+    |
+210 |             panic!("section key is not a table")
+    |                                          ^^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+210 |             panic!("section key is not a table ")
+    |                                               +
+
+error: prefix `value` is unknown
+   --> crates/toml/src/table.rs:217:37
+    |
+217 |         let rug_fuzz_0 = "key = : : value";
+    |                                     ^^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+217 |         let rug_fuzz_0 = "key = : : value ";
+    |                                          +
+
+error: prefix `value` is unknown
+   --> crates/toml/src/table.rs:233:41
+    |
+233 |         let rug_fuzz_0 = "Sample string value";
+    |                                         ^^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+233 |         let rug_fuzz_0 = "Sample string value ";
+    |                                              +
+
+error[E0765]: unterminated double quote string
+   --> crates/toml/src/table.rs:233:46
+    |
+233 |           let rug_fuzz_0 = "Sample string value";
+    |  ______________________________________________^
+234 | |         let mut p0 = Value::from(rug_fuzz_0);
+235 | |         let _result = Map::<String, Value>::try_from(p0);
+236 | |         let _rug_ed_tests_rug_178_rrrruuuugggg_test_try_from = 0;
+237 | |     }
+238 | | }
+    | |__^
+
+For more information about this error, try `rustc --explain E0765`.
+error: could not compile `toml` due to 4 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `toml` due to 4 previous errors
+
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/toml/src/value.rs
+err tests_llm_16_205_llm_16_205 test_deserialize_newtype_struct
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/toml)
+error[E0521]: borrowed data escapes outside of closure
+    --> crates/toml/src/value.rs:1934:114
+     |
+1933 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+1934 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1)) = <(&str, &str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data)){
+     |                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                     |
+     |                                                                                                     `rug_data` escapes the closure body here
+     |                                                                                                     argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_226 test_from_str_valid_toml
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/toml)
+error: prefix `serialized` is unknown
+    --> crates/toml/src/value.rs:2441:70
+     |
+2441 |             Err(serde::ser::Error::custom("NonSerializable cannot be serialized"))
+     |                                                                      ^^^^^^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+2441 |             Err(serde::ser::Error::custom("NonSerializable cannot be serialized "))
+     |                                                                                +
+
+error: prefix `expected` is unknown
+    --> crates/toml/src/value.rs:2510:46
+     |
+2510 |             panic!("vec[0] is not a Table as expected");
+     |                                              ^^^^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+2510 |             panic!("vec[0] is not a Table as expected ");
+     |                                                      +
+
+error: prefix `field` is unknown
+    --> crates/toml/src/value.rs:2555:47
+     |
+2555 |         let rug_fuzz_1 = "Failed to serialize field";
+     |                                               ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+2555 |         let rug_fuzz_1 = "Failed to serialize field ";
+     |                                                    +
+
+error: prefix `field` is unknown
+    --> crates/toml/src/value.rs:2557:47
+     |
+2557 |         let rug_fuzz_3 = "Failed to serialize field";
+     |                                               ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+2557 |         let rug_fuzz_3 = "Failed to serialize field ";
+     |                                                    +
+
+error: prefix `serialization` is unknown
+    --> crates/toml/src/value.rs:2558:41
+     |
+2558 |         let rug_fuzz_4 = "Failed to end serialization";
+     |                                         ^^^^^^^^^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+2558 |         let rug_fuzz_4 = "Failed to end serialization ";
+     |                                                      +
+
+error: prefix `serialize` is unknown
+    --> crates/toml/src/value.rs:2584:34
+     |
+2584 |         let rug_fuzz_2 = "Should serialize";
+     |                                  ^^^^^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+2584 |         let rug_fuzz_2 = "Should serialize ";
+     |                                           +
+
+error: prefix `Ok` is unknown
+    --> crates/toml/src/value.rs:2851:82
+     |
+2851 |         debug_assert!(serialize_map_result.is_ok(), "serialize_map should return Ok");
+     |                                                                                  ^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+2851 |         debug_assert!(serialize_map_result.is_ok(), "serialize_map should return Ok ");
+     |                                                                                    +
+
+error: prefix `empty` is unknown
+    --> crates/toml/src/value.rs:2854:76
+     |
+2854 |             value_serialize_map.ser.map.len(), 0, "initial table should be empty"
+     |                                                                            ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+2854 |             value_serialize_map.ser.map.len(), 0, "initial table should be empty "
+     |                                                                                 +
+
+error: prefix `succeed` is unknown
+    --> crates/toml/src/value.rs:2869:78
+     |
+2869 |         debug_assert!(map.is_ok(), "serialize_key and serialize_value should succeed");
+     |                                                                              ^^^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+2869 |         debug_assert!(map.is_ok(), "serialize_key and serialize_value should succeed ");
+     |                                                                                     +
+
+error: prefix `pair` is unknown
+    --> crates/toml/src/value.rs:2874:51
+     |
+2874 |                 "map should contain the key-value pair"
+     |                                                   ^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+2874 |                 "map should contain the key-value pair "
+     |                                                       +
+
+error: prefix `table` is unknown
+    --> crates/toml/src/value.rs:2877:51
+     |
+2877 |             panic!("serialize_map should return a table");
+     |                                                   ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+2877 |             panic!("serialize_map should return a table ");
+     |                                                        +
+
+error: prefix `world` is unknown
+    --> crates/toml/src/value.rs:2918:31
+     |
+2918 |         let test_str = "hello world";
+     |                               ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+2918 |         let test_str = "hello world ";
+     |                                    +
+
+error: prefix `variant` is unknown
+    --> crates/toml/src/value.rs:2944:48
+     |
+2944 |             _ => panic!("Expected Value::Table variant"),
+     |                                                ^^^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+2944 |             _ => panic!("Expected Value::Table variant "),
+     |                                                       +
+
+error: prefix `Example` is unknown
+    --> crates/toml/src/value.rs:2966:74
+     |
+2966 |             Err(e) => debug_assert_eq!(e.to_string(), "unsupported type: Example"),
+     |                                                                          ^^^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+2966 |             Err(e) => debug_assert_eq!(e.to_string(), "unsupported type: Example "),
+     |                                                                                 +
+
+error: prefix `type` is unknown
+    --> crates/toml/src/value.rs:2967:57
+     |
+2967 |             _ => panic!("Expected error for unsupported type"),
+     |                                                         ^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+2967 |             _ => panic!("Expected error for unsupported type "),
+     |                                                             +
+
+error: prefix `ValueSerializeVec` is unknown
+    --> crates/toml/src/value.rs:3008:32
+     |
+3008 |             panic!("Expected a ValueSerializeVec");
+     |                                ^^^^^^^^^^^^^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+3008 |             panic!("Expected a ValueSerializeVec ");
+     |                                                 +
+
+error: prefix `Integer` is unknown
+    --> crates/toml/src/value.rs:3074:56
+     |
+3074 |             panic!("Value was not serialized as Value::Integer");
+     |                                                        ^^^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+3074 |             panic!("Value was not serialized as Value::Integer ");
+     |                                                               +
+
+error: prefix `String` is unknown
+    --> crates/toml/src/value.rs:3112:77
+     |
+3112 |             Ok(_) => panic!("serialize_unit_variant did not return a Value::String"),
+     |                                                                             ^^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+3112 |             Ok(_) => panic!("serialize_unit_variant did not return a Value::String "),
+     |                                                                                   +
+
+error: prefix `array` is unknown
+    --> crates/toml/src/value.rs:3159:39
+     |
+3159 |         let rug_fuzz_0 = "I am not an array";
+     |                                       ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+3159 |         let rug_fuzz_0 = "I am not an array ";
+     |                                            +
+
+error: prefix `string` is unknown
+    --> crates/toml/src/value.rs:3333:32
+     |
+3333 |         let rug_fuzz_0 = "test string";
+     |                                ^^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+3333 |         let rug_fuzz_0 = "test string ";
+     |                                      +
+
+error: prefix `string` is unknown
+    --> crates/toml/src/value.rs:3335:51
+     |
+3335 |         debug_assert_eq!(val.as_str(), Some("test string"));
+     |                                                   ^^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+3335 |         debug_assert_eq!(val.as_str(), Some("test string "));
+     |                                                         +
+
+error: prefix `table` is unknown
+    --> crates/toml/src/value.rs:3367:33
+     |
+3367 |         let rug_fuzz_0 = "Not a table";
+     |                                 ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+3367 |         let rug_fuzz_0 = "Not a table ";
+     |                                      +
+
+error: prefix `table` is unknown
+    --> crates/toml/src/value.rs:3387:33
+     |
+3387 |         let rug_fuzz_0 = "Not a table";
+     |                                 ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+3387 |         let rug_fuzz_0 = "Not a table ";
+     |                                      +
+
+error: prefix `string` is unknown
+    --> crates/toml/src/value.rs:3645:29
+     |
+3645 |         let rug_fuzz_0 = "A string";
+     |                             ^^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+3645 |         let rug_fuzz_0 = "A string ";
+     |                                   +
+
+error: prefix `test` is unknown
+    --> crates/toml/src/value.rs:3698:35
+     |
+3698 |         let rug_fuzz_1 = "another test";
+     |                                   ^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+3698 |         let rug_fuzz_1 = "another test ";
+     |                                       +
+
+error: prefix `Table` is unknown
+    --> crates/toml/src/value.rs:3742:37
+     |
+3742 |             panic!("Expected Value::Table");
+     |                                     ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+3742 |             panic!("Expected Value::Table ");
+     |                                          +
+
+error: prefix `Table` is unknown
+    --> crates/toml/src/value.rs:3772:37
+     |
+3772 |             panic!("Expected Value::Table");
+     |                                     ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+3772 |             panic!("Expected Value::Table ");
+     |                                          +
+
+error: prefix `value` is unknown
+    --> crates/toml/src/value.rs:3785:41
+     |
+3785 |         let rug_fuzz_0 = "Sample string value";
+     |                                         ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+3785 |         let rug_fuzz_0 = "Sample string value ";
+     |                                              +
+
+error: prefix `value` is unknown
+    --> crates/toml/src/value.rs:3798:41
+     |
+3798 |         let rug_fuzz_0 = "Sample string value";
+     |                                         ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+3798 |         let rug_fuzz_0 = "Sample string value ";
+     |                                              +
+
+error: prefix `value` is unknown
+    --> crates/toml/src/value.rs:3810:41
+     |
+3810 |         let rug_fuzz_0 = "Sample string value";
+     |                                         ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+3810 |         let rug_fuzz_0 = "Sample string value ";
+     |                                              +
+
+error: prefix `value` is unknown
+    --> crates/toml/src/value.rs:3813:67
+     |
+3813 |             p0.as_array(), Some(& vec![Value::from("Sample string value"),
+     |                                                                   ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+3813 |             p0.as_array(), Some(& vec![Value::from("Sample string value "),
+     |                                                                        +
+
+error: prefix `value` is unknown
+    --> crates/toml/src/value.rs:3825:41
+     |
+3825 |         let rug_fuzz_0 = "Sample string value";
+     |                                         ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+3825 |         let rug_fuzz_0 = "Sample string value ";
+     |                                              +
+
+error: prefix `found` is unknown
+    --> crates/toml/src/value.rs:3838:42
+     |
+3838 |     #[should_panic(expected = "index not found")]
+     |                                          ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+3838 |     #[should_panic(expected = "index not found ")]
+     |                                               +
+
+error: prefix `value` is unknown
+    --> crates/toml/src/value.rs:3841:41
+     |
+3841 |         let rug_fuzz_0 = "Sample string value";
+     |                                         ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+3841 |         let rug_fuzz_0 = "Sample string value ";
+     |                                              +
+
+error: prefix `value` is unknown
+    --> crates/toml/src/value.rs:3856:41
+     |
+3856 |         let rug_fuzz_0 = "Sample string value";
+     |                                         ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+3856 |         let rug_fuzz_0 = "Sample string value ";
+     |                                              +
+
+error: prefix `value` is unknown
+    --> crates/toml/src/value.rs:3871:41
+     |
+3871 |         let rug_fuzz_1 = "Sample string value";
+     |                                         ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+3871 |         let rug_fuzz_1 = "Sample string value ";
+     |                                              +
+
+error: prefix `key` is unknown
+    --> crates/toml/src/value.rs:3886:41
+     |
+3886 |         let rug_fuzz_0 = "Sample string key";
+     |                                         ^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+3886 |         let rug_fuzz_0 = "Sample string key ";
+     |                                            +
+
+error: prefix `value` is unknown
+    --> crates/toml/src/value.rs:3887:41
+     |
+3887 |         let rug_fuzz_1 = "Sample string value";
+     |                                         ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+3887 |         let rug_fuzz_1 = "Sample string value ";
+     |                                              +
+
+error: prefix `value` is unknown
+    --> crates/toml/src/value.rs:3928:41
+     |
+3928 |         let rug_fuzz_0 = "Sample string value";
+     |                                         ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+3928 |         let rug_fuzz_0 = "Sample string value ";
+     |                                              +
+
+error[E0765]: unterminated double quote string
+    --> crates/toml/src/value.rs:4055:39
+     |
+4055 |           let rug_fuzz_0 = "SampleStruct";
+     |  _______________________________________^
+4056 | |         let rug_fuzz_1 = 3usize;
+4057 | |         let mut p0 = TableSerializer;
+4058 | |         let p1 = rug_fuzz_0;
+...    |
+4062 | |     }
+4063 | | }
+     | |__^
+
+For more information about this error, try `rustc --explain E0765`.
+error: could not compile `toml` due to 40 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `toml` due to 40 previous errors
+
+err tests_llm_16_231_llm_16_231 test_serialize_field
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/toml)
+error[E0521]: borrowed data escapes outside of closure
+    --> crates/toml/src/value.rs:2463:136
+     |
+2462 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+2463 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2)) = <(&str, &str, &str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                                           |
+     |                                                                                                                           `rug_data` escapes the closure body here
+     |                                                                                                                           argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_231_llm_16_231 test_serialize_field_error
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/toml)
+error[E0521]: borrowed data escapes outside of closure
+    --> crates/toml/src/value.rs:2482:92
+     |
+2481 |         .for_each(|rug_data| {
+     |                    --------
+     |                    |
+     |                    `rug_data` is a reference that is only valid in the closure body
+     |                    has type `&'1 [u8]`
+2482 |             if let Ok((mut rug_fuzz_0)) = <(&str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data)){
+     |                                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                            |
+     |                                                                                            `rug_data` escapes the closure body here
+     |                                                                                            argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_256_llm_16_256 test_serialize_struct
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/toml)
+error[E0521]: borrowed data escapes outside of closure
+    --> crates/toml/src/value.rs:3001:115
+     |
+3000 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+3001 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1)) = <(&str, usize) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                      |
+     |                                                                                                      `rug_data` escapes the closure body here
+     |                                                                                                      argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_257 test_serialize_struct_variant_unsupported
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/toml)
+error[E0521]: borrowed data escapes outside of closure
+    --> crates/toml/src/value.rs:3023:158
+     |
+3022 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+3023 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2, mut rug_fuzz_3)) = <(&str, u32, &str, usize) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                                                                 |
+     |                                                                                                                                                 `rug_data` escapes the closure body here
+     |                                                                                                                                                 argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_259_llm_16_259 test_serialize_tuple_struct
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/toml)
+error[E0521]: borrowed data escapes outside of closure
+    --> crates/toml/src/value.rs:3069:115
+     |
+3068 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+3069 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1)) = <(&str, usize) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                      |
+     |                                                                                                      `rug_data` escapes the closure body here
+     |                                                                                                      argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_260 test_serialize_tuple_variant
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/toml)
+error[E0521]: borrowed data escapes outside of closure
+    --> crates/toml/src/value.rs:3092:158
+     |
+3091 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+3092 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2, mut rug_fuzz_3)) = <(&str, u32, &str, usize) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                                                                 |
+     |                                                                                                                                                 `rug_data` escapes the closure body here
+     |                                                                                                                                                 argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_267 test_serialize_unit_variant
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/toml)
+error[E0521]: borrowed data escapes outside of closure
+    --> crates/toml/src/value.rs:3177:135
+     |
+3176 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+3177 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2)) = <(&str, u32, &str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                                          |
+     |                                                                                                                          `rug_data` escapes the closure body here
+     |                                                                                                                          argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_rug_137 test_serialize_unit_variant
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/toml)
+error[E0521]: borrowed data escapes outside of closure
+    --> crates/toml/src/value.rs:4281:135
+     |
+4280 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+4281 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2)) = <(&str, u32, &str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                                          |
+     |                                                                                                                          `rug_data` escapes the closure body here
+     |                                                                                                                          argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_rug_143 test_serialize_tuple_struct
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/toml)
+error[E0521]: borrowed data escapes outside of closure
+    --> crates/toml/src/value.rs:4315:115
+     |
+4314 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+4315 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1)) = <(&str, usize) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                      |
+     |                                                                                                      `rug_data` escapes the closure body here
+     |                                                                                                      argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_rug_145 test_serialize_struct
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/toml)
+error[E0521]: borrowed data escapes outside of closure
+    --> crates/toml/src/value.rs:4333:115
+     |
+4332 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+4333 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1)) = <(&str, usize) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                      |
+     |                                                                                                      `rug_data` escapes the closure body here
+     |                                                                                                      argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/toml/src/macros.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/toml/src/edit.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/toml/src/lib.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/toml/src/fmt.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/toml/src/ser.rs
+err tests_llm_16_93 test_serialize_unit_struct
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/toml)
+error[E0521]: borrowed data escapes outside of closure
+    --> crates/toml/src/ser.rs:1291:92
+     |
+1290 |         .for_each(|rug_data| {
+     |                    --------
+     |                    |
+     |                    `rug_data` is a reference that is only valid in the closure body
+     |                    has type `&'1 [u8]`
+1291 |             if let Ok((mut rug_fuzz_0)) = <(&str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data)){
+     |                                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                            |
+     |                                                                                            `rug_data` escapes the closure body here
+     |                                                                                            argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_106_llm_16_106 test_serialize_newtype_variant
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/toml)
+error[E0521]: borrowed data escapes outside of closure
+    --> crates/toml/src/ser.rs:1455:179
+     |
+1454 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+1455 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2, mut rug_fuzz_3, mut rug_fuzz_4)) = <(&str, &str, u32, &str, &str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                                                                                      |
+     |                                                                                                                                                                      `rug_data` escapes the closure body here
+     |                                                                                                                                                                      argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_114 test_serialize_tuple_struct
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/toml)
+error[E0521]: borrowed data escapes outside of closure
+    --> crates/toml/src/ser.rs:1604:115
+     |
+1603 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+1604 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1)) = <(&str, usize) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                      |
+     |                                                                                                      `rug_data` escapes the closure body here
+     |                                                                                                      argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_121 test_serialize_unit_struct
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/toml)
+error[E0521]: borrowed data escapes outside of closure
+    --> crates/toml/src/ser.rs:1711:92
+     |
+1710 |         .for_each(|rug_data| {
+     |                    --------
+     |                    |
+     |                    `rug_data` is a reference that is only valid in the closure body
+     |                    has type `&'1 [u8]`
+1711 |             if let Ok((mut rug_fuzz_0)) = <(&str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data)){
+     |                                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                            |
+     |                                                                                            `rug_data` escapes the closure body here
+     |                                                                                            argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_122_llm_16_122 serialize_unit_variant_first
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/toml)
+error[E0521]: borrowed data escapes outside of closure
+    --> crates/toml/src/ser.rs:1727:157
+     |
+1726 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+1727 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2, mut rug_fuzz_3)) = <(&str, u32, &str, &str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                                                                |
+     |                                                                                                                                                `rug_data` escapes the closure body here
+     |                                                                                                                                                argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_122_llm_16_122 serialize_unit_variant_second
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/toml)
+error[E0521]: borrowed data escapes outside of closure
+    --> crates/toml/src/ser.rs:1741:157
+     |
+1740 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+1741 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2, mut rug_fuzz_3)) = <(&str, u32, &str, &str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                                                                |
+     |                                                                                                                                                `rug_data` escapes the closure body here
+     |                                                                                                                                                argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_122_llm_16_122 serialize_unit_variant_invalid_variant
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/toml)
+error[E0521]: borrowed data escapes outside of closure
+    --> crates/toml/src/ser.rs:1755:135
+     |
+1754 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+1755 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2)) = <(&str, u32, &str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                                          |
+     |                                                                                                                          `rug_data` escapes the closure body here
+     |                                                                                                                          argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_307_llm_16_307 test_unsupported_type_with_some
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/toml)
+error[E0521]: borrowed data escapes outside of closure
+    --> crates/toml/src/ser.rs:1816:92
+     |
+1815 |         .for_each(|rug_data| {
+     |                    --------
+     |                    |
+     |                    `rug_data` is a reference that is only valid in the closure body
+     |                    has type `&'1 [u8]`
+1816 |             if let Ok((mut rug_fuzz_0)) = <(&str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data)){
+     |                                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                            |
+     |                                                                                            `rug_data` escapes the closure body here
+     |                                                                                            argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_307_llm_16_307 test_unsupported_type_implements_error_trait
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/toml)
+error[E0521]: borrowed data escapes outside of closure
+    --> crates/toml/src/ser.rs:1824:92
+     |
+1823 |         .for_each(|rug_data| {
+     |                    --------
+     |                    |
+     |                    `rug_data` is a reference that is only valid in the closure body
+     |                    has type `&'1 [u8]`
+1824 |             if let Ok((mut rug_fuzz_0)) = <(&str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data)){
+     |                                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                            |
+     |                                                                                            `rug_data` escapes the closure body here
+     |                                                                                            argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_307_llm_16_307 test_unsupported_type_implements_std_error
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/toml)
+error[E0521]: borrowed data escapes outside of closure
+    --> crates/toml/src/ser.rs:1833:92
+     |
+1832 |         .for_each(|rug_data| {
+     |                    --------
+     |                    |
+     |                    `rug_data` is a reference that is only valid in the closure body
+     |                    has type `&'1 [u8]`
+1833 |             if let Ok((mut rug_fuzz_0)) = <(&str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data)){
+     |                                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                            |
+     |                                                                                            `rug_data` escapes the closure body here
+     |                                                                                            argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_307_llm_16_307 test_unsupported_type_implements_display
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/toml)
+error[E0521]: borrowed data escapes outside of closure
+    --> crates/toml/src/ser.rs:1842:92
+     |
+1841 |         .for_each(|rug_data| {
+     |                    --------
+     |                    |
+     |                    `rug_data` is a reference that is only valid in the closure body
+     |                    has type `&'1 [u8]`
+1842 |             if let Ok((mut rug_fuzz_0)) = <(&str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data)){
+     |                                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                            |
+     |                                                                                            `rug_data` escapes the closure body here
+     |                                                                                            argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_307_llm_16_307 test_unsupported_type_implements_debug
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/toml)
+error[E0521]: borrowed data escapes outside of closure
+    --> crates/toml/src/ser.rs:1851:114
+     |
+1850 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+1851 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1)) = <(&str, &str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data)){
+     |                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                     |
+     |                                                                                                     `rug_data` escapes the closure body here
+     |                                                                                                     argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_319_llm_16_319 test_to_string_pretty
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/toml)
+error: prefix `error` is unknown
+    --> crates/toml/src/ser.rs:1921:42
+     |
+1921 |     #[should_panic(expected = "serialize error")]
+     |                                          ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1921 |     #[should_panic(expected = "serialize error ")]
+     |                                               +
+
+error: prefix `error` is unknown
+    --> crates/toml/src/ser.rs:1935:45
+     |
+1935 |             Err(S::Error::custom("serialize error"))
+     |                                             ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1935 |             Err(S::Error::custom("serialize error "))
+     |                                                  +
+
+error: prefix `value` is unknown
+    --> crates/toml/src/ser.rs:2022:41
+     |
+2022 |         let rug_fuzz_0 = "Sample string value";
+     |                                         ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+2022 |         let rug_fuzz_0 = "Sample string value ";
+     |                                              +
+
+error: prefix `value` is unknown
+    --> crates/toml/src/ser.rs:2034:35
+     |
+2034 |         let rug_fuzz_0 = "initial value";
+     |                                   ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+2034 |         let rug_fuzz_0 = "initial value ";
+     |                                        +
+
+error: prefix `Example` is unknown
+    --> crates/toml/src/ser.rs:2047:41
+     |
+2047 |         let rug_fuzz_0 = "title = 'TOML Example'";
+     |                                         ^^^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+2047 |         let rug_fuzz_0 = "title = 'TOML Example '";
+     |                                                +
+
+error[E0762]: unterminated character literal
+    --> crates/toml/src/ser.rs:2047:48
+     |
+2047 |         let rug_fuzz_0 = "title = 'TOML Example'";
+     |                                                ^^^
+
+For more information about this error, try `rustc --explain E0762`.
+error: could not compile `toml` due to 6 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `toml` due to 6 previous errors
+
+done
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/toml_datetime/src/datetime.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/toml/crates/toml_datetime/src/lib.rs
+done
+err1 toml toml toml_edit crates/toml_edit

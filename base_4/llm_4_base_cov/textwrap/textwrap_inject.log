@@ -1,0 +1,1722 @@
+ChatCompletion(id='chatcmpl-8UTw7kx8LHtf4MZDhkZh907Nx0pdu', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n\n    #[test]\n    fn penalty_width_empty_penalty() {\n        let word = Word {\n            word: "example",\n            whitespace: " ",\n            penalty: "",\n            width: 7,\n        };\n        assert_eq!(word.penalty_width(), 0.0);\n    }\n\n    #[test]\n    fn penalty_width_non_empty_penalty() {\n        let word = Word {\n            word: "example",\n            whitespace: " ",\n            penalty: "-",\n            width: 7,\n        };\n        assert_eq!(word.penalty_width(), 1.0);\n    }\n\n    #[test]\n    fn penalty_width_with_multiple_chars_penalty() {\n        let word = Word {\n            word: "example",\n            whitespace: " ",\n            penalty: "--",\n            width: 7,\n        };\n        assert_eq!(word.penalty_width(), 2.0);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702275607, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=192, prompt_tokens=1035, total_tokens=1227))
+71
+inject succeed textwrap textwrap <core::Word<'_> as core::Fragment>::penalty_width
+ChatCompletion(id='chatcmpl-8UTwdMVzAsMz96H54on7dWyYbleRB', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n\n    #[test]\n    fn whitespace_width_test() {\n        let word_with_space = Word {\n            word: "Hello",\n            whitespace: "     ", // 5 spaces\n            penalty: "",\n            width: 5,\n        };\n        assert_eq!(word_with_space.whitespace_width(), 5.0);\n\n        let word_with_no_space = Word {\n            word: "Hello",\n            whitespace: "", // No spaces\n            penalty: "",\n            width: 5,\n        };\n        assert_eq!(word_with_no_space.whitespace_width(), 0.0);\n\n        let word_with_mixed_space = Word {\n            word: "Hello",\n            whitespace: " \\t\\n", // 1 space, 1 tab, 1 newline\n            penalty: "",\n            width: 5,\n        };\n        assert_eq!(word_with_mixed_space.whitespace_width(), 3.0);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702275639, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_6aca3b5ce1', usage=CompletionUsage(completion_tokens=201, prompt_tokens=1035, total_tokens=1236))
+71
+inject succeed textwrap textwrap <core::Word<'_> as core::Fragment>::whitespace_width
+ChatCompletion(id='chatcmpl-8UTwtu4TI3nzTJmgLvJ6japOZilDR', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n\n    #[test]\n    fn test_word_width() {\n        let word = Word {\n            word: "test",\n            whitespace: "   ",\n            penalty: "",\n            width: 4,\n        };\n        assert_eq!(word.width(), 4.0);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702275655, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=71, prompt_tokens=1027, total_tokens=1098))
+71
+inject succeed textwrap textwrap <core::Word<'_> as core::Fragment>::width
+ChatCompletion(id='chatcmpl-8UTx0dyzFiB4uRj8IDcjY2HyGaSCn', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n\n    #[test]\n    fn word_deref() {\n        let word = Word::from("hello");\n        let word_str: &str = &word;\n        assert_eq!(word_str, "hello");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702275662, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=60, prompt_tokens=1029, total_tokens=1089))
+71
+inject succeed textwrap textwrap <core::Word<'_> as std::ops::Deref>::deref
+ChatCompletion(id='chatcmpl-8UTxBhn3uG5kjJsahnScJy5LgKWHr', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use line_ending::{NonEmptyLines, LineEnding};\n\n    #[test]\n    fn non_empty_lines_next_empty_string() {\n        let mut lines = NonEmptyLines("");\n        assert_eq!(lines.next(), None);\n    }\n\n    #[test]\n    fn non_empty_lines_next_new_lines_only() {\n        let mut lines = NonEmptyLines("\\n\\n");\n        assert_eq!(lines.next(), None);\n    }\n\n    #[test]\n    fn non_empty_lines_next_single_line_no_newline() {\n        let mut lines = NonEmptyLines("line");\n        assert_eq!(lines.next(), Some(("line", None)));\n        assert_eq!(lines.next(), None);\n    }\n\n    #[test]\n    fn non_empty_lines_next_single_line_with_newline() {\n        let mut lines = NonEmptyLines("line\\n");\n        assert_eq!(lines.next(), Some(("line", Some(LineEnding::LF))));\n        assert_eq!(lines.next(), None);\n    }\n\n    #[test]\n    fn non_empty_lines_next_single_line_with_crlf() {\n        let mut lines = NonEmptyLines("line\\r\\n");\n        assert_eq!(lines.next(), Some(("line", Some(LineEnding::CRLF))));\n        assert_eq!(lines.next(), None);\n    }\n\n    #[test]\n    fn non_empty_lines_next_multiple_lines() {\n        let mut lines = NonEmptyLines("line1\\nline2\\nline3");\n        assert_eq!(lines.next(), Some(("line1", Some(LineEnding::LF))));\n        assert_eq!(lines.next(), Some(("line2", Some(LineEnding::LF))));\n        assert_eq!(lines.next(), Some(("line3", None)));\n        assert_eq!(lines.next(), None);\n    }\n\n    #[test]\n    fn non_empty_lines_next_multiple_lines_with_empty_lines() {\n        let mut lines = NonEmptyLines("line1\\n\\nline2\\n\\n\\nline3\\n");\n        assert_eq!(lines.next(), Some(("line1", Some(LineEnding::LF))));\n        assert_eq!(lines.next(), Some(("line2", Some(LineEnding::LF))));\n        assert_eq!(lines.next(), Some(("line3", Some(LineEnding::LF))));\n        assert_eq!(lines.next(), None);\n    }\n\n    #[test]\n    fn non_empty_lines_next_multiple_lines_with_crlf() {\n        let mut lines = NonEmptyLines("line1\\r\\nline2\\r\\nline3");\n        assert_eq!(lines.next(), Some(("line1", Some(LineEnding::CRLF))));\n        assert_eq!(lines.next(), Some(("line2", Some(LineEnding::CRLF))));\n        assert_eq!(lines.next(), Some(("line3", None)));\n        assert_eq!(lines.next(), None);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702275673, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=568, prompt_tokens=719, total_tokens=1287))
+71
+inject succeed textwrap textwrap <line_ending::NonEmptyLines<'a> as std::iter::Iterator>::next
+ChatCompletion(id='chatcmpl-8UTxp0eaU6G29iv7QO8zerGmtmBef', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use crate::wrap_algorithms::WrapAlgorithm;\n    use crate::line_ending::LineEnding;\n    use crate::word_separators::WordSeparator;\n    use crate::word_splitters::WordSplitter;\n\n    #[test]\n    fn test_from_options() {\n        // Setup\n        let src_options = Options::new(20)\n            .line_ending(LineEnding::CRLF)\n            .initial_indent("->")\n            .subsequent_indent("--")\n            .break_words(false)\n            .word_separator(WordSeparator::AsciiSpace)\n            .wrap_algorithm(WrapAlgorithm::FirstFit)\n            .word_splitter(WordSplitter::HyphenSplitter);\n\n        // Exercise\n        let new_options = Options::from(&src_options);\n\n        // Verify\n        assert_eq!(new_options.width, 20);\n        assert_eq!(new_options.line_ending, LineEnding::CRLF);\n        assert_eq!(new_options.initial_indent, "->");\n        assert_eq!(new_options.subsequent_indent, "--");\n        assert_eq!(new_options.break_words, false);\n        assert_eq!(new_options.word_separator, WordSeparator::AsciiSpace);\n        assert_eq!(new_options.wrap_algorithm, WrapAlgorithm::FirstFit);\n        assert_eq!(new_options.word_splitter, WordSplitter::HyphenSplitter);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702275713, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=289, prompt_tokens=10276, total_tokens=10565))
+71
+inject succeed textwrap textwrap <options::Options<'a> as std::convert::From<&'a options::Options<'a>>>::from
+ChatCompletion(id='chatcmpl-8UTyDiQ1udxlbxEKvhxLqEpEl1QBZ', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n\n    #[test]\n    fn options_from_usize() {\n        let width = 42;\n        let options = Options::from(width);\n\n        assert_eq!(options.width, width);\n        assert_eq!(options.line_ending, LineEnding::LF);\n        assert_eq!(options.initial_indent, "");\n        assert_eq!(options.subsequent_indent, "");\n        assert_eq!(options.break_words, true);\n        #[cfg(feature = "unicode-linebreak")]\n        assert_eq!(options.word_separator, WordSeparator::UnicodeBreakProperties);\n        #[cfg(not(feature = "unicode-linebreak"))]\n        assert_eq!(options.word_separator, WordSeparator::AsciiSpace);\n        #[cfg(feature = "smawk")]\n        assert_eq!(options.wrap_algorithm, WrapAlgorithm::new_optimal_fit());\n        #[cfg(not(feature = "smawk"))]\n        assert_eq!(options.wrap_algorithm, WrapAlgorithm::FirstFit);\n        assert_eq!(options.word_splitter, WordSplitter::HyphenSplitter);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702275737, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_6aca3b5ce1', usage=CompletionUsage(completion_tokens=217, prompt_tokens=10197, total_tokens=10414))
+71
+inject succeed textwrap textwrap <options::Options<'a> as std::convert::From<usize>>::from
+ChatCompletion(id='chatcmpl-8UTyW7rec4DvNrlqj0rqO1brdlBWY', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n\n    #[test]\n    fn test_eq_ascii_space() {\n        assert_eq!(WordSeparator::AsciiSpace, WordSeparator::AsciiSpace);\n    }\n\n    #[cfg(feature = "unicode-linebreak")]\n    #[test]\n    fn test_eq_unicode_break_properties() {\n        assert_eq!(\n            WordSeparator::UnicodeBreakProperties,\n            WordSeparator::UnicodeBreakProperties\n        );\n    }\n\n    #[test]\n    fn test_eq_custom_never_equal() {\n        fn word_separator_a(line: &str) -> Box<dyn Iterator<Item = Word<\'_>> + \'_> {\n            Box::new(line.split_inclusive(\' \').map(Word::from))\n        }\n\n        fn word_separator_b(line: &str) -> Box<dyn Iterator<Item = Word<\'_>> + \'_> {\n            Box::new(line.split_inclusive(\'-\').map(Word::from))\n        }\n\n        assert_ne!(\n            WordSeparator::Custom(word_separator_a),\n            WordSeparator::Custom(word_separator_a)\n        );\n        assert_ne!(\n            WordSeparator::Custom(word_separator_a),\n            WordSeparator::Custom(word_separator_b)\n        );\n    }\n\n    #[test]\n    fn test_eq_custom_with_different_functions() {\n        fn word_separator_a(line: &str) -> Box<dyn Iterator<Item = Word<\'_>> + \'_> {\n            Box::new(line.split_inclusive(\' \').map(Word::from))\n        }\n\n        fn word_separator_b(line: &str) -> Box<dyn Iterator<Item = Word<\'_>> + \'_> {\n            Box::new(line.split_inclusive(\'-\').map(Word::from))\n        }\n\n        assert_ne!(\n            WordSeparator::Custom(word_separator_a),\n            WordSeparator::Custom(word_separator_b)\n        );\n    }\n\n    #[test]\n    fn test_eq_ascii_space_with_unicode_break_properties() {\n        #[cfg(feature = "unicode-linebreak")]\n        assert_ne!(\n            WordSeparator::AsciiSpace,\n            WordSeparator::UnicodeBreakProperties\n        );\n    }\n\n    #[test]\n    fn test_eq_ascii_space_with_custom() {\n        fn word_separator(line: &str) -> Box<dyn Iterator<Item = Word<\'_>> + \'_> {\n            Box::new(line.split_inclusive(\' \').map(Word::from))\n        }\n\n        assert_ne!(\n            WordSeparator::AsciiSpace,\n            WordSeparator::Custom(word_separator)\n        );\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702275756, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=492, prompt_tokens=2040, total_tokens=2532))
+71
+inject succeed textwrap textwrap <word_separators::WordSeparator as std::cmp::PartialEq>::eq
+ChatCompletion(id='chatcmpl-8UTz8sfOlUKtTmStmiIuDNtEY7GF2', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::WordSplitter;\n\n    #[test]\n    fn test_eq_no_hyphenation() {\n        assert_eq!(\n            WordSplitter::NoHyphenation,\n            WordSplitter::NoHyphenation\n        );\n    }\n\n    #[test]\n    fn test_eq_hyphen_splitter() {\n        assert_eq!(\n            WordSplitter::HyphenSplitter,\n            WordSplitter::HyphenSplitter\n        );\n    }\n\n    #[cfg(feature = "hyphenation")]\n    #[test]\n    fn test_eq_hyphenation_same_language() {\n        use hyphenation::{Language, Load, Standard};\n\n        let dictionary1 = Standard::from_embedded(Language::EnglishUS).unwrap();\n        let dictionary2 = Standard::from_embedded(Language::EnglishUS).unwrap();\n        assert_eq!(\n            WordSplitter::Hyphenation(dictionary1),\n            WordSplitter::Hyphenation(dictionary2)\n        );\n    }\n\n    #[cfg(feature = "hyphenation")]\n    #[test]\n    fn test_eq_hyphenation_different_language() {\n        use hyphenation::{Language, Load, Standard};\n\n        let dictionary1 = Standard::from_embedded(Language::EnglishUS).unwrap();\n        let dictionary2 = Standard::from_embedded(Language::EnglishGB).unwrap();\n        assert_ne!(\n            WordSplitter::Hyphenation(dictionary1),\n            WordSplitter::Hyphenation(dictionary2)\n        );\n    }\n\n    #[test]\n    fn test_eq_different_types_no_hyphenation_hyphen_splitter() {\n        assert_ne!(\n            WordSplitter::NoHyphenation,\n            WordSplitter::HyphenSplitter\n        );\n    }\n\n    #[test]\n    fn test_eq_different_types_hyphen_splitter_custom() {\n        assert_ne!(\n            WordSplitter::HyphenSplitter,\n            WordSplitter::Custom(|_| Vec::new())\n        );\n    }\n\n    #[cfg(feature = "hyphenation")]\n    #[test]\n    fn test_eq_different_types_hyphenation_no_hyphenation() {\n        use hyphenation::{Language, Load, Standard};\n\n        let dictionary = Standard::from_embedded(Language::EnglishUS).unwrap();\n        assert_ne!(\n            WordSplitter::Hyphenation(dictionary),\n            WordSplitter::NoHyphenation\n        );\n    }\n\n    #[cfg(feature = "hyphenation")]\n    #[test]\n    fn test_eq_different_types_hyphenation_custom() {\n        use hyphenation::{Language, Load, Standard};\n\n        let dictionary = Standard::from_embedded(Language::EnglishUS).unwrap();\n        assert_ne!(\n            WordSplitter::Hyphenation(dictionary),\n            WordSplitter::Custom(|_| Vec::new())\n        );\n    }\n\n    // Add additional tests to cover more edge cases if necessary.\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702275794, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=593, prompt_tokens=1838, total_tokens=2431))
+71
+inject succeed textwrap textwrap <word_splitters::WordSplitter as std::cmp::PartialEq>::eq
+ChatCompletion(id='chatcmpl-8UU0KAb5EFH3GRvGT8srqDEsnzwEU', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::WrapAlgorithm;\n    use crate::wrap_algorithms::optimal_fit::Penalties;\n\n    #[test]\n    fn eq_first_fit() {\n        assert_eq!(\n            WrapAlgorithm::FirstFit,\n            WrapAlgorithm::FirstFit,\n            "FirstFit algorithms should be equal."\n        );\n    }\n\n    #[cfg(feature = "smawk")]\n    #[test]\n    fn eq_optimal_fit_with_equal_penalties() {\n        let penalties = Penalties::new();\n        assert_eq!(\n            WrapAlgorithm::OptimalFit(penalties),\n            WrapAlgorithm::OptimalFit(penalties),\n            "OptimalFit algorithms with equal penalties should be equal."\n        );\n    }\n\n    #[cfg(feature = "smawk")]\n    #[test]\n    fn eq_optimal_fit_with_different_penalties() {\n        let penalties_a = Penalties {\n            nline_penalty: 1000,\n            overflow_penalty: 2500,\n            short_last_line_fraction: 4,\n            short_last_line_penalty: 25,\n            hyphen_penalty: 25,\n        };\n        let penalties_b = Penalties {\n            nline_penalty: 2000,\n            overflow_penalty: 2500,\n            short_last_line_fraction: 4,\n            short_last_line_penalty: 25,\n            hyphen_penalty: 25,\n        };\n        assert_ne!(\n            WrapAlgorithm::OptimalFit(penalties_a),\n            WrapAlgorithm::OptimalFit(penalties_b),\n            "OptimalFit algorithms with different penalties should not be equal."\n        );\n    }\n\n    #[test]\n    fn eq_custom() {\n        let custom_a = WrapAlgorithm::Custom(|_, _| vec![]);\n        let custom_b = WrapAlgorithm::Custom(|_, _| vec![]);\n        assert_ne!(\n            custom_a, custom_b,\n            "Custom algorithms should not be equal."\n        );\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702275868, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_6aca3b5ce1', usage=CompletionUsage(completion_tokens=394, prompt_tokens=4504, total_tokens=4898))
+71
+inject succeed textwrap textwrap <wrap_algorithms::WrapAlgorithm as std::cmp::PartialEq>::eq
+ChatCompletion(id='chatcmpl-8UU0meUhLBFjVj5JVhbP0FhMu8rvK', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n\n    #[test]\n    fn wrap_algorithm_default_is_first_fit() {\n        let wrap_algorithm = WrapAlgorithm::default();\n        assert_eq!(wrap_algorithm, WrapAlgorithm::FirstFit);\n    }\n\n    #[cfg(feature = "smawk")]\n    #[test]\n    fn wrap_algorithm_default_is_optimal_fit_with_default_penalties() {\n        let wrap_algorithm = WrapAlgorithm::default();\n        assert_eq!(wrap_algorithm, WrapAlgorithm::OptimalFit(Penalties::default()));\n    }\n\n    #[test]\n    fn wrap_algorithm_clone_eq() {\n        let wrap_algorithm = WrapAlgorithm::default();\n        let wrap_algorithm_clone = wrap_algorithm.clone();\n        assert_eq!(wrap_algorithm, wrap_algorithm_clone);\n    }\n\n    #[test]\n    fn wrap_algorithm_debug_format() {\n        let wrap_algorithm = WrapAlgorithm::default();\n        assert_eq!(format!("{:?}", wrap_algorithm), "FirstFit");\n\n        #[cfg(feature = "smawk")]\n        {\n            let penalties = Penalties::default();\n            let wrap_algorithm = WrapAlgorithm::OptimalFit(penalties);\n            assert_eq!(format!("{:?}", wrap_algorithm), "OptimalFit(Penalties { nline_penalty: 1000, overflow_penalty: 2500, short_last_line_fraction: 4, short_last_line_penalty: 25, hyphen_penalty: 25 })")\n        }\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702275896, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=293, prompt_tokens=4303, total_tokens=4596))
+71
+inject succeed textwrap textwrap <wrap_algorithms::WrapAlgorithm as std::default::Default>::default
+ChatCompletion(id='chatcmpl-8UU1B7WxFHPbHGv9QgObMVlj8rJR7', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod optimal_fit_tests {\n    use super::Penalties;\n\n    #[test]\n    fn default_penalties() {\n        let default_penalties = Penalties::default();\n        let new_penalties = Penalties::new();\n        assert_eq!(default_penalties, new_penalties);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702275921, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=68, prompt_tokens=1884, total_tokens=1952))
+71
+========================================
+inject err <wrap_algorithms::optimal_fit::Penalties as std::default::Default>::default src/wrap_algorithms/optimal_fit.rs default
+#[cfg(test)]
+mod optimal_fit_tests {
+    use crate::Penalties;
+
+    #[test]
+    fn default_penalties() {
+        let default_penalties = Penalties::default();
+        let new_penalties = Penalties::new();
+        assert_eq!(default_penalties, new_penalties);
+    }
+}
+   Compiling textwrap v0.16.0 (/home/xiang/workspace/human/llm_base_bk/textwrap)
+error[E0432]: unresolved import `crate::Penalties`
+   --> src/wrap_algorithms/optimal_fit.rs:436:9
+    |
+436 |     use crate::Penalties;
+    |         ^^^^^^^^^^^^^^^^ no `Penalties` in the root
+    |
+help: consider importing this struct instead
+    |
+436 |     use crate::wrap_algorithms::Penalties;
+    |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `textwrap` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UU1NEOr3B1wnQwh7JGK6jPh0NvjQ', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod optimal_fit_tests {\n    use crate::wrap_algorithms::optimal_fit::Penalties;\n\n    #[test]\n    fn default_penalties() {\n        let default_penalties = Penalties::default();\n        let new_penalties = Penalties::new();\n        assert_eq!(default_penalties, new_penalties);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702275933, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_6aca3b5ce1', usage=CompletionUsage(completion_tokens=76, prompt_tokens=2231, total_tokens=2307))
+71
+inject succeed textwrap textwrap <wrap_algorithms::optimal_fit::Penalties as std::default::Default>::default
+ChatCompletion(id='chatcmpl-8UU1VWeTMofFTDcZtmyhGuUN307Zn', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use textwrap::{wrap_columns, Options};\n\n    #[test]\n    #[should_panic]\n    fn wrap_columns_zero_columns() {\n        let text = "This text should panic because we\'re trying to wrap it into zero columns.";\n        wrap_columns(text, 0, 30, "", "", "");\n    }\n\n    #[test]\n    fn wrap_columns_single_column() {\n        let text = "This text is wrapped into a single column.";\n        assert_eq!(\n            wrap_columns(text, 1, 30, "", "", ""),\n            vec![\n                "This text is wrapped into a",\n                "single column."\n            ]\n        );\n    }\n\n    #[test]\n    fn wrap_columns_multiple_columns() {\n        let text = "This text is wrapped into multiple columns.";\n        assert_eq!(\n            wrap_columns(text, 2, 30, "|", "|", "|"),\n            vec![\n                "|This text|long enough|",\n                "|is       |for two    |",\n                "|wrapped  |columns.   |",\n                "|into     |           |",\n                "|multiple |           |",\n            ]\n        );\n    }\n\n    #[test]\n    fn wrap_columns_with_gaps() {\n        let text = "This text is wrapped with gaps around.";\n        assert_eq!(\n            wrap_columns(text, 2, 40, " ", " | ", " "),\n            vec![\n                " This           | wrapped       ",\n                " text is        | with gaps     ",\n                " wrapped with   | around.       ",\n            ]\n        );\n    }\n\n    #[test]\n    fn wrap_columns_with_options() {\n        let text = "This text is wrapped with custom options.";\n        let options = Options::new(40).break_words(false);\n        assert_eq!(\n            wrap_columns(text, 2, options, " ", "|", " "),\n            vec![\n                " This             | wrapped        ",\n                " text is wrapped | custom options.",\n                " with            |                ",\n            ]\n        );\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702275941, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=423, prompt_tokens=1094, total_tokens=1517))
+71
+inject succeed textwrap textwrap columns::wrap_columns
+ChatCompletion(id='chatcmpl-8UU21q6chDK4SWRHVguzEGv0XHsmk', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n\n    #[test]\n    fn test_break_apart() {\n        // Test breaking apart a word with no whitespace or penalty\n        let word = Word::from("HelloWorld");\n        let broken_words: Vec<Word> = word.break_apart(5).collect();\n        assert_eq!(\n            broken_words,\n            vec![\n                Word::from("Hello"),\n                Word::from("World")\n            ]\n        );\n\n        // Test breaking apart a word with whitespace\n        let word = Word::from("Hello  ");\n        let broken_words: Vec<Word> = word.break_apart(3).collect();\n        assert_eq!(\n            broken_words,\n            vec![\n                Word::from("Hel"),\n                Word::from("lo  ")\n            ]\n        );\n\n        // Test breaking apart a word with penalty\n        let word = Word {\n            word: "Hello-",\n            whitespace: "",\n            penalty: "-",\n            width: 6,\n        };\n        let broken_words: Vec<Word> = word.break_apart(5).collect();\n        assert_eq!(\n            broken_words,\n            vec![\n                Word::from("Hello"),\n                Word {\n                    word: "-",\n                    whitespace: "",\n                    penalty: "-",\n                    width: 1,\n                }\n            ]\n        );\n\n        // Test breaking apart a word that is smaller than line width\n        let word = Word::from("Hey");\n        let broken_words: Vec<Word> = word.break_apart(5).collect();\n        assert_eq!(\n            broken_words,\n            vec![\n                Word::from("Hey")\n            ]\n        );\n\n        // Test breaking apart an empty word\n        let word = Word::from("");\n        let broken_words: Vec<Word> = word.break_apart(5).collect();\n        assert_eq!(broken_words, vec![]);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702275973, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=389, prompt_tokens=1363, total_tokens=1752))
+71
+inject succeed textwrap textwrap core::Word::<'a>::break_apart
+ChatCompletion(id='chatcmpl-8UU2Z0TVXR1eAwL6vwLsq0ik7gJrA', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n\n    #[test]\n    fn test_word_from_empty_string() {\n        let input = "";\n        let word = Word::from(input);\n\n        assert_eq!(word.word, "");\n        assert_eq!(word.whitespace, "");\n        assert_eq!(word.penalty, "");\n        assert_eq!(word.width, 0);\n    }\n\n    #[test]\n    fn test_word_from_non_empty_string() {\n        let input = "hello";\n        let word = Word::from(input);\n\n        assert_eq!(word.word, "hello");\n        assert_eq!(word.whitespace, "");\n        assert_eq!(word.penalty, "");\n        assert_eq!(word.width, display_width("hello"));\n    }\n\n    #[test]\n    fn test_word_from_string_with_trailing_whitespace() {\n        let input = "hello   ";\n        let word = Word::from(input);\n\n        assert_eq!(word.word, "hello");\n        assert_eq!(word.whitespace, "   ");\n        assert_eq!(word.penalty, "");\n        assert_eq!(word.width, display_width("hello"));\n    }\n\n    #[test]\n    fn test_word_from_string_with_only_whitespace() {\n        let input = "     ";\n        let word = Word::from(input);\n\n        assert_eq!(word.word, "");\n        assert_eq!(word.whitespace, "     ");\n        assert_eq!(word.penalty, "");\n        assert_eq!(word.width, 0);\n    }\n\n    #[test]\n    fn test_word_from_string_with_internal_whitespace() {\n        let input = "he llo  ";\n        let word = Word::from(input);\n\n        assert_eq!(word.word, "he llo");\n        assert_eq!(word.whitespace, "  ");\n        assert_eq!(word.penalty, "");\n        assert_eq!(word.width, display_width("he llo"));\n    }\n\n    // A helper function to compute the display width of a string.\n    // It should be the same function used in the `Word::from` definition to\n    // compute the `width` field.\n    fn display_width(s: &str) -> usize {\n        // Mock implementation of display_width for testing purposes\n        // Please replace the mock implementation with the actual one used in the crate\n        s.chars().map(|ch| ch_width(ch)).sum()\n    }\n    \n    // A helper function to compute the width of a character.\n    // It should be the same function used in the `Word::from` definition to\n    // compute the `width` of characters.\n    fn ch_width(ch: char) -> usize {\n        // Mock implementation of ch_width for testing purposes\n        // Please replace the mock implementation with the actual one used in the crate\n        1\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702276007, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=567, prompt_tokens=1093, total_tokens=1660))
+71
+inject succeed textwrap textwrap core::Word::<'a>::from
+ChatCompletion(id='chatcmpl-8UU3Oq42sM0V7CqoCiKXqCdevdAnT', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use crate::Word;  // Adjust crate path according to your crate\'s actual structure\n\n    #[test]\n    fn test_break_words() {\n        // Mock words to demonstrate breaking\n        let words = vec![\n            Word::from("short"),\n            Word::from("veryverylongword"),\n        ];\n        let line_width = 10;\n        let broken_words = break_words(words.iter().cloned(), line_width);\n\n        // Conditions to test\n        // 1. There should be 3 words after breaking (short, veryveryl, ongword)\n        assert_eq!(broken_words.len(), 3);\n\n        // 2. The first word should remain the same\n        assert_eq!(broken_words[0].as_str(), "short");\n\n        // 3. The combined length of the two broken words should equal the\n        // length of the original second word\n        assert_eq!(\n            broken_words[1].as_str().len() + broken_words[2].as_str().len(),\n            "veryverylongword".len()\n        );\n\n        // 4. The width of the broken words should not exceed line_width\n        assert!(broken_words[1].width() <= line_width as f64);\n        assert!(broken_words[2].width() <= line_width as f64);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702276058, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=288, prompt_tokens=282, total_tokens=570))
+71
+========================================
+inject err core::break_words src/core.rs break_words
+#[cfg(test)]
+mod tests_llm_16_16 {
+    use super::*;
+
+use crate::*;
+    use crate::Word;  // Adjust crate path according to your crate's actual structure
+
+    #[test]
+    fn test_break_words() {
+        // Mock words to demonstrate breaking
+        let words = vec![
+            Word::from("short"),
+            Word::from("veryverylongword"),
+        ];
+        let line_width = 10;
+        let broken_words = break_words(words.iter().cloned(), line_width);
+
+        // Conditions to test
+        // 1. There should be 3 words after breaking (short, veryveryl, ongword)
+        assert_eq!(broken_words.len(), 3);
+
+        // 2. The first word should remain the same
+        assert_eq!(broken_words[0].as_str(), "short");
+
+        // 3. The combined length of the two broken words should equal the
+        // length of the original second word
+        assert_eq!(
+            broken_words[1].as_str().len() + broken_words[2].as_str().len(),
+            "veryverylongword".len()
+        );
+
+        // 4. The width of the broken words should not exceed line_width
+        assert!(broken_words[1].width() <= line_width as f64);
+        assert!(broken_words[2].width() <= line_width as f64);
+    }
+}
+   Compiling textwrap v0.16.0 (/home/xiang/workspace/human/llm_base_bk/textwrap)
+error[E0432]: unresolved import `crate::Word`
+   --> src/core.rs:681:9
+    |
+681 |     use crate::Word;  // Adjust crate path according to your crate's actual structure
+    |         ^^^^^^^^^^^ no `Word` in the root
+    |
+help: consider importing this struct instead
+    |
+681 |     use crate::core::Word;
+    |         ~~~~~~~~~~~~~~~~~~
+
+error[E0599]: no method named `as_str` found for struct `core::Word<'_>` in the current scope
+   --> src/core.rs:698:36
+    |
+215 | pub struct Word<'a> {
+    | ------------------- method `as_str` not found for this struct
+...
+698 |         assert_eq!(broken_words[0].as_str(), "short");
+    |                                    ^^^^^^ help: there is a method with a similar name: `as_ptr`
+
+error[E0599]: no method named `as_str` found for struct `core::Word<'_>` in the current scope
+   --> src/core.rs:703:29
+    |
+215 | pub struct Word<'a> {
+    | ------------------- method `as_str` not found for this struct
+...
+703 |             broken_words[1].as_str().len() + broken_words[2].as_str().len(),
+    |                             ^^^^^^ help: there is a method with a similar name: `as_ptr`
+
+error[E0599]: no method named `as_str` found for struct `core::Word<'_>` in the current scope
+   --> src/core.rs:703:62
+    |
+215 | pub struct Word<'a> {
+    | ------------------- method `as_str` not found for this struct
+...
+703 |             broken_words[1].as_str().len() + broken_words[2].as_str().len(),
+    |                                                              ^^^^^^ help: there is a method with a similar name: `as_ptr`
+
+Some errors have detailed explanations: E0432, E0599.
+For more information about an error, try `rustc --explain E0432`.
+error: could not compile `textwrap` due to 4 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UU3nVuUsJeIq9AyzDJhIu5e4V3Sl', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use crate::core::Word;  // Adjust crate path to use Word from core\n\n    #[test]\n    fn test_break_words() {\n        // Mock words to demonstrate breaking\n        let words = vec![\n            Word::from("short"),\n            Word::from("veryverylongword"),\n        ];\n        let line_width = 10;\n        let broken_words = break_words(words.iter().cloned(), line_width);\n\n        // Conditions to test\n        // 1. There should be 3 words after breaking (short, veryveryl, ongword)\n        assert_eq!(broken_words.len(), 3);\n\n        // 2. The first word should remain the same\n        assert_eq!(broken_words[0].as_str(), "short");\n\n        // 3. The combined length of the two broken words should equal the\n        // length of the original second word\n        assert_eq!(\n            broken_words[1].as_str().len() + broken_words[2].as_str().len(),\n            "veryverylongword".len()\n        );\n\n        // 4. The width of the broken words should not exceed line_width\n        assert!(broken_words[1].width() <= line_width as f64);\n        assert!(broken_words[2].width() <= line_width as f64);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702276083, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=288, prompt_tokens=1407, total_tokens=1695))
+71
+========================================
+inject err core::break_words src/core.rs break_words
+#[cfg(test)]
+mod tests_llm_16_16 {
+    use super::*;
+
+use crate::*;
+    use crate::core::Word;  // Adjust crate path to use Word from core
+
+    #[test]
+    fn test_break_words() {
+        // Mock words to demonstrate breaking
+        let words = vec![
+            Word::from("short"),
+            Word::from("veryverylongword"),
+        ];
+        let line_width = 10;
+        let broken_words = break_words(words.iter().cloned(), line_width);
+
+        // Conditions to test
+        // 1. There should be 3 words after breaking (short, veryveryl, ongword)
+        assert_eq!(broken_words.len(), 3);
+
+        // 2. The first word should remain the same
+        assert_eq!(broken_words[0].as_str(), "short");
+
+        // 3. The combined length of the two broken words should equal the
+        // length of the original second word
+        assert_eq!(
+            broken_words[1].as_str().len() + broken_words[2].as_str().len(),
+            "veryverylongword".len()
+        );
+
+        // 4. The width of the broken words should not exceed line_width
+        assert!(broken_words[1].width() <= line_width as f64);
+        assert!(broken_words[2].width() <= line_width as f64);
+    }
+}
+   Compiling textwrap v0.16.0 (/home/xiang/workspace/human/llm_base_bk/textwrap)
+error[E0599]: no method named `as_str` found for struct `core::Word<'_>` in the current scope
+   --> src/core.rs:698:36
+    |
+215 | pub struct Word<'a> {
+    | ------------------- method `as_str` not found for this struct
+...
+698 |         assert_eq!(broken_words[0].as_str(), "short");
+    |                                    ^^^^^^ help: there is a method with a similar name: `as_ptr`
+
+error[E0599]: no method named `as_str` found for struct `core::Word<'_>` in the current scope
+   --> src/core.rs:703:29
+    |
+215 | pub struct Word<'a> {
+    | ------------------- method `as_str` not found for this struct
+...
+703 |             broken_words[1].as_str().len() + broken_words[2].as_str().len(),
+    |                             ^^^^^^ help: there is a method with a similar name: `as_ptr`
+
+error[E0599]: no method named `as_str` found for struct `core::Word<'_>` in the current scope
+   --> src/core.rs:703:62
+    |
+215 | pub struct Word<'a> {
+    | ------------------- method `as_str` not found for this struct
+...
+703 |             broken_words[1].as_str().len() + broken_words[2].as_str().len(),
+    |                                                              ^^^^^^ help: there is a method with a similar name: `as_ptr`
+
+For more information about this error, try `rustc --explain E0599`.
+error: could not compile `textwrap` due to 3 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+repair err core::break_words src/core.rs break_words
+ChatCompletion(id='chatcmpl-8UU4CUAJAcasQyktHjta3uXTHO4TA', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\n#[cfg(feature = "unicode-width")]\nmod tests {\n    use super::ch_width;\n\n    #[test]\n    fn test_ch_width() {\n        assert_eq!(ch_width(\'a\'), 1);\n        assert_eq!(ch_width(\'あ\'), 2);\n        assert_eq!(ch_width(\'😊\'), 2);\n        assert_eq!(ch_width(\'\\u{2006}\'), 0); // zero-width space\n        assert_eq!(ch_width(\'\\u{0000}\'), 0); // null\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702276108, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=117, prompt_tokens=164, total_tokens=281))
+71
+========================================
+inject err core::ch_width src/core.rs ch_width
+#[cfg(test)]
+#[cfg(feature = "unicode-width")]
+mod tests_llm_16_17 {
+    use crate::ch_width;
+
+    #[test]
+    fn test_ch_width() {
+        assert_eq!(ch_width('a'), 1);
+        assert_eq!(ch_width('あ'), 2);
+        assert_eq!(ch_width('😊'), 2);
+        assert_eq!(ch_width('\u{2006}'), 0); // zero-width space
+        assert_eq!(ch_width('\u{0000}'), 0); // null
+    }
+}
+   Compiling textwrap v0.16.0 (/home/xiang/workspace/human/llm_base_bk/textwrap)
+error[E0432]: unresolved import `crate::ch_width`
+   --> src/core.rs:679:9
+    |
+679 |     use crate::ch_width;
+    |         ^^^^^^^^^^^^^^^ no `ch_width` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `textwrap` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UU4MEwBT00gdEqwm4U2kSpMm3Ovk', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\n#[cfg(feature = "unicode-width")]\nmod tests_llm_16_17 {\n    use super::ch_width;\n\n    #[test]\n    fn test_ch_width() {\n        assert_eq!(ch_width(\'a\'), 1);\n        assert_eq!(ch_width(\'あ\'), 2);\n        assert_eq!(ch_width(\'😊\'), 2);\n        assert_eq!(ch_width(\'\\u{2006}\'), 0); // zero-width space\n        assert_eq!(ch_width(\'\\u{0000}\'), 0); // null\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702276118, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_6aca3b5ce1', usage=CompletionUsage(completion_tokens=123, prompt_tokens=571, total_tokens=694))
+71
+========================================
+inject err core::ch_width src/core.rs ch_width
+#[cfg(test)]
+#[cfg(feature = "unicode-width")]
+mod tests_llm_16_17_llm_16_17 {
+    use crate::ch_width;
+
+    #[test]
+    fn test_ch_width() {
+        assert_eq!(ch_width('a'), 1);
+        assert_eq!(ch_width('あ'), 2);
+        assert_eq!(ch_width('😊'), 2);
+        assert_eq!(ch_width('\u{2006}'), 0); // zero-width space
+        assert_eq!(ch_width('\u{0000}'), 0); // null
+    }
+}
+   Compiling textwrap v0.16.0 (/home/xiang/workspace/human/llm_base_bk/textwrap)
+error[E0432]: unresolved import `crate::ch_width`
+   --> src/core.rs:679:9
+    |
+679 |     use crate::ch_width;
+    |         ^^^^^^^^^^^^^^^ no `ch_width` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `textwrap` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+repair err core::ch_width src/core.rs ch_width
+ChatCompletion(id='chatcmpl-8UU4Y47lWUVSInGIPshU9lBdWtDqb', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::display_width;\n    \n    #[test]\n    fn test_display_width_plain_text() {\n        assert_eq!(display_width("Café Plain"), 10);\n    }\n\n    #[test]\n    fn test_display_width_ansi_escape() {\n        assert_eq!(display_width("\\u{1b}[31mCafé Rouge\\u{1b}[0m"), 10);\n    }\n\n    #[test]\n    fn test_display_width_non_ansi_escape() {\n        assert_eq!(display_width("Cafe\\u{301} Plain"), 10);\n    }\n\n    #[test]\n    fn width_of_combined_character_depends_on_unicode_feature() {\n        #[cfg(feature = "unicode-width")]\n        assert_eq!(display_width("Café"), 4);\n\n        #[cfg(not(feature = "unicode-width"))]\n        assert_eq!(display_width("Café"), 5);\n    }\n\n    #[test]\n    fn test_display_width_emojis() {\n        assert_eq!(display_width("😂😭🥺🤣✨😍🙏🥰😊🔥"), 20);\n    }\n\n    #[test]\n    fn test_display_width_cjk_characters() {\n        assert_eq!(display_width("你好"), 4);\n    }\n\n    #[test]\n    fn test_display_width_emoji_modifier_sequences() {\n        #[cfg(feature = "unicode-width")]\n        {\n            assert_eq!(display_width("👨\u200d🦰"), 4);\n        }\n\n        #[cfg(not(feature = "unicode-width"))]\n        {\n            assert_eq!(display_width("👨\u200d🦰"), 6);\n        }\n    }\n\n    #[test]\n    fn test_display_width_heart_emoji() {\n        assert_eq!(display_width("❤️"), 1);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702276130, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=392, prompt_tokens=1256, total_tokens=1648))
+71
+========================================
+inject err core::display_width src/core.rs display_width
+#[cfg(test)]
+mod tests_llm_16_18 {
+    use crate::display_width;
+    
+    #[test]
+    fn test_display_width_plain_text() {
+        assert_eq!(display_width("Café Plain"), 10);
+    }
+
+    #[test]
+    fn test_display_width_ansi_escape() {
+        assert_eq!(display_width("\u{1b}[31mCafé Rouge\u{1b}[0m"), 10);
+    }
+
+    #[test]
+    fn test_display_width_non_ansi_escape() {
+        assert_eq!(display_width("Cafe\u{301} Plain"), 10);
+    }
+
+    #[test]
+    fn width_of_combined_character_depends_on_unicode_feature() {
+        #[cfg(feature = "unicode-width")]
+        assert_eq!(display_width("Café"), 4);
+
+        #[cfg(not(feature = "unicode-width"))]
+        assert_eq!(display_width("Café"), 5);
+    }
+
+    #[test]
+    fn test_display_width_emojis() {
+        assert_eq!(display_width("😂😭🥺🤣✨😍🙏🥰😊🔥"), 20);
+    }
+
+    #[test]
+    fn test_display_width_cjk_characters() {
+        assert_eq!(display_width("你好"), 4);
+    }
+
+    #[test]
+    fn test_display_width_emoji_modifier_sequences() {
+        #[cfg(feature = "unicode-width")]
+        {
+            assert_eq!(display_width("👨‍🦰"), 4);
+        }
+
+        #[cfg(not(feature = "unicode-width"))]
+        {
+            assert_eq!(display_width("👨‍🦰"), 6);
+        }
+    }
+
+    #[test]
+    fn test_display_width_heart_emoji() {
+        assert_eq!(display_width("❤️"), 1);
+    }
+}
+   Compiling textwrap v0.16.0 (/home/xiang/workspace/human/llm_base_bk/textwrap)
+error[E0432]: unresolved import `crate::display_width`
+   --> src/core.rs:678:9
+    |
+678 |     use crate::display_width;
+    |         ^^^^^^^^^^^^^^^^^^^^ no `display_width` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `textwrap` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UU5GALyZSo3LHLcOIxwFuiXE24zE', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_18 {\n    use super::display_width;\n    \n    #[test]\n    fn test_display_width_plain_text() {\n        assert_eq!(display_width("Café Plain"), 10);\n    }\n\n    #[test]\n    fn test_display_width_ansi_escape() {\n        assert_eq!(display_width("\\u{1b}[31mCafé Rouge\\u{1b}[0m"), 10);\n    }\n\n    #[test]\n    fn test_display_width_non_ansi_escape() {\n        assert_eq!(display_width("Cafe\\u{301} Plain"), 11);\n    }\n\n    #[cfg(feature = "unicode-width")]\n    #[test]\n    fn test_display_width_combined_character_unicode_width() {\n        assert_eq!(display_width("Café"), 4);\n    }\n\n    #[cfg(not(feature = "unicode-width"))]\n    #[test]\n    fn test_display_width_combined_character_no_unicode_width() {\n        assert_eq!(display_width("Café"), 5);\n    }\n\n    #[test]\n    fn test_display_width_emojis() {\n        assert_eq!(display_width("😂😭🥺🤣✨😍🙏🥰😊🔥"), 20);\n    }\n\n    #[test]\n    fn test_display_width_cjk_characters() {\n        assert_eq!(display_width("你好"), 4);\n    }\n\n    #[cfg(feature = "unicode-width")]\n    #[test]\n    fn test_display_width_emoji_modifier_sequences_unicode_width() {\n        assert_eq!(display_width("👨\u200d🦰"), 4);\n    }\n\n    #[cfg(not(feature = "unicode-width"))]\n    #[test]\n    fn test_display_width_emoji_modifier_sequences_no_unicode_width() {\n        assert_eq!(display_width("👨\u200d🦰"), 6);\n    }\n\n    #[test]\n    fn test_display_width_heart_emoji() {\n        assert_eq!(display_width("❤️"), 1);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702276174, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=428, prompt_tokens=2215, total_tokens=2643))
+71
+========================================
+inject err core::display_width src/core.rs display_width
+#[cfg(test)]
+mod tests_llm_16_18_llm_16_18 {
+    use crate::display_width;
+    
+    #[test]
+    fn test_display_width_plain_text() {
+        assert_eq!(display_width("Café Plain"), 10);
+    }
+
+    #[test]
+    fn test_display_width_ansi_escape() {
+        assert_eq!(display_width("\u{1b}[31mCafé Rouge\u{1b}[0m"), 10);
+    }
+
+    #[test]
+    fn test_display_width_non_ansi_escape() {
+        assert_eq!(display_width("Cafe\u{301} Plain"), 11);
+    }
+
+    #[cfg(feature = "unicode-width")]
+    #[test]
+    fn test_display_width_combined_character_unicode_width() {
+        assert_eq!(display_width("Café"), 4);
+    }
+
+    #[cfg(not(feature = "unicode-width"))]
+    #[test]
+    fn test_display_width_combined_character_no_unicode_width() {
+        assert_eq!(display_width("Café"), 5);
+    }
+
+    #[test]
+    fn test_display_width_emojis() {
+        assert_eq!(display_width("😂😭🥺🤣✨😍🙏🥰😊🔥"), 20);
+    }
+
+    #[test]
+    fn test_display_width_cjk_characters() {
+        assert_eq!(display_width("你好"), 4);
+    }
+
+    #[cfg(feature = "unicode-width")]
+    #[test]
+    fn test_display_width_emoji_modifier_sequences_unicode_width() {
+        assert_eq!(display_width("👨‍🦰"), 4);
+    }
+
+    #[cfg(not(feature = "unicode-width"))]
+    #[test]
+    fn test_display_width_emoji_modifier_sequences_no_unicode_width() {
+        assert_eq!(display_width("👨‍🦰"), 6);
+    }
+
+    #[test]
+    fn test_display_width_heart_emoji() {
+        assert_eq!(display_width("❤️"), 1);
+    }
+}
+   Compiling textwrap v0.16.0 (/home/xiang/workspace/human/llm_base_bk/textwrap)
+error[E0432]: unresolved import `crate::display_width`
+   --> src/core.rs:678:9
+    |
+678 |     use crate::display_width;
+    |         ^^^^^^^^^^^^^^^^^^^^ no `display_width` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `textwrap` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+repair err core::display_width src/core.rs display_width
+ChatCompletion(id='chatcmpl-8UU66Pyti4Epa0RlqWJYK6RAeEYbv', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use crate::core::skip_ansi_escape_sequence;\n    use crate::core::NonEmptyLines;\n    use std::iter::Iterator;\n\n    #[test]\n    fn test_skip_ansi_escape_sequence() {\n        let csi = \'\\x1B\';\n        let seq1 = "[31;1;4mHello World\\x1B[0m";\n        let mut chars1 = seq1.chars();\n        assert_eq!(skip_ansi_escape_sequence(csi, &mut chars1), true);\n        assert_eq!(chars1.as_str(), "Hello World\\x1B[0m");\n\n        let seq2 = "Hello \\x1B[31;1;4mWorld\\x1B[0m";\n        let mut chars2 = seq2.chars();\n        chars2.next();\n        chars2.next();\n        chars2.next();\n        chars2.next();\n        chars2.next();\n        chars2.next();\n        assert_eq!(skip_ansi_escape_sequence(csi, &mut chars2), true);\n        assert_eq!(chars2.as_str(), "World\\x1B[0m");\n\n        let seq3 = "Hello World";\n        let mut chars3 = seq3.chars();\n        assert_eq!(skip_ansi_escape_sequence(csi, &mut chars3), false);\n        assert_eq!(chars3.as_str(), "Hello World");\n\n        let seq4 = "\\x1BHello World";\n        let mut chars4 = seq4.chars();\n        assert_eq!(skip_ansi_escape_sequence(csi, &mut chars4), false);\n        assert_eq!(chars4.as_str(), "Hello World");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702276226, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=345, prompt_tokens=707, total_tokens=1052))
+71
+========================================
+inject err core::skip_ansi_escape_sequence src/core.rs skip_ansi_escape_sequence
+#[cfg(test)]
+mod tests_llm_16_19 {
+    use crate::core::skip_ansi_escape_sequence;
+    use crate::core::NonEmptyLines;
+    use std::iter::Iterator;
+
+    #[test]
+    fn test_skip_ansi_escape_sequence() {
+        let csi = '\x1B';
+        let seq1 = "[31;1;4mHello World\x1B[0m";
+        let mut chars1 = seq1.chars();
+        assert_eq!(skip_ansi_escape_sequence(csi, &mut chars1), true);
+        assert_eq!(chars1.as_str(), "Hello World\x1B[0m");
+
+        let seq2 = "Hello \x1B[31;1;4mWorld\x1B[0m";
+        let mut chars2 = seq2.chars();
+        chars2.next();
+        chars2.next();
+        chars2.next();
+        chars2.next();
+        chars2.next();
+        chars2.next();
+        assert_eq!(skip_ansi_escape_sequence(csi, &mut chars2), true);
+        assert_eq!(chars2.as_str(), "World\x1B[0m");
+
+        let seq3 = "Hello World";
+        let mut chars3 = seq3.chars();
+        assert_eq!(skip_ansi_escape_sequence(csi, &mut chars3), false);
+        assert_eq!(chars3.as_str(), "Hello World");
+
+        let seq4 = "\x1BHello World";
+        let mut chars4 = seq4.chars();
+        assert_eq!(skip_ansi_escape_sequence(csi, &mut chars4), false);
+        assert_eq!(chars4.as_str(), "Hello World");
+    }
+}
+   Compiling textwrap v0.16.0 (/home/xiang/workspace/human/llm_base_bk/textwrap)
+error[E0432]: unresolved import `crate::core::NonEmptyLines`
+   --> src/core.rs:679:9
+    |
+679 |     use crate::core::NonEmptyLines;
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^ no `NonEmptyLines` in `core`
+    |
+help: consider importing this struct instead
+    |
+679 |     use crate::line_ending::NonEmptyLines;
+    |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `textwrap` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UU6XEoOrwbnPRc6lo6AUCb2fjDSQ', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_19 {\n    use crate::core::skip_ansi_escape_sequence;\n    use crate::line_ending::NonEmptyLines;\n    use std::iter::Iterator;\n\n    const CSI: (char, char) = (\'\\x1B\', \'[\');\n    const ANSI_FINAL_BYTE: &[char] = &[\n        \'\\x40\', \'\\x41\', \'\\x42\', \'\\x43\', \'\\x44\', \'\\x45\', \'\\x46\', \'\\x47\', \'\\x48\', \'\\x49\', \'\\x4A\',\n        \'\\x4B\', \'\\x4C\', \'\\x4D\', \'\\x4E\', \'\\x4F\', \'\\x50\', \'\\x51\', \'\\x52\', \'\\x53\', \'\\x54\', \'\\x55\',\n        \'\\x56\', \'\\x57\', \'\\x58\', \'\\x59\', \'\\x5A\', \'\\x5B\', \'\\x5C\', \'\\x5D\', \'\\x5E\', \'\\x5F\', \'\\x60\',\n        \'\\x61\', \'\\x62\', \'\\x63\', \'\\x64\', \'\\x65\', \'\\x66\', \'\\x67\', \'\\x68\', \'\\x69\', \'\\x6A\', \'\\x6B\',\n        \'\\x6C\', \'\\x6D\', \'\\x6E\', \'\\x6F\', \'\\x70\', \'\\x71\', \'\\x72\', \'\\x73\', \'\\x74\', \'\\x75\', \'\\x76\',\n        \'\\x77\', \'\\x78\', \'\\x79\', \'\\x7A\', \'\\x7B\', \'\\x7C\', \'\\x7D\', \'\\x7E\',\n    ];\n\n    #[test]\n    fn test_skip_ansi_escape_sequence() {\n        let csi = CSI.0;\n        let seq1 = "[31;1;4mHello World\\x1B[0m";\n        let mut chars1 = seq1.chars();\n        assert!(skip_ansi_escape_sequence(csi, &mut chars1));\n        assert_eq!(chars1.collect::<String>(), "Hello World\\x1B[0m");\n\n        let seq2 = "Hello \\x1B[31;1;4mWorld\\x1B[0m";\n        let mut chars2 = seq2.chars();\n        (0..6).for_each(|_| { chars2.next(); });\n        assert!(skip_ansi_escape_sequence(csi, &mut chars2));\n        assert_eq!(chars2.collect::<String>(), "World\\x1B[0m");\n\n        let seq3 = "Hello World";\n        let mut chars3 = seq3.chars();\n        assert!(!skip_ansi_escape_sequence(csi, &mut chars3));\n        assert_eq!(chars3.collect::<String>(), "Hello World");\n\n        let seq4 = "\\x1BHello World";\n        let mut chars4 = seq4.chars();\n        assert!(!skip_ansi_escape_sequence(csi, &mut chars4));\n        assert_eq!(chars4.collect::<String>(), "Hello World");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702276253, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=644, prompt_tokens=1612, total_tokens=2256))
+71
+inject succeed textwrap textwrap core::skip_ansi_escape_sequence
+ChatCompletion(id='chatcmpl-8UU7m9vDgQZRxEp24LocTvlfRH41Z', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use textwrap::{Options, fill};\n\n    #[test]\n    fn fill_simple_case() {\n        assert_eq!(\n            fill("Memory safety without garbage collection.", 15),\n            "Memory safety\\nwithout garbage\\ncollection."\n        );\n    }\n\n    #[test]\n    fn fill_with_indent() {\n        let options = Options::new(15)\n            .initial_indent("- ")\n            .subsequent_indent("  ");\n        assert_eq!(\n            fill("Memory safety without garbage collection.", options),\n            "- Memory safety\\n  without\\n  garbage\\n  collection."\n        );\n    }\n\n    #[test]\n    fn fill_empty_string() {\n        assert_eq!(fill("", 10), "");\n    }\n\n    #[test]\n    fn fill_string_without_wrapping() {\n        let text = "Short text.";\n        assert_eq!(fill(text, 20), text);\n    }\n\n    #[test]\n    fn fill_with_hyphenation() {\n        let options = Options::new(15).splitter(textwrap::hyphenation::HyphenSplitter);\n        assert_eq!(\n            fill("Internationalization is hard to fit in a narrow column.", options),\n            "International-\\nization is hard\\nto fit in a\\nnarrow column."\n        );\n    }\n\n    #[test]\n    fn fill_preserve_existing_newlines() {\n        assert_eq!(\n            fill("This\\ncontains\\nnewlines.", 10),\n            "This\\ncontains\\nnewlines."\n        );\n    }\n\n    #[test]\n    fn fill_with_break_words() {\n        let options = Options::new(10).break_words(false);\n        assert_eq!(\n            fill("Thisisaverylongword.", options),\n            "Thisisave\\nrylongword."\n        );\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702276330, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=373, prompt_tokens=429, total_tokens=802))
+71
+========================================
+inject err fill::fill src/fill.rs fill
+#[cfg(test)]
+mod tests_llm_16_20 {
+    use super::*;
+
+use crate::*;
+    use crate::{Options, fill};
+
+    #[test]
+    fn fill_simple_case() {
+        assert_eq!(
+            fill("Memory safety without garbage collection.", 15),
+            "Memory safety\nwithout garbage\ncollection."
+        );
+    }
+
+    #[test]
+    fn fill_with_indent() {
+        let options = Options::new(15)
+            .initial_indent("- ")
+            .subsequent_indent("  ");
+        assert_eq!(
+            fill("Memory safety without garbage collection.", options),
+            "- Memory safety\n  without\n  garbage\n  collection."
+        );
+    }
+
+    #[test]
+    fn fill_empty_string() {
+        assert_eq!(fill("", 10), "");
+    }
+
+    #[test]
+    fn fill_string_without_wrapping() {
+        let text = "Short text.";
+        assert_eq!(fill(text, 20), text);
+    }
+
+    #[test]
+    fn fill_with_hyphenation() {
+        let options = Options::new(15).splitter(crate::hyphenation::HyphenSplitter);
+        assert_eq!(
+            fill("Internationalization is hard to fit in a narrow column.", options),
+            "International-\nization is hard\nto fit in a\nnarrow column."
+        );
+    }
+
+    #[test]
+    fn fill_preserve_existing_newlines() {
+        assert_eq!(
+            fill("This\ncontains\nnewlines.", 10),
+            "This\ncontains\nnewlines."
+        );
+    }
+
+    #[test]
+    fn fill_with_break_words() {
+        let options = Options::new(10).break_words(false);
+        assert_eq!(
+            fill("Thisisaverylongword.", options),
+            "Thisisave\nrylongword."
+        );
+    }
+}
+   Compiling textwrap v0.16.0 (/home/xiang/workspace/human/llm_base_bk/textwrap)
+error[E0433]: failed to resolve: could not find `hyphenation` in the crate root
+   --> src/fill.rs:338:56
+    |
+338 |         let options = Options::new(15).splitter(crate::hyphenation::HyphenSplitter);
+    |                                                        ^^^^^^^^^^^ could not find `hyphenation` in the crate root
+
+error[E0599]: no method named `splitter` found for struct `options::Options` in the current scope
+   --> src/fill.rs:338:40
+    |
+338 |         let options = Options::new(15).splitter(crate::hyphenation::HyphenSplitter);
+    |                                        ^^^^^^^^ help: there is a method with a similar name: `word_splitter`
+    |
+   ::: src/options.rs:8:1
+    |
+8   | pub struct Options<'a> {
+    | ---------------------- method `splitter` not found for this struct
+
+Some errors have detailed explanations: E0433, E0599.
+For more information about an error, try `rustc --explain E0433`.
+error: could not compile `textwrap` due to 2 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UU8BYl7xCWj2WSJkPtPirmyqFI8B', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_20 {\n    use super::*;\n    use crate::fill;\n    use crate::Options;\n\n    #[test]\n    fn fill_simple_case() {\n        assert_eq!(\n            fill("Memory safety without garbage collection.", 15),\n            "Memory safety\\nwithout garbage\\ncollection."\n        );\n    }\n\n    #[test]\n    fn fill_with_indent() {\n        let options = Options::new(15)\n            .initial_indent("- ")\n            .subsequent_indent("  ");\n        assert_eq!(\n            fill("Memory safety without garbage collection.", options),\n            "- Memory safety\\n  without\\n  garbage\\n  collection."\n        );\n    }\n\n    #[test]\n    fn fill_empty_string() {\n        assert_eq!(fill("", 10), "");\n    }\n\n    #[test]\n    fn fill_string_without_wrapping() {\n        let text = "Short text.";\n        assert_eq!(fill(text, 20), text);\n    }\n\n    #[test]\n    fn fill_with_hyphenation() {\n        let options = Options::new(15).word_splitter(crate::word_splitters::HyphenSplitter);\n        assert_eq!(\n            fill("Internationalization is hard to fit in a narrow column.", options),\n            "International-\\nization is hard\\nto fit in a\\nnarrow column."\n        );\n    }\n\n    #[test]\n    fn fill_preserve_existing_newlines() {\n        assert_eq!(\n            fill("This\\ncontains\\nnewlines.", 10),\n            "This\\ncontains\\nnewlines."\n        );\n    }\n\n    #[test]\n    fn fill_with_break_words() {\n        let options = Options::new(10).break_words(false);\n        assert_eq!(\n            fill("Thisisaverylongword.", options),\n            "Thisisavery\\nlongword."\n        );\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702276355, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=382, prompt_tokens=1520, total_tokens=1902))
+71
+========================================
+inject err fill::fill src/fill.rs fill
+#[cfg(test)]
+mod tests_llm_16_20_llm_16_20 {
+    use super::*;
+
+use crate::*;
+    use crate::fill;
+    use crate::Options;
+
+    #[test]
+    fn fill_simple_case() {
+        assert_eq!(
+            fill("Memory safety without garbage collection.", 15),
+            "Memory safety\nwithout garbage\ncollection."
+        );
+    }
+
+    #[test]
+    fn fill_with_indent() {
+        let options = Options::new(15)
+            .initial_indent("- ")
+            .subsequent_indent("  ");
+        assert_eq!(
+            fill("Memory safety without garbage collection.", options),
+            "- Memory safety\n  without\n  garbage\n  collection."
+        );
+    }
+
+    #[test]
+    fn fill_empty_string() {
+        assert_eq!(fill("", 10), "");
+    }
+
+    #[test]
+    fn fill_string_without_wrapping() {
+        let text = "Short text.";
+        assert_eq!(fill(text, 20), text);
+    }
+
+    #[test]
+    fn fill_with_hyphenation() {
+        let options = Options::new(15).word_splitter(crate::word_splitters::HyphenSplitter);
+        assert_eq!(
+            fill("Internationalization is hard to fit in a narrow column.", options),
+            "International-\nization is hard\nto fit in a\nnarrow column."
+        );
+    }
+
+    #[test]
+    fn fill_preserve_existing_newlines() {
+        assert_eq!(
+            fill("This\ncontains\nnewlines.", 10),
+            "This\ncontains\nnewlines."
+        );
+    }
+
+    #[test]
+    fn fill_with_break_words() {
+        let options = Options::new(10).break_words(false);
+        assert_eq!(
+            fill("Thisisaverylongword.", options),
+            "Thisisavery\nlongword."
+        );
+    }
+}
+   Compiling textwrap v0.16.0 (/home/xiang/workspace/human/llm_base_bk/textwrap)
+error[E0425]: cannot find value `HyphenSplitter` in module `crate::word_splitters`
+   --> src/fill.rs:339:77
+    |
+339 |         let options = Options::new(15).word_splitter(crate::word_splitters::HyphenSplitter);
+    |                                                                             ^^^^^^^^^^^^^^ not found in `crate::word_splitters`
+    |
+help: consider importing this unit variant
+    |
+301 |     use crate::WordSplitter::HyphenSplitter;
+    |
+help: if you import `HyphenSplitter`, refer to it directly
+    |
+339 -         let options = Options::new(15).word_splitter(crate::word_splitters::HyphenSplitter);
+339 +         let options = Options::new(15).word_splitter(HyphenSplitter);
+    |
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `textwrap` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+repair err fill::fill src/fill.rs fill
+ChatCompletion(id='chatcmpl-8UU8czNrLwomG8tNjBHAiHSLSpj6D', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n\n    #[test]\n    fn test_fill_inplace_single_line() {\n        let mut text = String::from("Single line text that fits the width.");\n        fill_inplace(&mut text, 50);\n        assert_eq!(text, "Single line text that fits the width.");\n    }\n\n    #[test]\n    fn test_fill_inplace_multiple_lines() {\n        let mut text = String::from("This text should be split across multiple lines.");\n        fill_inplace(&mut text, 10);\n        let expected = "This text\\nshould be\\nsplit\\nacross\\nmultiple\\nlines.";\n        assert_eq!(text, expected);\n    }\n\n    #[test]\n    fn test_fill_inplace_empty_line() {\n        let mut text = String::from("");\n        fill_inplace(&mut text, 10);\n        assert_eq!(text, "");\n    }\n\n    #[test]\n    fn test_fill_inplace_preserves_existing_linebreaks() {\n        let mut text = String::from("Line with\\nexisting line break.");\n        fill_inplace(&mut text, 50);\n        assert_eq!(text, "Line with\\nexisting line break.");\n    }\n\n    #[test]\n    fn test_fill_inplace_existing_multiple_spaces() {\n        let mut text = String::from("Line  with  multiple  spaces.");\n        fill_inplace(&mut text, 50);\n        // Note: Whether the multiple spaces should be preserved or\n        // compacted into one space depends on the specification. Here\n        // we assume they should be preserved.\n        assert_eq!(text, "Line  with  multiple  spaces.");\n    }\n\n    #[test]\n    fn test_fill_inplace_long_word() {\n        let mut text = String::from("ThisIsALongWordThatCannotBeSplit.");\n        fill_inplace(&mut text, 10);\n        assert_eq!(text, "ThisIsALongWordThatCannotBeSplit.");\n    }\n\n    #[test]\n    fn test_fill_inplace_multiple_paragraphs() {\n        let mut text = String::from("First paragraph.\\n\\nSecond paragraph.\\n\\nThird paragraph.");\n        fill_inplace(&mut text, 50);\n        assert_eq!(text, "First paragraph.\\n\\nSecond paragraph.\\n\\nThird paragraph.");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702276382, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=481, prompt_tokens=940, total_tokens=1421))
+71
+inject succeed textwrap textwrap fill::fill_inplace
+ChatCompletion(id='chatcmpl-8UU9Gl55oADPs3siIqKgDOzV5hzE3', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use crate::options::Options;\n    use crate::line_ending::LineEnding;\n    use crate::word_separators::WordSeparator;\n    use crate::word_splitters::WordSplitter;\n    use crate::wrap_algorithms::WrapAlgorithm;\n    use crate::Word;\n\n    #[test]\n    fn fill_slow_path_short_text() {\n        let options = Options::new(10);\n        let filled = fill_slow_path("short text", options);\n        assert_eq!(filled, "short text");\n    }\n\n    #[test]\n    fn fill_slow_path_long_text() {\n        let options = Options {\n            width: 10, // force the slow path\n            line_ending: LineEnding::LF,\n            initial_indent: "",\n            subsequent_indent: "",\n            break_words: true,\n            wrap_algorithm: WrapAlgorithm::FirstFit,\n            word_separator: WordSeparator::AsciiSpace,\n            word_splitter: WordSplitter::HyphenSplitter,\n        };\n        let filled = fill_slow_path("a longer piece of text that should be broken down into several lines", options);\n        assert_eq!(filled, "a longer\\npiece of\\ntext that\\nshould be\\nbroken\\ndown into\\nseveral\\nlines");\n    }\n\n    #[test]\n    fn fill_slow_path_custom_indent() {\n        let options = Options::new(10)\n            .initial_indent("> ")\n            .subsequent_indent(":: ")\n            .word_separator(WordSeparator::AsciiSpace)\n            .word_splitter(WordSplitter::HyphenSplitter);\n        let filled = fill_slow_path("indented text should be broken down with consistent indentation", options);\n        assert_eq!(filled, "> indented\\n:: text\\n:: should be\\n:: broken\\n:: down with\\n:: consistent\\n:: indentation");\n    }\n\n    #[test]\n    fn fill_slow_path_long_word() {\n        let options = Options::new(10)\n            .initial_indent("* ")\n            .subsequent_indent("- ")\n            .word_splitter(WordSplitter::NoHyphenation)\n            .break_words(true);\n        let filled = fill_slow_path("antidisestablishmentarianism is a long word", options);\n        assert_eq!(filled, "* antidisest\\n- ablishmenta\\n- rianism is\\n- a long\\n- word");\n    }\n\n    #[test]\n    fn fill_slow_path_crlf_line_ending() {\n        let options = Options::new(20).line_ending(LineEnding::CRLF);\n        let filled = fill_slow_path("this text should be broken with CRLF", options);\n        assert_eq!(filled, "this text should be\\r\\nbroken with CRLF");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702276422, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=576, prompt_tokens=10312, total_tokens=10888))
+71
+========================================
+inject err fill::fill_slow_path src/fill.rs fill_slow_path
+#[cfg(test)]
+mod tests_llm_16_22 {
+    use super::*;
+
+use crate::*;
+    use crate::options::Options;
+    use crate::line_ending::LineEnding;
+    use crate::word_separators::WordSeparator;
+    use crate::word_splitters::WordSplitter;
+    use crate::wrap_algorithms::WrapAlgorithm;
+    use crate::Word;
+
+    #[test]
+    fn fill_slow_path_short_text() {
+        let options = Options::new(10);
+        let filled = fill_slow_path("short text", options);
+        assert_eq!(filled, "short text");
+    }
+
+    #[test]
+    fn fill_slow_path_long_text() {
+        let options = Options {
+            width: 10, // force the slow path
+            line_ending: LineEnding::LF,
+            initial_indent: "",
+            subsequent_indent: "",
+            break_words: true,
+            wrap_algorithm: WrapAlgorithm::FirstFit,
+            word_separator: WordSeparator::AsciiSpace,
+            word_splitter: WordSplitter::HyphenSplitter,
+        };
+        let filled = fill_slow_path("a longer piece of text that should be broken down into several lines", options);
+        assert_eq!(filled, "a longer\npiece of\ntext that\nshould be\nbroken\ndown into\nseveral\nlines");
+    }
+
+    #[test]
+    fn fill_slow_path_custom_indent() {
+        let options = Options::new(10)
+            .initial_indent("> ")
+            .subsequent_indent(":: ")
+            .word_separator(WordSeparator::AsciiSpace)
+            .word_splitter(WordSplitter::HyphenSplitter);
+        let filled = fill_slow_path("indented text should be broken down with consistent indentation", options);
+        assert_eq!(filled, "> indented\n:: text\n:: should be\n:: broken\n:: down with\n:: consistent\n:: indentation");
+    }
+
+    #[test]
+    fn fill_slow_path_long_word() {
+        let options = Options::new(10)
+            .initial_indent("* ")
+            .subsequent_indent("- ")
+            .word_splitter(WordSplitter::NoHyphenation)
+            .break_words(true);
+        let filled = fill_slow_path("antidisestablishmentarianism is a long word", options);
+        assert_eq!(filled, "* antidisest\n- ablishmenta\n- rianism is\n- a long\n- word");
+    }
+
+    #[test]
+    fn fill_slow_path_crlf_line_ending() {
+        let options = Options::new(20).line_ending(LineEnding::CRLF);
+        let filled = fill_slow_path("this text should be broken with CRLF", options);
+        assert_eq!(filled, "this text should be\r\nbroken with CRLF");
+    }
+}
+   Compiling textwrap v0.16.0 (/home/xiang/workspace/human/llm_base_bk/textwrap)
+error[E0432]: unresolved import `crate::Word`
+   --> src/fill.rs:367:9
+    |
+367 |     use crate::Word;
+    |         ^^^^^^^^^^^ no `Word` in the root
+    |
+help: consider importing this struct instead
+    |
+367 |     use crate::core::Word;
+    |         ~~~~~~~~~~~~~~~~~~
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `textwrap` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UU9xBhkQDO2TDeLuaRuQunDcqGo3', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_22 {\n    use super::*;\n    use crate::core::Word;\n    use crate::fill::fill_slow_path;\n    use crate::line_ending::LineEnding;\n    use crate::options::Options;\n    use crate::wrap_algorithms::WrapAlgorithm;\n    use crate::word_separators::WordSeparator;\n    use crate::word_splitters::WordSplitter;\n\n    #[test]\n    fn fill_slow_path_short_text() {\n        let options = Options::new(10);\n        let filled = fill_slow_path("short text", options);\n        assert_eq!(filled, "short text");\n    }\n    \n    #[test]\n    fn fill_slow_path_long_text() {\n        let options = Options {\n            width: 10, // force the slow path\n            line_ending: LineEnding::LF,\n            initial_indent: "",\n            subsequent_indent: "",\n            break_words: true,\n            wrap_algorithm: WrapAlgorithm::FirstFit,\n            word_separator: WordSeparator::AsciiSpace,\n            word_splitter: WordSplitter::HyphenSplitter,\n        };\n        let filled = fill_slow_path("a longer piece of text that should be broken down into several lines", options);\n        assert_eq!(filled, "a longer\\npiece of\\ntext that\\nshould be\\nbroken\\ndown into\\nseveral\\nlines");\n    }\n    \n    #[test]\n    fn fill_slow_path_custom_indent() {\n        let options = Options::new(10)\n            .initial_indent("> ")\n            .subsequent_indent(":: ")\n            .word_separator(WordSeparator::AsciiSpace)\n            .word_splitter(WordSplitter::HyphenSplitter);\n        let filled = fill_slow_path("indented text should be broken down with consistent indentation", options);\n        assert_eq!(filled, "> indented\\n:: text\\n:: should be\\n:: broken\\n:: down with\\n:: consistent\\n:: indentation");\n    }\n\n    #[test]\n    fn fill_slow_path_long_word() {\n        let options = Options::new(10)\n            .initial_indent("* ")\n            .subsequent_indent("- ")\n            .word_splitter(WordSplitter::NoHyphenation)\n            .break_words(true);\n        let filled = fill_slow_path("antidisestablishmentarianism is a long word", options);\n        assert_eq!(filled, "* antidisest\\n- ablishmenta\\n- rianism is\\n- a long\\n- word");\n    }\n    \n    #[test]\n    fn fill_slow_path_crlf_line_ending() {\n        let options = Options::new(20).line_ending(LineEnding::CRLF);\n        let filled = fill_slow_path("this text should be broken with CRLF", options);\n        assert_eq!(filled, "this text should be\\r\\nbroken with CRLF");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702276465, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=597, prompt_tokens=11666, total_tokens=12263))
+71
+inject succeed textwrap textwrap fill::fill_slow_path
+ChatCompletion(id='chatcmpl-8UUArmxbbwfqzWkQyuxAmqzy6wg84', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::dedent;\n\n    #[test]\n    fn test_dedent_empty_string() {\n        assert_eq!(dedent(""), "");\n    }\n\n    #[test]\n    fn test_dedent_no_indentation() {\n        let input = "No indentation\\non these lines.\\n";\n        assert_eq!(dedent(input), input);\n    }\n\n    #[test]\n    fn test_dedent_varied_indentation() {\n        assert_eq!(dedent("\n            Indented line\n          Less indented line\n        "), \n        "Indented line\\nLess indented line\\n");\n    }\n\n    #[test]\n    fn test_dedent_single_line_with_indentation() {\n        assert_eq!(dedent("    Single line with spaces"), "Single line with spaces");\n    }\n\n    #[test]\n    fn test_dedent_single_line_with_tabs() {\n        assert_eq!(dedent("\\tSingle line with tab"), "Single line with tab");\n    }\n\n    #[test]\n    fn test_dedent_with_empty_lines() {\n        assert_eq!(dedent("\n            \n            Indented line with empty lines\n            \n        "), \n        "\\nIndented line with empty lines\\n\\n");\n    }\n\n    #[test]\n    fn test_dedent_with_only_whitespace_lines() {\n        assert_eq!(dedent("    \\n    \\n    "), "\\n\\n");\n    }\n\n    #[test]\n    fn test_dedent_with_mixed_whitespace() {\n        assert_eq!(dedent("\\t  Indented line\\n\\t\\t  More indentation"), "  Indented line\\n\\t  More indentation\\n");\n    }\n\n    #[test]\n    fn test_dedent_do_not_strip_trailing_newline() {\n        let input = "\n            Line with trailing newline\n        ";\n        assert!(dedent(input).ends_with(\'\\n\'));\n    }\n\n    #[test]\n    fn test_dedent_trailing_newline_when_input_lacks_one() {\n        let input = "\n            Line without trailing newline";\n        assert!(!dedent(input).ends_with(\'\\n\'));\n    }\n\n    #[test]\n    fn test_dedent_mixed_empty_and_non_empty_lines() {\n        assert_eq!(dedent("\n            Some indented line\n            \n            Another indented line\n        "), \n        "Some indented line\\n\\nAnother indented line\\n");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702276521, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=492, prompt_tokens=613, total_tokens=1105))
+71
+inject succeed textwrap textwrap indentation::dedent
+ChatCompletion(id='chatcmpl-8UUBVwyGYWrGMzJJ8ey1SZiI8iYd9', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n\n    #[test]\n    fn indent_empty_string() {\n        assert_eq!(indent("", "  "), "");\n    }\n\n    #[test]\n    fn indent_no_newline() {\n        assert_eq!(indent("Single line", "  "), "  Single line");\n    }\n\n    #[test]\n    fn indent_with_newline() {\n        assert_eq!(indent("First line.\\nSecond line.\\n", "  "), "  First line.\\n  Second line.\\n");\n    }\n\n    #[test]\n    fn indent_empty_lines() {\n        assert_eq!(indent("First line.\\n\\n\\nSecond line.\\n", "  "), "  First line.\\n\\n\\n  Second line.\\n");\n    }\n\n    #[test]\n    fn indent_empty_lines_with_comment() {\n        assert_eq!(indent("foo = 123\\n\\nprint(foo)\\n", "# "), "# foo = 123\\n#\\n# print(foo)\\n");\n    }\n\n    #[test]\n    fn indent_preserving_whitespace() {\n        assert_eq!(indent(" \\t  Foo   ", "->"), "-> \\t  Foo   ");\n    }\n\n    #[test]\n    fn indent_with_complex_prefix() {\n        assert_eq!(indent("Line\\n\\nAnother line", "=>  "), "=>  Line\\n=>\\n=>  Another line");\n    }\n\n    #[test]\n    fn indent_with_empty_prefix() {\n        assert_eq!(indent("Line\\nAnother line", ""), "Line\\nAnother line");\n    }\n\n    #[test]\n    fn indent_with_leading_and_trailing_newlines() {\n        assert_eq!(indent("\\nLine\\nAnother line\\n", "  "), "  \\n  Line\\n  Another line\\n  ");\n    }\n\n    #[test]\n    fn indent_with_empty_lines_and_no_whitespace_prefix() {\n        assert_eq!(indent("First line.\\n\\n\\nSecond line.\\n", "#"), "#First line.\\n#\\n#\\n#Second line.\\n");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702276561, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_6aca3b5ce1', usage=CompletionUsage(completion_tokens=419, prompt_tokens=662, total_tokens=1081))
+71
+inject succeed textwrap textwrap indentation::indent
+ChatCompletion(id='chatcmpl-8UUC2eEtyNQN1KKK5HCoJz1Kxwn1t', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use crate::line_ending::LineEnding;\n\n    #[test]\n    fn test_as_str() {\n        assert_eq!(LineEnding::CRLF.as_str(), "\\r\\n");\n        assert_eq!(LineEnding::LF.as_str(), "\\n");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702276594, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=66, prompt_tokens=464, total_tokens=530))
+71
+inject succeed textwrap textwrap line_ending::LineEnding::as_str
+ChatCompletion(id='chatcmpl-8UUCAcVj3e8PpcnkersygoW5viBh4', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n\n    #[test]\n    fn test_break_words() {\n        let mut options = Options::new(10);\n\n        options = options.break_words(true);\n        assert!(options.break_words);\n\n        options = options.break_words(false);\n        assert!(!options.break_words);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702276602, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=71, prompt_tokens=10363, total_tokens=10434))
+71
+inject succeed textwrap textwrap options::Options::<'a>::break_words
+ChatCompletion(id='chatcmpl-8UUCJMnfjUBUCN4G6xFoWD7fNgCJx', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use crate::wrap_algorithms::WrapAlgorithm;\n    use crate::line_ending::LineEnding;\n    use crate::word_separators::WordSeparator;\n    use crate::word_splitters::WordSplitter;\n\n    #[test]\n    fn test_initial_indent() {\n        let opt = Options::new(80).initial_indent("* ");\n        assert_eq!(opt.initial_indent, "* ");\n\n        let opt = opt.initial_indent("");\n        assert_eq!(opt.initial_indent, "");\n\n        let opt = Options::new(80).initial_indent(">> ");\n        assert_eq!(opt.initial_indent, ">> ");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702276611, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=143, prompt_tokens=10332, total_tokens=10475))
+71
+inject succeed textwrap textwrap options::Options::<'a>::initial_indent
+ChatCompletion(id='chatcmpl-8UUCVXd2v99RNsVAj2XyDorVTRqct', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use crate::line_ending::LineEnding;\n    use crate::word_separators::WordSeparator;\n    use crate::word_splitters::WordSplitter;\n    use crate::wrap_algorithms::WrapAlgorithm;\n    use crate::wrap_algorithms::optimal_fit::Penalties;\n\n    #[test]\n    fn test_line_ending_crlf() {\n        let options = Options::new(15).line_ending(LineEnding::CRLF);\n        assert_eq!(options.line_ending, LineEnding::CRLF);\n    }\n\n    #[test]\n    fn test_line_ending_lf() {\n        let options = Options::new(15).line_ending(LineEnding::LF);\n        assert_eq!(options.line_ending, LineEnding::LF);\n    }\n\n    #[test]\n    fn test_line_ending_retains_other_fields() {\n        let options = Options {\n            width: 42,\n            line_ending: LineEnding::LF,\n            initial_indent: ">> ",\n            subsequent_indent: "|| ",\n            break_words: false,\n            word_separator: WordSeparator::AsciiSpace,\n            wrap_algorithm: WrapAlgorithm::FirstFit,\n            word_splitter: WordSplitter::NoHyphenation,\n        };\n\n        let new_options = options.line_ending(LineEnding::CRLF);\n        assert_eq!(new_options.line_ending, LineEnding::CRLF);\n        assert_eq!(new_options.width, 42);\n        assert_eq!(new_options.initial_indent, ">> ");\n        assert_eq!(new_options.subsequent_indent, "|| ");\n        assert_eq!(new_options.break_words, false);\n        assert_eq!(new_options.word_separator, WordSeparator::AsciiSpace);\n        assert_eq!(new_options.wrap_algorithm, WrapAlgorithm::FirstFit);\n        assert_eq!(new_options.word_splitter, WordSplitter::NoHyphenation);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702276623, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_6aca3b5ce1', usage=CompletionUsage(completion_tokens=400, prompt_tokens=10328, total_tokens=10728))
+71
+========================================
+inject err options::Options::<'a>::line_ending src/options.rs line_ending
+#[cfg(test)]
+mod tests_llm_16_28 {
+    use super::*;
+
+use crate::*;
+    use crate::line_ending::LineEnding;
+    use crate::word_separators::WordSeparator;
+    use crate::word_splitters::WordSplitter;
+    use crate::wrap_algorithms::WrapAlgorithm;
+    use crate::wrap_algorithms::optimal_fit::Penalties;
+
+    #[test]
+    fn test_line_ending_crlf() {
+        let options = Options::new(15).line_ending(LineEnding::CRLF);
+        assert_eq!(options.line_ending, LineEnding::CRLF);
+    }
+
+    #[test]
+    fn test_line_ending_lf() {
+        let options = Options::new(15).line_ending(LineEnding::LF);
+        assert_eq!(options.line_ending, LineEnding::LF);
+    }
+
+    #[test]
+    fn test_line_ending_retains_other_fields() {
+        let options = Options {
+            width: 42,
+            line_ending: LineEnding::LF,
+            initial_indent: ">> ",
+            subsequent_indent: "|| ",
+            break_words: false,
+            word_separator: WordSeparator::AsciiSpace,
+            wrap_algorithm: WrapAlgorithm::FirstFit,
+            word_splitter: WordSplitter::NoHyphenation,
+        };
+
+        let new_options = options.line_ending(LineEnding::CRLF);
+        assert_eq!(new_options.line_ending, LineEnding::CRLF);
+        assert_eq!(new_options.width, 42);
+        assert_eq!(new_options.initial_indent, ">> ");
+        assert_eq!(new_options.subsequent_indent, "|| ");
+        assert_eq!(new_options.break_words, false);
+        assert_eq!(new_options.word_separator, WordSeparator::AsciiSpace);
+        assert_eq!(new_options.wrap_algorithm, WrapAlgorithm::FirstFit);
+        assert_eq!(new_options.word_splitter, WordSplitter::NoHyphenation);
+    }
+}
+   Compiling textwrap v0.16.0 (/home/xiang/workspace/human/llm_base_bk/textwrap)
+error[E0603]: module `optimal_fit` is private
+   --> src/options.rs:419:33
+    |
+419 |     use crate::wrap_algorithms::optimal_fit::Penalties;
+    |                                 ^^^^^^^^^^^ private module
+    |
+note: the module `optimal_fit` is defined here
+   --> src/wrap_algorithms.rs:21:1
+    |
+21  | mod optimal_fit;
+    | ^^^^^^^^^^^^^^^^
+
+For more information about this error, try `rustc --explain E0603`.
+error: could not compile `textwrap` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UUCyCw7i7HHKtWujHyk66OF6TxbC', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_28 {\n    use super::*;\n\n    use crate::Options;\n    use crate::core::Word;\n    use crate::line_ending::LineEnding;\n    use crate::wrap_algorithms::WrapAlgorithm;\n    use crate::wrap_algorithms::WrapAlgorithm::OptimalFit;\n    use crate::word_splitters::WordSplitter;\n    use crate::word_separators::WordSeparator;\n\n    #[test]\n    fn test_line_ending_crlf() {\n        let options = Options::new(15).line_ending(LineEnding::CRLF);\n        assert_eq!(options.line_ending, LineEnding::CRLF);\n    }\n\n    #[test]\n    fn test_line_ending_lf() {\n        let options = Options::new(15).line_ending(LineEnding::LF);\n        assert_eq!(options.line_ending, LineEnding::LF);\n    }\n\n    #[test]\n    fn test_line_ending_retains_other_fields() {\n        let options = Options {\n            width: 42,\n            line_ending: LineEnding::LF,\n            initial_indent: ">> ",\n            subsequent_indent: "|| ",\n            break_words: false,\n            word_separator: WordSeparator::AsciiSpace,\n            wrap_algorithm: WrapAlgorithm::new(),\n            word_splitter: WordSplitter::NoHyphenation,\n        };\n\n        let new_options = options.line_ending(LineEnding::CRLF);\n        assert_eq!(new_options.line_ending, LineEnding::CRLF);\n        assert_eq!(new_options.width, 42);\n        assert_eq!(new_options.initial_indent, ">> ");\n        assert_eq!(new_options.subsequent_indent, "|| ");\n        assert_eq!(new_options.break_words, false);\n        assert_eq!(new_options.word_separator, WordSeparator::AsciiSpace);\n        assert_eq!(new_options.wrap_algorithm, WrapAlgorithm::new());\n        assert_eq!(new_options.word_splitter, WordSplitter::NoHyphenation);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702276652, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=418, prompt_tokens=11352, total_tokens=11770))
+71
+inject succeed textwrap textwrap options::Options::<'a>::line_ending
+ChatCompletion(id='chatcmpl-8UUDRAezezU5x668xpuzpJU7EwHWH', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n\n    #[test]\n    fn options_new_default_values() {\n        let width = 80;\n        let options = Options::new(width);\n\n        assert_eq!(options.width, width);\n        assert_eq!(options.line_ending, LineEnding::LF);\n        assert_eq!(options.initial_indent, "");\n        assert_eq!(options.subsequent_indent, "");\n        assert_eq!(options.break_words, true);\n\n        #[cfg(feature = "unicode-linebreak")]\n        assert_eq!(options.word_separator, WordSeparator::UnicodeBreakProperties);\n        #[cfg(not(feature = "unicode-linebreak"))]\n        assert_eq!(options.word_separator, WordSeparator::AsciiSpace);\n\n        #[cfg(feature = "smawk")]\n        assert_eq!(options.wrap_algorithm, WrapAlgorithm::new_optimal_fit());\n        #[cfg(not(feature = "smawk"))]\n        assert_eq!(options.wrap_algorithm, WrapAlgorithm::FirstFit);\n\n        assert_eq!(options.word_splitter, WordSplitter::HyphenSplitter);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702276681, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=217, prompt_tokens=10516, total_tokens=10733))
+71
+inject succeed textwrap textwrap options::Options::<'a>::new
+ChatCompletion(id='chatcmpl-8UUDmLW3Op1SHkZJxbTyA8ieX7yJF', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use crate::options::Options;\n\n    #[test]\n    fn test_subsequent_indent() {\n        // Test default subsequent_indent\n        let options = Options::new(15);\n        assert_eq!(options.subsequent_indent, "");\n\n        // Test setting subsequent_indent to a specific value\n        let options = options.subsequent_indent("-> ");\n        assert_eq!(options.subsequent_indent, "-> ");\n\n        // Test setting subsequent_indent to an empty string\n        let options = options.subsequent_indent("");\n        assert_eq!(options.subsequent_indent, "");\n\n        // Test setting subsequent_indent multiple times\n        let options = options\n            .subsequent_indent("-> ")\n            .subsequent_indent("-->")\n            .subsequent_indent("");\n        assert_eq!(options.subsequent_indent, "");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702276702, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=174, prompt_tokens=10429, total_tokens=10603))
+71
+inject succeed textwrap textwrap options::Options::<'a>::subsequent_indent
+ChatCompletion(id='chatcmpl-8UUE24bSM8zXOqvsc4pM9LDUB1fGh', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use crate::word_separators::WordSeparator;\n\n    #[test]\n    fn test_word_separator_ascii_space() {\n        let options = Options::new(80);\n        let new_options = options.word_separator(WordSeparator::AsciiSpace);\n        assert_eq!(new_options.word_separator, WordSeparator::AsciiSpace);\n    }\n\n    #[cfg(feature = "unicode-linebreak")]\n    #[test]\n    fn test_word_separator_unicode_break_properties() {\n        let options = Options::new(80);\n        let new_options = options.word_separator(WordSeparator::UnicodeBreakProperties);\n        assert_eq!(new_options.word_separator, WordSeparator::UnicodeBreakProperties);\n    }\n\n    #[test]\n    fn test_word_separator_custom() {\n        fn custom_separator(_line: &str) -> Box<dyn Iterator<Item = Word<\'_>> + \'_> {\n            Box::new(std::iter::empty())\n        }\n\n        let options = Options::new(80);\n        let new_options = options.word_separator(WordSeparator::Custom(custom_separator));\n        // WordSeparator::Custom can\'t be directly compared, so we test if it\'s set at all\n        match new_options.word_separator {\n            WordSeparator::Custom(_) => (),\n            _ => panic!("Expected WordSeparator::Custom"),\n        }\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702276718, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_6aca3b5ce1', usage=CompletionUsage(completion_tokens=277, prompt_tokens=10302, total_tokens=10579))
+71
+========================================
+inject err options::Options::<'a>::word_separator src/options.rs word_separator
+#[cfg(test)]
+mod tests_llm_16_31 {
+    use super::*;
+
+use crate::*;
+    use crate::word_separators::WordSeparator;
+
+    #[test]
+    fn test_word_separator_ascii_space() {
+        let options = Options::new(80);
+        let new_options = options.word_separator(WordSeparator::AsciiSpace);
+        assert_eq!(new_options.word_separator, WordSeparator::AsciiSpace);
+    }
+
+    #[cfg(feature = "unicode-linebreak")]
+    #[test]
+    fn test_word_separator_unicode_break_properties() {
+        let options = Options::new(80);
+        let new_options = options.word_separator(WordSeparator::UnicodeBreakProperties);
+        assert_eq!(new_options.word_separator, WordSeparator::UnicodeBreakProperties);
+    }
+
+    #[test]
+    fn test_word_separator_custom() {
+        fn custom_separator(_line: &str) -> Box<dyn Iterator<Item = Word<'_>> + '_> {
+            Box::new(std::iter::empty())
+        }
+
+        let options = Options::new(80);
+        let new_options = options.word_separator(WordSeparator::Custom(custom_separator));
+        // WordSeparator::Custom can't be directly compared, so we test if it's set at all
+        match new_options.word_separator {
+            WordSeparator::Custom(_) => (),
+            _ => panic!("Expected WordSeparator::Custom"),
+        }
+    }
+}
+    Blocking waiting for file lock on package cache
+   Compiling textwrap v0.16.0 (/home/xiang/workspace/human/llm_base_bk/textwrap)
+error[E0412]: cannot find type `Word` in this scope
+   --> src/options.rs:540:69
+    |
+540 |         fn custom_separator(_line: &str) -> Box<dyn Iterator<Item = Word<'_>> + '_> {
+    |                                                                     ^^^^ not found in this scope
+    |
+help: consider importing this struct
+    |
+518 |     use crate::core::Word;
+    |
+
+For more information about this error, try `rustc --explain E0412`.
+error: could not compile `textwrap` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UUELDAOEn42QEj2XMg8KRJZurR2B', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use crate::core::Word;\n    use crate::line_ending::LineEnding;\n    use crate::word_separators::WordSeparator;\n    use crate::word_splitters::WordSplitter;\n    use crate::wrap_algorithms::WrapAlgorithm;\n\n    #[test]\n    fn test_word_separator_ascii_space() {\n        let options = Options::new(80);\n        let new_options = options.word_separator(WordSeparator::AsciiSpace);\n        assert_eq!(new_options.word_separator, WordSeparator::AsciiSpace);\n    }\n\n    #[cfg(feature = "unicode-linebreak")]\n    #[test]\n    fn test_word_separator_unicode_break_properties() {\n        let options = Options::new(80);\n        let new_options = options.word_separator(WordSeparator::UnicodeBreakProperties);\n        assert_eq!(new_options.word_separator, WordSeparator::UnicodeBreakProperties);\n    }\n\n    #[test]\n    fn test_word_separator_custom() {\n        fn custom_separator(_line: &str) -> Box<dyn Iterator<Item = Word<\'_>> + \'_> {\n            Box::new(std::iter::empty())\n        }\n\n        let options = Options::new(80);\n        let new_options = options.word_separator(WordSeparator::Custom(custom_separator));\n        // WordSeparator::Custom can\'t be directly compared, so we test if it\'s set at all\n        match new_options.word_separator {\n            WordSeparator::Custom(_) => (),\n            _ => panic!("Expected WordSeparator::Custom"),\n        }\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702276737, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_6aca3b5ce1', usage=CompletionUsage(completion_tokens=320, prompt_tokens=11079, total_tokens=11399))
+71
+inject succeed textwrap textwrap options::Options::<'a>::word_separator
+ChatCompletion(id='chatcmpl-8UUEiMgHatJJlJhwJXl7d6i5wSbyC', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use textwrap::wrap_algorithms::WrapAlgorithm;\n    use textwrap::word_splitters::WordSplitter;\n    use textwrap::word_separators::WordSeparator;\n\n    #[test]\n    fn test_options_word_splitter() {\n        let options = Options::new(10)\n            .word_splitter(WordSplitter::HyphenSplitter)\n            .word_separator(WordSeparator::AsciiSpace)\n            .wrap_algorithm(WrapAlgorithm::FirstFit);\n\n        // Original setter method should replace the word_splitter\n        let new_options = options.word_splitter(WordSplitter::NoHyphenation);\n        assert_eq!(new_options.word_splitter, WordSplitter::NoHyphenation);\n\n        // Fields other than word_splitter should remain unchanged\n        assert_eq!(new_options.width, options.width);\n        assert_eq!(new_options.line_ending, options.line_ending);\n        assert_eq!(new_options.initial_indent, options.initial_indent);\n        assert_eq!(new_options.subsequent_indent, options.subsequent_indent);\n        assert_eq!(new_options.break_words, options.break_words);\n        assert_eq!(new_options.word_separator, options.word_separator);\n        assert_eq!(new_options.wrap_algorithm, options.wrap_algorithm);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702276760, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=272, prompt_tokens=10559, total_tokens=10831))
+71
+========================================
+inject err options::Options::<'a>::word_splitter src/options.rs word_splitter
+#[cfg(test)]
+mod tests_llm_16_32 {
+    use super::*;
+
+use crate::*;
+    use crate::wrap_algorithms::WrapAlgorithm;
+    use crate::word_splitters::WordSplitter;
+    use crate::word_separators::WordSeparator;
+
+    #[test]
+    fn test_options_word_splitter() {
+        let options = Options::new(10)
+            .word_splitter(WordSplitter::HyphenSplitter)
+            .word_separator(WordSeparator::AsciiSpace)
+            .wrap_algorithm(WrapAlgorithm::FirstFit);
+
+        // Original setter method should replace the word_splitter
+        let new_options = options.word_splitter(WordSplitter::NoHyphenation);
+        assert_eq!(new_options.word_splitter, WordSplitter::NoHyphenation);
+
+        // Fields other than word_splitter should remain unchanged
+        assert_eq!(new_options.width, options.width);
+        assert_eq!(new_options.line_ending, options.line_ending);
+        assert_eq!(new_options.initial_indent, options.initial_indent);
+        assert_eq!(new_options.subsequent_indent, options.subsequent_indent);
+        assert_eq!(new_options.break_words, options.break_words);
+        assert_eq!(new_options.word_separator, options.word_separator);
+        assert_eq!(new_options.wrap_algorithm, options.wrap_algorithm);
+    }
+}
+   Compiling textwrap v0.16.0 (/home/xiang/workspace/human/llm_base_bk/textwrap)
+error[E0382]: borrow of moved value: `options`
+   --> src/options.rs:583:9
+    |
+567 |         let options = Options::new(10)
+    |             ------- move occurs because `options` has type `options::Options<'_>`, which does not implement the `Copy` trait
+...
+573 |         let new_options = options.word_splitter(WordSplitter::NoHyphenation);
+    |                                   ------------------------------------------ `options` moved due to this method call
+...
+583 |         assert_eq!(new_options.wrap_algorithm, options.wrap_algorithm);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ value borrowed here after move
+    |
+    = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider cloning the value if the performance cost is acceptable
+    |
+573 |         let new_options = options.clone().word_splitter(WordSplitter::NoHyphenation);
+    |                                  ++++++++
+
+For more information about this error, try `rustc --explain E0382`.
+error: could not compile `textwrap` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UUF6DrN1H8oY4yhc6WRROdAdE10f', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_32 {\n    use super::*;\n\n    use crate::wrap_algorithms::WrapAlgorithm;\n    use crate::word_splitters::WordSplitter;\n    use crate::word_separators::WordSeparator;\n    \n    #[test]\n    fn test_options_word_splitter() {\n        let mut options = Options::new(10)\n            .word_splitter(WordSplitter::HyphenSplitter)\n            .word_separator(WordSeparator::AsciiSpace)\n            .wrap_algorithm(WrapAlgorithm::FirstFit);\n\n        // We will test the word_splitter change, so we need a clone\n        // to compare against after applying word_splitter change\n        let original_options = options.clone();\n\n        // Original setter method should replace the word_splitter\n        options = options.word_splitter(WordSplitter::NoHyphenation);\n        assert_eq!(options.word_splitter, WordSplitter::NoHyphenation);\n\n        // Fields other than word_splitter should remain unchanged\n        assert_eq!(options.width, original_options.width);\n        assert_eq!(options.line_ending, original_options.line_ending);\n        assert_eq!(options.initial_indent, original_options.initial_indent);\n        assert_eq!(options.subsequent_indent, original_options.subsequent_indent);\n        assert_eq!(options.break_words, original_options.break_words);\n        assert_eq!(options.word_separator, original_options.word_separator);\n        assert_eq!(options.wrap_algorithm, original_options.wrap_algorithm);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702276784, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=311, prompt_tokens=11448, total_tokens=11759))
+71
+inject succeed textwrap textwrap options::Options::<'a>::word_splitter
+ChatCompletion(id='chatcmpl-8UUFjUbjnu1UXgRaMhCEqVpTCBjBX', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::Options;\n    use crate::wrap_algorithms::WrapAlgorithm;\n    use crate::line_ending::LineEnding;\n    use crate::word_separators::WordSeparator;\n    use crate::word_splitters::WordSplitter;\n\n    #[test]\n    fn test_wrap_algorithm_first_fit() {\n        let options = Options::new(15)\n            .line_ending(LineEnding::LF)\n            .initial_indent("")\n            .subsequent_indent("")\n            .break_words(false)\n            .word_separator(WordSeparator::AsciiSpace)\n            .word_splitter(WordSplitter::HyphenSplitter);\n\n        let new_options = options.wrap_algorithm(WrapAlgorithm::FirstFit);\n        assert_eq!(new_options.wrap_algorithm, WrapAlgorithm::FirstFit);\n    }\n\n    #[cfg(feature = "smawk")]\n    #[test]\n    fn test_wrap_algorithm_optimal_fit() {\n        use crate::wrap_algorithms::optimal_fit::Penalties;\n\n        let options = Options::new(15)\n            .line_ending(LineEnding::LF)\n            .initial_indent("")\n            .subsequent_indent("")\n            .break_words(false)\n            .word_separator(WordSeparator::AsciiSpace)\n            .word_splitter(WordSplitter::HyphenSplitter);\n        let penalties = Penalties::new();\n\n        let new_options = options.wrap_algorithm(WrapAlgorithm::OptimalFit(penalties));\n        if let WrapAlgorithm::OptimalFit(penalties) = new_options.wrap_algorithm {\n            assert_eq!(penalties, Penalties::new());\n        } else {\n            panic!("Expected WrapAlgorithm::OptimalFit");\n        }\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702276823, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=352, prompt_tokens=10302, total_tokens=10654))
+71
+========================================
+inject err options::Options::<'a>::wrap_algorithm src/options.rs wrap_algorithm
+#[cfg(test)]
+mod tests_llm_16_33 {
+    use crate::Options;
+    use crate::wrap_algorithms::WrapAlgorithm;
+    use crate::line_ending::LineEnding;
+    use crate::word_separators::WordSeparator;
+    use crate::word_splitters::WordSplitter;
+
+    #[test]
+    fn test_wrap_algorithm_first_fit() {
+        let options = Options::new(15)
+            .line_ending(LineEnding::LF)
+            .initial_indent("")
+            .subsequent_indent("")
+            .break_words(false)
+            .word_separator(WordSeparator::AsciiSpace)
+            .word_splitter(WordSplitter::HyphenSplitter);
+
+        let new_options = options.wrap_algorithm(WrapAlgorithm::FirstFit);
+        assert_eq!(new_options.wrap_algorithm, WrapAlgorithm::FirstFit);
+    }
+
+    #[cfg(feature = "smawk")]
+    #[test]
+    fn test_wrap_algorithm_optimal_fit() {
+        use crate::wrap_algorithms::optimal_fit::Penalties;
+
+        let options = Options::new(15)
+            .line_ending(LineEnding::LF)
+            .initial_indent("")
+            .subsequent_indent("")
+            .break_words(false)
+            .word_separator(WordSeparator::AsciiSpace)
+            .word_splitter(WordSplitter::HyphenSplitter);
+        let penalties = Penalties::new();
+
+        let new_options = options.wrap_algorithm(WrapAlgorithm::OptimalFit(penalties));
+        if let WrapAlgorithm::OptimalFit(penalties) = new_options.wrap_algorithm {
+            assert_eq!(penalties, Penalties::new());
+        } else {
+            panic!("Expected WrapAlgorithm::OptimalFit");
+        }
+    }
+}
+   Compiling textwrap v0.16.0 (/home/xiang/workspace/human/llm_base_bk/textwrap)
+error[E0603]: module `optimal_fit` is private
+   --> src/options.rs:615:37
+    |
+615 |         use crate::wrap_algorithms::optimal_fit::Penalties;
+    |                                     ^^^^^^^^^^^ private module
+    |
+note: the module `optimal_fit` is defined here
+   --> src/wrap_algorithms.rs:21:1
+    |
+21  | mod optimal_fit;
+    | ^^^^^^^^^^^^^^^^
+
+For more information about this error, try `rustc --explain E0603`.
+error: could not compile `textwrap` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UUGBmXsm2eXm1Iqr2Z3eUL30tjny', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_33 {\n    use crate::Options;\n    use crate::wrap_algorithms::WrapAlgorithm;\n    use crate::wrap_algorithms::optimal_fit::Penalties; // Adjusted import\n    use crate::line_ending::LineEnding;\n    use crate::word_separators::WordSeparator;\n    use crate::word_splitters::WordSplitter;\n\n    #[test]\n    fn test_wrap_algorithm_first_fit() {\n        let options = Options::new(15)\n            .line_ending(LineEnding::LF)\n            .initial_indent("")\n            .subsequent_indent("")\n            .break_words(false)\n            .word_separator(WordSeparator::AsciiSpace)\n            .word_splitter(WordSplitter::HyphenSplitter);\n\n        let new_options = options.wrap_algorithm(WrapAlgorithm::FirstFit);\n        assert_eq!(new_options.wrap_algorithm, WrapAlgorithm::FirstFit);\n    }\n\n    #[cfg(feature = "smawk")]\n    #[test]\n    fn test_wrap_algorithm_optimal_fit() {\n        let options = Options::new(15)\n            .line_ending(LineEnding::LF)\n            .initial_indent("")\n            .subsequent_indent("")\n            .break_words(false)\n            .word_separator(WordSeparator::AsciiSpace)\n            .word_splitter(WordSplitter::HyphenSplitter);\n        let penalties = Penalties::new();\n\n        let new_options = options.wrap_algorithm(WrapAlgorithm::OptimalFit(penalties));\n        if let WrapAlgorithm::OptimalFit(penalties) = new_options.wrap_algorithm {\n            assert_eq!(penalties, Penalties::new());\n        } else {\n            panic!("Expected WrapAlgorithm::OptimalFit");\n        }\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702276851, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=363, prompt_tokens=11227, total_tokens=11590))
+71
+========================================
+inject err options::Options::<'a>::wrap_algorithm src/options.rs wrap_algorithm
+#[cfg(test)]
+mod tests_llm_16_33_llm_16_33 {
+    use crate::Options;
+    use crate::wrap_algorithms::WrapAlgorithm;
+    use crate::wrap_algorithms::optimal_fit::Penalties; // Adjusted import
+    use crate::line_ending::LineEnding;
+    use crate::word_separators::WordSeparator;
+    use crate::word_splitters::WordSplitter;
+
+    #[test]
+    fn test_wrap_algorithm_first_fit() {
+        let options = Options::new(15)
+            .line_ending(LineEnding::LF)
+            .initial_indent("")
+            .subsequent_indent("")
+            .break_words(false)
+            .word_separator(WordSeparator::AsciiSpace)
+            .word_splitter(WordSplitter::HyphenSplitter);
+
+        let new_options = options.wrap_algorithm(WrapAlgorithm::FirstFit);
+        assert_eq!(new_options.wrap_algorithm, WrapAlgorithm::FirstFit);
+    }
+
+    #[cfg(feature = "smawk")]
+    #[test]
+    fn test_wrap_algorithm_optimal_fit() {
+        let options = Options::new(15)
+            .line_ending(LineEnding::LF)
+            .initial_indent("")
+            .subsequent_indent("")
+            .break_words(false)
+            .word_separator(WordSeparator::AsciiSpace)
+            .word_splitter(WordSplitter::HyphenSplitter);
+        let penalties = Penalties::new();
+
+        let new_options = options.wrap_algorithm(WrapAlgorithm::OptimalFit(penalties));
+        if let WrapAlgorithm::OptimalFit(penalties) = new_options.wrap_algorithm {
+            assert_eq!(penalties, Penalties::new());
+        } else {
+            panic!("Expected WrapAlgorithm::OptimalFit");
+        }
+    }
+}
+   Compiling textwrap v0.16.0 (/home/xiang/workspace/human/llm_base_bk/textwrap)
+error[E0603]: module `optimal_fit` is private
+   --> src/options.rs:594:33
+    |
+594 |     use crate::wrap_algorithms::optimal_fit::Penalties; // Adjusted import
+    |                                 ^^^^^^^^^^^ private module
+    |
+note: the module `optimal_fit` is defined here
+   --> src/wrap_algorithms.rs:21:1
+    |
+21  | mod optimal_fit;
+    | ^^^^^^^^^^^^^^^^
+
+For more information about this error, try `rustc --explain E0603`.
+error: could not compile `textwrap` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+repair err options::Options::<'a>::wrap_algorithm src/options.rs wrap_algorithm
+ChatCompletion(id='chatcmpl-8UUGsSL6Vzd2SKW6LNQZg5VOvTALI', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n\n    #[test]\n    fn test_refill_with_fixed_width() {\n        let text = "> Memory safety without garbage collection.";\n        let expected = "> Memory safety\\n> without garbage\\n> collection.";\n        let result = refill(text, 20);\n        assert_eq!(expected, result);\n    }\n\n    #[test]\n    fn test_refill_with_options() {\n        let text = "\\\n            - This is\n            my indented\n            text.";\n        let options = Options::new(20)\n            .initial_indent("- ")\n            .subsequent_indent("  ");\n        let expected = "\\\n            - This is my\n              indented text.";\n        let result = refill(text, options);\n        assert_eq!(expected, result);\n    }\n\n    #[test]\n    fn test_refill_with_bullet_points() {\n        let text = "\\\n            - Bullet point\n              text here.";\n        let expected = "\\\n            - Bullet point\n              text here.";\n        let result = refill(text, 30);\n        assert_eq!(expected, result);\n    }\n\n    #[test]\n    fn test_refill_with_shrinking_width() {\n        let text = "\\\n            Some text that\n            will be shrunk.";\n        let expected = "\\\n            Some text\n            that will\n            be shrunk.";\n        let result = refill(text, 10);\n        assert_eq!(expected, result);\n    }\n\n    #[test]\n    fn test_refill_without_changing() {\n        let text = "No newlines here.";\n        let expected = "No newlines here.";\n        let result = refill(text, 30);\n        assert_eq!(expected, result);\n    }\n\n    #[test]\n    fn test_refill_with_emtpy_string() {\n        let text = "";\n        let expected = "";\n        let result = refill(text, 20);\n        assert_eq!(expected, result);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702276894, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=398, prompt_tokens=609, total_tokens=1007))
+71
+inject succeed textwrap textwrap refill::refill
+ChatCompletion(id='chatcmpl-8UUHQDroUfcdX6HVsHfnYGWrUaPDE', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use crate::refill::unfill;\n    use crate::options::Options;\n    use crate::line_ending::LineEnding;\n\n    #[test]\n    fn test_unfill_simple() {\n        let text = "Hello\\nworld.";\n        let (unfilled, options) = unfill(text);\n        assert_eq!(unfilled, "Hello world.\\n");\n        assert_eq!(options.initial_indent, "");\n        assert_eq!(options.subsequent_indent, "");\n        assert_eq!(options.line_ending, LineEnding::LF);\n    }\n\n    #[test]\n    fn test_unfill_with_indentation() {\n        let text = "  Hello\\n  world.";\n        let (unfilled, options) = unfill(text);\n        assert_eq!(unfilled, "Hello world.\\n");\n        assert_eq!(options.initial_indent, "  ");\n        assert_eq!(options.subsequent_indent, "  ");\n        assert_eq!(options.line_ending, LineEnding::LF);\n    }\n\n    #[test]\n    fn test_unfill_with_different_indentation() {\n        let text = "  Hello\\n    world.";\n        let (unfilled, options) = unfill(text);\n        assert_eq!(unfilled, "Hello world.\\n");\n        assert_eq!(options.initial_indent, "  ");\n        assert_eq!(options.subsequent_indent, "    ");\n        assert_eq!(options.line_ending, LineEnding::LF);\n    }\n\n    #[test]\n    fn test_unfill_with_bullet_points() {\n        let text = "* Hello\\n  world.";\n        let (unfilled, options) = unfill(text);\n        assert_eq!(unfilled, "Hello world.\\n");\n        assert_eq!(options.initial_indent, "* ");\n        assert_eq!(options.subsequent_indent, "  ");\n        assert_eq!(options.line_ending, LineEnding::LF);\n    }\n\n    #[test]\n    fn test_unfill_with_mixed_line_endings() {\n        let text = "* Hello\\r\\n  world.";\n        let (unfilled, options) = unfill(text);\n        assert_eq!(unfilled, "Hello world.\\n");\n        assert_eq!(options.initial_indent, "* ");\n        assert_eq!(options.subsequent_indent, "  ");\n        assert_eq!(options.line_ending, LineEnding::LF);\n    }\n\n    #[test]\n    fn test_unfill_with_crlf_line_endings() {\n        let text = "* Hello\\r\\n  world.\\r\\n";\n        let (unfilled, options) = unfill(text);\n        assert_eq!(unfilled, "Hello world.\\r\\n");\n        assert_eq!(options.initial_indent, "* ");\n        assert_eq!(options.subsequent_indent, "  ");\n        assert_eq!(options.line_ending, LineEnding::CRLF);\n    }\n\n    #[test]\n    fn test_unfill_single_line() {\n        let text = "Hello world.";\n        let (unfilled, options) = unfill(text);\n        assert_eq!(unfilled, "Hello world.\\n");\n        assert_eq!(options.initial_indent, "");\n        assert_eq!(options.subsequent_indent, "");\n        assert_eq!(options.line_ending, LineEnding::LF);\n    }\n\n    #[test]\n    fn test_unfill_empty_string() {\n        let text = "";\n        let (unfilled, options) = unfill(text);\n        assert_eq!(unfilled, "\\n");\n        assert_eq!(options.initial_indent, "");\n        assert_eq!(options.subsequent_indent, "");\n        assert_eq!(options.line_ending, LineEnding::LF);\n    }\n\n    #[test]\n    #[should_panic]\n    fn test_unfill_multiple_paragraphs() {\n        let text = "Hello world.\\n\\nNew paragraph.";\n        let _ = unfill(text);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702276928, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=783, prompt_tokens=11069, total_tokens=11852))
+71
+inject succeed textwrap textwrap refill::unfill
+ChatCompletion(id='chatcmpl-8UUIKkuyOGWvb38xxm4bczyQZJtvx', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use crate::word_separators::{WordSeparator, Word};\n\n    #[test]\n    fn test_find_words_ascii_space() {\n        let separator = WordSeparator::AsciiSpace;\n        let words = separator.find_words("Hello   World!").collect::<Vec<_>>();\n        assert_eq!(words, vec![Word::from("Hello   "), Word::from("World!")]);\n    }\n\n    #[cfg(feature = "unicode-linebreak")]\n    #[test]\n    fn test_find_words_unicode_break_properties() {\n        let separator = WordSeparator::UnicodeBreakProperties;\n        let words = separator.find_words("Emojis: 😂😍").collect::<Vec<_>>();\n        assert_eq!(words, vec![Word::from("Emojis: "), Word::from("😂"), Word::from("😍")]);\n    }\n\n    #[cfg(feature = "unicode-linebreak")]\n    #[test]\n    fn test_find_words_unicode_break_properties_cjk() {\n        let separator = WordSeparator::UnicodeBreakProperties;\n        let words = separator.find_words("你好世界").collect::<Vec<_>>();\n        assert_eq!(words, vec![Word::from("你"), Word::from("好"), Word::from("世"), Word::from("界")]);\n    }\n\n    #[cfg(feature = "unicode-linebreak")]\n    #[test]\n    fn test_find_words_unicode_break_properties_with_word_joiner() {\n        let separator = WordSeparator::UnicodeBreakProperties;\n        let words = separator.find_words("Emojis: 😂\\u{2060}😍").collect::<Vec<_>>();\n        assert_eq!(words, vec![Word::from("Emojis: "), Word::from("😂\\u{2060}😍")]);\n    }\n\n    #[test]\n    fn test_find_words_custom() {\n        fn custom_separator(line: &str) -> Box<dyn Iterator<Item = Word> + \'_> {\n            Box::new(\n                line.split_inclusive(\' \')\n                    .map(Word::from)\n            )\n        }\n\n        let separator = WordSeparator::Custom(custom_separator);\n        let words = separator.find_words("Custom separator test").collect::<Vec<_>>();\n        assert_eq!(words, vec![Word::from("Custom "), Word::from("separator "), Word::from("test")]);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702276984, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=486, prompt_tokens=1883, total_tokens=2369))
+71
+inject succeed textwrap textwrap word_separators::WordSeparator::find_words
+ChatCompletion(id='chatcmpl-8UUIr5exiRNeWeoph09BlmzoDr1TA', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use crate::word_separators::WordSeparator;\n\n    #[test]\n    fn new_word_separator_default() {\n        let separator = WordSeparator::new();\n        #[cfg(feature = "unicode-linebreak")]\n        assert_eq!(separator, WordSeparator::UnicodeBreakProperties);\n\n        #[cfg(not(feature = "unicode-linebreak"))]\n        assert_eq!(separator, WordSeparator::AsciiSpace);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702277017, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=94, prompt_tokens=1885, total_tokens=1979))
+71
+inject succeed textwrap textwrap word_separators::WordSeparator::new
+ChatCompletion(id='chatcmpl-8UUIzRLyGv3aG8vNSNLWISly2YqgD', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::find_words_ascii_space;\n    use super::Word;\n\n    #[test]\n    fn test_find_words_ascii_space_single_word() {\n        let input = "single";\n        let mut iterator = find_words_ascii_space(input);\n\n        assert_eq!(iterator.next(), Some(Word::from("single")));\n        assert_eq!(iterator.next(), None);\n    }\n\n    #[test]\n    fn test_find_words_ascii_space_multiple_words() {\n        let input = "multiple words";\n        let mut iterator = find_words_ascii_space(input);\n\n        assert_eq!(iterator.next(), Some(Word::from("multiple")));\n        assert_eq!(iterator.next(), Some(Word::from("words")));\n        assert_eq!(iterator.next(), None);\n    }\n\n    #[test]\n    fn test_find_words_ascii_space_leading_trailing_spaces() {\n        let input = "  leading and trailing  ";\n        let mut iterator = find_words_ascii_space(input);\n\n        assert_eq!(iterator.next(), Some(Word::from("leading")));\n        assert_eq!(iterator.next(), Some(Word::from("and")));\n        assert_eq!(iterator.next(), Some(Word::from("trailing")));\n        assert_eq!(iterator.next(), None);\n    }\n\n    #[test]\n    fn test_find_words_ascii_space_multiple_spaces() {\n        let input = "multiple   spaces";\n        let mut iterator = find_words_ascii_space(input);\n\n        assert_eq!(iterator.next(), Some(Word::from("multiple")));\n        assert_eq!(iterator.next(), Some(Word::from("spaces")));\n        assert_eq!(iterator.next(), None);\n    }\n\n    #[test]\n    fn test_find_words_ascii_space_empty_string() {\n        let input = "";\n        let mut iterator = find_words_ascii_space(input);\n\n        assert_eq!(iterator.next(), None);\n    }\n\n    #[test]\n    fn test_find_words_ascii_space_only_spaces() {\n        let input = "     ";\n        let mut iterator = find_words_ascii_space(input);\n\n        assert_eq!(iterator.next(), None);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702277025, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=420, prompt_tokens=310, total_tokens=730))
+71
+========================================
+inject err word_separators::find_words_ascii_space src/word_separators.rs find_words_ascii_space
+#[cfg(test)]
+mod tests_llm_16_38 {
+    use crate::find_words_ascii_space;
+    use crate::Word;
+
+    #[test]
+    fn test_find_words_ascii_space_single_word() {
+        let input = "single";
+        let mut iterator = find_words_ascii_space(input);
+
+        assert_eq!(iterator.next(), Some(Word::from("single")));
+        assert_eq!(iterator.next(), None);
+    }
+
+    #[test]
+    fn test_find_words_ascii_space_multiple_words() {
+        let input = "multiple words";
+        let mut iterator = find_words_ascii_space(input);
+
+        assert_eq!(iterator.next(), Some(Word::from("multiple")));
+        assert_eq!(iterator.next(), Some(Word::from("words")));
+        assert_eq!(iterator.next(), None);
+    }
+
+    #[test]
+    fn test_find_words_ascii_space_leading_trailing_spaces() {
+        let input = "  leading and trailing  ";
+        let mut iterator = find_words_ascii_space(input);
+
+        assert_eq!(iterator.next(), Some(Word::from("leading")));
+        assert_eq!(iterator.next(), Some(Word::from("and")));
+        assert_eq!(iterator.next(), Some(Word::from("trailing")));
+        assert_eq!(iterator.next(), None);
+    }
+
+    #[test]
+    fn test_find_words_ascii_space_multiple_spaces() {
+        let input = "multiple   spaces";
+        let mut iterator = find_words_ascii_space(input);
+
+        assert_eq!(iterator.next(), Some(Word::from("multiple")));
+        assert_eq!(iterator.next(), Some(Word::from("spaces")));
+        assert_eq!(iterator.next(), None);
+    }
+
+    #[test]
+    fn test_find_words_ascii_space_empty_string() {
+        let input = "";
+        let mut iterator = find_words_ascii_space(input);
+
+        assert_eq!(iterator.next(), None);
+    }
+
+    #[test]
+    fn test_find_words_ascii_space_only_spaces() {
+        let input = "     ";
+        let mut iterator = find_words_ascii_space(input);
+
+        assert_eq!(iterator.next(), None);
+    }
+}
+   Compiling textwrap v0.16.0 (/home/xiang/workspace/human/llm_base_bk/textwrap)
+error[E0432]: unresolved import `crate::find_words_ascii_space`
+   --> src/word_separators.rs:621:9
+    |
+621 |     use crate::find_words_ascii_space;
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `find_words_ascii_space` in the root
+
+error[E0432]: unresolved import `crate::Word`
+   --> src/word_separators.rs:622:9
+    |
+622 |     use crate::Word;
+    |         ^^^^^^^^^^^ no `Word` in the root
+    |
+help: consider importing this struct instead
+    |
+622 |     use crate::word_separators::Word;
+    |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `textwrap` due to 2 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UUJZaROfLNwNEKguHgXlPw3u80ED', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_38 {\n    use super::find_words_ascii_space;\n    use super::super::Word;\n\n    #[test]\n    fn test_find_words_ascii_space_single_word() {\n        let input = "single";\n        let mut iterator = find_words_ascii_space(input);\n\n        assert_eq!(iterator.next(), Some(Word::from("single")));\n        assert_eq!(iterator.next(), None);\n    }\n\n    #[test]\n    fn test_find_words_ascii_space_multiple_words() {\n        let input = "multiple words";\n        let mut iterator = find_words_ascii_space(input);\n\n        assert_eq!(iterator.next(), Some(Word::from("multiple")));\n        assert_eq!(iterator.next(), Some(Word::from("words")));\n        assert_eq!(iterator.next(), None);\n    }\n\n    #[test]\n    fn test_find_words_ascii_space_leading_trailing_spaces() {\n        let input = "  leading and trailing  ";\n        let mut iterator = find_words_ascii_space(input);\n\n        assert_eq!(iterator.next(), Some(Word::from("leading")));\n        assert_eq!(iterator.next(), Some(Word::from("and")));\n        assert_eq!(iterator.next(), Some(Word::from("trailing")));\n        assert_eq!(iterator.next(), None);\n    }\n\n    #[test]\n    fn test_find_words_ascii_space_multiple_spaces() {\n        let input = "multiple   spaces";\n        let mut iterator = find_words_ascii_space(input);\n\n        assert_eq!(iterator.next(), Some(Word::from("multiple")));\n        assert_eq!(iterator.next(), Some(Word::from("spaces")));\n        assert_eq!(iterator.next(), None);\n    }\n\n    #[test]\n    fn test_find_words_ascii_space_empty_string() {\n        let input = "";\n        let mut iterator = find_words_ascii_space(input);\n\n        assert_eq!(iterator.next(), None);\n    }\n\n    #[test]\n    fn test_find_words_ascii_space_only_spaces() {\n        let input = "     ";\n        let mut iterator = find_words_ascii_space(input);\n\n        assert_eq!(iterator.next(), None);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702277061, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=428, prompt_tokens=1426, total_tokens=1854))
+71
+========================================
+inject err word_separators::find_words_ascii_space src/word_separators.rs find_words_ascii_space
+#[cfg(test)]
+mod tests_llm_16_38_llm_16_38 {
+    use crate::find_words_ascii_space;
+    use crate::super::Word;
+
+    #[test]
+    fn test_find_words_ascii_space_single_word() {
+        let input = "single";
+        let mut iterator = find_words_ascii_space(input);
+
+        assert_eq!(iterator.next(), Some(Word::from("single")));
+        assert_eq!(iterator.next(), None);
+    }
+
+    #[test]
+    fn test_find_words_ascii_space_multiple_words() {
+        let input = "multiple words";
+        let mut iterator = find_words_ascii_space(input);
+
+        assert_eq!(iterator.next(), Some(Word::from("multiple")));
+        assert_eq!(iterator.next(), Some(Word::from("words")));
+        assert_eq!(iterator.next(), None);
+    }
+
+    #[test]
+    fn test_find_words_ascii_space_leading_trailing_spaces() {
+        let input = "  leading and trailing  ";
+        let mut iterator = find_words_ascii_space(input);
+
+        assert_eq!(iterator.next(), Some(Word::from("leading")));
+        assert_eq!(iterator.next(), Some(Word::from("and")));
+        assert_eq!(iterator.next(), Some(Word::from("trailing")));
+        assert_eq!(iterator.next(), None);
+    }
+
+    #[test]
+    fn test_find_words_ascii_space_multiple_spaces() {
+        let input = "multiple   spaces";
+        let mut iterator = find_words_ascii_space(input);
+
+        assert_eq!(iterator.next(), Some(Word::from("multiple")));
+        assert_eq!(iterator.next(), Some(Word::from("spaces")));
+        assert_eq!(iterator.next(), None);
+    }
+
+    #[test]
+    fn test_find_words_ascii_space_empty_string() {
+        let input = "";
+        let mut iterator = find_words_ascii_space(input);
+
+        assert_eq!(iterator.next(), None);
+    }
+
+    #[test]
+    fn test_find_words_ascii_space_only_spaces() {
+        let input = "     ";
+        let mut iterator = find_words_ascii_space(input);
+
+        assert_eq!(iterator.next(), None);
+    }
+}
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling textwrap v0.16.0 (/home/xiang/workspace/human/llm_base_bk/textwrap)
+error[E0433]: failed to resolve: `super` in paths can only be used in start position
+   --> src/word_separators.rs:622:16
+    |
+622 |     use crate::super::Word;
+    |                ^^^^^ `super` in paths can only be used in start position
+
+error[E0432]: unresolved import `crate::find_words_ascii_space`
+   --> src/word_separators.rs:621:9
+    |
+621 |     use crate::find_words_ascii_space;
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `find_words_ascii_space` in the root
+
+Some errors have detailed explanations: E0432, E0433.
+For more information about an error, try `rustc --explain E0432`.
+error: could not compile `textwrap` due to 2 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+repair err word_separators::find_words_ascii_space src/word_separators.rs find_words_ascii_space
+ChatCompletion(id='chatcmpl-8UUK7tvX2EGvNlnRSJfFkeCAFfj4v', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\n#[cfg(feature = "unicode-linebreak")]\nmod tests {\n    use super::*;\n    use textwrap::core::Word;\n\n    #[test]\n    fn test_find_words_unicode_break_properties() {\n        let line = "The quick (\\"brown\\") fox can\'t jump 32.3 feet, right?";\n        \n        let mut word_iter = find_words_unicode_break_properties(line);\n        \n        assert_eq!(word_iter.next(), Some(Word::from("The ")));\n        assert_eq!(word_iter.next(), Some(Word::from("quick ")));\n        assert_eq!(word_iter.next(), Some(Word::from("(\\"")));\n        assert_eq!(word_iter.next(), Some(Word::from("brown"));\n        assert_eq!(word_iter.next(), Some(Word::from("\\"")));\n        assert_eq!(word_iter.next(), Some(Word::from(") ")));\n        assert_eq!(word_iter.next(), Some(Word::from("fox ")));\n        assert_eq!(word_iter.next(), Some(Word::from("can\'t ")));\n        assert_eq!(word_iter.next(), Some(Word::from("jump ")));\n        assert_eq!(word_iter.next(), Some(Word::from("32.3 ")));\n        assert_eq!(word_iter.next(), Some(Word::from("feet")));\n        assert_eq!(word_iter.next(), Some(Word::from(", ")));\n        assert_eq!(word_iter.next(), Some(Word::from("right")));\n        assert_eq!(word_iter.next(), Some(Word::from("?")));\n        assert_eq!(word_iter.next(), None);\n    }\n\n    #[test]\n    fn test_find_words_unicode_break_properties_with_ansi() {\n        let line_with_ansi = "\\x1b[31mHello\\x1b[0m World";\n        \n        let mut word_iter = find_words_unicode_break_properties(line_with_ansi);\n        \n        assert_eq!(word_iter.next(), Some(Word::from("\\x1b[31mHello\\x1b[0m ")));\n        assert_eq!(word_iter.next(), Some(Word::from("World")));\n        assert_eq!(word_iter.next(), None);\n    }\n\n    #[test]\n    fn test_find_words_unicode_break_properties_empty_string() {\n        let empty_line = "";\n        \n        let mut word_iter = find_words_unicode_break_properties(empty_line);\n        \n        assert_eq!(word_iter.next(), None);\n    }\n\n    // This test is meant to address how soft hyphens (SHY) are treated,\n    // which are ignored according to the function comment.\n    #[test]\n    fn test_find_words_unicode_break_properties_with_shy() {\n        let line_with_shy = "hy\\u{00AD}phen\\u{00AD}ation";\n        \n        let mut word_iter = find_words_unicode_break_properties(line_with_shy);\n        \n        // Here we assume that soft hyphens are not treated as line breaks.\n        assert_eq!(word_iter.next(), Some(Word::from("hy\\u{00AD}phen\\u{00AD}ation")));\n        assert_eq!(word_iter.next(), None);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702277095, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=641, prompt_tokens=697, total_tokens=1338))
+71
+========================================
+inject err word_separators::find_words_unicode_break_properties src/word_separators.rs find_words_unicode_break_properties
+#[cfg(test)]
+#[cfg(feature = "unicode-linebreak")]
+mod tests_llm_16_39 {
+    use super::*;
+
+use crate::*;
+    use crate::core::Word;
+
+    #[test]
+    fn test_find_words_unicode_break_properties() {
+        let line = "The quick (\"brown\") fox can't jump 32.3 feet, right?";
+        
+        let mut word_iter = find_words_unicode_break_properties(line);
+        
+        assert_eq!(word_iter.next(), Some(Word::from("The ")));
+        assert_eq!(word_iter.next(), Some(Word::from("quick ")));
+        assert_eq!(word_iter.next(), Some(Word::from("(\"")));
+        assert_eq!(word_iter.next(), Some(Word::from("brown"));
+        assert_eq!(word_iter.next(), Some(Word::from("\"")));
+        assert_eq!(word_iter.next(), Some(Word::from(") ")));
+        assert_eq!(word_iter.next(), Some(Word::from("fox ")));
+        assert_eq!(word_iter.next(), Some(Word::from("can't ")));
+        assert_eq!(word_iter.next(), Some(Word::from("jump ")));
+        assert_eq!(word_iter.next(), Some(Word::from("32.3 ")));
+        assert_eq!(word_iter.next(), Some(Word::from("feet")));
+        assert_eq!(word_iter.next(), Some(Word::from(", ")));
+        assert_eq!(word_iter.next(), Some(Word::from("right")));
+        assert_eq!(word_iter.next(), Some(Word::from("?")));
+        assert_eq!(word_iter.next(), None);
+    }
+
+    #[test]
+    fn test_find_words_unicode_break_properties_with_ansi() {
+        let line_with_ansi = "\x1b[31mHello\x1b[0m World";
+        
+        let mut word_iter = find_words_unicode_break_properties(line_with_ansi);
+        
+        assert_eq!(word_iter.next(), Some(Word::from("\x1b[31mHello\x1b[0m ")));
+        assert_eq!(word_iter.next(), Some(Word::from("World")));
+        assert_eq!(word_iter.next(), None);
+    }
+
+    #[test]
+    fn test_find_words_unicode_break_properties_empty_string() {
+        let empty_line = "";
+        
+        let mut word_iter = find_words_unicode_break_properties(empty_line);
+        
+        assert_eq!(word_iter.next(), None);
+    }
+
+    // This test is meant to address how soft hyphens (SHY) are treated,
+    // which are ignored according to the function comment.
+    #[test]
+    fn test_find_words_unicode_break_properties_with_shy() {
+        let line_with_shy = "hy\u{00AD}phen\u{00AD}ation";
+        
+        let mut word_iter = find_words_unicode_break_properties(line_with_shy);
+        
+        // Here we assume that soft hyphens are not treated as line breaks.
+        assert_eq!(word_iter.next(), Some(Word::from("hy\u{00AD}phen\u{00AD}ation")));
+        assert_eq!(word_iter.next(), None);
+    }
+}
+   Compiling textwrap v0.16.0 (/home/xiang/workspace/human/llm_base_bk/textwrap)
+error: mismatched closing delimiter: `}`
+   --> src/word_separators.rs:636:19
+    |
+628 |     fn test_find_words_unicode_break_properties() {
+    |                                                   - closing delimiter possibly meant for this
+...
+636 |         assert_eq!(word_iter.next(), Some(Word::from("brown"));
+    |                   ^ unclosed delimiter
+...
+648 |     }
+    |     ^ mismatched closing delimiter
+
+error: could not compile `textwrap` due to previous error
+warning: build failed, waiting for other jobs to finish...
+error: no rules expected the token `;`
+   --> src/word_separators.rs:636:63
+    |
+636 |         assert_eq!(word_iter.next(), Some(Word::from("brown"));
+    |                                                               ^ no rules expected this token in macro call
+    |
+    = note: while trying to match sequence start
+
+error: could not compile `textwrap` due to 2 previous errors
+
+ChatCompletion(id='chatcmpl-8UULCoOM6o9LKZubWRMZDvQRrE0X8', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\n#[cfg(feature = "unicode-linebreak")]\nmod tests_llm_16_39 {\n    use super::*;\n    use crate::core::Word;\n\n    #[test]\n    fn test_find_words_unicode_break_properties() {\n        let line = "The quick (\\"brown\\") fox can\'t jump 32.3 feet, right?";\n        let mut word_iter = find_words_unicode_break_properties(line);\n        assert_eq!(word_iter.next(), Some(Word::from("The ")));\n        assert_eq!(word_iter.next(), Some(Word::from("quick ")));\n        assert_eq!(word_iter.next(), Some(Word::from("(\\"")));\n        assert_eq!(word_iter.next(), Some(Word::from("brown")));\n        assert_eq!(word_iter.next(), Some(Word::from("\\") ")));\n        assert_eq!(word_iter.next(), Some(Word::from("fox ")));\n        assert_eq!(word_iter.next(), Some(Word::from("can\'t ")));\n        assert_eq!(word_iter.next(), Some(Word::from("jump ")));\n        assert_eq!(word_iter.next(), Some(Word::from("32.3 ")));\n        assert_eq!(word_iter.next(), Some(Word::from("feet")));\n        assert_eq!(word_iter.next(), Some(Word::from(", ")));\n        assert_eq!(word_iter.next(), Some(Word::from("right")));\n        assert_eq!(word_iter.next(), Some(Word::from("?")));\n        assert_eq!(word_iter.next(), None);\n    }\n\n    #[test]\n    fn test_find_words_unicode_break_properties_with_ansi() {\n        let line_with_ansi = "\\x1b[31mHello\\x1b[0m World";\n        let mut word_iter = find_words_unicode_break_properties(line_with_ansi);\n        assert_eq!(word_iter.next(), Some(Word::from("\\x1b[31mHello\\x1b[0m ")));\n        assert_eq!(word_iter.next(), Some(Word::from("World")));\n        assert_eq!(word_iter.next(), None);\n    }\n\n    #[test]\n    fn test_find_words_unicode_break_properties_empty_string() {\n        let empty_line = "";\n        let mut word_iter = find_words_unicode_break_properties(empty_line);\n        assert_eq!(word_iter.next(), None);\n    }\n\n    #[test]\n    fn test_find_words_unicode_break_properties_with_shy() {\n        let line_with_shy = "hy\\u{00AD}phen\\u{00AD}ation";\n        let mut word_iter = find_words_unicode_break_properties(line_with_shy);\n        assert_eq!(word_iter.next(), Some(Word::from("hy\\u{00AD}phen\\u{00AD}ation")));\n        assert_eq!(word_iter.next(), None);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702277162, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=575, prompt_tokens=2265, total_tokens=2840))
+71
+inject succeed textwrap textwrap word_separators::find_words_unicode_break_properties
+ChatCompletion(id='chatcmpl-8UULrjzE2SUJFtXRbyP1pnDH69V38', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use crate::word_separators::strip_ansi_escape_sequences;\n\n    #[test]\n    fn test_strip_ansi_escape_sequences() {\n        let input = "\\x1B[31mRed\\x1B[0m Normal \\x1B[32mGreen\\x1B[0m";\n        let expected = "Red Normal Green";\n        let output = strip_ansi_escape_sequences(input);\n        assert_eq!(output, expected);\n    }\n\n    #[test]\n    fn test_strip_ansi_escape_sequences_empty() {\n        let input = "";\n        let expected = "";\n        let output = strip_ansi_escape_sequences(input);\n        assert_eq!(output, expected);\n    }\n\n    #[test]\n    fn test_strip_ansi_escape_sequences_no_ansi() {\n        let input = "No special characters";\n        let expected = "No special characters";\n        let output = strip_ansi_escape_sequences(input);\n        assert_eq!(output, expected);\n    }\n\n    #[test]\n    fn test_strip_ansi_escape_sequences_only_ansi() {\n        let input = "\\x1B[31m\\x1B[0m";\n        let expected = "";\n        let output = strip_ansi_escape_sequences(input);\n        assert_eq!(output, expected);\n    }\n\n    #[test]\n    fn test_strip_ansi_escape_sequences_nested_ansi() {\n        let input = "\\x1B[1mBold \\x1B[31mRed\\x1B[0m\\x1B[22m Normal";\n        let expected = "Bold Red Normal";\n        let output = strip_ansi_escape_sequences(input);\n        assert_eq!(output, expected);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702277203, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=349, prompt_tokens=223, total_tokens=572))
+71
+inject succeed textwrap textwrap word_separators::strip_ansi_escape_sequences
+ChatCompletion(id='chatcmpl-8UUMH12f3LDnpv0p5BiCHRnyGQO4X', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n\n    #[test]\n    fn no_hyphenation_splits() {\n        let splitter = WordSplitter::NoHyphenation;\n        assert_eq!(splitter.split_points("cannot-be-split"), Vec::<usize>::new());\n    }\n\n    #[test]\n    fn hyphen_splitter_splits() {\n        let splitter = WordSplitter::HyphenSplitter;\n        assert_eq!(splitter.split_points("can-be-split"), vec![4, 7]);\n        assert_eq!(splitter.split_points("--foo-bar"), vec![6]);\n        assert_eq!(splitter.split_points("hyphen-ated"), vec![7]);\n        assert_eq!(splitter.split_points("non-alphanumeric-"), Vec::<usize>::new());\n        assert_eq!(splitter.split_points("-leading-hyphen"), vec![9]);\n        assert_eq!(splitter.split_points("trailing-hyphen-"), Vec::<usize>::new());\n        assert_eq!(splitter.split_points("consecutive--hyphens"), Vec::<usize>::new());\n    }\n\n    #[test]\n    fn custom_splitter_splits() {\n        fn split_at_underscore(word: &str) -> Vec<usize> {\n            word.match_indices(\'_\').map(|(idx, _)| idx + 1).collect()\n        }\n        let splitter = WordSplitter::Custom(split_at_underscore);\n        assert_eq!(splitter.split_points("a_long_identifier"), vec![2, 7]);\n        assert_eq!(splitter.split_points("no_underscores"), Vec::<usize>::new());\n        assert_eq!(splitter.split_points("multi__underscore"), vec![6, 8]);\n    }\n\n    // The following test will only compile if the `hyphenation` feature is enabled.\n    #[cfg(feature = "hyphenation")]\n    #[test]\n    fn hyphenation_splitter_splits() {\n        use hyphenation::{Language, Standard, Load};\n\n        let dictionary = Standard::from_embedded(Language::EnglishUS).unwrap();\n        let splitter = WordSplitter::Hyphenation(dictionary);\n        assert_eq!(splitter.split_points("hyphenation"), vec![2, 4, 6]);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702277229, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=463, prompt_tokens=2137, total_tokens=2600))
+71
+inject succeed textwrap textwrap word_splitters::WordSplitter::split_points
+ChatCompletion(id='chatcmpl-8UUMuzkLuTit3cat9cFXIbjCrogeT', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use crate::word_splitters::{split_words, Word, WordSplitter};\n\n    #[test]\n    fn test_hyphen_splitter() {\n        let words = vec![\n            Word { word: "split-me", width: 8, whitespace: " ", penalty: "" },\n            Word { word: "not_split", width: 9, whitespace: " ", penalty: "" },\n        ];\n        let word_splitter = WordSplitter::HyphenSplitter;\n        let split = split_words(words.into_iter(), &word_splitter).collect::<Vec<_>>();\n\n        assert_eq!(split,\n            vec![\n                Word { word: "split-", width: 6, whitespace: "", penalty: "-" },\n                Word { word: "me", width: 2, whitespace: " ", penalty: "" },\n                Word { word: "not_split", width: 9, whitespace: " ", penalty: "" },\n            ]\n        );\n    }\n\n    #[test]\n    fn test_no_hyphen_splitter() {\n        let words = vec![\n            Word { word: "cannot-be-split", width: 16, whitespace: " ", penalty: "" },\n        ];\n        let word_splitter = WordSplitter::NoHyphenation;\n        let split = split_words(words.into_iter(), &word_splitter).collect::<Vec<_>>();\n\n        assert_eq!(split,\n            vec![\n                Word { word: "cannot-be-split", width: 16, whitespace: " ", penalty: "" },\n            ]\n        );\n    }\n\n    #[test]\n    fn test_custom_splitter() {\n        let words = vec![\n            Word { word: "custom_split", width: 12, whitespace: " ", penalty: "" },\n        ];\n        let word_splitter = WordSplitter::Custom(|word| vec![word.len() / 2]);\n        let split = split_words(words.into_iter(), &word_splitter).collect::<Vec<_>>();\n\n        assert_eq!(split,\n            vec![\n                Word { word: "custom_", width: 7, whitespace: "", penalty: "" },\n                Word { word: "split", width: 5, whitespace: " ", penalty: "" },\n            ]\n        );\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702277268, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=473, prompt_tokens=2035, total_tokens=2508))
+71
+inject succeed textwrap textwrap word_splitters::split_words
+ChatCompletion(id='chatcmpl-8UUNQySTQR3Ykx0TpZnxgKRyxyi4M', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use std::borrow::Cow::{Borrowed, Owned};\n\n    #[test]\n    fn test_wrap_simple() {\n        let text = "Memory safety without garbage collection.";\n        let width = 15;\n        let lines = wrap(text, width);\n\n        assert_eq!(\n            lines,\n            vec![\n                Borrowed("Memory safety"),\n                Borrowed("without garbage"),\n                Borrowed("collection."),\n            ]\n        );\n    }\n\n    #[test]\n    fn test_wrap_with_options() {\n        let options = Options::new(15)\n            .initial_indent("- ")\n            .subsequent_indent("  ");\n        let text = "Memory safety without garbage collection.";\n        let lines = wrap(text, &options);\n\n        assert_eq!(\n            lines,\n            vec![\n                Borrowed("- Memory safety"),\n                Owned("  without"),\n                Owned("  garbage"),\n                Owned("  collection."),\n            ]\n        );\n    }\n\n    #[test]\n    fn test_wrap_with_indentation() {\n        let options = Options::new(15).subsequent_indent("....");\n        let text = "Wrapping text all day long.";\n        let lines = wrap(text, &options);\n\n        let annotated = lines\n            .iter()\n            .map(|line| match line {\n                Borrowed(text) => format!("[Borrowed] {}", text),\n                Owned(text) => format!("[Owned]    {}", text),\n            })\n            .collect::<Vec<_>>();\n\n        assert_eq!(\n            annotated,\n            vec![\n                "[Borrowed] Wrapping text",\n                "[Owned]    ....all day",\n                "[Owned]    ....long.",\n            ]\n        );\n    }\n\n    #[test]\n    fn test_wrap_preserve_leading_whitespace() {\n        let text = "  Foo   bar baz";\n        let width = 8;\n        let lines = wrap(text, width);\n\n        assert_eq!(lines, vec![Borrowed("  Foo"), Borrowed("bar baz")]);\n    }\n\n    #[test]\n    fn test_wrap_discard_trailing_whitespace() {\n        let text = "Foo   bar baz";\n        let lines = wrap(text, 8);\n\n        assert_eq!(lines, vec![Borrowed("Foo"), Borrowed("bar baz")]);\n    }\n\n    #[test]\n    fn test_wrap_discard_extra_trailing_whitespace() {\n        let text = "Foo   bar   baz";\n        let lines = wrap(text, 10);\n\n        assert_eq!(lines, vec![Borrowed("Foo   bar"), Borrowed("baz")]);\n    }\n\n    #[test]\n    fn test_wrap_leading_whitespace_causing_empty_line() {\n        let text = "  foo bar";\n        let width = 4;\n        let lines = wrap(text, width);\n\n        assert_eq!(lines, vec![Borrowed(""), Borrowed("foo"), Borrowed("bar")]);\n    }\n\n    // Add additional tests to cover more edge cases and behaviors.\n    // ...\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702277300, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_6aca3b5ce1', usage=CompletionUsage(completion_tokens=622, prompt_tokens=1677, total_tokens=2299))
+71
+========================================
+inject err wrap::wrap src/wrap.rs wrap
+#[cfg(test)]
+mod tests_llm_16_43 {
+    use super::*;
+
+use crate::*;
+    use std::borrow::Cow::{Borrowed, Owned};
+
+    #[test]
+    fn test_wrap_simple() {
+        let text = "Memory safety without garbage collection.";
+        let width = 15;
+        let lines = wrap(text, width);
+
+        assert_eq!(
+            lines,
+            vec![
+                Borrowed("Memory safety"),
+                Borrowed("without garbage"),
+                Borrowed("collection."),
+            ]
+        );
+    }
+
+    #[test]
+    fn test_wrap_with_options() {
+        let options = Options::new(15)
+            .initial_indent("- ")
+            .subsequent_indent("  ");
+        let text = "Memory safety without garbage collection.";
+        let lines = wrap(text, &options);
+
+        assert_eq!(
+            lines,
+            vec![
+                Borrowed("- Memory safety"),
+                Owned("  without"),
+                Owned("  garbage"),
+                Owned("  collection."),
+            ]
+        );
+    }
+
+    #[test]
+    fn test_wrap_with_indentation() {
+        let options = Options::new(15).subsequent_indent("....");
+        let text = "Wrapping text all day long.";
+        let lines = wrap(text, &options);
+
+        let annotated = lines
+            .iter()
+            .map(|line| match line {
+                Borrowed(text) => format!("[Borrowed] {}", text),
+                Owned(text) => format!("[Owned]    {}", text),
+            })
+            .collect::<Vec<_>>();
+
+        assert_eq!(
+            annotated,
+            vec![
+                "[Borrowed] Wrapping text",
+                "[Owned]    ....all day",
+                "[Owned]    ....long.",
+            ]
+        );
+    }
+
+    #[test]
+    fn test_wrap_preserve_leading_whitespace() {
+        let text = "  Foo   bar baz";
+        let width = 8;
+        let lines = wrap(text, width);
+
+        assert_eq!(lines, vec![Borrowed("  Foo"), Borrowed("bar baz")]);
+    }
+
+    #[test]
+    fn test_wrap_discard_trailing_whitespace() {
+        let text = "Foo   bar baz";
+        let lines = wrap(text, 8);
+
+        assert_eq!(lines, vec![Borrowed("Foo"), Borrowed("bar baz")]);
+    }
+
+    #[test]
+    fn test_wrap_discard_extra_trailing_whitespace() {
+        let text = "Foo   bar   baz";
+        let lines = wrap(text, 10);
+
+        assert_eq!(lines, vec![Borrowed("Foo   bar"), Borrowed("baz")]);
+    }
+
+    #[test]
+    fn test_wrap_leading_whitespace_causing_empty_line() {
+        let text = "  foo bar";
+        let width = 4;
+        let lines = wrap(text, width);
+
+        assert_eq!(lines, vec![Borrowed(""), Borrowed("foo"), Borrowed("bar")]);
+    }
+
+    // Add additional tests to cover more edge cases and behaviors.
+    // ...
+}
+   Compiling textwrap v0.16.0 (/home/xiang/workspace/human/llm_base_bk/textwrap)
+error[E0271]: type mismatch resolving `<str as ToOwned>::Owned == &str`
+   --> src/wrap.rs:722:17
+    |
+722 |                 Owned("  without"),
+    |                 ^^^^^^^^^^^^^^^^^^ expected struct `String`, found `&str`
+
+error[E0271]: type mismatch resolving `<str as ToOwned>::Owned == &str`
+   --> src/wrap.rs:723:17
+    |
+723 |                 Owned("  garbage"),
+    |                 ^^^^^^^^^^^^^^^^^^ expected struct `String`, found `&str`
+
+error[E0271]: type mismatch resolving `<str as ToOwned>::Owned == &str`
+   --> src/wrap.rs:724:17
+    |
+724 |                 Owned("  collection."),
+    |                 ^^^^^^^^^^^^^^^^^^^^^^ expected struct `String`, found `&str`
+
+For more information about this error, try `rustc --explain E0271`.
+error: could not compile `textwrap` due to 3 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UUOACmvngkZF2vR82CI8w3eIHz6L', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_43 {\n    use super::wrap;\n    use crate::Options;\n    use std::borrow::Cow::{Borrowed, Owned};\n\n    #[test]\n    fn test_wrap_simple() {\n        let text = "Memory safety without garbage collection.";\n        let width = 15;\n        let lines = wrap(text, width);\n\n        assert_eq!(\n            lines,\n            vec![\n                Borrowed("Memory safety"),\n                Borrowed("without garbage"),\n                Borrowed("collection."),\n            ]\n        );\n    }\n\n    #[test]\n    fn test_wrap_with_options() {\n        let options = Options::new(15)\n            .initial_indent("- ")\n            .subsequent_indent("  ");\n        let text = "Memory safety without garbage collection.";\n        let lines = wrap(text, &options);\n\n        assert_eq!(\n            lines,\n            vec![\n                Borrowed("- Memory safety"),\n                Owned("  without".to_string()),\n                Owned("  garbage".to_string()),\n                Owned("  collection.".to_string()),\n            ]\n        );\n    }\n\n    #[test]\n    fn test_wrap_with_indentation() {\n        let options = Options::new(15).subsequent_indent("....");\n        let text = "Wrapping text all day long.";\n        let lines = wrap(text, &options);\n\n        let annotated = lines\n            .iter()\n            .map(|line| match line {\n                Borrowed(text) => format!("[Borrowed] {}", text),\n                Owned(text) => format!("[Owned]    {}", text),\n            })\n            .collect::<Vec<_>>();\n\n        assert_eq!(\n            annotated,\n            vec![\n                "[Borrowed] Wrapping text",\n                "[Owned]    ....all day long.",\n            ]\n        );\n    }\n\n    #[test]\n    fn test_wrap_preserve_leading_whitespace() {\n        let text = "  Foo   bar baz";\n        let width = 8;\n        let lines = wrap(text, width);\n\n        assert_eq!(lines, vec![Borrowed("  Foo"), Borrowed("bar baz")]);\n    }\n\n    #[test]\n    fn test_wrap_discard_trailing_whitespace() {\n        let text = "Foo   bar baz";\n        let lines = wrap(text, 8);\n\n        assert_eq!(lines, vec![Borrowed("Foo"), Borrowed("bar baz")]);\n    }\n\n    #[test]\n    fn test_wrap_discard_extra_trailing_whitespace() {\n        let text = "Foo   bar   baz";\n        let lines = wrap(text, 10);\n\n        assert_eq!(lines, vec![Borrowed("Foo   bar"), Borrowed("baz")]);\n    }\n\n    #[test]\n    fn test_wrap_leading_whitespace_causing_empty_line() {\n        let text = "  foo bar";\n        let width = 4;\n        let lines = wrap(text, width);\n\n        assert_eq!(lines, vec![Borrowed(""), Borrowed("foo"), Borrowed("bar")]);\n    }\n\n    // Add additional tests to cover more edge cases and behaviors.\n    // ...\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702277346, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=638, prompt_tokens=3227, total_tokens=3865))
+71
+inject succeed textwrap textwrap wrap::wrap
+ChatCompletion(id='chatcmpl-8UUP5fUCxeqjgPcJql2W7gFbg3D84', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use crate::wrap::wrap_single_line;\n    use crate::options::Options;\n    use crate::line_ending::LineEnding;\n    use std::borrow::Cow;\n\n    #[test]\n    fn test_wrap_single_line_empty_indent() {\n        let line = "This is a test line that is longer than the line width we set below.";\n        let mut lines = Vec::new();\n        let options = Options {\n            width: 15,\n            line_ending: LineEnding::LF,\n            initial_indent: "",\n            subsequent_indent: "",\n            break_words: false,\n            wrap_algorithm: WrapAlgorithm::FirstFit,\n            word_separator: WordSeparator::new(),\n            word_splitter: WordSplitter::HyphenSplitter,\n        };\n\n        wrap_single_line(line, &options, &mut lines);\n\n        assert_eq!(lines, vec![Cow::from(line)]);\n    }\n\n    #[test]\n    fn test_wrap_single_line_with_initial_indent() {\n        let line = "This is a test line.";\n        let mut lines = Vec::new();\n        let options = Options {\n            width: 15,\n            line_ending: LineEnding::LF,\n            initial_indent: ">>",\n            subsequent_indent: "",\n            break_words: false,\n            wrap_algorithm: WrapAlgorithm::FirstFit,\n            word_separator: WordSeparator::new(),\n            word_splitter: WordSplitter::HyphenSplitter,\n        };\n\n        wrap_single_line(line, &options, &mut lines);\n\n        assert_eq!(lines, vec![Cow::from(">>This is a test line.")]);\n    }\n\n    #[test]\n    fn test_wrap_single_line_with_subsequent_indent() {\n        let line = "This is a test line.";\n        let mut lines = vec![Cow::from("First line.")];\n        let options = Options {\n            width: 15,\n            line_ending: LineEnding::LF,\n            initial_indent: "",\n            subsequent_indent: "++",\n            break_words: false,\n            wrap_algorithm: WrapAlgorithm::FirstFit,\n            word_separator: WordSeparator::new(),\n            word_splitter: WordSplitter::HyphenSplitter,\n        };\n\n        wrap_single_line(line, &options, &mut lines);\n\n        assert_eq!(lines, vec![Cow::from("First line."), Cow::from("++This is a test line.")]);\n    }\n\n    #[test]\n    fn test_wrap_single_line_with_indent_and_trim() {\n        let line = "This is a test line with spaces at the end     ";\n        let mut lines = Vec::new();\n        let options = Options {\n            width: 15,\n            line_ending: LineEnding::LF,\n            initial_indent: "##",\n            subsequent_indent: "",\n            break_words: false,\n            wrap_algorithm: WrapAlgorithm::FirstFit,\n            word_separator: WordSeparator::new(),\n            word_splitter: WordSplitter::HyphenSplitter,\n        };\n\n        wrap_single_line(line, &options, &mut lines);\n\n        assert_eq!(lines, vec![Cow::from("##This is a test line")]);\n    }\n\n    #[test]\n    fn test_wrap_single_line_slow_path() {\n        let line = "This is a test line that will invoke the slow path due to its length";\n        let mut lines = Vec::new();\n        let options = Options {\n            width: 10,\n            line_ending: LineEnding::LF,\n            initial_indent: "",\n            subsequent_indent: "",\n            break_words: false,\n            wrap_algorithm: WrapAlgorithm::FirstFit,\n            word_separator: WordSeparator::new(),\n            word_splitter: WordSplitter::HyphenSplitter,\n        };\n\n        wrap_single_line(line, &options, &mut lines);\n\n        // Since wrap_single_line_slow_path is not provided, we cannot\n        // assume the implementation. This test is only here to ensure\n        // the slow path is taken. The actual outcome is not checked.\n        assert!(lines.len() > 1);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702277403, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=840, prompt_tokens=10286, total_tokens=11126))
+71
+inject succeed textwrap textwrap wrap::wrap_single_line
+ChatCompletion(id='chatcmpl-8UUQ8qEovLx3GFI9x2BgfN2JAm9H2', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use crate::core::Word;\n    use crate::options::Options;\n    use crate::wrap_algorithms::WrapAlgorithm;\n    use crate::line_ending::LineEnding;\n    use crate::word_separators::WordSeparator;\n    use crate::word_splitters::WordSplitter;\n    use std::borrow::Cow;\n\n    #[test]\n    fn test_wrap_single_line_slow_path_empty_line() {\n        let line = "";\n        let options = Options::new(10);\n        let mut lines = Vec::new();\n        wrap_single_line_slow_path(line, &options, &mut lines);\n        assert_eq!(lines, Vec::<Cow<str>>::new());\n    }\n\n    #[test]\n    fn test_wrap_single_line_slow_path_no_wrap() {\n        let line = "small line";\n        let options = Options::new(10);\n        let mut lines = Vec::new();\n        wrap_single_line_slow_path(line, &options, &mut lines);\n        assert_eq!(lines, vec![Cow::from("small line")]);\n    }\n\n    #[test]\n    fn test_wrap_single_line_slow_path_with_wrap() {\n        let line = "Wrap this line please";\n        let options = Options::new(10)\n            .word_separator(WordSeparator::AsciiSpace)\n            .wrap_algorithm(WrapAlgorithm::FirstFit);\n        let mut lines = Vec::new();\n        wrap_single_line_slow_path(line, &options, &mut lines);\n        assert_eq!(lines, vec![Cow::from("Wrap this "), Cow::from("line "), Cow::from("please")]);\n    }\n\n    #[test]\n    fn test_wrap_single_line_slow_path_with_long_word() {\n        let line = "Wrap this supercalifragilisticexpialidocious line please";\n        let options = Options::new(10)\n            .word_separator(WordSeparator::AsciiSpace)\n            .wrap_algorithm(WrapAlgorithm::FirstFit)\n            .break_words(true)\n            .word_splitter(WordSplitter::HyphenSplitter);\n        let mut lines = Vec::new();\n        wrap_single_line_slow_path(line, &options, &mut lines);\n        assert_eq!(\n            lines, \n            vec![\n                Cow::from("Wrap this "),\n                Cow::from("supercalif"),\n                Cow::from("ragilistic"),\n                Cow::from("expialido"),\n                Cow::from("cious line"),\n                Cow::from("please")\n            ]\n        );\n    }\n\n    #[test]\n    fn test_wrap_single_line_slow_path_initial_indent() {\n        let line = "Wrap this line with initial indent";\n        let options = Options::new(12)\n            .word_separator(WordSeparator::AsciiSpace)\n            .wrap_algorithm(WrapAlgorithm::FirstFit)\n            .initial_indent(">> ");\n        let mut lines = Vec::new();\n        wrap_single_line_slow_path(line, &options, &mut lines);\n        assert_eq!(lines, vec![Cow::from(">> Wrap this"), Cow::from("line with"), Cow::from("initial"), Cow::from("indent")]);\n    }\n\n    #[test]\n    fn test_wrap_single_line_slow_path_subsequent_indent() {\n        let line = "Wrap this line with subsequent indent";\n        let options = Options::new(15)\n            .word_separator(WordSeparator::AsciiSpace)\n            .wrap_algorithm(WrapAlgorithm::FirstFit)\n            .subsequent_indent("... ");\n        let mut lines = Vec::new();\n        wrap_single_line_slow_path(line, &options, &mut lines);\n        assert_eq!(lines, vec![Cow::from("Wrap this line"), Cow::from("... with"), Cow::from("... subsequent"), Cow::from("... indent")]);\n    }\n\n    #[test]\n    fn test_wrap_single_line_slow_path_initial_and_subsequent_indent() {\n        let line = "Wrap this line with both indents";\n        let options = Options::new(16)\n            .word_separator(WordSeparator::AsciiSpace)\n            .wrap_algorithm(WrapAlgorithm::FirstFit)\n            .initial_indent(">>")\n            .subsequent_indent("...");\n        let mut lines = Vec::new();\n        wrap_single_line_slow_path(line, &options, &mut lines);\n        assert_eq!(lines, vec![Cow::from(">>Wrap this line"), Cow::from("...with both"), Cow::from("...indents")]);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702277468, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=929, prompt_tokens=10832, total_tokens=11761))
+71
+inject succeed textwrap textwrap wrap::wrap_single_line_slow_path
+ChatCompletion(id='chatcmpl-8UURIcbClSYlUKNiloVLU2wV2iNea', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod test {\n    use super::*;\n\n    #[test]\n    fn test_new_default_algorithm() {\n        // Assume no features activated\n        let wrap_algorithm = WrapAlgorithm::new();\n        assert_eq!(wrap_algorithm, WrapAlgorithm::FirstFit);\n\n        // Testing with smawk feature,\n        // the test must then be run with this feature enabled.\n        // #[cfg(feature = "smawk")]\n        // assert!(matches!(wrap_algorithm, WrapAlgorithm::OptimalFit(_)));\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702277540, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=108, prompt_tokens=4380, total_tokens=4488))
+71
+inject succeed textwrap textwrap wrap_algorithms::WrapAlgorithm::new
+ChatCompletion(id='chatcmpl-8UURXwy2XlzMLVqbTXiCLX9rUZerr', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n\n    #[test]\n    #[cfg(feature = "smawk")]\n    fn new_optimal_fit_default_penalties() {\n        let optimal_fit = WrapAlgorithm::new_optimal_fit();\n        match optimal_fit {\n            WrapAlgorithm::OptimalFit(penalties) => {\n                assert_eq!(penalties, Penalties::new())\n            }\n            _ => panic!("Expected OptimalFit algorithm"),\n        }\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702277555, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_6aca3b5ce1', usage=CompletionUsage(completion_tokens=100, prompt_tokens=4367, total_tokens=4467))
+71
+inject succeed textwrap textwrap wrap_algorithms::WrapAlgorithm::new_optimal_fit
+ChatCompletion(id='chatcmpl-8UURhfFu2gHe6ISGDQvjzQ405GkWJ', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use crate::wrap_algorithms::{WrapAlgorithm, wrap_first_fit};\n    use crate::core::Word;\n    #[cfg(feature = "smawk")]\n    use crate::wrap_algorithms::optimal_fit::Penalties;\n\n    #[test]\n    fn wrap_first_fit_algorithm_works() {\n        let algorithm = WrapAlgorithm::FirstFit;\n        let words = vec![\n            Word::from("Hello"),\n            Word::from("world"),\n            Word::from("this"),\n            Word::from("is"),\n            Word::from("a"),\n            Word::from("test"),\n        ];\n        let line_widths = vec![10, 10];\n\n        let wrapped_lines = algorithm.wrap(&words, &line_widths);\n        assert_eq!(wrapped_lines, vec![&words[0..2], &words[2..5], &words[5..6]]);\n    }\n\n    #[test]\n    #[cfg(feature = "smawk")]\n    fn wrap_optimal_fit_algorithm_works() {\n        let penalties = Penalties::new();\n        let algorithm = WrapAlgorithm::OptimalFit(penalties);\n        let words = vec![\n            Word::from("Hello"),\n            Word::from("world"),\n            Word::from("this"),\n            Word::from("is"),\n            Word::from("a"),\n            Word::from("test"),\n        ];\n        let line_widths = vec![10, 10];\n\n        let wrapped_lines = algorithm.wrap(&words, &line_widths);\n        assert_eq!(wrapped_lines, vec![&words[0..2], &words[2..5], &words[5..6]]);\n    }\n\n    #[test]\n    fn wrap_custom_algorithm_works() {\n        fn custom_wrap<\'a, \'b>(words: &\'b [Word<\'a>], _line_widths: &\'b [usize]) -> Vec<&\'b [Word<\'a>]> {\n            words.split(|word| word.word.ends_with(\'.\')).collect()\n        }\n\n        let algorithm = WrapAlgorithm::Custom(custom_wrap);\n        let words = vec![\n            Word::from("Hello."),\n            Word::from("world"),\n            Word::from("this"),\n            Word::from("is."),\n            Word::from("a"),\n            Word::from("test."),\n        ];\n        let line_widths = vec![10, 10];\n\n        let wrapped_lines = algorithm.wrap(&words, &line_widths);\n        assert_eq!(wrapped_lines, vec![&words[0..1], &words[1..4], &words[4..6]]);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702277565, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=542, prompt_tokens=4583, total_tokens=5125))
+71
+inject succeed textwrap textwrap wrap_algorithms::WrapAlgorithm::wrap
+ChatCompletion(id='chatcmpl-8UUSjrnfncHdFMnAvZ4YUkcsxW3Gq', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use std::cell::RefCell;\n\n    #[test]\n    fn test_line_numbers_get() {\n        let ln = LineNumbers {\n            line_numbers: RefCell::new(vec![0]),\n        };\n        \n        let minima = vec![(0, ()), (0, ()), (1, ()), (1, ())]; // Dummy T values as ()\n\n        // Test line number retrieval (should be recursive)\n        assert_eq!(1, ln.get(1, &minima));\n        assert_eq!(2, ln.get(2, &minima));\n        assert_eq!(2, ln.get(3, &minima));\n        \n        // Test retrieval from cache\n        assert_eq!(1, ln.get(1, &minima));\n        assert_eq!(2, ln.get(2, &minima));\n        assert_eq!(2, ln.get(3, &minima));\n        \n        // Test extending the cache\n        assert_eq!(3, ln.get(4, &minima));\n        assert_eq!(3, ln.get(5, &minima));\n\n        // Test cache size\n        assert_eq!(6, ln.line_numbers.borrow().len());\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702277629, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=260, prompt_tokens=448, total_tokens=708))
+71
+inject succeed textwrap textwrap wrap_algorithms::optimal_fit::LineNumbers::get
+ChatCompletion(id='chatcmpl-8UUT4zcSgodVB5nENdp6kYsoKOjCT', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::LineNumbers;\n\n    #[test]\n    fn test_new_line_numbers() {\n        let line_numbers = LineNumbers::new(10);\n        let line_numbers = line_numbers.line_numbers.into_inner();\n        assert_eq!(line_numbers.len(), 1);\n        assert_eq!(line_numbers[0], 0);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702277650, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=80, prompt_tokens=404, total_tokens=484))
+71
+========================================
+inject err wrap_algorithms::optimal_fit::LineNumbers::new src/wrap_algorithms/optimal_fit.rs new
+#[cfg(test)]
+mod tests_llm_16_50 {
+    use crate::LineNumbers;
+
+    #[test]
+    fn test_new_line_numbers() {
+        let line_numbers = LineNumbers::new(10);
+        let line_numbers = line_numbers.line_numbers.into_inner();
+        assert_eq!(line_numbers.len(), 1);
+        assert_eq!(line_numbers[0], 0);
+    }
+}
+   Compiling textwrap v0.16.0 (/home/xiang/workspace/human/llm_base_bk/textwrap)
+error[E0432]: unresolved import `crate::LineNumbers`
+   --> src/wrap_algorithms/optimal_fit.rs:478:9
+    |
+478 |     use crate::LineNumbers;
+    |         ^^^^^^^^^^^^^^^^^^ no `LineNumbers` in the root
+    |
+help: consider importing this struct instead
+    |
+478 |     use crate::wrap_algorithms::optimal_fit::LineNumbers;
+    |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `textwrap` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UUTCpMQzaRPJAgLlcDmGlBDLfAK0', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_50 {\n    use crate::wrap_algorithms::optimal_fit::LineNumbers;\n\n    #[test]\n    fn test_new_line_numbers() {\n        let line_numbers = LineNumbers::new(10);\n        let line_numbers_borrow = line_numbers.line_numbers.borrow();\n        assert_eq!(line_numbers_borrow.len(), 1);\n        assert_eq!(line_numbers_borrow[0], 0);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702277658, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=99, prompt_tokens=786, total_tokens=885))
+71
+inject succeed textwrap textwrap wrap_algorithms::optimal_fit::LineNumbers::new
+ChatCompletion(id='chatcmpl-8UUTLbID6laQUYuBqFmwOl6to1u9L', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n\n    #[test]\n    fn penalties_new_returns_default_values() {\n        let penalties = Penalties::new();\n\n        assert_eq!(penalties.nline_penalty, 1000);\n        assert_eq!(penalties.overflow_penalty, 50 * 50);\n        assert_eq!(penalties.short_last_line_fraction, 4);\n        assert_eq!(penalties.short_last_line_penalty, 25);\n        assert_eq!(penalties.hyphen_penalty, 25);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702277667, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=110, prompt_tokens=1995, total_tokens=2105))
+71
+inject succeed textwrap textwrap wrap_algorithms::optimal_fit::Penalties::new
+ChatCompletion(id='chatcmpl-8UUTWUsiR1nAxU1ASvgxEuY5XlwgS', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use textwrap::core::{Fragment, Word};\n    use textwrap::wrap_algorithms::optimal_fit::{wrap_optimal_fit, Penalties, OverflowError};\n\n    #[test]\n    fn test_wrap_optimal_fit_simple_case() {\n        let text = vec![\n            Word::from("To"),\n            Word::from("be,"),\n            Word::from("or"),\n            Word::from("not"),\n            Word::from("to"),\n            Word::from("be:"),\n            Word::from("that"),\n            Word::from("is"),\n            Word::from("the"),\n            Word::from("question"),\n        ];\n        let penalties = Penalties::default();\n        let line_widths = vec![10.0, 10.0, 10.0, 10.0];\n\n        let wrapped = wrap_optimal_fit(&text, &line_widths, &penalties).unwrap();\n\n        assert_eq!(\n            wrapped,\n            vec![\n                &text[0..2], // "To be,"\n                &text[2..5], // "or not"\n                &text[5..7], // "to be:"\n                &text[7..9], // "that is"\n                &text[9..10], // "the"\n            ]\n        );\n    }\n\n    #[test]\n    fn test_wrap_optimal_fit_overflow_error() {\n        let text = vec![\n            Word::from("infinity"),\n            Word::from("overflow"),\n        ];\n        let penalties = Penalties::default();\n        let line_widths = vec![f64::INFINITY];\n\n        let result = wrap_optimal_fit(&text, &line_widths, &penalties);\n        \n        assert!(matches!(result, Err(OverflowError)));\n    }\n\n    #[test]\n    fn test_wrap_optimal_fit_overflows_still_wrap() {\n        let text = vec![\n            Word::from("some"),\n            Word::from("extremely"),\n            Word::from("long"),\n            Word::from("nonexistentword"),\n        ];\n        let penalties = Penalties {\n            overflow_penalty: 0, // Disable overflow penalty\n            ..Penalties::default()\n        };\n        let line_widths = vec![15.0];\n\n        let wrapped = wrap_optimal_fit(&text, &line_widths, &penalties).unwrap();\n\n        assert_eq!(\n            wrapped,\n            vec![\n                &text[0..1], // "some"\n                &text[1..2], // "extremely"\n                &text[2..3], // "long"\n                &text[3..4], // "nonexistentword"\n            ]\n        );\n    }\n\n    #[test]\n    fn test_wrap_optimal_fit_with_hyphen_penalty() {\n        let text = vec![\n            Word {\n                word: "hyphen-",\n                whitespace: " ",\n                penalty: "-",\n                width: 7,\n            },\n            Word::from("ated"),\n            Word::from("word"),\n        ];\n        let penalties = Penalties {\n            hyphen_penalty: 50, // Increase penalty for hyphen\n            ..Penalties::default()\n        };\n        let line_widths = vec![10.0];\n\n        let wrapped = wrap_optimal_fit(&text, &line_widths, &penalties).unwrap();\n\n        assert_eq!(\n            wrapped,\n            vec![\n                &text[0..1], // "hyphen-"\n                &text[1..3], // "ated word"\n            ]\n        );\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702277678, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=742, prompt_tokens=4896, total_tokens=5638))
+71
+inject succeed textwrap textwrap wrap_algorithms::optimal_fit::wrap_optimal_fit
+ChatCompletion(id='chatcmpl-8UUUgyp85ERMALLT3ySA3FJGZeIyj', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use crate::core::{Fragment, Word};\n\n    #[test]\n    fn wrap_first_fit_empty_input() {\n        let words: Vec<Word> = Vec::new();\n        assert_eq!(wrap_first_fit(&words, &[10.0]), Vec::<&[Word]>::new());\n    }\n\n    #[test]\n    fn wrap_first_fit_single_line() {\n        let words = vec![\n            Word::from("Hello "),\n            Word::from("world "),\n            Word::from("this "),\n            Word::from("is "),\n            Word::from("a "),\n            Word::from("test. "),\n        ];\n        let expected = vec![&words[..]];\n        assert_eq!(wrap_first_fit(&words, &[10.0]), expected);\n    }\n\n    #[test]\n    fn wrap_first_fit_multiple_lines() {\n        let words = vec![\n            Word::from("Hello "),\n            Word::from("world "),\n            Word::from("this "),\n            Word::from("is "),\n            Word::from("a "),\n            Word::from("test. "),\n        ];\n        let expected = vec![&words[..3], &words[3..]];\n        assert_eq!(wrap_first_fit(&words, &[15.0]), expected);\n    }\n\n    #[test]\n    fn wrap_first_fit_words_longer_than_line_width() {\n        let words = vec![\n            Word::from("Hello "),\n            Word::from("world "),\n            Word::from("this "),\n            Word::from("is "),\n            Word::from("a "),\n            Word::from("test. "),\n        ];\n        let expected = vec![&words[..1], &words[1..2], &words[2..3], &words[3..4], &words[4..5], &words[5..]];\n        assert_eq!(wrap_first_fit(&words, &[5.0]), expected);\n    }\n\n    #[test]\n    fn wrap_first_fit_variable_line_widths() {\n        let words = vec![\n            Word::from("Hello "),\n            Word::from("world "),\n            Word::from("this "),\n            Word::from("is "),\n            Word::from("a "),\n            Word::from("test. "),\n        ];\n        let expected = vec![&words[..2], &words[2..4], &words[4..]];\n        assert_eq!(wrap_first_fit(&words, &[10.0, 10.0, 5.0]), expected);\n    }\n\n    #[test]\n    fn wrap_first_fit_incomplete_line_widths() {\n        let words = vec![\n            Word::from("Hello "),\n            Word::from("world "),\n            Word::from("this "),\n            Word::from("is "),\n            Word::from("a "),\n            Word::from("test. "),\n        ];\n        let expected = vec![&words[..2], &words[2..4], &words[4..]];\n        // Only two line_widths are provided, the last one should be used for the remaining lines.\n        assert_eq!(wrap_first_fit(&words, &[10.0, 10.0]), expected);\n    }\n\n    #[test]\n    fn wrap_first_fit_line_width_zero() {\n        let words = vec![\n            Word::from("Hello "),\n            Word::from("world "),\n            Word::from("this "),\n            Word::from("is "),\n            Word::from("a "),\n            Word::from("test. "),\n        ];\n        // A line width of zero should cause each word to be on its own line.\n        let expected = words.iter().map(|w| &[*w]).collect::<Vec<_>>();\n        assert_eq!(wrap_first_fit(&words, &[0.0]), expected);\n    }\n\n    // Helper function for calculating the displayed width of a string, taking\n    // into account characters and potential ANSI escape sequences, etc.\n    fn display_width(s: &str) -> usize {\n        // For the purpose of the tests, we\'ll pretend the width of a\n        // string is the same as the string length. In real use, you\'d\n        // import a function like `unicode_width::UnicodeWidthStr::width`.\n        s.len()\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702277750, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_6aca3b5ce1', usage=CompletionUsage(completion_tokens=877, prompt_tokens=3141, total_tokens=4018))
+71
+========================================
+inject err wrap_algorithms::wrap_first_fit src/wrap_algorithms.rs wrap_first_fit
+#[cfg(test)]
+mod tests_llm_16_53 {
+    use super::*;
+
+use crate::*;
+    use crate::core::{Fragment, Word};
+
+    #[test]
+    fn wrap_first_fit_empty_input() {
+        let words: Vec<Word> = Vec::new();
+        assert_eq!(wrap_first_fit(&words, &[10.0]), Vec::<&[Word]>::new());
+    }
+
+    #[test]
+    fn wrap_first_fit_single_line() {
+        let words = vec![
+            Word::from("Hello "),
+            Word::from("world "),
+            Word::from("this "),
+            Word::from("is "),
+            Word::from("a "),
+            Word::from("test. "),
+        ];
+        let expected = vec![&words[..]];
+        assert_eq!(wrap_first_fit(&words, &[10.0]), expected);
+    }
+
+    #[test]
+    fn wrap_first_fit_multiple_lines() {
+        let words = vec![
+            Word::from("Hello "),
+            Word::from("world "),
+            Word::from("this "),
+            Word::from("is "),
+            Word::from("a "),
+            Word::from("test. "),
+        ];
+        let expected = vec![&words[..3], &words[3..]];
+        assert_eq!(wrap_first_fit(&words, &[15.0]), expected);
+    }
+
+    #[test]
+    fn wrap_first_fit_words_longer_than_line_width() {
+        let words = vec![
+            Word::from("Hello "),
+            Word::from("world "),
+            Word::from("this "),
+            Word::from("is "),
+            Word::from("a "),
+            Word::from("test. "),
+        ];
+        let expected = vec![&words[..1], &words[1..2], &words[2..3], &words[3..4], &words[4..5], &words[5..]];
+        assert_eq!(wrap_first_fit(&words, &[5.0]), expected);
+    }
+
+    #[test]
+    fn wrap_first_fit_variable_line_widths() {
+        let words = vec![
+            Word::from("Hello "),
+            Word::from("world "),
+            Word::from("this "),
+            Word::from("is "),
+            Word::from("a "),
+            Word::from("test. "),
+        ];
+        let expected = vec![&words[..2], &words[2..4], &words[4..]];
+        assert_eq!(wrap_first_fit(&words, &[10.0, 10.0, 5.0]), expected);
+    }
+
+    #[test]
+    fn wrap_first_fit_incomplete_line_widths() {
+        let words = vec![
+            Word::from("Hello "),
+            Word::from("world "),
+            Word::from("this "),
+            Word::from("is "),
+            Word::from("a "),
+            Word::from("test. "),
+        ];
+        let expected = vec![&words[..2], &words[2..4], &words[4..]];
+        // Only two line_widths are provided, the last one should be used for the remaining lines.
+        assert_eq!(wrap_first_fit(&words, &[10.0, 10.0]), expected);
+    }
+
+    #[test]
+    fn wrap_first_fit_line_width_zero() {
+        let words = vec![
+            Word::from("Hello "),
+            Word::from("world "),
+            Word::from("this "),
+            Word::from("is "),
+            Word::from("a "),
+            Word::from("test. "),
+        ];
+        // A line width of zero should cause each word to be on its own line.
+        let expected = words.iter().map(|w| &[*w]).collect::<Vec<_>>();
+        assert_eq!(wrap_first_fit(&words, &[0.0]), expected);
+    }
+
+    // Helper function for calculating the displayed width of a string, taking
+    // into account characters and potential ANSI escape sequences, etc.
+    fn display_width(s: &str) -> usize {
+        // For the purpose of the tests, we'll pretend the width of a
+        // string is the same as the string length. In real use, you'd
+        // import a function like `unicode_width::UnicodeWidthStr::width`.
+        s.len()
+    }
+}
+   Compiling textwrap v0.16.0 (/home/xiang/workspace/human/llm_base_bk/textwrap)
+error[E0515]: cannot return reference to temporary value
+   --> src/wrap_algorithms.rs:702:45
+    |
+702 |         let expected = words.iter().map(|w| &[*w]).collect::<Vec<_>>();
+    |                                             ^----
+    |                                             ||
+    |                                             |temporary value created here
+    |                                             returns a reference to data owned by the current function
+
+For more information about this error, try `rustc --explain E0515`.
+error: could not compile `textwrap` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UUVoYDzBAW8P6HOAkevmOyEiUNiL', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='It seems there is an issue with the `wrap_first_fit_line_width_zero` test. The problem arises from trying to take a reference to a temporary array, `[*w]`. To resolve this, we\'ll change the test case to simply pass the reference to the `Word` itself without trying to put it into an array. Below is the corrected test module with the necessary changes:\n\n```rust\n#[cfg(test)]\nmod tests_llm_16_53 {\n    use super::*;\n    use crate::core::{Fragment, Word};\n\n    #[test]\n    fn wrap_first_fit_empty_input() {\n        let words: Vec<Word> = Vec::new();\n        assert_eq!(wrap_first_fit(&words, &[10.0]), Vec::<&[Word]>::new());\n    }\n\n    #[test]\n    fn wrap_first_fit_single_line() {\n        let words = vec![\n            Word::from("Hello "),\n            Word::from("world "),\n            Word::from("this "),\n            Word::from("is "),\n            Word::from("a "),\n            Word::from("test. "),\n        ];\n        let expected = vec![&words[..]];\n        assert_eq!(wrap_first_fit(&words, &[10.0]), expected);\n    }\n\n    #[test]\n    fn wrap_first_fit_multiple_lines() {\n        let words = vec![\n            Word::from("Hello "),\n            Word::from("world "),\n            Word::from("this "),\n            Word::from("is "),\n            Word::from("a "),\n            Word::from("test. "),\n        ];\n        let expected = vec![&words[..3], &words[3..]];\n        assert_eq!(wrap_first_fit(&words, &[15.0]), expected);\n    }\n\n    #[test]\n    fn wrap_first_fit_words_longer_than_line_width() {\n        let words = vec![\n            Word::from("Hello "),\n            Word::from("world "),\n            Word::from("this "),\n            Word::from("is "),\n            Word::from("a "),\n            Word::from("test. "),\n        ];\n        let expected = vec![&words[..1], &words[1..2], &words[2..3], &words[3..4], &words[4..5], &words[5..]];\n        assert_eq!(wrap_first_fit(&words, &[5.0]), expected);\n    }\n\n    #[test]\n    fn wrap_first_fit_variable_line_widths() {\n        let words = vec![\n            Word::from("Hello "),\n            Word::from("world "),\n            Word::from("this "),\n            Word::from("is "),\n            Word::from("a "),\n            Word::from("test. "),\n        ];\n        let expected = vec![&words[..2], &words[2..4], &words[4..]];\n        assert_eq!(wrap_first_fit(&words, &[10.0, 10.0, 5.0]), expected);\n    }\n\n    #[test]\n    fn wrap_first_fit_incomplete_line_widths() {\n        let words = vec![\n            Word::from("Hello "),\n            Word::from("world "),\n            Word::from("this "),\n            Word::from("is "),\n            Word::from("a "),\n            Word::from("test. "),\n        ];\n        let expected = vec![&words[..2], &words[2..4], &words[4..]];\n        // Only two line_widths are provided, the last one should be used for the remaining lines.\n        assert_eq!(wrap_first_fit(&words, &[10.0, 10.0]), expected);\n    }\n\n    #[test]\n    fn wrap_first_fit_line_width_zero() {\n        let words = vec![\n            Word::from("Hello "),\n            Word::from("world "),\n            Word::from("this "),\n            Word::from("is "),\n            Word::from("a "),\n            Word::from("test. "),\n        ];\n        // A line width of zero should cause each word to be on its own line.\n        let expected = words.iter().map(|w| std::slice::from_ref(w)).collect::<Vec<_>>();\n        assert_eq!(wrap_first_fit(&words, &[0.0]), expected);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702277820, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=868, prompt_tokens=5104, total_tokens=5972))
+71
+inject succeed textwrap textwrap wrap_algorithms::wrap_first_fit
+47 16 10 53 53

@@ -1,0 +1,47 @@
+//! A method to obtain the local offset from UTC.
+
+#[cfg_attr(target_family = "windows", path = "windows.rs")]
+#[cfg_attr(target_family = "unix", path = "unix.rs")]
+mod imp;
+
+use crate::{OffsetDateTime, UtcOffset};
+
+/// Attempt to obtain the system's UTC offset. If the offset cannot be determined, `None` is
+/// returned.
+pub(crate) fn local_offset_at(datetime: OffsetDateTime) -> Option<UtcOffset> {
+    imp::local_offset_at(datetime)
+}
+
+#[cfg(test)]
+mod rusty_tests {
+	use crate::*;
+
+//#[no_coverage]
+#[test]
+//#[should_panic]
+#[timeout(30000)]fn rusty_test_8900() {
+//    rusty_monitor::set_test_id(8900);
+    let mut i64_0: i64 = 24i64;
+    let mut duration_0: crate::duration::Duration = crate::duration::Duration::milliseconds(i64_0);
+    let mut duration_1: std::time::Duration = crate::duration::Duration::abs_std(duration_0);
+    let mut i8_0: i8 = 81i8;
+    let mut i8_1: i8 = 23i8;
+    let mut i8_2: i8 = 4i8;
+    let mut utcoffset_0: crate::utc_offset::UtcOffset = crate::utc_offset::UtcOffset::__from_hms_unchecked(i8_2, i8_1, i8_0);
+    let mut offsetdatetime_0: crate::offset_date_time::OffsetDateTime = crate::offset_date_time::OffsetDateTime::now_utc();
+    let mut offsetdatetime_1: crate::offset_date_time::OffsetDateTime = crate::offset_date_time::OffsetDateTime::replace_offset(offsetdatetime_0, utcoffset_0);
+    let mut date_0: crate::date::Date = crate::offset_date_time::OffsetDateTime::date(offsetdatetime_1);
+    let mut i64_1: i64 = 604800i64;
+    let mut duration_2: crate::duration::Duration = crate::duration::Duration::milliseconds(i64_1);
+    let mut i32_0: i32 = 212i32;
+    let mut i64_2: i64 = 9223372036854775807i64;
+    let mut duration_3: crate::duration::Duration = crate::duration::Duration::new(i64_2, i32_0);
+    let mut offsetdatetime_2: crate::offset_date_time::OffsetDateTime = crate::offset_date_time::OffsetDateTime::now_utc();
+    let mut offsetdatetime_3: crate::offset_date_time::OffsetDateTime = crate::offset_date_time::OffsetDateTime::saturating_sub(offsetdatetime_2, duration_3);
+    let mut date_1: crate::date::Date = crate::offset_date_time::OffsetDateTime::date(offsetdatetime_3);
+    let mut i32_1: i32 = 3600i32;
+    let mut date_2: crate::date::Date = crate::date::Date::from_julian_day_unchecked(i32_1);
+    let mut u16_0: u16 = crate::date::Date::ordinal(date_2);
+//    panic!("From RustyUnit with love");
+}
+}

@@ -1,0 +1,234 @@
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/uuid/./src/builder.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/uuid/./src/sha1.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/uuid/./src/v4.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/uuid/./src/v6.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/uuid/./src/v1.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/uuid/./src/macros.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/uuid/./src/v8.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/uuid/./src/external.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/uuid/./src/error.rs
+err tests_llm_16_61 test_into_err_invalid_utf8
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling uuid v1.4.0 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/uuid)
+error[E0425]: cannot find value `invalid_utf8` in this scope
+   --> src/error.rs:156:35
+    |
+156 |         let invalid = InvalidUuid(invalid_utf8);
+    |                                   ^^^^^^^^^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `uuid` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/uuid/./src/md5.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/uuid/./src/external/slog_support.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/uuid/./src/external/arbitrary_support.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/uuid/./src/external/serde_support.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/uuid/./src/external/borsh_support.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/uuid/./src/v3.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/uuid/./src/v5.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/uuid/./src/timestamp.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/uuid/./src/lib.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/uuid/./src/fmt.rs
+err tests_llm_16_98_llm_16_98 test_format_hyphenated_mixed_case
+   Compiling uuid v1.4.0 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/uuid)
+error[E0425]: cannot find value `rug_fuzz_17` in this scope
+    --> src/fmt.rs:2942:31
+     |
+2942 |         let expected_upper = *rug_fuzz_17;
+     |                               ^^^^^^^^^^^ help: a local variable with a similar name exists: `rug_fuzz_1`
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `uuid` due to previous error
+
+err tests_llm_16_98_llm_16_98 test_format_hyphenated_boundary_values
+   Compiling uuid v1.4.0 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/uuid)
+error[E0425]: cannot find value `rug_fuzz_17` in this scope
+    --> src/fmt.rs:2989:31
+     |
+2989 |         let expected_upper = *rug_fuzz_17;
+     |                               ^^^^^^^^^^^ help: a local variable with a similar name exists: `rug_fuzz_1`
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `uuid` due to previous error
+
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/uuid/./src/parser.rs
+err tests_llm_16_100_llm_16_100 test_parse_valid_uuids
+   Compiling uuid v1.4.0 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/uuid)
+error[E0277]: the trait bound `(&str, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, &str, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, &str, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8): Arbitrary<'_>` is not satisfied
+   --> src/parser.rs:378:884
+    |
+378 | ... = <(&str, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, &str, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, &str, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8) as arbitrary::Arbitrary>::arbitrary(&m...
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Arbitrary<'_>` is not implemented for `(&str, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, &str, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, &str, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8)`
+    |
+    = help: the following other types implement trait `Arbitrary<'a>`:
+              ()
+              (B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, A)
+              (C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, B)
+              (D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, C)
+              (E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, D)
+              (F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, E)
+              (G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, F)
+              (H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, G)
+            and 19 others
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `uuid` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_107 test_try_parse_valid_non_hyphenated
+    Blocking waiting for file lock on package cache
+   Compiling uuid v1.4.0 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/uuid)
+error[E0425]: cannot find value `uuid_bytes` in this scope
+   --> src/parser.rs:653:23
+    |
+653 |             try_parse(uuid_bytes), Ok([0x12, 0x34, 0x56, 0x78, 0x90, 0xab, 0xcd, 0xef,
+    |                       ^^^^^^^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `uuid` due to previous error
+
+err tests_llm_16_107 test_try_parse_valid_hyphenated
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling uuid v1.4.0 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/uuid)
+error[E0425]: cannot find value `uuid_bytes` in this scope
+   --> src/parser.rs:664:23
+    |
+664 |             try_parse(uuid_bytes), Ok([0x12, 0x34, 0x56, 0x78, 0x90, 0xab, 0xcd, 0xef,
+    |                       ^^^^^^^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `uuid` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_107 test_try_parse_valid_braced
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling uuid v1.4.0 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/uuid)
+error[E0425]: cannot find value `uuid_bytes` in this scope
+   --> src/parser.rs:675:23
+    |
+675 |             try_parse(uuid_bytes), Ok([0x12, 0x34, 0x56, 0x78, 0x90, 0xab, 0xcd, 0xef,
+    |                       ^^^^^^^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `uuid` due to previous error
+
+err tests_llm_16_107 test_try_parse_valid_urn
+   Compiling uuid v1.4.0 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/uuid)
+error[E0425]: cannot find value `uuid_bytes` in this scope
+   --> src/parser.rs:686:23
+    |
+686 |             try_parse(uuid_bytes), Ok([0x12, 0x34, 0x56, 0x78, 0x90, 0xab, 0xcd, 0xef,
+    |                       ^^^^^^^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `uuid` due to previous error
+
+err tests_llm_16_107 test_try_parse_invalid_length
+   Compiling uuid v1.4.0 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/uuid)
+error[E0425]: cannot find value `uuid_bytes` in this scope
+   --> src/parser.rs:696:36
+    |
+696 |         debug_assert_eq!(try_parse(uuid_bytes), Err(InvalidUuid(uuid_bytes)));
+    |                                    ^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `uuid_bytes` in this scope
+   --> src/parser.rs:696:65
+    |
+696 |         debug_assert_eq!(try_parse(uuid_bytes), Err(InvalidUuid(uuid_bytes)));
+    |                                                                 ^^^^^^^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `uuid` due to 2 previous errors
+
+err tests_llm_16_107 test_try_parse_invalid_characters
+   Compiling uuid v1.4.0 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/uuid)
+error[E0425]: cannot find value `uuid_bytes` in this scope
+   --> src/parser.rs:704:36
+    |
+704 |         debug_assert_eq!(try_parse(uuid_bytes), Err(InvalidUuid(uuid_bytes)));
+    |                                    ^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `uuid_bytes` in this scope
+   --> src/parser.rs:704:65
+    |
+704 |         debug_assert_eq!(try_parse(uuid_bytes), Err(InvalidUuid(uuid_bytes)));
+    |                                                                 ^^^^^^^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `uuid` due to 2 previous errors
+
+err tests_llm_16_107 test_try_parse_invalid_hyphenation
+   Compiling uuid v1.4.0 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/uuid)
+error[E0425]: cannot find value `uuid_bytes` in this scope
+   --> src/parser.rs:712:36
+    |
+712 |         debug_assert_eq!(try_parse(uuid_bytes), Err(InvalidUuid(uuid_bytes)));
+    |                                    ^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `uuid_bytes` in this scope
+   --> src/parser.rs:712:65
+    |
+712 |         debug_assert_eq!(try_parse(uuid_bytes), Err(InvalidUuid(uuid_bytes)));
+    |                                                                 ^^^^^^^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `uuid` due to 2 previous errors
+
+err tests_rug_1 test_parse_simple
+   Compiling uuid v1.4.0 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/uuid)
+error[E0425]: cannot find value `rug_fuzz_1` in this scope
+   --> src/parser.rs:729:36
+    |
+729 |         let hex_uppercase: &[u8] = rug_fuzz_1;
+    |                                    ^^^^^^^^^^ help: a local variable with a similar name exists: `rug_fuzz_0`
+
+error[E0425]: cannot find value `rug_fuzz_3` in this scope
+   --> src/parser.rs:733:39
+    |
+733 |         let hex_invalid_char: &[u8] = rug_fuzz_3;
+    |                                       ^^^^^^^^^^ help: a local variable with a similar name exists: `rug_fuzz_0`
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `uuid` due to 2 previous errors
+
+err tests_rug_2 test_rug
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling uuid v1.4.0 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/uuid)
+error[E0425]: cannot find value `p0` in this scope
+   --> src/parser.rs:752:46
+    |
+752 |             crate ::parser::parse_hyphenated(p0), Ok([0x93, 0x6d, 0xa0, 0x1f, 0x9a, 0xbd,
+    |                                              ^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `uuid` due to previous error
+
+err tests_rug_4 test_try_parse_ascii
+   Compiling uuid v1.4.0 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/uuid)
+error[E0425]: cannot find value `p0` in this scope
+   --> src/parser.rs:784:46
+    |
+784 |         let result = <Uuid>::try_parse_ascii(p0);
+    |                                              ^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `uuid` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/uuid/./src/v7.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/uuid/./src/rng.rs
+done
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/uuid/macros/src/error.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/uuid/macros/src/lib.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/uuid/macros/src/parser.rs
+done

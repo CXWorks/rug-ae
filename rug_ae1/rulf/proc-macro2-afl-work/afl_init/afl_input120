@@ -1,0 +1,1 @@
+29cargo:rustc-cfg=proc_macro_span1

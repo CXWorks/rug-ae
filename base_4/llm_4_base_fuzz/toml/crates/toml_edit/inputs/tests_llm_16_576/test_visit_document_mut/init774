@@ -1,0 +1,9 @@
+#"
+            # Example TOML
+            [test]
+            key = "value"
+        "#"
+# Example TOML
+[test]
+key = "value"
+"

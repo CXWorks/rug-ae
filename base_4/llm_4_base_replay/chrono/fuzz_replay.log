@@ -1,0 +1,102 @@
+chrono chrono . ['/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/naive/isoweek.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/naive/internals.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/naive/datetime/serde.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/naive/datetime/tests.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/naive/datetime/mod.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/naive/date.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/naive/time/serde.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/naive/time/tests.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/naive/time/mod.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/naive/mod.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/month.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/format/scan.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/format/parsed.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/format/strftime.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/format/parse.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/format/locales.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/format/mod.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/datetime/serde.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/datetime/tests.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/datetime/mod.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/time_delta.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/traits.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/date.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/weekday.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/offset/local/stub.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/offset/local/tz_info/timezone.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/offset/local/tz_info/mod.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/offset/local/tz_info/parser.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/offset/local/tz_info/rule.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/offset/local/unix.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/offset/local/mod.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/offset/local/windows.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/offset/fixed.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/offset/utc.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/offset/mod.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/round.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/lib.rs']
+/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/naive/isoweek.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/naive/internals.rs
+err tests_llm_16_449_llm_16_449 test_from_year
+/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/naive/datetime/serde.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/naive/datetime/tests.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/naive/datetime/mod.rs
+err tests_llm_16_131 test_day0
+err tests_llm_16_136 test_ordinal0
+err tests_llm_16_138 test_with_day
+err tests_llm_16_140 test_with_month
+err tests_llm_16_142 test_with_ordinal
+err tests_llm_16_146 test_hour
+err tests_llm_16_411 test_checked_sub_signed
+err tests_llm_16_424 test_timestamp_micros
+err tests_llm_16_425 test_timestamp_millis
+err tests_llm_16_426 test_timestamp_nanos
+err tests_llm_16_427 test_timestamp_subsec_micros
+err tests_llm_16_429 test_timestamp_subsec_nanos
+/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/naive/date.rs
+err tests_llm_16_85 test_add_months
+err tests_llm_16_93 test_sub_assign_timedelta
+err tests_llm_16_96 test_day0
+err tests_llm_16_100 test_ordinal
+err tests_llm_16_357 test_and_hms_micro_opt
+err tests_llm_16_359 test_and_hms_milli_opt
+err tests_llm_16_361 test_and_hms_nano_opt
+err tests_llm_16_368 test_checked_sub_months
+err tests_llm_16_393 test_signed_duration_since
+err tests_llm_16_396 test_naive_week_methods
+err tests_llm_16_400 test_years_since
+err tests_llm_16_401 test_week_days
+/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/naive/time/serde.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/naive/time/tests.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/naive/time/mod.rs
+err tests_llm_16_158 test_sub_time
+err tests_llm_16_466 test_from_hms_milli_opt
+err tests_llm_16_468 test_from_hms_nano_opt
+err tests_llm_16_476 test_signed_duration_since
+/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/naive/mod.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/month.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/format/scan.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/format/parsed.rs
+err tests_llm_16_313 test_to_datetime
+/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/format/strftime.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/format/parse.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/format/locales.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/format/mod.rs
+err tests_llm_16_346 test_write_rfc2822_with_fixed_offset
+/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/datetime/serde.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/datetime/tests.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/datetime/mod.rs
+err tests_llm_16_49 test_ordinal0
+err tests_llm_16_51 test_with_day
+err tests_llm_16_53 test_with_month
+err tests_llm_16_54_llm_16_54 test_with_month0
+err tests_llm_16_237 test_checked_add_days
+err tests_llm_16_258 test_timestamp_nanos
+err tests_llm_16_261 test_timestamp_subsec_nanos
+/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/time_delta.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/traits.rs
+err tests_llm_16_623 test_num_days_from_ce
+/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/date.rs
+err tests_llm_16_211 test_and_hms_micro_valid_times
+err tests_llm_16_214 test_and_hms_milli_opt
+err tests_llm_16_215 test_and_hms_nano
+/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/weekday.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/offset/local/stub.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/offset/local/tz_info/timezone.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/offset/local/tz_info/mod.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/offset/local/tz_info/parser.rs
+err tests_llm_16_536 test_header_new_valid_magic
+err tests_llm_16_536 test_header_new_invalid_magic
+err tests_llm_16_536 test_header_new_unsupported_version
+err tests_llm_16_536 test_header_new_invalid_header_structure
+err tests_llm_16_536 test_header_new_incomplete_data
+err tests_llm_16_536 test_header_new_empty_data
+/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/offset/local/tz_info/rule.rs
+err tests_llm_16_557 test_parse_hhmmss_only_hour
+err tests_llm_16_557 test_parse_hhmmss_hour_minute
+err tests_llm_16_557 test_parse_hhmmss_full
+err tests_llm_16_557 test_parse_hhmmss_invalid_hour
+err tests_llm_16_557 test_parse_hhmmss_invalid_minute
+err tests_llm_16_557 test_parse_hhmmss_invalid_second
+err tests_llm_16_557 test_parse_hhmmss_non_numeric
+err tests_llm_16_557 test_parse_hhmmss_empty
+err tests_llm_16_557 test_parse_hhmmss_invalid_format
+err tests_llm_16_557 test_parse_hhmmss_extra_data
+err tests_llm_16_557 test_parse_hhmmss_leading_zero
+err tests_llm_16_561 test_parse_rule_time_extended_invalid_hour
+err tests_llm_16_561 test_parse_rule_time_extended_invalid_minute
+err tests_llm_16_561 test_parse_rule_time_extended_invalid_second
+/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/offset/local/unix.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/offset/local/mod.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/offset/local/windows.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/offset/fixed.rs
+err tests_llm_16_506 test_add_fixed_offset
+/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/offset/utc.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/offset/mod.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/round.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/chrono/./src/lib.rs
+done

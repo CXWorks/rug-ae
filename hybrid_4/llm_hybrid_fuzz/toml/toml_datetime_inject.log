@@ -1,0 +1,163 @@
+ChatCompletion(id='chatcmpl-8UYGV4qgmr4pkcq1r8ulCmMJYbOWj', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::{Datetime, Date};\n\n    #[test]\n    fn from_date_to_datetime() {\n        let date = Date {\n            year: 2023,\n            month: 4,\n            day: 1,\n        };\n\n        let datetime: Datetime = Datetime::from(date);\n\n        assert_eq!(datetime.date, Some(date));\n        assert_eq!(datetime.time, None);\n        assert_eq!(datetime.offset, None);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702292247, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=102, prompt_tokens=3154, total_tokens=3256))
+71
+inject succeed toml toml_datetime <datetime::Datetime as std::convert::From<datetime::Date>>::from
+ChatCompletion(id='chatcmpl-8UYGk0JXpClDy2fzjw9T8QPDaBUQr', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n\n    #[test]\n    fn test_from_time() {\n        let time = Time {\n            hour: 12,\n            minute: 34,\n            second: 56,\n            nanosecond: 789,\n        };\n\n        let datetime: Datetime = Datetime::from(time.clone());\n        assert_eq!(datetime.date, None);\n        assert_eq!(datetime.time, Some(time));\n        assert_eq!(datetime.offset, None);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702292262, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=105, prompt_tokens=3293, total_tokens=3398))
+71
+inject succeed toml toml_datetime <datetime::Datetime as std::convert::From<datetime::Time>>::from
+ChatCompletion(id='chatcmpl-8UYGu2Oz0NcfbykdHKhj8skW4aMEf', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use std::str::FromStr;\n\n    #[test]\n    fn test_valid_full_date_time() {\n        let input = "2023-03-14T11:53:21.123Z";\n        let result = Datetime::from_str(input);\n        assert!(result.is_ok());\n        let datetime = result.unwrap();\n        assert_eq!(datetime.date.unwrap().year, 2023);\n        assert_eq!(datetime.date.unwrap().month, 3);\n        assert_eq!(datetime.date.unwrap().day, 14);\n        assert_eq!(datetime.time.unwrap().hour, 11);\n        assert_eq!(datetime.time.unwrap().minute, 53);\n        assert_eq!(datetime.time.unwrap().second, 21);\n        assert_eq!(datetime.time.unwrap().nanosecond, 123_000_000);\n        assert_eq!(datetime.offset, Some(Offset::Z));\n    }\n\n    #[test]\n    fn test_valid_date_only() {\n        let input = "2023-03-14";\n        let result = Datetime::from_str(input);\n        assert!(result.is_ok());\n        let datetime = result.unwrap();\n        assert_eq!(datetime.date.unwrap().year, 2023);\n        assert_eq!(datetime.date.unwrap().month, 3);\n        assert_eq!(datetime.date.unwrap().day, 14);\n        assert!(datetime.time.is_none());\n        assert!(datetime.offset.is_none());\n    }\n\n    #[test]\n    fn test_valid_time_only() {\n        let input = "11:53:21.123";\n        let result = Datetime::from_str(input);\n        assert!(result.is_ok());\n        let datetime = result.unwrap();\n        assert!(datetime.date.is_none());\n        assert_eq!(datetime.time.unwrap().hour, 11);\n        assert_eq!(datetime.time.unwrap().minute, 53);\n        assert_eq!(datetime.time.unwrap().second, 21);\n        assert_eq!(datetime.time.unwrap().nanosecond, 123_000_000);\n        assert!(datetime.offset.is_none());\n    }\n\n    #[test]\n    fn test_valid_date_time_with_offset() {\n        let input = "2023-03-14T11:53:21.123+01:30";\n        let result = Datetime::from_str(input);\n        assert!(result.is_ok());\n        let datetime = result.unwrap();\n        if let Some(Offset::Custom { minutes }) = datetime.offset {\n            assert_eq!(minutes, 90);\n        } else {\n            panic!("Expected custom offset");\n        }\n    }\n\n    #[test]\n    fn test_invalid_too_short() {\n        let input = "23";\n        let result = Datetime::from_str(input);\n        assert!(result.is_err());\n    }\n\n    #[test]\n    fn test_invalid_bad_format() {\n        let input = "2023-AA-14";\n        let result = Datetime::from_str(input);\n        assert!(result.is_err());\n    }\n\n    #[test]\n    fn test_invalid_bad_time() {\n        let input = "2023-03-14T99:99:99";\n        let result = Datetime::from_str(input);\n        assert!(result.is_err());\n    }\n\n    #[test]\n    fn test_invalid_bad_offset() {\n        let input = "2023-03-14T11:53:21.123+25:00";\n        let result = Datetime::from_str(input);\n        assert!(result.is_err());\n    }\n\n    #[test]\n    fn test_invalid_trailing_characters() {\n        let input = "2023-03-14T11:53:21.123Zgarbage";\n        let result = Datetime::from_str(input);\n        assert!(result.is_err());\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702292272, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=777, prompt_tokens=1415, total_tokens=2192))
+71
+inject succeed toml toml_datetime <datetime::Datetime as std::str::FromStr>::from_str
+ChatCompletion(id='chatcmpl-8UYHpairFhxE3eX7X8ANnUKv6pQU2', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::digit;\n    use std::str::Chars;\n    use crate::datetime::DatetimeParseError;\n\n    #[test]\n    fn test_digit_success() {\n        let mut chars: Chars = "1".chars();\n        assert_eq!(digit(&mut chars), Ok(1));\n    }\n\n    #[test]\n    fn test_digit_non_digit() {\n        let mut chars: Chars = "a".chars();\n        assert!(digit(&mut chars).is_err());\n    }\n\n    #[test]\n    fn test_digit_empty() {\n        let mut chars: Chars = "".chars();\n        assert!(digit(&mut chars).is_err());\n    }\n\n    #[test]\n    fn test_digit_boundary() {\n        let mut chars: Chars = "0".chars();\n        assert_eq!(digit(&mut chars), Ok(0));\n\n        let mut chars: Chars = "9".chars();\n        assert_eq!(digit(&mut chars), Ok(9));\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702292329, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=213, prompt_tokens=199, total_tokens=412))
+71
+========================================
+inject err datetime::digit crates/toml_datetime/src/datetime.rs digit
+#[cfg(test)]
+mod tests_llm_16_4 {
+    use crate::digit;
+    use std::str::Chars;
+    use crate::datetime::DatetimeParseError;
+
+    #[test]
+    fn test_digit_success() {
+        let mut chars: Chars = "1".chars();
+        assert_eq!(digit(&mut chars), Ok(1));
+    }
+
+    #[test]
+    fn test_digit_non_digit() {
+        let mut chars: Chars = "a".chars();
+        assert!(digit(&mut chars).is_err());
+    }
+
+    #[test]
+    fn test_digit_empty() {
+        let mut chars: Chars = "".chars();
+        assert!(digit(&mut chars).is_err());
+    }
+
+    #[test]
+    fn test_digit_boundary() {
+        let mut chars: Chars = "0".chars();
+        assert_eq!(digit(&mut chars), Ok(0));
+
+        let mut chars: Chars = "9".chars();
+        assert_eq!(digit(&mut chars), Ok(9));
+    }
+}
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example`
+   Compiling toml_datetime v0.6.3 (/home/xiang/workspace/human/llm_base_bk/toml/crates/toml_datetime)
+error[E0432]: unresolved import `crate::digit`
+   --> crates/toml_datetime/src/datetime.rs:721:9
+    |
+721 |     use crate::digit;
+    |         ^^^^^^^^^^^^ no `digit` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `toml_datetime` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UYI52XMmtpXYLr9sCcSw1sfDnARP', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_4 {\n    use super::*; // Use items from the parent module\n    use std::str::Chars;\n\n    #[test]\n    fn test_digit_success() {\n        let mut chars: Chars = "1".chars();\n        assert_eq!(digit(&mut chars), Ok(1));\n    }\n\n    #[test]\n    fn test_digit_non_digit() {\n        let mut chars: Chars = "a".chars();\n        assert!(digit(&mut chars).is_err());\n    }\n\n    #[test]\n    fn test_digit_empty() {\n        let mut chars: Chars = "".chars();\n        assert!(digit(&mut chars).is_err());\n    }\n\n    #[test]\n    fn test_digit_boundary() {\n        let mut chars: Chars = "0".chars();\n        assert_eq!(digit(&mut chars), Ok(0));\n\n        let mut chars: Chars = "9".chars();\n        assert_eq!(digit(&mut chars), Ok(9));\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702292345, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_6aca3b5ce1', usage=CompletionUsage(completion_tokens=216, prompt_tokens=859, total_tokens=1075))
+71
+========================================
+inject err datetime::digit crates/toml_datetime/src/datetime.rs digit
+#[cfg(test)]
+mod tests_llm_16_4_llm_16_4 {
+    use super::*; // Use items from the parent module
+
+use crate::*;
+    use std::str::Chars;
+
+    #[test]
+    fn test_digit_success() {
+        let mut chars: Chars = "1".chars();
+        assert_eq!(digit(&mut chars), Ok(1));
+    }
+
+    #[test]
+    fn test_digit_non_digit() {
+        let mut chars: Chars = "a".chars();
+        assert!(digit(&mut chars).is_err());
+    }
+
+    #[test]
+    fn test_digit_empty() {
+        let mut chars: Chars = "".chars();
+        assert!(digit(&mut chars).is_err());
+    }
+
+    #[test]
+    fn test_digit_boundary() {
+        let mut chars: Chars = "0".chars();
+        assert_eq!(digit(&mut chars), Ok(0));
+
+        let mut chars: Chars = "9".chars();
+        assert_eq!(digit(&mut chars), Ok(9));
+    }
+}
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example`
+   Compiling toml_datetime v0.6.3 (/home/xiang/workspace/human/llm_base_bk/toml/crates/toml_datetime)
+error[E0369]: binary operation `==` cannot be applied to type `Result<u8, DatetimeParseError>`
+   --> crates/toml_datetime/src/datetime.rs:729:9
+    |
+729 |         assert_eq!(digit(&mut chars), Ok(1));
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |         |
+    |         Result<u8, DatetimeParseError>
+    |         Result<u8, DatetimeParseError>
+    |
+note: an implementation of `PartialEq` might be missing for `DatetimeParseError`
+   --> crates/toml_datetime/src/datetime.rs:98:1
+    |
+98  | pub struct DatetimeParseError {}
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ must implement `PartialEq`
+    = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider annotating `DatetimeParseError` with `#[derive(PartialEq)]`
+    |
+98  | #[derive(PartialEq)]
+    |
+
+error[E0369]: binary operation `==` cannot be applied to type `Result<u8, DatetimeParseError>`
+   --> crates/toml_datetime/src/datetime.rs:747:9
+    |
+747 |         assert_eq!(digit(&mut chars), Ok(0));
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |         |
+    |         Result<u8, DatetimeParseError>
+    |         Result<u8, DatetimeParseError>
+    |
+note: an implementation of `PartialEq` might be missing for `DatetimeParseError`
+   --> crates/toml_datetime/src/datetime.rs:98:1
+    |
+98  | pub struct DatetimeParseError {}
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ must implement `PartialEq`
+    = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider annotating `DatetimeParseError` with `#[derive(PartialEq)]`
+    |
+98  | #[derive(PartialEq)]
+    |
+
+error[E0369]: binary operation `==` cannot be applied to type `Result<u8, DatetimeParseError>`
+   --> crates/toml_datetime/src/datetime.rs:750:9
+    |
+750 |         assert_eq!(digit(&mut chars), Ok(9));
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |         |
+    |         Result<u8, DatetimeParseError>
+    |         Result<u8, DatetimeParseError>
+    |
+note: an implementation of `PartialEq` might be missing for `DatetimeParseError`
+   --> crates/toml_datetime/src/datetime.rs:98:1
+    |
+98  | pub struct DatetimeParseError {}
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ must implement `PartialEq`
+    = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider annotating `DatetimeParseError` with `#[derive(PartialEq)]`
+    |
+98  | #[derive(PartialEq)]
+    |
+
+For more information about this error, try `rustc --explain E0369`.
+error: could not compile `toml_datetime` due to 3 previous errors
+
+repair err datetime::digit crates/toml_datetime/src/datetime.rs digit
+3 1 0 4 4

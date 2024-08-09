@@ -1,0 +1,1435 @@
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json/./src/de.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json/./src/map.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json/./src/number.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json/./src/value/index.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json/./src/value/de.rs
+err tests_rug_178 test_rug
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0521]: borrowed data escapes outside of closure
+    --> src/value/de.rs:3482:114
+     |
+3481 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+3482 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1)) = <(bool, &str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data)){
+     |                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                     |
+     |                                                                                                     `rug_data` escapes the closure body here
+     |                                                                                                     argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_rug_188 test_deserialize_tuple_struct
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0521]: borrowed data escapes outside of closure
+    --> src/value/de.rs:3795:137
+     |
+3794 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+3795 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2)) = <(bool, &str, usize) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                                            |
+     |                                                                                                                            `rug_data` escapes the closure body here
+     |                                                                                                                            argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_rug_213 test_deserialize_newtype_struct
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error: lifetime may not live long enough
+    --> src/value/de.rs:4330:17
+     |
+4326 |         .for_each(|rug_data| {
+     |                    -------- has type `&'1 [u8]`
+...
+4330 |         let p1: &'static str = rug_fuzz_1;
+     |                 ^^^^^^^^^^^^ type annotation requires that `'1` must outlive `'static`
+
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_rug_223 test_rug
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error: lifetime may not live long enough
+    --> src/value/de.rs:4534:17
+     |
+4530 |         .for_each(|rug_data| {
+     |                    -------- has type `&'1 [u8]`
+...
+4534 |         let p1: &'static str = rug_fuzz_1;
+     |                 ^^^^^^^^^^^^ type annotation requires that `'1` must outlive `'static`
+
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json/./src/value/mod.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json/./src/value/partial_eq.rs
+err tests_llm_16_758 test_eq
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0277]: the trait bound `(&str, &str, &str, &str, &str, i32, &str, i32, &str, i32, &str, &str, bool, &str, bool, &str, bool, &str, bool, &str, &str, &str, &str, &str, &str, i32, &str, bool, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str): Arbitrary<'_>` is not satisfied
+    --> src/value/partial_eq.rs:1060:799
+     |
+1060 | ... = <(&str, &str, &str, &str, &str, i32, &str, i32, &str, i32, &str, &str, bool, &str, bool, &str, bool, &str, bool, &str, &str, &str, &str, &str, &str, i32, &str, bool, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str) as arbitrary::Arbitrary>::arbitrary(&m...
+     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Arbitrary<'_>` is not implemented for `(&str, &str, &str, &str, &str, i32, &str, i32, &str, i32, &str, &str, bool, &str, bool, &str, bool, &str, bool, &str, &str, &str, &str, &str, &str, i32, &str, bool, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str)`
+     |
+     = help: the following other types implement trait `Arbitrary<'a>`:
+               ()
+               (B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, A)
+               (C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, B)
+               (D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, C)
+               (E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, D)
+               (F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, E)
+               (G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, F)
+               (H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, G)
+             and 19 others
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_rug_259 test_eq
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error: lifetime may not live long enough
+    --> src/value/partial_eq.rs:3417:17
+     |
+3414 |         .for_each(|rug_data| {
+     |                    -------- has type `&'1 [u8]`
+...
+3417 |         let p0: &'static str = rug_fuzz_0;
+     |                 ^^^^^^^^^^^^ type annotation requires that `'1` must outlive `'static`
+
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json/./src/value/ser.rs
+err tests_llm_16_375 serialize_struct_test
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0521]: borrowed data escapes outside of closure
+    --> src/value/ser.rs:1185:115
+     |
+1184 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+1185 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1)) = <(&str, usize) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                      |
+     |                                                                                                      `rug_data` escapes the closure body here
+     |                                                                                                      argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_376_llm_16_376 test_serialize_struct_variant
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0521]: borrowed data escapes outside of closure
+    --> src/value/ser.rs:1210:158
+     |
+1209 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+1210 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2, mut rug_fuzz_3)) = <(&str, u32, &str, usize) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                                                                 |
+     |                                                                                                                                                 `rug_data` escapes the closure body here
+     |                                                                                                                                                 argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_379 test_serialize_tuple_variant
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0521]: borrowed data escapes outside of closure
+    --> src/value/ser.rs:1268:158
+     |
+1267 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+1268 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2, mut rug_fuzz_3)) = <(&str, u32, &str, usize) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                                                                 |
+     |                                                                                                                                                 `rug_data` escapes the closure body here
+     |                                                                                                                                                 argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_385 test_serialize_unit_struct
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0521]: borrowed data escapes outside of closure
+    --> src/value/ser.rs:1369:92
+     |
+1368 |         .for_each(|rug_data| {
+     |                    --------
+     |                    |
+     |                    `rug_data` is a reference that is only valid in the closure body
+     |                    has type `&'1 [u8]`
+1369 |             if let Ok((mut rug_fuzz_0)) = <(&str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data)){
+     |                                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                            |
+     |                                                                                            `rug_data` escapes the closure body here
+     |                                                                                            argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_393 test_serialize_struct_variant_serialize_field
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0521]: borrowed data escapes outside of closure
+    --> src/value/ser.rs:1410:223
+     |
+1409 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+1410 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2, mut rug_fuzz_3, mut rug_fuzz_4, mut rug_fuzz_5, mut rug_fuzz_6)) = <(i32, &str, bool, &str, &str, &str, &str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                                                                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                                                                                                                                  |
+     |                                                                                                                                                                                                                  `rug_data` escapes the closure body here
+     |                                                                                                                                                                                                                  argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_414_llm_16_414 test_serialize_newtype_struct
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0521]: borrowed data escapes outside of closure
+    --> src/value/ser.rs:1698:134
+     |
+1697 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+1698 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2)) = <(i32, i32, &str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                                         |
+     |                                                                                                                         `rug_data` escapes the closure body here
+     |                                                                                                                         argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_414_llm_16_414 test_serialize_newtype_struct_string
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0521]: borrowed data escapes outside of closure
+    --> src/value/ser.rs:1715:136
+     |
+1714 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+1715 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2)) = <(&str, &str, &str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                                           |
+     |                                                                                                                           `rug_data` escapes the closure body here
+     |                                                                                                                           argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_414_llm_16_414 test_serialize_newtype_struct_map
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0521]: borrowed data escapes outside of closure
+    --> src/value/ser.rs:1732:180
+     |
+1731 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+1732 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2, mut rug_fuzz_3, mut rug_fuzz_4)) = <(&str, &str, &str, &str, &str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                                                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                                                                                       |
+     |                                                                                                                                                                       `rug_data` escapes the closure body here
+     |                                                                                                                                                                       argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_421 test_serialize_struct_variant
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0521]: borrowed data escapes outside of closure
+    --> src/value/ser.rs:1845:158
+     |
+1844 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+1845 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2, mut rug_fuzz_3)) = <(&str, &str, u32, usize) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                                                                 |
+     |                                                                                                                                                 `rug_data` escapes the closure body here
+     |                                                                                                                                                 argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_423 test_serialize_tuple_struct
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0521]: borrowed data escapes outside of closure
+    --> src/value/ser.rs:1868:181
+     |
+1867 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+1868 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2, mut rug_fuzz_3, mut rug_fuzz_4)) = <(&str, usize, &str, &str, &str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                                                                                        |
+     |                                                                                                                                                                        `rug_data` escapes the closure body here
+     |                                                                                                                                                                        argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_432 test_serialize_unit_variant
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0521]: borrowed data escapes outside of closure
+    --> src/value/ser.rs:1987:135
+     |
+1986 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+1987 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2)) = <(&str, u32, &str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                                          |
+     |                                                                                                                          `rug_data` escapes the closure body here
+     |                                                                                                                          argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_rug_281 test_serialize_tuple_variant
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0521]: borrowed data escapes outside of closure
+    --> src/value/ser.rs:2196:158
+     |
+2195 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+2196 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2, mut rug_fuzz_3)) = <(&str, u32, &str, usize) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                                                                 |
+     |                                                                                                                                                 `rug_data` escapes the closure body here
+     |                                                                                                                                                 argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_rug_299 test_serialize_bytes
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0425]: cannot find value `p0` in this scope
+    --> src/value/ser.rs:2364:22
+     |
+2364 |         let result = p0.serialize_bytes(p1);
+     |                      ^^ help: a local variable with a similar name exists: `p1`
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+
+err tests_rug_303 test_serialize_tuple_struct
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error: lifetime may not live long enough
+    --> src/value/ser.rs:2421:17
+     |
+2417 |         .for_each(|rug_data| {
+     |                    -------- has type `&'1 [u8]`
+...
+2421 |         let p1: &'static str = rug_fuzz_0;
+     |                 ^^^^^^^^^^^^ type annotation requires that `'1` must outlive `'static`
+
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_rug_304 test_serialize_field
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0521]: borrowed data escapes outside of closure
+    --> src/value/ser.rs:2438:113
+     |
+2437 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+2438 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1)) = <(&str, i32) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data)){
+     |                                                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                    |
+     |                                                                                                    `rug_data` escapes the closure body here
+     |                                                                                                    argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json/./src/value/from.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json/./src/iter.rs
+err tests_llm_16_498 test_col
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0425]: cannot find value `data` in this scope
+   --> src/iter.rs:113:24
+    |
+113 |         let iterator = data.iter().map(|b| Ok(*b));
+    |                        ^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json/./src/macros.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json/./src/lexical/algorithm.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json/./src/lexical/num.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json/./src/lexical/bignum.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json/./src/lexical/large_powers.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json/./src/lexical/shift.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json/./src/lexical/rounding.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json/./src/lexical/small_powers.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json/./src/lexical/exponent.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json/./src/lexical/large_powers64.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json/./src/lexical/large_powers32.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json/./src/lexical/parse.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json/./src/lexical/cached_float80.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json/./src/lexical/errors.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json/./src/lexical/digit.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json/./src/lexical/mod.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json/./src/lexical/float.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json/./src/lexical/math.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json/./src/lexical/cached.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json/./src/lexical/bhcomp.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json/./src/error.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json/./src/features_check/error.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json/./src/features_check/mod.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json/./src/raw.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json/./src/io/core.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json/./src/io/mod.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json/./src/lib.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json/./src/ser.rs
+err tests_llm_16_66 test_serialize_struct_normal
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0521]: borrowed data escapes outside of closure
+    --> src/ser.rs:2746:115
+     |
+2745 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+2746 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1)) = <(&str, usize) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                      |
+     |                                                                                                      `rug_data` escapes the closure body here
+     |                                                                                                      argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_77_llm_16_77 test_serialize_unit_struct
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0521]: borrowed data escapes outside of closure
+    --> src/ser.rs:2990:92
+     |
+2989 |         .for_each(|rug_data| {
+     |                    --------
+     |                    |
+     |                    `rug_data` is a reference that is only valid in the closure body
+     |                    has type `&'1 [u8]`
+2990 |             if let Ok((mut rug_fuzz_0)) = <(&str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data)){
+     |                                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                            |
+     |                                                                                            `rug_data` escapes the closure body here
+     |                                                                                            argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_242_llm_16_242 serialize_field_map
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0521]: borrowed data escapes outside of closure
+    --> src/ser.rs:3210:157
+     |
+3209 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+3210 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2, mut rug_fuzz_3)) = <(u32, &str, &str, &str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                                                                |
+     |                                                                                                                                                `rug_data` escapes the closure body here
+     |                                                                                                                                                argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_270_llm_16_270 test_serialize_tuple_struct
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0521]: borrowed data escapes outside of closure
+    --> src/ser.rs:3576:115
+     |
+3575 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+3576 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1)) = <(&str, usize) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                      |
+     |                                                                                                      `rug_data` escapes the closure body here
+     |                                                                                                      argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_589_llm_16_589 test_with_indent
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0425]: cannot find value `indent_value` in this scope
+    --> src/ser.rs:4838:58
+     |
+4838 |         let mut formatter = PrettyFormatter::with_indent(indent_value);
+     |                                                          ^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `indent_value` in this scope
+    --> src/ser.rs:4839:44
+     |
+4839 |         debug_assert_eq!(formatter.indent, indent_value);
+     |                                            ^^^^^^^^^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to 2 previous errors
+
+err tests_llm_16_599 test_to_string_pretty_struct
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error: unknown start of token: \
+    --> src/ser.rs:5495:35
+     |
+5495 |             writer.to_string(), "{\n  \"age\": 30,\n  \"name\": \"John Doe\"\n}"
+     |                                   ^
+
+error: unknown start of token: \
+    --> src/ser.rs:5495:39
+     |
+5495 |             writer.to_string(), "{\n  \"age\": 30,\n  \"name\": \"John Doe\"\n}"
+     |                                       ^
+
+error: mismatched closing delimiter: `)`
+    --> src/ser.rs:5495:34
+     |
+5167 |         .for_each(|rug_data| {
+     |                  - closing delimiter possibly meant for this
+...
+5495 |             writer.to_string(), "{\n  \"age\": 30,\n  \"name\": \"John Doe\"\n}"
+     |                                  ^ unclosed delimiter
+5496 |         );
+     |         ^ mismatched closing delimiter
+
+error: expected type, found `42`
+    --> src/ser.rs:5170:14
+     |
+5170 |   "integer": 42,
+     |            - ^^ expected type
+     |            |
+     |            tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected `;`, found `";
+               let rug_fuzz_1 = 42;
+               let rug_fuzz_2 = "float`
+    --> src/ser.rs:5189:34
+     |
+5189 |           let rug_fuzz_0 = "integer";
+     |                                    ^ help: add `;` here
+     |  __________________________________|
+     | |
+5190 | |         let rug_fuzz_1 = 42;
+5191 | |         let rug_fuzz_2 = "float";
+     | |_______________________________- unexpected token
+
+error: expected `;`, found `";
+               let rug_fuzz_3 = 3.14;
+               let rug_fuzz_4 = "boolean`
+    --> src/ser.rs:5191:32
+     |
+5191 |           let rug_fuzz_2 = "float";
+     |                                  ^ help: add `;` here
+     |  ________________________________|
+     | |
+5192 | |         let rug_fuzz_3 = 3.14;
+5193 | |         let rug_fuzz_4 = "boolean";
+     | |_________________________________- unexpected token
+
+error: expected `;`, found `";
+               let rug_fuzz_5 = true;
+               let rug_fuzz_6 = "text`
+    --> src/ser.rs:5193:34
+     |
+5193 |           let rug_fuzz_4 = "boolean";
+     |                                    ^ help: add `;` here
+     |  __________________________________|
+     | |
+5194 | |         let rug_fuzz_5 = true;
+5195 | |         let rug_fuzz_6 = "text";
+     | |______________________________- unexpected token
+
+error: expected `;`, found `";
+               let rug_fuzz_7 = "example`
+    --> src/ser.rs:5195:31
+     |
+5195 |           let rug_fuzz_6 = "text";
+     |                                 ^ help: add `;` here
+     |  _______________________________|
+     | |
+5196 | |         let rug_fuzz_7 = "example";
+     | |_________________________________- unexpected token
+
+error: expected `;`, found `";
+               let rug_fuzz_8 = r#"`
+    --> src/ser.rs:5196:34
+     |
+5196 |           let rug_fuzz_7 = "example";
+     |                                    ^ help: add `;` here
+     |  __________________________________|
+     | |
+5197 | |         let rug_fuzz_8 = r#"{
+     | |____________________________- unexpected token
+
+error: expected `;`, found `{`
+    --> src/ser.rs:5197:29
+     |
+5197 |         let rug_fuzz_8 = r#"{
+     |                             ^
+     |                             |
+     |                             unexpected token
+     |                             help: add `;` here
+
+error: expected identifier, found keyword `true`
+    --> src/ser.rs:5198:14
+     |
+5198 |   "boolean": true,
+     |              ^^^^ expected identifier, found keyword
+     |
+help: escape `true` to use it as an identifier
+     |
+5198 |   "boolean": r#true,
+     |              ++
+
+error: expected type, found keyword `true`
+    --> src/ser.rs:5198:14
+     |
+5198 |   "boolean": true,
+     |            - ^^^^ expected type
+     |            |
+     |            tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected `;`, found `";
+               let rug_fuzz_1 = 42;
+               let rug_fuzz_2 = "float`
+    --> src/ser.rs:5216:34
+     |
+5216 |           let rug_fuzz_0 = "integer";
+     |                                    ^ help: add `;` here
+     |  __________________________________|
+     | |
+5217 | |         let rug_fuzz_1 = 42;
+5218 | |         let rug_fuzz_2 = "float";
+     | |_______________________________- unexpected token
+
+error: expected `;`, found `";
+               let rug_fuzz_3 = 3.14;
+               let rug_fuzz_4 = "boolean`
+    --> src/ser.rs:5218:32
+     |
+5218 |           let rug_fuzz_2 = "float";
+     |                                  ^ help: add `;` here
+     |  ________________________________|
+     | |
+5219 | |         let rug_fuzz_3 = 3.14;
+5220 | |         let rug_fuzz_4 = "boolean";
+     | |_________________________________- unexpected token
+
+error: expected `;`, found `";
+               let rug_fuzz_5 = true;
+               let rug_fuzz_6 = "text`
+    --> src/ser.rs:5220:34
+     |
+5220 |           let rug_fuzz_4 = "boolean";
+     |                                    ^ help: add `;` here
+     |  __________________________________|
+     | |
+5221 | |         let rug_fuzz_5 = true;
+5222 | |         let rug_fuzz_6 = "text";
+     | |______________________________- unexpected token
+
+error: expected `;`, found `";
+               let rug_fuzz_7 = "example`
+    --> src/ser.rs:5222:31
+     |
+5222 |           let rug_fuzz_6 = "text";
+     |                                 ^ help: add `;` here
+     |  _______________________________|
+     | |
+5223 | |         let rug_fuzz_7 = "example";
+     | |_________________________________- unexpected token
+
+error: expected `;`, found `";
+               let rug_fuzz_8 = r#"`
+    --> src/ser.rs:5223:34
+     |
+5223 |           let rug_fuzz_7 = "example";
+     |                                    ^ help: add `;` here
+     |  __________________________________|
+     | |
+5224 | |         let rug_fuzz_8 = r#"{
+     | |____________________________- unexpected token
+
+error: expected `;`, found `{`
+    --> src/ser.rs:5224:29
+     |
+5224 |         let rug_fuzz_8 = r#"{
+     |                             ^
+     |                             |
+     |                             unexpected token
+     |                             help: add `;` here
+
+error: expected identifier, found keyword `true`
+    --> src/ser.rs:5225:14
+     |
+5225 |   "boolean": true,
+     |              ^^^^ expected identifier, found keyword
+     |
+help: escape `true` to use it as an identifier
+     |
+5225 |   "boolean": r#true,
+     |              ++
+
+error: expected type, found keyword `true`
+    --> src/ser.rs:5225:14
+     |
+5225 |   "boolean": true,
+     |            - ^^^^ expected type
+     |            |
+     |            tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected `;`, found `{`
+    --> src/ser.rs:5268:39
+     |
+5268 |         debug_assert_eq!(json_str, r#"{"x":1,"y":2,"z":3}"#);
+     |                                       ^
+     |                                       |
+     |                                       unexpected token
+     |                                       help: add `;` here
+
+error: expected type, found `1`
+    --> src/ser.rs:5268:44
+     |
+5268 |         debug_assert_eq!(json_str, r#"{"x":1,"y":2,"z":3}"#);
+     |                                           -^ expected type
+     |                                           |
+     |                                           tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected `;`, found `42`
+    --> src/ser.rs:5278:37
+     |
+5278 |         debug_assert_eq!(json_str, "42");
+     |                                     ^-
+     |                                     |
+     |                                     unexpected token
+     |                                     help: add `;` here
+
+error: expected one of `.`, `;`, `?`, `}`, or an operator, found `");
+               let _rug_ed_tests_llm_16_600_rrrruuuugggg_test_to_vec_number = 0;
+           }
+           #[test]
+           fn test_to_vec_map() {
+               let _rug_st_tests_llm_16_600_rrrruuuugggg_test_to_vec_map = 0;
+               let rug_fuzz_0 = "key1`
+    --> src/ser.rs:5278:39
+     |
+5278 |           debug_assert_eq!(json_str, "42");
+     |                                         ^ expected one of `.`, `;`, `?`, `}`, or an operator
+     |  _______________________________________|
+     | |
+5279 | |         let _rug_ed_tests_llm_16_600_rrrruuuugggg_test_to_vec_number = 0;
+5280 | |     }
+5281 | |     #[test]
+5282 | |     fn test_to_vec_map() {
+5283 | |         let _rug_st_tests_llm_16_600_rrrruuuugggg_test_to_vec_map = 0;
+5284 | |         let rug_fuzz_0 = "key1";
+     | |______________________________^ unexpected token
+
+error: could not compile `serde_json` due to 24 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `serde_json` due to 24 previous errors
+
+err tests_llm_16_599 test_to_string_pretty_map
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error: unknown start of token: \
+    --> src/ser.rs:5491:35
+     |
+5491 |             writer.to_string(), "{\n  \"age\": 30,\n  \"name\": \"John Doe\"\n}"
+     |                                   ^
+
+error: unknown start of token: \
+    --> src/ser.rs:5491:39
+     |
+5491 |             writer.to_string(), "{\n  \"age\": 30,\n  \"name\": \"John Doe\"\n}"
+     |                                       ^
+
+error: mismatched closing delimiter: `)`
+    --> src/ser.rs:5491:34
+     |
+5191 |         .for_each(|rug_data| {
+     |                  - closing delimiter possibly meant for this
+...
+5491 |             writer.to_string(), "{\n  \"age\": 30,\n  \"name\": \"John Doe\"\n}"
+     |                                  ^ unclosed delimiter
+5492 |         );
+     |         ^ mismatched closing delimiter
+
+error: expected identifier, found keyword `true`
+    --> src/ser.rs:5194:14
+     |
+5194 |   "boolean": true,
+     |              ^^^^ expected identifier, found keyword
+     |
+help: escape `true` to use it as an identifier
+     |
+5194 |   "boolean": r#true,
+     |              ++
+
+error: expected type, found keyword `true`
+    --> src/ser.rs:5194:14
+     |
+5194 |   "boolean": true,
+     |            - ^^^^ expected type
+     |            |
+     |            tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected `;`, found `";
+               let rug_fuzz_1 = 42;
+               let rug_fuzz_2 = "float`
+    --> src/ser.rs:5212:34
+     |
+5212 |           let rug_fuzz_0 = "integer";
+     |                                    ^ help: add `;` here
+     |  __________________________________|
+     | |
+5213 | |         let rug_fuzz_1 = 42;
+5214 | |         let rug_fuzz_2 = "float";
+     | |_______________________________- unexpected token
+
+error: expected `;`, found `";
+               let rug_fuzz_3 = 3.14;
+               let rug_fuzz_4 = "boolean`
+    --> src/ser.rs:5214:32
+     |
+5214 |           let rug_fuzz_2 = "float";
+     |                                  ^ help: add `;` here
+     |  ________________________________|
+     | |
+5215 | |         let rug_fuzz_3 = 3.14;
+5216 | |         let rug_fuzz_4 = "boolean";
+     | |_________________________________- unexpected token
+
+error: expected `;`, found `";
+               let rug_fuzz_5 = true;
+               let rug_fuzz_6 = "text`
+    --> src/ser.rs:5216:34
+     |
+5216 |           let rug_fuzz_4 = "boolean";
+     |                                    ^ help: add `;` here
+     |  __________________________________|
+     | |
+5217 | |         let rug_fuzz_5 = true;
+5218 | |         let rug_fuzz_6 = "text";
+     | |______________________________- unexpected token
+
+error: expected `;`, found `";
+               let rug_fuzz_7 = "example`
+    --> src/ser.rs:5218:31
+     |
+5218 |           let rug_fuzz_6 = "text";
+     |                                 ^ help: add `;` here
+     |  _______________________________|
+     | |
+5219 | |         let rug_fuzz_7 = "example";
+     | |_________________________________- unexpected token
+
+error: expected `;`, found `";
+               let rug_fuzz_8 = r#"`
+    --> src/ser.rs:5219:34
+     |
+5219 |           let rug_fuzz_7 = "example";
+     |                                    ^ help: add `;` here
+     |  __________________________________|
+     | |
+5220 | |         let rug_fuzz_8 = r#"{
+     | |____________________________- unexpected token
+
+error: expected `;`, found `{`
+    --> src/ser.rs:5220:29
+     |
+5220 |         let rug_fuzz_8 = r#"{
+     |                             ^
+     |                             |
+     |                             unexpected token
+     |                             help: add `;` here
+
+error: expected identifier, found keyword `true`
+    --> src/ser.rs:5221:14
+     |
+5221 |   "boolean": true,
+     |              ^^^^ expected identifier, found keyword
+     |
+help: escape `true` to use it as an identifier
+     |
+5221 |   "boolean": r#true,
+     |              ++
+
+error: expected type, found keyword `true`
+    --> src/ser.rs:5221:14
+     |
+5221 |   "boolean": true,
+     |            - ^^^^ expected type
+     |            |
+     |            tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected `;`, found `{`
+    --> src/ser.rs:5264:39
+     |
+5264 |         debug_assert_eq!(json_str, r#"{"x":1,"y":2,"z":3}"#);
+     |                                       ^
+     |                                       |
+     |                                       unexpected token
+     |                                       help: add `;` here
+
+error: expected type, found `1`
+    --> src/ser.rs:5264:44
+     |
+5264 |         debug_assert_eq!(json_str, r#"{"x":1,"y":2,"z":3}"#);
+     |                                           -^ expected type
+     |                                           |
+     |                                           tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected `;`, found `42`
+    --> src/ser.rs:5274:37
+     |
+5274 |         debug_assert_eq!(json_str, "42");
+     |                                     ^-
+     |                                     |
+     |                                     unexpected token
+     |                                     help: add `;` here
+
+error: expected one of `.`, `;`, `?`, `}`, or an operator, found `");
+               let _rug_ed_tests_llm_16_600_rrrruuuugggg_test_to_vec_number = 0;
+           }
+           #[test]
+           fn test_to_vec_map() {
+               let _rug_st_tests_llm_16_600_rrrruuuugggg_test_to_vec_map = 0;
+               let rug_fuzz_0 = "key1`
+    --> src/ser.rs:5274:39
+     |
+5274 |           debug_assert_eq!(json_str, "42");
+     |                                         ^ expected one of `.`, `;`, `?`, `}`, or an operator
+     |  _______________________________________|
+     | |
+5275 | |         let _rug_ed_tests_llm_16_600_rrrruuuugggg_test_to_vec_number = 0;
+5276 | |     }
+5277 | |     #[test]
+5278 | |     fn test_to_vec_map() {
+5279 | |         let _rug_st_tests_llm_16_600_rrrruuuugggg_test_to_vec_map = 0;
+5280 | |         let rug_fuzz_0 = "key1";
+     | |______________________________^ unexpected token
+
+error: could not compile `serde_json` due to 17 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `serde_json` due to 17 previous errors
+
+err tests_llm_16_599 test_to_string_pretty_value
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error: unknown start of token: \
+    --> src/ser.rs:5491:35
+     |
+5491 |             writer.to_string(), "{\n  \"age\": 30,\n  \"name\": \"John Doe\"\n}"
+     |                                   ^
+
+error: unknown start of token: \
+    --> src/ser.rs:5491:39
+     |
+5491 |             writer.to_string(), "{\n  \"age\": 30,\n  \"name\": \"John Doe\"\n}"
+     |                                       ^
+
+error: mismatched closing delimiter: `)`
+    --> src/ser.rs:5491:34
+     |
+5218 |         .for_each(|rug_data| {
+     |                  - closing delimiter possibly meant for this
+...
+5491 |             writer.to_string(), "{\n  \"age\": 30,\n  \"name\": \"John Doe\"\n}"
+     |                                  ^ unclosed delimiter
+5492 |         );
+     |         ^ mismatched closing delimiter
+
+error: expected identifier, found keyword `true`
+    --> src/ser.rs:5221:14
+     |
+5221 |   "boolean": true,
+     |              ^^^^ expected identifier, found keyword
+     |
+help: escape `true` to use it as an identifier
+     |
+5221 |   "boolean": r#true,
+     |              ++
+
+error: expected type, found keyword `true`
+    --> src/ser.rs:5221:14
+     |
+5221 |   "boolean": true,
+     |            - ^^^^ expected type
+     |            |
+     |            tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected `;`, found `{`
+    --> src/ser.rs:5264:39
+     |
+5264 |         debug_assert_eq!(json_str, r#"{"x":1,"y":2,"z":3}"#);
+     |                                       ^
+     |                                       |
+     |                                       unexpected token
+     |                                       help: add `;` here
+
+error: expected type, found `1`
+    --> src/ser.rs:5264:44
+     |
+5264 |         debug_assert_eq!(json_str, r#"{"x":1,"y":2,"z":3}"#);
+     |                                           -^ expected type
+     |                                           |
+     |                                           tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected `;`, found `42`
+    --> src/ser.rs:5274:37
+     |
+5274 |         debug_assert_eq!(json_str, "42");
+     |                                     ^-
+     |                                     |
+     |                                     unexpected token
+     |                                     help: add `;` here
+
+error: expected one of `.`, `;`, `?`, `}`, or an operator, found `");
+               let _rug_ed_tests_llm_16_600_rrrruuuugggg_test_to_vec_number = 0;
+           }
+           #[test]
+           fn test_to_vec_map() {
+               let _rug_st_tests_llm_16_600_rrrruuuugggg_test_to_vec_map = 0;
+               let rug_fuzz_0 = "key1`
+    --> src/ser.rs:5274:39
+     |
+5274 |           debug_assert_eq!(json_str, "42");
+     |                                         ^ expected one of `.`, `;`, `?`, `}`, or an operator
+     |  _______________________________________|
+     | |
+5275 | |         let _rug_ed_tests_llm_16_600_rrrruuuugggg_test_to_vec_number = 0;
+5276 | |     }
+5277 | |     #[test]
+5278 | |     fn test_to_vec_map() {
+5279 | |         let _rug_st_tests_llm_16_600_rrrruuuugggg_test_to_vec_map = 0;
+5280 | |         let rug_fuzz_0 = "key1";
+     | |______________________________^ unexpected token
+
+error: could not compile `serde_json` due to 9 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `serde_json` due to 9 previous errors
+
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json/./src/read.rs
+err tests_llm_16_202 test_discard
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0425]: cannot find value `data` in this scope
+    --> src/read.rs:1405:38
+     |
+1405 |         let reader = io::Cursor::new(data);
+     |                                      ^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+
+err tests_llm_16_209 position_at_start
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0425]: cannot find value `data` in this scope
+    --> src/read.rs:1429:38
+     |
+1429 |         let reader = io::Cursor::new(data);
+     |                                      ^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+
+err tests_llm_16_209 position_after_one_line
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0425]: cannot find value `data` in this scope
+    --> src/read.rs:1441:38
+     |
+1441 |         let reader = io::Cursor::new(data);
+     |                                      ^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+
+err tests_llm_16_209 position_after_some_content
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0425]: cannot find value `data` in this scope
+    --> src/read.rs:1454:38
+     |
+1454 |         let reader = io::Cursor::new(data);
+     |                                      ^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+
+err tests_llm_16_209 position_across_multiple_lines
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0425]: cannot find value `data` in this scope
+    --> src/read.rs:1469:38
+     |
+1469 |         let reader = io::Cursor::new(data);
+     |                                      ^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+
+err tests_llm_16_212 test_byte_offset_at_start
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0425]: cannot find value `data` in this scope
+    --> src/read.rs:1566:38
+     |
+1566 |         let reader = SliceRead::new(&data[..]);
+     |                                      ^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+
+err tests_llm_16_212 test_byte_offset_after_read
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0425]: cannot find value `data` in this scope
+    --> src/read.rs:1575:42
+     |
+1575 |         let mut reader = SliceRead::new(&data[..]);
+     |                                          ^^^^ not found in this scope
+
+error[E0425]: cannot find value `data` in this scope
+    --> src/read.rs:1577:48
+     |
+1577 |         debug_assert_eq!(reader.byte_offset(), data.len());
+     |                                                ^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to 2 previous errors
+
+err tests_llm_16_212 test_byte_offset_after_partial_read
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0425]: cannot find value `data` in this scope
+    --> src/read.rs:1585:42
+     |
+1585 |         let mut reader = SliceRead::new(&data[..]);
+     |                                          ^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+
+err tests_llm_16_212 test_byte_offset_after_discard
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0425]: cannot find value `data` in this scope
+    --> src/read.rs:1596:42
+     |
+1596 |         let mut reader = SliceRead::new(&data[..]);
+     |                                          ^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+
+err tests_llm_16_214 discard_advances_index
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0425]: cannot find value `data` in this scope
+    --> src/read.rs:1612:41
+     |
+1612 |         let mut reader = SliceRead::new(data);
+     |                                         ^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+
+err tests_llm_16_214 discard_at_end_of_input
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0425]: cannot find value `data` in this scope
+    --> src/read.rs:1625:41
+     |
+1625 |         let mut reader = SliceRead::new(data);
+     |                                         ^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+
+err tests_llm_16_214 discard_multiple_times
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0425]: cannot find value `data` in this scope
+    --> src/read.rs:1636:41
+     |
+1636 |         let mut reader = SliceRead::new(data);
+     |                                         ^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+
+err tests_llm_16_219 test_peek_at_beginning
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0425]: cannot find value `data` in this scope
+    --> src/read.rs:1774:41
+     |
+1774 |         let mut reader = SliceRead::new(data);
+     |                                         ^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+
+err tests_llm_16_219 test_peek_at_end
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0425]: cannot find value `data` in this scope
+    --> src/read.rs:1799:41
+     |
+1799 |         let mut reader = SliceRead::new(data);
+     |                                         ^^^^ not found in this scope
+
+error[E0425]: cannot find value `data` in this scope
+    --> src/read.rs:1800:24
+     |
+1800 |         reader.index = data.len();
+     |                        ^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to 2 previous errors
+
+err tests_llm_16_225 slice_read_discard_empty_slice
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0425]: cannot find value `data` in this scope
+    --> src/read.rs:1987:45
+     |
+1987 |         let mut slice_read = SliceRead::new(data);
+     |                                             ^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+
+err tests_llm_16_225 slice_read_discard_non_empty_slice
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0425]: cannot find value `data` in this scope
+    --> src/read.rs:1998:45
+     |
+1998 |         let mut slice_read = SliceRead::new(data);
+     |                                             ^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+
+err tests_llm_16_547 position_of_index_at_end
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0425]: cannot find value `data` in this scope
+    --> src/read.rs:2332:37
+     |
+2332 |         let reader = SliceRead::new(data);
+     |                                     ^^^^ not found in this scope
+
+error[E0425]: cannot find value `data` in this scope
+    --> src/read.rs:2333:27
+     |
+2333 |         let data_length = data.len();
+     |                           ^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to 2 previous errors
+
+err tests_rug_310 test_rug
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0425]: cannot find value `json_str` in this scope
+    --> src/read.rs:2547:39
+     |
+2547 |         let mut p0 = de::StrRead::new(json_str);
+     |                                       ^^^^^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+
+err tests_rug_313 test_ignore_escape
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0425]: cannot find value `json_slice` in this scope
+    --> src/read.rs:2590:37
+     |
+2590 |         let mut p0 = SliceRead::new(json_slice);
+     |                                     ^^^^^^^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+
+err tests_rug_325 test_rug
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0425]: cannot find value `sample_data` in this scope
+    --> src/read.rs:2795:22
+     |
+2795 |         let mut p0 = sample_data;
+     |                      ^^^^^^^^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+
+err tests_rug_327 test_peek_position
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0425]: cannot find value `data` in this scope
+    --> src/read.rs:2810:37
+     |
+2810 |         let mut p0 = SliceRead::new(data);
+     |                                     ^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+
+err tests_rug_328 test_rug
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0425]: cannot find value `data` in this scope
+    --> src/read.rs:2825:37
+     |
+2825 |         let mut p0 = SliceRead::new(data);
+     |                                     ^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+
+err tests_rug_329 test_ignore_str
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0425]: cannot find value `data` in this scope
+    --> src/read.rs:2850:37
+     |
+2850 |         let mut p0 = SliceRead::new(data);
+     |                                     ^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+
+err tests_rug_330 test_rug
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0425]: cannot find value `rug_fuzz_3` in this scope
+    --> src/read.rs:2880:31
+     |
+2880 |         let incomplete_data = rug_fuzz_3;
+     |                               ^^^^^^^^^^ help: a local variable with a similar name exists: `rug_fuzz_0`
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+
+err tests_rug_335 test_rug
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0425]: cannot find value `json_slice` in this scope
+    --> src/read.rs:2980:48
+     |
+2980 |         let mut p0: SliceRead = SliceRead::new(json_slice);
+     |                                                ^^^^^^^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+
+err tests_rug_339 test_peek_position
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0425]: cannot find value `json_slice` in this scope
+    --> src/read.rs:3051:37
+     |
+3051 |         let mut p0 = SliceRead::new(json_slice);
+     |                                     ^^^^^^^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+
+err tests_rug_340 test_byte_offset
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0425]: cannot find value `json_slice` in this scope
+    --> src/read.rs:3065:37
+     |
+3065 |         let mut p0 = SliceRead::new(json_slice);
+     |                                     ^^^^^^^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+
+err tests_rug_342 test_parse_str_raw
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/json)
+error[E0425]: cannot find value `json_slice` in this scope
+    --> src/read.rs:3102:37
+     |
+3102 |         let mut p0 = SliceRead::new(json_slice);
+     |                                     ^^^^^^^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+
+done

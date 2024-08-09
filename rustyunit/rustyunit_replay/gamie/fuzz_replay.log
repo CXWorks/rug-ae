@@ -1,0 +1,14 @@
+gamie gamie . ['/mnt/sda/xiang/rustyunit/rustyunit_replay/gamie/./src/reversi.rs', '/mnt/sda/xiang/rustyunit/rustyunit_replay/gamie/./src/gomoku.rs', '/mnt/sda/xiang/rustyunit/rustyunit_replay/gamie/./src/minesweeper.rs', '/mnt/sda/xiang/rustyunit/rustyunit_replay/gamie/./src/connect_four.rs', '/mnt/sda/xiang/rustyunit/rustyunit_replay/gamie/./src/lib.rs', '/mnt/sda/xiang/rustyunit/rustyunit_replay/gamie/./src/tictactoe.rs']
+/mnt/sda/xiang/rustyunit/rustyunit_replay/gamie/./src/reversi.rs
+err tests_llm_16_66 test_place_end_game
+err tests_llm_16_69 test_winner_returns_none_when_game_tied
+err tests_llm_16_69 test_winner_returns_winner_player_when_game_won
+/mnt/sda/xiang/rustyunit/rustyunit_replay/gamie/./src/gomoku.rs
+err tests_llm_16_21 test_check_state_tie
+err tests_llm_16_31 test_winner_returns_none_when_game_is_tied
+/mnt/sda/xiang/rustyunit/rustyunit_replay/gamie/./src/minesweeper.rs
+/mnt/sda/xiang/rustyunit/rustyunit_replay/gamie/./src/connect_four.rs
+err tests_llm_16_11_llm_16_10 test_check_state
+/mnt/sda/xiang/rustyunit/rustyunit_replay/gamie/./src/lib.rs
+/mnt/sda/xiang/rustyunit/rustyunit_replay/gamie/./src/tictactoe.rs
+done

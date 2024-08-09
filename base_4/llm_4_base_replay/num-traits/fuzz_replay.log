@@ -1,0 +1,24 @@
+num-traits num-traits . ['/mnt/sda/xiang/llm4/llm_4_base_replay/num-traits/./src/bounds.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/num-traits/./src/sign.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/num-traits/./src/cast.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/num-traits/./src/macros.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/num-traits/./src/ops/inv.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/num-traits/./src/ops/wrapping.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/num-traits/./src/ops/overflowing.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/num-traits/./src/ops/saturating.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/num-traits/./src/ops/checked.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/num-traits/./src/ops/mod.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/num-traits/./src/ops/mul_add.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/num-traits/./src/ops/euclid.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/num-traits/./src/identities.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/num-traits/./src/real.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/num-traits/./src/int.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/num-traits/./src/pow.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/num-traits/./src/float.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/num-traits/./src/lib.rs']
+/mnt/sda/xiang/llm4/llm_4_base_replay/num-traits/./src/bounds.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/num-traits/./src/sign.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/num-traits/./src/cast.rs
+err tests_llm_16_850_llm_16_850 test_wrapping_cast_to_i32_from_usize
+/mnt/sda/xiang/llm4/llm_4_base_replay/num-traits/./src/macros.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/num-traits/./src/ops/inv.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/num-traits/./src/ops/wrapping.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/num-traits/./src/ops/overflowing.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/num-traits/./src/ops/saturating.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/num-traits/./src/ops/checked.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/num-traits/./src/ops/mod.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/num-traits/./src/ops/mul_add.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/num-traits/./src/ops/euclid.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/num-traits/./src/identities.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/num-traits/./src/real.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/num-traits/./src/int.rs
+err tests_llm_16_1937_llm_16_1937 test_pow
+/mnt/sda/xiang/llm4/llm_4_base_replay/num-traits/./src/pow.rs
+err tests_llm_16_1249_llm_16_1249 test_pow_isize
+err tests_llm_16_1878_llm_16_1878 u8_pow_u32
+/mnt/sda/xiang/llm4/llm_4_base_replay/num-traits/./src/float.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/num-traits/./src/lib.rs
+done

@@ -1,0 +1,6 @@
+err semver /mnt/sda/xiang/llm4_human/llm_hybrid/semver/./src/eval.rs tests_llm_16_26
+err semver /mnt/sda/xiang/llm4_human/llm_hybrid/semver/./src/identifier.rs tests_llm_16_2_llm_16_2
+err semver /mnt/sda/xiang/llm4_human/llm_hybrid/semver/./src/identifier.rs tests_llm_16_33_llm_16_33
+err semver /mnt/sda/xiang/llm4_human/llm_hybrid/semver/./src/identifier.rs tests_llm_16_39
+err semver /mnt/sda/xiang/llm4_human/llm_hybrid/semver/./src/display.rs tests_rug_1
+semver . 60 65 0

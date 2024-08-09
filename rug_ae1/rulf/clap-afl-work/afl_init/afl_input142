@@ -1,0 +1,1 @@
+my_app -h -V  --help --version --config  --opt [FILE] 'some arg'clap-test subcmd value -f -f --option=some

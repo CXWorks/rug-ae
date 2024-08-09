@@ -1,0 +1,918 @@
+   Compiling gamie v0.7.0 (/Users/tim/Documents/master-thesis/evaluation/gamie/rusty-unit-18)
+[2022-05-24T11:45:08Z INFO  instrumentation] MAIN: Instrumenting crate gamie
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:155 ~ gamie[8d2e]::minesweeper::{impl#1}::new)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:157 ~ gamie[8d2e]::minesweeper::{impl#1}::randomize)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:349 ~ gamie[8d2e]::connect_four::{impl#6}::clone)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:412 ~ gamie[8d2e]::connect_four::{impl#8}::clone)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:417 ~ gamie[8d2e]::connect_four::{impl#11}::assert_receiver_is_total_eq)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:421 ~ gamie[8d2e]::connect_four::{impl#13}::eq)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:422 ~ gamie[8d2e]::connect_four::{impl#13}::ne)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:480 ~ gamie[8d2e]::connect_four::{impl#14}::clone)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:486 ~ gamie[8d2e]::connect_four::{impl#18}::assert_receiver_is_total_eq)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:489 ~ gamie[8d2e]::connect_four::{impl#20}::eq)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:541 ~ gamie[8d2e]::connect_four::{impl#21}::clone)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:546 ~ gamie[8d2e]::connect_four::{impl#24}::assert_receiver_is_total_eq)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:549 ~ gamie[8d2e]::connect_four::{impl#26}::eq)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:550 ~ gamie[8d2e]::connect_four::{impl#26}::ne)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:611 ~ gamie[8d2e]::connect_four::{impl#29}::assert_receiver_is_total_eq)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:614 ~ gamie[8d2e]::connect_four::{impl#31}::eq)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:617 ~ gamie[8d2e]::connect_four::{impl#32}::fail)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:624 ~ gamie[8d2e]::connect_four::{impl#34}::fail)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:631 ~ gamie[8d2e]::connect_four::{impl#36}::fail)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:656 ~ gamie[8d2e]::connect_four::{impl#43}::clone)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:663 ~ gamie[8d2e]::connect_four::{impl#46}::clone)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:670 ~ gamie[8d2e]::connect_four::{impl#49}::clone)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:678 ~ gamie[8d2e]::gomoku::{impl#2}::clone)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:745 ~ gamie[8d2e]::gomoku::{impl#4}::clone)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:751 ~ gamie[8d2e]::gomoku::{impl#8}::assert_receiver_is_total_eq)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:754 ~ gamie[8d2e]::gomoku::{impl#10}::eq)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:806 ~ gamie[8d2e]::gomoku::{impl#11}::clone)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:811 ~ gamie[8d2e]::gomoku::{impl#14}::assert_receiver_is_total_eq)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:814 ~ gamie[8d2e]::gomoku::{impl#16}::eq)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:815 ~ gamie[8d2e]::gomoku::{impl#16}::ne)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:876 ~ gamie[8d2e]::gomoku::{impl#19}::assert_receiver_is_total_eq)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:879 ~ gamie[8d2e]::gomoku::{impl#21}::eq)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:882 ~ gamie[8d2e]::gomoku::{impl#22}::fail)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:889 ~ gamie[8d2e]::gomoku::{impl#24}::fail)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:896 ~ gamie[8d2e]::gomoku::{impl#26}::fail)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:921 ~ gamie[8d2e]::gomoku::{impl#33}::clone)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:928 ~ gamie[8d2e]::gomoku::{impl#36}::clone)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:935 ~ gamie[8d2e]::gomoku::{impl#39}::clone)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:943 ~ gamie[8d2e]::minesweeper::{impl#4}::clone)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1005 ~ gamie[8d2e]::minesweeper::{impl#6}::clone)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1011 ~ gamie[8d2e]::minesweeper::{impl#10}::assert_receiver_is_total_eq)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1014 ~ gamie[8d2e]::minesweeper::{impl#12}::eq)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1015 ~ gamie[8d2e]::minesweeper::{impl#12}::ne)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1075 ~ gamie[8d2e]::minesweeper::{impl#13}::clone)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1080 ~ gamie[8d2e]::minesweeper::{impl#16}::assert_receiver_is_total_eq)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1083 ~ gamie[8d2e]::minesweeper::{impl#18}::eq)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1084 ~ gamie[8d2e]::minesweeper::{impl#18}::ne)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1147 ~ gamie[8d2e]::minesweeper::{impl#19}::clone)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1153 ~ gamie[8d2e]::minesweeper::{impl#22}::assert_receiver_is_total_eq)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1156 ~ gamie[8d2e]::minesweeper::{impl#24}::eq)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1159 ~ gamie[8d2e]::minesweeper::{impl#25}::fail)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1166 ~ gamie[8d2e]::minesweeper::{impl#27}::fail)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1173 ~ gamie[8d2e]::minesweeper::{impl#29}::fail)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1180 ~ gamie[8d2e]::minesweeper::{impl#31}::fail)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1205 ~ gamie[8d2e]::minesweeper::{impl#38}::clone)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1212 ~ gamie[8d2e]::minesweeper::{impl#41}::clone)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1219 ~ gamie[8d2e]::minesweeper::{impl#44}::clone)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1226 ~ gamie[8d2e]::minesweeper::{impl#47}::clone)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1236 ~ gamie[8d2e]::reversi::{impl#3}::clone)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1303 ~ gamie[8d2e]::reversi::{impl#5}::clone)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1309 ~ gamie[8d2e]::reversi::{impl#9}::assert_receiver_is_total_eq)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1312 ~ gamie[8d2e]::reversi::{impl#11}::eq)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1364 ~ gamie[8d2e]::reversi::{impl#12}::clone)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1369 ~ gamie[8d2e]::reversi::{impl#15}::assert_receiver_is_total_eq)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1372 ~ gamie[8d2e]::reversi::{impl#17}::eq)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1373 ~ gamie[8d2e]::reversi::{impl#17}::ne)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1447 ~ gamie[8d2e]::reversi::{impl#18}::clone)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1453 ~ gamie[8d2e]::reversi::{impl#22}::eq)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1459 ~ gamie[8d2e]::reversi::{impl#25}::assert_receiver_is_total_eq)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1462 ~ gamie[8d2e]::reversi::{impl#27}::eq)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1465 ~ gamie[8d2e]::reversi::{impl#28}::fail)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1472 ~ gamie[8d2e]::reversi::{impl#30}::fail)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1479 ~ gamie[8d2e]::reversi::{impl#32}::fail)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1486 ~ gamie[8d2e]::reversi::{impl#34}::fail)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1511 ~ gamie[8d2e]::reversi::{impl#41}::clone)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1518 ~ gamie[8d2e]::reversi::{impl#44}::clone)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1525 ~ gamie[8d2e]::reversi::{impl#47}::clone)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1532 ~ gamie[8d2e]::reversi::{impl#50}::clone)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1542 ~ gamie[8d2e]::tictactoe::{impl#2}::clone)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1609 ~ gamie[8d2e]::tictactoe::{impl#4}::clone)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1615 ~ gamie[8d2e]::tictactoe::{impl#8}::assert_receiver_is_total_eq)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1618 ~ gamie[8d2e]::tictactoe::{impl#10}::eq)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1670 ~ gamie[8d2e]::tictactoe::{impl#11}::clone)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1675 ~ gamie[8d2e]::tictactoe::{impl#14}::assert_receiver_is_total_eq)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1678 ~ gamie[8d2e]::tictactoe::{impl#16}::eq)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1679 ~ gamie[8d2e]::tictactoe::{impl#16}::ne)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1740 ~ gamie[8d2e]::tictactoe::{impl#19}::assert_receiver_is_total_eq)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1743 ~ gamie[8d2e]::tictactoe::{impl#21}::eq)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1746 ~ gamie[8d2e]::tictactoe::{impl#22}::fail)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1753 ~ gamie[8d2e]::tictactoe::{impl#24}::fail)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1760 ~ gamie[8d2e]::tictactoe::{impl#26}::fail)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1785 ~ gamie[8d2e]::tictactoe::{impl#33}::clone)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1792 ~ gamie[8d2e]::tictactoe::{impl#36}::clone)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1799 ~ gamie[8d2e]::tictactoe::{impl#39}::clone)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:553 ~ gamie[8d2e]::connect_four::GameState::Win::{constructor#0})
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:818 ~ gamie[8d2e]::gomoku::GameState::Win::{constructor#0})
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1089 ~ gamie[8d2e]::minesweeper::GameState::Exploded::{constructor#0})
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1376 ~ gamie[8d2e]::reversi::GameState::Win::{constructor#0})
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1682 ~ gamie[8d2e]::tictactoe::GameState::Win::{constructor#0})
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:34 ~ gamie[8d2e]::connect_four::{impl#1}::default)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:38 ~ gamie[8d2e]::connect_four::{impl#2}::index)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:40 ~ gamie[8d2e]::connect_four::{impl#3}::index_mut)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:42 ~ gamie[8d2e]::connect_four::{impl#4}::other)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:44 ~ gamie[8d2e]::connect_four::{impl#5}::new)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:45 ~ gamie[8d2e]::connect_four::{impl#5}::get)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:46 ~ gamie[8d2e]::connect_four::{impl#5}::is_ended)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:47 ~ gamie[8d2e]::connect_four::{impl#5}::winner)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:48 ~ gamie[8d2e]::connect_four::{impl#5}::status)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:49 ~ gamie[8d2e]::connect_four::{impl#5}::get_next_player)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:50 ~ gamie[8d2e]::connect_four::{impl#5}::put)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:31 ~ gamie[8d2e]::connect_four::{impl#0}::is_full)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:32 ~ gamie[8d2e]::connect_four::{impl#0}::push)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:51 ~ gamie[8d2e]::connect_four::{impl#5}::check_state)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:54 ~ gamie[8d2e]::connect_four::{impl#5}::get_connectable)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:91 ~ gamie[8d2e]::gomoku::{impl#0}::other)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:93 ~ gamie[8d2e]::gomoku::{impl#1}::new)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:96 ~ gamie[8d2e]::gomoku::{impl#1}::get)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:97 ~ gamie[8d2e]::gomoku::{impl#1}::is_ended)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:98 ~ gamie[8d2e]::gomoku::{impl#1}::winner)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:99 ~ gamie[8d2e]::gomoku::{impl#1}::status)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:100 ~ gamie[8d2e]::gomoku::{impl#1}::get_next_player)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:101 ~ gamie[8d2e]::gomoku::{impl#1}::place)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:102 ~ gamie[8d2e]::gomoku::{impl#1}::check_state)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:105 ~ gamie[8d2e]::gomoku::{impl#1}::get_connectable)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:153 ~ gamie[8d2e]::minesweeper::{impl#0}::new)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:159 ~ gamie[8d2e]::minesweeper::{impl#1}::get)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:160 ~ gamie[8d2e]::minesweeper::{impl#1}::is_ended)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:161 ~ gamie[8d2e]::minesweeper::{impl#1}::status)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:162 ~ gamie[8d2e]::minesweeper::{impl#1}::click)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:164 ~ gamie[8d2e]::minesweeper::{impl#1}::click_unrevealed)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:170 ~ gamie[8d2e]::minesweeper::{impl#1}::reveal_from)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:176 ~ gamie[8d2e]::minesweeper::{impl#1}::get_adjacent_cells)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:183 ~ gamie[8d2e]::minesweeper::{impl#3}::new)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:179 ~ gamie[8d2e]::minesweeper::{impl#2}::next)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:171 ~ gamie[8d2e]::minesweeper::{impl#1}::check_state)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:165 ~ gamie[8d2e]::minesweeper::{impl#1}::click_revealed)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:163 ~ gamie[8d2e]::minesweeper::{impl#1}::toggle_flag)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:174 ~ gamie[8d2e]::minesweeper::{impl#1}::update_around_mine_count)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:206 ~ gamie[8d2e]::reversi::{impl#0}::other)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:208 ~ gamie[8d2e]::reversi::{impl#1}::new)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:211 ~ gamie[8d2e]::reversi::{impl#1}::get)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:212 ~ gamie[8d2e]::reversi::{impl#1}::is_ended)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:213 ~ gamie[8d2e]::reversi::{impl#1}::winner)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:214 ~ gamie[8d2e]::reversi::{impl#1}::status)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:215 ~ gamie[8d2e]::reversi::{impl#1}::get_next_player)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:216 ~ gamie[8d2e]::reversi::{impl#1}::place)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:220 ~ gamie[8d2e]::reversi::{impl#1}::simple_check_position_validity)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:233 ~ gamie[8d2e]::reversi::{impl#2}::iter)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:226 ~ gamie[8d2e]::reversi::{impl#1}::check_occupied_line_in_direction)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:227 ~ gamie[8d2e]::reversi::{impl#1}::iter_positions_in_direction_from)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:232 ~ gamie[8d2e]::reversi::{impl#2}::as_offset)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:223 ~ gamie[8d2e]::reversi::{impl#1}::flip)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:221 ~ gamie[8d2e]::reversi::{impl#1}::can_player_move)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:217 ~ gamie[8d2e]::reversi::{impl#1}::check_position_validity)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:222 ~ gamie[8d2e]::reversi::{impl#1}::check_state)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:250 ~ gamie[8d2e]::tictactoe::{impl#0}::other)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:252 ~ gamie[8d2e]::tictactoe::{impl#1}::new)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:255 ~ gamie[8d2e]::tictactoe::{impl#1}::get)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:256 ~ gamie[8d2e]::tictactoe::{impl#1}::is_ended)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:257 ~ gamie[8d2e]::tictactoe::{impl#1}::winner)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:258 ~ gamie[8d2e]::tictactoe::{impl#1}::status)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:259 ~ gamie[8d2e]::tictactoe::{impl#1}::get_next_player)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:260 ~ gamie[8d2e]::tictactoe::{impl#1}::place)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:261 ~ gamie[8d2e]::tictactoe::{impl#1}::check_state)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:351 ~ gamie[8d2e]::connect_four::{impl#7}::fmt)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:414 ~ gamie[8d2e]::connect_four::{impl#9}::fmt)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:483 ~ gamie[8d2e]::connect_four::{impl#16}::fmt)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:543 ~ gamie[8d2e]::connect_four::{impl#22}::fmt)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:608 ~ gamie[8d2e]::connect_four::{impl#27}::fmt)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:621 ~ gamie[8d2e]::connect_four::{impl#33}::into_error)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:628 ~ gamie[8d2e]::connect_four::{impl#35}::into_error)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:635 ~ gamie[8d2e]::connect_four::{impl#37}::into_error)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:637 ~ gamie[8d2e]::connect_four::{impl#38}::fmt)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:639 ~ gamie[8d2e]::connect_four::{impl#39}::description)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:640 ~ gamie[8d2e]::connect_four::{impl#39}::cause)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:644 ~ gamie[8d2e]::connect_four::{impl#39}::source)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:649 ~ gamie[8d2e]::connect_four::{impl#40}::backtrace)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:653 ~ gamie[8d2e]::connect_four::{impl#41}::fmt)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:660 ~ gamie[8d2e]::connect_four::{impl#44}::fmt)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:667 ~ gamie[8d2e]::connect_four::{impl#47}::fmt)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:680 ~ gamie[8d2e]::gomoku::{impl#3}::fmt)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:748 ~ gamie[8d2e]::gomoku::{impl#6}::fmt)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:808 ~ gamie[8d2e]::gomoku::{impl#12}::fmt)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:873 ~ gamie[8d2e]::gomoku::{impl#17}::fmt)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:886 ~ gamie[8d2e]::gomoku::{impl#23}::into_error)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:893 ~ gamie[8d2e]::gomoku::{impl#25}::into_error)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:900 ~ gamie[8d2e]::gomoku::{impl#27}::into_error)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:902 ~ gamie[8d2e]::gomoku::{impl#28}::fmt)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:904 ~ gamie[8d2e]::gomoku::{impl#29}::description)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:905 ~ gamie[8d2e]::gomoku::{impl#29}::cause)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:909 ~ gamie[8d2e]::gomoku::{impl#29}::source)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:914 ~ gamie[8d2e]::gomoku::{impl#30}::backtrace)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:918 ~ gamie[8d2e]::gomoku::{impl#31}::fmt)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:925 ~ gamie[8d2e]::gomoku::{impl#34}::fmt)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:932 ~ gamie[8d2e]::gomoku::{impl#37}::fmt)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:945 ~ gamie[8d2e]::minesweeper::{impl#5}::fmt)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1008 ~ gamie[8d2e]::minesweeper::{impl#8}::fmt)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1077 ~ gamie[8d2e]::minesweeper::{impl#14}::fmt)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1150 ~ gamie[8d2e]::minesweeper::{impl#20}::fmt)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1163 ~ gamie[8d2e]::minesweeper::{impl#26}::into_error)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1170 ~ gamie[8d2e]::minesweeper::{impl#28}::into_error)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1177 ~ gamie[8d2e]::minesweeper::{impl#30}::into_error)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1184 ~ gamie[8d2e]::minesweeper::{impl#32}::into_error)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1186 ~ gamie[8d2e]::minesweeper::{impl#33}::fmt)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1188 ~ gamie[8d2e]::minesweeper::{impl#34}::description)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1189 ~ gamie[8d2e]::minesweeper::{impl#34}::cause)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1193 ~ gamie[8d2e]::minesweeper::{impl#34}::source)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1198 ~ gamie[8d2e]::minesweeper::{impl#35}::backtrace)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1202 ~ gamie[8d2e]::minesweeper::{impl#36}::fmt)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1209 ~ gamie[8d2e]::minesweeper::{impl#39}::fmt)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1216 ~ gamie[8d2e]::minesweeper::{impl#42}::fmt)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1223 ~ gamie[8d2e]::minesweeper::{impl#45}::fmt)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1238 ~ gamie[8d2e]::reversi::{impl#4}::fmt)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1306 ~ gamie[8d2e]::reversi::{impl#7}::fmt)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1366 ~ gamie[8d2e]::reversi::{impl#13}::fmt)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1450 ~ gamie[8d2e]::reversi::{impl#20}::fmt)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1456 ~ gamie[8d2e]::reversi::{impl#23}::fmt)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1469 ~ gamie[8d2e]::reversi::{impl#29}::into_error)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1476 ~ gamie[8d2e]::reversi::{impl#31}::into_error)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1483 ~ gamie[8d2e]::reversi::{impl#33}::into_error)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1490 ~ gamie[8d2e]::reversi::{impl#35}::into_error)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1492 ~ gamie[8d2e]::reversi::{impl#36}::fmt)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1494 ~ gamie[8d2e]::reversi::{impl#37}::description)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1495 ~ gamie[8d2e]::reversi::{impl#37}::cause)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1499 ~ gamie[8d2e]::reversi::{impl#37}::source)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1504 ~ gamie[8d2e]::reversi::{impl#38}::backtrace)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1508 ~ gamie[8d2e]::reversi::{impl#39}::fmt)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1515 ~ gamie[8d2e]::reversi::{impl#42}::fmt)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1522 ~ gamie[8d2e]::reversi::{impl#45}::fmt)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1529 ~ gamie[8d2e]::reversi::{impl#48}::fmt)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1544 ~ gamie[8d2e]::tictactoe::{impl#3}::fmt)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1612 ~ gamie[8d2e]::tictactoe::{impl#6}::fmt)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1672 ~ gamie[8d2e]::tictactoe::{impl#12}::fmt)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1737 ~ gamie[8d2e]::tictactoe::{impl#17}::fmt)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1750 ~ gamie[8d2e]::tictactoe::{impl#23}::into_error)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1757 ~ gamie[8d2e]::tictactoe::{impl#25}::into_error)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1764 ~ gamie[8d2e]::tictactoe::{impl#27}::into_error)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1766 ~ gamie[8d2e]::tictactoe::{impl#28}::fmt)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1768 ~ gamie[8d2e]::tictactoe::{impl#29}::description)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1769 ~ gamie[8d2e]::tictactoe::{impl#29}::cause)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1773 ~ gamie[8d2e]::tictactoe::{impl#29}::source)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1778 ~ gamie[8d2e]::tictactoe::{impl#30}::backtrace)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1782 ~ gamie[8d2e]::tictactoe::{impl#31}::fmt)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1789 ~ gamie[8d2e]::tictactoe::{impl#34}::fmt)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1796 ~ gamie[8d2e]::tictactoe::{impl#37}::fmt)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:616 ~ gamie[8d2e]::connect_four::{impl#32}::build)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:623 ~ gamie[8d2e]::connect_four::{impl#34}::build)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:630 ~ gamie[8d2e]::connect_four::{impl#36}::build)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:881 ~ gamie[8d2e]::gomoku::{impl#22}::build)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:888 ~ gamie[8d2e]::gomoku::{impl#24}::build)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:895 ~ gamie[8d2e]::gomoku::{impl#26}::build)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1158 ~ gamie[8d2e]::minesweeper::{impl#25}::build)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1165 ~ gamie[8d2e]::minesweeper::{impl#27}::build)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1172 ~ gamie[8d2e]::minesweeper::{impl#29}::build)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1179 ~ gamie[8d2e]::minesweeper::{impl#31}::build)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1464 ~ gamie[8d2e]::reversi::{impl#28}::build)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1471 ~ gamie[8d2e]::reversi::{impl#30}::build)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1478 ~ gamie[8d2e]::reversi::{impl#32}::build)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1485 ~ gamie[8d2e]::reversi::{impl#34}::build)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1745 ~ gamie[8d2e]::tictactoe::{impl#22}::build)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1752 ~ gamie[8d2e]::tictactoe::{impl#24}::build)
+[2022-05-24T11:45:08Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1759 ~ gamie[8d2e]::tictactoe::{impl#26}::build)
+[2022-05-24T11:45:08Z INFO  instrumentation] MAIN: Instrumenting crate gamie
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:44 ~ gamie[cbc2]::connect_four::{impl#5}::new)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:34 ~ gamie[cbc2]::connect_four::{impl#1}::default)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:50 ~ gamie[cbc2]::connect_four::{impl#5}::put)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:46 ~ gamie[cbc2]::connect_four::{impl#5}::is_ended)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:614 ~ gamie[cbc2]::connect_four::{impl#26}::ne)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:553 ~ gamie[cbc2]::connect_four::{impl#20}::eq)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:31 ~ gamie[cbc2]::connect_four::{impl#0}::is_full)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:32 ~ gamie[cbc2]::connect_four::{impl#0}::push)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:42 ~ gamie[cbc2]::connect_four::{impl#4}::other)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:51 ~ gamie[cbc2]::connect_four::{impl#5}::check_state)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:54 ~ gamie[cbc2]::connect_four::{impl#5}::get_connectable)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:38 ~ gamie[cbc2]::connect_four::{impl#2}::index)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:672 ~ gamie[cbc2]::connect_four::{impl#27}::fmt)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:47 ~ gamie[cbc2]::connect_four::{impl#5}::winner)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:547 ~ gamie[cbc2]::connect_four::{impl#16}::fmt)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:610 ~ gamie[cbc2]::connect_four::{impl#24}::assert_receiver_is_total_eq)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:486 ~ gamie[cbc2]::connect_four::{impl#13}::ne)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:107 ~ gamie[cbc2]::gomoku::{impl#0}::other)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:889 ~ gamie[cbc2]::gomoku::{impl#11}::clone)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:828 ~ gamie[cbc2]::gomoku::{impl#4}::clone)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:897 ~ gamie[cbc2]::gomoku::{impl#16}::eq)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:837 ~ gamie[cbc2]::gomoku::{impl#10}::eq)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:115 ~ gamie[cbc2]::gomoku::{impl#1}::status)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:244 ~ gamie[cbc2]::reversi::{impl#0}::other)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:117 ~ gamie[cbc2]::gomoku::{impl#1}::place)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:113 ~ gamie[cbc2]::gomoku::{impl#1}::is_ended)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:898 ~ gamie[cbc2]::gomoku::{impl#16}::ne)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:118 ~ gamie[cbc2]::gomoku::{impl#1}::check_state)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:121 ~ gamie[cbc2]::gomoku::{impl#1}::get_connectable)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:298 ~ gamie[cbc2]::tictactoe::{impl#0}::other)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1221 ~ gamie[cbc2]::minesweeper::{impl#13}::clone)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:177 ~ gamie[cbc2]::minesweeper::{impl#0}::new)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1161 ~ gamie[cbc2]::minesweeper::{impl#12}::ne)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1299 ~ gamie[cbc2]::minesweeper::{impl#22}::assert_receiver_is_total_eq)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1157 ~ gamie[cbc2]::minesweeper::{impl#10}::assert_receiver_is_total_eq)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1344 ~ gamie[cbc2]::minesweeper::{impl#35}::backtrace)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1230 ~ gamie[cbc2]::minesweeper::{impl#18}::ne)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1229 ~ gamie[cbc2]::minesweeper::{impl#18}::eq)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1302 ~ gamie[cbc2]::minesweeper::{impl#24}::eq)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:246 ~ gamie[cbc2]::reversi::{impl#1}::new)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:254 ~ gamie[cbc2]::reversi::{impl#1}::place)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:258 ~ gamie[cbc2]::reversi::{impl#1}::simple_check_position_validity)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:250 ~ gamie[cbc2]::reversi::{impl#1}::is_ended)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1545 ~ gamie[cbc2]::reversi::{impl#17}::ne)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1484 ~ gamie[cbc2]::reversi::{impl#11}::eq)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:271 ~ gamie[cbc2]::reversi::{impl#2}::iter)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:264 ~ gamie[cbc2]::reversi::{impl#1}::check_occupied_line_in_direction)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:265 ~ gamie[cbc2]::reversi::{impl#1}::iter_positions_in_direction_from)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:270 ~ gamie[cbc2]::reversi::{impl#2}::as_offset)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:261 ~ gamie[cbc2]::reversi::{impl#1}::flip)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:259 ~ gamie[cbc2]::reversi::{impl#1}::can_player_move)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:255 ~ gamie[cbc2]::reversi::{impl#1}::check_position_validity)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:260 ~ gamie[cbc2]::reversi::{impl#1}::check_state)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1634 ~ gamie[cbc2]::reversi::{impl#27}::eq)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1628 ~ gamie[cbc2]::reversi::{impl#23}::fmt)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1676 ~ gamie[cbc2]::reversi::{impl#38}::backtrace)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1544 ~ gamie[cbc2]::reversi::{impl#17}::eq)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:300 ~ gamie[cbc2]::tictactoe::{impl#1}::new)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:307 ~ gamie[cbc2]::tictactoe::{impl#1}::get_next_player)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2302 ~ gamie[cbc2]::tictactoe::{impl#10}::eq)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2296 ~ gamie[cbc2]::tictactoe::{impl#6}::fmt)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:308 ~ gamie[cbc2]::tictactoe::{impl#1}::place)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:304 ~ gamie[cbc2]::tictactoe::{impl#1}::is_ended)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2363 ~ gamie[cbc2]::tictactoe::{impl#16}::ne)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:309 ~ gamie[cbc2]::tictactoe::{impl#1}::check_state)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2427 ~ gamie[cbc2]::tictactoe::{impl#21}::eq)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2421 ~ gamie[cbc2]::tictactoe::{impl#17}::fmt)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:306 ~ gamie[cbc2]::tictactoe::{impl#1}::status)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2362 ~ gamie[cbc2]::tictactoe::{impl#16}::eq)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2356 ~ gamie[cbc2]::tictactoe::{impl#12}::fmt)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:305 ~ gamie[cbc2]::tictactoe::{impl#1}::winner)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2354 ~ gamie[cbc2]::tictactoe::{impl#11}::clone)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2293 ~ gamie[cbc2]::tictactoe::{impl#4}::clone)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2359 ~ gamie[cbc2]::tictactoe::{impl#14}::assert_receiver_is_total_eq)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:109 ~ gamie[cbc2]::gomoku::{impl#1}::new)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2462 ~ gamie[cbc2]::tictactoe::{impl#30}::backtrace)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:303 ~ gamie[cbc2]::tictactoe::{impl#1}::get)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2628 ~ gamie[cbc2]::main)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:40 ~ gamie[cbc2]::connect_four::{impl#3}::index_mut)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:45 ~ gamie[cbc2]::connect_four::{impl#5}::get)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:48 ~ gamie[cbc2]::connect_four::{impl#5}::status)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:49 ~ gamie[cbc2]::connect_four::{impl#5}::get_next_player)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:112 ~ gamie[cbc2]::gomoku::{impl#1}::get)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:114 ~ gamie[cbc2]::gomoku::{impl#1}::winner)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:116 ~ gamie[cbc2]::gomoku::{impl#1}::get_next_player)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:179 ~ gamie[cbc2]::minesweeper::{impl#1}::new)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:181 ~ gamie[cbc2]::minesweeper::{impl#1}::randomize)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:183 ~ gamie[cbc2]::minesweeper::{impl#1}::get)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:184 ~ gamie[cbc2]::minesweeper::{impl#1}::is_ended)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:185 ~ gamie[cbc2]::minesweeper::{impl#1}::status)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:186 ~ gamie[cbc2]::minesweeper::{impl#1}::click)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:187 ~ gamie[cbc2]::minesweeper::{impl#1}::toggle_flag)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:188 ~ gamie[cbc2]::minesweeper::{impl#1}::click_unrevealed)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:189 ~ gamie[cbc2]::minesweeper::{impl#1}::click_revealed)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:194 ~ gamie[cbc2]::minesweeper::{impl#1}::reveal_from)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:195 ~ gamie[cbc2]::minesweeper::{impl#1}::check_state)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:198 ~ gamie[cbc2]::minesweeper::{impl#1}::update_around_mine_count)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:200 ~ gamie[cbc2]::minesweeper::{impl#1}::get_adjacent_cells)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:203 ~ gamie[cbc2]::minesweeper::{impl#2}::next)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:207 ~ gamie[cbc2]::minesweeper::{impl#3}::new)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:249 ~ gamie[cbc2]::reversi::{impl#1}::get)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:251 ~ gamie[cbc2]::reversi::{impl#1}::winner)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:252 ~ gamie[cbc2]::reversi::{impl#1}::status)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:253 ~ gamie[cbc2]::reversi::{impl#1}::get_next_player)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:413 ~ gamie[cbc2]::connect_four::{impl#6}::clone)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:415 ~ gamie[cbc2]::connect_four::{impl#7}::fmt)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:476 ~ gamie[cbc2]::connect_four::{impl#8}::clone)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:478 ~ gamie[cbc2]::connect_four::{impl#9}::fmt)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:481 ~ gamie[cbc2]::connect_four::{impl#11}::assert_receiver_is_total_eq)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:485 ~ gamie[cbc2]::connect_four::{impl#13}::eq)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:544 ~ gamie[cbc2]::connect_four::{impl#14}::clone)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:550 ~ gamie[cbc2]::connect_four::{impl#18}::assert_receiver_is_total_eq)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:605 ~ gamie[cbc2]::connect_four::{impl#21}::clone)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:607 ~ gamie[cbc2]::connect_four::{impl#22}::fmt)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:613 ~ gamie[cbc2]::connect_four::{impl#26}::eq)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:675 ~ gamie[cbc2]::connect_four::{impl#29}::assert_receiver_is_total_eq)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:678 ~ gamie[cbc2]::connect_four::{impl#31}::eq)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:680 ~ gamie[cbc2]::connect_four::{impl#32}::build)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:681 ~ gamie[cbc2]::connect_four::{impl#32}::fail)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:685 ~ gamie[cbc2]::connect_four::{impl#33}::into_error)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:687 ~ gamie[cbc2]::connect_four::{impl#34}::build)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:688 ~ gamie[cbc2]::connect_four::{impl#34}::fail)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:692 ~ gamie[cbc2]::connect_four::{impl#35}::into_error)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:694 ~ gamie[cbc2]::connect_four::{impl#36}::build)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:695 ~ gamie[cbc2]::connect_four::{impl#36}::fail)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:699 ~ gamie[cbc2]::connect_four::{impl#37}::into_error)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:701 ~ gamie[cbc2]::connect_four::{impl#38}::fmt)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:703 ~ gamie[cbc2]::connect_four::{impl#39}::description)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:704 ~ gamie[cbc2]::connect_four::{impl#39}::cause)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:708 ~ gamie[cbc2]::connect_four::{impl#39}::source)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:713 ~ gamie[cbc2]::connect_four::{impl#40}::backtrace)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:717 ~ gamie[cbc2]::connect_four::{impl#41}::fmt)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:720 ~ gamie[cbc2]::connect_four::{impl#43}::clone)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:724 ~ gamie[cbc2]::connect_four::{impl#44}::fmt)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:727 ~ gamie[cbc2]::connect_four::{impl#46}::clone)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:731 ~ gamie[cbc2]::connect_four::{impl#47}::fmt)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:734 ~ gamie[cbc2]::connect_four::{impl#49}::clone)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:761 ~ gamie[cbc2]::gomoku::{impl#2}::clone)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:763 ~ gamie[cbc2]::gomoku::{impl#3}::fmt)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:831 ~ gamie[cbc2]::gomoku::{impl#6}::fmt)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:834 ~ gamie[cbc2]::gomoku::{impl#8}::assert_receiver_is_total_eq)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:891 ~ gamie[cbc2]::gomoku::{impl#12}::fmt)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:894 ~ gamie[cbc2]::gomoku::{impl#14}::assert_receiver_is_total_eq)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:956 ~ gamie[cbc2]::gomoku::{impl#17}::fmt)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:959 ~ gamie[cbc2]::gomoku::{impl#19}::assert_receiver_is_total_eq)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:962 ~ gamie[cbc2]::gomoku::{impl#21}::eq)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:964 ~ gamie[cbc2]::gomoku::{impl#22}::build)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:965 ~ gamie[cbc2]::gomoku::{impl#22}::fail)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:969 ~ gamie[cbc2]::gomoku::{impl#23}::into_error)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:971 ~ gamie[cbc2]::gomoku::{impl#24}::build)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:972 ~ gamie[cbc2]::gomoku::{impl#24}::fail)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:976 ~ gamie[cbc2]::gomoku::{impl#25}::into_error)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:978 ~ gamie[cbc2]::gomoku::{impl#26}::build)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:979 ~ gamie[cbc2]::gomoku::{impl#26}::fail)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:983 ~ gamie[cbc2]::gomoku::{impl#27}::into_error)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:985 ~ gamie[cbc2]::gomoku::{impl#28}::fmt)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:987 ~ gamie[cbc2]::gomoku::{impl#29}::description)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:988 ~ gamie[cbc2]::gomoku::{impl#29}::cause)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:992 ~ gamie[cbc2]::gomoku::{impl#29}::source)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:997 ~ gamie[cbc2]::gomoku::{impl#30}::backtrace)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1001 ~ gamie[cbc2]::gomoku::{impl#31}::fmt)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1004 ~ gamie[cbc2]::gomoku::{impl#33}::clone)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1008 ~ gamie[cbc2]::gomoku::{impl#34}::fmt)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1011 ~ gamie[cbc2]::gomoku::{impl#36}::clone)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1015 ~ gamie[cbc2]::gomoku::{impl#37}::fmt)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1018 ~ gamie[cbc2]::gomoku::{impl#39}::clone)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1089 ~ gamie[cbc2]::minesweeper::{impl#4}::clone)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1091 ~ gamie[cbc2]::minesweeper::{impl#5}::fmt)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1151 ~ gamie[cbc2]::minesweeper::{impl#6}::clone)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1154 ~ gamie[cbc2]::minesweeper::{impl#8}::fmt)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1160 ~ gamie[cbc2]::minesweeper::{impl#12}::eq)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1223 ~ gamie[cbc2]::minesweeper::{impl#14}::fmt)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1226 ~ gamie[cbc2]::minesweeper::{impl#16}::assert_receiver_is_total_eq)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1293 ~ gamie[cbc2]::minesweeper::{impl#19}::clone)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1296 ~ gamie[cbc2]::minesweeper::{impl#20}::fmt)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1304 ~ gamie[cbc2]::minesweeper::{impl#25}::build)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1305 ~ gamie[cbc2]::minesweeper::{impl#25}::fail)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1309 ~ gamie[cbc2]::minesweeper::{impl#26}::into_error)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1311 ~ gamie[cbc2]::minesweeper::{impl#27}::build)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1312 ~ gamie[cbc2]::minesweeper::{impl#27}::fail)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1316 ~ gamie[cbc2]::minesweeper::{impl#28}::into_error)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1318 ~ gamie[cbc2]::minesweeper::{impl#29}::build)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1319 ~ gamie[cbc2]::minesweeper::{impl#29}::fail)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1323 ~ gamie[cbc2]::minesweeper::{impl#30}::into_error)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1325 ~ gamie[cbc2]::minesweeper::{impl#31}::build)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1326 ~ gamie[cbc2]::minesweeper::{impl#31}::fail)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1330 ~ gamie[cbc2]::minesweeper::{impl#32}::into_error)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1332 ~ gamie[cbc2]::minesweeper::{impl#33}::fmt)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1334 ~ gamie[cbc2]::minesweeper::{impl#34}::description)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1335 ~ gamie[cbc2]::minesweeper::{impl#34}::cause)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1339 ~ gamie[cbc2]::minesweeper::{impl#34}::source)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1348 ~ gamie[cbc2]::minesweeper::{impl#36}::fmt)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1351 ~ gamie[cbc2]::minesweeper::{impl#38}::clone)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1355 ~ gamie[cbc2]::minesweeper::{impl#39}::fmt)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1358 ~ gamie[cbc2]::minesweeper::{impl#41}::clone)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1362 ~ gamie[cbc2]::minesweeper::{impl#42}::fmt)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1365 ~ gamie[cbc2]::minesweeper::{impl#44}::clone)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1369 ~ gamie[cbc2]::minesweeper::{impl#45}::fmt)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1372 ~ gamie[cbc2]::minesweeper::{impl#47}::clone)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1408 ~ gamie[cbc2]::reversi::{impl#3}::clone)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1410 ~ gamie[cbc2]::reversi::{impl#4}::fmt)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1475 ~ gamie[cbc2]::reversi::{impl#5}::clone)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1478 ~ gamie[cbc2]::reversi::{impl#7}::fmt)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1481 ~ gamie[cbc2]::reversi::{impl#9}::assert_receiver_is_total_eq)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1536 ~ gamie[cbc2]::reversi::{impl#12}::clone)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1538 ~ gamie[cbc2]::reversi::{impl#13}::fmt)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1541 ~ gamie[cbc2]::reversi::{impl#15}::assert_receiver_is_total_eq)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1619 ~ gamie[cbc2]::reversi::{impl#18}::clone)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1622 ~ gamie[cbc2]::reversi::{impl#20}::fmt)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1625 ~ gamie[cbc2]::reversi::{impl#22}::eq)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1631 ~ gamie[cbc2]::reversi::{impl#25}::assert_receiver_is_total_eq)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1636 ~ gamie[cbc2]::reversi::{impl#28}::build)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1637 ~ gamie[cbc2]::reversi::{impl#28}::fail)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1641 ~ gamie[cbc2]::reversi::{impl#29}::into_error)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1643 ~ gamie[cbc2]::reversi::{impl#30}::build)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1644 ~ gamie[cbc2]::reversi::{impl#30}::fail)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1648 ~ gamie[cbc2]::reversi::{impl#31}::into_error)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1650 ~ gamie[cbc2]::reversi::{impl#32}::build)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1651 ~ gamie[cbc2]::reversi::{impl#32}::fail)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1655 ~ gamie[cbc2]::reversi::{impl#33}::into_error)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1657 ~ gamie[cbc2]::reversi::{impl#34}::build)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1658 ~ gamie[cbc2]::reversi::{impl#34}::fail)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1662 ~ gamie[cbc2]::reversi::{impl#35}::into_error)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1664 ~ gamie[cbc2]::reversi::{impl#36}::fmt)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1666 ~ gamie[cbc2]::reversi::{impl#37}::description)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1667 ~ gamie[cbc2]::reversi::{impl#37}::cause)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1671 ~ gamie[cbc2]::reversi::{impl#37}::source)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1680 ~ gamie[cbc2]::reversi::{impl#39}::fmt)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1683 ~ gamie[cbc2]::reversi::{impl#41}::clone)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1687 ~ gamie[cbc2]::reversi::{impl#42}::fmt)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1690 ~ gamie[cbc2]::reversi::{impl#44}::clone)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1694 ~ gamie[cbc2]::reversi::{impl#45}::fmt)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1697 ~ gamie[cbc2]::reversi::{impl#47}::clone)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1701 ~ gamie[cbc2]::reversi::{impl#48}::fmt)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1704 ~ gamie[cbc2]::reversi::{impl#50}::clone)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2226 ~ gamie[cbc2]::tictactoe::{impl#2}::clone)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2228 ~ gamie[cbc2]::tictactoe::{impl#3}::fmt)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2299 ~ gamie[cbc2]::tictactoe::{impl#8}::assert_receiver_is_total_eq)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2424 ~ gamie[cbc2]::tictactoe::{impl#19}::assert_receiver_is_total_eq)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2429 ~ gamie[cbc2]::tictactoe::{impl#22}::build)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2430 ~ gamie[cbc2]::tictactoe::{impl#22}::fail)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2434 ~ gamie[cbc2]::tictactoe::{impl#23}::into_error)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2436 ~ gamie[cbc2]::tictactoe::{impl#24}::build)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2437 ~ gamie[cbc2]::tictactoe::{impl#24}::fail)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2441 ~ gamie[cbc2]::tictactoe::{impl#25}::into_error)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2443 ~ gamie[cbc2]::tictactoe::{impl#26}::build)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2444 ~ gamie[cbc2]::tictactoe::{impl#26}::fail)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2448 ~ gamie[cbc2]::tictactoe::{impl#27}::into_error)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2450 ~ gamie[cbc2]::tictactoe::{impl#28}::fmt)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2452 ~ gamie[cbc2]::tictactoe::{impl#29}::description)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2453 ~ gamie[cbc2]::tictactoe::{impl#29}::cause)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2457 ~ gamie[cbc2]::tictactoe::{impl#29}::source)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2466 ~ gamie[cbc2]::tictactoe::{impl#31}::fmt)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2469 ~ gamie[cbc2]::tictactoe::{impl#33}::clone)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2473 ~ gamie[cbc2]::tictactoe::{impl#34}::fmt)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2476 ~ gamie[cbc2]::tictactoe::{impl#36}::clone)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2480 ~ gamie[cbc2]::tictactoe::{impl#37}::fmt)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2483 ~ gamie[cbc2]::tictactoe::{impl#39}::clone)
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:617 ~ gamie[cbc2]::connect_four::GameState::Win::{constructor#0})
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:901 ~ gamie[cbc2]::gomoku::GameState::Win::{constructor#0})
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1235 ~ gamie[cbc2]::minesweeper::GameState::Exploded::{constructor#0})
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1548 ~ gamie[cbc2]::reversi::GameState::Win::{constructor#0})
+[2022-05-24T11:45:10Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2366 ~ gamie[cbc2]::tictactoe::GameState::Win::{constructor#0})
+    Finished test [unoptimized + debuginfo] target(s) in 2.98s
+     Running unittests src/lib.rs (target/debug/deps/gamie-7ca1393cc9e707a4)

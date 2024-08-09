@@ -1,0 +1,408 @@
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/gamie/./src/reversi.rs
+        let _rug_st_tests_llm_16_49_rrrruuuugggg_test_as_offset = 0;
+ tests_llm_16_49 test_as_offset
+        let _rug_st_tests_llm_16_52_rrrruuuugggg_test_other = 0;
+ tests_llm_16_52 test_other
+        let _rug_st_tests_llm_16_55_rrrruuuugggg_test_check_occupied_line_in_direction = 0;
+ tests_llm_16_55 test_check_occupied_line_in_direction
+        let _rug_st_tests_llm_16_56_rrrruuuugggg_test_check_position_validity_valid_position = 0;
+ tests_llm_16_56 test_check_position_validity_valid_position
+        let _rug_st_tests_llm_16_56_rrrruuuugggg_test_check_position_validity_invalid_position = 0;
+ tests_llm_16_56 test_check_position_validity_invalid_position
+        let _rug_st_tests_llm_16_57_rrrruuuugggg_test_check_state = 0;
+ tests_llm_16_57 test_check_state
+        let _rug_st_tests_llm_16_57_rrrruuuugggg_test_check_state_win = 0;
+ tests_llm_16_57 test_check_state_win
+        let _rug_st_tests_llm_16_57_rrrruuuugggg_test_check_state_tie = 0;
+ tests_llm_16_57 test_check_state_tie
+        let _rug_st_tests_llm_16_59_rrrruuuugggg_test_flip = 0;
+ tests_llm_16_59 test_flip
+        let _rug_st_tests_llm_16_60_rrrruuuugggg_test_get_valid_position = 0;
+ tests_llm_16_60 test_get_valid_position
+        let _rug_st_tests_llm_16_60_rrrruuuugggg_test_get_invalid_position = 0;
+ tests_llm_16_60 test_get_invalid_position
+        let _rug_st_tests_llm_16_60_rrrruuuugggg_test_get_next_player = 0;
+ tests_llm_16_60 test_get_next_player
+        let _rug_st_tests_llm_16_60_rrrruuuugggg_test_get_status = 0;
+ tests_llm_16_60 test_get_status
+        let _rug_st_tests_llm_16_60_rrrruuuugggg_test_place_valid_position = 0;
+ tests_llm_16_60 test_place_valid_position
+        let _rug_st_tests_llm_16_60_rrrruuuugggg_test_place_invalid_position = 0;
+ tests_llm_16_60 test_place_invalid_position
+        let _rug_st_tests_llm_16_61_rrrruuuugggg_test_get_next_player = 0;
+ tests_llm_16_61 test_get_next_player
+        let _rug_st_tests_llm_16_63_rrrruuuugggg_test_is_ended = 0;
+ tests_llm_16_63 test_is_ended
+        let _rug_st_tests_llm_16_64_rrrruuuugggg_test_iter_positions_in_direction_from = 0;
+ tests_llm_16_64 test_iter_positions_in_direction_from
+        let _rug_st_tests_llm_16_65_rrrruuuugggg_test_new = 0;
+ tests_llm_16_65 test_new
+        let _rug_st_tests_llm_16_66_rrrruuuugggg_test_place_valid_position = 0;
+ tests_llm_16_66 test_place_valid_position
+        let _rug_st_tests_llm_16_66_rrrruuuugggg_test_place_invalid_position = 0;
+ tests_llm_16_66 test_place_invalid_position
+        let _rug_st_tests_llm_16_66_rrrruuuugggg_test_place_flipped = 0;
+ tests_llm_16_66 test_place_flipped
+        let _rug_st_tests_llm_16_66_rrrruuuugggg_test_place_not_flipped = 0;
+ tests_llm_16_66 test_place_not_flipped
+        let _rug_st_tests_llm_16_66_rrrruuuugggg_test_place_end_game = 0;
+ tests_llm_16_66 test_place_end_game
+err tests_llm_16_66 test_place_end_game
+   Compiling gamie v0.7.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/gamie)
+error[E0277]: the trait bound `(usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize): Arbitrary<'_>` is not satisfied
+   --> src/reversi.rs:860:1173
+    |
+860 | ... = <(usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize) as arbitrary::Arbitrary>::arbitrary(&m...
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Arbitrary<'_>` is not implemented for `(usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize)`
+    |
+    = help: the following other types implement trait `Arbitrary<'a>`:
+              ()
+              (B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, A)
+              (C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, B)
+              (D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, C)
+              (E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, D)
+              (F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, E)
+              (G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, F)
+              (H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, G)
+            and 19 others
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `gamie` due to previous error
+
+        let _rug_st_tests_llm_16_67_rrrruuuugggg_test_simple_check_position_validity_game_ended = 0;
+ tests_llm_16_67 test_simple_check_position_validity_game_ended
+        let _rug_st_tests_llm_16_67_rrrruuuugggg_test_simple_check_position_validity_wrong_player = 0;
+ tests_llm_16_67 test_simple_check_position_validity_wrong_player
+        let _rug_st_tests_llm_16_67_rrrruuuugggg_test_simple_check_position_validity_occupied_position = 0;
+ tests_llm_16_67 test_simple_check_position_validity_occupied_position
+        let _rug_st_tests_llm_16_67_rrrruuuugggg_test_simple_check_position_validity_valid_position = 0;
+ tests_llm_16_67 test_simple_check_position_validity_valid_position
+        let _rug_st_tests_llm_16_68_rrrruuuugggg_test_status = 0;
+ tests_llm_16_68 test_status
+        let _rug_st_tests_llm_16_69_rrrruuuugggg_test_winner_returns_none_when_game_in_progress = 0;
+ tests_llm_16_69 test_winner_returns_none_when_game_in_progress
+        let _rug_st_tests_llm_16_69_rrrruuuugggg_test_winner_returns_none_when_game_tied = 0;
+ tests_llm_16_69 test_winner_returns_none_when_game_tied
+err tests_llm_16_69 test_winner_returns_none_when_game_tied
+   Compiling gamie v0.7.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/gamie)
+error[E0277]: the trait bound `(usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize): Arbitrary<'_>` is not satisfied
+    --> src/reversi.rs:1069:5677
+     |
+1069 | ... = <(usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize) as arbitrary::Arbitrary>::arbitrary(&m...
+     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Arbitrary<'_>` is not implemented for `(usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize)`
+     |
+     = help: the following other types implement trait `Arbitrary<'a>`:
+               ()
+               (B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, A)
+               (C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, B)
+               (D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, C)
+               (E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, D)
+               (F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, E)
+               (G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, F)
+               (H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, G)
+             and 19 others
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `gamie` due to previous error
+
+        let _rug_st_tests_llm_16_69_rrrruuuugggg_test_winner_returns_winner_player_when_game_won = 0;
+ tests_llm_16_69 test_winner_returns_winner_player_when_game_won
+err tests_llm_16_69 test_winner_returns_winner_player_when_game_won
+   Compiling gamie v0.7.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/gamie)
+error[E0277]: the trait bound `(usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize): Arbitrary<'_>` is not satisfied
+    --> src/reversi.rs:1556:2257
+     |
+1556 | ... = <(usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize) as arbitrary::Arbitrary>::arbitrary(&m...
+     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Arbitrary<'_>` is not implemented for `(usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize)`
+     |
+     = help: the following other types implement trait `Arbitrary<'a>`:
+               ()
+               (B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, A)
+               (C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, B)
+               (D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, C)
+               (E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, D)
+               (F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, E)
+               (G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, F)
+               (H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, G)
+             and 19 others
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `gamie` due to previous error
+
+        let _rug_st_tests_rug_4_rrrruuuugggg_test_can_player_move = 0;
+ tests_rug_4 test_can_player_move
+        let _rug_st_tests_rug_5_rrrruuuugggg_test_rug = 0;
+ tests_rug_5 test_rug
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/gamie/./src/gomoku.rs
+        let _rug_st_tests_llm_16_21_rrrruuuugggg_test_check_state_win_horizontal = 0;
+ tests_llm_16_21 test_check_state_win_horizontal
+        let _rug_st_tests_llm_16_21_rrrruuuugggg_test_check_state_win_vertical = 0;
+ tests_llm_16_21 test_check_state_win_vertical
+        let _rug_st_tests_llm_16_21_rrrruuuugggg_test_check_state_win_diagonal_up_right = 0;
+ tests_llm_16_21 test_check_state_win_diagonal_up_right
+        let _rug_st_tests_llm_16_21_rrrruuuugggg_test_check_state_win_diagonal_down_right = 0;
+ tests_llm_16_21 test_check_state_win_diagonal_down_right
+        let _rug_st_tests_llm_16_21_rrrruuuugggg_test_check_state_tie = 0;
+ tests_llm_16_21 test_check_state_tie
+err tests_llm_16_21 test_check_state_tie
+   Compiling gamie v0.7.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/gamie)
+error[E0277]: the trait bound `(usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize): Arbitrary<'_>` is not satisfied
+   --> src/gomoku.rs:285:867
+    |
+285 | ... = <(usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize) as arbitrary::Arbitrary>::arbitrary(&m...
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Arbitrary<'_>` is not implemented for `(usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize)`
+    |
+    = help: the following other types implement trait `Arbitrary<'a>`:
+              ()
+              (B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, A)
+              (C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, B)
+              (D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, C)
+              (E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, D)
+              (F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, E)
+              (G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, F)
+              (H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, G)
+            and 19 others
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `gamie` due to previous error
+
+        let _rug_st_tests_llm_16_22_rrrruuuugggg_test_get_valid_position = 0;
+ tests_llm_16_22 test_get_valid_position
+        let _rug_st_tests_llm_16_22_rrrruuuugggg_test_get_invalid_position = 0;
+ tests_llm_16_22 test_get_invalid_position
+        let _rug_st_tests_llm_16_24_llm_16_23_rrrruuuugggg_test_get_connectable = 0;
+ tests_llm_16_24_llm_16_23 test_get_connectable
+        let _rug_st_tests_llm_16_25_rrrruuuugggg_test_get_next_player = 0;
+ tests_llm_16_25 test_get_next_player
+        let _rug_st_tests_llm_16_26_rrrruuuugggg_test_is_ended_true = 0;
+ tests_llm_16_26 test_is_ended_true
+        let _rug_st_tests_llm_16_26_rrrruuuugggg_test_is_ended_false = 0;
+ tests_llm_16_26 test_is_ended_false
+        let _rug_st_tests_llm_16_27_rrrruuuugggg_test_new = 0;
+ tests_llm_16_27 test_new
+        let _rug_st_tests_llm_16_28_rrrruuuugggg_test_place_valid_position = 0;
+ tests_llm_16_28 test_place_valid_position
+        let _rug_st_tests_llm_16_28_rrrruuuugggg_test_place_invalid_position = 0;
+ tests_llm_16_28 test_place_invalid_position
+        let _rug_st_tests_llm_16_28_rrrruuuugggg_test_place_wrong_player = 0;
+ tests_llm_16_28 test_place_wrong_player
+        let _rug_st_tests_llm_16_28_rrrruuuugggg_test_place_game_ended = 0;
+ tests_llm_16_28 test_place_game_ended
+        let _rug_st_tests_llm_16_30_rrrruuuugggg_test_status = 0;
+ tests_llm_16_30 test_status
+        let _rug_st_tests_llm_16_31_rrrruuuugggg_test_winner_returns_none_when_game_is_not_ended = 0;
+ tests_llm_16_31 test_winner_returns_none_when_game_is_not_ended
+        let _rug_st_tests_llm_16_31_rrrruuuugggg_test_winner_returns_none_when_game_is_tied = 0;
+ tests_llm_16_31 test_winner_returns_none_when_game_is_tied
+err tests_llm_16_31 test_winner_returns_none_when_game_is_tied
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling gamie v0.7.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/gamie)
+error[E0277]: the trait bound `(usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize): Arbitrary<'_>` is not satisfied
+   --> src/gomoku.rs:866:527
+    |
+866 | ... = <(usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize) as arbitrary::Arbitrary>::arbitrary(&m...
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Arbitrary<'_>` is not implemented for `(usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize)`
+    |
+    = help: the following other types implement trait `Arbitrary<'a>`:
+              ()
+              (B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, A)
+              (C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, B)
+              (D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, C)
+              (E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, D)
+              (F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, E)
+              (G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, F)
+              (H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, G)
+            and 19 others
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `gamie` due to previous error
+
+        let _rug_st_tests_llm_16_31_rrrruuuugggg_test_winner_returns_player_when_player_wins = 0;
+ tests_llm_16_31 test_winner_returns_player_when_player_wins
+        let _rug_st_tests_llm_16_32_rrrruuuugggg_test_other_player0 = 0;
+ tests_llm_16_32 test_other_player0
+        let _rug_st_tests_llm_16_32_rrrruuuugggg_test_other_player1 = 0;
+ tests_llm_16_32 test_other_player1
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/gamie/./src/minesweeper.rs
+        let _rug_st_tests_llm_16_6_rrrruuuugggg_test_next = 0;
+ tests_llm_16_6 test_next
+        let _rug_st_tests_llm_16_33_rrrruuuugggg_test_new = 0;
+ tests_llm_16_33 test_new
+        let _rug_st_tests_llm_16_34_rrrruuuugggg_test_new = 0;
+ tests_llm_16_34 test_new
+        let _rug_st_tests_llm_16_35_rrrruuuugggg_check_state_all_cells_revealed = 0;
+ tests_llm_16_35 check_state_all_cells_revealed
+        let _rug_st_tests_llm_16_35_rrrruuuugggg_check_state_not_all_cells_revealed = 0;
+ tests_llm_16_35 check_state_not_all_cells_revealed
+        let _rug_st_tests_llm_16_37_llm_16_36_rrrruuuugggg_test_click_invalid_position = 0;
+ tests_llm_16_37_llm_16_36 test_click_invalid_position
+        let _rug_st_tests_llm_16_37_llm_16_36_rrrruuuugggg_test_click_game_ended = 0;
+ tests_llm_16_37_llm_16_36 test_click_game_ended
+        let _rug_st_tests_llm_16_37_llm_16_36_rrrruuuugggg_test_click_unrevealed = 0;
+ tests_llm_16_37_llm_16_36 test_click_unrevealed
+        let _rug_st_tests_llm_16_37_llm_16_36_rrrruuuugggg_test_click_revealed = 0;
+ tests_llm_16_37_llm_16_36 test_click_revealed
+        let _rug_st_tests_llm_16_37_llm_16_36_rrrruuuugggg_test_toggle_flag_invalid_position = 0;
+ tests_llm_16_37_llm_16_36 test_toggle_flag_invalid_position
+        let _rug_st_tests_llm_16_37_llm_16_36_rrrruuuugggg_test_toggle_flag_game_ended = 0;
+ tests_llm_16_37_llm_16_36 test_toggle_flag_game_ended
+        let _rug_st_tests_llm_16_37_llm_16_36_rrrruuuugggg_test_toggle_flag_already_revealed = 0;
+ tests_llm_16_37_llm_16_36 test_toggle_flag_already_revealed
+        let _rug_st_tests_llm_16_38_rrrruuuugggg_test_click_revealed_returns_false_when_no_changes_to_board = 0;
+ tests_llm_16_38 test_click_revealed_returns_false_when_no_changes_to_board
+        let _rug_st_tests_llm_16_38_rrrruuuugggg_test_click_revealed_reveals_adjacent_cells = 0;
+ tests_llm_16_38 test_click_revealed_reveals_adjacent_cells
+        let _rug_st_tests_llm_16_38_rrrruuuugggg_test_click_revealed_reveals_no_cells_when_adjacent_cells_flagged = 0;
+ tests_llm_16_38 test_click_revealed_reveals_no_cells_when_adjacent_cells_flagged
+        let _rug_st_tests_llm_16_39_rrrruuuugggg_test_click_unrevealed_already_flagged = 0;
+ tests_llm_16_39 test_click_unrevealed_already_flagged
+        let _rug_st_tests_llm_16_39_rrrruuuugggg_test_click_unrevealed_mine = 0;
+ tests_llm_16_39 test_click_unrevealed_mine
+        let _rug_st_tests_llm_16_39_rrrruuuugggg_test_click_unrevealed_success = 0;
+ tests_llm_16_39 test_click_unrevealed_success
+        let _rug_st_tests_llm_16_40_rrrruuuugggg_test_get_invalid_position = 0;
+ tests_llm_16_40 test_get_invalid_position
+        let _rug_st_tests_llm_16_40_rrrruuuugggg_test_get_valid_position = 0;
+ tests_llm_16_40 test_get_valid_position
+        let _rug_st_tests_llm_16_41_rrrruuuugggg_test_get_adjacent_cells = 0;
+ tests_llm_16_41 test_get_adjacent_cells
+        let _rug_st_tests_llm_16_42_rrrruuuugggg_test_is_ended_game_in_progress = 0;
+ tests_llm_16_42 test_is_ended_game_in_progress
+        let _rug_st_tests_llm_16_42_rrrruuuugggg_test_is_ended_game_ended = 0;
+ tests_llm_16_42 test_is_ended_game_ended
+        let _rug_st_tests_llm_16_43_rrrruuuugggg_test_new_success = 0;
+ tests_llm_16_43 test_new_success
+        let _rug_st_tests_llm_16_43_rrrruuuugggg_test_new_error = 0;
+ tests_llm_16_43 test_new_error
+        let _rug_st_tests_llm_16_44_rrrruuuugggg_test_randomize = 0;
+ tests_llm_16_44 test_randomize
+        let _rug_st_tests_llm_16_45_rrrruuuugggg_test_reveal_from_no_adjacent_mine = 0;
+ tests_llm_16_45 test_reveal_from_no_adjacent_mine
+        let _rug_st_tests_llm_16_45_rrrruuuugggg_test_reveal_from_adjacent_mine = 0;
+ tests_llm_16_45 test_reveal_from_adjacent_mine
+        let _rug_st_tests_llm_16_46_rrrruuuugggg_test_status = 0;
+ tests_llm_16_46 test_status
+        let _rug_st_tests_llm_16_47_rrrruuuugggg_test_toggle_flag_invalid_position_panic = 0;
+ tests_llm_16_47 test_toggle_flag_invalid_position_panic
+        let _rug_st_tests_llm_16_47_rrrruuuugggg_test_toggle_flag_game_ended = 0;
+ tests_llm_16_47 test_toggle_flag_game_ended
+        let _rug_st_tests_llm_16_47_rrrruuuugggg_test_toggle_flag_already_revealed = 0;
+ tests_llm_16_47 test_toggle_flag_already_revealed
+        let _rug_st_tests_llm_16_47_rrrruuuugggg_test_toggle_flag_flag_cell = 0;
+ tests_llm_16_47 test_toggle_flag_flag_cell
+        let _rug_st_tests_llm_16_48_rrrruuuugggg_test_update_around_mine_count = 0;
+ tests_llm_16_48 test_update_around_mine_count
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/gamie/./src/connect_four.rs
+        let _rug_st_tests_llm_16_1_rrrruuuugggg_test_default = 0;
+ tests_llm_16_1 test_default
+        let _rug_st_tests_llm_16_9_rrrruuuugggg_test_push = 0;
+ tests_llm_16_9 test_push
+        let _rug_st_tests_llm_16_11_llm_16_10_rrrruuuugggg_test_check_state = 0;
+ tests_llm_16_11_llm_16_10 test_check_state
+err tests_llm_16_11_llm_16_10 test_check_state
+   Compiling gamie v0.7.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/gamie)
+error[E0277]: the trait bound `(usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize): Arbitrary<'_>` is not satisfied
+   --> src/connect_four.rs:312:578
+    |
+312 | ... = <(usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize) as arbitrary::Arbitrary>::arbitrary(&m...
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Arbitrary<'_>` is not implemented for `(usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize, usize)`
+    |
+    = help: the following other types implement trait `Arbitrary<'a>`:
+              ()
+              (B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, A)
+              (C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, B)
+              (D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, C)
+              (E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, D)
+              (F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, E)
+              (G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, F)
+              (H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, G)
+            and 19 others
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `gamie` due to previous error
+
+        let _rug_st_tests_llm_16_12_rrrruuuugggg_test_get_valid_position = 0;
+ tests_llm_16_12 test_get_valid_position
+        let _rug_st_tests_llm_16_12_rrrruuuugggg_test_get_invalid_position = 0;
+ tests_llm_16_12 test_get_invalid_position
+        let _rug_st_tests_llm_16_13_rrrruuuugggg_test_get_connectable = 0;
+ tests_llm_16_13 test_get_connectable
+        let _rug_st_tests_llm_16_14_rrrruuuugggg_test_get_next_player = 0;
+ tests_llm_16_14 test_get_next_player
+        let _rug_st_tests_llm_16_15_rrrruuuugggg_test_is_ended_game_in_progress = 0;
+ tests_llm_16_15 test_is_ended_game_in_progress
+        let _rug_st_tests_llm_16_15_rrrruuuugggg_test_is_ended_game_not_in_progress = 0;
+ tests_llm_16_15 test_is_ended_game_not_in_progress
+        let _rug_st_tests_llm_16_15_rrrruuuugggg_test_is_ended_game_tied = 0;
+ tests_llm_16_15 test_is_ended_game_tied
+        let _rug_st_tests_llm_16_16_rrrruuuugggg_test_new = 0;
+ tests_llm_16_16 test_new
+        let _rug_st_tests_llm_16_17_rrrruuuugggg_test_put_game_ended = 0;
+ tests_llm_16_17 test_put_game_ended
+        let _rug_st_tests_llm_16_17_rrrruuuugggg_test_put_wrong_player = 0;
+ tests_llm_16_17 test_put_wrong_player
+        let _rug_st_tests_llm_16_17_rrrruuuugggg_test_put_column_filled = 0;
+ tests_llm_16_17 test_put_column_filled
+        let _rug_st_tests_llm_16_17_rrrruuuugggg_test_put_success = 0;
+ tests_llm_16_17 test_put_success
+        let _rug_st_tests_llm_16_18_rrrruuuugggg_test_status = 0;
+ tests_llm_16_18 test_status
+        let _rug_st_tests_llm_16_19_rrrruuuugggg_test_winner_none = 0;
+ tests_llm_16_19 test_winner_none
+        let _rug_st_tests_llm_16_19_rrrruuuugggg_test_winner_some = 0;
+ tests_llm_16_19 test_winner_some
+        let _rug_st_tests_llm_16_20_rrrruuuugggg_test_other = 0;
+ tests_llm_16_20 test_other
+        let _rug_st_tests_rug_2_rrrruuuugggg_test_index = 0;
+ tests_rug_2 test_index
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/gamie/./src/lib.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/gamie/./src/tictactoe.rs
+        let _rug_st_tests_llm_16_72_rrrruuuugggg_test_check_state_win_row = 0;
+ tests_llm_16_72 test_check_state_win_row
+        let _rug_st_tests_llm_16_72_rrrruuuugggg_test_check_state_win_column = 0;
+ tests_llm_16_72 test_check_state_win_column
+        let _rug_st_tests_llm_16_72_rrrruuuugggg_test_check_state_win_diagonal1 = 0;
+ tests_llm_16_72 test_check_state_win_diagonal1
+        let _rug_st_tests_llm_16_72_rrrruuuugggg_test_check_state_win_diagonal2 = 0;
+ tests_llm_16_72 test_check_state_win_diagonal2
+        let _rug_st_tests_llm_16_72_rrrruuuugggg_test_check_state_tie = 0;
+ tests_llm_16_72 test_check_state_tie
+        let _rug_st_tests_llm_16_72_rrrruuuugggg_test_check_state_in_progress = 0;
+ tests_llm_16_72 test_check_state_in_progress
+        let _rug_st_tests_llm_16_73_rrrruuuugggg_test_get_valid_position = 0;
+ tests_llm_16_73 test_get_valid_position
+        let _rug_st_tests_llm_16_73_rrrruuuugggg_test_get_invalid_position = 0;
+ tests_llm_16_73 test_get_invalid_position
+        let _rug_st_tests_llm_16_74_rrrruuuugggg_test_get_next_player = 0;
+ tests_llm_16_74 test_get_next_player
+        let _rug_st_tests_llm_16_75_rrrruuuugggg_test_is_ended_in_progress = 0;
+ tests_llm_16_75 test_is_ended_in_progress
+        let _rug_st_tests_llm_16_75_rrrruuuugggg_test_is_ended_win = 0;
+ tests_llm_16_75 test_is_ended_win
+        let _rug_st_tests_llm_16_75_rrrruuuugggg_test_is_ended_tie = 0;
+ tests_llm_16_75 test_is_ended_tie
+        let _rug_st_tests_llm_16_76_rrrruuuugggg_test_new = 0;
+ tests_llm_16_76 test_new
+        let _rug_st_tests_llm_16_77_rrrruuuugggg_test_place_valid_move = 0;
+ tests_llm_16_77 test_place_valid_move
+        let _rug_st_tests_llm_16_77_rrrruuuugggg_test_place_invalid_move = 0;
+ tests_llm_16_77 test_place_invalid_move
+        let _rug_st_tests_llm_16_77_rrrruuuugggg_test_place_wrong_player = 0;
+ tests_llm_16_77 test_place_wrong_player
+        let _rug_st_tests_llm_16_77_rrrruuuugggg_test_place_occupied_position = 0;
+ tests_llm_16_77 test_place_occupied_position
+        let _rug_st_tests_llm_16_77_rrrruuuugggg_test_place_game_ended = 0;
+ tests_llm_16_77 test_place_game_ended
+        let _rug_st_tests_llm_16_78_rrrruuuugggg_test_status = 0;
+ tests_llm_16_78 test_status
+        let _rug_st_tests_llm_16_79_rrrruuuugggg_test_winner_none = 0;
+ tests_llm_16_79 test_winner_none
+        let _rug_st_tests_llm_16_79_rrrruuuugggg_test_winner_player = 0;
+ tests_llm_16_79 test_winner_player
+        let _rug_st_tests_llm_16_79_rrrruuuugggg_test_winner_tie = 0;
+ tests_llm_16_79 test_winner_tie
+        let _rug_st_tests_rug_6_rrrruuuugggg_test_rug = 0;
+ tests_rug_6 test_rug
+done

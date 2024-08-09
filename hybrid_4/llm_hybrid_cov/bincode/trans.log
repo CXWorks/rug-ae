@@ -1,0 +1,22 @@
+err bincode /mnt/sda/xiang/llm4_human/llm_hybrid/bincode/./src/atomic.rs tests_llm_16_46_llm_16_46
+err bincode /mnt/sda/xiang/llm4_human/llm_hybrid/bincode/./src/enc/impls.rs tests_llm_16_238
+err bincode /mnt/sda/xiang/llm4_human/llm_hybrid/bincode/./src/enc/impl_tuples.rs tests_llm_16_206
+err bincode /mnt/sda/xiang/llm4_human/llm_hybrid/bincode/./src/enc/impl_tuples.rs tests_llm_16_212_llm_16_212
+err bincode /mnt/sda/xiang/llm4_human/llm_hybrid/bincode/./src/varint/decode_signed.rs tests_llm_16_366_llm_16_366
+err bincode /mnt/sda/xiang/llm4_human/llm_hybrid/bincode/./src/varint/decode_unsigned.rs tests_llm_16_377_llm_16_377
+err bincode /mnt/sda/xiang/llm4_human/llm_hybrid/bincode/./src/config.rs tests_llm_16_66_llm_16_66
+err bincode /mnt/sda/xiang/llm4_human/llm_hybrid/bincode/./src/de/impls.rs tests_llm_16_182_llm_16_182
+err bincode /mnt/sda/xiang/llm4_human/llm_hybrid/bincode/./src/de/impls.rs tests_rug_117
+err bincode /mnt/sda/xiang/llm4_human/llm_hybrid/bincode/./src/de/mod.rs tests_llm_16_124_llm_16_124
+err bincode /mnt/sda/xiang/llm4_human/llm_hybrid/bincode/./src/de/impl_tuples.rs tests_llm_16_99_llm_16_99
+err bincode /mnt/sda/xiang/llm4_human/llm_hybrid/bincode/./src/de/impl_core.rs tests_rug_103
+err bincode /mnt/sda/xiang/llm4_human/llm_hybrid/bincode/./src/de/impl_core.rs tests_rug_104
+err bincode /mnt/sda/xiang/llm4_human/llm_hybrid/bincode/./src/features/impl_std.rs tests_llm_16_28
+err bincode /mnt/sda/xiang/llm4_human/llm_hybrid/bincode/./src/features/impl_std.rs tests_llm_16_356_llm_16_356
+err bincode /mnt/sda/xiang/llm4_human/llm_hybrid/bincode/./src/features/impl_std.rs tests_rug_44
+err bincode /mnt/sda/xiang/llm4_human/llm_hybrid/bincode/./src/features/impl_std.rs tests_rug_56
+err bincode /mnt/sda/xiang/llm4_human/llm_hybrid/bincode/./src/features/impl_alloc.rs tests_llm_16_294
+err bincode /mnt/sda/xiang/llm4_human/llm_hybrid/bincode/./src/features/impl_alloc.rs tests_llm_16_307
+bincode . 281 300 0
+bincode_compatibility compatibility 281 300 0
+bincode_derive derive 281 300 0

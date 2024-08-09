@@ -1,0 +1,1 @@
+{"tests_llm_16_1": {"demangle_rust_symbol": {"rug_fuzz_0": "\"_ZN3foo3barE\"", "rug_fuzz_1": "\"CString::new failed\""}, "non_rust_symbol": {"rug_fuzz_0": "\"NotRustSymbol\"", "rug_fuzz_1": "\"CString::new failed\""}, "buffer_too_small": {"rug_fuzz_0": "\"_ZN3foo3barE\"", "rug_fuzz_1": "\"CString::new failed\""}}}

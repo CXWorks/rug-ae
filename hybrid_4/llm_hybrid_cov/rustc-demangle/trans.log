@@ -1,0 +1,2 @@
+rustc-demangle . 22 22 0
+rustc-demangle-capi crates/capi 23 23 0

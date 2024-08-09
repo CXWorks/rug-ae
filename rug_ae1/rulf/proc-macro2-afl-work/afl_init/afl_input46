@@ -1,0 +1,1 @@
+0cargo:rustc-cfg=procmacro2_semver_exemptr

@@ -1,0 +1,2 @@
+rustc-demangle rustc-demangle . 0 ['/mnt/sda/xiang/llm4_human/llm_hybrid/rustc-demangle/./src/legacy.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid/rustc-demangle/./src/v0.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid/rustc-demangle/./src/lib.rs']
+rustc-demangle rustc-demangle-capi crates/capi 0 ['/mnt/sda/xiang/llm4_human/llm_hybrid/rustc-demangle/crates/capi/src/lib.rs']

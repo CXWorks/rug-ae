@@ -1,0 +1,1283 @@
+ChatCompletion(id='chatcmpl-8UcRsFWiqA8AEDJCj75apgMaIkqtC', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n\n    // Assuming the `Per` trait implementations for combination of `convert::Day`\n    // with various time units are defined in the same scope\n    impl Per for (Day, Second) {\n        type Output = u32;\n        const VALUE: Self::Output = 86_400;\n    }\n\n    impl Per for (Day, Minute) {\n        type Output = u32;\n        const VALUE: Self::Output = 1_440;\n    }\n\n    impl Per for (Day, Hour) {\n        type Output = u32;\n        const VALUE: Self::Output = 24;\n    }\n\n    // Individual tests for each implemented `Per` for `Day`\n    #[test]\n    fn day_per_second() {\n        let day = Day;\n        let per_second: u32 = day.per(Second);\n        assert_eq!(per_second, 86_400);\n    }\n\n    #[test]\n    fn day_per_minute() {\n        let day = Day;\n        let per_minute: u32 = day.per(Minute);\n        assert_eq!(per_minute, 1_440);\n    }\n\n    #[test]\n    fn day_per_hour() {\n        let day = Day;\n        let per_hour: u32 = day.per(Hour);\n        assert_eq!(per_hour, 24);\n    }\n}\n\n// Note: The `convert` module and its types, as well as the `Per` trait should be\n// defined and accessible in the scope of these tests, including relevant `use`\n// statements for the types (`Day`, `Hour`, `Minute`, `Second`, etc.) and the `Per` trait.\n```', role='assistant', function_call=None, tool_calls=None))], created=1702308328, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=350, prompt_tokens=388, total_tokens=738))
+71
+========================================
+inject err convert::Day::per time-core/src/convert.rs per
+#[cfg(test)]
+mod tests_llm_16_1 {
+    use super::*;
+
+use crate::*;
+
+    // Assuming the `Per` trait implementations for combination of `convert::Day`
+    // with various time units are defined in the same scope
+    impl Per for (Day, Second) {
+        type Output = u32;
+        const VALUE: Self::Output = 86_400;
+    }
+
+    impl Per for (Day, Minute) {
+        type Output = u32;
+        const VALUE: Self::Output = 1_440;
+    }
+
+    impl Per for (Day, Hour) {
+        type Output = u32;
+        const VALUE: Self::Output = 24;
+    }
+
+    // Individual tests for each implemented `Per` for `Day`
+    #[test]
+    fn day_per_second() {
+        let day = Day;
+        let per_second: u32 = day.per(Second);
+        assert_eq!(per_second, 86_400);
+    }
+
+    #[test]
+    fn day_per_minute() {
+        let day = Day;
+        let per_minute: u32 = day.per(Minute);
+        assert_eq!(per_minute, 1_440);
+    }
+
+    #[test]
+    fn day_per_hour() {
+        let day = Day;
+        let per_hour: u32 = day.per(Hour);
+        assert_eq!(per_hour, 24);
+    }
+}
+
+// Note: The `convert` module and its types, as well as the `Per` trait should be
+// defined and accessible in the scope of these tests, including relevant `use`
+// statements for the types (`Day`, `Hour`, `Minute`, `Second`, etc.) and the `Per` trait.
+   Compiling time-core v0.1.1 (/home/xiang/workspace/human/llm_base_bk/time/time-core)
+error[E0277]: the trait bound `(convert::Day, convert::Second): Sealed` is not satisfied
+  --> time-core/src/convert.rs:97:10
+   |
+97 |     impl Per for (Day, Second) {
+   |          ^^^ the trait `Sealed` is not implemented for `(convert::Day, convert::Second)`
+   |
+   = help: the following other types implement trait `Sealed`:
+             (Microsecond, Millisecond)
+             (Microsecond, Week)
+             (Microsecond, convert::Day)
+             (Microsecond, convert::Hour)
+             (Microsecond, convert::Minute)
+             (Microsecond, convert::Second)
+             (Millisecond, Week)
+             (Millisecond, convert::Day)
+           and 20 others
+note: required by a bound in `convert::Per`
+  --> time-core/src/convert.rs:35:16
+   |
+35 | pub trait Per: sealed::Sealed {
+   |                ^^^^^^^^^^^^^^ required by this bound in `convert::Per`
+
+error[E0277]: the trait bound `(convert::Day, convert::Minute): Sealed` is not satisfied
+   --> time-core/src/convert.rs:102:10
+    |
+102 |     impl Per for (Day, Minute) {
+    |          ^^^ the trait `Sealed` is not implemented for `(convert::Day, convert::Minute)`
+    |
+    = help: the following other types implement trait `Sealed`:
+              (Microsecond, Millisecond)
+              (Microsecond, Week)
+              (Microsecond, convert::Day)
+              (Microsecond, convert::Hour)
+              (Microsecond, convert::Minute)
+              (Microsecond, convert::Second)
+              (Millisecond, Week)
+              (Millisecond, convert::Day)
+            and 20 others
+note: required by a bound in `convert::Per`
+   --> time-core/src/convert.rs:35:16
+    |
+35  | pub trait Per: sealed::Sealed {
+    |                ^^^^^^^^^^^^^^ required by this bound in `convert::Per`
+
+error[E0277]: the trait bound `(convert::Day, convert::Hour): Sealed` is not satisfied
+   --> time-core/src/convert.rs:107:10
+    |
+107 |     impl Per for (Day, Hour) {
+    |          ^^^ the trait `Sealed` is not implemented for `(convert::Day, convert::Hour)`
+    |
+    = help: the following other types implement trait `Sealed`:
+              (Microsecond, Millisecond)
+              (Microsecond, Week)
+              (Microsecond, convert::Day)
+              (Microsecond, convert::Hour)
+              (Microsecond, convert::Minute)
+              (Microsecond, convert::Second)
+              (Millisecond, Week)
+              (Millisecond, convert::Day)
+            and 20 others
+note: required by a bound in `convert::Per`
+   --> time-core/src/convert.rs:35:16
+    |
+35  | pub trait Per: sealed::Sealed {
+    |                ^^^^^^^^^^^^^^ required by this bound in `convert::Per`
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `time-core` due to 3 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UcST2robSJJ0hbIBj9hCA65EI1f5', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_1 {\n    use crate::convert::{Day, Per, Second, Minute, Hour};\n\n    #[test]\n    fn day_per_second() {\n        let day = Day;\n        let per_second: u32 = day.per(Second);\n        assert_eq!(per_second, 86_400);\n    }\n\n    #[test]\n    fn day_per_minute() {\n        let day = Day;\n        let per_minute: u32 = day.per(Minute);\n        assert_eq!(per_minute, 1_440);\n    }\n\n    #[test]\n    fn day_per_hour() {\n        let day = Day;\n        let per_hour: u32 = day.per(Hour);\n        assert_eq!(per_hour, 24);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702308365, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_6aca3b5ce1', usage=CompletionUsage(completion_tokens=165, prompt_tokens=1884, total_tokens=2049))
+71
+========================================
+inject err convert::Day::per time-core/src/convert.rs per
+#[cfg(test)]
+mod tests_llm_16_1_llm_16_1 {
+    use crate::convert::{Day, Per, Second, Minute, Hour};
+
+    #[test]
+    fn day_per_second() {
+        let day = Day;
+        let per_second: u32 = day.per(Second);
+        assert_eq!(per_second, 86_400);
+    }
+
+    #[test]
+    fn day_per_minute() {
+        let day = Day;
+        let per_minute: u32 = day.per(Minute);
+        assert_eq!(per_minute, 1_440);
+    }
+
+    #[test]
+    fn day_per_hour() {
+        let day = Day;
+        let per_hour: u32 = day.per(Hour);
+        assert_eq!(per_hour, 24);
+    }
+}
+   Compiling time-core v0.1.1 (/home/xiang/workspace/human/llm_base_bk/time/time-core)
+error[E0308]: mismatched types
+  --> time-core/src/convert.rs:96:39
+   |
+96 |         let per_second: u32 = day.per(Second);
+   |                                   --- ^^^^^^ expected struct `Week`, found struct `convert::Second`
+   |                                   |
+   |                                   arguments to this function are incorrect
+   |
+note: associated function defined here
+  --> time-core/src/convert.rs:9:26
+   |
+9  |               pub const fn per<T>(self, _: T) -> <(Self, T) as Per>::Output
+   |                            ^^^          ----
+...
+20 | / declare_structs! {
+21 | |     Nanosecond
+22 | |     Microsecond
+23 | |     Millisecond
+...  |
+28 | |     Week
+29 | | }
+   | |_- in this macro invocation
+   = note: this error originates in the macro `declare_structs` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+  --> time-core/src/convert.rs:96:31
+   |
+96 |         let per_second: u32 = day.per(Second);
+   |                         ---   ^^^^^^^^^^^^^^^ expected `u32`, found `u8`
+   |                         |
+   |                         expected due to this
+   |
+help: you can convert a `u8` to a `u32`
+   |
+96 |         let per_second: u32 = day.per(Second).into();
+   |                                              +++++++
+
+error[E0308]: mismatched types
+   --> time-core/src/convert.rs:103:39
+    |
+103 |         let per_minute: u32 = day.per(Minute);
+    |                                   --- ^^^^^^ expected struct `Week`, found struct `Minute`
+    |                                   |
+    |                                   arguments to this function are incorrect
+    |
+note: associated function defined here
+   --> time-core/src/convert.rs:9:26
+    |
+9   |               pub const fn per<T>(self, _: T) -> <(Self, T) as Per>::Output
+    |                            ^^^          ----
+...
+20  | / declare_structs! {
+21  | |     Nanosecond
+22  | |     Microsecond
+23  | |     Millisecond
+...   |
+28  | |     Week
+29  | | }
+    | |_- in this macro invocation
+    = note: this error originates in the macro `declare_structs` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+   --> time-core/src/convert.rs:103:31
+    |
+103 |         let per_minute: u32 = day.per(Minute);
+    |                         ---   ^^^^^^^^^^^^^^^ expected `u32`, found `u8`
+    |                         |
+    |                         expected due to this
+    |
+help: you can convert a `u8` to a `u32`
+    |
+103 |         let per_minute: u32 = day.per(Minute).into();
+    |                                              +++++++
+
+error[E0308]: mismatched types
+   --> time-core/src/convert.rs:110:37
+    |
+110 |         let per_hour: u32 = day.per(Hour);
+    |                                 --- ^^^^ expected struct `Week`, found struct `Hour`
+    |                                 |
+    |                                 arguments to this function are incorrect
+    |
+note: associated function defined here
+   --> time-core/src/convert.rs:9:26
+    |
+9   |               pub const fn per<T>(self, _: T) -> <(Self, T) as Per>::Output
+    |                            ^^^          ----
+...
+20  | / declare_structs! {
+21  | |     Nanosecond
+22  | |     Microsecond
+23  | |     Millisecond
+...   |
+28  | |     Week
+29  | | }
+    | |_- in this macro invocation
+    = note: this error originates in the macro `declare_structs` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+   --> time-core/src/convert.rs:110:29
+    |
+110 |         let per_hour: u32 = day.per(Hour);
+    |                       ---   ^^^^^^^^^^^^^ expected `u32`, found `u8`
+    |                       |
+    |                       expected due to this
+    |
+help: you can convert a `u8` to a `u32`
+    |
+110 |         let per_hour: u32 = day.per(Hour).into();
+    |                                          +++++++
+
+For more information about this error, try `rustc --explain E0308`.
+error: could not compile `time-core` due to 6 previous errors
+
+repair err convert::Day::per time-core/src/convert.rs per
+ChatCompletion(id='chatcmpl-8UcSrc9ntfEqq8Soj3LJSJjumc3aF', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use crate::convert::{Hour, Day, Per};\n\n    #[test]\n    fn hour_per_day() {\n        let hour = Hour;\n        let result: <(Hour, Day) as Per>::Output = hour.per(Day);\n        assert_eq!(result, <(Hour, Day)>::VALUE);\n    }\n\n    // Additional tests can be added here\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702308389, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=87, prompt_tokens=501, total_tokens=588))
+71
+inject succeed time time-core convert::Hour::per
+ChatCompletion(id='chatcmpl-8UcSz88TiZog5eP9MwyfQfIYvvgGr', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use crate::convert::{\n        Microsecond, Day, Per, Hour, Millisecond, Minute, \n        Nanosecond, Second, Week\n    };\n\n    #[test]\n    fn microseconds_per_day() {\n        let micros_per_day = Microsecond.per(Day);\n        assert_eq!(micros_per_day, <(Microsecond, Day) as Per>::VALUE);\n    }\n\n    #[test]\n    fn microseconds_per_hour() {\n        let micros_per_hour = Microsecond.per(Hour);\n        assert_eq!(micros_per_hour, <(Microsecond, Hour) as Per>::VALUE);\n    }\n\n    #[test]\n    fn microseconds_per_millisecond() {\n        let micros_per_millisecond = Microsecond.per(Millisecond);\n        assert_eq!(micros_per_millisecond, <(Microsecond, Millisecond) as Per>::VALUE);\n    }\n\n    #[test]\n    fn microseconds_per_minute() {\n        let micros_per_minute = Microsecond.per(Minute);\n        assert_eq!(micros_per_minute, <(Microsecond, Minute) as Per>::VALUE);\n    }\n\n    #[test]\n    fn microseconds_per_nanosecond() {\n        let micros_per_nanosecond = Microsecond.per(Nanosecond);\n        assert_eq!(micros_per_nanosecond, <(Microsecond, Nanosecond) as Per>::VALUE);\n    }\n\n    #[test]\n    fn microseconds_per_second() {\n        let micros_per_second = Microsecond.per(Second);\n        assert_eq!(micros_per_second, <(Microsecond, Second) as Per>::VALUE);\n    }\n\n    #[test]\n    fn microseconds_per_week() {\n        let micros_per_week = Microsecond.per(Week);\n        assert_eq!(micros_per_week, <(Microsecond, Week) as Per>::VALUE);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702308397, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=393, prompt_tokens=504, total_tokens=897))
+71
+========================================
+inject err convert::Microsecond::per time-core/src/convert.rs per
+#[cfg(test)]
+mod tests_llm_16_3 {
+    use super::*;
+
+use crate::*;
+    use crate::convert::{
+        Microsecond, Day, Per, Hour, Millisecond, Minute, 
+        Nanosecond, Second, Week
+    };
+
+    #[test]
+    fn microseconds_per_day() {
+        let micros_per_day = Microsecond.per(Day);
+        assert_eq!(micros_per_day, <(Microsecond, Day) as Per>::VALUE);
+    }
+
+    #[test]
+    fn microseconds_per_hour() {
+        let micros_per_hour = Microsecond.per(Hour);
+        assert_eq!(micros_per_hour, <(Microsecond, Hour) as Per>::VALUE);
+    }
+
+    #[test]
+    fn microseconds_per_millisecond() {
+        let micros_per_millisecond = Microsecond.per(Millisecond);
+        assert_eq!(micros_per_millisecond, <(Microsecond, Millisecond) as Per>::VALUE);
+    }
+
+    #[test]
+    fn microseconds_per_minute() {
+        let micros_per_minute = Microsecond.per(Minute);
+        assert_eq!(micros_per_minute, <(Microsecond, Minute) as Per>::VALUE);
+    }
+
+    #[test]
+    fn microseconds_per_nanosecond() {
+        let micros_per_nanosecond = Microsecond.per(Nanosecond);
+        assert_eq!(micros_per_nanosecond, <(Microsecond, Nanosecond) as Per>::VALUE);
+    }
+
+    #[test]
+    fn microseconds_per_second() {
+        let micros_per_second = Microsecond.per(Second);
+        assert_eq!(micros_per_second, <(Microsecond, Second) as Per>::VALUE);
+    }
+
+    #[test]
+    fn microseconds_per_week() {
+        let micros_per_week = Microsecond.per(Week);
+        assert_eq!(micros_per_week, <(Microsecond, Week) as Per>::VALUE);
+    }
+}
+   Compiling time-core v0.1.1 (/home/xiang/workspace/human/llm_base_bk/time/time-core)
+error[E0277]: the trait bound `(Microsecond, Nanosecond): Per` is not satisfied
+   --> time-core/src/convert.rs:137:53
+    |
+137 |         let micros_per_nanosecond = Microsecond.per(Nanosecond);
+    |                                                 --- ^^^^^^^^^^ the trait `Per` is not implemented for `(Microsecond, Nanosecond)`
+    |                                                 |
+    |                                                 required by a bound introduced by this call
+    |
+    = help: the following other types implement trait `Per`:
+              (Day, Week)
+              (Hour, Day)
+              (Hour, Week)
+              (Microsecond, Day)
+              (Microsecond, Hour)
+              (Microsecond, Millisecond)
+              (Microsecond, Minute)
+              (Microsecond, Week)
+            and 20 others
+note: required by a bound in `Microsecond::per`
+   --> time-core/src/convert.rs:11:28
+    |
+9   |               pub const fn per<T>(self, _: T) -> <(Self, T) as Per>::Output
+    |                            --- required by a bound in this
+10  |               where
+11  |                   (Self, T): Per,
+    |                              ^^^ required by this bound in `Microsecond::per`
+...
+20  | / declare_structs! {
+21  | |     Nanosecond
+22  | |     Microsecond
+23  | |     Millisecond
+...   |
+28  | |     Week
+29  | | }
+    | |_- in this macro invocation
+    = note: this error originates in the macro `declare_structs` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `(Microsecond, Nanosecond): Per` is not satisfied
+   --> time-core/src/convert.rs:138:43
+    |
+138 |         assert_eq!(micros_per_nanosecond, <(Microsecond, Nanosecond) as Per>::VALUE);
+    |                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Per` is not implemented for `(Microsecond, Nanosecond)`
+    |
+    = help: the following other types implement trait `Per`:
+              (Day, Week)
+              (Hour, Day)
+              (Hour, Week)
+              (Microsecond, Day)
+              (Microsecond, Hour)
+              (Microsecond, Millisecond)
+              (Microsecond, Minute)
+              (Microsecond, Week)
+            and 20 others
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `time-core` due to 2 previous errors
+
+ChatCompletion(id='chatcmpl-8UcTZtcyo3va2GUuLC1eb8Uq9WRir', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_3 {\n    use super::*;\n\n    use crate::convert::{Day, Hour, Microsecond, Millisecond, Minute, Per, Second, Week};\n\n    #[test]\n    fn microseconds_per_day() {\n        let micros_per_day = Microsecond.per(Day);\n        assert_eq!(micros_per_day, <(Microsecond, Day) as Per>::VALUE);\n    }\n\n    #[test]\n    fn microseconds_per_hour() {\n        let micros_per_hour = Microsecond.per(Hour);\n        assert_eq!(micros_per_hour, <(Microsecond, Hour) as Per>::VALUE);\n    }\n\n    #[test]\n    fn microseconds_per_millisecond() {\n        let micros_per_millisecond = Microsecond.per(Millisecond);\n        assert_eq!(micros_per_millisecond, <(Microsecond, Millisecond) as Per>::VALUE);\n    }\n\n    #[test]\n    fn microseconds_per_minute() {\n        let micros_per_minute = Microsecond.per(Minute);\n        assert_eq!(micros_per_minute, <(Microsecond, Minute) as Per>::VALUE);\n    }\n\n    #[test]\n    fn microseconds_per_second() {\n        let micros_per_second = Microsecond.per(Second);\n        assert_eq!(micros_per_second, <(Microsecond, Second) as Per>::VALUE);\n    }\n\n    #[test]\n    fn microseconds_per_week() {\n        let micros_per_week = Microsecond.per(Week);\n        assert_eq!(micros_per_week, <(Microsecond, Week) as Per>::VALUE);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702308433, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=333, prompt_tokens=1943, total_tokens=2276))
+71
+inject succeed time time-core convert::Microsecond::per
+ChatCompletion(id='chatcmpl-8UcU61gXqCEYLD9eZFiTgRNLmLhON', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content="```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use crate::convert::{Day, Millisecond};\n    use crate::convert::Per;\n\n    // Assuming VALUE for Millisecond per Day is properly defined, \n    // for example, let's say it is 86_400_000 milliseconds for simplifying the test\n    impl Per for (Millisecond, Day) {\n        type Output = i64;\n        const VALUE: Self::Output = 86_400_000;\n    }\n\n    #[test]\n    fn millisecond_per_day() {\n        let millisecond = Millisecond;\n        let milliseconds_per_day: i64 = millisecond.per(Day);\n        assert_eq!(milliseconds_per_day, 86_400_000);\n    }\n}\n```", role='assistant', function_call=None, tool_calls=None))], created=1702308466, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=159, prompt_tokens=504, total_tokens=663))
+71
+========================================
+inject err convert::Millisecond::per time-core/src/convert.rs per
+#[cfg(test)]
+mod tests_llm_16_4 {
+    use super::*;
+
+use crate::*;
+    use crate::convert::{Day, Millisecond};
+    use crate::convert::Per;
+
+    // Assuming VALUE for Millisecond per Day is properly defined, 
+    // for example, let's say it is 86_400_000 milliseconds for simplifying the test
+    impl Per for (Millisecond, Day) {
+        type Output = i64;
+        const VALUE: Self::Output = 86_400_000;
+    }
+
+    #[test]
+    fn millisecond_per_day() {
+        let millisecond = Millisecond;
+        let milliseconds_per_day: i64 = millisecond.per(Day);
+        assert_eq!(milliseconds_per_day, 86_400_000);
+    }
+}
+   Compiling time-core v0.1.1 (/home/xiang/workspace/human/llm_base_bk/time/time-core)
+error[E0119]: conflicting implementations of trait `Per` for type `(Millisecond, Day)`
+   --> time-core/src/convert.rs:45:9
+    |
+45  |           impl Per for ($x, $y) {
+    |           ^^^^^^^^^^^^^^^^^^^^^ conflicting implementation for `(Millisecond, Day)`
+...
+53  | / impl_per! {
+54  | |     u16: Nanosecond in Microsecond = 1_000
+55  | |     u32: Nanosecond in Millisecond = 1_000_000
+56  | |     u32: Nanosecond in Second = 1_000_000_000
+...   |
+87  | |     u8: Day in Week = 7
+88  | | }
+    | |_- in this macro invocation
+...
+154 |       impl Per for (Millisecond, Day) {
+    |       ------------------------------- first implementation here
+    |
+    = note: this error originates in the macro `impl_per` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+For more information about this error, try `rustc --explain E0119`.
+error: could not compile `time-core` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UcUJijPP8lfILAmDGjfTnBZGey0q', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_4 {\n    use super::*;\n\n    #[test]\n    fn millisecond_per_day() {\n        let millisecond = Millisecond;\n        let milliseconds_per_day: i64 = millisecond.per(Day);\n        assert_eq!(milliseconds_per_day, 86_400_000);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702308479, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=74, prompt_tokens=1180, total_tokens=1254))
+71
+========================================
+inject err convert::Millisecond::per time-core/src/convert.rs per
+#[cfg(test)]
+mod tests_llm_16_4_llm_16_4 {
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn millisecond_per_day() {
+        let millisecond = Millisecond;
+        let milliseconds_per_day: i64 = millisecond.per(Day);
+        assert_eq!(milliseconds_per_day, 86_400_000);
+    }
+}
+   Compiling time-core v0.1.1 (/home/xiang/workspace/human/llm_base_bk/time/time-core)
+error[E0308]: mismatched types
+   --> time-core/src/convert.rs:153:41
+    |
+153 |         let milliseconds_per_day: i64 = millisecond.per(Day);
+    |                                   ---   ^^^^^^^^^^^^^^^^^^^^ expected `i64`, found `u32`
+    |                                   |
+    |                                   expected due to this
+    |
+help: you can convert a `u32` to an `i64`
+    |
+153 |         let milliseconds_per_day: i64 = millisecond.per(Day).into();
+    |                                                             +++++++
+
+For more information about this error, try `rustc --explain E0308`.
+error: could not compile `time-core` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+repair err convert::Millisecond::per time-core/src/convert.rs per
+ChatCompletion(id='chatcmpl-8UcUSNKvbK5wFYttIQXpkDDm9SRyp', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use crate::convert::{Day, Minute, Per};\n\n    #[test]\n    fn minute_per_day() {\n        struct Hours;\n\n        impl crate::convert::Per for (Minute, Day) {\n            type Output = u32;\n            const VALUE: Self::Output = 1440;\n        }\n        \n        let minutes = Minute;\n        let days = Day;\n        let minutes_per_day = minutes.per(days);\n        assert_eq!(minutes_per_day, 1440);\n    }\n\n    #[test]\n    fn minute_per_hour() {\n        struct Hours;\n\n        impl crate::convert::Per for (Minute, Hours) {\n            type Output = u32;\n            const VALUE: Self::Output = 60;\n        }\n        \n        let minutes = Minute;\n        let hours = Hours;\n        let minutes_per_hour = minutes.per(hours);\n        assert_eq!(minutes_per_hour, 60);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702308488, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=200, prompt_tokens=501, total_tokens=701))
+71
+========================================
+inject err convert::Minute::per time-core/src/convert.rs per
+#[cfg(test)]
+mod tests_llm_16_5 {
+    use super::*;
+
+use crate::*;
+    use crate::convert::{Day, Minute, Per};
+
+    #[test]
+    fn minute_per_day() {
+        struct Hours;
+
+        impl crate::convert::Per for (Minute, Day) {
+            type Output = u32;
+            const VALUE: Self::Output = 1440;
+        }
+        
+        let minutes = Minute;
+        let days = Day;
+        let minutes_per_day = minutes.per(days);
+        assert_eq!(minutes_per_day, 1440);
+    }
+
+    #[test]
+    fn minute_per_hour() {
+        struct Hours;
+
+        impl crate::convert::Per for (Minute, Hours) {
+            type Output = u32;
+            const VALUE: Self::Output = 60;
+        }
+        
+        let minutes = Minute;
+        let hours = Hours;
+        let minutes_per_hour = minutes.per(hours);
+        assert_eq!(minutes_per_hour, 60);
+    }
+}
+   Compiling time-core v0.1.1 (/home/xiang/workspace/human/llm_base_bk/time/time-core)
+error[E0119]: conflicting implementations of trait `Per` for type `(Minute, Day)`
+   --> time-core/src/convert.rs:155:9
+    |
+45  |         impl Per for ($x, $y) {
+    |         --------------------- first implementation here
+...
+155 |         impl crate::convert::Per for (Minute, Day) {
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ conflicting implementation for `(Minute, Day)`
+
+For more information about this error, try `rustc --explain E0119`.
+error: could not compile `time-core` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UcUl7yLWryDnbQLV6NFOvfUO6tRC', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content="```rust\n#[cfg(test)]\nmod tests_llm_16_5 {\n    use super::*;\n    use crate::convert::{Minute, Day};\n    use crate::convert::sealed::Sealed;\n    use crate::convert::Per;\n\n    #[derive(Copy, Clone)]\n    struct Hours;\n\n    #[derive(Copy, Clone)]\n    struct NotAnActualUnit;\n\n    // Assuming Day, Minute already implements Sealed\n    // Assuming Day, Minute, Hours, NotAnActualUnit implements Copy and Clone\n    // Assuming Per is already implemented for (Minute, Day) and (Minute, Hours) somewhere in the code.\n    // We define a new unit for the strict purpose of this test and implement Sealed for it.\n\n    impl Sealed for NotAnActualUnit {}\n\n    impl Per for (Minute, NotAnActualUnit) {\n        type Output = u32;\n        const VALUE: Self::Output = 123;\n    }\n\n    #[test]\n    fn minute_per_day() {\n        // Assuming Per for (Minute, Day) is already implemented and VALUE is set properly\n        let minutes = Minute;\n        let days = Day;\n        let minutes_per_day: u32 = minutes.per(days); // The type annotation here is necessary\n        assert_eq!(minutes_per_day, 1440); // Replace 1440 with the actual VALUE from the implemented Per for (Minute, Day)\n    }\n\n    #[test]\n    fn minute_per_custom_unit() {\n        // This uses the custom unit NotAnActualUnit and it's Per implementation\n        let minutes = Minute;\n        let custom_unit = NotAnActualUnit;\n        let minutes_per_custom_unit = minutes.per(custom_unit);\n        assert_eq!(minutes_per_custom_unit, 123); // The value is the one provided in Per for (Minute, NotAnActualUnit)\n    }\n}\n```", role='assistant', function_call=None, tool_calls=None))], created=1702308507, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_6aca3b5ce1', usage=CompletionUsage(completion_tokens=380, prompt_tokens=1128, total_tokens=1508))
+71
+========================================
+inject err convert::Minute::per time-core/src/convert.rs per
+#[cfg(test)]
+mod tests_llm_16_5_llm_16_5 {
+    use super::*;
+
+use crate::*;
+    use crate::convert::{Minute, Day};
+    use crate::convert::sealed::Sealed;
+    use crate::convert::Per;
+
+    #[derive(Copy, Clone)]
+    struct Hours;
+
+    #[derive(Copy, Clone)]
+    struct NotAnActualUnit;
+
+    // Assuming Day, Minute already implements Sealed
+    // Assuming Day, Minute, Hours, NotAnActualUnit implements Copy and Clone
+    // Assuming Per is already implemented for (Minute, Day) and (Minute, Hours) somewhere in the code.
+    // We define a new unit for the strict purpose of this test and implement Sealed for it.
+
+    impl Sealed for NotAnActualUnit {}
+
+    impl Per for (Minute, NotAnActualUnit) {
+        type Output = u32;
+        const VALUE: Self::Output = 123;
+    }
+
+    #[test]
+    fn minute_per_day() {
+        // Assuming Per for (Minute, Day) is already implemented and VALUE is set properly
+        let minutes = Minute;
+        let days = Day;
+        let minutes_per_day: u32 = minutes.per(days); // The type annotation here is necessary
+        assert_eq!(minutes_per_day, 1440); // Replace 1440 with the actual VALUE from the implemented Per for (Minute, Day)
+    }
+
+    #[test]
+    fn minute_per_custom_unit() {
+        // This uses the custom unit NotAnActualUnit and it's Per implementation
+        let minutes = Minute;
+        let custom_unit = NotAnActualUnit;
+        let minutes_per_custom_unit = minutes.per(custom_unit);
+        assert_eq!(minutes_per_custom_unit, 123); // The value is the one provided in Per for (Minute, NotAnActualUnit)
+    }
+}
+   Compiling time-core v0.1.1 (/home/xiang/workspace/human/llm_base_bk/time/time-core)
+error[E0277]: the trait bound `(Minute, NotAnActualUnit): Sealed` is not satisfied
+   --> time-core/src/convert.rs:166:10
+    |
+166 |     impl Per for (Minute, NotAnActualUnit) {
+    |          ^^^ the trait `Sealed` is not implemented for `(Minute, NotAnActualUnit)`
+    |
+    = help: the following other types implement trait `Sealed`:
+              (Day, Week)
+              (Hour, Day)
+              (Hour, Week)
+              (Microsecond, Day)
+              (Microsecond, Hour)
+              (Microsecond, Millisecond)
+              (Microsecond, Minute)
+              (Microsecond, Week)
+            and 20 others
+note: required by a bound in `Per`
+   --> time-core/src/convert.rs:35:16
+    |
+35  | pub trait Per: sealed::Sealed {
+    |                ^^^^^^^^^^^^^^ required by this bound in `Per`
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `time-core` due to previous error
+
+repair err convert::Minute::per time-core/src/convert.rs per
+ChatCompletion(id='chatcmpl-8UcVHZy32nZBu59aXQcAUks9fEfaT', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n\n    #[test]\n    fn nanoseconds_per_day() {\n        use crate::convert::{Per, Nanosecond, Day};\n\n        assert_eq!(Nanosecond::per(Day), <(Nanosecond, Day) as Per>::VALUE);\n        assert_eq!(Day::per(Nanosecond), <(Day, Nanosecond) as Per>::VALUE);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702308539, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_6aca3b5ce1', usage=CompletionUsage(completion_tokens=96, prompt_tokens=510, total_tokens=606))
+71
+========================================
+inject err convert::Nanosecond::per time-core/src/convert.rs per
+#[cfg(test)]
+mod tests_llm_16_6 {
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn nanoseconds_per_day() {
+        use crate::convert::{Per, Nanosecond, Day};
+
+        assert_eq!(Nanosecond::per(Day), <(Nanosecond, Day) as Per>::VALUE);
+        assert_eq!(Day::per(Nanosecond), <(Day, Nanosecond) as Per>::VALUE);
+    }
+}
+   Compiling time-core v0.1.1 (/home/xiang/workspace/human/llm_base_bk/time/time-core)
+error[E0061]: this function takes 2 arguments but 1 argument was supplied
+   --> time-core/src/convert.rs:154:20
+    |
+154 |         assert_eq!(Nanosecond::per(Day), <(Nanosecond, Day) as Per>::VALUE);
+    |                    ^^^^^^^^^^^^^^^ --- an argument of type `Nanosecond` is missing
+    |
+note: associated function defined here
+   --> time-core/src/convert.rs:9:26
+    |
+9   |               pub const fn per<T>(self, _: T) -> <(Self, T) as Per>::Output
+    |                            ^^^    ----  ----
+...
+20  | / declare_structs! {
+21  | |     Nanosecond
+22  | |     Microsecond
+23  | |     Millisecond
+...   |
+28  | |     Week
+29  | | }
+    | |_- in this macro invocation
+    = note: this error originates in the macro `declare_structs` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: provide the argument
+    |
+154 |         assert_eq!(Nanosecond::per(/* Nanosecond */, Day), <(Nanosecond, Day) as Per>::VALUE);
+    |                                   ~~~~~~~~~~~~~~~~~~~~~~~
+
+error[E0061]: this function takes 2 arguments but 1 argument was supplied
+   --> time-core/src/convert.rs:155:20
+    |
+155 |         assert_eq!(Day::per(Nanosecond), <(Day, Nanosecond) as Per>::VALUE);
+    |                    ^^^^^^^^------------
+    |                            ||
+    |                            |expected struct `Day`, found struct `Nanosecond`
+    |                            an argument of type `Week` is missing
+    |
+note: associated function defined here
+   --> time-core/src/convert.rs:9:26
+    |
+9   |               pub const fn per<T>(self, _: T) -> <(Self, T) as Per>::Output
+    |                            ^^^    ----  ----
+...
+20  | / declare_structs! {
+21  | |     Nanosecond
+22  | |     Microsecond
+23  | |     Millisecond
+...   |
+28  | |     Week
+29  | | }
+    | |_- in this macro invocation
+    = note: this error originates in the macro `declare_structs` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: provide the argument
+    |
+155 |         assert_eq!(Day::per(/* Day */, /* Week */), <(Day, Nanosecond) as Per>::VALUE);
+    |                            ~~~~~~~~~~~~~~~~~~~~~~~
+
+error[E0277]: the trait bound `(Day, Nanosecond): Per` is not satisfied
+   --> time-core/src/convert.rs:155:42
+    |
+155 |         assert_eq!(Day::per(Nanosecond), <(Day, Nanosecond) as Per>::VALUE);
+    |                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Per` is not implemented for `(Day, Nanosecond)`
+    |
+    = help: the following other types implement trait `Per`:
+              (Day, Week)
+              (Hour, Day)
+              (Hour, Week)
+              (Microsecond, Day)
+              (Microsecond, Hour)
+              (Microsecond, Millisecond)
+              (Microsecond, Minute)
+              (Microsecond, Week)
+            and 20 others
+
+Some errors have detailed explanations: E0061, E0277.
+For more information about an error, try `rustc --explain E0061`.
+error: could not compile `time-core` due to 3 previous errors
+
+ChatCompletion(id='chatcmpl-8UcVQNGH8yHINr8rBOX4rtdjIiP4I', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_6 {\n    use super::*;\n    use crate::convert::{Day, Nanosecond, Per};\n\n    #[test]\n    fn nanoseconds_per_day() {\n        assert_eq!(Nanosecond.per(Day), <(Nanosecond, Day) as Per>::VALUE);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702308548, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=76, prompt_tokens=1586, total_tokens=1662))
+71
+inject succeed time time-core convert::Nanosecond::per
+ChatCompletion(id='chatcmpl-8UcVZSMedfsQ5XqYlatncoSGKME41', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n\n    #[test]\n    fn test_seconds_per_minute() {\n        assert_eq!(Second.per(Minute), 60);\n    }\n\n    #[test]\n    fn test_seconds_per_hour() {\n        assert_eq!(Second.per(Hour), 3600);\n    }\n\n    #[test]\n    fn test_seconds_per_day() {\n        assert_eq!(Second.per(Day), 86400);\n    }\n\n    #[test]\n    fn test_seconds_per_week() {\n        assert_eq!(Second.per(Week), 604800);\n    }\n\n    #[test]\n    fn test_seconds_per_millisecond() {\n        assert_eq!(Second.per(Millisecond), 1_000);\n    }\n\n    #[test]\n    fn test_seconds_per_microsecond() {\n        assert_eq!(Second.per(Microsecond), 1_000_000);\n    }\n\n    #[test]\n    fn test_seconds_per_nanosecond() {\n        assert_eq!(Second.per(Nanosecond), 1_000_000_000);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702308557, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=221, prompt_tokens=501, total_tokens=722))
+71
+========================================
+inject err convert::Second::per time-core/src/convert.rs per
+#[cfg(test)]
+mod tests_llm_16_7 {
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn test_seconds_per_minute() {
+        assert_eq!(Second.per(Minute), 60);
+    }
+
+    #[test]
+    fn test_seconds_per_hour() {
+        assert_eq!(Second.per(Hour), 3600);
+    }
+
+    #[test]
+    fn test_seconds_per_day() {
+        assert_eq!(Second.per(Day), 86400);
+    }
+
+    #[test]
+    fn test_seconds_per_week() {
+        assert_eq!(Second.per(Week), 604800);
+    }
+
+    #[test]
+    fn test_seconds_per_millisecond() {
+        assert_eq!(Second.per(Millisecond), 1_000);
+    }
+
+    #[test]
+    fn test_seconds_per_microsecond() {
+        assert_eq!(Second.per(Microsecond), 1_000_000);
+    }
+
+    #[test]
+    fn test_seconds_per_nanosecond() {
+        assert_eq!(Second.per(Nanosecond), 1_000_000_000);
+    }
+}
+   Compiling time-core v0.1.1 (/home/xiang/workspace/human/llm_base_bk/time/time-core)
+error[E0277]: the trait bound `(convert::Second, convert::Millisecond): Per` is not satisfied
+   --> time-core/src/convert.rs:183:31
+    |
+183 |         assert_eq!(Second.per(Millisecond), 1_000);
+    |                           --- ^^^^^^^^^^^ the trait `Per` is not implemented for `(convert::Second, convert::Millisecond)`
+    |                           |
+    |                           required by a bound introduced by this call
+    |
+    = help: the following other types implement trait `Per`:
+              (convert::Day, convert::Week)
+              (convert::Hour, convert::Day)
+              (convert::Hour, convert::Week)
+              (convert::Microsecond, convert::Day)
+              (convert::Microsecond, convert::Hour)
+              (convert::Microsecond, convert::Millisecond)
+              (convert::Microsecond, convert::Minute)
+              (convert::Microsecond, convert::Second)
+            and 20 others
+note: required by a bound in `convert::Second::per`
+   --> time-core/src/convert.rs:11:28
+    |
+9   |               pub const fn per<T>(self, _: T) -> <(Self, T) as Per>::Output
+    |                            --- required by a bound in this
+10  |               where
+11  |                   (Self, T): Per,
+    |                              ^^^ required by this bound in `convert::Second::per`
+...
+20  | / declare_structs! {
+21  | |     Nanosecond
+22  | |     Microsecond
+23  | |     Millisecond
+...   |
+28  | |     Week
+29  | | }
+    | |_- in this macro invocation
+    = note: this error originates in the macro `declare_structs` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `(convert::Second, convert::Microsecond): Per` is not satisfied
+   --> time-core/src/convert.rs:188:31
+    |
+188 |         assert_eq!(Second.per(Microsecond), 1_000_000);
+    |                           --- ^^^^^^^^^^^ the trait `Per` is not implemented for `(convert::Second, convert::Microsecond)`
+    |                           |
+    |                           required by a bound introduced by this call
+    |
+    = help: the following other types implement trait `Per`:
+              (convert::Day, convert::Week)
+              (convert::Hour, convert::Day)
+              (convert::Hour, convert::Week)
+              (convert::Microsecond, convert::Day)
+              (convert::Microsecond, convert::Hour)
+              (convert::Microsecond, convert::Millisecond)
+              (convert::Microsecond, convert::Minute)
+              (convert::Microsecond, convert::Second)
+            and 20 others
+note: required by a bound in `convert::Second::per`
+   --> time-core/src/convert.rs:11:28
+    |
+9   |               pub const fn per<T>(self, _: T) -> <(Self, T) as Per>::Output
+    |                            --- required by a bound in this
+10  |               where
+11  |                   (Self, T): Per,
+    |                              ^^^ required by this bound in `convert::Second::per`
+...
+20  | / declare_structs! {
+21  | |     Nanosecond
+22  | |     Microsecond
+23  | |     Millisecond
+...   |
+28  | |     Week
+29  | | }
+    | |_- in this macro invocation
+    = note: this error originates in the macro `declare_structs` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `(convert::Second, convert::Nanosecond): Per` is not satisfied
+   --> time-core/src/convert.rs:193:31
+    |
+193 |         assert_eq!(Second.per(Nanosecond), 1_000_000_000);
+    |                           --- ^^^^^^^^^^ the trait `Per` is not implemented for `(convert::Second, convert::Nanosecond)`
+    |                           |
+    |                           required by a bound introduced by this call
+    |
+    = help: the following other types implement trait `Per`:
+              (convert::Day, convert::Week)
+              (convert::Hour, convert::Day)
+              (convert::Hour, convert::Week)
+              (convert::Microsecond, convert::Day)
+              (convert::Microsecond, convert::Hour)
+              (convert::Microsecond, convert::Millisecond)
+              (convert::Microsecond, convert::Minute)
+              (convert::Microsecond, convert::Second)
+            and 20 others
+note: required by a bound in `convert::Second::per`
+   --> time-core/src/convert.rs:11:28
+    |
+9   |               pub const fn per<T>(self, _: T) -> <(Self, T) as Per>::Output
+    |                            --- required by a bound in this
+10  |               where
+11  |                   (Self, T): Per,
+    |                              ^^^ required by this bound in `convert::Second::per`
+...
+20  | / declare_structs! {
+21  | |     Nanosecond
+22  | |     Microsecond
+23  | |     Millisecond
+...   |
+28  | |     Week
+29  | | }
+    | |_- in this macro invocation
+    = note: this error originates in the macro `declare_structs` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `time-core` due to 3 previous errors
+
+ChatCompletion(id='chatcmpl-8UcW72LowsnhUhD5EPHxOIwAVNrap', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_7 {\n    use crate::convert::{Second, Minute, Hour, Day, Week};\n\n    #[test]\n    fn test_seconds_per_minute() {\n        assert_eq!(Second.per(Minute), 60);\n    }\n\n    #[test]\n    fn test_seconds_per_hour() {\n        assert_eq!(Second.per(Hour), 3600);\n    }\n\n    #[test]\n    fn test_seconds_per_day() {\n        assert_eq!(Second.per(Day), 86400);\n    }\n\n    #[test]\n    fn test_seconds_per_week() {\n        assert_eq!(Second.per(Week), 604800);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702308591, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=142, prompt_tokens=2269, total_tokens=2411))
+71
+inject succeed time time-core convert::Second::per
+ChatCompletion(id='chatcmpl-8UcWLxqCpBcoYb0FstZvLGUOkeAwY', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n\n    #[test]\n    fn week_per_day() {\n        let week = Week;\n        let days_per_week = week.per(Day);\n        assert_eq!(days_per_week, 7); // Assuming 1 week has 7 days\n    }\n\n    #[test]\n    fn week_per_hour() {\n        let week = Week;\n        let hours_per_week = week.per(Hour);\n        assert_eq!(hours_per_week, 7 * 24); // Assuming 1 week has 7 days, each has 24 hours\n    }\n\n    // Add more tests for each type that Week can be converted into, using the same pattern\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702308605, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_6aca3b5ce1', usage=CompletionUsage(completion_tokens=147, prompt_tokens=501, total_tokens=648))
+71
+========================================
+inject err convert::Week::per time-core/src/convert.rs per
+#[cfg(test)]
+mod tests_llm_16_8 {
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn week_per_day() {
+        let week = Week;
+        let days_per_week = week.per(Day);
+        assert_eq!(days_per_week, 7); // Assuming 1 week has 7 days
+    }
+
+    #[test]
+    fn week_per_hour() {
+        let week = Week;
+        let hours_per_week = week.per(Hour);
+        assert_eq!(hours_per_week, 7 * 24); // Assuming 1 week has 7 days, each has 24 hours
+    }
+
+    // Add more tests for each type that Week can be converted into, using the same pattern
+}
+   Compiling time-core v0.1.1 (/home/xiang/workspace/human/llm_base_bk/time/time-core)
+error[E0599]: the method `per` exists for struct `convert::Week`, but its trait bounds were not satisfied
+   --> time-core/src/convert.rs:187:34
+    |
+6   |         pub struct $t;
+    |         -------------- method `per` not found for this struct
+...
+187 |         let days_per_week = week.per(Day);
+    |                                  ^^^ method cannot be called on `convert::Week` due to unsatisfied trait bounds
+    |
+    = note: the following trait bounds were not satisfied:
+            `(convert::Week, _): Per`
+
+error[E0599]: the method `per` exists for struct `convert::Week`, but its trait bounds were not satisfied
+   --> time-core/src/convert.rs:194:35
+    |
+6   |         pub struct $t;
+    |         -------------- method `per` not found for this struct
+...
+194 |         let hours_per_week = week.per(Hour);
+    |                                   ^^^ method cannot be called on `convert::Week` due to unsatisfied trait bounds
+    |
+    = note: the following trait bounds were not satisfied:
+            `(convert::Week, _): Per`
+
+For more information about this error, try `rustc --explain E0599`.
+error: could not compile `time-core` due to 2 previous errors
+
+ChatCompletion(id='chatcmpl-8UcWa2OX1YatUhRyqsUL7kzArHuAq', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_8 {\n    use crate::convert::{Day, Hour, Per, Week};\n\n    // You would need to create dummy implementations of the Per trait\n    // for the combinations of Week with Day and Hour, (Week, Day) and (Week, Hour)\n    // Since we do not have the exact trait implementations, we will have to assume\n    // what these implementations would be for test purposes.\n\n    // Here is an example of what the dummy implementations might look like\n    // You would need to do this for all types that Week can be converted into\n    impl Per for (Week, Day) {\n        type Output = i32;\n        const VALUE: Self::Output = 7; // Assuming there are 7 days in a week\n    }\n\n    impl Per for (Week, Hour) {\n        type Output = i32;\n        const VALUE: Self::Output = 7 * 24; // Assuming there are 7 days in a week, each with 24 hours\n    }\n\n    #[test]\n    fn week_per_day() {\n        let week = Week;\n        let days_per_week = week.per(Day);\n        assert_eq!(days_per_week, 7); // Assuming 1 week has 7 days\n    }\n\n    #[test]\n    fn week_per_hour() {\n        let week = Week;\n        let hours_per_week = week.per(Hour);\n        assert_eq!(hours_per_week, 7 * 24); // Assuming 1 week has 7 days, each has 24 hours\n    }\n\n    // Add tests for each trait impl\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702308620, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=342, prompt_tokens=1164, total_tokens=1506))
+71
+========================================
+inject err convert::Week::per time-core/src/convert.rs per
+#[cfg(test)]
+mod tests_llm_16_8_llm_16_8 {
+    use crate::convert::{Day, Hour, Per, Week};
+
+    // You would need to create dummy implementations of the Per trait
+    // for the combinations of Week with Day and Hour, (Week, Day) and (Week, Hour)
+    // Since we do not have the exact trait implementations, we will have to assume
+    // what these implementations would be for test purposes.
+
+    // Here is an example of what the dummy implementations might look like
+    // You would need to do this for all types that Week can be converted into
+    impl Per for (Week, Day) {
+        type Output = i32;
+        const VALUE: Self::Output = 7; // Assuming there are 7 days in a week
+    }
+
+    impl Per for (Week, Hour) {
+        type Output = i32;
+        const VALUE: Self::Output = 7 * 24; // Assuming there are 7 days in a week, each with 24 hours
+    }
+
+    #[test]
+    fn week_per_day() {
+        let week = Week;
+        let days_per_week = week.per(Day);
+        assert_eq!(days_per_week, 7); // Assuming 1 week has 7 days
+    }
+
+    #[test]
+    fn week_per_hour() {
+        let week = Week;
+        let hours_per_week = week.per(Hour);
+        assert_eq!(hours_per_week, 7 * 24); // Assuming 1 week has 7 days, each has 24 hours
+    }
+
+    // Add tests for each trait impl
+}
+   Compiling time-core v0.1.1 (/home/xiang/workspace/human/llm_base_bk/time/time-core)
+error[E0277]: the trait bound `(Week, Day): Sealed` is not satisfied
+   --> time-core/src/convert.rs:189:10
+    |
+189 |     impl Per for (Week, Day) {
+    |          ^^^ the trait `Sealed` is not implemented for `(Week, Day)`
+    |
+    = help: the following other types implement trait `Sealed`:
+              (Day, Week)
+              (Hour, Day)
+              (Hour, Week)
+              (Microsecond, Day)
+              (Microsecond, Hour)
+              (Microsecond, Millisecond)
+              (Microsecond, Minute)
+              (Microsecond, Week)
+            and 20 others
+note: required by a bound in `Per`
+   --> time-core/src/convert.rs:35:16
+    |
+35  | pub trait Per: sealed::Sealed {
+    |                ^^^^^^^^^^^^^^ required by this bound in `Per`
+
+error[E0277]: the trait bound `(Week, Hour): Sealed` is not satisfied
+   --> time-core/src/convert.rs:194:10
+    |
+194 |     impl Per for (Week, Hour) {
+    |          ^^^ the trait `Sealed` is not implemented for `(Week, Hour)`
+    |
+    = help: the following other types implement trait `Sealed`:
+              (Day, Week)
+              (Hour, Day)
+              (Hour, Week)
+              (Microsecond, Day)
+              (Microsecond, Hour)
+              (Microsecond, Millisecond)
+              (Microsecond, Minute)
+              (Microsecond, Week)
+            and 20 others
+note: required by a bound in `Per`
+   --> time-core/src/convert.rs:35:16
+    |
+35  | pub trait Per: sealed::Sealed {
+    |                ^^^^^^^^^^^^^^ required by this bound in `Per`
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `time-core` due to 2 previous errors
+
+repair err convert::Week::per time-core/src/convert.rs per
+ChatCompletion(id='chatcmpl-8UcX6glmEjTGLGHWSb3rdMKvzWMeX', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::days_in_year;\n\n    #[test]\n    fn test_days_in_year() {\n        assert_eq!(days_in_year(1900), 365);\n        assert_eq!(days_in_year(2000), 366);\n        assert_eq!(days_in_year(2004), 366);\n        assert_eq!(days_in_year(2005), 365);\n        assert_eq!(days_in_year(2100), 365);\n        assert_eq!(days_in_year(2001), 365);\n        assert_eq!(days_in_year(2012), 366);\n        assert_eq!(days_in_year(2015), 365);\n        assert_eq!(days_in_year(2016), 366);\n        assert_eq!(days_in_year(2017), 365);\n        assert_eq!(days_in_year(2019), 365);\n        assert_eq!(days_in_year(2020), 366);\n        assert_eq!(days_in_year(2024), 366);\n        assert_eq!(days_in_year(2025), 365);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702308652, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=230, prompt_tokens=278, total_tokens=508))
+71
+========================================
+inject err util::days_in_year time-core/src/util.rs days_in_year
+#[cfg(test)]
+mod tests_llm_16_9 {
+    use crate::days_in_year;
+
+    #[test]
+    fn test_days_in_year() {
+        assert_eq!(days_in_year(1900), 365);
+        assert_eq!(days_in_year(2000), 366);
+        assert_eq!(days_in_year(2004), 366);
+        assert_eq!(days_in_year(2005), 365);
+        assert_eq!(days_in_year(2100), 365);
+        assert_eq!(days_in_year(2001), 365);
+        assert_eq!(days_in_year(2012), 366);
+        assert_eq!(days_in_year(2015), 365);
+        assert_eq!(days_in_year(2016), 366);
+        assert_eq!(days_in_year(2017), 365);
+        assert_eq!(days_in_year(2019), 365);
+        assert_eq!(days_in_year(2020), 366);
+        assert_eq!(days_in_year(2024), 366);
+        assert_eq!(days_in_year(2025), 365);
+    }
+}
+   Compiling time-core v0.1.1 (/home/xiang/workspace/human/llm_base_bk/time/time-core)
+error[E0432]: unresolved import `crate::days_in_year`
+  --> time-core/src/util.rs:55:9
+   |
+55 |     use crate::days_in_year;
+   |         ^^^^^^^^^^^^^^^^^^^ no `days_in_year` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `time-core` due to previous error
+
+ChatCompletion(id='chatcmpl-8UcXcddUS3xQC4SBoo3fpZqzLMZnx', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_9 {\n    use super::days_in_year;\n\n    #[test]\n    fn test_days_in_year() {\n        assert_eq!(days_in_year(1900), 365);\n        assert_eq!(days_in_year(2000), 366);\n        assert_eq!(days_in_year(2004), 366);\n        assert_eq!(days_in_year(2005), 365);\n        assert_eq!(days_in_year(2100), 365);\n        assert_eq!(days_in_year(2001), 365);\n        assert_eq!(days_in_year(2012), 366);\n        assert_eq!(days_in_year(2015), 365);\n        assert_eq!(days_in_year(2016), 366);\n        assert_eq!(days_in_year(2017), 365);\n        assert_eq!(days_in_year(2019), 365);\n        assert_eq!(days_in_year(2020), 366);\n        assert_eq!(days_in_year(2024), 366);\n        assert_eq!(days_in_year(2025), 365);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702308684, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=236, prompt_tokens=908, total_tokens=1144))
+71
+========================================
+inject err util::days_in_year time-core/src/util.rs days_in_year
+#[cfg(test)]
+mod tests_llm_16_9_llm_16_9 {
+    use crate::days_in_year;
+
+    #[test]
+    fn test_days_in_year() {
+        assert_eq!(days_in_year(1900), 365);
+        assert_eq!(days_in_year(2000), 366);
+        assert_eq!(days_in_year(2004), 366);
+        assert_eq!(days_in_year(2005), 365);
+        assert_eq!(days_in_year(2100), 365);
+        assert_eq!(days_in_year(2001), 365);
+        assert_eq!(days_in_year(2012), 366);
+        assert_eq!(days_in_year(2015), 365);
+        assert_eq!(days_in_year(2016), 366);
+        assert_eq!(days_in_year(2017), 365);
+        assert_eq!(days_in_year(2019), 365);
+        assert_eq!(days_in_year(2020), 366);
+        assert_eq!(days_in_year(2024), 366);
+        assert_eq!(days_in_year(2025), 365);
+    }
+}
+   Compiling time-core v0.1.1 (/home/xiang/workspace/human/llm_base_bk/time/time-core)
+error[E0432]: unresolved import `crate::days_in_year`
+  --> time-core/src/util.rs:55:9
+   |
+55 |     use crate::days_in_year;
+   |         ^^^^^^^^^^^^^^^^^^^ no `days_in_year` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `time-core` due to previous error
+
+repair err util::days_in_year time-core/src/util.rs days_in_year
+ChatCompletion(id='chatcmpl-8UcXvJ3n7f8HknnEz4QhmOgtXzBeS', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::is_leap_year;\n\n    #[test]\n    fn test_is_leap_year() {\n        assert!(!is_leap_year(1900), "1900 is not a leap year");\n        assert!(is_leap_year(2000), "2000 is a leap year");\n        assert!(is_leap_year(2004), "2004 is a leap year");\n        assert!(!is_leap_year(2005), "2005 is not a leap year");\n        assert!(!is_leap_year(2100), "2100 is not a leap year");\n        assert!(is_leap_year(2400), "2400 is a leap year");\n        assert!(!is_leap_year(1901), "1901 is not a leap year");\n        assert!(is_leap_year(1996), "1996 is a leap year");\n        assert!(!is_leap_year(1903), "1903 is not a leap year");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702308703, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=217, prompt_tokens=294, total_tokens=511))
+71
+========================================
+inject err util::is_leap_year time-core/src/util.rs is_leap_year
+#[cfg(test)]
+mod tests_llm_16_10 {
+    use crate::is_leap_year;
+
+    #[test]
+    fn test_is_leap_year() {
+        assert!(!is_leap_year(1900), "1900 is not a leap year");
+        assert!(is_leap_year(2000), "2000 is a leap year");
+        assert!(is_leap_year(2004), "2004 is a leap year");
+        assert!(!is_leap_year(2005), "2005 is not a leap year");
+        assert!(!is_leap_year(2100), "2100 is not a leap year");
+        assert!(is_leap_year(2400), "2400 is a leap year");
+        assert!(!is_leap_year(1901), "1901 is not a leap year");
+        assert!(is_leap_year(1996), "1996 is a leap year");
+        assert!(!is_leap_year(1903), "1903 is not a leap year");
+    }
+}
+   Compiling time-core v0.1.1 (/home/xiang/workspace/human/llm_base_bk/time/time-core)
+error[E0432]: unresolved import `crate::is_leap_year`
+  --> time-core/src/util.rs:55:9
+   |
+55 |     use crate::is_leap_year;
+   |         ^^^^^^^^^^^^^^^^^^^ no `is_leap_year` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `time-core` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UcYBlX9Yqb99EGqRcu46ZptS3abO', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_10 {\n    use super::is_leap_year;\n\n    #[test]\n    fn test_is_leap_year() {\n        assert!(!is_leap_year(1900), "1900 is not a leap year");\n        assert!(is_leap_year(2000), "2000 is a leap year");\n        assert!(is_leap_year(2004), "2004 is a leap year");\n        assert!(!is_leap_year(2005), "2005 is not a leap year");\n        assert!(!is_leap_year(2100), "2100 is not a leap year");\n        assert!(is_leap_year(2400), "2400 is a leap year");\n        assert!(!is_leap_year(1901), "1901 is not a leap year");\n        assert!(is_leap_year(1996), "1996 is a leap year");\n        assert!(!is_leap_year(1903), "1903 is not a leap year");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702308719, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=223, prompt_tokens=913, total_tokens=1136))
+71
+========================================
+inject err util::is_leap_year time-core/src/util.rs is_leap_year
+#[cfg(test)]
+mod tests_llm_16_10_llm_16_10 {
+    use crate::is_leap_year;
+
+    #[test]
+    fn test_is_leap_year() {
+        assert!(!is_leap_year(1900), "1900 is not a leap year");
+        assert!(is_leap_year(2000), "2000 is a leap year");
+        assert!(is_leap_year(2004), "2004 is a leap year");
+        assert!(!is_leap_year(2005), "2005 is not a leap year");
+        assert!(!is_leap_year(2100), "2100 is not a leap year");
+        assert!(is_leap_year(2400), "2400 is a leap year");
+        assert!(!is_leap_year(1901), "1901 is not a leap year");
+        assert!(is_leap_year(1996), "1996 is a leap year");
+        assert!(!is_leap_year(1903), "1903 is not a leap year");
+    }
+}
+   Compiling time-core v0.1.1 (/home/xiang/workspace/human/llm_base_bk/time/time-core)
+error[E0432]: unresolved import `crate::is_leap_year`
+  --> time-core/src/util.rs:55:9
+   |
+55 |     use crate::is_leap_year;
+   |         ^^^^^^^^^^^^^^^^^^^ no `is_leap_year` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `time-core` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+repair err util::is_leap_year time-core/src/util.rs is_leap_year
+ChatCompletion(id='chatcmpl-8UcYYW2dmvPXoa8jw0P4DgBwIDJGz', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::weeks_in_year;\n\n    #[test]\n    fn test_weeks_in_year_regular_years() {\n        assert_eq!(weeks_in_year(2018), 52);\n        assert_eq!(weeks_in_year(2019), 52);\n        assert_eq!(weeks_in_year(2021), 52);\n        assert_eq!(weeks_in_year(2022), 52);\n    }\n\n    #[test]\n    fn test_weeks_in_year_leap_years() {\n        assert_eq!(weeks_in_year(2020), 53);\n        assert_eq!(weeks_in_year(2024), 53);\n        assert_eq!(weeks_in_year(2028), 53);\n    }\n\n    #[test]\n    fn test_weeks_in_year_edge_cases() {\n        assert_eq!(weeks_in_year(1992), 53);\n        assert_eq!(weeks_in_year(1600), 52);\n        assert_eq!(weeks_in_year(2000), 52);\n        assert_eq!(weeks_in_year(2400), 52);\n    }\n\n    #[test]\n    fn test_weeks_in_year_first_and_last_of_cycle() {\n        assert_eq!(weeks_in_year(1), 52);\n        assert_eq!(weeks_in_year(399), 52);\n        assert_eq!(weeks_in_year(400), 52);\n        assert_eq!(weeks_in_year(401), 52);\n    }\n\n    #[test]\n    fn test_weeks_in_year_arbitrary_test_cases() {\n        assert_eq!(weeks_in_year(4), 53);\n        assert_eq!(weeks_in_year(100), 52);\n        assert_eq!(weeks_in_year(300), 52);\n        assert_eq!(weeks_in_year(303), 53);\n        assert_eq!(weeks_in_year(399), 52);\n        assert_eq!(weeks_in_year(400), 52);\n    }\n\n    #[test]\n    fn test_weeks_in_year_max_min_values() {\n        assert_eq!(weeks_in_year(i32::MIN), 52);\n        assert_eq!(weeks_in_year(i32::MAX), 52);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702308742, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=443, prompt_tokens=462, total_tokens=905))
+71
+========================================
+inject err util::weeks_in_year time-core/src/util.rs weeks_in_year
+#[cfg(test)]
+mod tests_llm_16_11 {
+    use crate::weeks_in_year;
+
+    #[test]
+    fn test_weeks_in_year_regular_years() {
+        assert_eq!(weeks_in_year(2018), 52);
+        assert_eq!(weeks_in_year(2019), 52);
+        assert_eq!(weeks_in_year(2021), 52);
+        assert_eq!(weeks_in_year(2022), 52);
+    }
+
+    #[test]
+    fn test_weeks_in_year_leap_years() {
+        assert_eq!(weeks_in_year(2020), 53);
+        assert_eq!(weeks_in_year(2024), 53);
+        assert_eq!(weeks_in_year(2028), 53);
+    }
+
+    #[test]
+    fn test_weeks_in_year_edge_cases() {
+        assert_eq!(weeks_in_year(1992), 53);
+        assert_eq!(weeks_in_year(1600), 52);
+        assert_eq!(weeks_in_year(2000), 52);
+        assert_eq!(weeks_in_year(2400), 52);
+    }
+
+    #[test]
+    fn test_weeks_in_year_first_and_last_of_cycle() {
+        assert_eq!(weeks_in_year(1), 52);
+        assert_eq!(weeks_in_year(399), 52);
+        assert_eq!(weeks_in_year(400), 52);
+        assert_eq!(weeks_in_year(401), 52);
+    }
+
+    #[test]
+    fn test_weeks_in_year_arbitrary_test_cases() {
+        assert_eq!(weeks_in_year(4), 53);
+        assert_eq!(weeks_in_year(100), 52);
+        assert_eq!(weeks_in_year(300), 52);
+        assert_eq!(weeks_in_year(303), 53);
+        assert_eq!(weeks_in_year(399), 52);
+        assert_eq!(weeks_in_year(400), 52);
+    }
+
+    #[test]
+    fn test_weeks_in_year_max_min_values() {
+        assert_eq!(weeks_in_year(i32::MIN), 52);
+        assert_eq!(weeks_in_year(i32::MAX), 52);
+    }
+}
+   Compiling time-core v0.1.1 (/home/xiang/workspace/human/llm_base_bk/time/time-core)
+error[E0432]: unresolved import `crate::weeks_in_year`
+  --> time-core/src/util.rs:55:9
+   |
+55 |     use crate::weeks_in_year;
+   |         ^^^^^^^^^^^^^^^^^^^^ no `weeks_in_year` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `time-core` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UcZvdzHgah9UaeNaiNnL6vUOUaSE', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_11 {\n    use super::weeks_in_year;\n\n    #[test]\n    fn test_weeks_in_year_regular_years() {\n        assert_eq!(weeks_in_year(2018), 52);\n        assert_eq!(weeks_in_year(2019), 52);\n        assert_eq!(weeks_in_year(2021), 52);\n        assert_eq!(weeks_in_year(2022), 52);\n    }\n\n    #[test]\n    fn test_weeks_in_year_leap_years() {\n        assert_eq!(weeks_in_year(2020), 53);\n        assert_eq!(weeks_in_year(2024), 53);\n        assert_eq!(weeks_in_year(2028), 53);\n    }\n\n    #[test]\n    fn test_weeks_in_year_edge_cases() {\n        assert_eq!(weeks_in_year(1992), 53);\n        assert_eq!(weeks_in_year(1600), 52);\n        assert_eq!(weeks_in_year(2000), 52);\n        assert_eq!(weeks_in_year(2400), 52);\n    }\n\n    #[test]\n    fn test_weeks_in_year_first_and_last_of_cycle() {\n        assert_eq!(weeks_in_year(1), 52);\n        assert_eq!(weeks_in_year(399), 52);\n        assert_eq!(weeks_in_year(400), 52);\n        assert_eq!(weeks_in_year(401), 52);\n    }\n\n    #[test]\n    fn test_weeks_in_year_arbitrary_test_cases() {\n        assert_eq!(weeks_in_year(4), 53);\n        assert_eq!(weeks_in_year(100), 52);\n        assert_eq!(weeks_in_year(300), 52);\n        assert_eq!(weeks_in_year(303), 53);\n        assert_eq!(weeks_in_year(399), 52);\n        assert_eq!(weeks_in_year(400), 52);\n    }\n\n    #[test]\n    fn test_weeks_in_year_max_min_values() {\n        assert_eq!(weeks_in_year(i32::MIN), 52);\n        assert_eq!(weeks_in_year(i32::MAX), 52);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702308827, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=449, prompt_tokens=1531, total_tokens=1980))
+71
+========================================
+inject err util::weeks_in_year time-core/src/util.rs weeks_in_year
+#[cfg(test)]
+mod tests_llm_16_11_llm_16_11 {
+    use crate::weeks_in_year;
+
+    #[test]
+    fn test_weeks_in_year_regular_years() {
+        assert_eq!(weeks_in_year(2018), 52);
+        assert_eq!(weeks_in_year(2019), 52);
+        assert_eq!(weeks_in_year(2021), 52);
+        assert_eq!(weeks_in_year(2022), 52);
+    }
+
+    #[test]
+    fn test_weeks_in_year_leap_years() {
+        assert_eq!(weeks_in_year(2020), 53);
+        assert_eq!(weeks_in_year(2024), 53);
+        assert_eq!(weeks_in_year(2028), 53);
+    }
+
+    #[test]
+    fn test_weeks_in_year_edge_cases() {
+        assert_eq!(weeks_in_year(1992), 53);
+        assert_eq!(weeks_in_year(1600), 52);
+        assert_eq!(weeks_in_year(2000), 52);
+        assert_eq!(weeks_in_year(2400), 52);
+    }
+
+    #[test]
+    fn test_weeks_in_year_first_and_last_of_cycle() {
+        assert_eq!(weeks_in_year(1), 52);
+        assert_eq!(weeks_in_year(399), 52);
+        assert_eq!(weeks_in_year(400), 52);
+        assert_eq!(weeks_in_year(401), 52);
+    }
+
+    #[test]
+    fn test_weeks_in_year_arbitrary_test_cases() {
+        assert_eq!(weeks_in_year(4), 53);
+        assert_eq!(weeks_in_year(100), 52);
+        assert_eq!(weeks_in_year(300), 52);
+        assert_eq!(weeks_in_year(303), 53);
+        assert_eq!(weeks_in_year(399), 52);
+        assert_eq!(weeks_in_year(400), 52);
+    }
+
+    #[test]
+    fn test_weeks_in_year_max_min_values() {
+        assert_eq!(weeks_in_year(i32::MIN), 52);
+        assert_eq!(weeks_in_year(i32::MAX), 52);
+    }
+}
+   Compiling time-core v0.1.1 (/home/xiang/workspace/human/llm_base_bk/time/time-core)
+error[E0432]: unresolved import `crate::weeks_in_year`
+  --> time-core/src/util.rs:55:9
+   |
+55 |     use crate::weeks_in_year;
+   |         ^^^^^^^^^^^^^^^^^^^^ no `weeks_in_year` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `time-core` due to previous error
+
+repair err util::weeks_in_year time-core/src/util.rs weeks_in_year
+4 10 3 11 11

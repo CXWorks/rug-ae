@@ -1,0 +1,6 @@
+err quick-xml /mnt/sda/xiang/rustyunit/rustyunit_trans/quick-xml/./src/reader.rs tests_rug_28
+err quick-xml /mnt/sda/xiang/rustyunit/rustyunit_trans/quick-xml/./src/writer.rs tests_llm_16_331_llm_16_330
+err quick-xml /mnt/sda/xiang/rustyunit/rustyunit_trans/quick-xml/./src/writer.rs tests_llm_16_335
+err quick-xml /mnt/sda/xiang/rustyunit/rustyunit_trans/quick-xml/./src/events/mod.rs tests_llm_16_78
+err quick-xml /mnt/sda/xiang/rustyunit/rustyunit_trans/quick-xml/./src/events/mod.rs tests_rug_117
+quick-xml . 136 141 0

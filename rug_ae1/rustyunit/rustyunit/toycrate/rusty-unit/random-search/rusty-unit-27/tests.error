@@ -1,0 +1,50 @@
+   Compiling toycrate v0.1.0 (/Users/tim/Documents/master-thesis/evaluation/toycrate/rusty-unit-27)
+[2022-05-27T03:19:23Z INFO  instrumentation] MAIN: Instrumenting crate toycrate
+[2022-05-27T03:19:23Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:82 ~ toycrate[4aad]::hp::{impl#2}::name)
+[2022-05-27T03:19:23Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-27T03:19:23Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:66 ~ toycrate[4aad]::hp::{impl#0}::new)
+[2022-05-27T03:19:23Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:78 ~ toycrate[4aad]::hp::{impl#1}::ascendio)
+[2022-05-27T03:19:23Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-27T03:19:23Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-27T03:19:23Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:83 ~ toycrate[4aad]::hp::{impl#2}::avada_kedavra)
+[2022-05-27T03:19:23Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-27T03:19:23Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:72 ~ toycrate[4aad]::hp::{impl#0}::foo2)
+[2022-05-27T03:19:23Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-27T03:19:23Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-27T03:19:23Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-27T03:19:23Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-27T03:19:23Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:68 ~ toycrate[4aad]::hp::{impl#0}::aguamenti)
+[2022-05-27T03:19:23Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-27T03:19:23Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-27T03:19:23Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-27T03:19:23Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-27T03:19:23Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-27T03:19:23Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:69 ~ toycrate[4aad]::hp::{impl#0}::aqua_eructo)
+[2022-05-27T03:19:23Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-27T03:19:23Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-27T03:19:23Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-27T03:19:23Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-27T03:19:23Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-27T03:19:23Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:71 ~ toycrate[4aad]::hp::{impl#0}::another_number_fn)
+[2022-05-27T03:19:23Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-27T03:19:23Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-27T03:19:23Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:84 ~ toycrate[4aad]::hp::{impl#2}::foo3)
+[2022-05-27T03:19:23Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-27T03:19:23Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-27T03:19:23Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:70 ~ toycrate[4aad]::hp::{impl#0}::accio)
+[2022-05-27T03:19:23Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-27T03:19:23Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-27T03:19:23Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-27T03:19:23Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:67 ~ toycrate[4aad]::hp::{impl#0}::alohomora)
+[2022-05-27T03:19:23Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-27T03:19:23Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-27T03:19:23Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-27T03:19:23Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-27T03:19:23Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:77 ~ toycrate[4aad]::hp::{impl#1}::arania_exumai)
+[2022-05-27T03:19:23Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-27T03:19:23Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-27T03:19:23Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-27T03:19:23Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-27T03:19:23Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:225 ~ toycrate[4aad]::main)
+    Finished test [unoptimized + debuginfo] target(s) in 0.75s
+     Running unittests src/lib.rs (target/debug/deps/toycrate-ee2d126354b3e5dc)

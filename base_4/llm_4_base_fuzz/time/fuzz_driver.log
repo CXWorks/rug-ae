@@ -1,0 +1,333 @@
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/month.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/date_time.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/time.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/error/parse_from_description.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/error/component_range.rs
+err tests_llm_16_78_llm_16_78 test_try_from_component_range_error
+    Blocking waiting for file lock on package cache
+   Compiling time v0.3.22 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time)
+error[E0521]: borrowed data escapes outside of closure
+  --> time/src/error/component_range.rs:85:177
+   |
+84 | ...h(|rug_data| {
+   |       --------
+   |       |
+   |       `rug_data` is a reference that is only valid in the closure body
+   |       has type `&'1 [u8]`
+85 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2, mut rug_fuzz_3, mut rug_fuzz_4)) = <(&str, i64, i64, i64, bool) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+   |                                                                                                                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |                                                                                                                                                                    |
+   |                                                                                                                                                                    `rug_data` escapes the closure body here
+   |                                                                                                                                                                    argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `time` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_326 test_component_range_from
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling time v0.3.22 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time)
+error[E0521]: borrowed data escapes outside of closure
+   --> time/src/error/component_range.rs:123:177
+    |
+122 | ...h(|rug_data| {
+    |       --------
+    |       |
+    |       `rug_data` is a reference that is only valid in the closure body
+    |       has type `&'1 [u8]`
+123 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2, mut rug_fuzz_3, mut rug_fuzz_4)) = <(&str, i64, i64, i64, bool) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+    |                                                                                                                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |                                                                                                                                                                    |
+    |                                                                                                                                                                    `rug_data` escapes the closure body here
+    |                                                                                                                                                                    argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `time` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_328 test_component_range_name
+    Blocking waiting for file lock on package cache
+   Compiling time v0.3.22 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time)
+error[E0521]: borrowed data escapes outside of closure
+   --> time/src/error/component_range.rs:154:177
+    |
+153 | ...h(|rug_data| {
+    |       --------
+    |       |
+    |       `rug_data` is a reference that is only valid in the closure body
+    |       has type `&'1 [u8]`
+154 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2, mut rug_fuzz_3, mut rug_fuzz_4)) = <(&str, i64, i64, i64, bool) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+    |                                                                                                                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |                                                                                                                                                                    |
+    |                                                                                                                                                                    `rug_data` escapes the closure body here
+    |                                                                                                                                                                    argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `time` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/error/invalid_format_description.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/error/different_variant.rs
+err tests_llm_16_80_llm_16_80 try_from_error_for_component_range
+   Compiling time v0.3.22 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time)
+error[E0521]: borrowed data escapes outside of closure
+  --> time/src/error/different_variant.rs:55:177
+   |
+54 | ...h(|rug_data| {
+   |       --------
+   |       |
+   |       `rug_data` is a reference that is only valid in the closure body
+   |       has type `&'1 [u8]`
+55 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2, mut rug_fuzz_3, mut rug_fuzz_4)) = <(&str, i64, i64, i64, bool) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+   |                                                                                                                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |                                                                                                                                                                    |
+   |                                                                                                                                                                    `rug_data` escapes the closure body here
+   |                                                                                                                                                                    argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `time` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/error/try_from_parsed.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/error/conversion_range.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/error/indeterminate_offset.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/error/parse.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/error/format.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/error/mod.rs
+err tests_llm_16_77_llm_16_77 error_source_component_range
+   Compiling time v0.3.22 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time)
+error[E0521]: borrowed data escapes outside of closure
+   --> time/src/error/mod.rs:132:177
+    |
+131 | ...h(|rug_data| {
+    |       --------
+    |       |
+    |       `rug_data` is a reference that is only valid in the closure body
+    |       has type `&'1 [u8]`
+132 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2, mut rug_fuzz_3, mut rug_fuzz_4)) = <(&str, i64, i64, i64, bool) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+    |                                                                                                                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |                                                                                                                                                                    |
+    |                                                                                                                                                                    `rug_data` escapes the closure body here
+    |                                                                                                                                                                    argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `time` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/error/invalid_variant.rs
+err tests_llm_16_81 test_try_from_different_error_variant
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling time v0.3.22 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time)
+error[E0521]: borrowed data escapes outside of closure
+  --> time/src/error/invalid_variant.rs:50:177
+   |
+49 | ...h(|rug_data| {
+   |       --------
+   |       |
+   |       `rug_data` is a reference that is only valid in the closure body
+   |       has type `&'1 [u8]`
+50 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2, mut rug_fuzz_3, mut rug_fuzz_4)) = <(&str, i64, i64, i64, bool) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+   |                                                                                                                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |                                                                                                                                                                    |
+   |                                                                                                                                                                    `rug_data` escapes the closure body here
+   |                                                                                                                                                                    argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `time` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/duration.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/primitive_date_time.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/utc_offset.rs
+err tests_llm_16_474 test_is_negative
+   Compiling time v0.3.22 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time)
+error[E0277]: the trait bound `(i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8): Arbitrary<'_>` is not satisfied
+   --> time/src/utc_offset.rs:812:731
+    |
+812 | ... = <(i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8) as arbitrary::Arbitrary>::arbitrary(&m...
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Arbitrary<'_>` is not implemented for `(i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8)`
+    |
+    = help: the following other types implement trait `Arbitrary<'a>`:
+              ()
+              (B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, A)
+              (C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, B)
+              (D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, C)
+              (E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, D)
+              (F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, E)
+              (G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, F)
+              (H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, G)
+            and 19 others
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `time` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/instant.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/format_description/modifier.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/format_description/parse/format_item.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/format_description/parse/ast.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/format_description/parse/mod.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/format_description/parse/lexer.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/format_description/component.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/format_description/well_known/iso8601/adt_hack.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/format_description/well_known/iso8601.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/format_description/well_known/rfc2822.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/format_description/well_known/rfc3339.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/format_description/borrowed_format_item.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/format_description/mod.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/format_description/owned_format_item.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/sys/local_offset_at/wasm_js.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/sys/local_offset_at/imp.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/sys/local_offset_at/unix.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/sys/local_offset_at/mod.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/sys/local_offset_at/windows.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/sys/mod.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/date.rs
+err tests_llm_16_1_llm_16_1 add_duration_to_date
+   Compiling time v0.3.22 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time)
+error[E0277]: the trait bound `(i32, u8, &str, i64, i32, u8, &str, i64, i32, u8, &str, i64, i64, i32, u8, &str, i64, i32, u8, &str, i32, u8, &str, i64, i32, u8, &str, i32, u8, &str, i64, i32, u8, &str, i32, u8, &str, i32): Arbitrary<'_>` is not satisfied
+   --> time/src/date.rs:986:663
+    |
+986 | ... = <(i32, u8, &str, i64, i32, u8, &str, i64, i32, u8, &str, i64, i64, i32, u8, &str, i64, i32, u8, &str, i32, u8, &str, i64, i32, u8, &str, i32, u8, &str, i64, i32, u8, &str, i32, u8, &str, i32) as arbitrary::Arbitrary>::arbitrary(&m...
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Arbitrary<'_>` is not implemented for `(i32, u8, &str, i64, i32, u8, &str, i64, i32, u8, &str, i64, i64, i32, u8, &str, i64, i32, u8, &str, i32, u8, &str, i64, i32, u8, &str, i32, u8, &str, i64, i32, u8, &str, i32, u8, &str, i32)`
+    |
+    = help: the following other types implement trait `Arbitrary<'a>`:
+              ()
+              (B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, A)
+              (C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, B)
+              (D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, C)
+              (E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, D)
+              (F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, E)
+              (G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, F)
+              (H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, G)
+            and 19 others
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `time` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_169 test_from_iso_week_date
+   Compiling time v0.3.22 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time)
+error[E0277]: the trait bound `(i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, u8, u8, u8, u8, i32, u8, i32, u8): Arbitrary<'_>` is not satisfied
+    --> time/src/date.rs:1386:493
+     |
+1386 | ... = <(i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, u8, u8, u8, u8, i32, u8, i32, u8) as arbitrary::Arbitrary>::arbitrary(&m...
+     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Arbitrary<'_>` is not implemented for `(i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, u8, u8, u8, u8, i32, u8, i32, u8)`
+     |
+     = help: the following other types implement trait `Arbitrary<'a>`:
+               ()
+               (B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, A)
+               (C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, B)
+               (D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, C)
+               (E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, D)
+               (F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, E)
+               (G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, F)
+               (H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, G)
+             and 19 others
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `time` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_188 to_calendar_date_works
+   Compiling time v0.3.22 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time)
+error[E0277]: the trait bound `(i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8): Arbitrary<'_>` is not satisfied
+    --> time/src/date.rs:2057:561
+     |
+2057 | ... = <(i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8) as arbitrary::Arbitrary>::arbitrary(&m...
+     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Arbitrary<'_>` is not implemented for `(i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8, i32, u8)`
+     |
+     = help: the following other types implement trait `Arbitrary<'a>`:
+               ()
+               (B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, A)
+               (C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, B)
+               (D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, C)
+               (E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, D)
+               (F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, E)
+               (G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, F)
+               (H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, G)
+             and 19 others
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `time` due to previous error
+
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/weekday.rs
+err tests_llm_16_484 test_nth_next
+   Compiling time v0.3.22 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time)
+error[E0277]: the trait bound `(u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8): Arbitrary<'_>` is not satisfied
+   --> time/src/weekday.rs:225:612
+    |
+225 | ... = <(u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8) as arbitrary::Arbitrary>::arbitrary(&m...
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Arbitrary<'_>` is not implemented for `(u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8)`
+    |
+    = help: the following other types implement trait `Arbitrary<'a>`:
+              ()
+              (B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, A)
+              (C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, B)
+              (D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, C)
+              (E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, D)
+              (F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, E)
+              (G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, F)
+              (H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, G)
+            and 19 others
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `time` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/offset_date_time.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/macros.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/serde/visitor.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/serde/iso8601.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/serde/rfc2822.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/serde/mod.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/serde/timestamp.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/serde/rfc3339.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/tests.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/quickcheck.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/rand.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/parsing/parsed.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/parsing/combinator/rfc/iso8601.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/parsing/combinator/rfc/rfc2822.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/parsing/combinator/rfc/mod.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/parsing/combinator/rfc/rfc2234.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/parsing/combinator/mod.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/parsing/component.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/parsing/iso8601.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/parsing/shim.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/parsing/parsable.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/parsing/mod.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/util.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/lib.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/ext.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/formatting/iso8601.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/formatting/formattable.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time/src/formatting/mod.rs
+done
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time-core/src/convert.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time-core/src/util.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time-core/src/lib.rs
+done
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time-macros/src/offset.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time-macros/src/serde_format_description.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time-macros/src/quote.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time-macros/src/time.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time-macros/src/helpers/string.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time-macros/src/helpers/mod.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time-macros/src/format_description/format_item.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time-macros/src/format_description/ast.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time-macros/src/format_description/mod.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time-macros/src/format_description/lexer.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time-macros/src/format_description/public/modifier.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time-macros/src/format_description/public/component.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time-macros/src/format_description/public/mod.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time-macros/src/date.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time-macros/src/datetime.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time-macros/src/error.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time-macros/src/to_tokens.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/time/time-macros/src/lib.rs
+done

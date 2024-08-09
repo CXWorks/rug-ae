@@ -1,0 +1,439 @@
+//! The `Month` enum and its associated `impl`s.
+
+use core::convert::TryFrom;
+use core::fmt;
+use core::num::NonZeroU8;
+
+use self::Month::*;
+use crate::error;
+
+/// Months of the year.
+#[allow(clippy::missing_docs_in_private_items)] // variants
+#[repr(u8)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+pub enum Month {
+    January = 1,
+    February = 2,
+    March = 3,
+    April = 4,
+    May = 5,
+    June = 6,
+    July = 7,
+    August = 8,
+    September = 9,
+    October = 10,
+    November = 11,
+    December = 12,
+}
+
+impl Month {
+    /// Create a `Month` from its numerical value.
+    pub(crate) const fn from_number(n: NonZeroU8) -> Result<Self, error::ComponentRange> {
+        match n.get() {
+            1 => Ok(January),
+            2 => Ok(February),
+            3 => Ok(March),
+            4 => Ok(April),
+            5 => Ok(May),
+            6 => Ok(June),
+            7 => Ok(July),
+            8 => Ok(August),
+            9 => Ok(September),
+            10 => Ok(October),
+            11 => Ok(November),
+            12 => Ok(December),
+            n => Err(error::ComponentRange {
+                name: "month",
+                minimum: 1,
+                maximum: 12,
+                value: n as _,
+                conditional_range: false,
+            }),
+        }
+    }
+
+    /// Get the previous month.
+    ///
+    /// ```rust
+    /// # use time::Month;
+    /// assert_eq!(Month::January.previous(), Month::December);
+    /// ```
+    pub const fn previous(self) -> Self {
+        match self {
+            January => December,
+            February => January,
+            March => February,
+            April => March,
+            May => April,
+            June => May,
+            July => June,
+            August => July,
+            September => August,
+            October => September,
+            November => October,
+            December => November,
+        }
+    }
+
+    /// Get the next month.
+    ///
+    /// ```rust
+    /// # use time::Month;
+    /// assert_eq!(Month::January.next(), Month::February);
+    /// ```
+    pub const fn next(self) -> Self {
+        match self {
+            January => February,
+            February => March,
+            March => April,
+            April => May,
+            May => June,
+            June => July,
+            July => August,
+            August => September,
+            September => October,
+            October => November,
+            November => December,
+            December => January,
+        }
+    }
+}
+
+impl fmt::Display for Month {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        f.write_str(match self {
+            January => "January",
+            February => "February",
+            March => "March",
+            April => "April",
+            May => "May",
+            June => "June",
+            July => "July",
+            August => "August",
+            September => "September",
+            October => "October",
+            November => "November",
+            December => "December",
+        })
+    }
+}
+
+impl From<Month> for u8 {
+    fn from(month: Month) -> Self {
+        month as _
+    }
+}
+
+impl TryFrom<u8> for Month {
+    type Error = error::ComponentRange;
+
+    fn try_from(value: u8) -> Result<Self, Self::Error> {
+        match NonZeroU8::new(value) {
+            Some(value) => Self::from_number(value),
+            None => Err(error::ComponentRange {
+                name: "month",
+                minimum: 1,
+                maximum: 12,
+                value: 0,
+                conditional_range: false,
+            }),
+        }
+    }
+}
+
+#[cfg(test)]
+mod rusty_tests {
+	use crate::*;
+	use std::convert::TryFrom;
+	use std::cmp::Eq;
+#[no_coverage]
+#[test]
+#[should_panic]
+#[timeout(3000)]
+fn rusty_test_3227() {
+    rusty_monitor::set_test_id(3227);
+    let mut i32_0: i32 = -45i32;
+    let mut date_0: crate::date::Date = crate::date::Date {value: i32_0};
+    let mut u32_0: u32 = 32u32;
+    let mut u8_0: u8 = 19u8;
+    let mut u8_1: u8 = 15u8;
+    let mut u8_2: u8 = 35u8;
+    let mut time_0: crate::time::Time = crate::time::Time::__from_hms_nanos_unchecked(u8_2, u8_1, u8_0, u32_0);
+    let mut i64_0: i64 = -15i64;
+    let mut duration_0: crate::duration::Duration = crate::duration::Duration::minutes(i64_0);
+    let mut u16_0: u16 = 82u16;
+    let mut i32_1: i32 = -164i32;
+    let mut date_1: crate::date::Date = crate::date::Date::__from_ordinal_date_unchecked(i32_1, u16_0);
+    let mut date_2: crate::date::Date = crate::date::Date::saturating_sub(date_1, duration_0);
+    let mut primitivedatetime_0: crate::primitive_date_time::PrimitiveDateTime = crate::date::Date::with_time(date_2, time_0);
+    let mut primitivedatetime_1: crate::primitive_date_time::PrimitiveDateTime = crate::primitive_date_time::PrimitiveDateTime::replace_date(primitivedatetime_0, date_0);
+    let mut i128_0: i128 = 100i128;
+    let mut duration_1: crate::duration::Duration = crate::duration::Duration::nanoseconds_i128(i128_0);
+    let mut u16_1: u16 = 82u16;
+    let mut i32_2: i32 = -109i32;
+    let mut date_3: crate::date::Date = crate::date::Date::__from_ordinal_date_unchecked(i32_2, u16_1);
+    let mut i64_1: i64 = 61i64;
+    let mut duration_2: crate::duration::Duration = crate::duration::Duration::minutes(i64_1);
+    let mut duration_3: std::time::Duration = crate::duration::Duration::abs_std(duration_2);
+    let mut padding_0: time::Padding = crate::time::Padding::Optimize;
+    let mut f64_0: f64 = -65.889738f64;
+    let mut duration_4: crate::duration::Duration = crate::duration::Duration::seconds_f64(f64_0);
+    let mut padding_1: time::Padding = crate::time::Padding::Optimize;
+    let mut i64_2: i64 = -40i64;
+    let mut duration_5: crate::duration::Duration = crate::duration::Duration::weeks(i64_2);
+    let mut i32_3: i32 = -71i32;
+    let mut date_4: crate::date::Date = crate::date::Date {value: i32_3};
+    let mut date_5: crate::date::Date = crate::date::Date::saturating_sub(date_4, duration_5);
+    let mut i64_3: i64 = 152i64;
+    let mut duration_6: crate::duration::Duration = crate::duration::Duration::nanoseconds(i64_3);
+    let mut padding_2: time::Padding = crate::time::Padding::Optimize;
+    let mut padding_2_ref_0: &time::Padding = &mut padding_2;
+    let mut padding_3: time::Padding = crate::time::Padding::Optimize;
+    let mut padding_3_ref_0: &time::Padding = &mut padding_3;
+    let mut i32_4: i32 = 121i32;
+    let mut date_6: crate::date::Date = crate::date::Date {value: i32_4};
+    let mut i32_5: i32 = -114i32;
+    let mut date_7: crate::date::Date = crate::date::Date::from_julian_day_unchecked(i32_5);
+    let mut offsetdatetime_0: crate::offset_date_time::OffsetDateTime = crate::offset_date_time::OffsetDateTime::now_utc();
+    let mut offsetdatetime_1: crate::offset_date_time::OffsetDateTime = crate::offset_date_time::OffsetDateTime::replace_date(offsetdatetime_0, date_7);
+    let mut weekday_0: weekday::Weekday = crate::offset_date_time::OffsetDateTime::weekday(offsetdatetime_1);
+    let mut u32_1: u32 = 41u32;
+    let mut u8_3: u8 = 31u8;
+    let mut u8_4: u8 = 11u8;
+    let mut u8_5: u8 = 1u8;
+    let mut offsetdatetime_2: crate::offset_date_time::OffsetDateTime = crate::offset_date_time::OffsetDateTime::now_utc();
+    let mut time_1: crate::time::Time = crate::offset_date_time::OffsetDateTime::time(offsetdatetime_2);
+    let mut padding_4: duration::Padding = crate::duration::Padding::Optimize;
+    let mut padding_4_ref_0: &duration::Padding = &mut padding_4;
+    let mut result_0: std::result::Result<crate::time::Time, crate::error::component_range::ComponentRange> = crate::time::Time::from_hms_nano(u8_5, u8_4, u8_3, u32_1);
+    let mut weekday_1: weekday::Weekday = crate::weekday::Weekday::previous(weekday_0);
+    let mut u8_6: u8 = crate::date::Date::monday_based_week(date_6);
+    let mut weekday_1_ref_0: &weekday::Weekday = &mut weekday_1;
+    let mut time_2: crate::time::Time = std::result::Result::unwrap(result_0);
+    let mut bool_0: bool = crate::duration::Duration::is_positive(duration_6);
+    let mut option_0: std::option::Option<crate::date::Date> = crate::date::Date::checked_sub(date_3, duration_1);
+    let mut month_0: month::Month = crate::month::Month::November;
+    let mut month_0_ref_0: &month::Month = &mut month_0;
+    let mut tuple_0: () = std::cmp::Eq::assert_receiver_is_total_eq(month_0_ref_0);
+    let mut month_1: month::Month = crate::primitive_date_time::PrimitiveDateTime::month(primitivedatetime_1);
+    panic!("From RustyUnit with love");
+}
+
+#[no_coverage]
+#[test]
+#[should_panic]
+#[timeout(3000)]
+fn rusty_test_606() {
+    rusty_monitor::set_test_id(606);
+    let mut i32_0: i32 = -114i32;
+    let mut i32_1: i32 = -11i32;
+    let mut i64_0: i64 = -74i64;
+    let mut duration_0: crate::duration::Duration = crate::duration::Duration::new_unchecked(i64_0, i32_1);
+    let mut i64_1: i64 = 18i64;
+    let mut duration_1: crate::duration::Duration = crate::duration::Duration::microseconds(i64_1);
+    let mut duration_2: crate::duration::Duration = crate::duration::Duration::saturating_add(duration_1, duration_0);
+    let mut u32_0: u32 = 15u32;
+    let mut u8_0: u8 = 39u8;
+    let mut u8_1: u8 = 92u8;
+    let mut u8_2: u8 = 3u8;
+    let mut time_0: crate::time::Time = crate::time::Time::__from_hms_nanos_unchecked(u8_2, u8_1, u8_0, u32_0);
+    let mut i64_2: i64 = -55i64;
+    let mut duration_3: crate::duration::Duration = crate::duration::Duration::days(i64_2);
+    let mut offsetdatetime_0: crate::offset_date_time::OffsetDateTime = crate::offset_date_time::OffsetDateTime::now_utc();
+    let mut offsetdatetime_1: crate::offset_date_time::OffsetDateTime = crate::offset_date_time::OffsetDateTime::saturating_sub(offsetdatetime_0, duration_3);
+    let mut date_0: crate::date::Date = crate::offset_date_time::OffsetDateTime::date(offsetdatetime_1);
+    let mut primitivedatetime_0: crate::primitive_date_time::PrimitiveDateTime = crate::primitive_date_time::PrimitiveDateTime::new(date_0, time_0);
+    let mut primitivedatetime_1: crate::primitive_date_time::PrimitiveDateTime = crate::primitive_date_time::PrimitiveDateTime::saturating_add(primitivedatetime_0, duration_2);
+    let mut i64_3: i64 = 77i64;
+    let mut duration_4: crate::duration::Duration = crate::duration::Duration::milliseconds(i64_3);
+    let mut i64_4: i64 = -72i64;
+    let mut duration_5: crate::duration::Duration = crate::duration::Duration::seconds(i64_4);
+    let mut u16_0: u16 = 11u16;
+    let mut date_1: crate::date::Date = crate::date::Date::__from_ordinal_date_unchecked(i32_0, u16_0);
+    let mut date_2: crate::date::Date = crate::date::Date::saturating_sub(date_1, duration_5);
+    let mut u8_3: u8 = 1u8;
+    let mut result_0: std::result::Result<month::Month, crate::error::component_range::ComponentRange> = std::convert::TryFrom::try_from(u8_3);
+    let mut month_0: month::Month = std::result::Result::unwrap(result_0);
+    let mut u8_4: u8 = crate::primitive_date_time::PrimitiveDateTime::minute(primitivedatetime_1);
+    panic!("From RustyUnit with love");
+}
+
+#[no_coverage]
+#[test]
+#[should_panic]
+#[timeout(3000)]
+fn rusty_test_866() {
+    rusty_monitor::set_test_id(866);
+    let mut i32_0: i32 = -11i32;
+    let mut i64_0: i64 = -74i64;
+    let mut duration_0: crate::duration::Duration = crate::duration::Duration::new_unchecked(i64_0, i32_0);
+    let mut i64_1: i64 = 18i64;
+    let mut duration_1: crate::duration::Duration = crate::duration::Duration::microseconds(i64_1);
+    let mut duration_2: crate::duration::Duration = crate::duration::Duration::saturating_add(duration_1, duration_0);
+    let mut u32_0: u32 = 15u32;
+    let mut u8_0: u8 = 39u8;
+    let mut u8_1: u8 = 92u8;
+    let mut u8_2: u8 = 3u8;
+    let mut time_0: crate::time::Time = crate::time::Time::__from_hms_nanos_unchecked(u8_2, u8_1, u8_0, u32_0);
+    let mut i64_2: i64 = -55i64;
+    let mut duration_3: crate::duration::Duration = crate::duration::Duration::days(i64_2);
+    let mut offsetdatetime_0: crate::offset_date_time::OffsetDateTime = crate::offset_date_time::OffsetDateTime::now_utc();
+    let mut offsetdatetime_1: crate::offset_date_time::OffsetDateTime = crate::offset_date_time::OffsetDateTime::saturating_sub(offsetdatetime_0, duration_3);
+    let mut date_0: crate::date::Date = crate::offset_date_time::OffsetDateTime::date(offsetdatetime_1);
+    let mut primitivedatetime_0: crate::primitive_date_time::PrimitiveDateTime = crate::primitive_date_time::PrimitiveDateTime::new(date_0, time_0);
+    let mut primitivedatetime_1: crate::primitive_date_time::PrimitiveDateTime = crate::primitive_date_time::PrimitiveDateTime::saturating_add(primitivedatetime_0, duration_2);
+    let mut i64_3: i64 = 77i64;
+    let mut duration_4: crate::duration::Duration = crate::duration::Duration::milliseconds(i64_3);
+    let mut offsetdatetime_2: crate::offset_date_time::OffsetDateTime = crate::offset_date_time::OffsetDateTime::now_utc();
+    let mut time_1: crate::time::Time = crate::offset_date_time::OffsetDateTime::time(offsetdatetime_2);
+    let mut i64_4: i64 = -72i64;
+    let mut duration_5: crate::duration::Duration = crate::duration::Duration::seconds(i64_4);
+    let mut u16_0: u16 = 11u16;
+    let mut i32_1: i32 = 11i32;
+    let mut date_1: crate::date::Date = crate::date::Date::__from_ordinal_date_unchecked(i32_1, u16_0);
+    let mut date_2: crate::date::Date = crate::date::Date::saturating_sub(date_1, duration_5);
+    let mut u8_3: u8 = 0u8;
+    let mut result_0: std::result::Result<month::Month, crate::error::component_range::ComponentRange> = std::convert::TryFrom::try_from(u8_3);
+    let mut month_0: month::Month = std::result::Result::unwrap(result_0);
+    let mut primitivedatetime_2: crate::primitive_date_time::PrimitiveDateTime = crate::date::Date::with_time(date_2, time_1);
+    let mut primitivedatetime_2_ref_0: &mut crate::primitive_date_time::PrimitiveDateTime = &mut primitivedatetime_2;
+    let mut u8_4: u8 = crate::primitive_date_time::PrimitiveDateTime::minute(primitivedatetime_1);
+    panic!("From RustyUnit with love");
+}
+
+#[no_coverage]
+#[test]
+#[should_panic]
+#[timeout(3000)]
+fn rusty_test_32() {
+    rusty_monitor::set_test_id(32);
+    let mut i8_0: i8 = 0i8;
+    let mut i8_1: i8 = -58i8;
+    let mut i8_2: i8 = 124i8;
+    let mut utcoffset_0: crate::utc_offset::UtcOffset = crate::utc_offset::UtcOffset::__from_hms_unchecked(i8_2, i8_1, i8_0);
+    let mut i8_3: i8 = 19i8;
+    let mut i8_4: i8 = -60i8;
+    let mut i8_5: i8 = 92i8;
+    let mut utcoffset_1: crate::utc_offset::UtcOffset = crate::utc_offset::UtcOffset::__from_hms_unchecked(i8_5, i8_4, i8_3);
+    let mut offsetdatetime_0: crate::offset_date_time::OffsetDateTime = crate::offset_date_time::OffsetDateTime::now_utc();
+    let mut offsetdatetime_1: crate::offset_date_time::OffsetDateTime = crate::offset_date_time::OffsetDateTime::replace_offset(offsetdatetime_0, utcoffset_1);
+    let mut time_0: crate::time::Time = crate::offset_date_time::OffsetDateTime::time(offsetdatetime_1);
+    let mut i32_0: i32 = 233i32;
+    let mut i32_1: i32 = -63i32;
+    let mut i64_0: i64 = 77i64;
+    let mut duration_0: crate::duration::Duration = crate::duration::Duration::new_unchecked(i64_0, i32_1);
+    let mut duration_1: crate::duration::Duration = crate::duration::Duration::saturating_mul(duration_0, i32_0);
+    let mut offsetdatetime_2: crate::offset_date_time::OffsetDateTime = crate::offset_date_time::OffsetDateTime::now_utc();
+    let mut offsetdatetime_3: crate::offset_date_time::OffsetDateTime = crate::offset_date_time::OffsetDateTime::saturating_add(offsetdatetime_2, duration_1);
+    let mut date_0: crate::date::Date = crate::offset_date_time::OffsetDateTime::date(offsetdatetime_3);
+    let mut primitivedatetime_0: crate::primitive_date_time::PrimitiveDateTime = crate::primitive_date_time::PrimitiveDateTime {date: date_0, time: time_0};
+    let mut primitivedatetime_1: crate::primitive_date_time::PrimitiveDateTime = crate::primitive_date_time::PrimitiveDateTime::utc_to_offset(primitivedatetime_0, utcoffset_0);
+    let mut weekday_0: weekday::Weekday = crate::primitive_date_time::PrimitiveDateTime::weekday(primitivedatetime_1);
+    let mut u32_0: u32 = 76u32;
+    let mut u8_0: u8 = 51u8;
+    let mut u8_1: u8 = 51u8;
+    let mut u8_2: u8 = 48u8;
+    let mut time_1: crate::time::Time = crate::time::Time::__from_hms_nanos_unchecked(u8_2, u8_1, u8_0, u32_0);
+    let mut u8_3: u8 = 17u8;
+    let mut result_0: std::result::Result<month::Month, crate::error::component_range::ComponentRange> = std::convert::TryFrom::try_from(u8_3);
+    let mut u8_4: u8 = crate::time::Time::hour(time_1);
+    let mut weekday_1: weekday::Weekday = crate::weekday::Weekday::next(weekday_0);
+    panic!("From RustyUnit with love");
+}
+
+#[no_coverage]
+#[test]
+#[should_panic]
+#[timeout(3000)]
+fn rusty_test_625() {
+    rusty_monitor::set_test_id(625);
+    let mut offsetdatetime_0: crate::offset_date_time::OffsetDateTime = crate::offset_date_time::OffsetDateTime::now_utc();
+    let mut u32_0: u32 = 65u32;
+    let mut u8_0: u8 = 48u8;
+    let mut i32_0: i32 = -11i32;
+    let mut i64_0: i64 = -74i64;
+    let mut duration_0: crate::duration::Duration = crate::duration::Duration::new_unchecked(i64_0, i32_0);
+    let mut i64_1: i64 = 18i64;
+    let mut duration_1: crate::duration::Duration = crate::duration::Duration::microseconds(i64_1);
+    let mut duration_2: crate::duration::Duration = crate::duration::Duration::saturating_add(duration_1, duration_0);
+    let mut u8_1: u8 = 39u8;
+    let mut u8_2: u8 = 3u8;
+    let mut time_0: crate::time::Time = crate::time::Time::__from_hms_nanos_unchecked(u8_0, u8_2, u8_1, u32_0);
+    let mut i64_2: i64 = -55i64;
+    let mut duration_3: crate::duration::Duration = crate::duration::Duration::days(i64_2);
+    let mut offsetdatetime_1: crate::offset_date_time::OffsetDateTime = crate::offset_date_time::OffsetDateTime::now_utc();
+    let mut offsetdatetime_2: crate::offset_date_time::OffsetDateTime = crate::offset_date_time::OffsetDateTime::saturating_sub(offsetdatetime_1, duration_3);
+    let mut date_0: crate::date::Date = crate::offset_date_time::OffsetDateTime::date(offsetdatetime_2);
+    let mut primitivedatetime_0: crate::primitive_date_time::PrimitiveDateTime = crate::primitive_date_time::PrimitiveDateTime::new(date_0, time_0);
+    let mut primitivedatetime_1: crate::primitive_date_time::PrimitiveDateTime = crate::primitive_date_time::PrimitiveDateTime::saturating_add(primitivedatetime_0, duration_2);
+    let mut i64_3: i64 = 77i64;
+    let mut duration_4: crate::duration::Duration = crate::duration::Duration::milliseconds(i64_3);
+    let mut offsetdatetime_3: crate::offset_date_time::OffsetDateTime = crate::offset_date_time::OffsetDateTime::now_utc();
+    let mut time_1: crate::time::Time = crate::offset_date_time::OffsetDateTime::time(offsetdatetime_3);
+    let mut i64_4: i64 = -72i64;
+    let mut duration_5: crate::duration::Duration = crate::duration::Duration::seconds(i64_4);
+    let mut u16_0: u16 = 11u16;
+    let mut i32_1: i32 = 11i32;
+    let mut date_1: crate::date::Date = crate::date::Date::__from_ordinal_date_unchecked(i32_1, u16_0);
+    let mut date_2: crate::date::Date = crate::date::Date::saturating_sub(date_1, duration_5);
+    let mut u8_3: u8 = 1u8;
+    let mut result_0: std::result::Result<month::Month, crate::error::component_range::ComponentRange> = std::convert::TryFrom::try_from(u8_3);
+    let mut month_0: month::Month = std::result::Result::unwrap(result_0);
+    let mut primitivedatetime_2: crate::primitive_date_time::PrimitiveDateTime = crate::date::Date::with_time(date_2, time_1);
+    let mut primitivedatetime_2_ref_0: &mut crate::primitive_date_time::PrimitiveDateTime = &mut primitivedatetime_2;
+    let mut u8_4: u8 = crate::primitive_date_time::PrimitiveDateTime::minute(primitivedatetime_1);
+    let mut i64_5: i64 = crate::duration::Duration::whole_weeks(duration_4);
+    let mut weekday_0: weekday::Weekday = crate::offset_date_time::OffsetDateTime::weekday(offsetdatetime_0);
+    panic!("From RustyUnit with love");
+}
+
+#[no_coverage]
+#[test]
+#[should_panic]
+#[timeout(3000)]
+fn rusty_test_1267() {
+    rusty_monitor::set_test_id(1267);
+    let mut u8_0: u8 = 36u8;
+    let mut i32_0: i32 = 5i32;
+    let mut i32_1: i32 = -124i32;
+    let mut i64_0: i64 = 111i64;
+    let mut duration_0: crate::duration::Duration = crate::duration::Duration::new_unchecked(i64_0, i32_1);
+    let mut i32_2: i32 = -11i32;
+    let mut i64_1: i64 = -74i64;
+    let mut duration_1: crate::duration::Duration = crate::duration::Duration::new_unchecked(i64_1, i32_2);
+    let mut i64_2: i64 = 18i64;
+    let mut duration_2: crate::duration::Duration = crate::duration::Duration::microseconds(i64_2);
+    let mut duration_3: crate::duration::Duration = crate::duration::Duration::saturating_add(duration_2, duration_1);
+    let mut u32_0: u32 = 15u32;
+    let mut u8_1: u8 = 39u8;
+    let mut u8_2: u8 = 92u8;
+    let mut u8_3: u8 = 3u8;
+    let mut time_0: crate::time::Time = crate::time::Time::__from_hms_nanos_unchecked(u8_3, u8_2, u8_1, u32_0);
+    let mut i64_3: i64 = -55i64;
+    let mut duration_4: crate::duration::Duration = crate::duration::Duration::days(i64_3);
+    let mut offsetdatetime_0: crate::offset_date_time::OffsetDateTime = crate::offset_date_time::OffsetDateTime::now_utc();
+    let mut offsetdatetime_1: crate::offset_date_time::OffsetDateTime = crate::offset_date_time::OffsetDateTime::saturating_sub(offsetdatetime_0, duration_4);
+    let mut date_0: crate::date::Date = crate::offset_date_time::OffsetDateTime::date(offsetdatetime_1);
+    let mut primitivedatetime_0: crate::primitive_date_time::PrimitiveDateTime = crate::primitive_date_time::PrimitiveDateTime::new(date_0, time_0);
+    let mut primitivedatetime_1: crate::primitive_date_time::PrimitiveDateTime = crate::primitive_date_time::PrimitiveDateTime::saturating_add(primitivedatetime_0, duration_3);
+    let mut i64_4: i64 = 77i64;
+    let mut duration_5: crate::duration::Duration = crate::duration::Duration::milliseconds(i64_4);
+    let mut offsetdatetime_2: crate::offset_date_time::OffsetDateTime = crate::offset_date_time::OffsetDateTime::now_utc();
+    let mut time_1: crate::time::Time = crate::offset_date_time::OffsetDateTime::time(offsetdatetime_2);
+    let mut i64_5: i64 = -72i64;
+    let mut duration_6: crate::duration::Duration = crate::duration::Duration::seconds(i64_5);
+    let mut u16_0: u16 = 11u16;
+    let mut i32_3: i32 = 11i32;
+    let mut date_1: crate::date::Date = crate::date::Date::__from_ordinal_date_unchecked(i32_3, u16_0);
+    let mut date_2: crate::date::Date = crate::date::Date::saturating_sub(date_1, duration_6);
+    let mut u8_4: u8 = 1u8;
+    let mut result_0: std::result::Result<month::Month, crate::error::component_range::ComponentRange> = std::convert::TryFrom::try_from(u8_4);
+    let mut month_0: month::Month = std::result::Result::unwrap(result_0);
+    let mut primitivedatetime_2: crate::primitive_date_time::PrimitiveDateTime = crate::date::Date::with_time(date_2, time_1);
+    let mut primitivedatetime_2_ref_0: &mut crate::primitive_date_time::PrimitiveDateTime = &mut primitivedatetime_2;
+    let mut u8_5: u8 = crate::primitive_date_time::PrimitiveDateTime::minute(primitivedatetime_1);
+    let mut option_0: std::option::Option<crate::duration::Duration> = crate::duration::Duration::checked_mul(duration_0, i32_0);
+    let mut result_1: std::result::Result<month::Month, crate::error::component_range::ComponentRange> = std::convert::TryFrom::try_from(u8_0);
+    panic!("From RustyUnit with love");
+}
+}

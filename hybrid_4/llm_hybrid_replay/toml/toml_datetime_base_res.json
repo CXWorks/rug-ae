@@ -1,0 +1,1 @@
+{"<datetime::Datetime as std::convert::From<datetime::Date>>::from": true, "<datetime::Datetime as std::convert::From<datetime::Time>>::from": true, "<datetime::Datetime as std::str::FromStr>::from_str": true, "datetime::digit": false}

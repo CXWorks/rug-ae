@@ -1,0 +1,34 @@
+err hashes /mnt/sda/xiang/llm4_human/llm_hybrid/hashes/blake2/src/macros.rs tests_rug_11
+err hashes /mnt/sda/xiang/llm4_human/llm_hybrid/hashes/blake2/src/macros.rs tests_rug_24
+blake2 blake2 32 34 0
+err hashes /mnt/sda/xiang/llm4_human/llm_hybrid/hashes/fsb/src/macros.rs tests_llm_16_43
+fsb fsb 72 75 0
+err hashes /mnt/sda/xiang/llm4_human/llm_hybrid/hashes/gost94/src/gost94_core.rs tests_llm_16_6
+gost94 gost94 82 86 0
+err hashes /mnt/sda/xiang/llm4_human/llm_hybrid/hashes/groestl/src/compress1024.rs tests_llm_16_12
+err hashes /mnt/sda/xiang/llm4_human/llm_hybrid/hashes/groestl/src/compress1024.rs tests_llm_16_13
+groestl groestl 93 99 0
+md-5 md5 102 108 0
+md2 md2 107 113 0
+md4 md4 112 118 0
+err hashes /mnt/sda/xiang/llm4_human/llm_hybrid/hashes/ripemd/src/c320.rs tests_llm_16_25_llm_16_25
+err hashes /mnt/sda/xiang/llm4_human/llm_hybrid/hashes/ripemd/src/c320.rs tests_rug_147
+err hashes /mnt/sda/xiang/llm4_human/llm_hybrid/hashes/ripemd/src/c160.rs tests_llm_16_22
+ripemd ripemd 127 136 0
+err hashes /mnt/sda/xiang/llm4_human/llm_hybrid/hashes/sha1/src/compress/x86.rs tests_llm_16_20_llm_16_20
+sha1 sha1 143 153 0
+err hashes /mnt/sda/xiang/llm4_human/llm_hybrid/hashes/sha2/src/sha512/x86.rs tests_llm_16_36
+err hashes /mnt/sda/xiang/llm4_human/llm_hybrid/hashes/sha2/src/sha512/x86.rs tests_llm_16_41
+err hashes /mnt/sda/xiang/llm4_human/llm_hybrid/hashes/sha2/src/sha256/x86.rs tests_llm_16_26_llm_16_26
+sha2 sha2 176 189 0
+err hashes /mnt/sda/xiang/llm4_human/llm_hybrid/hashes/sha3/src/macros.rs tests_llm_16_25_llm_16_25
+err hashes /mnt/sda/xiang/llm4_human/llm_hybrid/hashes/sha3/src/macros.rs tests_llm_16_28_llm_16_28
+err hashes /mnt/sda/xiang/llm4_human/llm_hybrid/hashes/sha3/src/macros.rs tests_llm_16_74
+sha3 sha3 233 249 0
+err hashes /mnt/sda/xiang/llm4_human/llm_hybrid/hashes/shabal/src/core_api.rs tests_llm_16_6
+shabal shabal 243 260 0
+err hashes /mnt/sda/xiang/llm4_human/llm_hybrid/hashes/sm3/src/compress.rs tests_llm_16_18_llm_16_18
+sm3 sm3 259 277 0
+streebog streebog 268 286 0
+tiger tiger 280 298 0
+whirlpool whirlpool 288 306 0

@@ -1,0 +1,565 @@
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/lsd/./src/flags.rs
+        let _rug_st_tests_llm_16_179_llm_16_178_rrrruuuugggg_test_configure_from = 0;
+ tests_llm_16_179_llm_16_178 test_configure_from
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/lsd/./src/app.rs
+        let _rug_st_tests_llm_16_139_llm_16_138_rrrruuuugggg_test_validate_time_format = 0;
+ tests_llm_16_139_llm_16_138 test_validate_time_format
+        let _rug_st_tests_rug_2_rrrruuuugggg_test_validate_date_argument = 0;
+ tests_rug_2 test_validate_date_argument
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/lsd/./src/color.rs
+        let _rug_st_tests_llm_16_144_rrrruuuugggg_test_default_style = 0;
+ tests_llm_16_144 test_default_style
+        let _rug_st_tests_llm_16_149_rrrruuuugggg_test_style_with_lscolors_some_and_style_some = 0;
+ tests_llm_16_149 test_style_with_lscolors_some_and_style_some
+        let _rug_st_tests_llm_16_149_rrrruuuugggg_test_style_with_lscolors_some_and_style_none = 0;
+ tests_llm_16_149 test_style_with_lscolors_some_and_style_none
+        let _rug_st_tests_llm_16_149_rrrruuuugggg_test_style_with_lscolors_some_and_no_matching_style = 0;
+ tests_llm_16_149 test_style_with_lscolors_some_and_no_matching_style
+        let _rug_st_tests_llm_16_149_rrrruuuugggg_test_style_with_lscolors_none = 0;
+ tests_llm_16_149 test_style_with_lscolors_none
+        let _rug_st_tests_llm_16_152_rrrruuuugggg_test_style_from_path = 0;
+ tests_llm_16_152 test_style_from_path
+        let _rug_st_tests_llm_16_155_rrrruuuugggg_test_has_suid = 0;
+ tests_llm_16_155 test_has_suid
+        let _rug_st_tests_rug_3_rrrruuuugggg_test_to_content_style = 0;
+ tests_rug_3 test_to_content_style
+        let _rug_st_tests_rug_4_rrrruuuugggg_test_rug = 0;
+ tests_rug_4 test_rug
+        let _rug_st_tests_rug_5_rrrruuuugggg_test_rug = 0;
+ tests_rug_5 test_rug
+        let _rug_st_tests_rug_9_rrrruuuugggg_test_rug = 0;
+ tests_rug_9 test_rug
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/lsd/./src/main.rs
+        let _rug_st_tests_rug_27_rrrruuuugggg_test_main = 0;
+ tests_rug_27 test_main
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/lsd/./src/color/theme.rs
+        let _rug_st_tests_llm_16_5_rrrruuuugggg_test_default = 0;
+ tests_llm_16_5 test_default
+        let _rug_st_tests_llm_16_6_rrrruuuugggg_test_default = 0;
+ tests_llm_16_6 test_default
+        let _rug_st_tests_llm_16_8_llm_16_7_rrrruuuugggg_test_default = 0;
+ tests_llm_16_8_llm_16_7 test_default
+        let _rug_st_tests_llm_16_9_rrrruuuugggg_test_default = 0;
+ tests_llm_16_9 test_default
+        let _rug_st_tests_llm_16_11_llm_16_10_rrrruuuugggg_test_default = 0;
+ tests_llm_16_11_llm_16_10 test_default
+        let _rug_st_tests_llm_16_13_llm_16_12_rrrruuuugggg_test_default = 0;
+ tests_llm_16_13_llm_16_12 test_default
+        let _rug_st_tests_llm_16_14_rrrruuuugggg_test_default = 0;
+ tests_llm_16_14 test_default
+        let _rug_st_tests_llm_16_19_rrrruuuugggg_test_default_theme = 0;
+ tests_llm_16_19 test_default_theme
+        let _rug_st_tests_llm_16_158_rrrruuuugggg_test_from_path_with_absolute_path = 0;
+ tests_llm_16_158 test_from_path_with_absolute_path
+        let _rug_st_tests_llm_16_158_rrrruuuugggg_test_from_path_with_relative_path = 0;
+ tests_llm_16_158 test_from_path_with_relative_path
+        let _rug_st_tests_llm_16_158_rrrruuuugggg_test_from_path_with_invalid_path = 0;
+ tests_llm_16_158 test_from_path_with_invalid_path
+        let _rug_st_tests_llm_16_159_rrrruuuugggg_test_with_yaml = 0;
+ tests_llm_16_159 test_with_yaml
+err tests_llm_16_159 test_with_yaml
+   Compiling lsd v0.21.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/lsd)
+error: character literal may only contain one codepoint
+   --> src/color/theme.rs:644:25
+    |
+644 |             background: '#000000'
+    |                         ^^^^^^^^^
+    |
+help: if you meant to write a `str` literal, use double quotes
+    |
+644 |             background: "#000000"
+    |                         ~~~~~~~~~
+
+error: character literal may only contain one codepoint
+   --> src/color/theme.rs:645:25
+    |
+645 |             foreground: '#ffffff'
+    |                         ^^^^^^^^^
+    |
+help: if you meant to write a `str` literal, use double quotes
+    |
+645 |             foreground: "#ffffff"
+    |                         ~~~~~~~~~
+
+error: character literal may only contain one codepoint
+   --> src/color/theme.rs:646:21
+    |
+646 |             accent: '#ff0000'
+    |                     ^^^^^^^^^
+    |
+help: if you meant to write a `str` literal, use double quotes
+    |
+646 |             accent: "#ff0000"
+    |                     ~~~~~~~~~
+
+error: prefix `yaml` is unknown
+   --> src/color/theme.rs:656:35
+    |
+656 |         let rug_fuzz_0 = "invalid yaml";
+    |                                   ^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+656 |         let rug_fuzz_0 = "invalid yaml ";
+    |                                       +
+
+error[E0765]: unterminated double quote string
+   --> src/color/theme.rs:656:39
+    |
+656 |           let rug_fuzz_0 = "invalid yaml";
+    |  _______________________________________^
+657 | |         let yaml = rug_fuzz_0;
+658 | |         let theme = Theme::with_yaml(yaml);
+659 | |         debug_assert!(theme.is_err());
+...   |
+686 | |     }
+687 | | }
+    | |__^
+
+For more information about this error, try `rustc --explain E0765`.
+error: could not compile `lsd` due to 5 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `lsd` due to 5 previous errors
+
+        let _rug_st_tests_llm_16_159_rrrruuuugggg_test_with_yaml_invalid_yaml = 0;
+ tests_llm_16_159 test_with_yaml_invalid_yaml
+        let _rug_st_tests_rug_30_rrrruuuugggg_test_rug = 0;
+ tests_rug_30 test_rug
+        let _rug_st_tests_rug_32_rrrruuuugggg_test_default_dark = 0;
+ tests_rug_32 test_default_dark
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/lsd/./src/config_file.rs
+        let _rug_st_tests_llm_16_20_rrrruuuugggg_test_default = 0;
+ tests_llm_16_20 test_default
+        let _rug_st_tests_llm_16_163_rrrruuuugggg_test_config_file_path = 0;
+ tests_llm_16_163 test_config_file_path
+        let _rug_st_tests_llm_16_165_llm_16_164_rrrruuuugggg_test_expand_home_with_non_home_dir = 0;
+ tests_llm_16_165_llm_16_164 test_expand_home_with_non_home_dir
+        let _rug_st_tests_llm_16_165_llm_16_164_rrrruuuugggg_test_expand_home_with_home_dir = 0;
+ tests_llm_16_165_llm_16_164 test_expand_home_with_home_dir
+        let _rug_st_tests_llm_16_165_llm_16_164_rrrruuuugggg_test_expand_home_with_home_dir_root = 0;
+ tests_llm_16_165_llm_16_164 test_expand_home_with_home_dir_root
+        let _rug_st_tests_llm_16_165_llm_16_164_rrrruuuugggg_test_expand_home_with_root_dir = 0;
+ tests_llm_16_165_llm_16_164 test_expand_home_with_root_dir
+        let _rug_st_tests_llm_16_165_llm_16_164_rrrruuuugggg_test_expand_home_with_invalid_home_dir = 0;
+ tests_llm_16_165_llm_16_164 test_expand_home_with_invalid_home_dir
+        let _rug_st_tests_llm_16_166_rrrruuuugggg_test_from_file_existing_file = 0;
+ tests_llm_16_166 test_from_file_existing_file
+        let _rug_st_tests_llm_16_166_rrrruuuugggg_test_from_file_non_existing_file = 0;
+ tests_llm_16_166 test_from_file_non_existing_file
+        let _rug_st_tests_llm_16_169_rrrruuuugggg_test_with_none = 0;
+ tests_llm_16_169 test_with_none
+        let _rug_st_tests_rug_33_rrrruuuugggg_test_rug = 0;
+ tests_rug_33 test_rug
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/lsd/./src/display.rs
+        let _rug_st_tests_rug_14_rrrruuuugggg_test_should_display_folder_path = 0;
+ tests_rug_14 test_should_display_folder_path
+        let _rug_st_tests_rug_17_rrrruuuugggg_test_rug = 0;
+ tests_rug_17 test_rug
+        let _rug_st_tests_rug_18_rrrruuuugggg_test_rug = 0;
+ tests_rug_18 test_rug
+        let _rug_st_tests_rug_19_rrrruuuugggg_test_get_padding_rules = 0;
+ tests_rug_19 test_get_padding_rules
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/lsd/./src/sort.rs
+        let _rug_st_tests_llm_16_286_rrrruuuugggg_test_assemble_sorters = 0;
+ tests_llm_16_286 test_assemble_sorters
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/lsd/./src/meta/owner.rs
+        let _rug_st_tests_llm_16_266_rrrruuuugggg_test_new = 0;
+ tests_llm_16_266 test_new
+        let _rug_st_tests_rug_103_rrrruuuugggg_test_rug = 0;
+ tests_rug_103 test_rug
+        let _rug_st_tests_rug_104_rrrruuuugggg_test_render_group = 0;
+ tests_rug_104 test_render_group
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/lsd/./src/meta/filetype.rs
+        let _rug_st_tests_rug_93_rrrruuuugggg_test_rug = 0;
+ tests_rug_93 test_rug
+        let _rug_st_tests_rug_94_rrrruuuugggg_test_rug = 0;
+ tests_rug_94 test_rug
+        let _rug_st_tests_rug_95_rrrruuuugggg_test_rug = 0;
+ tests_rug_95 test_rug
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/lsd/./src/meta/inode.rs
+        let _rug_st_tests_llm_16_121_llm_16_120_rrrruuuugggg_test_from_unix = 0;
+ tests_llm_16_121_llm_16_120 test_from_unix
+        let _rug_st_tests_llm_16_121_llm_16_120_rrrruuuugggg_test_from_windows = 0;
+ tests_llm_16_121_llm_16_120 test_from_windows
+        let _rug_st_tests_llm_16_253_rrrruuuugggg_test_render_with_index = 0;
+ tests_llm_16_253 test_render_with_index
+        let _rug_st_tests_llm_16_253_rrrruuuugggg_test_render_without_index = 0;
+ tests_llm_16_253 test_render_without_index
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/lsd/./src/meta/date.rs
+        let _rug_st_tests_rug_92_rrrruuuugggg_test_date_string = 0;
+ tests_rug_92 test_date_string
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/lsd/./src/meta/links.rs
+        let _rug_st_tests_rug_99_rrrruuuugggg_test_rug = 0;
+ tests_rug_99 test_rug
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/lsd/./src/meta/permissions.rs
+        let _rug_st_tests_llm_16_273_rrrruuuugggg_test_is_executable = 0;
+ tests_llm_16_273 test_is_executable
+        let _rug_st_tests_rug_106_rrrruuuugggg_test_rug = 0;
+ tests_rug_106 test_rug
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/lsd/./src/meta/symlink.rs
+        let _rug_st_tests_llm_16_133_rrrruuuugggg_test_from = 0;
+ tests_llm_16_133 test_from
+        let _rug_st_tests_llm_16_285_rrrruuuugggg_test_symlink_string_with_target = 0;
+ tests_llm_16_285 test_symlink_string_with_target
+        let _rug_st_tests_llm_16_285_rrrruuuugggg_test_symlink_string_without_target = 0;
+ tests_llm_16_285 test_symlink_string_without_target
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/lsd/./src/meta/access_control.rs
+        let _rug_st_tests_llm_16_235_rrrruuuugggg_test_for_path_unix = 0;
+ tests_llm_16_235 test_for_path_unix
+        let _rug_st_tests_llm_16_235_rrrruuuugggg_test_for_path_non_unix = 0;
+ tests_llm_16_235 test_for_path_non_unix
+        let _rug_st_tests_llm_16_236_rrrruuuugggg_test_from_data = 0;
+ tests_llm_16_236 test_from_data
+        let _rug_st_tests_llm_16_236_rrrruuuugggg_test_from_data = 0;
+ tests_llm_16_236 test_from_data
+        let _rug_st_tests_llm_16_242_llm_16_241_rrrruuuugggg_test_name = 0;
+ tests_llm_16_242_llm_16_241 test_name
+        let _rug_st_tests_rug_87_rrrruuuugggg_test_rug = 0;
+ tests_rug_87 test_rug
+        let _rug_st_tests_rug_88_rrrruuuugggg_test_render_context = 0;
+ tests_rug_88 test_render_context
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/lsd/./src/meta/mod.rs
+        let _rug_st_tests_llm_16_232_rrrruuuugggg_test_calculate_total_file_size_file = 0;
+ tests_llm_16_232 test_calculate_total_file_size_file
+        let _rug_st_tests_llm_16_232_rrrruuuugggg_test_calculate_total_file_size_directory = 0;
+ tests_llm_16_232 test_calculate_total_file_size_directory
+        let _rug_st_tests_llm_16_234_rrrruuuugggg_test_from_path = 0;
+ tests_llm_16_234 test_from_path
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/lsd/./src/meta/name.rs
+        let _rug_st_tests_llm_16_124_rrrruuuugggg_test_cmp = 0;
+ tests_llm_16_124 test_cmp
+        let _rug_st_tests_llm_16_125_rrrruuuugggg_test_eq = 0;
+ tests_llm_16_125 test_eq
+err tests_llm_16_125 test_eq
+   Compiling lsd v0.21.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/lsd)
+error[E0277]: the trait bound `(&str, &str, &str, bool, bool, &str, &str, &str, bool, bool, &str, &str, &str, bool, bool, &str, &str, &str, bool, bool, &str, &str, &str, bool, bool, &str, &str, &str, bool, bool): Arbitrary<'_>` is not satisfied
+   --> src/meta/name.rs:553:527
+    |
+553 | ... = <(&str, &str, &str, bool, bool, &str, &str, &str, bool, bool, &str, &str, &str, bool, bool, &str, &str, &str, bool, bool, &str, &str, &str, bool, bool, &str, &str, &str, bool, bool) as arbitrary::Arbitrary>::arbitrary(&m...
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Arbitrary<'_>` is not implemented for `(&str, &str, &str, bool, bool, &str, &str, &str, bool, bool, &str, &str, &str, bool, bool, &str, &str, &str, bool, bool, &str, &str, &str, bool, bool, &str, &str, &str, bool, bool)`
+    |
+    = help: the following other types implement trait `Arbitrary<'a>`:
+              ()
+              (B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, A)
+              (C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, B)
+              (D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, C)
+              (E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, D)
+              (F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, E)
+              (G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, F)
+              (H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, G)
+            and 19 others
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `lsd` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+        let _rug_st_tests_llm_16_126_rrrruuuugggg_test_partial_cmp = 0;
+ tests_llm_16_126 test_partial_cmp
+        let _rug_st_tests_llm_16_256_rrrruuuugggg_test_escape_all_printable_chars = 0;
+ tests_llm_16_256 test_escape_all_printable_chars
+        let _rug_st_tests_llm_16_256_rrrruuuugggg_test_escape_non_printable_chars = 0;
+ tests_llm_16_256 test_escape_non_printable_chars
+        let _rug_st_tests_llm_16_256_rrrruuuugggg_test_escape_mixed_chars = 0;
+ tests_llm_16_256 test_escape_mixed_chars
+        let _rug_st_tests_llm_16_256_rrrruuuugggg_test_escape_non_ascii_chars = 0;
+ tests_llm_16_256 test_escape_non_ascii_chars
+        let _rug_st_tests_llm_16_257_rrrruuuugggg_test_extension = 0;
+ tests_llm_16_257 test_extension
+        let _rug_st_tests_llm_16_258_rrrruuuugggg_test_file_name = 0;
+ tests_llm_16_258 test_file_name
+        let _rug_st_tests_llm_16_261_rrrruuuugggg_test_hyperlink = 0;
+ tests_llm_16_261 test_hyperlink
+        let _rug_st_tests_llm_16_262_rrrruuuugggg_test_new = 0;
+ tests_llm_16_262 test_new
+        let _rug_st_tests_llm_16_263_rrrruuuugggg_test_relative_path = 0;
+ tests_llm_16_263 test_relative_path
+        let _rug_st_tests_rug_101_rrrruuuugggg_test_rug = 0;
+ tests_rug_101 test_rug
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/lsd/./src/meta/size.rs
+        let _rug_st_tests_llm_16_131_rrrruuuugggg_test_from = 0;
+ tests_llm_16_131 test_from
+        let _rug_st_tests_llm_16_274_rrrruuuugggg_test_format_size = 0;
+ tests_llm_16_274 test_format_size
+        let _rug_st_tests_llm_16_275_rrrruuuugggg_test_get_bytes = 0;
+ tests_llm_16_275 test_get_bytes
+        let _rug_st_tests_llm_16_276_rrrruuuugggg_test_get_unit_bytes = 0;
+ tests_llm_16_276 test_get_unit_bytes
+        let _rug_st_tests_llm_16_276_rrrruuuugggg_test_get_unit_kilo = 0;
+ tests_llm_16_276 test_get_unit_kilo
+        let _rug_st_tests_llm_16_276_rrrruuuugggg_test_get_unit_mega = 0;
+ tests_llm_16_276 test_get_unit_mega
+        let _rug_st_tests_llm_16_276_rrrruuuugggg_test_get_unit_giga = 0;
+ tests_llm_16_276 test_get_unit_giga
+        let _rug_st_tests_llm_16_276_rrrruuuugggg_test_get_unit_tera = 0;
+ tests_llm_16_276 test_get_unit_tera
+        let _rug_st_tests_llm_16_276_rrrruuuugggg_test_get_unit_default = 0;
+ tests_llm_16_276 test_get_unit_default
+        let _rug_st_tests_llm_16_276_rrrruuuugggg_test_get_unit_short = 0;
+ tests_llm_16_276 test_get_unit_short
+        let _rug_st_tests_llm_16_276_rrrruuuugggg_test_get_unit_bytes_short = 0;
+ tests_llm_16_276 test_get_unit_bytes_short
+        let _rug_st_tests_llm_16_276_rrrruuuugggg_test_get_unit_bytes_bytes = 0;
+ tests_llm_16_276 test_get_unit_bytes_bytes
+        let _rug_st_tests_llm_16_276_rrrruuuugggg_test_get_unit_bytes_default = 0;
+ tests_llm_16_276 test_get_unit_bytes_default
+        let _rug_st_tests_llm_16_277_rrrruuuugggg_test_new = 0;
+ tests_llm_16_277 test_new
+        let _rug_st_tests_rug_113_rrrruuuugggg_test_unit_string = 0;
+ tests_rug_113 test_unit_string
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/lsd/./src/meta/windows_utils.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/lsd/./src/meta/indicator.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/lsd/./src/core.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/lsd/./src/icon.rs
+        let _rug_st_tests_llm_16_225_rrrruuuugggg_test_get_default_icons_by_extension = 0;
+ tests_llm_16_225 test_get_default_icons_by_extension
+err tests_llm_16_225 test_get_default_icons_by_extension
+   Compiling lsd v0.21.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/lsd)
+error[E0277]: the trait bound `(&str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str): Arbitrary<'_>` is not satisfied
+   --> src/icon.rs:436:3715
+    |
+436 | ... = <(&str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str) as arbitrary::Arbitrary>::arbitrary(&m...
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Arbitrary<'_>` is not implemented for `(&str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str)`
+    |
+    = help: the following other types implement trait `Arbitrary<'a>`:
+              ()
+              (B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, A)
+              (C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, B)
+              (D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, C)
+              (E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, D)
+              (F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, E)
+              (G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, F)
+              (H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, G)
+            and 19 others
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `lsd` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+        let _rug_st_tests_llm_16_228_rrrruuuugggg_test_new = 0;
+ tests_llm_16_228 test_new
+        let _rug_st_tests_rug_86_rrrruuuugggg_test_rug = 0;
+ tests_rug_86 test_rug
+err tests_rug_86 test_rug
+   Compiling lsd v0.21.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/lsd)
+error[E0277]: the trait bound `(&str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str): Arbitrary<'_>` is not satisfied
+   --> src/icon.rs:890:1207
+    |
+890 | ... = <(&str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str) as arbitrary::Arbitrary>::arbitrary(&m...
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Arbitrary<'_>` is not implemented for `(&str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str)`
+    |
+    = help: the following other types implement trait `Arbitrary<'a>`:
+              ()
+              (B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, A)
+              (C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, B)
+              (D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, C)
+              (E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, D)
+              (F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, E)
+              (G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, F)
+              (H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, G)
+            and 19 others
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `lsd` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/lsd/./src/flags/sorting.rs
+        let _rug_st_tests_llm_16_93_rrrruuuugggg_test_default = 0;
+ tests_llm_16_93 test_default
+        let _rug_st_tests_llm_16_98_rrrruuuugggg_test_default = 0;
+ tests_llm_16_98 test_default
+        let _rug_st_tests_llm_16_103_rrrruuuugggg_test_default = 0;
+ tests_llm_16_103 test_default
+        let _rug_st_tests_llm_16_221_rrrruuuugggg_test_dir_grouping_from_str_first = 0;
+ tests_llm_16_221 test_dir_grouping_from_str_first
+        let _rug_st_tests_llm_16_221_rrrruuuugggg_test_dir_grouping_from_str_last = 0;
+ tests_llm_16_221 test_dir_grouping_from_str_last
+        let _rug_st_tests_llm_16_221_rrrruuuugggg_test_dir_grouping_from_str_none = 0;
+ tests_llm_16_221 test_dir_grouping_from_str_none
+        let _rug_st_tests_llm_16_221_rrrruuuugggg_test_dir_grouping_from_str_invalid = 0;
+ tests_llm_16_221 test_dir_grouping_from_str_invalid
+        let _rug_st_tests_llm_16_222_rrrruuuugggg_test_configure_from = 0;
+ tests_llm_16_222 test_configure_from
+        let _rug_st_tests_rug_81_rrrruuuugggg_test_rug = 0;
+ tests_rug_81 test_rug
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/lsd/./src/flags/color.rs
+        let _rug_st_tests_llm_16_28_rrrruuuugggg_test_from_environment = 0;
+ tests_llm_16_28 test_from_environment
+        let _rug_st_tests_llm_16_29_rrrruuuugggg_test_default = 0;
+ tests_llm_16_29 test_default
+        let _rug_st_tests_llm_16_32_rrrruuuugggg_test_default = 0;
+ tests_llm_16_32 test_default
+        let _rug_st_tests_llm_16_191_rrrruuuugggg_test_configure_from = 0;
+ tests_llm_16_191 test_configure_from
+        let _rug_st_tests_llm_16_192_rrrruuuugggg_test_from_str_always = 0;
+ tests_llm_16_192 test_from_str_always
+        let _rug_st_tests_llm_16_192_rrrruuuugggg_test_from_str_auto = 0;
+ tests_llm_16_192 test_from_str_auto
+        let _rug_st_tests_llm_16_192_rrrruuuugggg_test_from_str_never = 0;
+ tests_llm_16_192 test_from_str_never
+        let _rug_st_tests_llm_16_192_rrrruuuugggg_test_from_str_invalid = 0;
+ tests_llm_16_192 test_from_str_invalid
+        let _rug_st_tests_llm_16_193_rrrruuuugggg_test_from_config = 0;
+ tests_llm_16_193 test_from_config
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/lsd/./src/flags/indicators.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/lsd/./src/flags/icons.rs
+        let _rug_st_tests_llm_16_57_rrrruuuugggg_test_default = 0;
+ tests_llm_16_57 test_default
+        let _rug_st_tests_llm_16_58_rrrruuuugggg_test_from_arg_matches = 0;
+ tests_llm_16_58 test_from_arg_matches
+        let _rug_st_tests_llm_16_61_rrrruuuugggg_test_default = 0;
+ tests_llm_16_61 test_default
+        let _rug_st_tests_llm_16_66_rrrruuuugggg_test_default = 0;
+ tests_llm_16_66 test_default
+        let _rug_st_tests_rug_54_rrrruuuugggg_test_rug = 0;
+ tests_rug_54 test_rug
+        let _rug_st_tests_rug_59_rrrruuuugggg_test_rug = 0;
+ tests_rug_59 test_rug
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/lsd/./src/flags/date.rs
+        let _rug_st_tests_llm_16_35_rrrruuuugggg_test_from_config_classic_true = 0;
+ tests_llm_16_35 test_from_config_classic_true
+        let _rug_st_tests_llm_16_35_rrrruuuugggg_test_from_config_classic_false = 0;
+ tests_llm_16_35 test_from_config_classic_false
+        let _rug_st_tests_llm_16_35_rrrruuuugggg_test_from_config_date_present = 0;
+ tests_llm_16_35 test_from_config_date_present
+        let _rug_st_tests_llm_16_35_rrrruuuugggg_test_from_config_date_not_present = 0;
+ tests_llm_16_35 test_from_config_date_not_present
+        let _rug_st_tests_llm_16_35_rrrruuuugggg_test_from_config_date_relative = 0;
+ tests_llm_16_35 test_from_config_date_relative
+        let _rug_st_tests_llm_16_39_rrrruuuugggg_test_default = 0;
+ tests_llm_16_39 test_default
+        let _rug_st_tests_llm_16_194_rrrruuuugggg_test_from_format_string_valid_format = 0;
+ tests_llm_16_194 test_from_format_string_valid_format
+        let _rug_st_tests_llm_16_194_rrrruuuugggg_test_from_format_string_invalid_format = 0;
+ tests_llm_16_194 test_from_format_string_invalid_format
+        let _rug_st_tests_rug_46_rrrruuuugggg_test_from_str = 0;
+ tests_rug_46 test_from_str
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/lsd/./src/flags/permission.rs
+        let _rug_st_tests_llm_16_82_rrrruuuugggg_test_default = 0;
+ tests_llm_16_82 test_default
+        let _rug_st_tests_rug_70_rrrruuuugggg_test_rug = 0;
+ tests_rug_70 test_rug
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/lsd/./src/flags/ignore_globs.rs
+        let _rug_st_tests_llm_16_67_rrrruuuugggg_test_default = 0;
+ tests_llm_16_67 test_default
+        let _rug_st_tests_rug_60_rrrruuuugggg_test_rug = 0;
+ tests_rug_60 test_rug
+        let _rug_st_tests_rug_61_rrrruuuugggg_test_from_arg_matches = 0;
+ tests_rug_61 test_from_arg_matches
+        let _rug_st_tests_rug_62_rrrruuuugggg_test_from_config = 0;
+ tests_rug_62 test_from_config
+        let _rug_st_tests_rug_63_rrrruuuugggg_test_create_glob = 0;
+ tests_rug_63 test_create_glob
+        let _rug_st_tests_rug_64_rrrruuuugggg_test_create_glob_set = 0;
+ tests_rug_64 test_create_glob_set
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/lsd/./src/flags/symlinks.rs
+        let _rug_st_tests_llm_16_110_rrrruuuugggg_test_from_config_with_no_symlink = 0;
+ tests_llm_16_110 test_from_config_with_no_symlink
+        let _rug_st_tests_llm_16_110_rrrruuuugggg_test_from_config_without_no_symlink = 0;
+ tests_llm_16_110 test_from_config_without_no_symlink
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/lsd/./src/flags/dereference.rs
+        let _rug_st_tests_llm_16_42_rrrruuuugggg_test_from_config_with_dereference_value = 0;
+ tests_llm_16_42 test_from_config_with_dereference_value
+        let _rug_st_tests_llm_16_42_rrrruuuugggg_test_from_config_without_dereference_value = 0;
+ tests_llm_16_42 test_from_config_without_dereference_value
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/lsd/./src/flags/display.rs
+        let _rug_st_tests_rug_51_rrrruuuugggg_test_from_config = 0;
+ tests_rug_51 test_from_config
+        let _rug_st_tests_rug_52_rrrruuuugggg_test_default = 0;
+ tests_rug_52 test_default
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/lsd/./src/flags/hyperlink.rs
+        let _rug_st_tests_llm_16_51_rrrruuuugggg_test_from_config_classic_true = 0;
+ tests_llm_16_51 test_from_config_classic_true
+        let _rug_st_tests_llm_16_51_rrrruuuugggg_test_from_config_classic_false_hyperlink_always = 0;
+ tests_llm_16_51 test_from_config_classic_false_hyperlink_always
+        let _rug_st_tests_llm_16_51_rrrruuuugggg_test_from_config_classic_false_hyperlink_auto = 0;
+ tests_llm_16_51 test_from_config_classic_false_hyperlink_auto
+        let _rug_st_tests_llm_16_51_rrrruuuugggg_test_from_config_classic_false_hyperlink_never = 0;
+ tests_llm_16_51 test_from_config_classic_false_hyperlink_never
+        let _rug_st_tests_llm_16_51_rrrruuuugggg_test_from_config_classic_false_hyperlink_none = 0;
+ tests_llm_16_51 test_from_config_classic_false_hyperlink_none
+        let _rug_st_tests_llm_16_52_rrrruuuugggg_test_default = 0;
+ tests_llm_16_52 test_default
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/lsd/./src/flags/recursion.rs
+        let _rug_st_tests_llm_16_83_rrrruuuugggg_test_default = 0;
+ tests_llm_16_83 test_default
+        let _rug_st_tests_llm_16_212_rrrruuuugggg_test_configure_from = 0;
+ tests_llm_16_212 test_configure_from
+        let _rug_st_tests_llm_16_217_rrrruuuugggg_test_enabled_from = 0;
+ tests_llm_16_217 test_enabled_from
+        let _rug_st_tests_rug_73_rrrruuuugggg_test_rug = 0;
+ tests_rug_73 test_rug
+        let _rug_st_tests_rug_74_rrrruuuugggg_test_rug = 0;
+ tests_rug_74 test_rug
+        let _rug_st_tests_rug_75_rrrruuuugggg_test_depth_from_arg_matches = 0;
+ tests_rug_75 test_depth_from_arg_matches
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/lsd/./src/flags/layout.rs
+        let _rug_st_tests_rug_69_rrrruuuugggg_test_rug = 0;
+ tests_rug_69 test_rug
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/lsd/./src/flags/blocks.rs
+        let _rug_st_tests_llm_16_21_rrrruuuugggg_test_try_from = 0;
+ tests_llm_16_21 test_try_from
+        let _rug_st_tests_llm_16_23_llm_16_22_rrrruuuugggg_test_default = 0;
+ tests_llm_16_23_llm_16_22 test_default
+        let _rug_st_tests_llm_16_182_rrrruuuugggg_test_contains_inode = 0;
+ tests_llm_16_182 test_contains_inode
+        let _rug_st_tests_llm_16_183_rrrruuuugggg_test_displays_size_returns_true_if_size_block_is_present = 0;
+ tests_llm_16_183 test_displays_size_returns_true_if_size_block_is_present
+        let _rug_st_tests_llm_16_183_rrrruuuugggg_test_displays_size_returns_false_if_size_block_is_not_present = 0;
+ tests_llm_16_183 test_displays_size_returns_false_if_size_block_is_not_present
+        let _rug_st_tests_llm_16_186_rrrruuuugggg_test_from_config_with_blocks = 0;
+ tests_llm_16_186 test_from_config_with_blocks
+        let _rug_st_tests_llm_16_186_rrrruuuugggg_test_from_config_without_blocks = 0;
+ tests_llm_16_186 test_from_config_without_blocks
+        let _rug_st_tests_llm_16_186_rrrruuuugggg_test_from_config_without_config_blocks = 0;
+ tests_llm_16_186 test_from_config_without_config_blocks
+        let _rug_st_tests_llm_16_187_rrrruuuugggg_test_long = 0;
+ tests_llm_16_187 test_long
+        let _rug_st_tests_llm_16_188_rrrruuuugggg_test_optional_insert_context = 0;
+ tests_llm_16_188 test_optional_insert_context
+        let _rug_st_tests_llm_16_189_rrrruuuugggg_test_optional_prepend_inode = 0;
+ tests_llm_16_189 test_optional_prepend_inode
+        let _rug_st_tests_llm_16_190_rrrruuuugggg_test_prepend_inode = 0;
+ tests_llm_16_190 test_prepend_inode
+        let _rug_st_tests_rug_39_rrrruuuugggg_test_blocks = 0;
+ tests_rug_39 test_blocks
+        let _rug_st_tests_rug_40_rrrruuuugggg_test_rug = 0;
+ tests_rug_40 test_rug
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/lsd/./src/flags/total_size.rs
+        let _rug_st_tests_llm_16_113_rrrruuuugggg_test_from_config_with_total_size = 0;
+ tests_llm_16_113 test_from_config_with_total_size
+        let _rug_st_tests_llm_16_113_rrrruuuugggg_test_from_config_without_total_size = 0;
+ tests_llm_16_113 test_from_config_without_total_size
+        let _rug_st_tests_rug_84_prepare_rrrruuuugggg_sample = 0;
+ tests_rug_84_prepare sample
+        let _rug_st_tests_rug_84_rrrruuuugggg_test_from_arg_matches = 0;
+ tests_rug_84 test_from_arg_matches
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/lsd/./src/flags/symlink_arrow.rs
+        let _rug_st_tests_llm_16_105_rrrruuuugggg_test_from_arg_matches = 0;
+ tests_llm_16_105 test_from_arg_matches
+        let _rug_st_tests_llm_16_106_rrrruuuugggg_test_from_config_with_some = 0;
+ tests_llm_16_106 test_from_config_with_some
+        let _rug_st_tests_llm_16_106_rrrruuuugggg_test_from_config_with_none = 0;
+ tests_llm_16_106 test_from_config_with_none
+        let _rug_st_tests_llm_16_107_rrrruuuugggg_test_default = 0;
+ tests_llm_16_107 test_default
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/lsd/./src/flags/size.rs
+        let _rug_st_tests_llm_16_86_rrrruuuugggg_test_from_config_bytes = 0;
+ tests_llm_16_86 test_from_config_bytes
+        let _rug_st_tests_llm_16_86_rrrruuuugggg_test_from_config_short = 0;
+ tests_llm_16_86 test_from_config_short
+        let _rug_st_tests_llm_16_86_rrrruuuugggg_test_from_config_default = 0;
+ tests_llm_16_86 test_from_config_default
+        let _rug_st_tests_llm_16_86_rrrruuuugggg_test_from_config_none = 0;
+ tests_llm_16_86 test_from_config_none
+        let _rug_st_tests_llm_16_86_rrrruuuugggg_test_from_config_classic = 0;
+ tests_llm_16_86 test_from_config_classic
+        let _rug_st_tests_llm_16_86_rrrruuuugggg_test_from_config_no_classic = 0;
+ tests_llm_16_86 test_from_config_no_classic
+        let _rug_st_tests_llm_16_88_rrrruuuugggg_test_default = 0;
+ tests_llm_16_88 test_default
+        let _rug_st_tests_llm_16_220_rrrruuuugggg_test_from_str = 0;
+ tests_llm_16_220 test_from_str
+        let _rug_st_tests_llm_16_220_rrrruuuugggg_test_from_str_panic = 0;
+ tests_llm_16_220 test_from_str_panic
+done

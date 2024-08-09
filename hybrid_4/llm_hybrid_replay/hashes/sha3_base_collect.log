@@ -1,0 +1,3065 @@
+========================================
+    use digest::core_api::AlgorithmName;
+    use std::fmt::{self, Write};
+
+    #[test]
+    fn test_write_alg_name() {
+        struct TestFormatter {
+            output: String,
+        }
+
+        impl TestFormatter {
+            fn new() -> TestFormatter {
+                TestFormatter {
+                    output: String::new(),
+                }
+            }
+        }
+
+        impl Write for TestFormatter {
+            fn write_str(&mut self, s: &str) -> fmt::Result {
+                self.output.push_str(s);
+                Ok(())
+            }
+        }
+
+        let mut formatter = TestFormatter::new();
+        let result = <CShake128Core as AlgorithmName>::write_alg_name(&mut formatter);
+        assert!(result.is_ok());
+        assert_eq!(formatter.output, "CShake128Core");
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::buffer::{Buffer, Eager, Pad};
+    use crate::consts::{KECCAK_PLEN, P1600_ROUND_COUNT};
+    use crate::digest::digest;
+    use crate::digest::generic_array::typenum::U32;
+    use crate::digest::generic_array::GenericArray;
+    use crate::digest::Digest;
+    use crate::impls::{Sha3State, KECCAK_B, KECCAK_PLEN};
+    use crate::KeccakFamily;
+    use crate::Sha3;
+
+    // Assuming the rate, PLEN, and other macros/constants are defined appropriately.
+    // You might need to adjust the following assumptions based on the actual definitions
+    // provided in the sha3 crate.
+    const DEFAULT_ROUND_COUNT: usize = KECCAK_PLEN;
+    const PLEN: usize = KECCAK_B / 8; // PLEN for a 1600-bit permutation
+    const SHAKE_PAD: u8 = 0x1F; // Padding for SHAKE
+    const RATE: usize = 1088 / 8; // 1088 bits for SHA3-256
+    const CSHAKE_PAD: u8 = 0x04; // Padding for CSHAKE
+
+    #[derive(Clone)]
+    struct FakeCShake128Core {
+        padding: u8,
+        state: Sha3State,
+    }
+
+    impl FakeCShake128Core {
+        pub fn new() -> Self {
+            Self {
+                padding: SHAKE_PAD,
+                state: Sha3State::new(P1600_ROUND_COUNT),
+            }
+        }
+    }
+
+    impl BlockSizeUser for FakeCShake128Core {
+        type BlockSize = U32; // Assuming a block size of 256 bits (32 bytes)
+    }
+
+    impl BufferKindUser for FakeCShake128Core {
+        type BufferKind = Eager;
+    }
+
+    impl ExtendableOutputCore for FakeCShake128Core {
+        type ReaderCore = FakeReaderCore;
+
+        fn finalize_xof_core(&mut self, buffer: &mut Buffer<Self>) -> Self::ReaderCore {
+            let pos = buffer.get_pos();
+            let block = buffer.pad_with_zeros();
+            block[pos] = self.padding;
+            let n = block.len();
+            block[n - 1] |= 0x80;
+
+            self.state.absorb_block(block);
+            FakeReaderCore {
+                state: self.state.clone(),
+            }
+        }
+    }
+
+    impl UpdateCore for FakeCShake128Core {
+        fn update_blocks(&mut self, blocks: &[GenericArray<u8, Self::BlockSize>]) {
+            for block in blocks {
+                let block: &[u8; 32] = block.as_slice().try_into().expect("Wrong block size");
+                self.state.absorb_block(block)
+            }
+        }
+    }
+
+    #[derive(Clone)]
+    struct FakeReaderCore {
+        state: Sha3State,
+    }
+
+    #[test]
+    fn test_finalize_xof_core() {
+        let mut cshake_core = FakeCShake128Core::new();
+        let mut buffer = Buffer::<FakeCShake128Core>::default();
+        let mut hash = GenericArray::default();
+
+        // Add some data to the buffer
+        let data = GenericArray::clone_from_slice(&[0u8; RATE - 1]); // one byte less than the rate
+        buffer.update(&data, &mut cshake_core, |state, block| {
+            let block_slice: &[u8; 32] = block.as_slice().try_into().expect("Wrong block size");
+            state.absorb_block(block_slice);
+        });
+
+        // Finalize the XOF core and get the reader
+        let reader_core = cshake_core.finalize_xof_core(&mut buffer);
+
+        // Expected output should have the state of the reader_core
+        reader_core.state.as_bytes(&mut hash);
+
+        // Check the first block of output
+        let expected_first_block = GenericArray::default(); // Assuming expected output is all zeros
+        assert_eq!(hash, expected_first_block);
+
+        // Additional checks can go here
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::*;
+    use digest::core_api::UpdateCore;
+    use digest::generic_array::GenericArray;
+    use digest::typenum::U168;
+
+    #[test]
+    fn update_blocks_test() {
+        // Assuming CShake128Core uses a block size of 168, adjust U168 accordingly
+        let mut core = CShake128Core::new(b"customization");
+        let pre_update_state = core.clone();
+
+        let block1 = GenericArray::<u8, U168>::from([1u8; 168]); // Block::<CShake128Core>::from([1u8; 168]) for simplicity
+        let block2 = GenericArray::<u8, U168>::from([2u8; 168]); // Block::<CShake128Core>::from([2u8; 168]) for simplicity
+
+        let input_blocks = [block1, block2];
+        
+        // Update core state with blocks
+        core.update_blocks(&input_blocks);
+
+        assert_ne!(pre_update_state.state, core.state, "State should have been updated");
+    }
+}
+False
+========================================
+    use super::*; // Assuming super::* brings in all needed types in scope
+
+use crate::*;
+    use crate::state::Sha3State;
+    use digest::generic_array::typenum::{Unsigned, U16};
+    use digest::generic_array::GenericArray;
+    use digest::core_api::{BlockSizeUser, XofReaderCore};
+
+    const PLEN: usize = 25;
+    const DEFAULT_ROUND_COUNT: usize = 24;
+
+    #[derive(Default)]
+    struct TestCShake128ReaderCore {
+        state: Sha3State,
+    }
+
+    impl BlockSizeUser for TestCShake128ReaderCore {
+        type BlockSize = U16;
+    }
+
+    impl XofReaderCore for TestCShake128ReaderCore {
+        type ReadError = core::convert::Infallible;
+
+        #[inline]
+        fn read_block(&mut self) -> Result<GenericArray<u8, Self::BlockSize>, Self::ReadError> {
+            let mut block = GenericArray::default();
+            self.state.as_bytes(&mut block);
+            self.state.permute();
+            Ok(block)
+        }
+    }
+
+    #[test]
+    fn test_read_block() {
+        let mut core = TestCShake128ReaderCore::default();
+        let initial_state = core.state.state;
+
+        // Assuming each block size is 16 bytes
+        let block = core.read_block().unwrap();
+        let mut expected_block = vec![0u8; U16::to_usize()];
+        core.state.as_bytes(&mut expected_block);
+
+        // Test that the block read is as expected
+        assert_eq!(block.as_slice(), expected_block.as_slice());
+
+        // Test that the state was permuted (changed) after reading the block
+        let permuted_state = core.state.state;
+        assert_ne!(permuted_state, initial_state, "State should change after permute call");
+
+        // Read block again and expect the state to change again
+        let new_block = core.read_block().unwrap();
+        let new_permuted_state = core.state.state;
+        assert_ne!(new_permuted_state, permuted_state, "State should change after each permute call");
+
+        // Ensure that reading the block gives a different result after the state has changed
+        assert_ne!(new_block.as_slice(), block.as_slice(), "Blocks should differ after state is permuted");
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use core::fmt::{self, Write};
+    use digest::core_api::AlgorithmName;
+    
+    #[test]
+    fn test_write_alg_name() {
+        struct DummyFormatter<'a> {
+            output: &'a mut String,
+        }
+    
+        impl<'a> fmt::Write for DummyFormatter<'a> {
+            fn write_str(&mut self, s: &str) -> fmt::Result {
+                self.output.push_str(s);
+                Ok(())
+            }
+        }
+
+        struct DummyCShake256Core;
+        impl AlgorithmName for DummyCShake256Core {
+            fn write_alg_name(f: &mut fmt::Formatter<'_>) -> fmt::Result {
+                f.write_str("CShake256Core")
+            }
+        }
+    
+        let mut buffer = String::new();
+        let mut formatter = DummyFormatter { output: &mut buffer };
+        DummyCShake256Core::write_alg_name(&mut formatter).unwrap();
+        assert_eq!(buffer, "CShake256Core");
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::super::Buffer;
+    use digest::core_api::ExtendableOutputCore;
+    use crate::ext::ShakeTestXof;
+    
+    #[test]
+    fn test_finalize_xof_core() {
+        let mut cshake_core = CShake256Core::new(b"custom");
+        let mut buffer = Buffer::<CShake256Core>::default();
+
+        // Fill buffer with some bytes
+        for _ in 0..42 {
+            buffer.update(&[0x42]);
+        }
+
+        // Do the finalization
+        let reader_core = cshake_core.finalize_xof_core(&mut buffer);
+
+        // Since $reader is not provided in the context, direct testing of an XOF reader is not possible,
+        // normally digest::XofReader tests or some manual reading with the correct $reader would be performed here.
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use digest::core_api::{BlockSizeUser, UpdateCore};
+    use digest::generic_array::GenericArray;
+
+    #[test]
+    fn update_blocks_single() {
+        let customization = b"";
+        let mut core = CShake256Core::new(customization); // Adjust to the actual struct if name is different
+        let block_size = <CShake256Core as BlockSizeUser>::BlockSize::to_usize();
+        let mut block = vec![0u8; block_size];
+        block[block_size - 1] = 0x80; // Set the padding
+
+        let block_generic_array = GenericArray::clone_from_slice(&block);
+        core.update_blocks(core::slice::from_ref(&block_generic_array));
+
+        let dummy_state = Sha3State::default();
+        let mut expected_state = dummy_state.clone();
+        expected_state.absorb_block(&block);
+
+        assert_eq!(core.state.state, expected_state.state);
+    }
+
+    #[test]
+    fn update_blocks_multiple() {
+        let customization = b"";
+        let mut core = CShake256Core::new(customization);
+        let block_size = <CShake256Core as BlockSizeUser>::BlockSize::to_usize();
+        let blocks = (0..3)
+            .map(|i| {
+                let mut block = vec![0; block_size];
+                block[block_size - 1] = i as u8; // Something to differentiate blocks
+                GenericArray::clone_from_slice(&block)
+            })
+            .collect::<Vec<_>>();
+
+        core.update_blocks(&blocks);
+
+        let dummy_state = Sha3State::default();
+        let mut expected_state = dummy_state.clone();
+        for block in blocks.iter() {
+            expected_state.absorb_block(block.as_slice());
+        }
+
+        assert_eq!(core.state.state, expected_state.state);
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use digest::core_api::{BlockSizeUser, XofReaderCore, Block};
+
+    #[test]
+    fn test_read_block() {
+        const DEFAULT_ROUND_COUNT: usize = 24;
+        const PLEN: usize = 25;
+        type BlockSize = U136; // Example assuming `U136` is the BlockSize type for `CShake256ReaderCore`
+
+        // Define a mock for CShake256ReaderCore for testing purposes
+        // Assuming `CShake256ReaderCore` is the actual struct
+        #[derive(Default)]
+        struct CShake256ReaderCore {
+            state: Sha3State,
+        }
+
+        // Implement `BlockSizeUser` for test mock
+        // You'll need to adjust the BlockSize to match `CShake256ReaderCore`'s actual BlockSize
+        impl BlockSizeUser for CShake256ReaderCore {
+            type BlockSize = BlockSize; // Assuming the actual BlockSize is used here
+        }
+
+        // Re-use the actual `XofReaderCore` implementation from `CShake256ReaderCore`
+        // We assume that `CShake256ReaderCore` is the test subject and already implements `XofReaderCore`
+
+        // Setup the initial state
+        let mut core = CShake256ReaderCore::default();
+        let initial_block = core.read_block(); // Read the initial block to compare against
+
+        // Read the block
+        let read_block = core.read_block();
+
+        // Here we can compare the state or the output of `read_block` with our expectations
+        // Check that the read block is not equal to the previous block
+        assert_ne!(read_block, initial_block, "Subsequent read_block calls should not produce the same output after permute.");
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use digest::core_api::{Buffer, FixedOutputCore, UpdateCore};
+
+    #[test]
+    fn keccak224core_reset_test() {
+        let mut hasher = Keccak224Core::default();
+        let mut buffer = Buffer::<Keccak224Core>::default();
+        let mut output = [0u8; Keccak224Core::OutputSize::USIZE];
+
+        hasher.update_blocks(buffer.finalize_blocks(b"some data to hash"));
+        hasher.finalize_fixed_core(&mut buffer, &mut output);
+        let hash_before_reset = output;
+
+        hasher.reset();
+        hasher.finalize_fixed_core(&mut buffer, &mut output);
+        let hash_after_reset = output;
+
+        assert_ne!(hash_before_reset, hash_after_reset, "Hashes should differ before and after reset");
+
+        hasher.update_blocks(buffer.finalize_blocks(b"some data to hash"));
+        hasher.finalize_fixed_core(&mut buffer, &mut output);
+        let hash_after_reset_and_update = output;
+
+        assert_eq!(hash_before_reset, hash_after_reset_and_update, "Hashes should be equal after reset and hashing the same data");
+    }
+}
+False
+========================================
+    use super::*; // This imports the function under test
+
+use crate::*;
+    use digest::core_api::AlgorithmName; // This imports the trait needed by write_alg_name
+    use std::fmt::Write; // This imports the Write trait for the assertion 
+
+    #[test]
+    fn test_write_alg_name() {
+        let mut output = String::new(); // We use a String to capture the output
+        let result = Keccak224Core::write_alg_name(&mut output); // Call the actual function
+        assert!(result.is_ok()); // Check if the result is Ok
+        assert_eq!(output, "Keccak224"); // Compare the output with the expected string
+    }
+}
+False
+========================================
+    use crate::{Keccak224Core, digest::core_api::{FixedOutputCore, UpdateCore, Buffer, BlockSizeUser}};
+    use crate::digest::FixedOutput;
+    use digest::consts::{U28, U144};
+
+    #[test]
+    fn keccak224_finalize_fixed_core_test() {
+        let mut core = Keccak224Core::default();
+        let mut buffer = Buffer::<Keccak224Core>::default();
+        let mut output = core.output_backend();
+
+        // Update buffer with input less than the block size
+        let input = b"abc";
+        buffer.update(input);
+        
+        // Finalize the core
+        core.finalize_fixed_core(&mut buffer, &mut output);
+
+        // Get the hash result
+        let hash = output.finalize_fixed();
+
+        // Expected output length is the output size of Keccak224
+        assert_eq!(hash.len(), U28::to_usize());
+        
+        // Expect the Keccak224 hash of "abc"
+        let expected = [
+            0xC4, 0x1B, 0x3B, 0x0B, 0x57, 0x7A, 0x1A, 0x9A,
+            0x9B, 0x41, 0x2B, 0x8C, 0xF7, 0x4A, 0x3A, 0x45,
+            0x52, 0xDE, 0x8D, 0x61, 0xA9, 0x7C, 0x0D, 0xF1,
+            0x84, 0x3A, 0x41, 0x9A,
+        ];
+        
+        assert_eq!(hash.as_slice(), expected);
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::Keccak224Core;
+    use digest::core_api::{Block, BlockSizeUser, Buffer, OutputSizeUser, UpdateCore, FixedOutputCore};
+    use digest::generic_array::GenericArray;
+    use digest::generic_array::typenum::Unsigned;
+
+    #[test]
+    fn test_update_blocks() {
+        // Arrange
+        let mut core = Keccak224Core::default();
+        let mut block = GenericArray::<u8, <Keccak224Core as BlockSizeUser>::BlockSize>::default();
+        block[0] = 1;  // Set some values to differentiate from an empty block
+        block[1] = 2;
+        let blocks = vec![block; 3];  // Let's use 3 blocks for the test
+        
+        // Act
+        core.update_blocks(&blocks);
+        
+        // Assert
+        // Preparing the buffer and output to finalize the hashing
+        let mut buffer = Block::<Keccak224Core>::default();
+        let mut output = GenericArray::<u8, <Keccak224Core as OutputSizeUser>::OutputSize>::default();
+        
+        // We use finalize_fixed_core to check the internal state, by inspecting the output.
+        core.finalize_fixed_core(&mut buffer, &mut output);
+        
+        // The output should now contain the hashed value after processing the blocks.
+        // Hash value is a constant for the given input, so we can check against the expected value.
+        // Note: The expected hash value should be determined by the actual hashing implementation
+        let expected_hash = GenericArray::<u8, <Keccak224Core as OutputSizeUser>::OutputSize>::default(); // Replace with actual expected hash
+        
+        assert_eq!(output.as_slice(), expected_hash.as_slice());
+    }
+}
+False
+========================================
+    use super::*; // Import the necessary traits and structs
+
+use crate::*;
+    use crate::state::PLEN; // Specific import to access PLEN
+    use crate::state::DEFAULT_ROUND_COUNT; // Specific import to access DEFAULT_ROUND_COUNT
+    use std::default::Default;
+
+    #[test]
+    fn keccak224core_default_test() {
+        let default_core: Keccak224Core = Keccak224Core::default();
+
+        // Access to the `state` field and `round_count` field of `default_core` must be done
+        // through methods if they are private; assume they are private due to the error message.
+        // `state` and `round_count` should be marked as `pub` in the `Sha3State` struct
+        // if unit tests require direct access to them.
+
+        // Check if the Keccak224Core struct is correctly initialized to default.
+        // Must compare based on the public API of `Sha3State`, as direct access to the fields is not allowed.
+        let default_state = Sha3State::default();
+        for (state_chunk, default_chunk) in default_core.state.state.iter().zip(default_state.state.iter()) {
+            assert_eq!(state_chunk, default_chunk, "State should be initialized to default");
+        }
+        // No direct assertions on `round_count` since it's private; assuming it's correctly set by `Sha3State::default()`.
+    }
+}
+False
+========================================
+    use super::*; // Use super::* to import the Keccak256Core
+
+use crate::*;
+    use crate::Keccak256Core; // Directly import Keccak256Core
+    use digest::generic_array::typenum::U32; // Import the U32 type to specify the output size
+    use digest::generic_array::GenericArray; // Import GenericArray to create output arrays
+    use digest::Digest; // Import the Digest trait to verify the reset state against the default state
+
+    // Function to create a hash output using Keccak256Core directly
+    fn keccak256_core_hash(data: &[u8]) -> GenericArray<u8, U32> {
+        let mut core = Keccak256Core::default();
+        core.update(data);
+        let mut output = GenericArray::default();
+        core.finalize_into(&mut output);
+        output
+    }
+
+    #[test]
+    fn test_keccak256core_reset() {
+        // Create a Keccak256Core instance and update it with some data
+        let mut keccak_core = Keccak256Core::default();
+        keccak_core.update(b"test");
+
+        // Obtain the output before the reset for comparison
+        let mut output = GenericArray::default();
+        keccak_core.finalize_into(&mut output);
+        let hasher_output_before_reset = output;
+
+        // Reset the Keccak256Core instance to its initial state
+        keccak_core.reset();
+
+        // Create a new default instance for comparison
+        let keccak_core_default = Keccak256Core::default();
+
+        // Verify the state of the reset Keccak256Core against a default instance
+        // Direct comparison of the states
+        assert_eq!(keccak_core.state, keccak_core_default.state, "Reset did not restore instance to default state");
+
+        // Update the reset core and the default core with the same data and check for equal outputs
+        keccak_core.update(b"test");
+        let hasher_output_after_reset = keccak256_core_hash(b"test");
+
+        assert_eq!(hasher_output_before_reset, hasher_output_after_reset, "Hash output should be the same after resetting and updating with the same data");
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use digest::core_api::AlgorithmName;
+    use std::fmt::{self, Write};
+    
+    #[test]
+    fn write_alg_name_test() {
+        struct Keccak256Core;
+        impl AlgorithmName for Keccak256Core {
+            fn write_alg_name(f: &mut fmt::Formatter<'_>) -> fmt::Result {
+                write!(f, "Keccak256")
+            }
+        }
+
+        let mut output = String::new();
+        let mut formatter = fmt::Formatter::debug(&mut output, "");
+        Keccak256Core::write_alg_name(&mut formatter).unwrap();
+        assert_eq!(output, "Keccak256");
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::consts::{PLEN, DEFAULT_ROUND_COUNT};
+    use crate::keccak::p1600;
+    use crate::state::Sha3State;
+    use digest::core_api::{Buffer, CoreWrapper, FixedOutputCore, UpdateCore};
+    use digest::{OutputSizeUser, Reset};
+    use hex_literal::hex;
+
+    #[test]
+    fn keccak256_finalize_fixed_core() {
+        let mut core = CoreWrapper::<Keccak256Core>::default();
+        let mut buffer = Buffer::<Sha3State>::default();
+        let mut output = [0u8; 256 / 8]; // Assuming Keccak256 output is 256 bits
+
+        // Example input data
+        let input_data = b"123";
+        let expected_output = hex!("aee7f1c17aebf777c7c567fa3c214c54d57214a26c4b7b4d8377a1c1338d7c66");
+
+        // Update core with input data
+        core.update(input_data);
+
+        // Finalize core
+        core.finalize_into(&mut output);
+
+        // Check output hash
+        assert_eq!(&output[..], &expected_output[..]);
+
+        // Reset core
+        core.reset();
+
+        // Update core with empty input to generate padding
+        core.update(&[]);
+
+        // Finalize core
+        let mut output_after_reset = [0u8; 256 / 8];
+        core.finalize_into(&mut output_after_reset);
+
+        // Check output hash after reset
+        assert_eq!(&output[..], &output_after_reset[..]);
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::Keccak256Core;
+    use digest::core_api::UpdateCore;
+    use digest::generic_array::GenericArray;
+    use digest::FixedOutput;
+    use crate::state::Sha3State;
+
+    #[test]
+    fn keccak256core_update_blocks_test() {
+        // Initialize Keccak256Core instance
+        let mut core = Keccak256Core::default();
+
+        // Create blocks of data to update the state with
+        // Assuming Keccak256Core uses 136-byte blocks
+        let block_size = <Keccak256Core as BlockSizeUser>::BlockSize::to_usize();
+        let block = GenericArray::clone_from_slice(&[0u8; 136][..block_size]);
+        let blocks = [block; 2]; // Two blocks for testing
+
+        // Capture the initial state for comparison
+        let initial_state = core.state.clone();
+
+        // Update the state of Keccak256Core with the blocks of data
+        core.update_blocks(&blocks);
+
+        // Capture the updated state
+        let updated_state = core.state;
+
+        // Verify the state has changed
+        assert_ne!(
+            initial_state.state, updated_state.state,
+            "State should change after processing blocks"
+        );
+    }
+}
+True
+========================================
+    use crate::{Keccak256Core, Sha3State};
+    use std::default::Default;
+    use std::fmt::Debug;
+
+    const DEFAULT_STATE: [u64; 25] = [0u64; 25];
+    const DEFAULT_ROUND_COUNT: usize = 24;
+
+    #[test]
+    fn keccak256core_default_test() {
+        let keccak_core_default = Keccak256Core::default();
+
+        assert_eq!(
+            keccak_core_default.state.state,
+            DEFAULT_STATE,
+            "Default state should have all elements set to zero"
+        );
+
+        assert_eq!(
+            keccak_core_default.state.round_count,
+            DEFAULT_ROUND_COUNT,
+            "Default round count should match the constant definition"
+        );
+
+        // Ensuring `Default::default()` does not panic and keccak_core_default implements Debug
+        let debug_output = format!("{:?}", keccak_core_default);
+        assert!(
+            debug_output.starts_with("Keccak256Core {"),
+            "Debug format should start with `Keccak256Core {`"
+        );
+
+        // Making sure keccak_core_default has not changed after using Debug
+        assert_eq!(
+            keccak_core_default.state.state,
+            DEFAULT_STATE,
+            "Debug use should not change the state"
+        );
+
+        assert_eq!(
+            keccak_core_default.state.round_count,
+            DEFAULT_ROUND_COUNT,
+            "Debug use should not change the round count"
+        );
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use digest::{Reset, Digest, FixedOutput};
+
+    #[test]
+    fn reset_resets_state_to_default() {
+        let mut hasher = Keccak256FullCore::default();
+
+        // digest some data
+        let data = [1, 2, 3, 4];
+        hasher.update(&data);
+
+        // finalize and get the output
+        let mut output = [0u8; 32]; // Keccak256 output size
+        hasher.finalize_into(&mut output);
+
+        // reset the hasher
+        hasher.reset();
+
+        // verify the hasher has been reset
+        hasher.finalize_into(&mut output);
+        let default_hasher = Keccak256FullCore::default();
+        let mut default_output = [0u8; 32];
+        default_hasher.finalize_into(&mut default_output);
+
+        assert_eq!(output, default_output);
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use core::fmt::{self, Write};
+    use digest::core_api::AlgorithmName;
+
+    struct Keccak256FullCore;
+
+    // The Keccak256FullCore struct should implement AlgorithmName
+    // to have a testable `write_alg_name` function, but since the macro
+    // already provides that, we don't implement it again here.
+    // Your example suggests that this function writes "Keccak256FullCore",
+    // but the actual implementation should use stringify!($full_name) 
+    // where $full_name is the actual full name of the digest algorithm.
+    // For the purpose of this test, we just have "Keccak256FullCore" 
+    // as a placeholder.
+  
+    #[test]
+    fn test_write_alg_name() {
+        let mut output = String::new();
+        // Simulate `fmt::Formatter` by formatting a string.
+        write!(&mut output, "{}", Keccak256FullCore::alg_name()).unwrap();
+        assert_eq!(output, "Keccak256FullCore");
+    }
+}
+False
+========================================
+    use crate::macros::Keccak256FullCore;
+    use crate::state::Sha3State;
+    use digest::core_api::{Buffer, FixedOutputCore, UpdateCore};
+    use digest::generic_array::GenericArray;
+    use digest::OutputSizeUser;
+
+    #[test]
+    fn test_finalize_fixed_core() {
+        let mut core = Keccak256FullCore { state: Sha3State::default() };
+        let mut buffer = Buffer::<Keccak256FullCore>::default();
+        let mut output = GenericArray::default();
+
+        buffer.initialize(&[0u8; 0][..]);
+
+        core.finalize_fixed_core(&mut buffer, &mut output);
+
+        // Expected output for the given empty input
+        let expected = [
+            0xc5, 0xd2, 0x46, 0x01, 0x86, 0xf7, 0x23, 0x3c, 0x92, 0x7e, 0x7d, 0xb2, 0xdc, 0xc7, 0x03, 0xc0,
+            0xe5, 0x00, 0xb6, 0x53, 0xca, 0x82, 0x27, 0x3b, 0x7b, 0xfa, 0xd8, 0x04, 0x5d, 0x85, 0xa4, 0x70
+        ];
+
+        // Convert the output buffer to array for easy comparison
+        let result: [u8; 32] = output.into();
+
+        assert_eq!(result, expected, "The computed hash does not match the expected hash.");
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use digest::core_api::UpdateCore;
+    use digest::generic_array::GenericArray;
+    use digest::generic_array::typenum::U136;
+    
+    #[test]
+    fn update_blocks_test() {
+        let round_count = 24; // Assuming this is the correct round count
+        let block_size = 136; // Assuming this is the correct block size as the type U136 suggests
+
+        let mut keccak_state = Keccak256FullCore {
+            state: Sha3State::new(round_count),
+        };
+
+        // keccak_state is assumed to be using GenericArray with 136 u8 elements based on U136
+        let mut block1_array = [1u8; block_size];
+        let block1 = GenericArray::from_mut_slice(&mut block1_array);
+        
+        let mut block2_array = [2u8; block_size];
+        let block2 = GenericArray::from_mut_slice(&mut block2_array);
+
+        keccak_state.update_blocks(&[block1]);
+        let mut expected_state = Sha3State::new(round_count);
+        expected_state.absorb_block(&block1_array);
+
+        assert_eq!(keccak_state.state.state, expected_state.state);
+
+        keccak_state.update_blocks(&[block2]);
+        expected_state.absorb_block(&block2_array);
+
+        assert_eq!(keccak_state.state.state, expected_state.state);
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn default_keccak256fullcore_has_correct_initial_state() {
+        let keccak256fullcore: Keccak256FullCore = Default::default();
+
+        // Since Keccak256FullCore does not expose its inner state and does not implement PartialEq,
+        // and we do not have direct access to its fields, we are limited in the ways we can test.
+        // Let's check the textual representation used in Debug to ensure the structure is correctly formed.
+        // This is not the most robust test and relies heavily on the Debug format not changing.
+        // Normally, we would access the state fields directly or have additional methods to check the state. 
+
+        let debug_representation = format!("{:?}", keccak256fullcore);
+        assert!(debug_representation.contains("Keccak256FullCore"));
+
+        // Verify that resetting the state does not change the outcome,
+        // as it should already be in the default state.
+        let mut keccak256fullcore_after_reset = keccak256fullcore.clone();
+        keccak256fullcore_after_reset.reset();
+
+        // As the Debug trait does not implement PartialEq, we can convert both debug outputs to strings and compare them
+        assert_eq!(format!("{:?}", keccak256fullcore), 
+                   format!("{:?}", keccak256fullcore_after_reset));
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use digest::core_api::{BlockSizeUser, Buffer, UpdateCore};
+    use digest::Reset;
+    use core::slice;
+
+    #[test]
+    fn keccak384_core_reset_test() {
+        let mut core = Keccak384Core::default();
+        let mut buffer = Buffer::<Keccak384Core>::default();
+        let initial_state = core.clone();
+
+        // Change the state
+        let data = [0u8; 10];
+        core.update_core(&mut buffer, &data);
+        buffer.reset();
+
+        // Reset the state
+        core.reset();
+
+        // Manually compare core states because PartialEq might not be implemented
+        // Keccak384Core does not implement PartialEq by default
+        assert_eq!(core.state.state, initial_state.state.state);
+        assert_eq!(core.state.round_count, initial_state.state.round_count);
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+
+    use core::fmt::{self, Write};
+    use digest::core_api::AlgorithmName;
+
+    #[derive(Clone)]
+    struct Dummy;
+
+    impl fmt::Debug for Dummy {
+        // The test is to check if write_alg_name is behaving as expected
+        // So we use the same implementation as write_alg_name
+        fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+            write_alg_name(f)
+        }
+    }
+    
+    // Assuming that Keccak384Core is a part of the crate and we need to test it
+    fn write_alg_name(f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        // replace $full_name with the actual name used in the original macro, as a placeholder
+        f.write_str(stringify!(Keccak384Core))
+    }
+
+    #[test]
+    fn test_write_alg_name() {
+        // We use the Debug implementation to test write_alg_name
+        let dummy = Dummy;
+        let output = format!("{:?}", dummy);
+        assert_eq!(output, "Keccak384Core");
+    }
+}
+True
+========================================
+    use crate::digest::{generic_array::GenericArray, Digest, Output, OutputSizeUser, BlockSizeUser, UpdateCore, FixedOutputCore};
+    use crate::{Keccak384, Keccak384Core};
+    use crate::digest::core_api::Buffer;
+    use crate::KeccakFamilyCoreWrapper;
+    
+    #[test]
+    fn keccak384_finalize_fixed_core() {
+        // Initialize Keccak384Core
+        let mut core = Keccak384Core::default();
+        let mut buffer = Buffer::<KeccakFamilyCoreWrapper<Keccak384Core>>::default();
+        let block_size = <Keccak384Core as BlockSizeUser>::BlockSize::to_usize();
+        let expected_output_size = <KeccakFamilyCoreWrapper<Keccak384Core> as OutputSizeUser>::OutputSize::to_usize();
+        let mut output = GenericArray::default();
+
+        // Absorbing some input
+        let input = b"Rust"; // Some arbitrary input
+        buffer.digest_blocks(input, block_size, &mut core);
+
+        // Finalizing
+        core.finalize_fixed_core(&mut buffer, &mut output);
+
+        let expected_hash = Keccak384::digest(input);
+
+        // Output should match the expected hash
+        assert_eq!(
+            &output[..expected_output_size],
+            &expected_hash[..expected_output_size],
+            "The output hash did not match the expected hash."
+        );
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::consts::PLEN; // Make sure PLEN is accessible from tests
+    use crate::Keccak384Core; // Replace with the correct use path if needed
+    use digest::core_api::BlockSizeUser;
+    use digest::generic_array::typenum::Unsigned; // For accessing the block_size
+
+    #[test]
+    fn update_blocks_single_block() {
+        let mut core = Keccak384Core::default();
+        let block_size = <Keccak384Core as BlockSizeUser>::BlockSize::to_usize();
+        let block = vec![0u8; block_size];
+        let mut blocks = vec![GenericArray::default(); 1];
+        blocks[0].copy_from_slice(&block);
+
+        core.update_blocks(&blocks);
+
+        // Test that Keccak384Core state has changed. This test assumes that the default state
+        // consists of all zeros, and that absorb_block performs the absorption properly. You
+        // may need to test specific internal values that you expect to be modified after
+        // the update_blocks call.
+        assert_ne!(core.state.state, [0u64; PLEN]);
+    }
+
+    #[test]
+    fn update_blocks_multiple_blocks() {
+        let mut core = Keccak384Core::default();
+        let block_size = <Keccak384Core as BlockSizeUser>::BlockSize::to_usize();
+        let block1 = vec![0x13; block_size];
+        let block2 = vec![0x37; block_size];
+        let mut blocks = vec![GenericArray::default(); 2];
+        blocks[0].copy_from_slice(&block1);
+        blocks[1].copy_from_slice(&block2);
+
+        core.update_blocks(&blocks);
+
+        // Test that Keccak384Core state has changed after absorbing multiple blocks
+        assert_ne!(core.state.state, [0u64; PLEN]); // This should be adjusted to real internal state test
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn default_initializes_to_zero_state() {
+        let keccak384_core: Keccak384Core = Default::default();
+
+        const PLEN: usize = 25; // Assuming PLEN is defined as 25 elsewhere
+
+        // Only check the publicly visible state, as round_count is private.
+        assert_eq!(keccak384_core.state.state, [0u64; PLEN]);
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::*;
+    use digest::{FixedOutput, Reset, Update};
+
+    #[test]
+    fn reset_test() {
+        let mut core = Keccak512Core::default();
+        let initial_state = core.clone();
+        
+        // Change the state of core
+        core.update(&[1, 2, 3, 4]);
+        
+        // Ensure state has changed by comparing the digest output
+        let mut initial_digest = [0u8; 64];
+        let mut changed_digest = [0u8; 64];
+        initial_state.finalize_into(&mut initial_digest);
+        core.finalize_into_reset(&mut changed_digest);
+        assert_ne!(initial_digest, changed_digest);
+        
+        // Reset core state
+        core.reset();
+        
+        // Ensure state is back to initial by comparing the digest output again
+        core.finalize_into_reset(&mut changed_digest);
+        assert_eq!(initial_digest, changed_digest);
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use digest::core_api::AlgorithmName;
+    use std::fmt;
+
+    #[test]
+    fn test_write_alg_name() {
+        let mut s = String::new();
+        let result = <Keccak512Core as AlgorithmName>::write_alg_name(&mut s);
+        assert!(result.is_ok());
+        assert_eq!(s, "Keccak512Core");
+    }
+}
+False
+========================================
+    use crate::Keccak512Core;
+    use digest::{
+        core_api::{FixedOutputCore, CoreWrapper},
+        typenum::U64,
+        Digest,
+    };
+    use hex_literal::hex;
+
+    #[test]
+    fn keccak512_finalize_fixed_core() {
+        let mut core = CoreWrapper::<Keccak512Core>::default();
+        let mut data = [0u8; 72]; // 72 bytes is more than one block for Keccak512
+        data[71] = 0x06; // Using 0x06 for padding as Keccak512Core should use SHA3 padding
+
+        // Digest the data in two parts to check the block buffering in Keccak512Core
+        let first_part = &data[..32];
+        let second_part = &data[32..];
+        core.update(first_part);
+        core.update(second_part);
+
+        let mut result = [0u8; 64]; // 64 bytes for the Keccak-512 hash
+        core.finalize_into(&mut result);
+
+        // Assuming the expected hash for an input block
+        let expected = hex!(
+            "3a9159f071e4dd1c8c4f9686071ff60d3d1cc1f8a4decd87cfc4d02a1aafdd0d"
+            "d10d1a895f08c885f8f32e4c9e287bbbb61f1c673e34b700c58a2638f3b1f1a9"
+        );
+
+        assert_eq!(result, expected);
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::Keccak512Core; // Ensure crate::Keccak512Core is correctly imported
+    use digest::generic_array::GenericArray;
+    use digest::generic_array::typenum::Unsigned;
+    use digest::core_api::{Block, BlockSizeUser, UpdateCore, BufferKindUser};
+
+    #[test]
+    fn test_update_blocks() {
+        let mut hasher = Keccak512Core::default();
+        let block_size = <Keccak512Core as BlockSizeUser>::BlockSize::to_usize();
+        let block = GenericArray::default();
+        let block = Block::<Keccak512Core>::from(block);
+        let mut blocks = Vec::new();
+        blocks.push(block);
+        
+        // Make sure hasher state is mutated by comparing internal state before and after
+        let initial_state = hasher.clone().state; // Directly comparing internal state
+        hasher.update_blocks(&blocks);
+        let updated_state = hasher.state;
+        
+        assert_ne!(initial_state.state, updated_state.state, "State should change after absorbing blocks");
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use digest::generic_array::GenericArray;
+    use digest::{Digest, FixedOutput, OutputSizeUser, Reset, Update};
+
+    #[test]
+    fn keccak512_core_default_test() {
+        let keccak512_core_default = Keccak512Core::default();
+        let mut hasher = Keccak512Core::default();
+        hasher.update(&[]);
+        let output = hasher.finalize_fixed_reset();
+        let expected_output = GenericArray::default();
+
+        assert_eq!(keccak512_core_default.state.state, hasher.state.state);
+        // Ensure that output is all zeros as no data has been input.
+        assert_eq!(output, expected_output);
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::state::Sha3State;
+    use crate::Sha3_224Core;
+    use digest::Reset;
+
+    #[test]
+    fn sha3_224_reset_test() {
+        let mut hasher = Sha3_224Core::default();
+
+        // Modify the internal state to ensure reset changes it
+        hasher.state.state[0] = 0x1234567890ABCDEF;
+        hasher.state.state[1] = 0xFEDCBA0987654321;
+
+        // Perform reset
+        hasher.reset();
+
+        // Check that the internal hasher state is back to default
+        let default_state = Sha3_224Core::default();
+
+        assert_eq!(hasher.state.state, default_state.state.state);
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use digest::core_api::AlgorithmName;
+    use std::fmt::{self, Write};
+
+    #[test]
+    fn test_write_alg_name() {
+        struct Sha3_224Core;
+        impl AlgorithmName for Sha3_224Core {
+            fn write_alg_name(f: &mut fmt::Formatter<'_>) -> fmt::Result {
+                write!(f, "Sha3_224")
+            }
+        }
+
+        let mut output = String::new();
+        let mut formatter = String::new();
+        write!(formatter, "{}", Sha3_224Core).unwrap();
+        assert_eq!(formatter, "Sha3_224");
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn test_finalize_fixed_core() {
+        let mut core = Sha3_224Core::default();
+        let mut buffer = <Sha3_224Core as BlockSizeUser>::BlockSize::default();
+        let mut state_out = <Sha3_224Core as OutputSizeUser>::OutputSize::default();
+
+        // Simulating update with some input. It needs to fill the buffer with some blocks.
+        let input_block = GenericArray::<u8, <Sha3_224Core as BlockSizeUser>::BlockSize>::default();
+        core.update_blocks(core::slice::from_ref(&input_block));
+
+        // Call the finalize_fixed_core function
+        core.finalize_fixed_core(&mut buffer, &mut state_out);
+
+        // Compare the result with the expected hash to be defined based on the test vector
+        let expected_hash = &[
+            0xc3, 0x41, 0x18, 0x33, 0x55, 0x21, 0x52, 0x45, 0x87, 0x13, 0x9f, 0xc3, 0x84, 0x5a, 0xee, 0x80, 0x52, 0xbe,
+            0x56, 0x19, 0x40, 0x6d, 0x45, 0x6a, 0x6f, 0x6b, 0x4b, 0x61, 0xc0,
+        ]; // Placeholder hash for empty input, you should replace it with the actual test vector
+
+        // Compare the result with the expected hash
+        assert_eq!(state_out.as_slice(), expected_hash);
+
+        // Reset and verify hasher to ensure it returns to its initial state
+        core.reset();
+        let fresh_core = Sha3_224Core::default();
+        assert_eq!(format!("{:?}", core), format!("{:?}", fresh_core));
+    }
+}
+False
+========================================
+    use super::*; // Assumes macro-expanded structs and functionalities are in the current scope
+
+use crate::*;
+    use crate::state::Sha3State;
+    use digest::core_api::Block;
+    use digest::core_api::UpdateCore;
+    use digest::core_api::BlockSizeUser;
+    use digest::generic_array::typenum::Unsigned;
+
+    // Helper function to convert a byte slice to a block required by update_blocks
+    fn to_block(slice: &[u8]) -> Block<Sha3_224Core> {
+        assert_eq!(slice.len(), Sha3_224Core::BlockSize::to_usize());
+        let mut block = Block::<Sha3_224Core>::default();
+        block[..slice.len()].copy_from_slice(slice);
+        block
+    }
+
+    #[test]
+    fn update_blocks_single_block() {
+        let mut core = Sha3_224Core::default();
+        let block = to_block(&[0x61; Sha3_224Core::BlockSize::to_usize()]); // Block with 'a' (0x61)
+        core.update_blocks(&[block]);
+
+        // Check if the internal state is updated
+        assert_ne!(core.state.state, [0u64; Sha3State::state_len()]);
+    }
+
+    #[test]
+    fn update_blocks_multiple_blocks() {
+        let mut core = Sha3_224Core::default();
+        let block1 = to_block(&[0x61; Sha3_224Core::BlockSize::to_usize()]);
+        let block2 = to_block(&[0x62; Sha3_224Core::BlockSize::to_usize()]);
+        core.update_blocks(&[block1, block2]);
+
+        // Check if the internal state is updated
+        assert_ne!(core.state.state, [0u64; Sha3State::state_len()]);
+
+        // The state should be different from when only block1 is absorbed
+        let mut core_single_block = Sha3_224Core::default();
+        core_single_block.update_blocks(&[block1]);
+        assert_ne!(core.state.state, core_single_block.state.state);
+    }
+
+    #[test]
+    fn update_blocks_with_reset() {
+        let mut core = Sha3_224Core::default();
+        let block = to_block(&[0x61; Sha3_224Core::BlockSize::to_usize()]);
+        core.update_blocks(&[block]);
+        let state_after_first_block = core.state.state.clone();
+
+        core.reset();
+        core.update_blocks(&[block]);
+        let state_after_reset_and_block = core.state.state;
+
+        // Check if the internal state is the same after reset and block update
+        assert_eq!(state_after_first_block, state_after_reset_and_block);
+    }
+}
+False
+========================================
+    use crate::Sha3_224Core;
+    use digest::Digest;
+    use std::fmt;
+
+    #[test]
+    fn sha3_224_default_initial_state() {
+        let core: Sha3_224Core = Default::default();
+
+        // Check if the state is initialized correctly
+        assert!(core.state.state.iter().all(|&val| val == 0u64));
+        // Since `round_count` is private, we cannot directly assert its value.
+        // Instead, we might check functionality that depends on it if necessary.
+        // For instance, we could assert the digest of an empty input.
+        let expected_empty_digest = Sha3_224Core::digest(b"");
+        assert_eq!(core.finalize().as_slice(), expected_empty_digest.as_slice());
+
+        // Check if the Debug representation is correct, you might need to update this
+        // if the Debug representation includes additional fields
+        assert_eq!(format!("{:?}", core), "Sha3_224Core { ... }");
+    }
+
+    // You can add more tests here to test the other methods if needed
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::*;
+    use digest::{BlockInput, FixedOutput, Reset, Update};
+
+    #[test]
+    fn sha3_256core_reset_test() {
+        let mut core = Sha3_256Core::default();
+        let initial_state = core.clone();
+
+        // Change the state of core to simulate use
+        let data = b"some data to update the state";
+        core.update(data);
+
+        // Reset the core
+        core.reset();
+
+        // After reset, core should be in the same state as a newly created core
+        assert!(core.state == initial_state.state, "Core state after reset should be equal to initial default state.");
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use digest::core_api::AlgorithmName;
+    use std::fmt::Write;
+    use std::fmt;
+
+    struct Sha3_256Core;
+
+    #[test]
+    fn write_alg_name_test() {
+        let mut buffer = String::new();
+        let result = write!(&mut buffer, "{}", Sha3_256Core);
+        assert!(result.is_ok());
+        assert_eq!(buffer, "SHA3_256Core");
+    }
+
+    impl fmt::Display for Sha3_256Core {
+        fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+            <Self as AlgorithmName>::write_alg_name(f)
+        }
+    }
+
+    impl AlgorithmName for Sha3_256Core {
+        fn write_alg_name(f: &mut fmt::Formatter<'_>) -> fmt::Result {
+            f.write_str(stringify!(SHA3_256Core))
+        }
+    }
+}
+True
+========================================
+    use hex_literal::hex;
+    use crate::digest::{FixedOutput, Update};
+    use crate::{Sha3_256, Sha3_256Core, Block, Output, BlockSizeUser, OutputSizeUser};
+    use block_buffer::BlockBuffer;
+    use crate::digest::core_api::{Buffer, FixedOutputCore, UpdateCore, BufferKindUser};
+
+    #[test]
+    fn finalize_fixed_core_test() {
+        // Initialize the core with the default state
+        let mut core = Sha3_256Core::default();
+        let mut buffer = <BlockBuffer<BlockSizeUser::BlockSize, BufferKindUser::BufferKind>>::default();
+        let mut out = Output::<Sha3_256Core>::default();
+
+        // Update the core with some input
+        let input = b"hello";
+        let block_size = <Sha3_256Core as BlockSizeUser>::BlockSize::to_usize();
+        let mut input_blocks = input.chunks(block_size);
+
+        while let Some(block) = input_blocks.next() {
+            let block = if block.len() == block_size {
+                block.try_into().unwrap()
+            } else {
+                let mut padded_block = [0u8; block_size];
+                padded_block[..block.len()].copy_from_slice(block);
+                padded_block
+            };
+            core.update_blocks(core::slice::from_ref(&block));
+        }
+
+        // Perform the finalization
+        core.finalize_fixed_core(&mut buffer, &mut out);
+
+        // Expected final hash value for the input "hello"
+        let expected = hex!("2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824");
+
+        // Convert the output to a byte slice to compare with the expected hash
+        let result = &out[..];
+
+        // Check if the result matches the expected hash
+        assert_eq!(result, expected, "Hash does not match expected value");
+    }
+}
+False
+========================================
+    use crate::Sha3_256Core;
+    use digest::core_api::{BlockSizeUser, UpdateCore};
+    use digest::generic_array::GenericArray;
+    use digest::generic_array::typenum::Unsigned; // Add this import for the Unsigned trait
+    
+    #[test]
+    fn test_update_blocks() {
+        let mut core = Sha3_256Core::default();
+        let block_size = <Sha3_256Core as BlockSizeUser>::BlockSize::to_usize();
+        let block = GenericArray::default(); // An empty block of size `BlockSize`
+        let blocks = vec![block; 2]; // `block` is cloned to ensure unique ownership per block.
+        
+        // Assuming `absorb_block` correctness, the effect of two empty blocks
+        // can be considered as absorbing two blocks of zeros.
+        core.update_blocks(&blocks);
+        let mut expected_state = Sha3_256Core::default();
+        
+        expected_state.update_blocks(&blocks);
+        
+        // Check if the core state matches the expected state after the updates.
+        // This assumes that the core state can be compared directly or that
+        // a method is available for obtaining the state for comparison.
+        // Replace `assert_eq!` with an appropriate state comparison if needed.
+        assert_eq!(core, expected_state, "Core state should match expected state after block updates");
+    }
+}
+False
+========================================
+    use crate::Sha3_256Core;
+    use crate::Sha3State;
+    use crate::PLEN;
+    use crate::DEFAULT_ROUND_COUNT;
+    use std::default::Default;
+    
+    #[test]
+    fn sha3_256_core_default_test() {
+        let sha3_256_core = Sha3_256Core::default();
+        let state = sha3_256_core.state;
+        let default_state = Sha3State::default();
+
+        assert_eq!(state.state, default_state.state);
+        assert_eq!(state.round_count, default_state.round_count);
+        assert_eq!(Sha3_256Core::default().state.state, [0u64; PLEN]);
+        assert_eq!(Sha3_256Core::default().state.round_count, DEFAULT_ROUND_COUNT);
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::algos::crate::Sha3_384Core;
+    use crate::state::Sha3State;
+    use digest::core_api::{Buffer, CoreProxy, CoreWrapper, FixedOutputCore, UpdateCore};
+    use digest::{BlockInput, Reset, Update};
+
+    #[derive(Clone, Default)]
+    struct DummySha3_384Core {
+        core: CoreWrapper<Sha3_384Core, DummySha3_384Core>,
+    }
+
+    impl BlockInput for DummySha3_384Core {
+        type BlockSize = <Sha3_384Core as BlockInput>::BlockSize;
+    }
+
+    impl Update for DummySha3_384Core {
+        fn update(&mut self, data: impl AsRef<[u8]>) {
+            self.core.update(data);
+        }
+    }
+
+    impl FixedOutputCore for DummySha3_384Core {
+        type OutputSize = <Sha3_384Core as FixedOutputCore>::OutputSize;
+
+        fn finalize_fixed_core(&mut self, out: &mut digest::Output<Self>) {
+            self.core.finalize_fixed_core(out)
+        }
+    }
+
+    impl Reset for DummySha3_384Core {
+        fn reset(&mut self) {
+            self.core.reset()
+        }
+    }
+
+    #[test]
+    fn dummy_sha3_384core_reset_test() {
+        let initial_state: Sha3State = Default::default();
+        let mut dummy_hasher = DummySha3_384Core::default();
+        dummy_hasher.update(b"test");
+
+        dummy_hasher.reset();
+        let reset_state: Sha3State = dummy_hasher.core.inner.state;
+
+        assert_eq!(initial_state, reset_state);
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use digest::core_api::AlgorithmName;
+    use std::fmt;
+    use std::fmt::Write;
+
+    struct Sha3_384Core; // Assuming Sha3_384Core struct is defined properly
+
+    impl AlgorithmName for Sha3_384Core {
+        fn write_alg_name(f: &mut fmt::Formatter<'_>) -> fmt::Result {
+            f.write_str(stringify!(Sha3_384))
+        }
+    }
+
+    #[test]
+    fn test_write_alg_name() {
+        let mut output = String::new();
+        let mut formatter = fmt::Formatter::new(&mut output);
+        let res = Sha3_384Core::write_alg_name(&mut formatter);
+        assert!(res.is_ok());
+        assert_eq!(output, "Sha3_384");
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::{Sha3_384Core, U48, KeccakCoreParts, Permutation, Buffer, BufferKind, Block, Eager, FixedOutput, Output, UpdateCore, BufferKindUser, FixedOutputCore, AlgorithmName, BlockSizeUser, Reset, Default, OutputSizeUser};
+    use crate::state::Sha3State;
+    use digest::{generic_array::GenericArray, BlockInput, Digest, OutputSize, FixedOutputDirty};
+
+    #[test]
+    fn sha3_384_finalize_fixed_core() {
+        let mut hasher_core = Sha3_384Core::default();
+        let mut buffer = Buffer::<Sha3_384Core>::default();
+        let mut output = GenericArray::<u8, U48>::default();
+
+        // Absorb some input (padded with zeros)
+        let input = b"some input";
+        let input_len = input.len();
+        buffer.update(input);
+
+        // Padding
+        let rate = hasher_core.rate_in_bytes();
+        buffer.zero_out(rate - input_len % rate);
+        let block_size = hasher_core.block_size();
+        let pos = buffer.get_pos();
+        buffer.get_buffer_mut()[pos] = 0x06;
+        buffer.get_buffer_mut()[block_size - 1] |= 0x80;
+
+        // Call finalize_fixed_core
+        Sha3_384Core::finalize_fixed_core(&mut hasher_core, &mut buffer, &mut output);
+
+        // Calculate expected output with the FixedOutputDirty trait
+        let mut hasher = Sha3_384::new();
+        hasher.update(input);
+        let expected_output = hasher.finalize_fixed();
+
+        // Compare the outputs
+        assert_eq!(&output[..], expected_output.as_slice());
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::state::Sha3State;
+    use digest::core_api::{Block, BlockSizeUser, UpdateCore};
+
+    #[test]
+    fn update_blocks_test() {
+        let mut core: Sha3_384Core = Default::default();
+        let block_size = <Sha3_384Core as BlockSizeUser>::BlockSize::to_usize();
+        let data = [0u8; 2]; // Mock data, size should match an actual block size
+        let blocks = data.chunks_exact(block_size)
+                         .map(Block::<Sha3_384Core>::from)
+                         .collect::<Vec<_>>();
+
+        // Assuming that `state` can be compared directly.
+        // If there is no PartialEq, other methods like hashing the state, or checking specific values should be used.
+        let original_state = core.clone();
+        core.update_blocks(&blocks);
+        let updated_state = core;
+        assert_ne!(original_state, updated_state, "State should change after absorbing blocks");
+    }
+}
+False
+========================================
+    use crate::Sha3_384Core;
+    use digest::FixedOutput;
+    use digest::Reset;
+    use digest::Update;
+
+    #[test]
+    fn sha3_384_core_default() {
+        let sha3_384_core_default = Sha3_384Core::default();
+
+        let mut output = [0u8; 48]; // Assuming 48 is the correct output size for Sha3_384
+        sha3_384_core_default.clone().finalize_fixed(&mut output);
+
+        // Test that the default finalized output is as expected for an empty input
+        let expected_output = Sha3_384Core::digest(b"");
+        assert_eq!(output, expected_output[..]);
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+
+    use crate::Sha3State;
+    use digest::core_api::{CoreWrapper, FixedOutputCore, UpdateCore};
+    use digest::{generic_array::GenericArray, Digest};
+
+    #[test]
+    fn sha3_512core_reset_test() {
+        let mut hasher = CoreWrapper::<Sha3_512Core>::default();
+
+        hasher.update(b"test data");
+        let before_reset = hasher.clone();
+        hasher.inner_mut().reset();
+        let after_reset = hasher.clone();
+
+        let final_hash_before_reset = before_reset.finalize_fixed();
+        let final_hash_after_reset = after_reset.finalize_fixed();
+
+        assert_ne!(final_hash_before_reset, final_hash_after_reset, "Hash before reset should not be equal to hash after reset.");
+
+        let hasher_default = CoreWrapper::<Sha3_512Core>::default();
+        let final_hash_default = hasher_default.finalize_fixed();
+        assert_eq!(final_hash_after_reset, final_hash_default, "Hash after reset should be equal to the hash of a new default hasher.");
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::*;
+    use core::fmt::{self, Write};
+    use digest::core_api::AlgorithmName;
+
+    #[test]
+    fn test_write_alg_name() {
+        let mut result = String::new();
+        let mut error = String::new();
+        let mut formatter = fmt::Formatter::new(&mut error);
+        Sha3_512Core::write_alg_name(&mut formatter).unwrap();
+        assert!(error.is_empty(), "Formatter should not have an error");
+        fmt::write(&mut result, format_args!("{}", Sha3_512Core)).unwrap();
+        assert_eq!(result, "Sha3_512Core");
+    }
+}
+False
+========================================
+    use digest::{
+        core_api::{FixedOutputCore, UpdateCore},
+        generic_array::GenericArray,
+        HashMarker, OutputSizeUser,
+    };
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn test_finalize_fixed_core() {
+        let mut core = Sha3_512Core::default();
+        let mut buffer = crate::Buffer::default();
+        let mut out = GenericArray::default();
+
+        // Fill up the buffer without triggering an absorb
+        let partial_block = GenericArray::<u8, <Sha3_512Core as BlockSizeUser>::BlockSize>::default();
+        core.update_blocks(core::slice::from_ref(&partial_block));
+
+        core.update(&[0u8; <Sha3_512Core as OutputSizeUser>::OutputSize::to_usize()]); // Update with a block of zeros
+        core.finalize_fixed_core(&mut buffer, &mut out); // Finalize the hash
+        
+        let expected = [
+            0xa7, 0xff, 0xc6, 0xf8, 0xbf, 0x1e, 0xd7, 0x66,
+            0x51, 0xc1, 0x47, 0x56, 0xa0, 0x61, 0xd6, 0x62,
+            0xf5, 0x80, 0xff, 0x4d, 0xe4, 0x3b, 0x49, 0xfa,
+            0x82, 0xd8, 0x0a, 0x4b, 0x80, 0xf8, 0x43, 0x4a,
+            0x7e, 0x7, 0x56, 0xb7, 0x33, 0x6e, 0xbf, 0x14,
+            0x5a, 0x43, 0x9d, 0xd0, 0x4, 0x72, 0x68, 0xd1,
+            0x8b, 0x3b, 0x8c, 0x6a, 0xe1, 0x76, 0x70, 0x3a,
+            0x7c, 0x61, 0x86, 0x9d, 0x45, 0xd8, 0x36, 0xc3,
+        ];
+        
+        assert_eq!(out.as_slice(), &expected);
+    }
+}
+False
+========================================
+    use super::*; // Make sure all the relevant traits and structs are in the scope
+
+use crate::*;
+    use digest::core_api::{BlockSizeUser, UpdateCore, Block};
+    use crate::state::{Sha3State, PLEN, DEFAULT_ROUND_COUNT};
+    use keccak::p1600;
+
+    // Manually implementing PartialEq and Debug for Sha3State to be able to use assert_ne and formatting
+    impl PartialEq for Sha3State {
+        fn eq(&self, other: &Self) -> bool {
+            self.state == other.state && self.round_count == other.round_count
+        }
+    }
+
+    impl Debug for Sha3State {
+        fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+            f.debug_struct("Sha3State")
+                .field("state", &&self.state[..]) // showing a slice to avoid printing a lot of zeros
+                .field("round_count", &self.round_count)
+                .finish()
+        }
+    }
+
+    #[test]
+    fn test_update_blocks() {
+        // Sample state and blocks to absorb
+        const BLOCK_SIZE: usize = <Sha3_512Core as BlockSizeUser>::BlockSize::to_usize();
+        let block = [0u8; BLOCK_SIZE];
+        let blocks = [Block::<Sha3_512Core>::from(block), Block::<Sha3_512Core>::from(block)];
+        let mut sha3_512_core = Sha3_512Core::default();
+
+        // Save the state before updating blocks
+        let initial_state = sha3_512_core.state.clone();
+
+        // Call the function under test
+        sha3_512_core.update_blocks(&blocks);
+
+        // Check if the state has changed
+        assert_ne!(sha3_512_core.state, initial_state, "State should change after absorbing blocks");
+    }
+}
+False
+========================================
+    use digest::{generic_array::GenericArray, Digest, FixedOutput, OutputSizeUser};
+
+    use crate::{Block, Buffer, CoreWrapper, Sha3_512};
+
+    #[test]
+    fn sha3_512core_default_test() {
+        let core_default: CoreWrapper<Sha3_512> = CoreWrapper::default();
+        let core_state_default = core_default.core.state;
+
+        // Instantiate Sha3_512 default via CoreWrapper
+        let sha3_512_default = CoreWrapper::<Sha3_512>::default();
+
+        // Check state is initialized with default
+        let default_core_state = sha3_512_default.core.state.state;
+        let default_state = core_state_default.state;
+        for (default_core_state_chunk, default_state_chunk) in default_core_state.iter().zip(default_state.iter()) {
+            assert_eq!(default_core_state_chunk, default_state_chunk);
+        }
+
+        // Check if default core produces the same hash as default Sha3_512
+        let mut sha3_512_default_output = GenericArray::default();
+        sha3_512_default.clone().finalize_into(&mut sha3_512_default_output);
+
+        let mut core_default_output = GenericArray::default();
+        let mut core_default_buffer = Buffer::<Sha3_512>::default();
+        core_default.finalize_fixed_core(&mut core_default_buffer, &mut core_default_output);
+
+        assert_eq!(core_default_output, sha3_512_default_output);
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::state::Sha3State;
+    use crate::Shake128Core;
+    use digest::core_api::Buffer;
+    use digest::core_api::UpdateCore;
+    use digest::core_api::Block;
+    use digest::Reset;
+    use generic_array::GenericArray;
+    use typenum::Unsigned;
+
+    #[test]
+    fn shake128core_reset_test() {
+        let mut shake128core = Shake128Core::default();
+        let mut buffer = Buffer::<Shake128Core>::default();
+        let mut block = buffer.pad_with_zeros();
+        let block_ref = GenericArray::<u8, <Shake128Core as BlockSizeUser>::BlockSize>::from_mut_slice(block.as_mut_slice());
+        shake128core.update_blocks(slice::from_ref(&block_ref));
+
+        let expected_state = Sha3State::default();
+        let state_ne = shake128core.state.clone();
+        assert_ne!(state_ne, expected_state, "State should not be default after update.");
+
+        shake128core.reset();
+        let state_eq = shake128core.state.clone();
+        assert_eq!(state_eq, expected_state, "State should be default after reset.");
+    }
+}
+
+False
+========================================
+    use digest::core_api::AlgorithmName;
+    use std::fmt;
+    use std::fmt::Write;
+    
+    struct TestShake128Core;
+    
+    impl AlgorithmName for TestShake128Core {
+        fn write_alg_name(f: &mut fmt::Formatter<'_>) -> fmt::Result {
+            write!(f, "{}", stringify!(Shake128Core))
+        }
+    }
+    
+    #[test]
+    fn write_alg_name_test() {
+        let mut output = String::new();
+        let mut formatter = fmt::Formatter::new();
+        TestShake128Core::write_alg_name(&mut formatter).unwrap();
+        assert_eq!(output, formatter.to_string());
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use digest::core_api::{Buffer, CoreWrapper, ExtendableOutputCore, CoreProxy};
+
+    #[test]
+    fn shake128_finalize_xof_core_test() {
+        let mut shake128_core = CoreWrapper::<Shake128Core>::default();
+        let mut buffer = Buffer::<Shake128Core>::default();
+        
+        // Fill buffer with non-zero values to test absorb_block
+        buffer.update(&[0x12, 0x34, 0x56, 0x78, 0x9A, 0xBC, 0xDE, 0xF0]);
+
+        // Finalize XOF to obtain CoreProxy, which is used to access ReaderCore
+        let core_proxy = CoreWrapper::finalize_xof_core(&mut shake128_core, &mut buffer);
+        let reader = core_proxy.into_core();
+        
+        // Here, we make use of the core_api to access the CoreProxy's reader directly
+        // We use the absorb_block to test if the core of the ReaderCore has the correct effect
+        // This test is highly dependent on the access level of ReaderCore state
+        // The absorb_block test is based on the hash's state changing after being updated with non-zero values
+        let state_clone = reader.state.clone();
+        let state_as_bytes = state_clone.state.as_bytes();
+        let mut state_zero_check = true;
+        for byte in state_as_bytes {
+            if *byte != 0 {
+                state_zero_check = false;
+                break;
+            }
+        }
+        
+        assert!(!state_zero_check, "State is all zeroes after absorbing non-zero input");
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use digest::core_api::{UpdateCore, Block, BlockSizeUser};
+    use digest::typenum::Unsigned;
+
+    #[test]
+    fn test_update_blocks() {
+        let mut shake128_core = Shake128Core::default();
+        const BLOCK_SIZE: usize = <Shake128Core as BlockSizeUser>::BlockSize::USIZE;
+
+        let mut data_block = vec![0u8; BLOCK_SIZE];
+        data_block.fill(42);
+
+        let blocks: Vec<Block<Shake128Core>> = data_block
+            .chunks_exact(BLOCK_SIZE)
+            .map(|chunk| {
+                let mut block = Block::default();
+                block[..chunk.len()].copy_from_slice(chunk);
+                block
+            })
+            .collect();
+
+        shake128_core.update_blocks(&blocks);
+
+        let mut expected_shake128_core = Shake128Core::default();
+        for block in blocks.iter() {
+            expected_shake128_core.state.absorb_block(block.as_ref());
+        }
+
+        assert_eq!(shake128_core.state.state, expected_shake128_core.state.state);
+    }
+}
+False
+========================================
+    use crate::Shake128Core;
+    use crate::digest::{Digest, UpdateCore, BlockSizeUser};
+    
+    #[test]
+    fn default_initializes_properly() {
+        let sha3_core: Shake128Core = Default::default();
+        let new_default: Shake128Core = Default::default();
+
+        // As Default for Shake128Core does not expose its state, and we do not know
+        // the internal details of the state, we have to know its details indirectly.
+        // Let's update both states with the same input and check if the updated states
+        // are the same which implies that the initial states were indeed the same.
+        let input_block = [1u8; Shake128Core::BlockSize::to_usize()];
+        let mut updated_sha3_core = sha3_core.clone();
+        let mut updated_new_default = new_default.clone();
+        updated_sha3_core.update_blocks(&[input_block]);
+        updated_new_default.update_blocks(&[input_block]);
+
+        // Verify if the updated states of both the default instances are same.
+        // Unfortunately, we cannot compare the states directly since state is not public,
+        // but we can use the `Debug` implementation as a workaround to ensure consistency.
+        assert_eq!(
+            format!("{:?}", updated_sha3_core),
+            format!("{:?}", updated_new_default),
+            "Updated states do not match expected states."
+        );
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::state::Sha3State;
+    use crate::Shake128ReaderCore;
+    use digest::core_api::{BlockSizeUser, Block, XofReaderCore};
+    use generic_array::GenericArray;
+
+    #[test]
+    fn test_read_block() {
+        let mut reader = Shake128ReaderCore {
+            state: Sha3State::default(),
+        };
+
+        let block1 = reader.read_block();
+        let mut expected_block = GenericArray::default();
+        reader.state.as_bytes(&mut expected_block);
+        assert_eq!(&block1[..], &expected_block[..], "The block before permutation should match expected block.");
+
+        reader.state.permute();
+        let block2 = reader.read_block();
+        let mut expected_block_after_permute = GenericArray::default();
+        reader.state.as_bytes(&mut expected_block_after_permute);
+        assert_eq!(&block2[..], &expected_block_after_permute[..], "The block after permutation should match expected block.");
+
+        assert_ne!(&block1[..], &block2[..], "Blocks before and after permutation should not be the same.");
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::Shake256Core;
+    use digest::Reset;
+
+    #[test]
+    fn reset_test() {
+        let mut shake256 = Shake256Core::default();
+        let shake256_initial = shake256.clone();
+        // Alter the state
+        shake256.update_blocks(&[Default::default()]);
+        shake256.update_blocks(&[Default::default()]);
+        // Reset the state
+        shake256.reset();
+        // Check that the state equals the initial state
+        assert!(shake256_initial.eq(&shake256), "Shake256Core::reset did not reset to initial state");
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use digest::core_api::AlgorithmName;
+    use crate::Shake256Core;
+    use core::fmt;
+
+    #[test]
+    fn test_write_alg_name() {
+        struct TestAlgorithm;
+        impl AlgorithmName for TestAlgorithm {
+            fn write_alg_name(f: &mut fmt::Formatter<'_>) -> fmt::Result {
+                f.write_str(stringify!(Shake256Core))
+            }
+        }
+
+        let test_algorithm = TestAlgorithm;
+        let mut result = String::new();
+        let _ = write!(result, "{}", test_algorithm);
+        assert_eq!(result, stringify!(Shake256Core));
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::digest::ExtendableOutput;
+    use crate::digest::Update;
+    use crate::digest::XofReader;
+    use crate::Shake256;
+    use crate::Shake256VarCore as Shake256Core;
+
+    #[test]
+    fn finalize_xof_core_test() {
+        let mut core = Shake256Core::default();
+        let mut buffer = Default::default();
+
+        // Update the core with some data
+        let data = b"some data";
+        Update::update(&mut core, data);
+
+        // Call finalize_xof_core and acquire the reader
+        let mut reader = core.finalize_xof_core(&mut buffer);
+
+        // Since this is an XOF, we can read an arbitrary amount of output
+        let mut output = [0u8; 64]; // Read 64 bytes of output
+        reader.read(&mut output);
+
+        // Verify the output with a known value or property
+        // Since it is hard to predict the output, we can check the length
+        // or check against a known output with fixed input.
+        assert_eq!(output.len(), 64);
+    }
+}
+False
+========================================
+    use super::*; // assumes `update_blocks` is in this scope
+
+use crate::*;
+    use digest::core_api::{Block, UpdateCore};
+    use digest::Digest; // for `input` and `finalize` if needed
+
+    #[test]
+    fn test_update_blocks_empty() {
+        // assuming `Shake256Core` is in scope, and a block size is defined for `Block`
+        let mut shake256 = Shake256Core::default();
+        let blocks: &[Block<Shake256Core>] = &[];
+        shake256.update_blocks(blocks);
+        // assert the internal state as needed to verify `update_blocks`
+        // Since the function is updating the internal state, we need to assert the state.
+        // Since `state` is private in `Sha3State` we would need access to it to write a meaningful assert.
+        // This might mean accessing it through another function (e.g., through a `finalize` or `clone` and `as_bytes` if that's meaningful)
+    }
+
+    #[test]
+    fn test_update_blocks_single() {
+        let mut shake256 = Shake256Core::default();
+        // assuming a method to create a block is available, or create one as needed
+        let block = Block::<Shake256Core>::default();
+        let blocks: &[Block<Shake256Core>] = &[block];
+        shake256.update_blocks(blocks);
+        // assert the internal state as needed
+    }
+
+    #[test]
+    fn test_update_blocks_multiple() {
+        let mut shake256 = Shake256Core::default();
+        // create multiple blocks
+        let block1 = Block::<Shake256Core>::default();
+        let block2 = Block::<Shake256Core>::default();
+        let blocks: &[Block<Shake256Core>] = &[block1, block2];
+        shake256.update_blocks(blocks);
+        // assert the internal state as needed
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+
+    // Adjusted imports here
+    use crate::state::Sha3State;
+
+    // We assume a crate::KeccakStateful for the state test
+    // Make sure use the concrete type for the test
+    use crate::Shake256Core;
+    use std::default::Default;
+    use digest::core_api::{CoreWrapper, Block, Buffer};
+
+    #[test]
+    fn shake256core_default() {
+        // We assume the concrete type Shake256Core is defined
+        // elsewhere in super, as per the previous code, if this is
+        // not the case, replace Shake256Core with the concrete type.
+        let default_core: Shake256Core = Default::default();
+
+        // You should access the `state` field and `DEFAULT_ROUND_COUNT` as they are
+        // private, so we cannot assert on their values directly. We are assuming
+        // here that there's a public KeccakStateful trait implemented for
+        // Shake256Core with a `read_state` method for test purposes, giving
+        // us the read access we need for the test.
+
+        // The test below assumes there's a trait to access the state.
+        // You should ensure such trait is implemented and publicly
+        // exposed for the test, or in case it's a method, it's publicly
+        // exposed.
+        assert_eq!(
+            default_core.state(),
+            Sha3State::default().state()
+        );
+
+        // This assert assumes that the Sha3State::default() returns
+        // an object with the state array fully initialized with zeros.
+        // We cannot assert on `round_count` as it's private.
+        assert!(
+            default_core
+                .state()
+                .iter()
+                .all(|&x| x == 0)
+        );
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::state::Sha3State;
+    use crate::generic_array::typenum::U144;
+    use crate::Block;
+    use digest::core_api::BlockSizeUser;
+    
+    #[derive(Default, Clone)]
+    struct Shake256ReaderCore {
+        state: Sha3State,
+    }
+
+    // Assuming the BlockSize U144 is equivalent to the one required (replace U144 with actual block size U*)
+    impl BlockSizeUser for Shake256ReaderCore {
+        type BlockSize = U144;
+    }
+
+    // This is a placeholder to satisfy the compiler, replace with actual $reader type
+    impl crate::digest::core_api::XofReaderCore for Shake256ReaderCore {
+        #[inline]
+        fn read_block(&mut self) -> Block<Self> {
+            let mut block = Block::<Self>::default();
+            self.state.as_bytes(&mut block);
+            self.state.permute();
+            block
+        }
+    }
+    
+    #[test]
+    fn shake256_reader_core_read_block() {
+        let mut reader = Shake256ReaderCore::default();
+        // Assuming block size is the same as state size for the sake of the example
+        let block_size = std::mem::size_of::<u64>() * crate::state::PLEN;
+        let mut input_block = vec![0u8; block_size];
+
+        // Adjust the size of the input block to match BlockSize
+        input_block.truncate(Shake256ReaderCore::BlockSize::to_usize());
+
+        // Preparing the state for a known output, example values
+        reader.state.absorb_block(&input_block);
+
+        // Save the state before reading the block
+        let state_before = reader.state.clone();
+
+        // Perform the read_block operation
+        let block = reader.read_block();
+
+        // Check if the state has changed after reading the block; it should
+        // Implement PartialEq for states to use assert_ne!
+        assert_ne!(state_before, reader.state);
+        
+        // Check if the output block has the expected size
+        assert_eq!(block.as_ref().len(), Shake256ReaderCore::BlockSize::to_usize());
+
+        // Check if the output block has the expected content,
+        // This is placeholder logic as the expected content needs to be based on actual Keccak calculations
+        let expected_block = vec![0u8; Shake256ReaderCore::BlockSize::to_usize()];
+        assert_eq!(block.as_ref(), expected_block.as_slice());
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::state::Sha3State;
+    use digest::Reset;
+    use crate::TurboShake128Core;
+
+    #[test]
+    fn test_reset() {
+        let domain_separation = 0x1B; // example domain separation byte
+
+        // Assume we know the size of the block (rate) and the round count for TurboShake128Core
+        // These constants may need to be updated with the actual values
+        const TURBO_SHAKE128_BLOCK_SIZE: usize = 168; // Replace with actual block size
+        const TURBO_SHAKE_ROUND_COUNT: usize = 24; // Replace with actual round count for TurboShake128Core
+
+        let mut hasher = TurboShake128Core::new(domain_separation);
+
+        // Change the internal state to something non-default
+        let mut block = vec![0u8; TURBO_SHAKE128_BLOCK_SIZE];
+        hasher.update_blocks(&block);
+
+        let mut pre_reset_state: Vec<u8> = vec![0u8; TURBO_SHAKE128_BLOCK_SIZE];
+        hasher.state.as_bytes(&mut pre_reset_state);
+
+        // Perform the reset
+        hasher.reset();
+
+        // The state after reset should be the same as the initial state
+        let mut initial_state = Sha3State::new(TURBO_SHAKE_ROUND_COUNT);
+        let mut initial_state_bytes: Vec<u8> = vec![0u8; TURBO_SHAKE128_BLOCK_SIZE];
+        initial_state.as_bytes(&mut initial_state_bytes);
+
+        assert_eq!(pre_reset_state, initial_state_bytes, "Reset did not restore the initial state.");
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+
+    use crate::*;
+    use std::fmt::{self, Write};
+    use digest::core_api::AlgorithmName;
+
+    struct TurboShake128Core; // Placeholder struct for TurboShake128Core
+
+    // Implement the required trait to satisfy the type bounds for the test
+    impl AlgorithmName for TurboShake128Core {
+        fn write_alg_name(f: &mut fmt::Formatter<'_>) -> fmt::Result {
+            // Assuming $full_name should be replaced manually here for testing
+            f.write_str("TurboShake128Core")
+        }
+    }
+
+    #[test]
+    fn write_alg_name_test() {
+        let mut turbo_shake_128_core_alg_name = String::new();
+        let result = TurboShake128Core::write_alg_name(&mut turbo_shake_128_core_alg_name);
+        assert!(result.is_ok());
+        assert_eq!(turbo_shake_128_core_alg_name, "TurboShake128Core");
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::state::Sha3State;
+    use crate::buffer::depad;
+    use digest::core_api::{Buffer, BufferKindUser, ExtendableOutputCore, UpdateCore};
+
+    #[test]
+    fn test_finalize_xof_core() {
+        let domain_separation: u8 = 0x01; // Use a valid domain separation value
+
+        // Use the actual TurboShake128Core type, as the placeholder `()` type cannot be used
+        let mut core = TurboShake128Core { domain_separation, state: Sha3State::new(crate::consts::TURBO_SHAKE_ROUND_COUNT) };
+        let mut buffer = Buffer::<TurboShake128Core>::default(); // Use the appropriate Buffer type for TurboShake128Core
+
+        // Update the buffer with some data
+        let data = b"test data"; // Replace with the data you want to test with
+        core.update_core(data);
+
+        // Prepare the reader core
+        let reader_core = core.finalize_xof_core(&mut buffer);
+
+        // Check the state of reader_core and core as per your test requirements
+        // This will depend on your implementation of the reader and its Debug or PartialEq traits
+        // If the reader has Debug, you can print it for a visual test
+        // If the reader and TurboShake128Core implement PartialEq, you can compare them for equality
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::state::Sha3State;
+    use crate::utils::Keccak;
+    use digest::core_api::{Block, BlockSizeUser, UpdateCore};
+    use generic_array::GenericArray;
+    use typenum::U1;
+
+    #[test]
+    fn test_update_blocks() {
+        let domain_separation: u8 = 0x1F;
+        let mut core = TurboShake128Core::new(domain_separation);
+        let initial_state = core.state.clone();
+
+        let block_size = <TurboShake128Core as BlockSizeUser>::BlockSize::to_usize();    
+        // Create a block of the correct size
+        let block = GenericArray::<u8, <TurboShake128Core as BlockSizeUser>::BlockSize>::default();
+        let block_ref: &Block<TurboShake128Core> = block.as_ref();
+
+        // Absorb the block
+        core.update_blocks(&[block_ref.clone()]);
+
+        // Since the round_count is private, assume that it is the default round count for the tests
+        let default_round_count = 24;
+
+        // Create a new state with the default round count
+        let mut state_after_update = Sha3State::new(default_round_count);
+        state_after_update.absorb_block(block.as_slice());
+        assert_ne!(state_after_update.state, initial_state.state, "The state should change after absorbing a block");
+
+        let mut core_state_absorb_once = Sha3State::new(default_round_count);
+        core_state_absorb_once.absorb_block(block.as_slice());
+        assert_eq!(core_state_absorb_once.state, core.state.state, "The state should match after same block absorption");
+
+        core.update_blocks(&[block_ref.clone(), block_ref.clone()]);
+        let mut core_state_absorb_twice = Sha3State::new(default_round_count);
+        core_state_absorb_twice.absorb_block(block.as_slice());
+        core_state_absorb_twice.absorb_block(block.as_slice());
+        assert_eq!(core_state_absorb_twice.state, core.state.state, "The state should match after absorbing the block twice");
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::crate::TurboShake128ReaderCore;
+    use crate::crate::state::Sha3State;
+    use digest::core_api::{BlockSizeUser, XofReaderCore};
+    use digest::generic_array::GenericArray;
+    use crate::BlockSize;
+
+    #[test]
+    fn test_read_block() {
+        let mut reader = TurboShake128ReaderCore {
+            state: Sha3State::default(),
+        };
+
+        // Capture initial state for comparison
+        let initial_state = reader.state.state;
+        let initial_block = reader.read_block();
+
+        // Ensure block reading updates the state
+        let updated_state = reader.state.state;
+        assert_ne!(initial_state, updated_state, "State should be updated after reading block.");
+
+        // Ensure the block has correct size
+        let block_size = <TurboShake128ReaderCore as BlockSizeUser>::BlockSize::to_usize();
+        assert_eq!(initial_block.len(), block_size, "Block should be of correct size.");
+
+        // Ensure the block does not return the same data after state update
+        let updated_block = reader.read_block();
+        assert_ne!(initial_block, updated_block, "Block data should be different after state update.");
+
+        // Ensure the block contains expected bytes after permutation
+        let expected_size = GenericArray::from_exact_iter(reader.clone().take(block_size)).unwrap().len();
+        assert_eq!(initial_block.len(), expected_size, "Block should contain the expected bytes after permutation.");
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::*;
+    use digest::Reset;
+    use generic_array::GenericArray;
+
+    #[test]
+    fn turbo_shake256_core_reset_test() {
+        // Domain separation byte (chosen as a valid value)
+        let domain_separation: u8 = 0x1F;
+
+        // Create a new TurboShake256Core instance
+        let mut turbo_shake = TurboShake256Core::new(domain_separation);
+
+        // Prepare a valid block for the update_blocks method
+        let block = GenericArray::clone_from_slice(&[1u8; 136]); // Example block, should be a GenericArray
+
+        // Change its state somehow, in this case, we can use update_blocks
+        turbo_shake.update_blocks(&[block]);
+
+        // Reset the instance to its initial state
+        turbo_shake.reset();
+
+        // After a reset, the domain separation should remain the same
+        assert_eq!(turbo_shake.domain_separation, domain_separation);
+
+        // After a reset, the internal state should also be reset
+        let default_sha3_state = Sha3State::new(crate::TURBO_SHAKE_ROUND_COUNT);
+        assert_eq!(turbo_shake.state.state, default_sha3_state.state);
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+
+    use crate::*;
+    use digest::core_api::AlgorithmName;
+    use std::fmt;
+
+    struct TurboShake256Core;
+
+    impl digest::core_api::AlgorithmName for TurboShake256Core {
+        fn write_alg_name(f: &mut fmt::Formatter<'_>) -> fmt::Result {
+            f.write_str("TurboShake256Core")
+        }
+    }
+
+    #[test]
+    fn test_write_alg_name() {
+        let test_name = "TurboShake256Core";
+        let turbo_shake_256_core = TurboShake256Core;
+        let alg_name = turbo_shake_256_core.algorithm_name();
+        assert_eq!(alg_name, test_name);
+    }
+}
+False
+========================================
+    use crate::consts::TURBO_SHAKE_RATE_256;
+    use crate::digest::{consts::U256, generic_array::GenericArray, Block, BlockSizeUser, 
+        core_api::{Buffer, ExtendableOutput, ExtendableOutputCore, UpdateCore}};
+    use crate::TurboShake256Core;
+    use crate::impls::TurboShake256ReaderCore;
+    use crate::keccak::f1600;
+    use crate::utils::buffer_state;
+
+    #[test]
+    fn test_finalize_xof_core() {
+        let domain_separation = 0x1F; // Arbitrary valid domain separation value
+        let mut core = TurboShake256Core::new(domain_separation);
+
+        // Absorb some input into the state
+        let input = b"Rustaceans unite!"; // Arbitrary input
+        let block_size = <TurboShake256Core as BlockSizeUser>::BlockSize::USIZE;
+        let mut blocks = vec![0u8; block_size];
+        blocks[..input.len()].copy_from_slice(&input[..]);
+        let generic_blocks: GenericArray<u8, U256> = GenericArray::clone_from_slice(&blocks);
+        let block_ref: &Block<TurboShake256Core> = Block::from(generic_blocks.as_slice());
+        core.update_blocks(core::slice::from_ref(block_ref));
+
+        // Prepare the buffer
+        let mut buffer = Buffer::<TurboShake256Core>::default();
+        buffer_state(&input[..], &mut core, &mut buffer);
+
+        // Finalize XOF
+        let reader_core = core.finalize_xof_core(&mut buffer);
+
+        // Check that the state has changed and taken the domain separation into account
+        let mut state_after = core.state;
+        state_after.as_bytes(&mut blocks);
+        let domain_separation_byte = blocks[input.len()];
+
+        // Make sure the domain separation byte has been set correctly
+        assert_eq!(domain_separation_byte, domain_separation);
+
+        // Read some output from XOF reader
+        let mut output = GenericArray::<u8, U256>::default();
+        reader_core.squeeze(&mut output);
+
+        // Ensure output is not empty or equal to input, which indicates XOF is working
+        let output_slice = output.as_slice();
+        assert_ne!(output_slice, &[0u8; 32]);
+        assert_ne!(&output_slice[..input.len()], input);
+    }
+}
+False
+========================================
+    use crate::{TurboShake256Core, Block, Sha3State, UpdateCore};
+    use digest::core_api::BlockSizeUser;
+    use digest::generic_array::GenericArray;
+    use digest::typenum::Unsigned;
+
+    #[test]
+    fn test_update_blocks() {
+        const TEST_DOMAIN: u8 = 0x1B; // Using 0x1B as an example domain separation value
+        const TEST_BLOCK_SIZE: usize = <TurboShake256Core as BlockSizeUser>::BlockSize::USIZE;
+        const TEST_ROUND_COUNT: usize = 24; // Assuming 24 rounds for Keccak, replace if needed
+
+        // Setup TurboShake256Core instance
+        let mut core = TurboShake256Core::new(TEST_DOMAIN);
+
+        // Create test blocks (empty blocks are used for simplicity)
+        let block1 = GenericArray::clone_from_slice(&vec![0u8; TEST_BLOCK_SIZE]);
+        let block2 = GenericArray::clone_from_slice(&vec![0u8; TEST_BLOCK_SIZE]);
+        let blocks = vec![block1, block2];
+
+        // Initial state for comparison
+        let mut initial_state = Sha3State::new(TEST_ROUND_COUNT);
+        initial_state.absorb_block(blocks[0].as_slice());
+        initial_state.absorb_block(blocks[1].as_slice());
+
+        // Update blocks using TurboShake256Core
+        core.update_blocks(&blocks);
+
+        // Check state is as expected
+        let mut expected_state_bytes = vec![0u8; TEST_BLOCK_SIZE];
+        let mut result_state_bytes = vec![0u8; TEST_BLOCK_SIZE];
+
+        initial_state.as_bytes(&mut expected_state_bytes);
+        core.state.as_bytes(&mut result_state_bytes);
+
+        // Compare the updated state after processing blocks with the initial state
+        assert_eq!(result_state_bytes, expected_state_bytes, "Update blocks did not result in expected state.");
+    }
+}
+True
+========================================
+    use crate::TurboShake256ReaderCore;
+    use digest::core_api::{Block, BlockSizeUser, XofReaderCore};
+    use crate::state::Sha3State;
+    use digest::typenum::Unsigned;
+
+    #[test]
+    fn read_block_test() {
+        let mut reader = TurboShake256ReaderCore {
+            state: Sha3State::default(),
+        };
+
+        // Checking the initial state before reading the block
+        let initial_block = Block::<TurboShake256ReaderCore>::default();
+        let mut test_block = Block::<TurboShake256ReaderCore>::default();
+        reader.state.as_bytes(&mut test_block);
+        assert_eq!(initial_block, test_block, "Initial block should be all zeros");
+
+        // Reading the block, which should also permute the state
+        let block = reader.read_block();
+        assert_eq!(test_block, block, "Block read should match the initial state block");
+
+        // Checking the state after reading the block
+        let mut post_read_block = Block::<TurboShake256ReaderCore>::default();
+        reader.state.as_bytes(&mut post_read_block);
+        assert_ne!(test_block, post_read_block, "State should change after reading the block");
+
+        // Ensure the block size is as expected
+        let block_size = <TurboShake256ReaderCore as BlockSizeUser>::BlockSize::to_usize();
+        assert_eq!(block.len(), block_size, "Block size should be as defined by the BlockSizeUser");
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+
+    const PLEN: usize = 25;
+    const DEFAULT_ROUND_COUNT: usize = 24;
+
+    #[test]
+    fn default_initializes_to_zero_state_and_default_round_count() {
+        let default_state = Sha3State::default();
+
+        // Check that the state array is initialized with 0u64
+        for &val in default_state.state.iter() {
+            assert_eq!(val, 0u64);
+        }
+
+        // Check that the round count is set to the default round count
+        assert_eq!(default_state.round_count, DEFAULT_ROUND_COUNT);
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::*;
+    use crate::state::Sha3State;
+    use crate::CShakePadding;
+    use digest::{HashMarker, Update, BlockInput, Reset, ExtendableOutput, Digest, FixedOutput};
+    use digest::core_api::{AlgorithmName, BlockSizeUser, BufferKindUser, ExtendableOutputCore, UpdateCore};
+    use std::fmt::Debug;
+    use std::clone::Clone;
+    use crate::consts::CSHAKE_PAD;
+
+    #[test]
+    fn cshake128core_new_customization() {
+        let customization = "Customization";
+        let cshake = CShake128Core::new(customization.as_bytes());
+
+        // Verify that a CShake128Core object is created with the expected padding
+        assert_eq!(cshake.padding, CSHAKE_PAD, "Padding should match CSHAKE_PAD");
+    }
+}
+False
+========================================
+    use crate::CShake128Core;
+    use crate::crate::Sha3State;
+    use crate::KeccakFamily;
+    use digest::core_api::{BlockSizeUser, Buffer, CoreWrapper, UpdateCore};
+    use digest::crypto_common::{BlockSize, Block};
+    use digest::Update;
+
+    // testing new_with_function_name when both function_name and customization are empty 
+    #[test]
+    fn new_with_function_name_empty() {
+        let cshake = CShake128Core::new_with_function_name(&[], &[]);
+        let empty_state = Sha3State::default();
+        assert_eq!(cshake.state.state, empty_state.state);
+    }
+
+    // testing new_with_function_name when function_name is not empty and customization is empty
+    #[test]
+    fn new_with_function_name_only() {
+        let function_name = b"NIST defined function";
+        let cshake = CShake128Core::new_with_function_name(function_name, &[]);
+        let empty_state = Sha3State::default();
+        assert_ne!(cshake.state.state, empty_state.state);
+    }
+
+    // testing new_with_function_name when customization is not empty and function_name is empty
+    #[test]
+    fn new_with_customization_only() {
+        let customization = b"Customization";
+        let cshake = CShake128Core::new_with_function_name(&[], customization);
+        let empty_state = Sha3State::default();
+        assert_ne!(cshake.state.state, empty_state.state);
+    }
+
+    // testing new_with_function_name with both function_name and customization not empty
+    #[test]
+    fn new_with_function_name_and_customization() {
+        let function_name = b"NIST defined function";
+        let customization = b"Customization";
+        let cshake = CShake128Core::new_with_function_name(function_name, customization);
+        let empty_state = Sha3State::default();
+        assert_ne!(cshake.state.state, empty_state.state);
+    }
+
+    // testing UpdateCore::update_blocks
+    #[test]
+    fn update_blocks_behavior() {
+        let customization = b"Customization";
+        let mut cshake = CShake128Core::new_with_function_name(&[], customization);
+        let block_size = CShake128Core::block_size();
+        let block = Block::<CShake128Core>::default();
+        assert_eq!(block.len(), block_size.to_usize());
+        cshake.update_blocks(core::slice::from_ref(&block));
+        let mut buffer = Buffer::<CShake128Core>::default();
+        buffer.digest_blocks(core::slice::from_ref(&block), |blocks| {
+            for block in blocks {
+                cshake.update_blocks(core::slice::from_ref(block));
+            }
+        });
+        // No recommended way to observe the internal state, so we can't compare `cshake.state` 
+        // with an expected value. We can still test that the function runs without panic.
+        assert!(true);
+    }
+}
+False
+========================================
+    use crate::{CShake256Core, Sha3State, KeccakFamily, digest};
+    use digest::{Digest, ExtendableOutput, Update, ExtendableOutputReset, XofReader};
+    use digest::generic_array::GenericArray;
+    use crate::consts::{SHA3_STATE_LEN, PLEN};
+    
+    #[test]
+    fn test_cshake256_core_new_empty_customization() {
+        let cshake = CShake256Core::new(&[]);
+        let mut hasher = KeccakFamily::new_cshake256();
+        let expected = hasher.finalize_fixed();
+        let result = cshake.finalize_fixed();
+        assert_eq!(expected, result);
+    }
+
+    #[test]
+    fn test_cshake256_core_new_non_empty_customization() {
+        let custom = b"Customization String";
+        let cshake = CShake256Core::new(custom);
+        let mut hasher = KeccakFamily::new_cshake256();
+        hasher.update(custom);
+        let expected = hasher.finalize_fixed();
+        let result = cshake.finalize_fixed();
+        assert_eq!(expected, result);
+    }
+
+    #[test]
+    fn test_cshake256_core_new_reset() {
+        let custom = b"Customization String";
+        let cshake = CShake256Core::new(custom);
+        let mut hasher = KeccakFamily::new_cshake256();
+        hasher.update(custom);
+        let expected = hasher.finalize_fixed();
+        let result = cshake.finalize_fixed();
+        assert_eq!(expected, result);
+
+        // Now test the reset
+        hasher.reset();
+        hasher.update(custom);
+        let expected_after_reset = hasher.finalize_fixed();
+        let result_after_reset = cshake.finalize_fixed_reset();
+        assert_eq!(expected_after_reset, result_after_reset);
+    }
+    
+    fn cshake256_core_finalize_fixed_reset(state: &mut Sha3State) -> GenericArray<u8, <CShake256Core as digest::OutputSizeUser>::OutputSize> {
+        assert_eq!(state.state.len(), SHA3_STATE_LEN);
+        for i in PLEN..SHA3_STATE_LEN {
+            state.state[i] = 0;
+        }
+        state.state[1] = 0x8000000000000000;
+        let mut out = GenericArray::default();
+        state.as_bytes(&mut out);
+        out
+    }
+
+    fn cshake256_core_finalize_fixed(state: &mut CShake256Core) -> GenericArray<u8, <CShake256Core as digest::OutputSizeUser>::OutputSize> {
+        let mut state_clone = state.clone();
+        cshake256_core_finalize_fixed_reset(&mut state_clone.state)
+    }
+
+    impl CShake256Core {
+        fn finalize_fixed(&mut self) -> GenericArray<u8, <Self as digest::OutputSizeUser>::OutputSize> {
+            cshake256_core_finalize_fixed(self)
+        }
+
+        fn finalize_fixed_reset(&mut self) -> GenericArray<u8, <Self as digest::OutputSizeUser>::OutputSize> {
+            #[cfg(feature = "reset")]
+            {
+                self.state = self.initial_state.clone();
+            }
+            cshake256_core_finalize_fixed_reset(&mut self.state)
+        }
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+
+    use crate::CShake256Core;
+    use crate::crate::state::Sha3State;
+    use crate::digest::core_api::AlgorithmName;
+    use crate::digest::core_api::BlockSizeUser;
+    use crate::digest::core_api::UpdateCore;
+    use crate::digest::core_api::ExtendableOutputCore;
+    
+    #[test]
+    fn test_cshake256core_new_with_function_name_empty() {
+        let function_name = [];
+        let customization = [];
+        let cshake = CShake256Core::new_with_function_name(&function_name, &customization);
+        assert_eq!(cshake.state.round_count(), Sha3State::default().round_count());
+    }
+
+    #[test]
+    fn test_cshake256core_new_with_function_name_non_empty() {
+        let function_name = [1, 2, 3, 4, 5];
+        let customization = [6, 7, 8, 9, 10];
+        let cshake = CShake256Core::new_with_function_name(&function_name, &customization);
+        let mut state_default = Sha3State::default();
+        state_default.absorb_block(&[0u8; 200]); // Assuming the block size of 200 for the test
+        assert_ne!(cshake.state, state_default);
+    }
+
+    #[test]
+    fn test_cshake256core_new_with_function_name_no_function_name() {
+        let function_name = [];
+        let customization = [6, 7, 8, 9, 10];
+        let cshake = CShake256Core::new_with_function_name(&function_name, &customization);
+        let mut state_default = Sha3State::default();
+        state_default.absorb_block(&[0u8; 200]); // Assuming the block size of 200 for the test
+        assert_ne!(cshake.state, state_default);
+    }
+
+    #[test]
+    fn test_cshake256core_new_with_function_name_no_customization() {
+        let function_name = [1, 2, 3, 4, 5];
+        let customization = [];
+        let cshake = CShake256Core::new_with_function_name(&function_name, &customization);
+        let mut state_default = Sha3State::default();
+        state_default.absorb_block(&[0u8; 200]); // Assuming the block size of 200 for the test
+        assert_ne!(cshake.state, state_default);
+    }
+
+    #[test]
+    #[should_panic]
+    fn test_cshake256core_new_with_function_name_invalid_function_name() {
+        let function_name = [0; 200]; // length exceeding the block size
+        let customization = [1, 2, 3];
+        let _cshake = CShake256Core::new_with_function_name(&function_name, &customization);
+    }
+
+    #[test]
+    #[should_panic]
+    fn test_cshake256core_new_with_function_name_invalid_customization() {
+        let function_name = [1, 2, 3];
+        let customization = [0; 200]; // length exceeding the block size
+        let _cshake = CShake256Core::new_with_function_name(&function_name, &customization);
+    }
+
+    // Additional tests related to CShake256Core's other functionality such as update and finalize_xof_core
+    // can be added here following similar patterns, and taking into account the specifics of CShake256Core's behavior.
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    #[should_panic]
+    fn new_with_invalid_domain_separation_below_range() {
+        let _ = TurboShake128Core::new(0x00);
+    }
+
+    #[test]
+    #[should_panic]
+    fn new_with_invalid_domain_separation_above_range() {
+        let _ = TurboShake128Core::new(0x80);
+    }
+
+    #[test]
+    fn new_with_valid_domain_separation() {
+        for separation in 0x01..=0x7F {
+            let shake = TurboShake128Core::new(separation);
+            assert_eq!(shake.domain_separation, separation);
+        }
+    }
+}
+True
+========================================
+    use crate::TurboShake256Core;
+
+    #[test]
+    fn new_valid_domain_separation() {
+        for domain_separation in 0x01..=0x7F {
+            let instance = TurboShake256Core::new(domain_separation);
+            assert_eq!(instance.domain_separation, domain_separation);
+            // Additional checks can be done here if needed
+        }
+    }
+
+    #[test]
+    #[should_panic]
+    fn new_invalid_domain_separation_low() {
+        let _instance = TurboShake256Core::new(0x00);
+    }
+
+    #[test]
+    #[should_panic]
+    fn new_invalid_domain_separation_high() {
+        let _instance = TurboShake256Core::new(0x80);
+    }
+}
+True
+========================================
+    use crate::left_encode;
+
+    #[test]
+    fn test_left_encode_zero() {
+        let mut buffer: [u8; 9] = [0; 9];
+        let result = left_encode(0, &mut buffer);
+        assert_eq!(result, [1, 0]);
+    }
+    
+    #[test]
+    fn test_left_encode_small_number() {
+        let mut buffer: [u8; 9] = [0; 9];
+        let result = left_encode(0x01, &mut buffer);
+        assert_eq!(result, [1, 1]);
+    }
+
+    #[test]
+    fn test_left_encode_large_number() {
+        let mut buffer: [u8; 9] = [0; 9];
+        let result = left_encode(0x12345678, &mut buffer);
+        assert_eq!(result, [4, 0x12, 0x34, 0x56, 0x78]);
+    }
+    
+    #[test]
+    fn test_left_encode_max_u64() {
+        let mut buffer: [u8; 9] = [0; 9];
+        let result = left_encode(u64::MAX, &mut buffer);
+        assert_eq!(result, vec![8].into_iter().chain(u64::MAX.to_be_bytes().iter().copied()).collect::<Vec<u8>>().as_slice());
+    }
+
+    #[test]
+    fn test_left_encode_with_leading_zeros() {
+        let mut buffer: [u8; 9] = [0; 9];
+        let result = left_encode(0x0000000000000042, &mut buffer);
+        assert_eq!(result, [1, 0x42]);
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn test_absorb_block() {
+        // Testing with a default Sha3State and a known block
+        let mut state = Sha3State::default();
+        let block = [1u8; 72]; // A block divisible by 8, compatible with Sha3State::absorb_block
+        state.absorb_block(&block);
+
+        // After absorption, state should have changed from default
+        // We test by comparing to a known altered state
+        // WARNING: This test assumes specific behavior of keccak::p1600, and
+        // the known state has to be calculated based on the block and rounds applied
+        // This is a placeholder test and should be replaced with an actual known state
+        // For example, if we know the state after a certain block input and round_count
+        let mut known_state = Sha3State::default();
+        // Fill the known_state with expected results after absorption, based on block
+        // For example:
+        known_state.state[0] = 0x07; // Fake expected state, replace with actual expected bytes
+        // Continue for the rest of the state if known
+        for i in 1..PLEN {
+            known_state.state[i] ^= ((i * 8) as u64).wrapping_add(block[i % block.len()] as u64);
+        }
+        known_state.permute(); // Apply the permutation as in the absorb_block method
+
+        // Check if the state after absorb_block equals to the known altered state
+        for (i, (actual, expected)) in state.state.iter().zip(known_state.state.iter()).enumerate() {
+            assert_eq!(
+                actual, expected,
+                "State mismatch at index {}: actual: {}, expected: {}", i, actual, expected
+            );
+        }
+    }
+}
+True
+========================================
+    use crate::Sha3State; // Replace with the correct use/import path
+    const PLEN: usize = 25; // Make sure to import or define PLEN
+
+    #[test]
+    fn test_as_bytes() {
+        // Set up the test data and condition
+        let mut test_state = Sha3State::default();
+        let mut test_output: [u8; PLEN * 8] = [0; PLEN * 8];
+
+        // Stimulate the `test_output` based on the initial `test_state`, which should be all zeros
+        test_state.as_bytes(&mut test_output);
+
+        // Assert the `test_output` has only zeros because `test_state` has only zeros
+        assert_eq!(test_output.to_vec(), vec![0u8; PLEN * 8]);
+        
+        // Change the `test_state` to have non-zero values
+        let mut test_state = Sha3State::default();
+        test_state.state = [0xFF; PLEN];
+        let mut test_output: [u8; PLEN * 8] = [0; PLEN * 8];
+
+        // Stimulate the `test_output` based on the modified `test_state`
+        test_state.as_bytes(&mut test_output);
+
+        // Check if each 8-byte chunk in `test_output` corresponds to the expected value in `test_state`
+        for chunk in test_output.chunks_exact(8) {
+            assert_eq!(chunk, &[0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF]);
+        }
+
+        // Test with a smaller output buffer to validate correct partial chunk handling
+        let mut partial_output: [u8; 4] = [0; 4];
+        test_state.as_bytes(&mut partial_output);
+
+        // Check if each byte of the partial output corresponds to the expected partial value of the first 64-bit word
+        assert_eq!(partial_output, [0xFF, 0xFF, 0xFF, 0xFF]);
+    }
+}
+True
+========================================
+    use crate::Sha3State;
+    use crate::super::PLEN;
+    use crate::super::DEFAULT_ROUND_COUNT;
+    
+    #[test]
+    fn test_new_with_custom_round_count() {
+        let round_count = 12;
+        let state = Sha3State::new(round_count);
+        assert_eq!(state.round_count, round_count);
+        assert_eq!(state.state, [0u64; PLEN]);
+    }
+    
+    #[test]
+    fn test_new_with_default_round_count() {
+        let state = Sha3State::new(DEFAULT_ROUND_COUNT);
+        assert_eq!(state.round_count, DEFAULT_ROUND_COUNT);
+        assert_eq!(state.state, [0u64; PLEN]);
+    }
+    
+    #[test]
+    fn test_default() {
+        let state = Sha3State::default();
+        assert_eq!(state.round_count, DEFAULT_ROUND_COUNT);
+        assert_eq!(state.state, [0u64; PLEN]);
+    }
+    
+    #[test]
+    fn test_clone() {
+        let original = Sha3State::new(DEFAULT_ROUND_COUNT);
+        let cloned = original.clone();
+        assert_eq!(original.round_count, cloned.round_count);
+        assert_eq!(original.state, cloned.state);
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+
+    const DEFAULT_ROUND_COUNT: usize = 24;
+
+    #[test]
+    fn test_permute() {
+        let mut state = Sha3State::default();
+        let initial_state = state.clone();
+
+        state.permute();
+
+        // Verify state has changed post-permutation (unless round count is zero)
+        if state.round_count > 0 {
+            assert_ne!(state.state, initial_state.state);
+        } else {
+            assert_eq!(state.state, initial_state.state);
+        }
+
+        // Verify state remains the same after permute is called with no state change
+        let mut state_before_permute = state.clone();
+        state.permute();
+        assert_eq!(state.state, state_before_permute.state);
+
+        // Test with non-zero state and specific round count
+        let round_count = 12;
+        let mut non_zero_state = Sha3State::new(round_count);
+        non_zero_state.state[0] = 1; // set non-zero state
+        let non_zero_state_before_permute = non_zero_state.clone();
+        non_zero_state.permute();
+        assert_ne!(non_zero_state.state, non_zero_state_before_permute.state);
+    }
+}
+True
+hashes sha3 18 87

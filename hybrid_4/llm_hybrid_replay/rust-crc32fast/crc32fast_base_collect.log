@@ -1,0 +1,1191 @@
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn test_default_hasher() {
+        let hasher = Hasher::default();
+        let default_state = Hasher::new();
+        assert_eq!(format!("{:?}", hasher), format!("{:?}", default_state));
+    }
+}
+True
+========================================
+    use std::hash::Hasher as StdHasher; // Include this trait for `finish` and `write` methods
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn test_finish_with_no_update() {
+        let hasher = Hasher::default();
+        assert_eq!(hasher.finish(), u64::from(Hasher::default().finalize()));
+    }
+
+    #[test]
+    fn test_finish_after_single_update() {
+        let mut hasher = Hasher::default();
+        hasher.write(&[0xde, 0xad, 0xbe, 0xef]);
+        let result = hasher.finish();
+        assert_eq!(result, u64::from(Hasher::default().finalize()));
+    }
+
+    #[test]
+    fn test_finish_after_multiple_updates() {
+        let mut hasher = Hasher::default();
+        hasher.write(&[0xde]);
+        hasher.write(&[0xad]);
+        hasher.write(&[0xbe]);
+        hasher.write(&[0xef]);
+        let result = hasher.finish();
+        assert_eq!(result, u64::from(Hasher::default().finalize()));
+    }
+
+    #[test]
+    fn test_finish_after_reset() {
+        let mut hasher = Hasher::default();
+        hasher.write(&[0xde, 0xad, 0xbe, 0xef]);
+        hasher.reset();
+        assert_eq!(hasher.finish(), u64::from(Hasher::default().finalize()));
+    }
+
+    #[test]
+    fn test_finish_after_combine() {
+        let mut hasher1 = Hasher::default();
+        hasher1.write(&[0xde, 0xad, 0xbe, 0xef]);
+        
+        let mut hasher2 = Hasher::default();
+        hasher2.write(&[0xde, 0xad, 0xbe, 0xef]);
+        hasher1.combine(&hasher2);
+
+        let result = hasher1.finish();
+        assert_eq!(result, u64::from(Hasher::default().finalize()));
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use std::hash::Hasher;
+
+    #[test]
+    fn test_hasher_write() {
+        let init_state = 0;
+        // Create a default hasher from the crate
+        let mut hasher = Hasher::new_with_initial(init_state);
+        hasher.write(&[0xde, 0xad, 0xbe, 0xef]);
+        let result = hasher.finish();
+
+        // Create a baseline hasher
+        let mut hasher_baseline = Hasher::internal_new_baseline(init_state, 0);
+        hasher_baseline.write(&[0xde, 0xad, 0xbe, 0xef]);
+        let result_baseline = hasher_baseline.finish();
+
+        // Try to create a specialized hasher, or default to a baseline hasher
+        let mut hasher_specialized =
+            Hasher::internal_new_specialized(init_state, 0).unwrap_or_else(|| Hasher::internal_new_baseline(init_state, 0));
+        hasher_specialized.write(&[0xde, 0xad, 0xbe, 0xef]);
+        let result_specialized = hasher_specialized.finish();
+
+        // Ensure that write function works as expected
+        assert_eq!(result, result_baseline, "Baseline hasher result mismatch");
+        assert_eq!(result, result_specialized, "Specialized hasher result mismatch");
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn test_hasher_combine() {
+        // Initial state with some arbitrary values
+        let initial_crc1 = 0x12345678;
+        let initial_crc2 = 0x9abcdef0;
+        let length1 = 128;
+        let length2 = 64;
+
+        let mut hasher1 = Hasher::new_with_initial_len(initial_crc1, length1);
+        let hasher2 = Hasher::new_with_initial_len(initial_crc2, length2);
+        
+        // Combine hasher1 with hasher2
+        hasher1.combine(&hasher2);
+
+        // Finalize to get the combined CRC
+        let combined_crc = hasher1.finalize();
+
+        // Expected CRC value after combining (placeholder value, replace with the correct value)
+        let expected_crc = 0x0; // Please replace with the expected combined CRC
+
+        assert_eq!(combined_crc, expected_crc, "Combined CRC did not match the expected value");
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn test_finalize() {
+        let mut hasher = Hasher::new();
+        hasher.update(b"hello");
+        let hash = hasher.finalize();
+        assert_eq!(hash, 0x3610A686); // Expected CRC32 for "hello"
+
+        hasher = Hasher::new();
+        hasher.update(b"world");
+        let hash = hasher.finalize();
+        assert_eq!(hash, 0x6A0BABBF); // Expected CRC32 for "world"
+
+        hasher = Hasher::new();
+        // No update should result in CRC32 for an empty string
+        let hash = hasher.finalize();
+        assert_eq!(hash, 0x0);
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn internal_new_baseline_initial_state() {
+        let init = 0x12345678;
+        let amount = 0;
+        let hasher = Hasher::internal_new_baseline(init, amount);
+        assert_eq!(hasher.amount, amount);
+        match hasher.state {
+            State::Baseline(state) => assert_eq!(state.finalize(), init),
+            State::Specialized(_) => panic!("Expected baseline state, got specialized"),
+        }
+    }
+
+    #[test]
+    fn internal_new_baseline_amount() {
+        let init = 0x12345678;
+        let amount = 123;
+        let hasher = Hasher::internal_new_baseline(init, amount);
+        assert_eq!(hasher.amount, amount);
+    }
+
+    #[test]
+    fn internal_new_baseline_reset() {
+        let mut hasher = Hasher::internal_new_baseline(0x12345678, 123);
+        hasher.reset();
+        assert_eq!(hasher.amount, 0);
+        match hasher.state {
+            State::Baseline(state) => assert_eq!(state.finalize(), 0),
+            State::Specialized(_) => panic!("Expected baseline state, got specialized"),
+        }
+    }
+
+    #[test]
+    fn internal_new_baseline_update_finalize() {
+        let mut hasher = Hasher::internal_new_baseline(0x12345678, 0);
+        let data = b"hello world";
+        hasher.update(data);
+        let result = hasher.finalize();
+        assert!(result != 0x12345678, "Hash should not equal the initial state after update.");
+    }
+
+    #[test]
+    fn internal_new_baseline_combine() {
+        let hasher1 = Hasher::internal_new_baseline(0x12345678, 0);
+        let mut hasher2 = Hasher::internal_new_baseline(0x12345678, 0);
+        hasher2.update(b"hello world");
+
+        let initial_amount = hasher2.amount;
+        hasher2.combine(&hasher1);
+        assert_eq!(hasher2.amount, initial_amount);
+        
+        let hasher1_final = hasher1.finalize();
+        let hasher2_final = hasher2.finalize();
+        assert_eq!(hasher2_final, hasher1_final, "Hashes should be equal after combining with an empty hasher.");
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn test_internal_new_specialized_with_supported_algorithm() {
+        let init = 123;
+        let amount = 456;
+        if let Some(hasher) = Hasher::internal_new_specialized(init, amount) {
+            assert_eq!(hasher.amount, amount);
+            if let State::Specialized(_state) = hasher.state {
+                // success
+            } else {
+                panic!("Expected specialized state");
+            }
+        } else {
+            panic!("Expected to create specialized Hasher but got None");
+        }
+    }
+
+    // Note: Cannot test unsupported specialized algorithm without an explicit probe function
+    // or without knowing a condition where `specialized::State::new(init)` returns None
+    // Thus, a negative test is not provided unless such a probe or condition is known
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn test_new() {
+        let mut hasher = Hasher::new();
+
+        // Test the hasher to make sure it can process data and finalize
+        hasher.update(b"test data");
+        let hash = hasher.finalize();
+
+        // Test that the computed hash is correct
+        // CRC-32 of "test data" can be precomputed using an online CRC calculator or
+        // reference implementation.
+        let expected_hash = 0x24DDFEBB; // Replace with actual CRC-32 of "test data"
+
+        assert_eq!(hash, expected_hash, "Hasher::new() did not produce the expected CRC32 hash");
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn test_new_with_initial() {
+        let initial_crc = 0x12345678;
+        let mut hasher = Hasher::new_with_initial(initial_crc);
+        hasher.update(b"hello");
+        let resulting_crc = hasher.finalize();
+
+        // since we don't know about the internal implementation details or the expected CRC values for given data,
+        // we'll just check if the CRC is different from the initial value,
+        // which indicates that the update method was called and the hash was updated correctly.
+        assert_ne!(initial_crc, resulting_crc);
+    }
+}
+True
+========================================
+    use crate::Hasher;
+
+    #[test]
+    fn test_new_with_initial_len() {
+        let init_crc = 0;
+        let amount = 0;
+        let hasher = Hasher::new_with_initial_len(init_crc, amount);
+        let hasher_default = Hasher::default();
+        
+        assert_eq!(hasher.amount, amount);
+        assert_eq!(hasher.finalize(), hasher_default.finalize());
+        
+        let init_crc = 0xFFFFFFFF;
+        let amount = 1234;
+        let hasher = Hasher::new_with_initial_len(init_crc, amount);
+        let mut hasher_default = Hasher::default();
+        hasher_default.combine(&hasher);
+        
+        assert_eq!(hasher.amount, amount);
+        assert_ne!(hasher.finalize(), hasher_default.finalize());
+    }
+}
+True
+========================================
+    use crate::Hasher;
+    use std::hash::Hasher as StdHasher;
+
+    #[test]
+    fn reset_should_reset_amount_and_state() {
+        let mut hasher = Hasher::new();
+        hasher.write(&[1, 2, 3, 4]);
+        hasher.reset();
+        
+        assert_eq!(hasher.finish(), 0u64);
+        hasher.write(&[5, 6, 7, 8]);
+        let mut new_hasher = Hasher::new_with_initial(0);
+        new_hasher.write(&[5, 6, 7, 8]);
+        assert_eq!(hasher.finish(), new_hasher.finish());
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::baseline::State as BaselineState;
+    use crate::specialized as specialized_mod;
+    use crate::specialized::State as SpecializedState;
+
+    #[test]
+    fn test_update_with_empty_buffer() {
+        let mut hasher = Hasher::default();
+        hasher.update(&[]);
+        assert_eq!(hasher.amount, 0);
+    }
+
+    #[test]
+    fn test_update_with_some_data() {
+        let mut hasher = Hasher::default();
+        let data = [1, 2, 3, 4, 5];
+        hasher.update(&data);
+        assert_eq!(hasher.amount, data.len() as u64);
+    }
+
+    #[test]
+    fn test_update_with_multiple_updates() {
+        let mut hasher = Hasher::default();
+        let data1 = [1, 2, 3];
+        let data2 = [4, 5, 6];
+        hasher.update(&data1);
+        let amount_after_first_update = hasher.amount;
+        hasher.update(&data2);
+        assert_eq!(hasher.amount, amount_after_first_update + data2.len() as u64);
+    }
+
+    #[test]
+    fn test_update_with_baseline_state() {
+        let mut hasher = Hasher::internal_new_baseline(0, 0);
+        let data = [1, 2, 3, 4, 5];
+        hasher.update(&data);
+        if let State::Baseline(ref state) = hasher.state {
+            assert_eq!(state.state, BaselineState::new(0).update(&data).state);
+        } else {
+            panic!("Expected baseline state, got specialized state");
+        }
+    }
+
+    #[test]
+    fn test_update_with_specialized_state() {
+        if let Some(mut hasher) = Hasher::internal_new_specialized(0, 0) {
+            let data = [1, 2, 3, 4, 5];
+            hasher.update(&data);
+            if let State::Specialized(ref state) = hasher.state {
+                assert_eq!(state.state, SpecializedState::new(0).unwrap().update(&data).state);
+            } else {
+                panic!("Expected specialized state, got baseline state");
+            }
+        } else {
+            eprintln!("Specialized state is not supported on this hardware, test skipped");
+        }
+    }
+}
+False
+========================================
+    use crate::baseline::State;
+
+    #[test]
+    fn test_combine() {
+        let initial_state_val = 0x12345678;
+        let other_state_val = 0x9abcdef0;
+        let amount = 1024;
+        
+        let mut state = State::new(initial_state_val);
+        let mut state_clone = state.clone();
+        
+        // Assume we have a function `update_fast_16` defined somewhere
+        // or use some other way to change state_clone to simulate a real update.
+        state_clone.update(&[0; 1024]); // Simulate an update with 1024 zeroed bytes
+        
+        state.combine(other_state_val, amount);
+        
+        // Finalize both states
+        let final_state = state.finalize();
+        let final_state_clone = state_clone.finalize();
+        
+        // The combined state should match the manually combined state
+        assert_eq!(final_state, final_state_clone);
+    }
+}
+True
+========================================
+    use crate::State;
+
+    fn update_fast_16_mock(_current_crc: u32, _buf: &[u8]) -> u32 {
+        // This is a mock implementation
+        42 // returning a non-zero value for testing purposes
+    }
+
+    fn combine_mock(_current_crc: u32, _other_crc: u32, _len2: u64) -> u32 {
+        // This is a mock implementation
+        123 // returning a non-zero value for testing purposes
+    }
+
+    #[test]
+    fn test_finalize() {
+        // Set up a closure to temporarily replace update_fast_16 for testing purposes.
+        let update_fast_16_orig = State::update_fast_16; // Save the original function.
+        unsafe {
+            State::update_fast_16 = update_fast_16_mock; // Replace the original function.
+        }
+
+        // Set up a closure to temporarily replace combine for testing purposes.
+        let combine_orig = State::combine; // Save the original function.
+        unsafe {
+            State::combine = combine_mock; // Replace the original function.
+        }
+
+        // Verify that the finalize method returns the internal state
+        let state_value: u32 = 12345;
+        let state = State::new(state_value);
+        assert_eq!(state_value, state.finalize());
+
+        // Create a state with a different internal value and finalize it
+        let state_value2: u32 = 67890;
+        let state2 = State::new(state_value2);
+        assert_eq!(state_value2, state2.finalize());
+
+        // Test finalize after update
+        let mut state_with_update = State::new(0);
+        state_with_update.update(&[1, 2, 3, 4]);
+        let finalized_state = state_with_update.finalize();
+        assert_ne!(0, finalized_state);
+        assert_eq!(42, finalized_state); // Assuming update changes the state to the mock value
+
+        // Test finalize after reset
+        let mut state_with_reset = State::new(state_value);
+        state_with_reset.reset();
+        assert_eq!(0, state_with_reset.finalize());
+
+        // Test finalize after combine
+        let mut state_with_combine = State::new(0);
+        let other_state_value: u32 = 12345;
+        let amount: u64 = 123;
+        state_with_combine.combine(other_state_value, amount);
+        assert_ne!(0, state_with_combine.finalize());
+        assert_eq!(123, state_with_combine.finalize()); // Assuming combine changes the state to the mock value
+
+        // Test finalize after cloning
+        let state_clone = state_with_combine.clone();
+        assert_eq!(state_with_combine.finalize(), state_clone.finalize());
+
+        // Clean up: Restore the original functions.
+        unsafe {
+            State::update_fast_16 = update_fast_16_orig;
+            State::combine = combine_orig;
+        }
+    }
+
+    // It's necessary to expose and enable the use of these functions using 'unsafe'.
+    // Alternatively, functions could be put into a trait, and the trait implemented for State.
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn test_new() {
+        let initial_state = 0x12345678;
+        let state = State::new(initial_state);
+
+        assert_eq!(state.finalize(), initial_state);
+    }
+
+    #[test]
+    fn test_new_clone() {
+        let initial_state = 0x12345678;
+        let state = State::new(initial_state);
+        let state_clone = state.clone();
+
+        assert_eq!(state.finalize(), state_clone.finalize());
+    }
+
+    #[test]
+    fn test_new_reset() {
+        let initial_state = 0x12345678;
+        let mut state = State::new(initial_state);
+        state.reset();
+
+        assert_eq!(state.finalize(), 0);
+    }
+
+    #[test]
+    fn test_new_combine() {
+        let initial_state = 0x12345678;
+        let mut state = State::new(initial_state);
+        let other_state = 0x9ABCDEF0;
+        let amount = 1024;
+        state.combine(other_state, amount);
+
+        // Expected result will depend on the combine function's implementation
+        // which is not shown here. Hence, we're using a placeholder value
+        // `expected_result`. Replace it with the actual expected result.
+        let expected_result = 0; // Replace with actual expected result
+        assert_eq!(state.finalize(), expected_result);
+    }
+
+    #[test]
+    fn test_new_update() {
+        let initial_state = 0x12345678;
+        let mut state = State::new(initial_state);
+        let buf = &[0x1, 0x2, 0x3, 0x4];
+        state.update(buf);
+
+        // Expected result will depend on the update function's implementation
+        // which is not shown here. Hence, we're using a placeholder value
+        // `expected_result`. Replace it with the actual expected result.
+        let expected_result = 0; // Replace with actual expected result
+        assert_eq!(state.finalize(), expected_result);
+    }
+}
+False
+========================================
+    use crate::baseline::State;
+
+    #[test]
+    fn test_reset() {
+        let mut state = State::new(1234);
+        state.reset();
+        assert_eq!(state.finalize(), 0);
+
+        // After reset, ensure state can still be used correctly
+        let data = b"some data";
+        state.update(data);
+        let after_update = state.finalize();
+        
+        // Reset again to validate multiple reset usage
+        state.reset();
+        assert_eq!(state.finalize(), 0);
+        
+        // After multiple resets, it should behave like a new State with state 0
+        // Therefore, updating and finalizing should give us the same result as before
+        let mut new_state = State::new(0);
+        new_state.update(data);
+        assert_eq!(new_state.finalize(), after_update);
+    }
+}
+False
+========================================
+    use crate::baseline::State;
+
+    #[test]
+    fn test_update() {
+        let mut state = State::new(0);
+
+        // Test update with empty buffer
+        state.update(&[]);
+        assert_eq!(state.finalize(), 0);
+
+        // Test update with non-empty buffer and known result
+        state.reset();
+        let buffer = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+        state.update(&buffer);
+        // Please replace 0x1D96177 with the actual known CRC32 result of buffer
+        let known_result: u32 = 0x1D961177; 
+        assert_eq!(state.finalize(), known_result);
+
+        // Test update with multiple calls to update
+        state.reset();
+        let buffer_chunks = buffer.chunks(3);
+        for chunk in buffer_chunks {
+            state.update(chunk);
+        }
+        assert_eq!(state.finalize(), known_result);
+    }
+}
+False
+========================================
+    use crate::update_fast_16;
+    use crate::update_slow;
+    use crate::CRC32_TABLE;
+
+    #[test]
+    fn test_update_fast_16_empty() {
+        let prev_crc = 0u32;
+        let data = [];
+        let crc = update_fast_16(prev_crc, &data);
+        assert_eq!(crc, update_slow(prev_crc, &data));
+    }
+
+    #[test]
+    fn test_update_fast_16_single_block() {
+        let prev_crc = 0u32;
+        let data = [0u8; 64];
+        let crc = update_fast_16(prev_crc, &data);
+        let expected_crc = update_slow(prev_crc, &data);
+        assert_eq!(crc, expected_crc);
+    }
+
+    #[test]
+    fn test_update_fast_16_multiple_blocks() {
+        let prev_crc = 0u32;
+        let data = [0u8; 128];
+        let crc = update_fast_16(prev_crc, &data);
+        let expected_crc = update_slow(prev_crc, &data);
+        assert_eq!(crc, expected_crc);
+    }
+
+    #[test]
+    fn test_update_fast_16_partial_block() {
+        let prev_crc = 0u32;
+        let data = [0u8; 20];
+        let crc = update_fast_16(prev_crc, &data);
+        let expected_crc = update_slow(prev_crc, &data);
+        assert_eq!(crc, expected_crc);
+    }
+
+    #[test]
+    fn test_update_fast_16_random_data() {
+        let prev_crc = 0x12345678u32;
+        let data = [42u8; 128]; // Some arbitrary non-zero data
+        let crc = update_fast_16(prev_crc, &data);
+        let expected_crc = update_slow(prev_crc, &data);
+        assert_eq!(crc, expected_crc);
+    }
+
+    #[test]
+    fn test_update_fast_16_with_initial_crc() {
+        let prev_crc = 0x12345678u32; // Some non-zero initial CRC
+        let data = [0u8; 64];
+        let crc = update_fast_16(prev_crc, &data);
+        let expected_crc = update_slow(prev_crc, &data);
+        assert_eq!(crc, expected_crc);
+    }
+}
+False
+========================================
+    use crate::update_slow;
+    use crate::CRC32_TABLE;
+
+    #[test]
+    fn test_update_slow_empty_buffer() {
+        let prev = 0xFFFFFFFF;
+        let buf = [];
+        let crc = update_slow(prev, &buf);
+        assert_eq!(crc, 0xFFFFFFFF);  // Because update_slow flips the bits of prev
+    }
+
+    #[test]
+    fn test_update_slow_single_byte() {
+        let prev = 0xFFFFFFFF;
+        let buf = [0x00];
+        let mut expected_crc = !prev;
+        expected_crc = CRC32_TABLE[0][((expected_crc as u8) ^ buf[0]) as usize] ^ (expected_crc >> 8);
+        expected_crc = !expected_crc;
+        let crc = update_slow(prev, &buf);
+        assert_eq!(crc, expected_crc);
+    }
+
+    #[test]
+    fn test_update_slow_known_value() {
+        let prev = 0xFFFFFFFF;
+        let buf = [0x61, 0x62, 0x63];  // ASCII for "abc"
+        let crc = update_slow(prev, &buf);
+        let expected_crc = 0x352441C2;  // Known CRC32 for "abc"
+        assert_eq!(crc, expected_crc);
+    }
+
+    #[test]
+    fn test_update_slow_sequence() {
+        let prev = 0xFFFFFFFF;
+        let buf = (0u8..255).collect::<Vec<u8>>();
+        let crc = update_slow(prev, &buf);
+        // The expected CRC32 for the full range of byte values can be predetermined
+        let expected_crc = 0x29058C73;
+        assert_eq!(crc, expected_crc);
+    }
+}
+False
+========================================
+    use crate::combine::combine;
+    use crate::combine::GF2_DIM;
+
+    #[test]
+    fn test_combine() {
+        let crc1 = 0x12345678;
+        let crc2 = 0x9abcdef0;
+        let len2 = 123456;
+
+        let combined_crc = combine(crc1, crc2, len2);
+
+        let expected_crc = 0x00000000; // Replace with the actual expected CRC
+        assert_eq!(combined_crc, expected_crc, "CRC combination failed");
+    }
+
+    #[test]
+    fn test_combine_zero_length() {
+        let crc1 = 0x12345678;
+        let crc2 = 0x9abcdef0;
+        let len2 = 0;
+
+        assert_eq!(combine(crc1, crc2, len2), crc1, "CRC combination with zero length should return first CRC");
+    }
+
+    #[test]
+    fn test_combine_degenerate_case() {
+        let crc1 = 0x0;
+        let crc2 = 0x0;
+        let len2 = 0x0;
+
+        assert_eq!(combine(crc1, crc2, len2), 0x0, "CRC combination with zero for all inputs should return zero");
+    }
+}
+True
+========================================
+    use super::*; // Import all items from the outer module, including `gf2_matrix_square`
+
+use crate::*;
+
+    // Assuming GF2_DIM is a constant definied in the containing module
+    // If it is not and the test module can't access it, you have to redefine it in the test module
+    const GF2_DIM: usize = 32; // Adjust the GF2_DIM according to the module's definition
+
+    #[test]
+    fn test_gf2_matrix_square() {
+        // You might need to modify the example matrix and the expected squares
+        // to fit the actual behavior and characteristics of the matrix in use.
+        let mut matrix = [0u32; GF2_DIM];
+        let mut square = [0u32; GF2_DIM];
+        let mut expected_square = [0u32; GF2_DIM];
+        
+        // Initialize the matrix with some values
+        // TODO: This should be replaced with actual meaningful values for your use case
+        for n in 0..GF2_DIM {
+            matrix[n] = n as u32; // This is just an example
+            expected_square[n] = gf2_matrix_times(&matrix, matrix[n]);
+        }
+
+        // Perform matrix squaring
+        gf2_matrix_square(&mut square, &matrix);
+
+        // Check if the actual square is as expected
+        assert_eq!(square, expected_square, "Matrix squaring did not produce the expected result.");
+    }
+}
+True
+========================================
+    use crate::gf2_matrix_times;
+
+    #[test]
+    fn test_gf2_matrix_times() {
+        let mat: [u32; super::GF2_DIM] = [
+            0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,
+            0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f,
+            0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17,
+            0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d, 0x1e, 0x1f,
+        ];
+        let vec = 0b1010;
+        let result = gf2_matrix_times(&mat, vec);
+        assert_eq!(result, mat[1] ^ mat[3]);
+    }
+
+    #[test]
+    fn test_gf2_matrix_times_zero() {
+        let mat: [u32; super::GF2_DIM] = [0; super::GF2_DIM];
+        let vec = 0b1010;
+        let result = gf2_matrix_times(&mat, vec);
+        assert_eq!(result, 0);
+    }
+
+    #[test]
+    fn test_gf2_matrix_times_identity() {
+        let mut mat: [u32; super::GF2_DIM] = [0; super::GF2_DIM];
+        for i in 0..super::GF2_DIM {
+            mat[i] = 1 << i;
+        }
+        let vec = 0b1010;
+        let result = gf2_matrix_times(&mat, vec);
+        assert_eq!(result, vec);
+    }
+}
+False
+========================================
+    use crate::hash;
+
+    #[test]
+    fn test_hash_empty() {
+        assert_eq!(hash(&[]), 0);
+    }
+
+    #[test]
+    fn test_hash_hello_world() {
+        assert_eq!(hash(b"Hello World"), 0x1c291ca3);
+    }
+
+    #[test]
+    fn test_hash_single_byte() {
+        assert_eq!(hash(&[0x0]), 0xd202ef8d);
+    }
+
+    #[test]
+    fn test_hash_incrementing_bytes() {
+        assert_eq!(hash(&[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]), 0x7c9c7d0);
+    }
+
+    #[test]
+    fn test_hash_repeating_bytes() {
+        assert_eq!(hash(&[0xFF; 256]), 0x29058c73);
+    }
+}
+True
+========================================
+    use crate::specialized::pclmulqdq::State;
+
+    #[test]
+    fn test_combine() {
+        // We require a valid initial state value and other value for testing combine
+        // We are setting amount arbitrarily to 1024 for the purpose of this test
+        let initial_state_value = 0x12345678;
+        let other_value = 0x90abcdef;
+        let amount = 1024;
+
+        // We are simulating the combine in a separate variable
+        // to test against the State's combine method
+        let expected_combined_state = combine_fn(initial_state_value, other_value, amount);
+
+        // We are assuming the new method in State is valid and creates a new state
+        // We need to check for the new state to be initialized properly on supported platforms
+        // Please note, this test might fail on platforms that do not support the relevant target features
+        let mut state = State::new(initial_state_value).expect("Failed to create state");
+        state.combine(other_value, amount);
+
+        // We finally check if State's combine method yields the expected result
+        assert_eq!(state.finalize(), expected_combined_state, "State::combine did not produce the expected result");
+    }
+
+    // Provides the pure function combine_fn for testing purposes
+    // This mimics the actual combine function's behavior which should be consistent
+    // with the State's combine method
+    fn combine_fn(initial_state: u32, other: u32, amount: u64) -> u32 {
+        // For the purpose of the test let's assume combine function is the following
+        // This is a placeholder example, the actual combine function should be used
+        // if testing against the real function's logic is necessary
+        (initial_state ^ other).wrapping_add(amount as u32)
+    }
+}
+True
+========================================
+    use crate::specialized::pclmulqdq::State;
+
+    #[test]
+    fn test_finalize_returns_state() {
+        let initial_state = 0x12345678;
+        let state_struct = State::new(initial_state).unwrap();
+        let final_state = state_struct.finalize();
+        assert_eq!(initial_state, final_state);
+    }
+}
+True
+========================================
+    use crate::specialized::pclmulqdq::State;
+    use std::arch::x86_64::*;
+
+    #[test]
+    fn test_new_returns_some_with_supported_cpu() {
+        if is_x86_feature_detected!("pclmulqdq") && is_x86_feature_detected!("sse2") && is_x86_feature_detected!("sse4.1") {
+            assert!(State::new(0).is_some());
+        }
+    }
+    
+    #[test]
+    fn test_new_returns_none_with_unsupported_cpu() {
+        if !(is_x86_feature_detected!("pclmulqdq") && is_x86_feature_detected!("sse2") && is_x86_feature_detected!("sse4.1")) {
+            assert!(State::new(0).is_none());
+        }
+    }
+}
+True
+========================================
+    use crate::specialized::pclmulqdq::State;
+
+    #[test]
+    fn test_reset() {
+        let initial_state_value = 0xDEADBEEF;
+        let mut state = State::new(initial_state_value).unwrap();
+        state.reset();
+        assert_eq!(state.finalize(), 0);
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::specialized::pclmulqdq::State;
+
+    #[test]
+    fn test_update_empty_buffer() {
+        let mut state = State::new(0).unwrap();
+        state.update(&[]);
+        assert_eq!(state.finalize(), 0);
+    }
+
+    #[test]
+    fn test_update_non_empty_buffer() {
+        let mut state = State::new(0).unwrap();
+        state.update(&[0, 1, 2, 3]);
+        assert_ne!(state.finalize(), 0);
+    }
+
+    #[test]
+    fn test_update_consistency() {
+        let mut state1 = State::new(0).unwrap();
+        let mut state2 = state1.clone();
+        state1.update(&[1, 2, 3, 4]);
+        state2.update(&[1, 2, 3, 4]);
+        assert_eq!(state1.finalize(), state2.finalize());
+    }
+
+    #[test]
+    fn test_update_continuation() {
+        let mut state = State::new(0).unwrap();
+        state.update(&[1, 2]);
+        let partial1 = state.finalize();
+        let mut state = State::new(0).unwrap();  // Re-initialize state
+        state.update(&[3, 4]);
+        let partial2 = state.finalize();
+        let mut combined_state = State::new(0).unwrap();
+        combined_state.update(&[1, 2, 3, 4]);
+        assert_ne!(partial1, combined_state.finalize());
+        assert_ne!(partial2, combined_state.finalize());
+        assert_eq!(state.finalize(), combined_state.finalize());
+    }
+
+    #[test]
+    fn test_update_after_reset() {
+        let mut state = State::new(0).unwrap();
+        state.update(&[1, 2, 3, 4]);
+        state.reset();
+        state.update(&[]);
+        assert_eq!(state.finalize(), 0);
+    }
+
+    #[test]
+    fn test_update_with_combine() {
+        let mut state1 = State::new(0).unwrap();
+        let mut state2 = State::new(0).unwrap();
+        state1.update(&[1, 2, 3, 4]);
+        state2.update(&[5, 6, 7, 8]);
+        let state2_finalized = state2.finalize();
+        state1.combine(state2_finalized, 4);
+        let mut combined_state = State::new(0).unwrap();
+        combined_state.update(&[1, 2, 3, 4, 5, 6, 7, 8]);
+        assert_eq!(state1.finalize(), combined_state.finalize());
+    }
+}
+False
+========================================
+    use crate::calculate;
+    use crate::baseline;
+
+    // Generate dummy constants that the original function uses
+    // since they are not provided but are required to make the code compile
+    const K1: i64 = 0;
+    const K2: i64 = 0;
+    const K3: i64 = 0;
+    const K4: i64 = 0;
+    const K5: u64 = 0;
+    const K6: i64 = 0;
+    const P_X: u64 = 0;
+    const U_PRIME: u64 = 0;
+
+    // Mock the required foreign functions from `arch` since we cannot import them
+    // and they are required to make the code compile
+    mod arch {
+        use crate::arch::__m128i;
+        use std::mem::transmute;
+
+        pub unsafe fn _mm_xor_si128(a: __m128i, b: __m128i) -> __m128i {
+            let a: u128 = transmute(a);
+            let b: u128 = transmute(b);
+            transmute(a ^ b)
+        }
+
+        pub unsafe fn _mm_cvtsi32_si128(a: i32) -> __m128i {
+            transmute(a as u128)
+        }
+
+        pub unsafe fn _mm_set_epi64x(a: i64, b: i64) -> __m128i {
+            transmute(((a as u128) << 64) | b as u128)
+        }
+
+        pub unsafe fn _mm_clmulepi64_si128(a: __m128i, b: __m128i, imm: i32) -> __m128i {
+            // Mock implementation, not actually multiplying
+            _mm_xor_si128(a, b)
+        }
+
+        pub unsafe fn _mm_srli_si128(a: __m128i, imm: i32) -> __m128i {
+            let a: u128 = transmute(a);
+            transmute(a >> imm)
+        }
+
+        pub unsafe fn _mm_and_si128(a: __m128i, b: __m128i) -> __m128i {
+            let a: u128 = transmute(a);
+            let b: u128 = transmute(b);
+            transmute(a & b)
+        }
+
+        pub unsafe fn _mm_set_epi32(a: i32, b: i32, c: i32, d: i32) -> __m128i {
+            transmute(((a as u128) << 96) | ((b as u128) << 64) | ((c as u128) << 32) | d as u128)
+        }
+
+        pub unsafe fn _mm_extract_epi32(a: __m128i, imm: i32) -> i32 {
+            let a: u128 = transmute(a);
+            ((a >> (32 * imm)) & 0xFFFF_FFFF) as i32
+        }
+    }
+
+    #[test]
+    fn test_calculate_small_data() {
+        unsafe {
+            let crc = 0;
+            let data = vec![0; 64]; // less than 128 bytes
+            let result = calculate(crc, &data);
+            assert_eq!(result, baseline::update_fast_16(crc, &data));
+        }
+    }
+
+    #[test]
+    fn test_calculate_exact_128() {
+        unsafe {
+            let crc = 0;
+            let data = vec![0; 128]; // exactly 128 bytes
+            // The result would be the same as the baseline for the test
+            let result = calculate(crc, &data);
+            assert_eq!(result, baseline::update_fast_16(crc, &data));
+        }
+    }
+
+    #[test]
+    fn test_calculate_large_data() {
+        unsafe {
+            let crc = 0;
+            let data = vec![0; 256]; // more than 128 bytes
+            let result = calculate(crc, &data);
+            // Since we're using mocks, we cannot assert the result to be accurate.
+            // However, we know that it must be a u32, so we're asserting that much.
+            assert!(result.is_u32());
+        }
+    }
+
+    // Helper function to assert the result is a u32
+    trait U32Check {
+        fn is_u32(&self) -> bool;
+    }
+
+    impl U32Check for u32 {
+        fn is_u32(&self) -> bool {
+            true // it's always true since the result is always u32.
+        }
+    }
+
+    // Mock get and reduce128 like they are foreign functions
+    // since they are required to make the code compile
+    unsafe fn get(data: &mut &[u8]) -> arch::__m128i {
+        // Mock implementation, using dummy data
+        let dummy_data: usize = 0;
+        *data = &data[16..]; // reduce by 16 bytes to simulate the read
+        arch::_mm_set_epi64x(0, dummy_data as i64)
+    }
+
+    unsafe fn reduce128(x: arch::__m128i, y: arch::__m128i, k: arch::__m128i) -> arch::__m128i {
+        // Mock implementation, using dummy data
+        arch::_mm_xor_si128(x, y)
+    }
+
+    // Mock the baseline update_fast_16 function since it's an external function
+    mod baseline {
+        pub fn update_fast_16(crc: u32, data: &[u8]) -> u32 {
+            // Mock implementation that just returns a dummy crc for the test
+            // as we cannot know the implementation
+            crc
+        }
+    }
+
+    // Mock the debug function as it's external and required to make the code compile
+    #[allow(dead_code)]
+    fn debug(_msg: &str, _x: arch::__m128i) {
+        // Mock implementation: no actual debug printing
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use std::arch::x86_64::_mm_set_epi32;
+
+    #[cfg(feature = "std")]
+    #[test]
+    fn test_debug() {
+        unsafe {
+            // Use _mm_set_epi32 to avoid overflow, as it directly takes i32 parameters
+            // Convert the u32 to i32 using as i32
+            let test_vector = _mm_set_epi32(0xdeadbeef as i32, 0xfeedface as i32, 0x89abcdef as i32, 0x01234567 as i32);
+            let result = debug("test debug", test_vector);
+            let test_vector_arr: [i32; 4] = std::mem::transmute(test_vector);
+            let result_arr: [i32; 4] = std::mem::transmute(result);
+            assert_eq!(test_vector_arr, result_arr);
+        }
+    }
+}
+False
+========================================
+    use crate::specialized::pclmulqdq::get;
+    use std::arch::x86_64::_mm_storeu_si128;
+    use std::arch::x86_64::__m128i;
+    use std::mem;
+
+    #[test]
+    fn test_get() {
+        unsafe {
+            let mut input = vec![0u8; 32];
+            // Initialize input with known data
+            for i in 0..input.len() {
+                input[i] = i as u8;
+            }
+            // Make a mutable slice
+            let mut input_slice: &mut [u8] = &mut input;
+
+            // Perform the operation
+            let result = get(&mut input_slice);
+
+            // Get the result into an array so we can assert its values
+            let mut result_arr: [u8; 16] = mem::zeroed();
+            _mm_storeu_si128(result_arr.as_mut_ptr() as *mut __m128i, result);
+
+            // We expect the first 16 bytes to have been loaded
+            for i in 0..16 {
+                assert_eq!(result_arr[i], i as u8);
+            }
+
+            // We also expect the input slice to have advanced by 16 bytes
+            assert_eq!(input_slice.len(), 16);
+            for i in 0..input_slice.len() {
+                assert_eq!(input_slice[i], (i + 16) as u8);
+            }
+        }
+    }
+}
+False
+========================================
+    use crate::specialized::pclmulqdq::reduce128;
+    use std::arch::x86_64 as arch;
+
+    #[test]
+    fn test_reduce128() {
+        unsafe {
+            let a = arch::_mm_set_epi64x(0x0123456789ABCDEF as i64, 0xFEDCBA9876543210 as i64);
+            let b = arch::_mm_set_epi64x(0x0011223344556677 as i64, 0x8899AABBCCDDEEFF as i64);
+            let keys = arch::_mm_set_epi64x(0x0001112131415161 as i64, 0x6170708091A1B1C1 as i64);
+
+            let result = reduce128(a, b, keys);
+            let expected = arch::_mm_set_epi64x(0xCA9D7550F53B1FD7 as i64, 0x8A7E6F7C7A982C5B as i64);
+
+            assert_eq!(arch::_mm_movemask_epi8(arch::_mm_cmpeq_epi8(result, expected)), 0xFFFF);
+        }
+    }
+}
+False
+rust-crc32fast crc32fast 18 32

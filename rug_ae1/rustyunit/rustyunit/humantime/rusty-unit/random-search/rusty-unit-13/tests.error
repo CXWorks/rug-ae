@@ -1,0 +1,353 @@
+   Compiling humantime v2.1.0 (/Users/tim/Documents/master-thesis/evaluation/humantime/rusty-unit-13)
+[2022-05-25T20:25:05Z INFO  instrumentation] MAIN: Instrumenting crate humantime
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:439 ~ humantime[5e38]::duration::test::test_units#1)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:95 ~ humantime[5e38]::duration::parse_duration)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:93 ~ humantime[5e38]::duration::{impl#3}::parse)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:91 ~ humantime[5e38]::duration::{impl#3}::parse_first_char)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:90 ~ humantime[5e38]::duration::{impl#3}::off)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:92 ~ humantime[5e38]::duration::{impl#3}::parse_unit)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:81 ~ humantime[5e38]::duration::{impl#2}::mul)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:82 ~ humantime[5e38]::duration::{impl#2}::add)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:425 ~ humantime[5e38]::duration::{impl#8}::eq)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:422 ~ humantime[5e38]::duration::{impl#6}::fmt)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:443 ~ humantime[5e38]::duration::test::test_combo#1)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:447 ~ humantime[5e38]::duration::test::all_86400_seconds#1)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:96 ~ humantime[5e38]::duration::format_duration)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:102 ~ humantime[5e38]::duration::{impl#5}::fmt)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:97 ~ humantime[5e38]::duration::item_plural)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:98 ~ humantime[5e38]::duration::item)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:451 ~ humantime[5e38]::duration::test::random_second#1)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:455 ~ humantime[5e38]::duration::test::random_any#1)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:459 ~ humantime[5e38]::duration::test::test_overlow#1)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:463 ~ humantime[5e38]::duration::test::test_nice_error_message#1)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:76 ~ humantime[5e38]::duration::{impl#1}::fmt)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:217 ~ humantime[5e38]::date::parse_rfc3339)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:218 ~ humantime[5e38]::date::parse_rfc3339_weak)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:216 ~ humantime[5e38]::date::two_digits)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:215 ~ humantime[5e38]::date::two_digits_inner)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:219 ~ humantime[5e38]::date::is_leap_year)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:524 ~ humantime[5e38]::date::{impl#4}::fmt)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:220 ~ humantime[5e38]::date::format_rfc3339)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:228 ~ humantime[5e38]::date::{impl#3}::fmt)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:548 ~ humantime[5e38]::date::{impl#12}::eq)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:222 ~ humantime[5e38]::date::format_rfc3339_millis)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:223 ~ humantime[5e38]::date::format_rfc3339_micros)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:224 ~ humantime[5e38]::date::format_rfc3339_nanos)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:583 ~ humantime[5e38]::date::test::upper_bound#1)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:587 ~ humantime[5e38]::date::test::leap_second#1)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:591 ~ humantime[5e38]::date::test::first_731_days#1)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:278 ~ humantime[5e38]::date::test::from_sec)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:595 ~ humantime[5e38]::date::test::the_731_consecutive_days#1)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:599 ~ humantime[5e38]::date::test::all_86400_seconds#1)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:603 ~ humantime[5e38]::date::test::random_past#1)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:607 ~ humantime[5e38]::date::test::random_wide_range#1)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:611 ~ humantime[5e38]::date::test::milliseconds#1)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:615 ~ humantime[5e38]::date::test::zero_month#1)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:619 ~ humantime[5e38]::date::test::big_month#1)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:623 ~ humantime[5e38]::date::test::zero_day#1)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:627 ~ humantime[5e38]::date::test::big_day#1)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:631 ~ humantime[5e38]::date::test::big_day2#1)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:635 ~ humantime[5e38]::date::test::big_second#1)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:639 ~ humantime[5e38]::date::test::big_minute#1)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:643 ~ humantime[5e38]::date::test::big_hour#1)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:647 ~ humantime[5e38]::date::test::break_data#1)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:887 ~ humantime[5e38]::main)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:100 ~ humantime[5e38]::duration::{impl#4}::get_ref)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:160 ~ humantime[5e38]::wrapper::{impl#0}::as_ref)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:163 ~ humantime[5e38]::wrapper::{impl#1}::deref)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:165 ~ humantime[5e38]::wrapper::{impl#2}::into)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:167 ~ humantime[5e38]::wrapper::{impl#3}::from)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:170 ~ humantime[5e38]::wrapper::{impl#4}::from_str)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:172 ~ humantime[5e38]::wrapper::{impl#5}::fmt)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:174 ~ humantime[5e38]::wrapper::{impl#6}::as_ref)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:177 ~ humantime[5e38]::wrapper::{impl#7}::deref)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:179 ~ humantime[5e38]::wrapper::{impl#8}::into)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:181 ~ humantime[5e38]::wrapper::{impl#9}::from)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:184 ~ humantime[5e38]::wrapper::{impl#10}::from_str)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:186 ~ humantime[5e38]::wrapper::{impl#11}::fmt)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:214 ~ humantime[5e38]::date::{impl#1}::fmt)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:221 ~ humantime[5e38]::date::format_rfc3339_seconds)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:226 ~ humantime[5e38]::date::{impl#2}::get_ref)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:426 ~ humantime[5e38]::duration::{impl#8}::ne)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:428 ~ humantime[5e38]::duration::{impl#9}::clone)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:433 ~ humantime[5e38]::duration::{impl#10}::fmt)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:435 ~ humantime[5e38]::duration::{impl#11}::clone)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:473 ~ humantime[5e38]::wrapper::{impl#12}::fmt)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:476 ~ humantime[5e38]::wrapper::{impl#14}::eq)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:477 ~ humantime[5e38]::wrapper::{impl#14}::ne)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:480 ~ humantime[5e38]::wrapper::{impl#16}::assert_receiver_is_total_eq)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:482 ~ humantime[5e38]::wrapper::{impl#17}::hash)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:485 ~ humantime[5e38]::wrapper::{impl#18}::clone)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:491 ~ humantime[5e38]::wrapper::{impl#20}::fmt)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:494 ~ humantime[5e38]::wrapper::{impl#22}::eq)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:495 ~ humantime[5e38]::wrapper::{impl#22}::ne)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:498 ~ humantime[5e38]::wrapper::{impl#24}::assert_receiver_is_total_eq)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:500 ~ humantime[5e38]::wrapper::{impl#25}::clone)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:527 ~ humantime[5e38]::date::{impl#6}::eq)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:529 ~ humantime[5e38]::date::{impl#7}::clone)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:543 ~ humantime[5e38]::date::{impl#9}::fmt)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:545 ~ humantime[5e38]::date::{impl#10}::clone)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:551 ~ humantime[5e38]::date::{impl#14}::assert_receiver_is_total_eq)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:557 ~ humantime[5e38]::date::{impl#15}::fmt)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:559 ~ humantime[5e38]::date::{impl#16}::clone)
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:407 ~ humantime[5e38]::duration::Error::InvalidCharacter::{constructor#0})
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:410 ~ humantime[5e38]::duration::Error::NumberExpected::{constructor#0})
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:430 ~ humantime[5e38]::duration::FormattedDuration::{constructor#0})
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:470 ~ humantime[5e38]::wrapper::Duration::{constructor#0})
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:488 ~ humantime[5e38]::wrapper::Timestamp::{constructor#0})
+[2022-05-25T20:25:06Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:553 ~ humantime[5e38]::date::Rfc3339Timestamp::{constructor#0})
+    Finished test [unoptimized + debuginfo] target(s) in 1.62s
+     Running unittests src/lib.rs (target/debug/deps/humantime-5d2052b6e4f1bdda)

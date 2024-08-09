@@ -1,0 +1,139 @@
+[[bin]]
+name = "test_proc_macro217"
+path = "replay_files/replay_proc_macro217.rs"
+
+[[bin]]
+name = "test_proc_macro219"
+path = "replay_files/replay_proc_macro219.rs"
+
+[[bin]]
+name = "test_proc_macro211"
+path = "replay_files/replay_proc_macro211.rs"
+
+[[bin]]
+name = "test_proc_macro29"
+path = "replay_files/replay_proc_macro29.rs"
+
+[[bin]]
+name = "test_proc_macro223"
+path = "replay_files/replay_proc_macro223.rs"
+
+[[bin]]
+name = "test_proc_macro212"
+path = "replay_files/replay_proc_macro212.rs"
+
+[[bin]]
+name = "test_proc_macro221"
+path = "replay_files/replay_proc_macro221.rs"
+
+[[bin]]
+name = "test_proc_macro24"
+path = "replay_files/replay_proc_macro24.rs"
+
+[[bin]]
+name = "test_proc_macro21"
+path = "replay_files/replay_proc_macro21.rs"
+
+[[bin]]
+name = "test_proc_macro25"
+path = "replay_files/replay_proc_macro25.rs"
+
+[[bin]]
+name = "test_proc_macro20"
+path = "replay_files/replay_proc_macro20.rs"
+
+[[bin]]
+name = "test_proc_macro222"
+path = "replay_files/replay_proc_macro222.rs"
+
+[[bin]]
+name = "test_proc_macro230"
+path = "replay_files/replay_proc_macro230.rs"
+
+[[bin]]
+name = "test_proc_macro27"
+path = "replay_files/replay_proc_macro27.rs"
+
+[[bin]]
+name = "test_proc_macro218"
+path = "replay_files/replay_proc_macro218.rs"
+
+[[bin]]
+name = "test_proc_macro214"
+path = "replay_files/replay_proc_macro214.rs"
+
+[[bin]]
+name = "test_proc_macro227"
+path = "replay_files/replay_proc_macro227.rs"
+
+[[bin]]
+name = "test_proc_macro228"
+path = "replay_files/replay_proc_macro228.rs"
+
+[[bin]]
+name = "test_proc_macro215"
+path = "replay_files/replay_proc_macro215.rs"
+
+[[bin]]
+name = "test_proc_macro224"
+path = "replay_files/replay_proc_macro224.rs"
+
+[[bin]]
+name = "test_proc_macro26"
+path = "replay_files/replay_proc_macro26.rs"
+
+[[bin]]
+name = "test_proc_macro22"
+path = "replay_files/replay_proc_macro22.rs"
+
+[[bin]]
+name = "test_proc_macro210"
+path = "replay_files/replay_proc_macro210.rs"
+
+[[bin]]
+name = "test_proc_macro23"
+path = "replay_files/replay_proc_macro23.rs"
+
+[[bin]]
+name = "test_proc_macro226"
+path = "replay_files/replay_proc_macro226.rs"
+
+[[bin]]
+name = "test_proc_macro225"
+path = "replay_files/replay_proc_macro225.rs"
+
+[[bin]]
+name = "test_proc_macro231"
+path = "replay_files/replay_proc_macro231.rs"
+
+[[bin]]
+name = "test_proc_macro229"
+path = "replay_files/replay_proc_macro229.rs"
+
+[[bin]]
+name = "test_proc_macro216"
+path = "replay_files/replay_proc_macro216.rs"
+
+[[bin]]
+name = "test_proc_macro28"
+path = "replay_files/replay_proc_macro28.rs"
+
+[[bin]]
+name = "test_proc_macro220"
+path = "replay_files/replay_proc_macro220.rs"
+
+[[bin]]
+name = "test_proc_macro213"
+path = "replay_files/replay_proc_macro213.rs"
+
+[package]
+name = "hello"
+version = "0.1.0"
+authors = [ "xiang",]
+edition = "2018"
+
+[dependencies.proc-macro2]
+path = "../proc-macro2"
+
+[profile.release]
+debug = 1

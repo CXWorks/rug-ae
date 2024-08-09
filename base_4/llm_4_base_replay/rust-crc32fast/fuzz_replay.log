@@ -1,0 +1,12 @@
+rust-crc32fast crc32fast . ['/mnt/sda/xiang/llm4/llm_4_base_replay/rust-crc32fast/./src/specialized/aarch64.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/rust-crc32fast/./src/specialized/pclmulqdq.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/rust-crc32fast/./src/specialized/mod.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/rust-crc32fast/./src/table.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/rust-crc32fast/./src/combine.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/rust-crc32fast/./src/baseline.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/rust-crc32fast/./src/lib.rs']
+/mnt/sda/xiang/llm4/llm_4_base_replay/rust-crc32fast/./src/specialized/aarch64.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/rust-crc32fast/./src/specialized/pclmulqdq.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/rust-crc32fast/./src/specialized/mod.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/rust-crc32fast/./src/table.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/rust-crc32fast/./src/combine.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/rust-crc32fast/./src/baseline.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/rust-crc32fast/./src/lib.rs
+err tests_llm_16_5 test_finalize
+err tests_llm_16_6_llm_16_6 internal_new_baseline_combine
+err tests_llm_16_9 test_new_with_initial
+done

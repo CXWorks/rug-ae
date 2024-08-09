@@ -1,0 +1,208 @@
+warning: anonymous parameters are deprecated and will be removed in the next edition
+  --> /home/cxworks/codespace/telemetry.rs/src/task.rs:30:23
+   |
+30 |     fn to_json(&self, &SerializationFormat) -> Json;
+   |                       ^^^^^^^^^^^^^^^^^^^^ help: try naming the parameter or explicitly ignoring it: `_: &SerializationFormat`
+   |
+   = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2018!
+   = note: for more information, see issue #41686 <https://github.com/rust-lang/rust/issues/41686>
+   = note: `#[warn(anonymous_parameters)]` on by default
+
+warning: trait objects without an explicit `dyn` are deprecated
+  --> /home/cxworks/codespace/telemetry.rs/src/task.rs:48:39
+   |
+48 |     RegisterPlain(usize, NamedStorage<PlainRawStorage>),
+   |                                       ^^^^^^^^^^^^^^^
+   |
+   = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2021!
+   = note: for more information, see <https://doc.rust-lang.org/nightly/edition-guide/rust-2021/warnings-promoted-to-error.html>
+   = note: `#[warn(bare_trait_objects)]` on by default
+help: use `dyn`
+   |
+48 |     RegisterPlain(usize, NamedStorage<dyn PlainRawStorage>),
+   |                                       +++
+
+warning: trait objects without an explicit `dyn` are deprecated
+  --> /home/cxworks/codespace/telemetry.rs/src/task.rs:54:39
+   |
+54 |     RegisterKeyed(usize, NamedStorage<KeyedRawStorage>),
+   |                                       ^^^^^^^^^^^^^^^
+   |
+   = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2021!
+   = note: for more information, see <https://doc.rust-lang.org/nightly/edition-guide/rust-2021/warnings-promoted-to-error.html>
+help: use `dyn`
+   |
+54 |     RegisterKeyed(usize, NamedStorage<dyn KeyedRawStorage>),
+   |                                       +++
+
+warning: trait objects without an explicit `dyn` are deprecated
+   --> /home/cxworks/codespace/telemetry.rs/src/task.rs:137:32
+    |
+137 |     plain: VecMap<NamedStorage<PlainRawStorage>>,
+    |                                ^^^^^^^^^^^^^^^
+    |
+    = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2021!
+    = note: for more information, see <https://doc.rust-lang.org/nightly/edition-guide/rust-2021/warnings-promoted-to-error.html>
+help: use `dyn`
+    |
+137 |     plain: VecMap<NamedStorage<dyn PlainRawStorage>>,
+    |                                +++
+
+warning: trait objects without an explicit `dyn` are deprecated
+   --> /home/cxworks/codespace/telemetry.rs/src/task.rs:140:32
+    |
+140 |     keyed: VecMap<NamedStorage<KeyedRawStorage>>,
+    |                                ^^^^^^^^^^^^^^^
+    |
+    = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2021!
+    = note: for more information, see <https://doc.rust-lang.org/nightly/edition-guide/rust-2021/warnings-promoted-to-error.html>
+help: use `dyn`
+    |
+140 |     keyed: VecMap<NamedStorage<dyn KeyedRawStorage>>,
+    |                                +++
+
+warning: trait objects without an explicit `dyn` are deprecated
+  --> /home/cxworks/codespace/telemetry.rs/src/service.rs:79:57
+   |
+79 |     fn register_plain(&self, name: String, storage: Box<PlainRawStorage>) -> Key<Plain> {
+   |                                                         ^^^^^^^^^^^^^^^
+   |
+   = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2021!
+   = note: for more information, see <https://doc.rust-lang.org/nightly/edition-guide/rust-2021/warnings-promoted-to-error.html>
+help: use `dyn`
+   |
+79 |     fn register_plain(&self, name: String, storage: Box<dyn PlainRawStorage>) -> Key<Plain> {
+   |                                                         +++
+
+warning: trait objects without an explicit `dyn` are deprecated
+  --> /home/cxworks/codespace/telemetry.rs/src/service.rs:89:60
+   |
+89 |     fn register_keyed<T>(&self, name: String, storage: Box<KeyedRawStorage>) -> Key<Keyed<T>> {
+   |                                                            ^^^^^^^^^^^^^^^
+   |
+   = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2021!
+   = note: for more information, see <https://doc.rust-lang.org/nightly/edition-guide/rust-2021/warnings-promoted-to-error.html>
+help: use `dyn`
+   |
+89 |     fn register_keyed<T>(&self, name: String, storage: Box<dyn KeyedRawStorage>) -> Key<Keyed<T>> {
+   |                                                            +++
+
+warning: trait objects without an explicit `dyn` are deprecated
+   --> /home/cxworks/codespace/telemetry.rs/src/service.rs:126:73
+    |
+126 |     pub fn register_plain(service: &Service, name: String, storage: Box<PlainRawStorage>) -> Key<Plain> {
+    |                                                                         ^^^^^^^^^^^^^^^
+    |
+    = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2021!
+    = note: for more information, see <https://doc.rust-lang.org/nightly/edition-guide/rust-2021/warnings-promoted-to-error.html>
+help: use `dyn`
+    |
+126 |     pub fn register_plain(service: &Service, name: String, storage: Box<dyn PlainRawStorage>) -> Key<Plain> {
+    |                                                                         +++
+
+warning: trait objects without an explicit `dyn` are deprecated
+   --> /home/cxworks/codespace/telemetry.rs/src/service.rs:130:76
+    |
+130 |     pub fn register_keyed<T>(service: &Service, name: String, storage: Box<KeyedRawStorage>) -> Key<Keyed<T>> {
+    |                                                                            ^^^^^^^^^^^^^^^
+    |
+    = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2021!
+    = note: for more information, see <https://doc.rust-lang.org/nightly/edition-guide/rust-2021/warnings-promoted-to-error.html>
+help: use `dyn`
+    |
+130 |     pub fn register_keyed<T>(service: &Service, name: String, storage: Box<dyn KeyedRawStorage>) -> Key<Keyed<T>> {
+    |                                                                            +++
+
+warning: `telemetry` (lib) generated 9 warnings (run `cargo fix --lib -p telemetry` to apply 9 suggestions)
+warning: unused variable: `t`
+  --> src/main.rs:14:9
+   |
+14 |     let t = telemetry::vec_with_size(16, A {a:5});
+   |         ^ help: if this is intentional, prefix it with an underscore: `_t`
+   |
+   = note: `#[warn(unused_variables)]` on by default
+
+warning: field `a` is never read
+ --> src/main.rs:4:5
+  |
+3 | struct A{
+  |        - field in this struct
+4 |     a:i32
+  |     ^
+  |
+  = note: `#[warn(dead_code)]` on by default
+
+warning: `rust-learn` (bin "rust-learn") generated 2 warnings (run `cargo fix --bin "rust-learn"` to apply 1 suggestion)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.00s
+warning: the following packages contain code that will be rejected by a future version of Rust: rustc-serialize v0.3.24
+note: to see what the problems were, use the option `--future-incompat-report`, or run `cargo report future-incompatibilities --id 1`
+     Running `target/debug/rust-learn`
+thread 'main' panicked at 'explicit panic', src/main.rs:9:9
+stack backtrace:
+   0:     0x5619e3f8d82a - std::backtrace_rs::backtrace::libunwind::trace::h36eacf401795ea3b
+                               at /rustc/af06dce64bf87ea9206bdf6cff61c144b9ce8458/library/std/src/../../backtrace/src/backtrace/libunwind.rs:93:5
+   1:     0x5619e3f8d82a - std::backtrace_rs::backtrace::trace_unsynchronized::hb87bf1e96b38c7cb
+                               at /rustc/af06dce64bf87ea9206bdf6cff61c144b9ce8458/library/std/src/../../backtrace/src/backtrace/mod.rs:66:5
+   2:     0x5619e3f8d82a - std::sys_common::backtrace::_print_fmt::h2b17190245ca0f2f
+                               at /rustc/af06dce64bf87ea9206bdf6cff61c144b9ce8458/library/std/src/sys_common/backtrace.rs:65:5
+   3:     0x5619e3f8d82a - <std::sys_common::backtrace::_print::DisplayBacktrace as core::fmt::Display>::fmt::h57a3b0c077c1808b
+                               at /rustc/af06dce64bf87ea9206bdf6cff61c144b9ce8458/library/std/src/sys_common/backtrace.rs:44:22
+   4:     0x5619e3fa796f - core::fmt::write::h6246f7e9e1f91310
+                               at /rustc/af06dce64bf87ea9206bdf6cff61c144b9ce8458/library/core/src/fmt/mod.rs:1254:17
+   5:     0x5619e3f8b785 - std::io::Write::write_fmt::hdaab967c27a3c2d2
+                               at /rustc/af06dce64bf87ea9206bdf6cff61c144b9ce8458/library/std/src/io/mod.rs:1698:15
+   6:     0x5619e3f8d5f5 - std::sys_common::backtrace::_print::h0ad3185cdd4d6d17
+                               at /rustc/af06dce64bf87ea9206bdf6cff61c144b9ce8458/library/std/src/sys_common/backtrace.rs:47:5
+   7:     0x5619e3f8d5f5 - std::sys_common::backtrace::print::he2ffc525e0cbf07c
+                               at /rustc/af06dce64bf87ea9206bdf6cff61c144b9ce8458/library/std/src/sys_common/backtrace.rs:34:9
+   8:     0x5619e3f8eb7e - std::panicking::default_hook::{{closure}}::hc1124ef8f66ed33f
+                               at /rustc/af06dce64bf87ea9206bdf6cff61c144b9ce8458/library/std/src/panicking.rs:269:22
+   9:     0x5619e3f8e925 - std::panicking::default_hook::hb01528e27b8ba1d7
+                               at /rustc/af06dce64bf87ea9206bdf6cff61c144b9ce8458/library/std/src/panicking.rs:288:9
+  10:     0x5619e3f8f0de - std::panicking::rust_panic_with_hook::he404bd653c842314
+                               at /rustc/af06dce64bf87ea9206bdf6cff61c144b9ce8458/library/std/src/panicking.rs:690:13
+  11:     0x5619e3f7679a - std::panicking::begin_panic::{{closure}}::h779e41c720a7e0e1
+                               at /rustc/af06dce64bf87ea9206bdf6cff61c144b9ce8458/library/std/src/panicking.rs:610:9
+  12:     0x5619e3f76abd - std::sys_common::backtrace::__rust_end_short_backtrace::ha507d9428b9ff562
+                               at /rustc/af06dce64bf87ea9206bdf6cff61c144b9ce8458/library/std/src/sys_common/backtrace.rs:150:18
+  13:     0x5619e3f766d7 - std::panicking::begin_panic::hd0e836ecd0ebdf15
+                               at /rustc/af06dce64bf87ea9206bdf6cff61c144b9ce8458/library/std/src/panicking.rs:609:12
+  14:     0x5619e3f75541 - <rust_learn::A as core::clone::Clone>::clone::h40fb6a1271ce6b29
+                               at /home/cxworks/CLionProjects/rust-learn/src/main.rs:9:9
+  15:     0x5619e3f758bd - telemetry::misc::vec_with_size::he4898cd8a7615a2e
+                               at /home/cxworks/codespace/telemetry.rs/src/misc.rs:147:22
+  16:     0x5619e3f75566 - rust_learn::main::h5c9feea4af298248
+                               at /home/cxworks/CLionProjects/rust-learn/src/main.rs:14:13
+  17:     0x5619e3f75e2b - core::ops::function::FnOnce::call_once::h19412084757c5674
+                               at /rustc/af06dce64bf87ea9206bdf6cff61c144b9ce8458/library/core/src/ops/function.rs:250:5
+  18:     0x5619e3f7575e - std::sys_common::backtrace::__rust_begin_short_backtrace::hac07649668400501
+                               at /rustc/af06dce64bf87ea9206bdf6cff61c144b9ce8458/library/std/src/sys_common/backtrace.rs:134:18
+  19:     0x5619e3f75731 - std::rt::lang_start::{{closure}}::h2288a785afbf1eff
+                               at /rustc/af06dce64bf87ea9206bdf6cff61c144b9ce8458/library/std/src/rt.rs:166:18
+  20:     0x5619e3f89c9e - core::ops::function::impls::<impl core::ops::function::FnOnce<A> for &F>::call_once::ha5f61d868738642d
+                               at /rustc/af06dce64bf87ea9206bdf6cff61c144b9ce8458/library/core/src/ops/function.rs:287:13
+  21:     0x5619e3f89c9e - std::panicking::try::do_call::h3766da4608915cb1
+                               at /rustc/af06dce64bf87ea9206bdf6cff61c144b9ce8458/library/std/src/panicking.rs:485:40
+  22:     0x5619e3f89c9e - std::panicking::try::h4cc51c799f4f8cc6
+                               at /rustc/af06dce64bf87ea9206bdf6cff61c144b9ce8458/library/std/src/panicking.rs:449:19
+  23:     0x5619e3f89c9e - std::panic::catch_unwind::hb284be48c6757a9c
+                               at /rustc/af06dce64bf87ea9206bdf6cff61c144b9ce8458/library/std/src/panic.rs:140:14
+  24:     0x5619e3f89c9e - std::rt::lang_start_internal::{{closure}}::h9eabba50f5d76d69
+                               at /rustc/af06dce64bf87ea9206bdf6cff61c144b9ce8458/library/std/src/rt.rs:148:48
+  25:     0x5619e3f89c9e - std::panicking::try::do_call::h4596fba5de32e7ab
+                               at /rustc/af06dce64bf87ea9206bdf6cff61c144b9ce8458/library/std/src/panicking.rs:485:40
+  26:     0x5619e3f89c9e - std::panicking::try::hf1496fec4e0450ab
+                               at /rustc/af06dce64bf87ea9206bdf6cff61c144b9ce8458/library/std/src/panicking.rs:449:19
+  27:     0x5619e3f89c9e - std::panic::catch_unwind::h04f21c8ee7b07770
+                               at /rustc/af06dce64bf87ea9206bdf6cff61c144b9ce8458/library/std/src/panic.rs:140:14
+  28:     0x5619e3f89c9e - std::rt::lang_start_internal::hddb97da39b1fc896
+                               at /rustc/af06dce64bf87ea9206bdf6cff61c144b9ce8458/library/std/src/rt.rs:148:20
+  29:     0x5619e3f7570a - std::rt::lang_start::h3106d19012c62f18
+                               at /rustc/af06dce64bf87ea9206bdf6cff61c144b9ce8458/library/std/src/rt.rs:165:17
+  30:     0x5619e3f7559e - main
+  31:     0x7f8baf029d90 - __libc_start_call_main
+                               at ./csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+  32:     0x7f8baf029e40 - __libc_start_main_impl
+                               at ./csu/../csu/libc-start.c:392:3
+  33:     0x5619e3f75455 - _start
+  34:                0x0 - <unknown>

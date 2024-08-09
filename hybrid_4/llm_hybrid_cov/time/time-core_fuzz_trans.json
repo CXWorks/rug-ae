@@ -1,0 +1,1 @@
+{"tests_rug_321": {"test_is_leap_year": {"rug_fuzz_0": "1900", "rug_fuzz_1": "2000", "rug_fuzz_2": "2004", "rug_fuzz_3": "2005", "rug_fuzz_4": "2100"}}, "tests_rug_322": {"test_days_in_year": {"rug_fuzz_0": "1900", "rug_fuzz_1": "2000", "rug_fuzz_2": "2004", "rug_fuzz_3": "2005", "rug_fuzz_4": "2100"}}, "tests_rug_323": {"test_weeks_in_year": {"rug_fuzz_0": "2023"}}}

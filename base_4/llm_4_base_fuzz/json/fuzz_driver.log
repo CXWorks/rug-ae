@@ -1,0 +1,2798 @@
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/json/./src/de.rs
+err tests_llm_16_19 test_deserialize_bytes
+   Compiling libc v0.2.149
+   Compiling proc-macro2 v1.0.69
+   Compiling unicode-ident v1.0.12
+   Compiling cfg-if v1.0.0
+   Compiling serde v1.0.190
+   Compiling syn v1.0.109
+   Compiling ppv-lite86 v0.2.17
+   Compiling gimli v0.28.1
+   Compiling anyhow v1.0.75
+   Compiling memchr v2.6.4
+   Compiling adler v1.0.2
+   Compiling either v1.9.0
+   Compiling rustc-demangle v0.1.23
+   Compiling lazy_static v1.4.0
+   Compiling ryu v1.0.15
+   Compiling serde_json v1.0.108
+   Compiling pretty-hex v0.3.0
+   Compiling itoa v1.0.9
+   Compiling ref-cast v1.0.20
+   Compiling rustversion v1.0.14
+   Compiling trybuild v1.0.85
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+   Compiling once_cell v1.18.0
+   Compiling dissimilar v1.0.7
+   Compiling glob v0.3.1
+   Compiling termcolor v1.3.0
+   Compiling arbitrary v1.3.2
+   Compiling indoc v2.0.4
+   Compiling miniz_oxide v0.7.1
+   Compiling object v0.32.1
+   Compiling quote v1.0.33
+   Compiling cc v1.0.83
+   Compiling getrandom v0.2.11
+   Compiling syn v2.0.38
+   Compiling rand_core v0.6.4
+   Compiling rand_chacha v0.3.1
+   Compiling addr2line v0.21.0
+   Compiling rand v0.8.5
+   Compiling backtrace v0.3.69
+   Compiling psm v0.1.21
+   Compiling stacker v0.1.15
+   Compiling bolero-generator-derive v0.8.0
+   Compiling serde_derive v1.0.190
+   Compiling ref-cast-impl v1.0.20
+   Compiling automod v1.0.13
+   Compiling bolero-generator v0.8.0
+   Compiling bolero-engine v0.8.1
+   Compiling bolero v0.8.0
+   Compiling basic-toml v0.1.7
+   Compiling serde_stacker v0.1.10
+   Compiling serde_bytes v0.11.12
+error[E0425]: cannot find value `rug_fuzz_1` in this scope
+    --> src/de.rs:2803:26
+     |
+2803 |         debug_assert_eq!(rug_fuzz_1, bytes.as_ref());
+     |                          ^^^^^^^^^^ help: a local variable with a similar name exists: `rug_fuzz_0`
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_19 test_deserialize_lone_surrogate
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0425]: cannot find value `rug_fuzz_1` in this scope
+    --> src/de.rs:2814:24
+     |
+2814 |         let expected = rug_fuzz_1;
+     |                        ^^^^^^^^^^ help: a local variable with a similar name exists: `rug_fuzz_0`
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_19 test_deserialize_invalid_utf8
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0425]: cannot find value `rug_fuzz_1` in this scope
+    --> src/de.rs:2826:26
+     |
+2826 |         debug_assert_eq!(rug_fuzz_1, bytes.as_ref());
+     |                          ^^^^^^^^^^ help: a local variable with a similar name exists: `rug_fuzz_0`
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_19 test_deserialize_empty
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0425]: cannot find value `rug_fuzz_1` in this scope
+    --> src/de.rs:2837:26
+     |
+2837 |         debug_assert_eq!(rug_fuzz_1, bytes.as_ref());
+     |                          ^^^^^^^^^^ help: a local variable with a similar name exists: `rug_fuzz_0`
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_19 test_deserialize_invalid_escape
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0425]: cannot find value `json_data` in this scope
+    --> src/de.rs:2845:57
+     |
+2845 |         let mut deserializer = Deserializer::from_slice(json_data);
+     |                                                         ^^^^^^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+
+err tests_llm_16_19 test_deserialize_incomplete_escape
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0425]: cannot find value `json_data` in this scope
+    --> src/de.rs:2855:57
+     |
+2855 |         let mut deserializer = Deserializer::from_slice(json_data);
+     |                                                         ^^^^^^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_19 test_deserialize_invalid_json
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0425]: cannot find value `json_data` in this scope
+    --> src/de.rs:2865:57
+     |
+2865 |         let mut deserializer = Deserializer::from_slice(json_data);
+     |                                                         ^^^^^^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_19 test_deserialize_incomplete_json
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0425]: cannot find value `json_data` in this scope
+    --> src/de.rs:2875:57
+     |
+2875 |         let mut deserializer = Deserializer::from_slice(json_data);
+     |                                                         ^^^^^^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_447 test_new_deserializer_from_slice
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0425]: cannot find value `json_slice` in this scope
+    --> src/de.rs:4173:53
+     |
+2583 | / pub fn from_slice<'a, T>(v: &'a [u8]) -> Result<T>
+2584 | | where
+2585 | |     T: de::Deserialize<'a>,
+2586 | | {
+2587 | |     from_trait(read::SliceRead::new(v))
+2588 | | }
+     | |_- similarly named function `from_slice` defined here
+...
+4173 |           let deserializer = Deserializer::from_slice(json_slice);
+     |                                                       ^^^^^^^^^^ help: a function with a similar name exists: `from_slice`
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_449 test_next_char_or_null_empty
+    Blocking waiting for file lock on package cache
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0423]: expected value, found module `de`
+    --> src/de.rs:4203:26
+     |
+4203 |         debug_assert_eq!(de.next_char_or_null().unwrap(), b'\x00');
+     |                          ^^- help: use the path separator to refer to an item: `::`
+
+error[E0659]: `de` is ambiguous
+    --> src/de.rs:4203:26
+     |
+4203 |         debug_assert_eq!(de.next_char_or_null().unwrap(), b'\x00');
+     |                          ^^ ambiguous name
+     |
+     = note: ambiguous because of multiple glob imports of a name in the same module
+note: `de` could refer to the module imported here
+    --> src/de.rs:4190:9
+     |
+4190 |     use super::*;
+     |         ^^^^^^^^
+     = help: consider adding an explicit import of `de` to disambiguate
+note: `de` could also refer to the module imported here
+    --> src/de.rs:4191:9
+     |
+4191 |     use crate::*;
+     |         ^^^^^^^^
+     = help: consider adding an explicit import of `de` to disambiguate
+
+Some errors have detailed explanations: E0423, E0659.
+For more information about an error, try `rustc --explain E0423`.
+error: could not compile `serde_json` due to 2 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_449 test_next_char_or_null_non_empty
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0423]: expected value, found module `de`
+    --> src/de.rs:4211:26
+     |
+4211 |         debug_assert_eq!(de.next_char_or_null().unwrap(), b'a');
+     |                          ^^- help: use the path separator to refer to an item: `::`
+
+error[E0659]: `de` is ambiguous
+    --> src/de.rs:4211:26
+     |
+4211 |         debug_assert_eq!(de.next_char_or_null().unwrap(), b'a');
+     |                          ^^ ambiguous name
+     |
+     = note: ambiguous because of multiple glob imports of a name in the same module
+note: `de` could refer to the module imported here
+    --> src/de.rs:4190:9
+     |
+4190 |     use super::*;
+     |         ^^^^^^^^
+     = help: consider adding an explicit import of `de` to disambiguate
+note: `de` could also refer to the module imported here
+    --> src/de.rs:4191:9
+     |
+4191 |     use crate::*;
+     |         ^^^^^^^^
+     = help: consider adding an explicit import of `de` to disambiguate
+
+Some errors have detailed explanations: E0423, E0659.
+For more information about an error, try `rustc --explain E0423`.
+error: could not compile `serde_json` due to 2 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_449 test_next_char_or_null_null
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0423]: expected value, found module `de`
+    --> src/de.rs:4219:26
+     |
+4219 |         debug_assert_eq!(de.next_char_or_null().unwrap(), b'\x00');
+     |                          ^^- help: use the path separator to refer to an item: `::`
+
+error[E0659]: `de` is ambiguous
+    --> src/de.rs:4219:26
+     |
+4219 |         debug_assert_eq!(de.next_char_or_null().unwrap(), b'\x00');
+     |                          ^^ ambiguous name
+     |
+     = note: ambiguous because of multiple glob imports of a name in the same module
+note: `de` could refer to the module imported here
+    --> src/de.rs:4190:9
+     |
+4190 |     use super::*;
+     |         ^^^^^^^^
+     = help: consider adding an explicit import of `de` to disambiguate
+note: `de` could also refer to the module imported here
+    --> src/de.rs:4191:9
+     |
+4191 |     use crate::*;
+     |         ^^^^^^^^
+     = help: consider adding an explicit import of `de` to disambiguate
+
+Some errors have detailed explanations: E0423, E0659.
+For more information about an error, try `rustc --explain E0423`.
+error: could not compile `serde_json` due to 2 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_449 test_next_char_or_null_multiple_chars
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0423]: expected value, found module `de`
+    --> src/de.rs:4227:26
+     |
+4227 |         debug_assert_eq!(de.next_char_or_null().unwrap(), b'a');
+     |                          ^^- help: use the path separator to refer to an item: `::`
+
+error[E0423]: expected value, found module `de`
+    --> src/de.rs:4228:26
+     |
+4228 |         debug_assert_eq!(de.next_char_or_null().unwrap(), b'b');
+     |                          ^^- help: use the path separator to refer to an item: `::`
+
+error[E0423]: expected value, found module `de`
+    --> src/de.rs:4229:26
+     |
+4229 |         debug_assert_eq!(de.next_char_or_null().unwrap(), b'c');
+     |                          ^^- help: use the path separator to refer to an item: `::`
+
+error[E0423]: expected value, found module `de`
+    --> src/de.rs:4230:26
+     |
+4230 |         debug_assert_eq!(de.next_char_or_null().unwrap(), b'\x00');
+     |                          ^^- help: use the path separator to refer to an item: `::`
+
+error[E0659]: `de` is ambiguous
+    --> src/de.rs:4227:26
+     |
+4227 |         debug_assert_eq!(de.next_char_or_null().unwrap(), b'a');
+     |                          ^^ ambiguous name
+     |
+     = note: ambiguous because of multiple glob imports of a name in the same module
+note: `de` could refer to the module imported here
+    --> src/de.rs:4190:9
+     |
+4190 |     use super::*;
+     |         ^^^^^^^^
+     = help: consider adding an explicit import of `de` to disambiguate
+note: `de` could also refer to the module imported here
+    --> src/de.rs:4191:9
+     |
+4191 |     use crate::*;
+     |         ^^^^^^^^
+     = help: consider adding an explicit import of `de` to disambiguate
+
+error[E0659]: `de` is ambiguous
+    --> src/de.rs:4228:26
+     |
+4228 |         debug_assert_eq!(de.next_char_or_null().unwrap(), b'b');
+     |                          ^^ ambiguous name
+     |
+     = note: ambiguous because of multiple glob imports of a name in the same module
+note: `de` could refer to the module imported here
+    --> src/de.rs:4190:9
+     |
+4190 |     use super::*;
+     |         ^^^^^^^^
+     = help: consider adding an explicit import of `de` to disambiguate
+note: `de` could also refer to the module imported here
+    --> src/de.rs:4191:9
+     |
+4191 |     use crate::*;
+     |         ^^^^^^^^
+     = help: consider adding an explicit import of `de` to disambiguate
+
+error[E0659]: `de` is ambiguous
+    --> src/de.rs:4229:26
+     |
+4229 |         debug_assert_eq!(de.next_char_or_null().unwrap(), b'c');
+     |                          ^^ ambiguous name
+     |
+     = note: ambiguous because of multiple glob imports of a name in the same module
+note: `de` could refer to the module imported here
+    --> src/de.rs:4190:9
+     |
+4190 |     use super::*;
+     |         ^^^^^^^^
+     = help: consider adding an explicit import of `de` to disambiguate
+note: `de` could also refer to the module imported here
+    --> src/de.rs:4191:9
+     |
+4191 |     use crate::*;
+     |         ^^^^^^^^
+     = help: consider adding an explicit import of `de` to disambiguate
+
+error[E0659]: `de` is ambiguous
+    --> src/de.rs:4230:26
+     |
+4230 |         debug_assert_eq!(de.next_char_or_null().unwrap(), b'\x00');
+     |                          ^^ ambiguous name
+     |
+     = note: ambiguous because of multiple glob imports of a name in the same module
+note: `de` could refer to the module imported here
+    --> src/de.rs:4190:9
+     |
+4190 |     use super::*;
+     |         ^^^^^^^^
+     = help: consider adding an explicit import of `de` to disambiguate
+note: `de` could also refer to the module imported here
+    --> src/de.rs:4191:9
+     |
+4191 |     use crate::*;
+     |         ^^^^^^^^
+     = help: consider adding an explicit import of `de` to disambiguate
+
+Some errors have detailed explanations: E0423, E0659.
+For more information about an error, try `rustc --explain E0423`.
+error: could not compile `serde_json` due to 8 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_449 test_next_char_or_null_whitespace
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0423]: expected value, found module `de`
+    --> src/de.rs:4238:26
+     |
+4238 |         debug_assert_eq!(de.next_char_or_null().unwrap(), b' ');
+     |                          ^^- help: use the path separator to refer to an item: `::`
+
+error[E0423]: expected value, found module `de`
+    --> src/de.rs:4239:26
+     |
+4239 |         debug_assert_eq!(de.next_char_or_null().unwrap(), b'\n');
+     |                          ^^- help: use the path separator to refer to an item: `::`
+
+error[E0423]: expected value, found module `de`
+    --> src/de.rs:4240:26
+     |
+4240 |         debug_assert_eq!(de.next_char_or_null().unwrap(), b'\r');
+     |                          ^^- help: use the path separator to refer to an item: `::`
+
+error[E0423]: expected value, found module `de`
+    --> src/de.rs:4241:26
+     |
+4241 |         debug_assert_eq!(de.next_char_or_null().unwrap(), b'\t');
+     |                          ^^- help: use the path separator to refer to an item: `::`
+
+error[E0423]: expected value, found module `de`
+    --> src/de.rs:4242:26
+     |
+4242 |         debug_assert_eq!(de.next_char_or_null().unwrap(), b'\x00');
+     |                          ^^- help: use the path separator to refer to an item: `::`
+
+error[E0659]: `de` is ambiguous
+    --> src/de.rs:4238:26
+     |
+4238 |         debug_assert_eq!(de.next_char_or_null().unwrap(), b' ');
+     |                          ^^ ambiguous name
+     |
+     = note: ambiguous because of multiple glob imports of a name in the same module
+note: `de` could refer to the module imported here
+    --> src/de.rs:4190:9
+     |
+4190 |     use super::*;
+     |         ^^^^^^^^
+     = help: consider adding an explicit import of `de` to disambiguate
+note: `de` could also refer to the module imported here
+    --> src/de.rs:4191:9
+     |
+4191 |     use crate::*;
+     |         ^^^^^^^^
+     = help: consider adding an explicit import of `de` to disambiguate
+
+error[E0659]: `de` is ambiguous
+    --> src/de.rs:4239:26
+     |
+4239 |         debug_assert_eq!(de.next_char_or_null().unwrap(), b'\n');
+     |                          ^^ ambiguous name
+     |
+     = note: ambiguous because of multiple glob imports of a name in the same module
+note: `de` could refer to the module imported here
+    --> src/de.rs:4190:9
+     |
+4190 |     use super::*;
+     |         ^^^^^^^^
+     = help: consider adding an explicit import of `de` to disambiguate
+note: `de` could also refer to the module imported here
+    --> src/de.rs:4191:9
+     |
+4191 |     use crate::*;
+     |         ^^^^^^^^
+     = help: consider adding an explicit import of `de` to disambiguate
+
+error[E0659]: `de` is ambiguous
+    --> src/de.rs:4240:26
+     |
+4240 |         debug_assert_eq!(de.next_char_or_null().unwrap(), b'\r');
+     |                          ^^ ambiguous name
+     |
+     = note: ambiguous because of multiple glob imports of a name in the same module
+note: `de` could refer to the module imported here
+    --> src/de.rs:4190:9
+     |
+4190 |     use super::*;
+     |         ^^^^^^^^
+     = help: consider adding an explicit import of `de` to disambiguate
+note: `de` could also refer to the module imported here
+    --> src/de.rs:4191:9
+     |
+4191 |     use crate::*;
+     |         ^^^^^^^^
+     = help: consider adding an explicit import of `de` to disambiguate
+
+error[E0659]: `de` is ambiguous
+    --> src/de.rs:4241:26
+     |
+4241 |         debug_assert_eq!(de.next_char_or_null().unwrap(), b'\t');
+     |                          ^^ ambiguous name
+     |
+     = note: ambiguous because of multiple glob imports of a name in the same module
+note: `de` could refer to the module imported here
+    --> src/de.rs:4190:9
+     |
+4190 |     use super::*;
+     |         ^^^^^^^^
+     = help: consider adding an explicit import of `de` to disambiguate
+note: `de` could also refer to the module imported here
+    --> src/de.rs:4191:9
+     |
+4191 |     use crate::*;
+     |         ^^^^^^^^
+     = help: consider adding an explicit import of `de` to disambiguate
+
+error[E0659]: `de` is ambiguous
+    --> src/de.rs:4242:26
+     |
+4242 |         debug_assert_eq!(de.next_char_or_null().unwrap(), b'\x00');
+     |                          ^^ ambiguous name
+     |
+     = note: ambiguous because of multiple glob imports of a name in the same module
+note: `de` could refer to the module imported here
+    --> src/de.rs:4190:9
+     |
+4190 |     use super::*;
+     |         ^^^^^^^^
+     = help: consider adding an explicit import of `de` to disambiguate
+note: `de` could also refer to the module imported here
+    --> src/de.rs:4191:9
+     |
+4191 |     use crate::*;
+     |         ^^^^^^^^
+     = help: consider adding an explicit import of `de` to disambiguate
+
+Some errors have detailed explanations: E0423, E0659.
+For more information about an error, try `rustc --explain E0423`.
+error: could not compile `serde_json` due to 10 previous errors
+
+err tests_llm_16_465 test_peek_or_null_empty_slice
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0425]: cannot find value `empty_slice` in this scope
+    --> src/de.rs:4484:47
+     |
+4484 |         let mut de = Deserializer::from_slice(empty_slice);
+     |                                               ^^^^^^^^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_465 test_peek_or_null_non_empty_slice
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0425]: cannot find value `non_empty_slice` in this scope
+    --> src/de.rs:4493:47
+     |
+4493 |         let mut de = Deserializer::from_slice(non_empty_slice);
+     |                                               ^^^^^^^^^^^^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_465 test_peek_or_null_after_exhausting_data
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0425]: cannot find value `data_slice` in this scope
+    --> src/de.rs:4502:47
+     |
+4502 |         let mut de = Deserializer::from_slice(data_slice);
+     |                                               ^^^^^^^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_465 test_peek_or_null_after_partial_consume
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0425]: cannot find value `data_slice` in this scope
+    --> src/de.rs:4512:47
+     |
+4512 |         let mut de = Deserializer::from_slice(data_slice);
+     |                                               ^^^^^^^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_468 test_from_slice
+    Blocking waiting for file lock on package cache
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0425]: cannot find value `rug_fuzz_30` in this scope
+    --> src/de.rs:4705:21
+     |
+4705 |                     rug_fuzz_30,
+     |                     ^^^^^^^^^^^ help: a local variable with a similar name exists: `rug_fuzz_0`
+
+error[E0277]: the trait bound `([u8; 4], bool, [u8; 4], bool, bool, [u8; 5], bool, i32, [u8; 2], i32, i32, [u8; 3], i32, f64, [u8; 3], f64, &str, [u8; 5], &str, &str, [u8; 6], &str, bool, [u8; 12], bool, i32, [u8; 7], i32, i32, i32, [u8; 13], i32, i32): Arbitrary<'_>` is not satisfied
+    --> src/de.rs:4661:622
+     |
+4661 | ... = <([u8; 4], bool, [u8; 4], bool, bool, [u8; 5], bool, i32, [u8; 2], i32, i32, [u8; 3], i32, f64, [u8; 3], f64, &str, [u8; 5], &str, &str, [u8; 6], &str, bool, [u8; 12], bool, i32, [u8; 7], i32, i32, i32, [u8; 13], i32, i32) as arbitrary::Arbitrary>::arbitrary(&m...
+     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Arbitrary<'_>` is not implemented for `([u8; 4], bool, [u8; 4], bool, bool, [u8; 5], bool, i32, [u8; 2], i32, i32, [u8; 3], i32, f64, [u8; 3], f64, &str, [u8; 5], &str, &str, [u8; 6], &str, bool, [u8; 12], bool, i32, [u8; 7], i32, i32, i32, [u8; 13], i32, i32)`
+     |
+     = help: the following other types implement trait `Arbitrary<'a>`:
+               ()
+               (B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, A)
+               (C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, B)
+               (D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, C)
+               (E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, D)
+               (F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, E)
+               (G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, F)
+               (H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, G)
+             and 19 others
+
+Some errors have detailed explanations: E0277, E0425.
+For more information about an error, try `rustc --explain E0277`.
+error: could not compile `serde_json` due to 2 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_480 test_from_slice_valid_json
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error: this file contains an unclosed delimiter
+    --> src/de.rs:5302:3
+     |
+5106 | mod tests_llm_16_480 {
+     |                      - unclosed delimiter
+...
+5115 |     fn test_from_slice_valid_json() {
+     |                                     - unclosed delimiter
+...
+5120 |         .for_each(|rug_data| {
+     |                  - unclosed delimiter
+...
+5302 | }
+     |   ^
+
+error: expected type, found `"0xF9BA143B95FF6D82"`
+    --> src/de.rs:5124:28
+     |
+5124 |             "fingerprint": "0xF9BA143B95FF6D82",
+     |                          - ^^^^^^^^^^^^^^^^^^^^ expected type
+     |                          |
+     |                          tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected `;`, found `{`
+    --> src/de.rs:5139:30
+     |
+5139 |         let rug_fuzz_0 = br#" { "fingerprint": "0xF9BA143B95FF6D82", "location": "Menlo Park, CA", } "#;
+     |                              ^- unexpected token
+     |                              |
+     |                              help: add `;` here
+
+error: expected type, found `"0xF9BA143B95FF6D82"`
+    --> src/de.rs:5139:48
+     |
+5139 |         let rug_fuzz_0 = br#" { "fingerprint": "0xF9BA143B95FF6D82", "location": "Menlo Park, CA", } "#;
+     |                                              - ^^^^^^^^^^^^^^^^^^^^ expected type
+     |                                              |
+     |                                              tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected `;`, found `{`
+    --> src/de.rs:5148:30
+     |
+5148 |         let rug_fuzz_0 = br#"
+     |                              ^ help: add `;` here
+5149 |         {
+     |         - unexpected token
+
+error: expected type, found `12345`
+    --> src/de.rs:5150:28
+     |
+5150 |             "fingerprint": 12345,
+     |                          - ^^^^^ expected type
+     |                          |
+     |                          tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected `;`, found `{`
+    --> src/de.rs:5161:30
+     |
+5161 |         let rug_fuzz_0 = br#"
+     |                              ^ help: add `;` here
+5162 |         {
+     |         - unexpected token
+
+error: expected type, found `"Menlo Park, CA"`
+    --> src/de.rs:5163:25
+     |
+5163 |             "location": "Menlo Park, CA"
+     |                       - ^^^^^^^^^^^^^^^^ expected type
+     |                       |
+     |                       tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected `;`, found `{`
+    --> src/de.rs:5173:30
+     |
+5173 |         let rug_fuzz_0 = br#"{}"#;
+     |                              ^
+     |                              |
+     |                              unexpected token
+     |                              help: add `;` here
+
+error: expected `;`, found `{`
+    --> src/de.rs:5182:30
+     |
+5182 |         let rug_fuzz_0 = br#"
+     |                              ^ help: add `;` here
+5183 |         {
+     |         - unexpected token
+
+error: expected type, found `"0xF9BA143B95FF6D82"`
+    --> src/de.rs:5184:28
+     |
+5184 |             "fingerprint": "0xF9BA143B95FF6D82",
+     |                          - ^^^^^^^^^^^^^^^^^^^^ expected type
+     |                          |
+     |                          tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected type, found `"0xF9BA143B95FF6D82"`
+    --> src/de.rs:5199:32
+     |
+5199 |                 "fingerprint": "0xF9BA143B95FF6D82",
+     |                              - ^^^^^^^^^^^^^^^^^^^^ expected type
+     |                              |
+     |                              tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected `;`, found `"#;
+               let json_data = rug_fuzz_0;
+               let result: Result<Vec<User>, Error> = from_slice(json_data);
+               debug_assert!(result.is_ok());
+               let _rug_ed_tests_llm_16_480_rrrruuuugggg_test_from_slice_json_array = 0;
+           }
+           #[test]
+           fn test_from_slice_json_value() {
+               let _rug_st_tests_llm_16_480_rrrruuuugggg_test_from_slice_json_value = 0;
+               let rug_fuzz_0 = br#"`
+    --> src/de.rs:5202:10
+     |
+5202 |           ]
+     |            ^ help: add `;` here
+5203 | /         "#;
+5204 | |         let json_data = rug_fuzz_0;
+5205 | |         let result: Result<Vec<User>, Error> = from_slice(json_data);
+5206 | |         debug_assert!(result.is_ok());
+...    |
+5211 | |         let _rug_st_tests_llm_16_480_rrrruuuugggg_test_from_slice_json_value = 0;
+5212 | |         let rug_fuzz_0 = br#"
+     | |_____________________________- unexpected token
+
+error: expected `;`, found `{`
+    --> src/de.rs:5212:30
+     |
+5212 |         let rug_fuzz_0 = br#"
+     |                              ^ help: add `;` here
+5213 |         {
+     |         - unexpected token
+
+error: expected type, found `"0xF9BA143B95FF6D82"`
+    --> src/de.rs:5214:28
+     |
+5214 |             "fingerprint": "0xF9BA143B95FF6D82",
+     |                          - ^^^^^^^^^^^^^^^^^^^^ expected type
+     |                          |
+     |                          tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected `;`, found `{`
+    --> src/de.rs:5242:29
+     |
+5242 |         let rug_fuzz_0 = r#"{
+     |                             ^
+     |                             |
+     |                             unexpected token
+     |                             help: add `;` here
+
+error: expected type, found `"0xF9BA143B95FF6D82"`
+    --> src/de.rs:5243:28
+     |
+5243 |             "fingerprint": "0xF9BA143B95FF6D82",
+     |                          - ^^^^^^^^^^^^^^^^^^^^ expected type
+     |                          |
+     |                          tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected `;`, found `0xF9BA143B95FF6D82`
+    --> src/de.rs:5249:38
+     |
+5249 |             u, User { fingerprint : "0xF9BA143B95FF6D82".to_string(), location :
+     |                                      ^-----------------
+     |                                      |
+     |                                      unexpected token
+     |                                      help: add `;` here
+
+error: expected one of `.`, `;`, `?`, `}`, or an operator, found `".to_string(), location :
+                   "Menlo`
+    --> src/de.rs:5106:22
+     |
+5106 |   mod tests_llm_16_480 {
+     |                        ^ unclosed delimiter
+...
+5249 |               u, User { fingerprint : "0xF9BA143B95FF6D82".to_string(), location :
+     |                                                          ^
+     |                                                          |
+     |                                                          expected one of `.`, `;`, `?`, `}`, or an operator
+     |  ________________________________________________________help: `}` may belong here
+     | |
+5250 | |             "Menlo Park, CA".to_string(), }
+     | |__________________^ unexpected token
+
+error: could not compile `serde_json` due to 19 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `serde_json` due to 19 previous errors
+
+err tests_llm_16_480 test_from_slice_invalid_json_syntax
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0425]: cannot find value `json_data` in this scope
+    --> src/de.rs:5143:54
+     |
+5143 |         let result: Result<User, Error> = from_slice(json_data);
+     |                                                      ^^^^^^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_480 test_from_slice_invalid_json_data_type
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error: this file contains an unclosed delimiter
+    --> src/de.rs:5304:3
+     |
+5106 | mod tests_llm_16_480 {
+     |                      - unclosed delimiter
+...
+5143 |     fn test_from_slice_invalid_json_data_type() {
+     |                                                 - unclosed delimiter
+...
+5148 |         .for_each(|rug_data| {
+     |                  - unclosed delimiter
+...
+5304 | }
+     |   ^
+
+error: expected type, found `12345`
+    --> src/de.rs:5152:28
+     |
+5152 |             "fingerprint": 12345,
+     |                          - ^^^^^ expected type
+     |                          |
+     |                          tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected `;`, found `{`
+    --> src/de.rs:5163:30
+     |
+5163 |         let rug_fuzz_0 = br#"
+     |                              ^ help: add `;` here
+5164 |         {
+     |         - unexpected token
+
+error: expected type, found `"Menlo Park, CA"`
+    --> src/de.rs:5165:25
+     |
+5165 |             "location": "Menlo Park, CA"
+     |                       - ^^^^^^^^^^^^^^^^ expected type
+     |                       |
+     |                       tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected `;`, found `{`
+    --> src/de.rs:5175:30
+     |
+5175 |         let rug_fuzz_0 = br#"{}"#;
+     |                              ^
+     |                              |
+     |                              unexpected token
+     |                              help: add `;` here
+
+error: expected `;`, found `{`
+    --> src/de.rs:5184:30
+     |
+5184 |         let rug_fuzz_0 = br#"
+     |                              ^ help: add `;` here
+5185 |         {
+     |         - unexpected token
+
+error: expected type, found `"0xF9BA143B95FF6D82"`
+    --> src/de.rs:5186:28
+     |
+5186 |             "fingerprint": "0xF9BA143B95FF6D82",
+     |                          - ^^^^^^^^^^^^^^^^^^^^ expected type
+     |                          |
+     |                          tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected type, found `"0xF9BA143B95FF6D82"`
+    --> src/de.rs:5201:32
+     |
+5201 |                 "fingerprint": "0xF9BA143B95FF6D82",
+     |                              - ^^^^^^^^^^^^^^^^^^^^ expected type
+     |                              |
+     |                              tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected `;`, found `"#;
+               let json_data = rug_fuzz_0;
+               let result: Result<Vec<User>, Error> = from_slice(json_data);
+               debug_assert!(result.is_ok());
+               let _rug_ed_tests_llm_16_480_rrrruuuugggg_test_from_slice_json_array = 0;
+           }
+           #[test]
+           fn test_from_slice_json_value() {
+               let _rug_st_tests_llm_16_480_rrrruuuugggg_test_from_slice_json_value = 0;
+               let rug_fuzz_0 = br#"`
+    --> src/de.rs:5204:10
+     |
+5204 |           ]
+     |            ^ help: add `;` here
+5205 | /         "#;
+5206 | |         let json_data = rug_fuzz_0;
+5207 | |         let result: Result<Vec<User>, Error> = from_slice(json_data);
+5208 | |         debug_assert!(result.is_ok());
+...    |
+5213 | |         let _rug_st_tests_llm_16_480_rrrruuuugggg_test_from_slice_json_value = 0;
+5214 | |         let rug_fuzz_0 = br#"
+     | |_____________________________- unexpected token
+
+error: expected `;`, found `{`
+    --> src/de.rs:5214:30
+     |
+5214 |         let rug_fuzz_0 = br#"
+     |                              ^ help: add `;` here
+5215 |         {
+     |         - unexpected token
+
+error: expected type, found `"0xF9BA143B95FF6D82"`
+    --> src/de.rs:5216:28
+     |
+5216 |             "fingerprint": "0xF9BA143B95FF6D82",
+     |                          - ^^^^^^^^^^^^^^^^^^^^ expected type
+     |                          |
+     |                          tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected `;`, found `{`
+    --> src/de.rs:5244:29
+     |
+5244 |         let rug_fuzz_0 = r#"{
+     |                             ^
+     |                             |
+     |                             unexpected token
+     |                             help: add `;` here
+
+error: expected type, found `"0xF9BA143B95FF6D82"`
+    --> src/de.rs:5245:28
+     |
+5245 |             "fingerprint": "0xF9BA143B95FF6D82",
+     |                          - ^^^^^^^^^^^^^^^^^^^^ expected type
+     |                          |
+     |                          tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected `;`, found `0xF9BA143B95FF6D82`
+    --> src/de.rs:5251:38
+     |
+5251 |             u, User { fingerprint : "0xF9BA143B95FF6D82".to_string(), location :
+     |                                      ^-----------------
+     |                                      |
+     |                                      unexpected token
+     |                                      help: add `;` here
+
+error: expected one of `.`, `;`, `?`, `}`, or an operator, found `".to_string(), location :
+                   "Menlo`
+    --> src/de.rs:5106:22
+     |
+5106 |   mod tests_llm_16_480 {
+     |                        ^ unclosed delimiter
+...
+5251 |               u, User { fingerprint : "0xF9BA143B95FF6D82".to_string(), location :
+     |                                                          ^
+     |                                                          |
+     |                                                          expected one of `.`, `;`, `?`, `}`, or an operator
+     |  ________________________________________________________help: `}` may belong here
+     | |
+5252 | |             "Menlo Park, CA".to_string(), }
+     | |__________________^ unexpected token
+
+error: could not compile `serde_json` due to 15 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `serde_json` due to 15 previous errors
+
+err tests_llm_16_480 test_from_slice_missing_json_key
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error: this file contains an unclosed delimiter
+    --> src/de.rs:5304:3
+     |
+5106 | mod tests_llm_16_480 {
+     |                      - unclosed delimiter
+...
+5156 |     fn test_from_slice_missing_json_key() {
+     |                                           - unclosed delimiter
+...
+5161 |         .for_each(|rug_data| {
+     |                  - unclosed delimiter
+...
+5304 | }
+     |   ^
+
+error: expected type, found `"Menlo Park, CA"`
+    --> src/de.rs:5165:25
+     |
+5165 |             "location": "Menlo Park, CA"
+     |                       - ^^^^^^^^^^^^^^^^ expected type
+     |                       |
+     |                       tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected `;`, found `{`
+    --> src/de.rs:5175:30
+     |
+5175 |         let rug_fuzz_0 = br#"{}"#;
+     |                              ^
+     |                              |
+     |                              unexpected token
+     |                              help: add `;` here
+
+error: expected `;`, found `{`
+    --> src/de.rs:5184:30
+     |
+5184 |         let rug_fuzz_0 = br#"
+     |                              ^ help: add `;` here
+5185 |         {
+     |         - unexpected token
+
+error: expected type, found `"0xF9BA143B95FF6D82"`
+    --> src/de.rs:5186:28
+     |
+5186 |             "fingerprint": "0xF9BA143B95FF6D82",
+     |                          - ^^^^^^^^^^^^^^^^^^^^ expected type
+     |                          |
+     |                          tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected type, found `"0xF9BA143B95FF6D82"`
+    --> src/de.rs:5201:32
+     |
+5201 |                 "fingerprint": "0xF9BA143B95FF6D82",
+     |                              - ^^^^^^^^^^^^^^^^^^^^ expected type
+     |                              |
+     |                              tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected `;`, found `"#;
+               let json_data = rug_fuzz_0;
+               let result: Result<Vec<User>, Error> = from_slice(json_data);
+               debug_assert!(result.is_ok());
+               let _rug_ed_tests_llm_16_480_rrrruuuugggg_test_from_slice_json_array = 0;
+           }
+           #[test]
+           fn test_from_slice_json_value() {
+               let _rug_st_tests_llm_16_480_rrrruuuugggg_test_from_slice_json_value = 0;
+               let rug_fuzz_0 = br#"`
+    --> src/de.rs:5204:10
+     |
+5204 |           ]
+     |            ^ help: add `;` here
+5205 | /         "#;
+5206 | |         let json_data = rug_fuzz_0;
+5207 | |         let result: Result<Vec<User>, Error> = from_slice(json_data);
+5208 | |         debug_assert!(result.is_ok());
+...    |
+5213 | |         let _rug_st_tests_llm_16_480_rrrruuuugggg_test_from_slice_json_value = 0;
+5214 | |         let rug_fuzz_0 = br#"
+     | |_____________________________- unexpected token
+
+error: expected `;`, found `{`
+    --> src/de.rs:5214:30
+     |
+5214 |         let rug_fuzz_0 = br#"
+     |                              ^ help: add `;` here
+5215 |         {
+     |         - unexpected token
+
+error: expected type, found `"0xF9BA143B95FF6D82"`
+    --> src/de.rs:5216:28
+     |
+5216 |             "fingerprint": "0xF9BA143B95FF6D82",
+     |                          - ^^^^^^^^^^^^^^^^^^^^ expected type
+     |                          |
+     |                          tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected `;`, found `{`
+    --> src/de.rs:5244:29
+     |
+5244 |         let rug_fuzz_0 = r#"{
+     |                             ^
+     |                             |
+     |                             unexpected token
+     |                             help: add `;` here
+
+error: expected type, found `"0xF9BA143B95FF6D82"`
+    --> src/de.rs:5245:28
+     |
+5245 |             "fingerprint": "0xF9BA143B95FF6D82",
+     |                          - ^^^^^^^^^^^^^^^^^^^^ expected type
+     |                          |
+     |                          tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected `;`, found `0xF9BA143B95FF6D82`
+    --> src/de.rs:5251:38
+     |
+5251 |             u, User { fingerprint : "0xF9BA143B95FF6D82".to_string(), location :
+     |                                      ^-----------------
+     |                                      |
+     |                                      unexpected token
+     |                                      help: add `;` here
+
+error: expected one of `.`, `;`, `?`, `}`, or an operator, found `".to_string(), location :
+                   "Menlo`
+    --> src/de.rs:5106:22
+     |
+5106 |   mod tests_llm_16_480 {
+     |                        ^ unclosed delimiter
+...
+5251 |               u, User { fingerprint : "0xF9BA143B95FF6D82".to_string(), location :
+     |                                                          ^
+     |                                                          |
+     |                                                          expected one of `.`, `;`, `?`, `}`, or an operator
+     |  ________________________________________________________help: `}` may belong here
+     | |
+5252 | |             "Menlo Park, CA".to_string(), }
+     | |__________________^ unexpected token
+
+error: could not compile `serde_json` due to 13 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `serde_json` due to 13 previous errors
+
+err tests_llm_16_480 test_from_slice_empty_json_object
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0425]: cannot find value `json_data` in this scope
+    --> src/de.rs:5177:54
+     |
+5177 |         let result: Result<User, Error> = from_slice(json_data);
+     |                                                      ^^^^^^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_480 test_from_slice_extra_json_key
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error: this file contains an unclosed delimiter
+    --> src/de.rs:5304:3
+     |
+5106 | mod tests_llm_16_480 {
+     |                      - unclosed delimiter
+...
+5177 |     fn test_from_slice_extra_json_key() {
+     |                                         - unclosed delimiter
+...
+5182 |         .for_each(|rug_data| {
+     |                  - unclosed delimiter
+...
+5304 | }
+     |   ^
+
+error: expected type, found `"0xF9BA143B95FF6D82"`
+    --> src/de.rs:5186:28
+     |
+5186 |             "fingerprint": "0xF9BA143B95FF6D82",
+     |                          - ^^^^^^^^^^^^^^^^^^^^ expected type
+     |                          |
+     |                          tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected type, found `"0xF9BA143B95FF6D82"`
+    --> src/de.rs:5201:32
+     |
+5201 |                 "fingerprint": "0xF9BA143B95FF6D82",
+     |                              - ^^^^^^^^^^^^^^^^^^^^ expected type
+     |                              |
+     |                              tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected `;`, found `"#;
+               let json_data = rug_fuzz_0;
+               let result: Result<Vec<User>, Error> = from_slice(json_data);
+               debug_assert!(result.is_ok());
+               let _rug_ed_tests_llm_16_480_rrrruuuugggg_test_from_slice_json_array = 0;
+           }
+           #[test]
+           fn test_from_slice_json_value() {
+               let _rug_st_tests_llm_16_480_rrrruuuugggg_test_from_slice_json_value = 0;
+               let rug_fuzz_0 = br#"`
+    --> src/de.rs:5204:10
+     |
+5204 |           ]
+     |            ^ help: add `;` here
+5205 | /         "#;
+5206 | |         let json_data = rug_fuzz_0;
+5207 | |         let result: Result<Vec<User>, Error> = from_slice(json_data);
+5208 | |         debug_assert!(result.is_ok());
+...    |
+5213 | |         let _rug_st_tests_llm_16_480_rrrruuuugggg_test_from_slice_json_value = 0;
+5214 | |         let rug_fuzz_0 = br#"
+     | |_____________________________- unexpected token
+
+error: expected `;`, found `{`
+    --> src/de.rs:5214:30
+     |
+5214 |         let rug_fuzz_0 = br#"
+     |                              ^ help: add `;` here
+5215 |         {
+     |         - unexpected token
+
+error: expected type, found `"0xF9BA143B95FF6D82"`
+    --> src/de.rs:5216:28
+     |
+5216 |             "fingerprint": "0xF9BA143B95FF6D82",
+     |                          - ^^^^^^^^^^^^^^^^^^^^ expected type
+     |                          |
+     |                          tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected `;`, found `{`
+    --> src/de.rs:5244:29
+     |
+5244 |         let rug_fuzz_0 = r#"{
+     |                             ^
+     |                             |
+     |                             unexpected token
+     |                             help: add `;` here
+
+error: expected type, found `"0xF9BA143B95FF6D82"`
+    --> src/de.rs:5245:28
+     |
+5245 |             "fingerprint": "0xF9BA143B95FF6D82",
+     |                          - ^^^^^^^^^^^^^^^^^^^^ expected type
+     |                          |
+     |                          tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected `;`, found `0xF9BA143B95FF6D82`
+    --> src/de.rs:5251:38
+     |
+5251 |             u, User { fingerprint : "0xF9BA143B95FF6D82".to_string(), location :
+     |                                      ^-----------------
+     |                                      |
+     |                                      unexpected token
+     |                                      help: add `;` here
+
+error: expected one of `.`, `;`, `?`, `}`, or an operator, found `".to_string(), location :
+                   "Menlo`
+    --> src/de.rs:5106:22
+     |
+5106 |   mod tests_llm_16_480 {
+     |                        ^ unclosed delimiter
+...
+5251 |               u, User { fingerprint : "0xF9BA143B95FF6D82".to_string(), location :
+     |                                                          ^
+     |                                                          |
+     |                                                          expected one of `.`, `;`, `?`, `}`, or an operator
+     |  ________________________________________________________help: `}` may belong here
+     | |
+5252 | |             "Menlo Park, CA".to_string(), }
+     | |__________________^ unexpected token
+
+error: could not compile `serde_json` due to 10 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `serde_json` due to 10 previous errors
+
+err tests_llm_16_480 test_from_slice_json_array
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error: this file contains an unclosed delimiter
+    --> src/de.rs:5304:3
+     |
+5106 | mod tests_llm_16_480 {
+     |                      - unclosed delimiter
+...
+5191 |     fn test_from_slice_json_array() {
+     |                                     - unclosed delimiter
+...
+5196 |         .for_each(|rug_data| {
+     |                  - unclosed delimiter
+...
+5304 | }
+     |   ^
+
+error: mismatched closing delimiter: `]`
+    --> src/de.rs:5197:140
+     |
+5197 |             if let Ok((mut rug_fuzz_0_ext)) = <([u8; 155]) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data)){
+     |                                                                                                                                            ^ unclosed delimiter
+...
+5204 |         ]
+     |         ^ mismatched closing delimiter
+
+error: expected type, found `"0xF9BA143B95FF6D82"`
+    --> src/de.rs:5201:32
+     |
+5201 |                 "fingerprint": "0xF9BA143B95FF6D82",
+     |                              - ^^^^^^^^^^^^^^^^^^^^ expected type
+     |                              |
+     |                              tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected `;`, found `{`
+    --> src/de.rs:5214:30
+     |
+5214 |         let rug_fuzz_0 = br#"
+     |                              ^ help: add `;` here
+5215 |         {
+     |         - unexpected token
+
+error: expected type, found `"0xF9BA143B95FF6D82"`
+    --> src/de.rs:5216:28
+     |
+5216 |             "fingerprint": "0xF9BA143B95FF6D82",
+     |                          - ^^^^^^^^^^^^^^^^^^^^ expected type
+     |                          |
+     |                          tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected `;`, found `{`
+    --> src/de.rs:5244:29
+     |
+5244 |         let rug_fuzz_0 = r#"{
+     |                             ^
+     |                             |
+     |                             unexpected token
+     |                             help: add `;` here
+
+error: expected type, found `"0xF9BA143B95FF6D82"`
+    --> src/de.rs:5245:28
+     |
+5245 |             "fingerprint": "0xF9BA143B95FF6D82",
+     |                          - ^^^^^^^^^^^^^^^^^^^^ expected type
+     |                          |
+     |                          tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected `;`, found `0xF9BA143B95FF6D82`
+    --> src/de.rs:5251:38
+     |
+5251 |             u, User { fingerprint : "0xF9BA143B95FF6D82".to_string(), location :
+     |                                      ^-----------------
+     |                                      |
+     |                                      unexpected token
+     |                                      help: add `;` here
+
+error: expected one of `.`, `;`, `?`, `}`, or an operator, found `".to_string(), location :
+                   "Menlo`
+    --> src/de.rs:5197:140
+     |
+5197 |               if let Ok((mut rug_fuzz_0_ext)) = <([u8; 155]) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data)){
+     |                                                                                                                                              ^ unclosed delimiter
+...
+5251 |               u, User { fingerprint : "0xF9BA143B95FF6D82".to_string(), location :
+     |                                                          ^ help: `}` may belong here
+     |  ________________________________________________________|
+     | |
+5252 | |             "Menlo Park, CA".to_string(), }
+     | |__________________^
+
+error: expected `;`, found `Park`
+    --> src/de.rs:5252:19
+     |
+5252 |             "Menlo Park, CA".to_string(), }
+     |                   ^---- unexpected token
+     |                   |
+     |                   help: add `;` here
+
+error: expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `,`
+    --> src/de.rs:5106:22
+     |
+5106 | mod tests_llm_16_480 {
+     |                      ^ unclosed delimiter
+...
+5252 |             "Menlo Park, CA".to_string(), }
+     |                        ^
+     |                        |
+     |                        expected one of 8 possible tokens
+     |                        help: `}` may belong here
+
+error: could not compile `serde_json` due to 11 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `serde_json` due to 11 previous errors
+
+err tests_llm_16_480 test_from_slice_json_value
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error: this file contains an unclosed delimiter
+    --> src/de.rs:5304:3
+     |
+5106 | mod tests_llm_16_480 {
+     |                      - unclosed delimiter
+...
+5207 |     fn test_from_slice_json_value() {
+     |                                     - unclosed delimiter
+...
+5212 |         .for_each(|rug_data| {
+     |                  - unclosed delimiter
+...
+5304 | }
+     |   ^
+
+error: expected type, found `"0xF9BA143B95FF6D82"`
+    --> src/de.rs:5216:28
+     |
+5216 |             "fingerprint": "0xF9BA143B95FF6D82",
+     |                          - ^^^^^^^^^^^^^^^^^^^^ expected type
+     |                          |
+     |                          tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected `;`, found `{`
+    --> src/de.rs:5244:29
+     |
+5244 |         let rug_fuzz_0 = r#"{
+     |                             ^
+     |                             |
+     |                             unexpected token
+     |                             help: add `;` here
+
+error: expected type, found `"0xF9BA143B95FF6D82"`
+    --> src/de.rs:5245:28
+     |
+5245 |             "fingerprint": "0xF9BA143B95FF6D82",
+     |                          - ^^^^^^^^^^^^^^^^^^^^ expected type
+     |                          |
+     |                          tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected `;`, found `0xF9BA143B95FF6D82`
+    --> src/de.rs:5251:38
+     |
+5251 |             u, User { fingerprint : "0xF9BA143B95FF6D82".to_string(), location :
+     |                                      ^-----------------
+     |                                      |
+     |                                      unexpected token
+     |                                      help: add `;` here
+
+error: expected one of `.`, `;`, `?`, `}`, or an operator, found `".to_string(), location :
+                   "Menlo`
+    --> src/de.rs:5106:22
+     |
+5106 |   mod tests_llm_16_480 {
+     |                        ^ unclosed delimiter
+...
+5251 |               u, User { fingerprint : "0xF9BA143B95FF6D82".to_string(), location :
+     |                                                          ^
+     |                                                          |
+     |                                                          expected one of `.`, `;`, `?`, `}`, or an operator
+     |  ________________________________________________________help: `}` may belong here
+     | |
+5252 | |             "Menlo Park, CA".to_string(), }
+     | |__________________^ unexpected token
+
+error: could not compile `serde_json` due to 6 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `serde_json` due to 6 previous errors
+
+err tests_llm_16_481_llm_16_481 test_from_str_valid_user
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error: this file contains an unclosed delimiter
+    --> src/de.rs:5304:3
+     |
+5222 | mod tests_llm_16_481_llm_16_481 {
+     |                                 - unclosed delimiter
+...
+5237 |     fn test_from_str_valid_user() {
+     |                                   - unclosed delimiter
+...
+5242 |         .for_each(|rug_data| {
+     |                  - unclosed delimiter
+...
+5304 | }
+     |   ^
+
+error: expected type, found `"0xF9BA143B95FF6D82"`
+    --> src/de.rs:5245:28
+     |
+5245 |             "fingerprint": "0xF9BA143B95FF6D82",
+     |                          - ^^^^^^^^^^^^^^^^^^^^ expected type
+     |                          |
+     |                          tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected `;`, found `0xF9BA143B95FF6D82`
+    --> src/de.rs:5251:38
+     |
+5251 |             u, User { fingerprint : "0xF9BA143B95FF6D82".to_string(), location :
+     |                                      ^-----------------
+     |                                      |
+     |                                      unexpected token
+     |                                      help: add `;` here
+
+error: expected one of `.`, `;`, `?`, `}`, or an operator, found `".to_string(), location :
+                   "Menlo`
+    --> src/de.rs:5222:33
+     |
+5222 |   mod tests_llm_16_481_llm_16_481 {
+     |                                   ^ unclosed delimiter
+...
+5251 |               u, User { fingerprint : "0xF9BA143B95FF6D82".to_string(), location :
+     |                                                          ^
+     |                                                          |
+     |                                                          expected one of `.`, `;`, `?`, `}`, or an operator
+     |  ________________________________________________________help: `}` may belong here
+     | |
+5252 | |             "Menlo Park, CA".to_string(), }
+     | |__________________^ unexpected token
+
+error: could not compile `serde_json` due to 4 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `serde_json` due to 4 previous errors
+
+err tests_llm_16_481_llm_16_481 test_from_str_invalid_user
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error: this file contains an unclosed delimiter
+    --> src/de.rs:5304:3
+     |
+5222 | mod tests_llm_16_481_llm_16_481 {
+     |                                 - unclosed delimiter
+...
+5252 |     fn test_from_str_invalid_user() {
+     |                                     - unclosed delimiter
+...
+5257 |         .for_each(|rug_data| {
+     |                  - unclosed delimiter
+...
+5304 | }
+     |   ^
+
+error: expected type, found `"0xF9BA143B95FF6D82"`
+    --> src/de.rs:5260:28
+     |
+5260 |             "fingerprint": "0xF9BA143B95FF6D82",
+     |                          - ^^^^^^^^^^^^^^^^^^^^ expected type
+     |                          |
+     |                          tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected `;`, found `5`
+    --> src/de.rs:5271:29
+     |
+5271 |         let rug_fuzz_0 = r#"5"#;
+     |                             ^
+     |                             |
+     |                             unexpected token
+     |                             help: add `;` here
+
+error: expected one of `.`, `;`, `?`, `}`, or an operator, found `"#;
+               let data = rug_fuzz_0;
+               let value: TestEnum = from_str(data).unwrap();
+               debug_assert_eq!(value, TestEnum::Number(5));
+               let _rug_ed_tests_llm_16_481_llm_16_481_rrrruuuugggg_test_from_str_valid_enum_number = 0;
+           }
+           #[test]
+           fn test_from_str_valid_enum_text() {
+               let _rug_st_tests_llm_16_481_llm_16_481_rrrruuuugggg_test_from_str_valid_enum_text = 0;
+               let rug_fuzz_0 = r#"`
+    --> src/de.rs:5222:33
+     |
+5222 |   mod tests_llm_16_481_llm_16_481 {
+     |                                   ^ unclosed delimiter
+...
+5271 |           let rug_fuzz_0 = r#"5"#;
+     |                                ^
+     |                                |
+     |                                expected one of `.`, `;`, `?`, `}`, or an operator
+     |  ______________________________help: `}` may belong here
+     | |
+5272 | |         let data = rug_fuzz_0;
+5273 | |         let value: TestEnum = from_str(data).unwrap();
+5274 | |         debug_assert_eq!(value, TestEnum::Number(5));
+...    |
+5279 | |         let _rug_st_tests_llm_16_481_llm_16_481_rrrruuuugggg_test_from_str_valid_enum_text = 0;
+5280 | |         let rug_fuzz_0 = r#""hello""#;
+     | |____________________________^ unexpected token
+
+error: could not compile `serde_json` due to 4 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `serde_json` due to 4 previous errors
+
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/json/./src/map.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/json/./src/number.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/json/./src/value/index.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/json/./src/value/de.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/json/./src/value/mod.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/json/./src/value/partial_eq.rs
+err tests_llm_16_758 test_eq
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0277]: the trait bound `(&str, &str, &str, &str, &str, i32, &str, i32, &str, i32, &str, &str, bool, &str, bool, &str, bool, &str, bool, &str, &str, &str, &str, &str, &str, i32, &str, bool, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str): Arbitrary<'_>` is not satisfied
+    --> src/value/partial_eq.rs:1060:799
+     |
+1060 | ... = <(&str, &str, &str, &str, &str, i32, &str, i32, &str, i32, &str, &str, bool, &str, bool, &str, bool, &str, bool, &str, &str, &str, &str, &str, &str, i32, &str, bool, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str) as arbitrary::Arbitrary>::arbitrary(&m...
+     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Arbitrary<'_>` is not implemented for `(&str, &str, &str, &str, &str, i32, &str, i32, &str, i32, &str, &str, bool, &str, bool, &str, bool, &str, bool, &str, &str, &str, &str, &str, &str, i32, &str, bool, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str, &str)`
+     |
+     = help: the following other types implement trait `Arbitrary<'a>`:
+               ()
+               (B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, A)
+               (C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, B)
+               (D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, C)
+               (E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, D)
+               (F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, E)
+               (G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, F)
+               (H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, G)
+             and 19 others
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/json/./src/value/ser.rs
+err tests_llm_16_375 serialize_struct_test
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0521]: borrowed data escapes outside of closure
+    --> src/value/ser.rs:1185:115
+     |
+1184 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+1185 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1)) = <(&str, usize) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                      |
+     |                                                                                                      `rug_data` escapes the closure body here
+     |                                                                                                      argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_376_llm_16_376 test_serialize_struct_variant
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0521]: borrowed data escapes outside of closure
+    --> src/value/ser.rs:1210:158
+     |
+1209 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+1210 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2, mut rug_fuzz_3)) = <(&str, u32, &str, usize) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                                                                 |
+     |                                                                                                                                                 `rug_data` escapes the closure body here
+     |                                                                                                                                                 argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_379 test_serialize_tuple_variant
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0521]: borrowed data escapes outside of closure
+    --> src/value/ser.rs:1268:158
+     |
+1267 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+1268 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2, mut rug_fuzz_3)) = <(&str, u32, &str, usize) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                                                                 |
+     |                                                                                                                                                 `rug_data` escapes the closure body here
+     |                                                                                                                                                 argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_385 test_serialize_unit_struct
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0521]: borrowed data escapes outside of closure
+    --> src/value/ser.rs:1369:92
+     |
+1368 |         .for_each(|rug_data| {
+     |                    --------
+     |                    |
+     |                    `rug_data` is a reference that is only valid in the closure body
+     |                    has type `&'1 [u8]`
+1369 |             if let Ok((mut rug_fuzz_0)) = <(&str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data)){
+     |                                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                            |
+     |                                                                                            `rug_data` escapes the closure body here
+     |                                                                                            argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_393 test_serialize_struct_variant_serialize_field
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0521]: borrowed data escapes outside of closure
+    --> src/value/ser.rs:1410:223
+     |
+1409 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+1410 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2, mut rug_fuzz_3, mut rug_fuzz_4, mut rug_fuzz_5, mut rug_fuzz_6)) = <(i32, &str, bool, &str, &str, &str, &str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                                                                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                                                                                                                                  |
+     |                                                                                                                                                                                                                  `rug_data` escapes the closure body here
+     |                                                                                                                                                                                                                  argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_414_llm_16_414 test_serialize_newtype_struct
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0521]: borrowed data escapes outside of closure
+    --> src/value/ser.rs:1698:134
+     |
+1697 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+1698 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2)) = <(i32, i32, &str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                                         |
+     |                                                                                                                         `rug_data` escapes the closure body here
+     |                                                                                                                         argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_414_llm_16_414 test_serialize_newtype_struct_string
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0521]: borrowed data escapes outside of closure
+    --> src/value/ser.rs:1715:136
+     |
+1714 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+1715 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2)) = <(&str, &str, &str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                                           |
+     |                                                                                                                           `rug_data` escapes the closure body here
+     |                                                                                                                           argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_414_llm_16_414 test_serialize_newtype_struct_map
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0521]: borrowed data escapes outside of closure
+    --> src/value/ser.rs:1732:180
+     |
+1731 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+1732 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2, mut rug_fuzz_3, mut rug_fuzz_4)) = <(&str, &str, &str, &str, &str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                                                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                                                                                       |
+     |                                                                                                                                                                       `rug_data` escapes the closure body here
+     |                                                                                                                                                                       argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_421 test_serialize_struct_variant
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0521]: borrowed data escapes outside of closure
+    --> src/value/ser.rs:1845:158
+     |
+1844 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+1845 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2, mut rug_fuzz_3)) = <(&str, &str, u32, usize) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                                                                 |
+     |                                                                                                                                                 `rug_data` escapes the closure body here
+     |                                                                                                                                                 argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_423 test_serialize_tuple_struct
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0521]: borrowed data escapes outside of closure
+    --> src/value/ser.rs:1868:181
+     |
+1867 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+1868 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2, mut rug_fuzz_3, mut rug_fuzz_4)) = <(&str, usize, &str, &str, &str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                                                                                        |
+     |                                                                                                                                                                        `rug_data` escapes the closure body here
+     |                                                                                                                                                                        argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_432 test_serialize_unit_variant
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0521]: borrowed data escapes outside of closure
+    --> src/value/ser.rs:1987:135
+     |
+1986 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+1987 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2)) = <(&str, u32, &str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                                          |
+     |                                                                                                                          `rug_data` escapes the closure body here
+     |                                                                                                                          argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/json/./src/value/from.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/json/./src/iter.rs
+err tests_llm_16_498 test_col
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0425]: cannot find value `data` in this scope
+   --> src/iter.rs:113:24
+    |
+113 |         let iterator = data.iter().map(|b| Ok(*b));
+    |                        ^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/json/./src/macros.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/json/./src/lexical/algorithm.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/json/./src/lexical/num.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/json/./src/lexical/bignum.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/json/./src/lexical/large_powers.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/json/./src/lexical/shift.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/json/./src/lexical/rounding.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/json/./src/lexical/small_powers.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/json/./src/lexical/exponent.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/json/./src/lexical/large_powers64.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/json/./src/lexical/large_powers32.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/json/./src/lexical/parse.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/json/./src/lexical/cached_float80.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/json/./src/lexical/errors.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/json/./src/lexical/digit.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/json/./src/lexical/mod.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/json/./src/lexical/float.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/json/./src/lexical/math.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/json/./src/lexical/cached.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/json/./src/lexical/bhcomp.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/json/./src/error.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/json/./src/features_check/error.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/json/./src/features_check/mod.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/json/./src/raw.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/json/./src/io/core.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/json/./src/io/mod.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/json/./src/lib.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/json/./src/ser.rs
+err tests_llm_16_66 test_serialize_struct_normal
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0521]: borrowed data escapes outside of closure
+    --> src/ser.rs:2746:115
+     |
+2745 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+2746 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1)) = <(&str, usize) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                      |
+     |                                                                                                      `rug_data` escapes the closure body here
+     |                                                                                                      argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_77_llm_16_77 test_serialize_unit_struct
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0521]: borrowed data escapes outside of closure
+    --> src/ser.rs:2990:92
+     |
+2989 |         .for_each(|rug_data| {
+     |                    --------
+     |                    |
+     |                    `rug_data` is a reference that is only valid in the closure body
+     |                    has type `&'1 [u8]`
+2990 |             if let Ok((mut rug_fuzz_0)) = <(&str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data)){
+     |                                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                            |
+     |                                                                                            `rug_data` escapes the closure body here
+     |                                                                                            argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_242_llm_16_242 serialize_field_map
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0521]: borrowed data escapes outside of closure
+    --> src/ser.rs:3210:157
+     |
+3209 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+3210 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2, mut rug_fuzz_3)) = <(u32, &str, &str, &str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                                                                |
+     |                                                                                                                                                `rug_data` escapes the closure body here
+     |                                                                                                                                                argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_270_llm_16_270 test_serialize_tuple_struct
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0521]: borrowed data escapes outside of closure
+    --> src/ser.rs:3576:115
+     |
+3575 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+3576 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1)) = <(&str, usize) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                      |
+     |                                                                                                      `rug_data` escapes the closure body here
+     |                                                                                                      argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `serde_json` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_589_llm_16_589 test_with_indent
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0425]: cannot find value `indent_value` in this scope
+    --> src/ser.rs:4838:58
+     |
+4838 |         let mut formatter = PrettyFormatter::with_indent(indent_value);
+     |                                                          ^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `indent_value` in this scope
+    --> src/ser.rs:4839:44
+     |
+4839 |         debug_assert_eq!(formatter.indent, indent_value);
+     |                                            ^^^^^^^^^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to 2 previous errors
+
+err tests_llm_16_599 test_to_string_pretty_struct
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error: unknown start of token: \
+    --> src/ser.rs:5495:35
+     |
+5495 |             writer.to_string(), "{\n  \"age\": 30,\n  \"name\": \"John Doe\"\n}"
+     |                                   ^
+
+error: unknown start of token: \
+    --> src/ser.rs:5495:39
+     |
+5495 |             writer.to_string(), "{\n  \"age\": 30,\n  \"name\": \"John Doe\"\n}"
+     |                                       ^
+
+error: mismatched closing delimiter: `)`
+    --> src/ser.rs:5495:34
+     |
+5167 |         .for_each(|rug_data| {
+     |                  - closing delimiter possibly meant for this
+...
+5495 |             writer.to_string(), "{\n  \"age\": 30,\n  \"name\": \"John Doe\"\n}"
+     |                                  ^ unclosed delimiter
+5496 |         );
+     |         ^ mismatched closing delimiter
+
+error: expected type, found `42`
+    --> src/ser.rs:5170:14
+     |
+5170 |   "integer": 42,
+     |            - ^^ expected type
+     |            |
+     |            tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected `;`, found `";
+               let rug_fuzz_1 = 42;
+               let rug_fuzz_2 = "float`
+    --> src/ser.rs:5189:34
+     |
+5189 |           let rug_fuzz_0 = "integer";
+     |                                    ^ help: add `;` here
+     |  __________________________________|
+     | |
+5190 | |         let rug_fuzz_1 = 42;
+5191 | |         let rug_fuzz_2 = "float";
+     | |_______________________________- unexpected token
+
+error: expected `;`, found `";
+               let rug_fuzz_3 = 3.14;
+               let rug_fuzz_4 = "boolean`
+    --> src/ser.rs:5191:32
+     |
+5191 |           let rug_fuzz_2 = "float";
+     |                                  ^ help: add `;` here
+     |  ________________________________|
+     | |
+5192 | |         let rug_fuzz_3 = 3.14;
+5193 | |         let rug_fuzz_4 = "boolean";
+     | |_________________________________- unexpected token
+
+error: expected `;`, found `";
+               let rug_fuzz_5 = true;
+               let rug_fuzz_6 = "text`
+    --> src/ser.rs:5193:34
+     |
+5193 |           let rug_fuzz_4 = "boolean";
+     |                                    ^ help: add `;` here
+     |  __________________________________|
+     | |
+5194 | |         let rug_fuzz_5 = true;
+5195 | |         let rug_fuzz_6 = "text";
+     | |______________________________- unexpected token
+
+error: expected `;`, found `";
+               let rug_fuzz_7 = "example`
+    --> src/ser.rs:5195:31
+     |
+5195 |           let rug_fuzz_6 = "text";
+     |                                 ^ help: add `;` here
+     |  _______________________________|
+     | |
+5196 | |         let rug_fuzz_7 = "example";
+     | |_________________________________- unexpected token
+
+error: expected `;`, found `";
+               let rug_fuzz_8 = r#"`
+    --> src/ser.rs:5196:34
+     |
+5196 |           let rug_fuzz_7 = "example";
+     |                                    ^ help: add `;` here
+     |  __________________________________|
+     | |
+5197 | |         let rug_fuzz_8 = r#"{
+     | |____________________________- unexpected token
+
+error: expected `;`, found `{`
+    --> src/ser.rs:5197:29
+     |
+5197 |         let rug_fuzz_8 = r#"{
+     |                             ^
+     |                             |
+     |                             unexpected token
+     |                             help: add `;` here
+
+error: expected identifier, found keyword `true`
+    --> src/ser.rs:5198:14
+     |
+5198 |   "boolean": true,
+     |              ^^^^ expected identifier, found keyword
+     |
+help: escape `true` to use it as an identifier
+     |
+5198 |   "boolean": r#true,
+     |              ++
+
+error: expected type, found keyword `true`
+    --> src/ser.rs:5198:14
+     |
+5198 |   "boolean": true,
+     |            - ^^^^ expected type
+     |            |
+     |            tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected `;`, found `";
+               let rug_fuzz_1 = 42;
+               let rug_fuzz_2 = "float`
+    --> src/ser.rs:5216:34
+     |
+5216 |           let rug_fuzz_0 = "integer";
+     |                                    ^ help: add `;` here
+     |  __________________________________|
+     | |
+5217 | |         let rug_fuzz_1 = 42;
+5218 | |         let rug_fuzz_2 = "float";
+     | |_______________________________- unexpected token
+
+error: expected `;`, found `";
+               let rug_fuzz_3 = 3.14;
+               let rug_fuzz_4 = "boolean`
+    --> src/ser.rs:5218:32
+     |
+5218 |           let rug_fuzz_2 = "float";
+     |                                  ^ help: add `;` here
+     |  ________________________________|
+     | |
+5219 | |         let rug_fuzz_3 = 3.14;
+5220 | |         let rug_fuzz_4 = "boolean";
+     | |_________________________________- unexpected token
+
+error: expected `;`, found `";
+               let rug_fuzz_5 = true;
+               let rug_fuzz_6 = "text`
+    --> src/ser.rs:5220:34
+     |
+5220 |           let rug_fuzz_4 = "boolean";
+     |                                    ^ help: add `;` here
+     |  __________________________________|
+     | |
+5221 | |         let rug_fuzz_5 = true;
+5222 | |         let rug_fuzz_6 = "text";
+     | |______________________________- unexpected token
+
+error: expected `;`, found `";
+               let rug_fuzz_7 = "example`
+    --> src/ser.rs:5222:31
+     |
+5222 |           let rug_fuzz_6 = "text";
+     |                                 ^ help: add `;` here
+     |  _______________________________|
+     | |
+5223 | |         let rug_fuzz_7 = "example";
+     | |_________________________________- unexpected token
+
+error: expected `;`, found `";
+               let rug_fuzz_8 = r#"`
+    --> src/ser.rs:5223:34
+     |
+5223 |           let rug_fuzz_7 = "example";
+     |                                    ^ help: add `;` here
+     |  __________________________________|
+     | |
+5224 | |         let rug_fuzz_8 = r#"{
+     | |____________________________- unexpected token
+
+error: expected `;`, found `{`
+    --> src/ser.rs:5224:29
+     |
+5224 |         let rug_fuzz_8 = r#"{
+     |                             ^
+     |                             |
+     |                             unexpected token
+     |                             help: add `;` here
+
+error: expected identifier, found keyword `true`
+    --> src/ser.rs:5225:14
+     |
+5225 |   "boolean": true,
+     |              ^^^^ expected identifier, found keyword
+     |
+help: escape `true` to use it as an identifier
+     |
+5225 |   "boolean": r#true,
+     |              ++
+
+error: expected type, found keyword `true`
+    --> src/ser.rs:5225:14
+     |
+5225 |   "boolean": true,
+     |            - ^^^^ expected type
+     |            |
+     |            tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected `;`, found `{`
+    --> src/ser.rs:5268:39
+     |
+5268 |         debug_assert_eq!(json_str, r#"{"x":1,"y":2,"z":3}"#);
+     |                                       ^
+     |                                       |
+     |                                       unexpected token
+     |                                       help: add `;` here
+
+error: expected type, found `1`
+    --> src/ser.rs:5268:44
+     |
+5268 |         debug_assert_eq!(json_str, r#"{"x":1,"y":2,"z":3}"#);
+     |                                           -^ expected type
+     |                                           |
+     |                                           tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected `;`, found `42`
+    --> src/ser.rs:5278:37
+     |
+5278 |         debug_assert_eq!(json_str, "42");
+     |                                     ^-
+     |                                     |
+     |                                     unexpected token
+     |                                     help: add `;` here
+
+error: expected one of `.`, `;`, `?`, `}`, or an operator, found `");
+               let _rug_ed_tests_llm_16_600_rrrruuuugggg_test_to_vec_number = 0;
+           }
+           #[test]
+           fn test_to_vec_map() {
+               let _rug_st_tests_llm_16_600_rrrruuuugggg_test_to_vec_map = 0;
+               let rug_fuzz_0 = "key1`
+    --> src/ser.rs:5278:39
+     |
+5278 |           debug_assert_eq!(json_str, "42");
+     |                                         ^ expected one of `.`, `;`, `?`, `}`, or an operator
+     |  _______________________________________|
+     | |
+5279 | |         let _rug_ed_tests_llm_16_600_rrrruuuugggg_test_to_vec_number = 0;
+5280 | |     }
+5281 | |     #[test]
+5282 | |     fn test_to_vec_map() {
+5283 | |         let _rug_st_tests_llm_16_600_rrrruuuugggg_test_to_vec_map = 0;
+5284 | |         let rug_fuzz_0 = "key1";
+     | |______________________________^ unexpected token
+
+error: could not compile `serde_json` due to 24 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `serde_json` due to 24 previous errors
+
+err tests_llm_16_599 test_to_string_pretty_map
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error: unknown start of token: \
+    --> src/ser.rs:5491:35
+     |
+5491 |             writer.to_string(), "{\n  \"age\": 30,\n  \"name\": \"John Doe\"\n}"
+     |                                   ^
+
+error: unknown start of token: \
+    --> src/ser.rs:5491:39
+     |
+5491 |             writer.to_string(), "{\n  \"age\": 30,\n  \"name\": \"John Doe\"\n}"
+     |                                       ^
+
+error: mismatched closing delimiter: `)`
+    --> src/ser.rs:5491:34
+     |
+5191 |         .for_each(|rug_data| {
+     |                  - closing delimiter possibly meant for this
+...
+5491 |             writer.to_string(), "{\n  \"age\": 30,\n  \"name\": \"John Doe\"\n}"
+     |                                  ^ unclosed delimiter
+5492 |         );
+     |         ^ mismatched closing delimiter
+
+error: expected identifier, found keyword `true`
+    --> src/ser.rs:5194:14
+     |
+5194 |   "boolean": true,
+     |              ^^^^ expected identifier, found keyword
+     |
+help: escape `true` to use it as an identifier
+     |
+5194 |   "boolean": r#true,
+     |              ++
+
+error: expected type, found keyword `true`
+    --> src/ser.rs:5194:14
+     |
+5194 |   "boolean": true,
+     |            - ^^^^ expected type
+     |            |
+     |            tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected `;`, found `";
+               let rug_fuzz_1 = 42;
+               let rug_fuzz_2 = "float`
+    --> src/ser.rs:5212:34
+     |
+5212 |           let rug_fuzz_0 = "integer";
+     |                                    ^ help: add `;` here
+     |  __________________________________|
+     | |
+5213 | |         let rug_fuzz_1 = 42;
+5214 | |         let rug_fuzz_2 = "float";
+     | |_______________________________- unexpected token
+
+error: expected `;`, found `";
+               let rug_fuzz_3 = 3.14;
+               let rug_fuzz_4 = "boolean`
+    --> src/ser.rs:5214:32
+     |
+5214 |           let rug_fuzz_2 = "float";
+     |                                  ^ help: add `;` here
+     |  ________________________________|
+     | |
+5215 | |         let rug_fuzz_3 = 3.14;
+5216 | |         let rug_fuzz_4 = "boolean";
+     | |_________________________________- unexpected token
+
+error: expected `;`, found `";
+               let rug_fuzz_5 = true;
+               let rug_fuzz_6 = "text`
+    --> src/ser.rs:5216:34
+     |
+5216 |           let rug_fuzz_4 = "boolean";
+     |                                    ^ help: add `;` here
+     |  __________________________________|
+     | |
+5217 | |         let rug_fuzz_5 = true;
+5218 | |         let rug_fuzz_6 = "text";
+     | |______________________________- unexpected token
+
+error: expected `;`, found `";
+               let rug_fuzz_7 = "example`
+    --> src/ser.rs:5218:31
+     |
+5218 |           let rug_fuzz_6 = "text";
+     |                                 ^ help: add `;` here
+     |  _______________________________|
+     | |
+5219 | |         let rug_fuzz_7 = "example";
+     | |_________________________________- unexpected token
+
+error: expected `;`, found `";
+               let rug_fuzz_8 = r#"`
+    --> src/ser.rs:5219:34
+     |
+5219 |           let rug_fuzz_7 = "example";
+     |                                    ^ help: add `;` here
+     |  __________________________________|
+     | |
+5220 | |         let rug_fuzz_8 = r#"{
+     | |____________________________- unexpected token
+
+error: expected `;`, found `{`
+    --> src/ser.rs:5220:29
+     |
+5220 |         let rug_fuzz_8 = r#"{
+     |                             ^
+     |                             |
+     |                             unexpected token
+     |                             help: add `;` here
+
+error: expected identifier, found keyword `true`
+    --> src/ser.rs:5221:14
+     |
+5221 |   "boolean": true,
+     |              ^^^^ expected identifier, found keyword
+     |
+help: escape `true` to use it as an identifier
+     |
+5221 |   "boolean": r#true,
+     |              ++
+
+error: expected type, found keyword `true`
+    --> src/ser.rs:5221:14
+     |
+5221 |   "boolean": true,
+     |            - ^^^^ expected type
+     |            |
+     |            tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected `;`, found `{`
+    --> src/ser.rs:5264:39
+     |
+5264 |         debug_assert_eq!(json_str, r#"{"x":1,"y":2,"z":3}"#);
+     |                                       ^
+     |                                       |
+     |                                       unexpected token
+     |                                       help: add `;` here
+
+error: expected type, found `1`
+    --> src/ser.rs:5264:44
+     |
+5264 |         debug_assert_eq!(json_str, r#"{"x":1,"y":2,"z":3}"#);
+     |                                           -^ expected type
+     |                                           |
+     |                                           tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected `;`, found `42`
+    --> src/ser.rs:5274:37
+     |
+5274 |         debug_assert_eq!(json_str, "42");
+     |                                     ^-
+     |                                     |
+     |                                     unexpected token
+     |                                     help: add `;` here
+
+error: expected one of `.`, `;`, `?`, `}`, or an operator, found `");
+               let _rug_ed_tests_llm_16_600_rrrruuuugggg_test_to_vec_number = 0;
+           }
+           #[test]
+           fn test_to_vec_map() {
+               let _rug_st_tests_llm_16_600_rrrruuuugggg_test_to_vec_map = 0;
+               let rug_fuzz_0 = "key1`
+    --> src/ser.rs:5274:39
+     |
+5274 |           debug_assert_eq!(json_str, "42");
+     |                                         ^ expected one of `.`, `;`, `?`, `}`, or an operator
+     |  _______________________________________|
+     | |
+5275 | |         let _rug_ed_tests_llm_16_600_rrrruuuugggg_test_to_vec_number = 0;
+5276 | |     }
+5277 | |     #[test]
+5278 | |     fn test_to_vec_map() {
+5279 | |         let _rug_st_tests_llm_16_600_rrrruuuugggg_test_to_vec_map = 0;
+5280 | |         let rug_fuzz_0 = "key1";
+     | |______________________________^ unexpected token
+
+error: could not compile `serde_json` due to 17 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `serde_json` due to 17 previous errors
+
+err tests_llm_16_599 test_to_string_pretty_value
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error: unknown start of token: \
+    --> src/ser.rs:5491:35
+     |
+5491 |             writer.to_string(), "{\n  \"age\": 30,\n  \"name\": \"John Doe\"\n}"
+     |                                   ^
+
+error: unknown start of token: \
+    --> src/ser.rs:5491:39
+     |
+5491 |             writer.to_string(), "{\n  \"age\": 30,\n  \"name\": \"John Doe\"\n}"
+     |                                       ^
+
+error: mismatched closing delimiter: `)`
+    --> src/ser.rs:5491:34
+     |
+5218 |         .for_each(|rug_data| {
+     |                  - closing delimiter possibly meant for this
+...
+5491 |             writer.to_string(), "{\n  \"age\": 30,\n  \"name\": \"John Doe\"\n}"
+     |                                  ^ unclosed delimiter
+5492 |         );
+     |         ^ mismatched closing delimiter
+
+error: expected identifier, found keyword `true`
+    --> src/ser.rs:5221:14
+     |
+5221 |   "boolean": true,
+     |              ^^^^ expected identifier, found keyword
+     |
+help: escape `true` to use it as an identifier
+     |
+5221 |   "boolean": r#true,
+     |              ++
+
+error: expected type, found keyword `true`
+    --> src/ser.rs:5221:14
+     |
+5221 |   "boolean": true,
+     |            - ^^^^ expected type
+     |            |
+     |            tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected `;`, found `{`
+    --> src/ser.rs:5264:39
+     |
+5264 |         debug_assert_eq!(json_str, r#"{"x":1,"y":2,"z":3}"#);
+     |                                       ^
+     |                                       |
+     |                                       unexpected token
+     |                                       help: add `;` here
+
+error: expected type, found `1`
+    --> src/ser.rs:5264:44
+     |
+5264 |         debug_assert_eq!(json_str, r#"{"x":1,"y":2,"z":3}"#);
+     |                                           -^ expected type
+     |                                           |
+     |                                           tried to parse a type due to this type ascription
+     |
+     = note: `#![feature(type_ascription)]` lets you annotate an expression with a type: `<expr>: <type>`
+     = note: see issue #23416 <https://github.com/rust-lang/rust/issues/23416> for more information
+
+error: expected `;`, found `42`
+    --> src/ser.rs:5274:37
+     |
+5274 |         debug_assert_eq!(json_str, "42");
+     |                                     ^-
+     |                                     |
+     |                                     unexpected token
+     |                                     help: add `;` here
+
+error: expected one of `.`, `;`, `?`, `}`, or an operator, found `");
+               let _rug_ed_tests_llm_16_600_rrrruuuugggg_test_to_vec_number = 0;
+           }
+           #[test]
+           fn test_to_vec_map() {
+               let _rug_st_tests_llm_16_600_rrrruuuugggg_test_to_vec_map = 0;
+               let rug_fuzz_0 = "key1`
+    --> src/ser.rs:5274:39
+     |
+5274 |           debug_assert_eq!(json_str, "42");
+     |                                         ^ expected one of `.`, `;`, `?`, `}`, or an operator
+     |  _______________________________________|
+     | |
+5275 | |         let _rug_ed_tests_llm_16_600_rrrruuuugggg_test_to_vec_number = 0;
+5276 | |     }
+5277 | |     #[test]
+5278 | |     fn test_to_vec_map() {
+5279 | |         let _rug_st_tests_llm_16_600_rrrruuuugggg_test_to_vec_map = 0;
+5280 | |         let rug_fuzz_0 = "key1";
+     | |______________________________^ unexpected token
+
+error: could not compile `serde_json` due to 9 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `serde_json` due to 9 previous errors
+
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/json/./src/read.rs
+err tests_llm_16_202 test_discard
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0425]: cannot find value `data` in this scope
+    --> src/read.rs:1405:38
+     |
+1405 |         let reader = io::Cursor::new(data);
+     |                                      ^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+
+err tests_llm_16_209 position_at_start
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0425]: cannot find value `data` in this scope
+    --> src/read.rs:1429:38
+     |
+1429 |         let reader = io::Cursor::new(data);
+     |                                      ^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+
+err tests_llm_16_209 position_after_one_line
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0425]: cannot find value `data` in this scope
+    --> src/read.rs:1441:38
+     |
+1441 |         let reader = io::Cursor::new(data);
+     |                                      ^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+
+err tests_llm_16_209 position_after_some_content
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0425]: cannot find value `data` in this scope
+    --> src/read.rs:1454:38
+     |
+1454 |         let reader = io::Cursor::new(data);
+     |                                      ^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+
+err tests_llm_16_209 position_across_multiple_lines
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0425]: cannot find value `data` in this scope
+    --> src/read.rs:1469:38
+     |
+1469 |         let reader = io::Cursor::new(data);
+     |                                      ^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+
+err tests_llm_16_212 test_byte_offset_at_start
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0425]: cannot find value `data` in this scope
+    --> src/read.rs:1566:38
+     |
+1566 |         let reader = SliceRead::new(&data[..]);
+     |                                      ^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+
+err tests_llm_16_212 test_byte_offset_after_read
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0425]: cannot find value `data` in this scope
+    --> src/read.rs:1575:42
+     |
+1575 |         let mut reader = SliceRead::new(&data[..]);
+     |                                          ^^^^ not found in this scope
+
+error[E0425]: cannot find value `data` in this scope
+    --> src/read.rs:1577:48
+     |
+1577 |         debug_assert_eq!(reader.byte_offset(), data.len());
+     |                                                ^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to 2 previous errors
+
+err tests_llm_16_212 test_byte_offset_after_partial_read
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0425]: cannot find value `data` in this scope
+    --> src/read.rs:1585:42
+     |
+1585 |         let mut reader = SliceRead::new(&data[..]);
+     |                                          ^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+
+err tests_llm_16_212 test_byte_offset_after_discard
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0425]: cannot find value `data` in this scope
+    --> src/read.rs:1596:42
+     |
+1596 |         let mut reader = SliceRead::new(&data[..]);
+     |                                          ^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+
+err tests_llm_16_214 discard_advances_index
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0425]: cannot find value `data` in this scope
+    --> src/read.rs:1612:41
+     |
+1612 |         let mut reader = SliceRead::new(data);
+     |                                         ^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+
+err tests_llm_16_214 discard_at_end_of_input
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0425]: cannot find value `data` in this scope
+    --> src/read.rs:1625:41
+     |
+1625 |         let mut reader = SliceRead::new(data);
+     |                                         ^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+
+err tests_llm_16_214 discard_multiple_times
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0425]: cannot find value `data` in this scope
+    --> src/read.rs:1636:41
+     |
+1636 |         let mut reader = SliceRead::new(data);
+     |                                         ^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+
+err tests_llm_16_219 test_peek_at_beginning
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0425]: cannot find value `data` in this scope
+    --> src/read.rs:1774:41
+     |
+1774 |         let mut reader = SliceRead::new(data);
+     |                                         ^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+
+err tests_llm_16_219 test_peek_at_end
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0425]: cannot find value `data` in this scope
+    --> src/read.rs:1799:41
+     |
+1799 |         let mut reader = SliceRead::new(data);
+     |                                         ^^^^ not found in this scope
+
+error[E0425]: cannot find value `data` in this scope
+    --> src/read.rs:1800:24
+     |
+1800 |         reader.index = data.len();
+     |                        ^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to 2 previous errors
+
+err tests_llm_16_225 slice_read_discard_empty_slice
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0425]: cannot find value `data` in this scope
+    --> src/read.rs:1987:45
+     |
+1987 |         let mut slice_read = SliceRead::new(data);
+     |                                             ^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+
+err tests_llm_16_225 slice_read_discard_non_empty_slice
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0425]: cannot find value `data` in this scope
+    --> src/read.rs:1998:45
+     |
+1998 |         let mut slice_read = SliceRead::new(data);
+     |                                             ^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to previous error
+
+err tests_llm_16_547 position_of_index_at_end
+   Compiling serde_json v1.0.96 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/json)
+error[E0425]: cannot find value `data` in this scope
+    --> src/read.rs:2332:37
+     |
+2332 |         let reader = SliceRead::new(data);
+     |                                     ^^^^ not found in this scope
+
+error[E0425]: cannot find value `data` in this scope
+    --> src/read.rs:2333:27
+     |
+2333 |         let data_length = data.len();
+     |                           ^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `serde_json` due to 2 previous errors
+
+done

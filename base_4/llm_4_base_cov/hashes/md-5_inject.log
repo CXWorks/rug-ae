@@ -1,0 +1,964 @@
+ChatCompletion(id='chatcmpl-8UWAfddB3liRG5zaZTc7n5wBlLzUC', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::Md5Core;\n    use core::default::Default;\n\n    #[test]\n    fn md5core_default_test() {\n        let md5core = Md5Core::default();\n        assert_eq!(md5core.block_len, 0);\n        assert_eq!(\n            md5core.state,\n            [0x6745_2301, 0xEFCD_AB89, 0x98BA_DCFE, 0x1032_5476]\n        );\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702284197, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=115, prompt_tokens=787, total_tokens=902))
+71
+inject succeed hashes md-5 <Md5Core as core::default::Default>::default
+ChatCompletion(id='chatcmpl-8UWAwNDPpPCXAMWYVPtj9tUyLyZNV', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::Md5Core;\n    use digest::Reset;\n    use core::default::Default;\n\n    #[test]\n    fn test_reset() {\n        let mut core = Md5Core::default();\n        // Change the state to a non-default to prove reset works.\n        core.state[0] = 0;\n        core.state[1] = 0;\n        core.state[2] = 0;\n        core.state[3] = 0;\n        core.block_len = 1;\n\n        // Call reset\n        core.reset();\n\n        // After reset, state should be back to default\n        let default_core = Md5Core::default();\n        assert_eq!(core.state, default_core.state);\n        assert_eq!(core.block_len, default_core.block_len);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702284214, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=175, prompt_tokens=744, total_tokens=919))
+71
+inject succeed hashes md-5 <Md5Core as digest::Reset>::reset
+ChatCompletion(id='chatcmpl-8UWB9dpjc51Oy2EbQiZ6Ulefqj3V4', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use digest::core_api::AlgorithmName;\n    use std::fmt;\n\n    struct MockFormatter {\n        content: String,\n    }\n\n    impl fmt::Write for MockFormatter {\n        fn write_str(&mut self, s: &str) -> fmt::Result {\n            self.content.push_str(s);\n            Ok(())\n        }\n    }\n\n    #[test]\n    fn test_write_alg_name() {\n        let mut formatter = MockFormatter { content: String::new() };\n        let result = <Md5Core as AlgorithmName>::write_alg_name(&mut formatter);\n        assert!(result.is_ok());\n        assert_eq!(formatter.content, "Md5");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702284227, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=151, prompt_tokens=170, total_tokens=321))
+71
+========================================
+inject err <Md5Core as digest::core_api::AlgorithmName>::write_alg_name md5/src/lib.rs write_alg_name
+#[cfg(test)]
+mod tests_llm_16_3 {
+    use super::*;
+
+use crate::*;
+    use digest::core_api::AlgorithmName;
+    use std::fmt;
+
+    struct MockFormatter {
+        content: String,
+    }
+
+    impl fmt::Write for MockFormatter {
+        fn write_str(&mut self, s: &str) -> fmt::Result {
+            self.content.push_str(s);
+            Ok(())
+        }
+    }
+
+    #[test]
+    fn test_write_alg_name() {
+        let mut formatter = MockFormatter { content: String::new() };
+        let result = <Md5Core as AlgorithmName>::write_alg_name(&mut formatter);
+        assert!(result.is_ok());
+        assert_eq!(formatter.content, "Md5");
+    }
+}
+   Compiling md-5 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/md5)
+error[E0432]: unresolved import `std`
+   --> md5/src/lib.rs:191:9
+    |
+191 |     use std::fmt;
+    |         ^^^ use of undeclared crate or module `std`
+
+error[E0412]: cannot find type `String` in this scope
+   --> md5/src/lib.rs:194:18
+    |
+194 |         content: String,
+    |                  ^^^^^^ not found in this scope
+
+error[E0433]: failed to resolve: use of undeclared type `String`
+   --> md5/src/lib.rs:206:54
+    |
+206 |         let mut formatter = MockFormatter { content: String::new() };
+    |                                                      ^^^^^^ use of undeclared type `String`
+
+error[E0308]: mismatched types
+   --> md5/src/lib.rs:207:65
+    |
+207 |         let result = <Md5Core as AlgorithmName>::write_alg_name(&mut formatter);
+    |                      ------------------------------------------ ^^^^^^^^^^^^^^ expected struct `Formatter`, found struct `MockFormatter`
+    |                      |
+    |                      arguments to this function are incorrect
+    |
+    = note: expected mutable reference `&mut Formatter<'_>`
+               found mutable reference `&mut MockFormatter`
+note: associated function defined here
+   --> /home/xiang/.cargo/registry/src/github.com-1ecc6299db9ec823/crypto-common-0.1.6/src/lib.rs:120:8
+    |
+120 |     fn write_alg_name(f: &mut fmt::Formatter<'_>) -> fmt::Result;
+    |        ^^^^^^^^^^^^^^
+
+Some errors have detailed explanations: E0308, E0412, E0432, E0433.
+For more information about an error, try `rustc --explain E0308`.
+error: could not compile `md-5` due to 4 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UWBNx6WLyAei4m9ShaF00imUmBty', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use digest::core_api::AlgorithmName;\n    use core::fmt;\n\n    #[test]\n    fn test_write_alg_name() {\n        let mut output = String::new();\n        let result = <Md5Core as AlgorithmName>::write_alg_name(&mut output);\n        assert!(result.is_ok());\n        assert_eq!(output, "Md5");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702284241, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=91, prompt_tokens=967, total_tokens=1058))
+71
+========================================
+inject err <Md5Core as digest::core_api::AlgorithmName>::write_alg_name md5/src/lib.rs write_alg_name
+#[cfg(test)]
+mod tests_llm_16_3 {
+    use super::*;
+
+use crate::*;
+    use digest::core_api::AlgorithmName;
+    use core::fmt;
+
+    #[test]
+    fn test_write_alg_name() {
+        let mut output = String::new();
+        let result = <Md5Core as AlgorithmName>::write_alg_name(&mut output);
+        assert!(result.is_ok());
+        assert_eq!(output, "Md5");
+    }
+}
+   Compiling md-5 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/md5)
+error[E0433]: failed to resolve: use of undeclared type `String`
+   --> md5/src/lib.rs:195:26
+    |
+195 |         let mut output = String::new();
+    |                          ^^^^^^ use of undeclared type `String`
+
+error[E0369]: binary operation `==` cannot be applied to type `Formatter<'_>`
+   --> md5/src/lib.rs:198:9
+    |
+198 |         assert_eq!(output, "Md5");
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |         |
+    |         Formatter<'_>
+    |         &str
+    |
+    = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: `Formatter<'_>` doesn't implement `Debug`
+   --> md5/src/lib.rs:198:9
+    |
+198 |         assert_eq!(output, "Md5");
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^ `Formatter<'_>` cannot be formatted using `{:?}` because it doesn't implement `Debug`
+    |
+    = help: the trait `Debug` is not implemented for `Formatter<'_>`
+    = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+Some errors have detailed explanations: E0277, E0369, E0433.
+For more information about an error, try `rustc --explain E0277`.
+error: could not compile `md-5` due to 3 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+repair err <Md5Core as digest::core_api::AlgorithmName>::write_alg_name md5/src/lib.rs write_alg_name
+ChatCompletion(id='chatcmpl-8UWBUIXk01sP3SKJE0LvRS3kQEPMB', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use md5::{Md5Core, Block, BlockSize, Output, OutputSize, Buffer, BufferKind, FixedOutputCore, Reset, UpdateCore};\n    use digest::core_api::{CoreWrapper, FixedOutputCoreWrapper};\n    use hex_literal::hex;\n\n    #[test]\n    fn finalize_fixed_core_test() {\n        let mut core = Md5Core::default();\n        \n        // Test with an empty buffer (no data added, just padding)\n        let mut buffer = Buffer::<Md5Core>::new();\n        let mut output = Output::<Md5Core>::default();\n        core.finalize_fixed_core(&mut buffer, &mut output);\n\n        let expected = hex!("d41d8cd98f00b204e9800998ecf8427e");\n        assert_eq!(&output[..], &expected);\n\n        // Reset core and buffer\n        core.reset();\n        buffer.reset();\n\n        // Test with some data added\n        let data = b"hello";\n        core.update_core(data);\n\n        // Finalize with the data added\n        let mut output = Output::<Md5Core>::default();\n        core.finalize_fixed_core(&mut buffer, &mut output);\n\n        let expected = hex!("5d41402abc4b2a76b9719d911017c592");\n        assert_eq!(&output[..], &expected);\n\n        // Continue with more tests with different data blocks...\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702284248, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_6aca3b5ce1', usage=CompletionUsage(completion_tokens=305, prompt_tokens=871, total_tokens=1176))
+71
+========================================
+inject err <Md5Core as digest::core_api::FixedOutputCore>::finalize_fixed_core md5/src/lib.rs finalize_fixed_core
+#[cfg(test)]
+mod tests_llm_16_4 {
+    use md5::{Md5Core, Block, BlockSize, Output, OutputSize, Buffer, BufferKind, FixedOutputCore, Reset, UpdateCore};
+    use digest::core_api::{CoreWrapper, FixedOutputCoreWrapper};
+    use hex_literal::hex;
+
+    #[test]
+    fn finalize_fixed_core_test() {
+        let mut core = Md5Core::default();
+        
+        // Test with an empty buffer (no data added, just padding)
+        let mut buffer = Buffer::<Md5Core>::new();
+        let mut output = Output::<Md5Core>::default();
+        core.finalize_fixed_core(&mut buffer, &mut output);
+
+        let expected = hex!("d41d8cd98f00b204e9800998ecf8427e");
+        assert_eq!(&output[..], &expected);
+
+        // Reset core and buffer
+        core.reset();
+        buffer.reset();
+
+        // Test with some data added
+        let data = b"hello";
+        core.update_core(data);
+
+        // Finalize with the data added
+        let mut output = Output::<Md5Core>::default();
+        core.finalize_fixed_core(&mut buffer, &mut output);
+
+        let expected = hex!("5d41402abc4b2a76b9719d911017c592");
+        assert_eq!(&output[..], &expected);
+
+        // Continue with more tests with different data blocks...
+    }
+}
+   Compiling md-5 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/md5)
+error[E0432]: unresolved import `digest::core_api::FixedOutputCoreWrapper`
+   --> md5/src/lib.rs:188:41
+    |
+188 |     use digest::core_api::{CoreWrapper, FixedOutputCoreWrapper};
+    |                                         ^^^^^^^^^^^^^^^^^^^^^^
+    |                                         |
+    |                                         no `FixedOutputCoreWrapper` in `core_api`
+    |                                         help: a similar name exists in the module: `FixedOutputCore`
+
+error[E0432]: unresolved import `md5`
+   --> md5/src/lib.rs:187:9
+    |
+187 |     use md5::{Md5Core, Block, BlockSize, Output, OutputSize, Buffer, BufferKind, FixedOutputCore, Reset, UpdateCore};
+    |         ^^^ use of undeclared crate or module `md5`
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `md-5` due to 2 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UWC6RofHWwWvl7Y31a4O98JkTIiC', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_4 {\n    use crate::{Md5Core, Buffer, FixedOutputCore, Reset, UpdateCore, convert, compress, from_ref};\n    use digest::{Output, Block, BlockSize, OutputSize, BlockSizeUser, UpdateCoreWrapper};\n    use digest::consts::{U16, U64};\n    use hex_literal::hex;\n    use core::fmt;\n\n    #[test]\n    fn finalize_fixed_core_test() {\n        let mut core = Md5Core::default();\n        \n        // Test with an empty buffer (no data added, just padding)\n        let mut buffer = Buffer::<Md5Core>::new();\n        let mut output = Output::<Md5Core>::default();\n        core.finalize_fixed_core(&mut buffer, &mut output);\n\n        let expected = hex!("d41d8cd98f00b204e9800998ecf8427e");\n        assert_eq!(&output[..], &expected);\n\n        // Reset core and buffer\n        core.reset();\n        buffer.reset();\n\n        // Test with some data added\n        let mut core = UpdateCoreWrapper::from_core(core);\n        let data = b"hello";\n        core.update_with(data);\n\n        // Retrieve Md5Core from wrapper\n        let mut core = Md5Core::from(core);\n\n        // Finalize with the data added\n        let mut output = Output::<Md5Core>::default();\n        let mut buffer = Buffer::<Md5Core>::new();\n        core.finalize_fixed_core(&mut buffer, &mut output);\n\n        let expected = hex!("5d41402abc4b2a76b9719d911017c592");\n        assert_eq!(&output[..], &expected);\n\n        // Continue with more tests with different data blocks...\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702284286, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_6aca3b5ce1', usage=CompletionUsage(completion_tokens=376, prompt_tokens=1784, total_tokens=2160))
+71
+========================================
+inject err <Md5Core as digest::core_api::FixedOutputCore>::finalize_fixed_core md5/src/lib.rs finalize_fixed_core
+#[cfg(test)]
+mod tests_llm_16_4_llm_16_4 {
+    use crate::{Md5Core, Buffer, FixedOutputCore, Reset, UpdateCore, convert, compress, from_ref};
+    use digest::{Output, Block, BlockSize, OutputSize, BlockSizeUser, UpdateCoreWrapper};
+    use digest::consts::{U16, U64};
+    use hex_literal::hex;
+    use core::fmt;
+
+    #[test]
+    fn finalize_fixed_core_test() {
+        let mut core = Md5Core::default();
+        
+        // Test with an empty buffer (no data added, just padding)
+        let mut buffer = Buffer::<Md5Core>::new();
+        let mut output = Output::<Md5Core>::default();
+        core.finalize_fixed_core(&mut buffer, &mut output);
+
+        let expected = hex!("d41d8cd98f00b204e9800998ecf8427e");
+        assert_eq!(&output[..], &expected);
+
+        // Reset core and buffer
+        core.reset();
+        buffer.reset();
+
+        // Test with some data added
+        let mut core = UpdateCoreWrapper::from_core(core);
+        let data = b"hello";
+        core.update_with(data);
+
+        // Retrieve Md5Core from wrapper
+        let mut core = Md5Core::from(core);
+
+        // Finalize with the data added
+        let mut output = Output::<Md5Core>::default();
+        let mut buffer = Buffer::<Md5Core>::new();
+        core.finalize_fixed_core(&mut buffer, &mut output);
+
+        let expected = hex!("5d41402abc4b2a76b9719d911017c592");
+        assert_eq!(&output[..], &expected);
+
+        // Continue with more tests with different data blocks...
+    }
+}
+   Compiling md-5 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/md5)
+error[E0432]: unresolved imports `digest::Block`, `digest::BlockSize`, `digest::OutputSize`, `digest::BlockSizeUser`, `digest::UpdateCoreWrapper`
+   --> md5/src/lib.rs:188:26
+    |
+188 |     use digest::{Output, Block, BlockSize, OutputSize, BlockSizeUser, UpdateCoreWrapper};
+    |                          ^^^^^  ^^^^^^^^^  ^^^^^^^^^^  ^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^^ no `UpdateCoreWrapper` in the root
+    |                          |      |          |           |
+    |                          |      |          |           no `BlockSizeUser` in the root
+    |                          |      |          no `OutputSize` in the root
+    |                          |      no `BlockSize` in the root
+    |                          no `Block` in the root
+    |
+help: consider importing one of these items instead
+    |
+188 |     use digest::{Output, crate::Block;
+    |                          ~~~~~~~~~~~~~
+188 |     use digest::{Output, digest::core_api::Block;
+    |                          ~~~~~~~~~~~~~~~~~~~~~~~~
+help: consider importing one of these items instead
+    |
+188 |     use digest::{Output, Block, BlockSize, OutputSize, crate::BlockSizeUser;
+    |                                                        ~~~~~~~~~~~~~~~~~~~~~
+188 |     use digest::{Output, Block, BlockSize, OutputSize, digest::core_api::BlockSizeUser;
+    |                                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+error[E0061]: this function takes 1 argument but 0 arguments were supplied
+   --> md5/src/lib.rs:198:26
+    |
+198 |         let mut buffer = Buffer::<Md5Core>::new();
+    |                          ^^^^^^^^^^^^^^^^^^^^^^-- an argument of type `&[u8]` is missing
+    |
+note: associated function defined here
+   --> /home/xiang/.cargo/registry/src/github.com-1ecc6299db9ec823/block-buffer-0.10.4/src/lib.rs:110:12
+    |
+110 |     pub fn new(buf: &[u8]) -> Self {
+    |            ^^^
+help: provide the argument
+    |
+198 |         let mut buffer = Buffer::<Md5Core>::new(/* &[u8] */);
+    |                                                ~~~~~~~~~~~~~
+
+error[E0061]: this function takes 1 argument but 0 arguments were supplied
+   --> md5/src/lib.rs:219:26
+    |
+219 |         let mut buffer = Buffer::<Md5Core>::new();
+    |                          ^^^^^^^^^^^^^^^^^^^^^^-- an argument of type `&[u8]` is missing
+    |
+note: associated function defined here
+   --> /home/xiang/.cargo/registry/src/github.com-1ecc6299db9ec823/block-buffer-0.10.4/src/lib.rs:110:12
+    |
+110 |     pub fn new(buf: &[u8]) -> Self {
+    |            ^^^
+help: provide the argument
+    |
+219 |         let mut buffer = Buffer::<Md5Core>::new(/* &[u8] */);
+    |                                                ~~~~~~~~~~~~~
+
+Some errors have detailed explanations: E0061, E0432.
+For more information about an error, try `rustc --explain E0061`.
+error: could not compile `md-5` due to 3 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+repair err <Md5Core as digest::core_api::FixedOutputCore>::finalize_fixed_core md5/src/lib.rs finalize_fixed_core
+ChatCompletion(id='chatcmpl-8UWCdsoMVsiWVEupnJiJlaDBYqOcG', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use digest::{Digest, FixedOutput};\n\n    #[test]\n    fn test_update_blocks() {\n        // Initialize Md5Core with default state\n        let mut md5_core = Md5Core::default();\n        \n        // Define input blocks\n        let block = Block::<Md5Core>::default(); // Define this based on the actual Block implementation\n        let blocks = [block; 1]; // Use a single default block for this test\n\n        // Record the initial state for later comparison\n        let initial_state = md5_core.state;\n        \n        // Update Md5Core with the input blocks\n        Md5Core::update_blocks(&mut md5_core, &blocks);\n\n        // Verify the state has changed\n        assert_ne!(initial_state, md5_core.state, "State should be updated after processing a block");\n\n        // Verify block_len has increased\n        assert_eq!(md5_core.block_len, blocks.len() as u64, "block_len should be increased by the number of blocks");\n\n        // The following part of the test is optional and based on the ability\n        // to check the final hash output, which is implementation-dependent.\n        // The purpose is to check if the update with a known input block results\n        // in a known output hash state, which in a real-world scenario, would\n        // be checked against a precomputed hash value for the given input blocks.\n        \n        // Compute and check final hash output (if possible)\n        // let mut output = [0u8; 16];\n        // md5_core.finalize_fixed_core(&mut buffer, &mut output);\n        // let expected = [/* Expected hash bytes for the given blocks */];\n        // assert_eq!(output, expected, "Final hash output should match the expected value");\n\n        // Note that the Block::<Md5Core>::default() and the expected hash output bytes\n        // need to be defined based on the actual Md5Core and block implementation.\n        // The actual definition of the Block type and how to initialize it with test data\n        // is not given in your provided code above.\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702284319, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=451, prompt_tokens=778, total_tokens=1229))
+71
+inject succeed hashes md-5 <Md5Core as digest::core_api::UpdateCore>::update_blocks
+ChatCompletion(id='chatcmpl-8UWD9LpHjdWu3MKjAkMtHFoTjrDgw', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::compress;\n    use crate::md5::utils::compute_md5_hash;\n\n    #[test]\n    fn test_compress_single_block() {\n        let mut state = [0x67452301, 0xefcdab89, 0x98badcfe, 0x10325476];\n        let block = [0u8; 64];\n        let expected = compute_md5_hash(&block);\n        compress(&mut state, &[block]);\n        assert_eq!(state, expected);\n    }\n\n    #[test]\n    fn test_compress_multiple_blocks() {\n        let mut state = [0x67452301, 0xefcdab89, 0x98badcfe, 0x10325476];\n        let block = [0u8; 64];\n        let blocks = [block; 2];\n        let mut expected = compute_md5_hash(&block);\n        compress(&mut state, &blocks);\n        expected = compute_md5_hash(&[block, expected.to_le_bytes()].concat());\n        assert_eq!(state, expected);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702284351, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_6aca3b5ce1', usage=CompletionUsage(completion_tokens=237, prompt_tokens=172, total_tokens=409))
+71
+========================================
+inject err compress::compress md5/src/compress.rs compress
+#[cfg(test)]
+mod tests_llm_16_6 {
+    use crate::compress;
+    use crate::md5::utils::compute_md5_hash;
+
+    #[test]
+    fn test_compress_single_block() {
+        let mut state = [0x67452301, 0xefcdab89, 0x98badcfe, 0x10325476];
+        let block = [0u8; 64];
+        let expected = compute_md5_hash(&block);
+        compress(&mut state, &[block]);
+        assert_eq!(state, expected);
+    }
+
+    #[test]
+    fn test_compress_multiple_blocks() {
+        let mut state = [0x67452301, 0xefcdab89, 0x98badcfe, 0x10325476];
+        let block = [0u8; 64];
+        let blocks = [block; 2];
+        let mut expected = compute_md5_hash(&block);
+        compress(&mut state, &blocks);
+        expected = compute_md5_hash(&[block, expected.to_le_bytes()].concat());
+        assert_eq!(state, expected);
+    }
+}
+   Compiling md-5 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/md5)
+error[E0433]: failed to resolve: could not find `md5` in the crate root
+   --> md5/src/compress.rs:169:16
+    |
+169 |     use crate::md5::utils::compute_md5_hash;
+    |                ^^^ could not find `md5` in the crate root
+
+For more information about this error, try `rustc --explain E0433`.
+error: could not compile `md-5` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UWDSW2a0yOoThTuKV7QZ4Rd34xhY', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_6 {\n    use super::compress;\n    use md5::compute_md5_hash;\n\n    #[test]\n    fn test_compress_single_block() {\n        let mut state = [0x67452301, 0xefcdab89, 0x98badcfe, 0x10325476];\n        let block = [0u8; 64];\n        let expected = compute_md5_hash(&block);\n        compress(&mut state, &[block]);\n        assert_eq!(state, expected);\n    }\n\n    #[test]\n    fn test_compress_multiple_blocks() {\n        let mut state = [0x67452301, 0xefcdab89, 0x98badcfe, 0x10325476];\n        let block = [0u8; 64];\n        let blocks = [block; 2];\n        let mut expected = compute_md5_hash(&block);\n        compress(&mut state, &blocks);\n        compress(&mut expected, &[block]);\n        assert_eq!(state, expected);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702284370, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=230, prompt_tokens=844, total_tokens=1074))
+71
+========================================
+inject err compress::compress md5/src/compress.rs compress
+#[cfg(test)]
+mod tests_llm_16_6_llm_16_6 {
+    use crate::compress;
+    use md5::compute_md5_hash;
+
+    #[test]
+    fn test_compress_single_block() {
+        let mut state = [0x67452301, 0xefcdab89, 0x98badcfe, 0x10325476];
+        let block = [0u8; 64];
+        let expected = compute_md5_hash(&block);
+        compress(&mut state, &[block]);
+        assert_eq!(state, expected);
+    }
+
+    #[test]
+    fn test_compress_multiple_blocks() {
+        let mut state = [0x67452301, 0xefcdab89, 0x98badcfe, 0x10325476];
+        let block = [0u8; 64];
+        let blocks = [block; 2];
+        let mut expected = compute_md5_hash(&block);
+        compress(&mut state, &blocks);
+        compress(&mut expected, &[block]);
+        assert_eq!(state, expected);
+    }
+}
+   Compiling md-5 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/md5)
+error[E0432]: unresolved import `md5`
+   --> md5/src/compress.rs:169:9
+    |
+169 |     use md5::compute_md5_hash;
+    |         ^^^ use of undeclared crate or module `md5`
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `md-5` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+repair err compress::compress md5/src/compress.rs compress
+ChatCompletion(id='chatcmpl-8UWDpxc31wf7TUHneETwsxtEoV7KS', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::compress_block;\n\n    #[test]\n    fn test_compress_block() {\n        let mut state: [u32; 4] = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476];\n        let input: [u8; 64] = [0; 64];  // Example input, you can change as needed\n\n        let expected: [u32; 4] = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476]; // Replace with expected state\n\n        compress_block(&mut state, &input);\n\n        assert_eq!(state, expected, "compress_block did not produce the expected state");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702284393, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_6aca3b5ce1', usage=CompletionUsage(completion_tokens=178, prompt_tokens=1866, total_tokens=2044))
+71
+========================================
+inject err compress::compress_block md5/src/compress.rs compress_block
+#[cfg(test)]
+mod tests_llm_16_7 {
+    use crate::compress_block;
+
+    #[test]
+    fn test_compress_block() {
+        let mut state: [u32; 4] = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476];
+        let input: [u8; 64] = [0; 64];  // Example input, you can change as needed
+
+        let expected: [u32; 4] = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476]; // Replace with expected state
+
+        compress_block(&mut state, &input);
+
+        assert_eq!(state, expected, "compress_block did not produce the expected state");
+    }
+}
+   Compiling md-5 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/md5)
+error[E0432]: unresolved import `crate::compress_block`
+   --> md5/src/compress.rs:168:9
+    |
+168 |     use crate::compress_block;
+    |         ^^^^^^^^^^^^^^^^^^^^^ no `compress_block` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `md-5` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UWE3wosKVqqvMIx72GvDSt71KOhi', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_7 {\n    use super::compress_block;\n\n    #[test]\n    fn test_compress_block() {\n        let mut state: [u32; 4] = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476];\n        let input: [u8; 64] = [0; 64];  // Example input, you can change as needed\n\n        let expected: [u32; 4] = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476]; // Replace with expected state\n\n        compress_block(&mut state, &input);\n\n        assert_eq!(state, expected, "compress_block did not produce the expected state");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702284407, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=184, prompt_tokens=2406, total_tokens=2590))
+71
+========================================
+inject err compress::compress_block md5/src/compress.rs compress_block
+#[cfg(test)]
+mod tests_llm_16_7_llm_16_7 {
+    use crate::compress_block;
+
+    #[test]
+    fn test_compress_block() {
+        let mut state: [u32; 4] = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476];
+        let input: [u8; 64] = [0; 64];  // Example input, you can change as needed
+
+        let expected: [u32; 4] = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476]; // Replace with expected state
+
+        compress_block(&mut state, &input);
+
+        assert_eq!(state, expected, "compress_block did not produce the expected state");
+    }
+}
+   Compiling md-5 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/md5)
+error[E0432]: unresolved import `crate::compress_block`
+   --> md5/src/compress.rs:168:9
+    |
+168 |     use crate::compress_block;
+    |         ^^^^^^^^^^^^^^^^^^^^^ no `compress_block` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `md-5` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+repair err compress::compress_block md5/src/compress.rs compress_block
+ChatCompletion(id='chatcmpl-8UWEStL3VDeWiJDUf6kL17qX96kXO', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::op_f;\n\n    #[test]\n    fn test_op_f() {\n        // Example test values\n        let w: u32 = 0x12345678;\n        let x: u32 = 0x89abcdef;\n        let y: u32 = 0xfedcba98;\n        let z: u32 = 0x76543210;\n        let m: u32 = 0xf0e1d2c3;\n        let c: u32 = 0x13579bdf;\n        let s: u32 = 7;\n\n        // Expected result calculated by hand or from a reference implementation\n        let expected: u32 = 0xsome_pre_calculated_value;\n\n        // Perform the test\n        let result = op_f(w, x, y, z, m, c, s);\n\n        // Check the result\n        assert_eq!(result, expected, "op_f did not return the expected result");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702284432, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_6aca3b5ce1', usage=CompletionUsage(completion_tokens=215, prompt_tokens=223, total_tokens=438))
+71
+========================================
+inject err compress::op_f md5/src/compress.rs op_f
+#[cfg(test)]
+mod tests_llm_16_8 {
+    use crate::op_f;
+
+    #[test]
+    fn test_op_f() {
+        // Example test values
+        let w: u32 = 0x12345678;
+        let x: u32 = 0x89abcdef;
+        let y: u32 = 0xfedcba98;
+        let z: u32 = 0x76543210;
+        let m: u32 = 0xf0e1d2c3;
+        let c: u32 = 0x13579bdf;
+        let s: u32 = 7;
+
+        // Expected result calculated by hand or from a reference implementation
+        let expected: u32 = 0xsome_pre_calculated_value;
+
+        // Perform the test
+        let result = op_f(w, x, y, z, m, c, s);
+
+        // Check the result
+        assert_eq!(result, expected, "op_f did not return the expected result");
+    }
+}
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling md-5 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/md5)
+error[E0768]: no valid digits found for number
+   --> md5/src/compress.rs:182:29
+    |
+182 |         let expected: u32 = 0xsome_pre_calculated_value;
+    |                             ^^
+
+For more information about this error, try `rustc --explain E0768`.
+error: could not compile `md-5` due to previous error
+warning: build failed, waiting for other jobs to finish...
+error[E0432]: unresolved import `crate::op_f`
+   --> md5/src/compress.rs:168:9
+    |
+168 |     use crate::op_f;
+    |         ^^^^^^^^^^^ no `op_f` in the root
+
+error: invalid suffix `some_pre_calculated_value` for number literal
+   --> md5/src/compress.rs:182:29
+    |
+182 |         let expected: u32 = 0xsome_pre_calculated_value;
+    |                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^ invalid suffix `some_pre_calculated_value`
+    |
+    = help: the suffix must be one of the numeric types (`u32`, `isize`, `f32`, etc.)
+
+Some errors have detailed explanations: E0432, E0768.
+For more information about an error, try `rustc --explain E0432`.
+error: could not compile `md-5` due to 3 previous errors
+
+ChatCompletion(id='chatcmpl-8UWEiqTDnbB9jLoLjQy0s5frMGYus', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_8 {\n    use super::op_f; // Change `crate` to `super` to refer to the parent module\n\n    #[test]\n    fn test_op_f() {\n        // Example test values\n        let w: u32 = 0x12345678;\n        let x: u32 = 0x89abcdef;\n        let y: u32 = 0xfedcba98;\n        let z: u32 = 0x76543210;\n        let m: u32 = 0xf0e1d2c3;\n        let c: u32 = 0x13579bdf;\n        let s: u32 = 7;\n\n        // You need to replace `0xsome_pre_calculated_value` with an actual u32 hex value\n        // Here, I will just put a placeholder value of `0x12345678` to compile the code\n        // Please replace `0x12345678` with the actual expected value\n        let expected: u32 = 0x12345678;\n\n        // Perform the test\n        let result = op_f(w, x, y, z, m, c, s);\n\n        // Check the result\n        assert_eq!(result, expected, "op_f did not return the expected result");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702284448, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_6aca3b5ce1', usage=CompletionUsage(completion_tokens=286, prompt_tokens=1060, total_tokens=1346))
+71
+========================================
+inject err compress::op_f md5/src/compress.rs op_f
+#[cfg(test)]
+mod tests_llm_16_8_llm_16_8 {
+    use crate::op_f; // Change `crate` to `super` to refer to the parent module
+
+    #[test]
+    fn test_op_f() {
+        // Example test values
+        let w: u32 = 0x12345678;
+        let x: u32 = 0x89abcdef;
+        let y: u32 = 0xfedcba98;
+        let z: u32 = 0x76543210;
+        let m: u32 = 0xf0e1d2c3;
+        let c: u32 = 0x13579bdf;
+        let s: u32 = 7;
+
+        // You need to replace `0xsome_pre_calculated_value` with an actual u32 hex value
+        // Here, I will just put a placeholder value of `0x12345678` to compile the code
+        // Please replace `0x12345678` with the actual expected value
+        let expected: u32 = 0x12345678;
+
+        // Perform the test
+        let result = op_f(w, x, y, z, m, c, s);
+
+        // Check the result
+        assert_eq!(result, expected, "op_f did not return the expected result");
+    }
+}
+   Compiling md-5 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/md5)
+error[E0432]: unresolved import `crate::op_f`
+   --> md5/src/compress.rs:168:9
+    |
+168 |     use crate::op_f; // Change `crate` to `super` to refer to the parent module
+    |         ^^^^^^^^^^^ no `op_f` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `md-5` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+repair err compress::op_f md5/src/compress.rs op_f
+ChatCompletion(id='chatcmpl-8UWF5EeTEfgiT2kiRAYNEj3SCI3jL', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::op_g;\n\n    #[test]\n    fn test_op_g() {\n        // Test values based on known inputs and expected outputs\n        // for the `op_g` function. Adjust values based on your needs.\n        let w: u32 = 0x12345678;\n        let x: u32 = 0x89abcdef;\n        let y: u32 = 0xfedcba98;\n        let z: u32 = 0x76543210;\n        let m: u32 = 0xf0e1d2c3;\n        let c: u32 = 0x13579bdf;\n        let s: u32 = 17; // An arbitrary value for testing; change as needed.\n\n        // Expected result calculated manually or by a reference implementation\n        let expected: u32 = 0x12345678; // Replace with the actual expected result\n\n        // Execute the target function\n        let result = op_g(w, x, y, z, m, c, s);\n\n        // Assert to check if the result is as expected\n        assert_eq!(result, expected, "op_g did not return the expected value.");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702284471, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=261, prompt_tokens=224, total_tokens=485))
+71
+========================================
+inject err compress::op_g md5/src/compress.rs op_g
+#[cfg(test)]
+mod tests_llm_16_9 {
+    use crate::op_g;
+
+    #[test]
+    fn test_op_g() {
+        // Test values based on known inputs and expected outputs
+        // for the `op_g` function. Adjust values based on your needs.
+        let w: u32 = 0x12345678;
+        let x: u32 = 0x89abcdef;
+        let y: u32 = 0xfedcba98;
+        let z: u32 = 0x76543210;
+        let m: u32 = 0xf0e1d2c3;
+        let c: u32 = 0x13579bdf;
+        let s: u32 = 17; // An arbitrary value for testing; change as needed.
+
+        // Expected result calculated manually or by a reference implementation
+        let expected: u32 = 0x12345678; // Replace with the actual expected result
+
+        // Execute the target function
+        let result = op_g(w, x, y, z, m, c, s);
+
+        // Assert to check if the result is as expected
+        assert_eq!(result, expected, "op_g did not return the expected value.");
+    }
+}
+   Compiling md-5 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/md5)
+error[E0432]: unresolved import `crate::op_g`
+   --> md5/src/compress.rs:168:9
+    |
+168 |     use crate::op_g;
+    |         ^^^^^^^^^^^ no `op_g` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `md-5` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UWFTP0iXZqOjyOsVh9kaLy4jKB8w', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_9 {\n    use super::op_g;\n\n    #[test]\n    fn test_op_g() {\n        // Test values based on known inputs and expected outputs\n        // for the `op_g` function. Adjust values based on your needs.\n        let w: u32 = 0x12345678;\n        let x: u32 = 0x89abcdef;\n        let y: u32 = 0xfedcba98;\n        let z: u32 = 0x76543210;\n        let m: u32 = 0xf0e1d2c3;\n        let c: u32 = 0x13579bdf;\n        let s: u32 = 17; // An arbitrary value for testing; change as needed.\n\n        // Expected result calculated manually or by a reference implementation\n        let expected: u32 = 0x12345678; // Replace with the actual expected result\n\n        // Execute the target function\n        let result = op_g(w, x, y, z, m, c, s);\n\n        // Assert to check if the result is as expected\n        assert_eq!(result, expected, "op_g did not return the expected value.");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702284495, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=267, prompt_tokens=928, total_tokens=1195))
+71
+========================================
+inject err compress::op_g md5/src/compress.rs op_g
+#[cfg(test)]
+mod tests_llm_16_9_llm_16_9 {
+    use crate::op_g;
+
+    #[test]
+    fn test_op_g() {
+        // Test values based on known inputs and expected outputs
+        // for the `op_g` function. Adjust values based on your needs.
+        let w: u32 = 0x12345678;
+        let x: u32 = 0x89abcdef;
+        let y: u32 = 0xfedcba98;
+        let z: u32 = 0x76543210;
+        let m: u32 = 0xf0e1d2c3;
+        let c: u32 = 0x13579bdf;
+        let s: u32 = 17; // An arbitrary value for testing; change as needed.
+
+        // Expected result calculated manually or by a reference implementation
+        let expected: u32 = 0x12345678; // Replace with the actual expected result
+
+        // Execute the target function
+        let result = op_g(w, x, y, z, m, c, s);
+
+        // Assert to check if the result is as expected
+        assert_eq!(result, expected, "op_g did not return the expected value.");
+    }
+}
+   Compiling md-5 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/md5)
+error[E0432]: unresolved import `crate::op_g`
+   --> md5/src/compress.rs:168:9
+    |
+168 |     use crate::op_g;
+    |         ^^^^^^^^^^^ no `op_g` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `md-5` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+repair err compress::op_g md5/src/compress.rs op_g
+ChatCompletion(id='chatcmpl-8UWFuknVyUnY8RkaDfo0wKEjJp9BD', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::op_h;\n\n    #[test]\n    fn test_op_h() {\n        let w = 0x12345678;\n        let x = 0x89abcdef;\n        let y = 0xfedcba98;\n        let z = 0x76543210;\n        let m = 0x0fedcba9;\n        let c = 0x89abcdef;\n        let s = 5;\n        let result = op_h(w, x, y, z, m, c, s);\n        \n        let expected = (x ^ y ^ z)\n            .wrapping_add(w)\n            .wrapping_add(m)\n            .wrapping_add(c)\n            .rotate_left(s)\n            .wrapping_add(x);\n        \n        assert_eq!(result, expected, "op_h did not produce the expected result");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702284522, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=189, prompt_tokens=219, total_tokens=408))
+71
+========================================
+inject err compress::op_h md5/src/compress.rs op_h
+#[cfg(test)]
+mod tests_llm_16_10 {
+    use crate::op_h;
+
+    #[test]
+    fn test_op_h() {
+        let w = 0x12345678;
+        let x = 0x89abcdef;
+        let y = 0xfedcba98;
+        let z = 0x76543210;
+        let m = 0x0fedcba9;
+        let c = 0x89abcdef;
+        let s = 5;
+        let result = op_h(w, x, y, z, m, c, s);
+        
+        let expected = (x ^ y ^ z)
+            .wrapping_add(w)
+            .wrapping_add(m)
+            .wrapping_add(c)
+            .rotate_left(s)
+            .wrapping_add(x);
+        
+        assert_eq!(result, expected, "op_h did not produce the expected result");
+    }
+}
+   Compiling md-5 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/md5)
+error[E0432]: unresolved import `crate::op_h`
+   --> md5/src/compress.rs:168:9
+    |
+168 |     use crate::op_h;
+    |         ^^^^^^^^^^^ no `op_h` in the root
+
+error[E0689]: can't call method `wrapping_add` on ambiguous numeric type `{integer}`
+   --> md5/src/compress.rs:182:14
+    |
+182 |             .wrapping_add(w)
+    |              ^^^^^^^^^^^^
+
+Some errors have detailed explanations: E0432, E0689.
+For more information about an error, try `rustc --explain E0432`.
+error: could not compile `md-5` due to 2 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UWGCCZiiU1pVkGn4GPTRYjymhFMH', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_10 {\n    use super::op_h;\n\n    #[test]\n    fn test_op_h() {\n        let w: u32 = 0x12345678;\n        let x: u32 = 0x89abcdef;\n        let y: u32 = 0xfedcba98;\n        let z: u32 = 0x76543210;\n        let m: u32 = 0x0fedcba9;\n        let c: u32 = 0x89abcdef;\n        let s: u32 = 5;\n        let result = op_h(w, x, y, z, m, c, s);\n        \n        let expected = (x ^ y ^ z)\n            .wrapping_add(w)\n            .wrapping_add(m)\n            .wrapping_add(c)\n            .rotate_left(s)\n            .wrapping_add(x);\n        \n        assert_eq!(result, expected, "op_h did not produce the expected result");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702284540, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_6aca3b5ce1', usage=CompletionUsage(completion_tokens=216, prompt_tokens=849, total_tokens=1065))
+71
+========================================
+inject err compress::op_h md5/src/compress.rs op_h
+#[cfg(test)]
+mod tests_llm_16_10_llm_16_10 {
+    use crate::op_h;
+
+    #[test]
+    fn test_op_h() {
+        let w: u32 = 0x12345678;
+        let x: u32 = 0x89abcdef;
+        let y: u32 = 0xfedcba98;
+        let z: u32 = 0x76543210;
+        let m: u32 = 0x0fedcba9;
+        let c: u32 = 0x89abcdef;
+        let s: u32 = 5;
+        let result = op_h(w, x, y, z, m, c, s);
+        
+        let expected = (x ^ y ^ z)
+            .wrapping_add(w)
+            .wrapping_add(m)
+            .wrapping_add(c)
+            .rotate_left(s)
+            .wrapping_add(x);
+        
+        assert_eq!(result, expected, "op_h did not produce the expected result");
+    }
+}
+   Compiling md-5 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/md5)
+error[E0432]: unresolved import `crate::op_h`
+   --> md5/src/compress.rs:168:9
+    |
+168 |     use crate::op_h;
+    |         ^^^^^^^^^^^ no `op_h` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `md-5` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+repair err compress::op_h md5/src/compress.rs op_h
+ChatCompletion(id='chatcmpl-8UWGV0vsqy9I5Tt24bliORgAM9jI0', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::op_i;\n\n    #[test]\n    fn test_op_i() {\n        // Test cases here, for example\n        let w: u32 = 0x12345678;\n        let x: u32 = 0x87654321;\n        let y: u32 = 0xF0F0F0F0;\n        let z: u32 = 0x0F0F0F0F;\n        let m: u32 = 0xA5A5A5A5;\n        let c: u32 = 0x5A5A5A5A;\n        let s: u32 = 7;\n\n        let result = op_i(w, x, y, z, m, c, s);\n        assert_eq!(result, 0x6F9D5A44); // Expected value should be calculated and replaced here\n    }\n\n    // Additional test cases as needed\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702284559, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=208, prompt_tokens=221, total_tokens=429))
+71
+========================================
+inject err compress::op_i md5/src/compress.rs op_i
+#[cfg(test)]
+mod tests_llm_16_11 {
+    use crate::op_i;
+
+    #[test]
+    fn test_op_i() {
+        // Test cases here, for example
+        let w: u32 = 0x12345678;
+        let x: u32 = 0x87654321;
+        let y: u32 = 0xF0F0F0F0;
+        let z: u32 = 0x0F0F0F0F;
+        let m: u32 = 0xA5A5A5A5;
+        let c: u32 = 0x5A5A5A5A;
+        let s: u32 = 7;
+
+        let result = op_i(w, x, y, z, m, c, s);
+        assert_eq!(result, 0x6F9D5A44); // Expected value should be calculated and replaced here
+    }
+
+    // Additional test cases as needed
+}
+   Compiling md-5 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/md5)
+error[E0432]: unresolved import `crate::op_i`
+   --> md5/src/compress.rs:168:9
+    |
+168 |     use crate::op_i;
+    |         ^^^^^^^^^^^ no `op_i` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `md-5` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UWGpyLbzNdJLMhu45JjaFtz1FGoB', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_11 {\n    use crate::compress::op_i;\n\n    #[test]\n    fn test_op_i() {\n        let w: u32 = 0x12345678;\n        let x: u32 = 0x87654321;\n        let y: u32 = 0xF0F0F0F0;\n        let z: u32 = 0x0F0F0F0F;\n        let m: u32 = 0xA5A5A5A5;\n        let c: u32 = 0x5A5A5A5A;\n        let s: u32 = 7;\n\n        let result = op_i(w, x, y, z, m, c, s);\n        assert_eq!(result, 0x6F9D5A44); // This example test assumes 0x6F9D5A44 to be correct expected result\n    }\n\n    // Additional test cases as needed\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702284579, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_6aca3b5ce1', usage=CompletionUsage(completion_tokens=218, prompt_tokens=819, total_tokens=1037))
+71
+inject succeed hashes md-5 compress::op_i
+ChatCompletion(id='chatcmpl-8UWH9qOv81u35fNlOKvRFU7M731Mv', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use super::convert;\n    use md5::md5::core::Md5Core;\n    use generic_array::GenericArray;\n    use typenum::U64;\n\n    #[test]\n    fn test_convert_empty() {\n        let blocks: &[Block<Md5Core>] = &[];\n        let bytes = convert(blocks);\n        assert_eq!(bytes, &[]);\n    }\n\n    #[test]\n    fn test_convert_single_block() {\n        let block = GenericArray::<u8, U64>::default();\n        let blocks = &[Block::<Md5Core>(block)];\n        let bytes = convert(blocks);\n        assert_eq!(bytes, &[[0u8; 64]]);\n    }\n\n    #[test]\n    fn test_convert_multiple_blocks() {\n        let block = GenericArray::<u8, U64>::default();\n        let blocks = &[Block::<Md5Core>(block), Block::<Md5Core>(block)];\n        let bytes = convert(blocks);\n        assert_eq!(bytes, &[[0u8; 64], [0u8; 64]]);\n    }\n\n    #[test]\n    fn test_convert_non_default_blocks() {\n        let block = GenericArray::clone_from_slice(&[\n            1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,\n            21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,\n            39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56,\n            57, 58, 59, 60, 61, 62, 63, 64,\n        ]);\n        let blocks = &[Block::<Md5Core>(block)];\n        let bytes = convert(blocks);\n        assert_eq!(bytes, &[[\n            1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,\n            21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,\n            39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56,\n            57, 58, 59, 60, 61, 62, 63, 64,\n        ]]);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702284599, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=690, prompt_tokens=217, total_tokens=907))
+71
+========================================
+inject err convert md5/src/lib.rs convert
+#[cfg(test)]
+mod tests_llm_16_12 {
+    use super::*;
+
+use crate::*;
+    use crate::convert;
+    use md5::md5::core::Md5Core;
+    use generic_array::GenericArray;
+    use typenum::U64;
+
+    #[test]
+    fn test_convert_empty() {
+        let blocks: &[Block<Md5Core>] = &[];
+        let bytes = convert(blocks);
+        assert_eq!(bytes, &[]);
+    }
+
+    #[test]
+    fn test_convert_single_block() {
+        let block = GenericArray::<u8, U64>::default();
+        let blocks = &[Block::<Md5Core>(block)];
+        let bytes = convert(blocks);
+        assert_eq!(bytes, &[[0u8; 64]]);
+    }
+
+    #[test]
+    fn test_convert_multiple_blocks() {
+        let block = GenericArray::<u8, U64>::default();
+        let blocks = &[Block::<Md5Core>(block), Block::<Md5Core>(block)];
+        let bytes = convert(blocks);
+        assert_eq!(bytes, &[[0u8; 64], [0u8; 64]]);
+    }
+
+    #[test]
+    fn test_convert_non_default_blocks() {
+        let block = GenericArray::clone_from_slice(&[
+            1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+            21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,
+            39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56,
+            57, 58, 59, 60, 61, 62, 63, 64,
+        ]);
+        let blocks = &[Block::<Md5Core>(block)];
+        let bytes = convert(blocks);
+        assert_eq!(bytes, &[[
+            1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+            21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,
+            39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56,
+            57, 58, 59, 60, 61, 62, 63, 64,
+        ]]);
+    }
+}
+   Compiling md-5 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/md5)
+error[E0433]: failed to resolve: use of undeclared crate or module `md5`
+   --> md5/src/lib.rs:236:9
+    |
+236 |     use md5::md5::core::Md5Core;
+    |         ^^^ use of undeclared crate or module `md5`
+
+error[E0432]: unresolved import `generic_array`
+   --> md5/src/lib.rs:237:9
+    |
+237 |     use generic_array::GenericArray;
+    |         ^^^^^^^^^^^^^ help: a similar path exists: `digest::generic_array`
+
+error[E0432]: unresolved import `typenum`
+   --> md5/src/lib.rs:238:9
+    |
+238 |     use typenum::U64;
+    |         ^^^^^^^ help: a similar path exists: `digest::typenum`
+
+error[E0423]: expected function, tuple struct or tuple variant, found type alias `Block`
+   --> md5/src/lib.rs:250:24
+    |
+250 |         let blocks = &[Block::<Md5Core>(block)];
+    |                        -----^^^^^^^^^^^
+    |                        |
+    |                        help: a local variable with a similar name exists: `block`
+    |
+    = note: can't use a type alias as a constructor
+
+error[E0423]: expected function, tuple struct or tuple variant, found type alias `Block`
+   --> md5/src/lib.rs:258:24
+    |
+258 |         let blocks = &[Block::<Md5Core>(block), Block::<Md5Core>(block)];
+    |                        -----^^^^^^^^^^^
+    |                        |
+    |                        help: a local variable with a similar name exists: `block`
+    |
+    = note: can't use a type alias as a constructor
+
+error[E0423]: expected function, tuple struct or tuple variant, found type alias `Block`
+   --> md5/src/lib.rs:258:49
+    |
+258 |         let blocks = &[Block::<Md5Core>(block), Block::<Md5Core>(block)];
+    |                                                 -----^^^^^^^^^^^
+    |                                                 |
+    |                                                 help: a local variable with a similar name exists: `block`
+    |
+    = note: can't use a type alias as a constructor
+
+error[E0423]: expected function, tuple struct or tuple variant, found type alias `Block`
+   --> md5/src/lib.rs:271:24
+    |
+271 |         let blocks = &[Block::<Md5Core>(block)];
+    |                        -----^^^^^^^^^^^
+    |                        |
+    |                        help: a local variable with a similar name exists: `block`
+    |
+    = note: can't use a type alias as a constructor
+
+Some errors have detailed explanations: E0423, E0432, E0433.
+For more information about an error, try `rustc --explain E0423`.
+error: could not compile `md-5` due to 7 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UWI0POeC3F3i7cIKCwmHyFa77oaI', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use crate::block::Block;\n    use crate::BLOCK_SIZE;\n    use digest::generic_array::GenericArray;\n    use digest::generic_array::typenum::U64;\n\n    #[test]\n    fn test_convert_empty() {\n        let blocks: &[Block] = &[];\n        let bytes = convert(blocks);\n        assert_eq!(bytes, &[]);\n    }\n\n    #[test]\n    fn test_convert_single_block() {\n        let block = GenericArray::<u8, U64>::default();\n        let blocks = &[Block(block)];\n        let bytes = convert(blocks);\n        assert_eq!(bytes, &[[0u8; BLOCK_SIZE]]);\n    }\n\n    #[test]\n    fn test_convert_multiple_blocks() {\n        let block = GenericArray::<u8, U64>::default();\n        let blocks = &[Block(block), Block(block)];\n        let bytes = convert(blocks);\n        assert_eq!(bytes, &[[0u8; BLOCK_SIZE], [0u8; BLOCK_SIZE]]);\n    }\n\n    #[test]\n    fn test_convert_non_default_blocks() {\n        let block = GenericArray::clone_from_slice(&[\n            1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,\n            21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,\n            39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56,\n            57, 58, 59, 60, 61, 62, 63, 64,\n        ]);\n        let blocks = &[Block(block)];\n        let bytes = convert(blocks);\n        assert_eq!(bytes, &[[\n            1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,\n            21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,\n            39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56,\n            57, 58, 59, 60, 61, 62, 63, 64,\n        ]]);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702284652, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=668, prompt_tokens=2319, total_tokens=2987))
+71
+========================================
+inject err convert md5/src/lib.rs convert
+#[cfg(test)]
+mod tests_llm_16_12 {
+    use super::*;
+
+use crate::*;
+    use crate::block::Block;
+    use crate::BLOCK_SIZE;
+    use digest::generic_array::GenericArray;
+    use digest::generic_array::typenum::U64;
+
+    #[test]
+    fn test_convert_empty() {
+        let blocks: &[Block] = &[];
+        let bytes = convert(blocks);
+        assert_eq!(bytes, &[]);
+    }
+
+    #[test]
+    fn test_convert_single_block() {
+        let block = GenericArray::<u8, U64>::default();
+        let blocks = &[Block(block)];
+        let bytes = convert(blocks);
+        assert_eq!(bytes, &[[0u8; BLOCK_SIZE]]);
+    }
+
+    #[test]
+    fn test_convert_multiple_blocks() {
+        let block = GenericArray::<u8, U64>::default();
+        let blocks = &[Block(block), Block(block)];
+        let bytes = convert(blocks);
+        assert_eq!(bytes, &[[0u8; BLOCK_SIZE], [0u8; BLOCK_SIZE]]);
+    }
+
+    #[test]
+    fn test_convert_non_default_blocks() {
+        let block = GenericArray::clone_from_slice(&[
+            1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+            21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,
+            39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56,
+            57, 58, 59, 60, 61, 62, 63, 64,
+        ]);
+        let blocks = &[Block(block)];
+        let bytes = convert(blocks);
+        assert_eq!(bytes, &[[
+            1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+            21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,
+            39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56,
+            57, 58, 59, 60, 61, 62, 63, 64,
+        ]]);
+    }
+}
+   Compiling md-5 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/md5)
+error[E0432]: unresolved import `crate::block`
+   --> md5/src/lib.rs:235:16
+    |
+235 |     use crate::block::Block;
+    |                ^^^^^ could not find `block` in the crate root
+
+error[E0107]: missing generics for type alias `digest::core_api::Block`
+   --> md5/src/lib.rs:242:23
+    |
+242 |         let blocks: &[Block] = &[];
+    |                       ^^^^^ expected 1 generic argument
+    |
+note: type alias defined here, with 1 generic parameter: `B`
+   --> /home/xiang/.cargo/registry/src/github.com-1ecc6299db9ec823/crypto-common-0.1.6/src/lib.rs:27:10
+    |
+27  | pub type Block<B> = GenericArray<u8, <B as BlockSizeUser>::BlockSize>;
+    |          ^^^^^ -
+help: add missing generic argument
+    |
+242 |         let blocks: &[Block<B>] = &[];
+    |                       ~~~~~~~~
+
+Some errors have detailed explanations: E0107, E0432.
+For more information about an error, try `rustc --explain E0107`.
+error: could not compile `md-5` due to 2 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+repair err convert md5/src/lib.rs convert
+4 9 1 12 12

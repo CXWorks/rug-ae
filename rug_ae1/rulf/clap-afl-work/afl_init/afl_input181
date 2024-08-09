@@ -1,0 +1,1 @@
+config).unwrap().collect::<Vec<_>>(), [val1, val2, val3

@@ -1,0 +1,360 @@
+use crate::{
+    de::{INNER_VALUE, UNFLATTEN_PREFIX},
+    errors::{serialize::DeError, Error},
+    events::{BytesEnd, BytesStart, Event},
+    se::Serializer,
+    writer::Writer,
+};
+use serde::ser::{self, Serialize};
+use serde::Serializer as _;
+use std::io::Write;
+
+/// An implementation of `SerializeMap` for serializing to XML.
+pub struct Map<'r, 'w, W>
+where
+    W: 'w + Write,
+{
+    parent: &'w mut Serializer<'r, W>,
+}
+
+impl<'r, 'w, W> Map<'r, 'w, W>
+where
+    W: 'w + Write,
+{
+    /// Create a new Map
+    pub fn new(parent: &'w mut Serializer<'r, W>) -> Self {
+        Map { parent }
+    }
+}
+
+impl<'r, 'w, W> ser::SerializeMap for Map<'r, 'w, W>
+where
+    W: 'w + Write,
+{
+    type Ok = ();
+    type Error = DeError;
+
+    fn serialize_key<T: ?Sized + Serialize>(&mut self, key: &T) -> Result<(), DeError> {
+        /*
+        Err(DeError::Unsupported(
+            "impossible to serialize the key on its own, please use serialize_entry()",
+        ))
+        */
+        write!(self.parent.writer.inner(), "<enum key=\"").map_err(Error::Io)?;
+        key.serialize(&mut *self.parent)?;
+        write!(self.parent.writer.inner(), "\"/>").map_err(Error::Io)?;
+        Ok(())
+    }
+
+    fn serialize_value<T: ?Sized + Serialize>(&mut self, value: &T) -> Result<(), DeError> {
+        value.serialize(&mut *self.parent)
+    }
+
+    fn end(self) -> Result<Self::Ok, DeError> {
+        if let Some(tag) = self.parent.root_tag {
+            self.parent
+                .writer
+                .write_event(Event::End(BytesEnd::borrowed(tag.as_bytes())))?;
+        }
+        Ok(())
+    }
+
+    fn serialize_entry<K: ?Sized + Serialize, V: ?Sized + Serialize>(
+        &mut self,
+        key: &K,
+        value: &V,
+    ) -> Result<(), DeError> {
+        // TODO: Is it possible to ensure our key is never a composite type?
+        // Anything which isn't a "primitive" would lead to malformed XML here...
+        write!(self.parent.writer.inner(), "<").map_err(Error::Io)?;
+        key.serialize(&mut *self.parent)?;
+        write!(self.parent.writer.inner(), ">").map_err(Error::Io)?;
+
+        value.serialize(&mut *self.parent)?;
+
+        write!(self.parent.writer.inner(), "</").map_err(Error::Io)?;
+        key.serialize(&mut *self.parent)?;
+        write!(self.parent.writer.inner(), ">").map_err(Error::Io)?;
+        Ok(())
+    }
+}
+
+/// An implementation of `SerializeStruct` for serializing to XML.
+pub struct Struct<'r, 'w, W>
+where
+    W: 'w + Write,
+{
+    parent: &'w mut Serializer<'r, W>,
+    /// Buffer for holding fields, serialized as attributes. Doesn't allocate
+    /// if there are no fields represented as attributes
+    attrs: BytesStart<'w>,
+    /// Buffer for holding fields, serialized as elements
+    children: Vec<u8>,
+    /// Buffer for serializing one field. Cleared after serialize each field
+    buffer: Vec<u8>,
+}
+
+impl<'r, 'w, W> Struct<'r, 'w, W>
+where
+    W: 'w + Write,
+{
+    /// Create a new `Struct`
+    pub fn new(parent: &'w mut Serializer<'r, W>, name: &'r str) -> Self {
+        let name = name.as_bytes();
+        Struct {
+            parent,
+            attrs: BytesStart::borrowed_name(name),
+            children: Vec::new(),
+            buffer: Vec::new(),
+        }
+    }
+}
+
+impl<'r, 'w, W> ser::SerializeStruct for Struct<'r, 'w, W>
+where
+    W: 'w + Write,
+{
+    type Ok = ();
+    type Error = DeError;
+
+    fn serialize_field<T: ?Sized + Serialize>(
+        &mut self,
+        key: &'static str,
+        value: &T,
+    ) -> Result<(), DeError> {
+        // TODO: Inherit indentation state from self.parent.writer
+        let writer = Writer::new(&mut self.buffer);
+        if key.starts_with(UNFLATTEN_PREFIX) {
+            let key = &key[UNFLATTEN_PREFIX.len()..];
+            let mut serializer = Serializer::with_root(writer, Some(key));
+            serializer.serialize_newtype_struct(key, value)?;
+            self.children.append(&mut self.buffer);
+        } else {
+            let mut serializer = Serializer::with_root(writer, Some(key));
+            value.serialize(&mut serializer)?;
+
+            if !self.buffer.is_empty() {
+                if self.buffer[0] == b'<' || key == INNER_VALUE {
+                    // Drains buffer, moves it to children
+                    self.children.append(&mut self.buffer);
+                } else {
+                    self.attrs
+                        .push_attribute((key.as_bytes(), self.buffer.as_ref()));
+                    self.buffer.clear();
+                }
+            }
+        }
+
+        Ok(())
+    }
+
+    fn end(self) -> Result<Self::Ok, DeError> {
+        if self.children.is_empty() {
+            self.parent.writer.write_event(Event::Empty(self.attrs))?;
+        } else {
+            self.parent
+                .writer
+                .write_event(Event::Start(self.attrs.to_borrowed()))?;
+            self.parent.writer.write(&self.children)?;
+            self.parent
+                .writer
+                .write_event(Event::End(self.attrs.to_end()))?;
+        }
+        Ok(())
+    }
+}
+
+impl<'r, 'w, W> ser::SerializeStructVariant for Struct<'r, 'w, W>
+where
+    W: 'w + Write,
+{
+    type Ok = ();
+    type Error = DeError;
+
+
+    fn serialize_field<T: ?Sized + Serialize>(
+        &mut self,
+        key: &'static str,
+        value: &T,
+    ) -> Result<(), Self::Error> {
+        <Self as ser::SerializeStruct>::serialize_field(self, key, value)
+    }
+
+
+    fn end(self) -> Result<Self::Ok, Self::Error> {
+        <Self as ser::SerializeStruct>::end(self)
+    }
+}
+
+/// An implementation of `SerializeSeq' for serializing to XML.
+pub struct Seq<'r, 'w, W>
+where
+    W: 'w + Write,
+{
+    parent: &'w mut Serializer<'r, W>,
+}
+
+impl<'r, 'w, W> Seq<'r, 'w, W>
+where
+    W: 'w + Write,
+{
+    /// Create a new `Seq`
+    pub fn new(parent: &'w mut Serializer<'r, W>) -> Self {
+        Seq { parent }
+    }
+}
+
+impl<'r, 'w, W> ser::SerializeSeq for Seq<'r, 'w, W>
+where
+    W: 'w + Write,
+{
+    type Ok = ();
+    type Error = DeError;
+
+    fn serialize_element<T: ?Sized>(&mut self, value: &T) -> Result<(), Self::Error>
+    where
+        T: Serialize,
+    {
+        value.serialize(&mut *self.parent)?;
+        Ok(())
+    }
+
+    fn end(self) -> Result<Self::Ok, Self::Error> {
+        Ok(())
+    }
+}
+
+/// An implementation of `SerializeTuple`, `SerializeTupleStruct` and
+/// `SerializeTupleVariant` for serializing to XML.
+pub struct Tuple<'r, 'w, W>
+where
+    W: 'w + Write,
+{
+    parent: &'w mut Serializer<'r, W>,
+    /// Possible qualified name of XML tag surrounding each element
+    name: &'r str,
+}
+
+impl<'r, 'w, W> Tuple<'r, 'w, W>
+where
+    W: 'w + Write,
+{
+    /// Create a new `Tuple`
+    pub fn new(parent: &'w mut Serializer<'r, W>, name: &'r str) -> Self {
+        Tuple { parent, name }
+    }
+}
+
+impl<'r, 'w, W> ser::SerializeTuple for Tuple<'r, 'w, W>
+where
+    W: 'w + Write,
+{
+    type Ok = ();
+    type Error = DeError;
+
+    fn serialize_element<T: ?Sized>(&mut self, value: &T) -> Result<(), Self::Error>
+    where
+        T: Serialize,
+    {
+        write!(self.parent.writer.inner(), "<{}>", self.name).map_err(Error::Io)?;
+        value.serialize(&mut *self.parent)?;
+        write!(self.parent.writer.inner(), "</{}>", self.name).map_err(Error::Io)?;
+        Ok(())
+    }
+
+
+    fn end(self) -> Result<Self::Ok, Self::Error> {
+        Ok(())
+    }
+}
+
+impl<'r, 'w, W> ser::SerializeTupleStruct for Tuple<'r, 'w, W>
+where
+    W: 'w + Write,
+{
+    type Ok = ();
+    type Error = DeError;
+
+
+    fn serialize_field<T: ?Sized>(&mut self, value: &T) -> Result<(), Self::Error>
+    where
+        T: Serialize,
+    {
+        <Self as ser::SerializeTuple>::serialize_element(self, value)
+    }
+
+
+    fn end(self) -> Result<Self::Ok, Self::Error> {
+        <Self as ser::SerializeTuple>::end(self)
+    }
+}
+
+impl<'r, 'w, W> ser::SerializeTupleVariant for Tuple<'r, 'w, W>
+where
+    W: 'w + Write,
+{
+    type Ok = ();
+    type Error = DeError;
+
+
+    fn serialize_field<T: ?Sized>(&mut self, value: &T) -> Result<(), Self::Error>
+    where
+        T: Serialize,
+    {
+        <Self as ser::SerializeTuple>::serialize_element(self, value)
+    }
+
+
+    fn end(self) -> Result<Self::Ok, Self::Error> {
+        <Self as ser::SerializeTuple>::end(self)
+    }
+}
+
+#[cfg(test)]
+mod rusty_tests {
+	use crate::*;
+
+#[no_coverage]
+#[test]
+#[should_panic]
+#[timeout(3000)]
+fn rusty_test_2489() {
+    rusty_monitor::set_test_id(2489);
+    let mut str_0: &str = "e";
+    let mut str_0_ref_0: &str = &mut str_0;
+    let mut bytestext_0: crate::events::BytesText = crate::events::BytesText::from_plain_str(str_0_ref_0);
+    let mut cow_0: std::borrow::Cow<[u8]> = crate::events::BytesText::into_inner(bytestext_0);
+    let mut bool_0: bool = true;
+    let mut i32_0: i32 = -10934i32;
+    let mut str_1: &str = "zfQ7oL1m4BC76Bx";
+    let mut string_0: std::string::String = std::string::String::from(str_1);
+    let mut option_0: std::option::Option<std::string::String> = std::option::Option::Some(string_0);
+    let mut u8_0: u8 = 102u8;
+    let mut vec_0: std::vec::Vec<u8> = std::vec::Vec::new();
+    let mut bool_1: bool = false;
+    let mut i32_1: i32 = -13016i32;
+    let mut bool_2: bool = true;
+    let mut bool_3: bool = false;
+    let mut i32_2: i32 = 227i32;
+    let mut usize_0: usize = 5120usize;
+    let mut bool_4: bool = false;
+    let mut usize_1: usize = 7372usize;
+    let mut iterstate_0: crate::events::attributes::IterState = crate::events::attributes::IterState::new(usize_1, bool_4);
+    let mut iterstate_0_ref_0: &crate::events::attributes::IterState = &mut iterstate_0;
+    let mut usize_2: usize = 3012usize;
+    let mut vec_1: std::vec::Vec<u8> = std::vec::Vec::new();
+    let mut bytesend_0: crate::events::BytesEnd = crate::events::BytesEnd::owned(vec_1);
+    let mut bytesend_0_ref_0: &crate::events::BytesEnd = &mut bytesend_0;
+    let mut vec_2: std::vec::Vec<u8> = std::vec::Vec::new();
+    let mut vec_2_ref_0: &mut std::vec::Vec<u8> = &mut vec_2;
+    let mut bool_5: bool = false;
+    let mut i32_3: i32 = -261i32;
+    let mut u8_slice_0: &[u8] = crate::events::BytesEnd::name(bytesend_0_ref_0);
+    let mut attrerror_0: events::attributes::AttrError = crate::events::attributes::AttrError::UnquotedValue(usize_2);
+    let mut escapeerror_0: escapei::EscapeError = crate::escapei::EscapeError::TooLongHexadecimal;
+    let mut vec_0_ref_0: &mut std::vec::Vec<u8> = &mut vec_0;
+    std::vec::Vec::push(vec_0_ref_0, u8_0);
+    let mut error_0: errors::Error = crate::errors::Error::XmlDeclWithoutVersion(option_0);
+    panic!("From RustyUnit with love");
+}
+}

@@ -1,0 +1,25 @@
+textwrap textwrap . ['/mnt/sda/xiang/llm4_human/llm_hybrid_replay/textwrap/./src/line_ending.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/textwrap/./src/refill.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/textwrap/./src/indentation.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/textwrap/./src/word_splitters.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/textwrap/./src/wrap_algorithms.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/textwrap/./src/wrap.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/textwrap/./src/fill.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/textwrap/./src/wrap_algorithms/optimal_fit.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/textwrap/./src/fuzzing.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/textwrap/./src/word_separators.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/textwrap/./src/core.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/textwrap/./src/columns.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/textwrap/./src/lib.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/textwrap/./src/termwidth.rs', '/mnt/sda/xiang/llm4_human/llm_hybrid_replay/textwrap/./src/options.rs']
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/textwrap/./src/line_ending.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/textwrap/./src/refill.rs
+err tests_llm_16_34 test_refill_with_options
+err tests_llm_16_34 test_refill_with_bullet_points
+err tests_llm_16_34 test_refill_with_shrinking_width
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/textwrap/./src/indentation.rs
+err tests_llm_16_23 test_dedent_varied_indentation
+err tests_llm_16_23 test_dedent_with_empty_lines
+err tests_llm_16_23 test_dedent_do_not_strip_trailing_newline
+err tests_llm_16_23 test_dedent_trailing_newline_when_input_lacks_one
+err tests_llm_16_23 test_dedent_mixed_empty_and_non_empty_lines
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/textwrap/./src/word_splitters.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/textwrap/./src/wrap_algorithms.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/textwrap/./src/wrap.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/textwrap/./src/fill.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/textwrap/./src/wrap_algorithms/optimal_fit.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/textwrap/./src/fuzzing.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/textwrap/./src/word_separators.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/textwrap/./src/core.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/textwrap/./src/columns.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/textwrap/./src/lib.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/textwrap/./src/termwidth.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_replay/textwrap/./src/options.rs
+done

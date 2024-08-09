@@ -1,0 +1,2644 @@
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn penalty_width_empty_penalty() {
+        let word = Word {
+            word: "example",
+            whitespace: " ",
+            penalty: "",
+            width: 7,
+        };
+        assert_eq!(word.penalty_width(), 0.0);
+    }
+
+    #[test]
+    fn penalty_width_non_empty_penalty() {
+        let word = Word {
+            word: "example",
+            whitespace: " ",
+            penalty: "-",
+            width: 7,
+        };
+        assert_eq!(word.penalty_width(), 1.0);
+    }
+
+    #[test]
+    fn penalty_width_with_multiple_chars_penalty() {
+        let word = Word {
+            word: "example",
+            whitespace: " ",
+            penalty: "--",
+            width: 7,
+        };
+        assert_eq!(word.penalty_width(), 2.0);
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn whitespace_width_test() {
+        let word_with_space = Word {
+            word: "Hello",
+            whitespace: "     ", // 5 spaces
+            penalty: "",
+            width: 5,
+        };
+        assert_eq!(word_with_space.whitespace_width(), 5.0);
+
+        let word_with_no_space = Word {
+            word: "Hello",
+            whitespace: "", // No spaces
+            penalty: "",
+            width: 5,
+        };
+        assert_eq!(word_with_no_space.whitespace_width(), 0.0);
+
+        let word_with_mixed_space = Word {
+            word: "Hello",
+            whitespace: " \t\n", // 1 space, 1 tab, 1 newline
+            penalty: "",
+            width: 5,
+        };
+        assert_eq!(word_with_mixed_space.whitespace_width(), 3.0);
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn test_word_width() {
+        let word = Word {
+            word: "test",
+            whitespace: "   ",
+            penalty: "",
+            width: 4,
+        };
+        assert_eq!(word.width(), 4.0);
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn word_deref() {
+        let word = Word::from("hello");
+        let word_str: &str = &word;
+        assert_eq!(word_str, "hello");
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use line_ending::{NonEmptyLines, LineEnding};
+
+    #[test]
+    fn non_empty_lines_next_empty_string() {
+        let mut lines = NonEmptyLines("");
+        assert_eq!(lines.next(), None);
+    }
+
+    #[test]
+    fn non_empty_lines_next_new_lines_only() {
+        let mut lines = NonEmptyLines("\n\n");
+        assert_eq!(lines.next(), None);
+    }
+
+    #[test]
+    fn non_empty_lines_next_single_line_no_newline() {
+        let mut lines = NonEmptyLines("line");
+        assert_eq!(lines.next(), Some(("line", None)));
+        assert_eq!(lines.next(), None);
+    }
+
+    #[test]
+    fn non_empty_lines_next_single_line_with_newline() {
+        let mut lines = NonEmptyLines("line\n");
+        assert_eq!(lines.next(), Some(("line", Some(LineEnding::LF))));
+        assert_eq!(lines.next(), None);
+    }
+
+    #[test]
+    fn non_empty_lines_next_single_line_with_crlf() {
+        let mut lines = NonEmptyLines("line\r\n");
+        assert_eq!(lines.next(), Some(("line", Some(LineEnding::CRLF))));
+        assert_eq!(lines.next(), None);
+    }
+
+    #[test]
+    fn non_empty_lines_next_multiple_lines() {
+        let mut lines = NonEmptyLines("line1\nline2\nline3");
+        assert_eq!(lines.next(), Some(("line1", Some(LineEnding::LF))));
+        assert_eq!(lines.next(), Some(("line2", Some(LineEnding::LF))));
+        assert_eq!(lines.next(), Some(("line3", None)));
+        assert_eq!(lines.next(), None);
+    }
+
+    #[test]
+    fn non_empty_lines_next_multiple_lines_with_empty_lines() {
+        let mut lines = NonEmptyLines("line1\n\nline2\n\n\nline3\n");
+        assert_eq!(lines.next(), Some(("line1", Some(LineEnding::LF))));
+        assert_eq!(lines.next(), Some(("line2", Some(LineEnding::LF))));
+        assert_eq!(lines.next(), Some(("line3", Some(LineEnding::LF))));
+        assert_eq!(lines.next(), None);
+    }
+
+    #[test]
+    fn non_empty_lines_next_multiple_lines_with_crlf() {
+        let mut lines = NonEmptyLines("line1\r\nline2\r\nline3");
+        assert_eq!(lines.next(), Some(("line1", Some(LineEnding::CRLF))));
+        assert_eq!(lines.next(), Some(("line2", Some(LineEnding::CRLF))));
+        assert_eq!(lines.next(), Some(("line3", None)));
+        assert_eq!(lines.next(), None);
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::wrap_algorithms::WrapAlgorithm;
+    use crate::line_ending::LineEnding;
+    use crate::word_separators::WordSeparator;
+    use crate::word_splitters::WordSplitter;
+
+    #[test]
+    fn test_from_options() {
+        // Setup
+        let src_options = Options::new(20)
+            .line_ending(LineEnding::CRLF)
+            .initial_indent("->")
+            .subsequent_indent("--")
+            .break_words(false)
+            .word_separator(WordSeparator::AsciiSpace)
+            .wrap_algorithm(WrapAlgorithm::FirstFit)
+            .word_splitter(WordSplitter::HyphenSplitter);
+
+        // Exercise
+        let new_options = Options::from(&src_options);
+
+        // Verify
+        assert_eq!(new_options.width, 20);
+        assert_eq!(new_options.line_ending, LineEnding::CRLF);
+        assert_eq!(new_options.initial_indent, "->");
+        assert_eq!(new_options.subsequent_indent, "--");
+        assert_eq!(new_options.break_words, false);
+        assert_eq!(new_options.word_separator, WordSeparator::AsciiSpace);
+        assert_eq!(new_options.wrap_algorithm, WrapAlgorithm::FirstFit);
+        assert_eq!(new_options.word_splitter, WordSplitter::HyphenSplitter);
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn options_from_usize() {
+        let width = 42;
+        let options = Options::from(width);
+
+        assert_eq!(options.width, width);
+        assert_eq!(options.line_ending, LineEnding::LF);
+        assert_eq!(options.initial_indent, "");
+        assert_eq!(options.subsequent_indent, "");
+        assert_eq!(options.break_words, true);
+        #[cfg(feature = "unicode-linebreak")]
+        assert_eq!(options.word_separator, WordSeparator::UnicodeBreakProperties);
+        #[cfg(not(feature = "unicode-linebreak"))]
+        assert_eq!(options.word_separator, WordSeparator::AsciiSpace);
+        #[cfg(feature = "smawk")]
+        assert_eq!(options.wrap_algorithm, WrapAlgorithm::new_optimal_fit());
+        #[cfg(not(feature = "smawk"))]
+        assert_eq!(options.wrap_algorithm, WrapAlgorithm::FirstFit);
+        assert_eq!(options.word_splitter, WordSplitter::HyphenSplitter);
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn test_eq_ascii_space() {
+        assert_eq!(WordSeparator::AsciiSpace, WordSeparator::AsciiSpace);
+    }
+
+    #[cfg(feature = "unicode-linebreak")]
+    #[test]
+    fn test_eq_unicode_break_properties() {
+        assert_eq!(
+            WordSeparator::UnicodeBreakProperties,
+            WordSeparator::UnicodeBreakProperties
+        );
+    }
+
+    #[test]
+    fn test_eq_custom_never_equal() {
+        fn word_separator_a(line: &str) -> Box<dyn Iterator<Item = Word<'_>> + '_> {
+            Box::new(line.split_inclusive(' ').map(Word::from))
+        }
+
+        fn word_separator_b(line: &str) -> Box<dyn Iterator<Item = Word<'_>> + '_> {
+            Box::new(line.split_inclusive('-').map(Word::from))
+        }
+
+        assert_ne!(
+            WordSeparator::Custom(word_separator_a),
+            WordSeparator::Custom(word_separator_a)
+        );
+        assert_ne!(
+            WordSeparator::Custom(word_separator_a),
+            WordSeparator::Custom(word_separator_b)
+        );
+    }
+
+    #[test]
+    fn test_eq_custom_with_different_functions() {
+        fn word_separator_a(line: &str) -> Box<dyn Iterator<Item = Word<'_>> + '_> {
+            Box::new(line.split_inclusive(' ').map(Word::from))
+        }
+
+        fn word_separator_b(line: &str) -> Box<dyn Iterator<Item = Word<'_>> + '_> {
+            Box::new(line.split_inclusive('-').map(Word::from))
+        }
+
+        assert_ne!(
+            WordSeparator::Custom(word_separator_a),
+            WordSeparator::Custom(word_separator_b)
+        );
+    }
+
+    #[test]
+    fn test_eq_ascii_space_with_unicode_break_properties() {
+        #[cfg(feature = "unicode-linebreak")]
+        assert_ne!(
+            WordSeparator::AsciiSpace,
+            WordSeparator::UnicodeBreakProperties
+        );
+    }
+
+    #[test]
+    fn test_eq_ascii_space_with_custom() {
+        fn word_separator(line: &str) -> Box<dyn Iterator<Item = Word<'_>> + '_> {
+            Box::new(line.split_inclusive(' ').map(Word::from))
+        }
+
+        assert_ne!(
+            WordSeparator::AsciiSpace,
+            WordSeparator::Custom(word_separator)
+        );
+    }
+}
+True
+========================================
+    use crate::WordSplitter;
+
+    #[test]
+    fn test_eq_no_hyphenation() {
+        assert_eq!(
+            WordSplitter::NoHyphenation,
+            WordSplitter::NoHyphenation
+        );
+    }
+
+    #[test]
+    fn test_eq_hyphen_splitter() {
+        assert_eq!(
+            WordSplitter::HyphenSplitter,
+            WordSplitter::HyphenSplitter
+        );
+    }
+
+    #[cfg(feature = "hyphenation")]
+    #[test]
+    fn test_eq_hyphenation_same_language() {
+        use hyphenation::{Language, Load, Standard};
+
+        let dictionary1 = Standard::from_embedded(Language::EnglishUS).unwrap();
+        let dictionary2 = Standard::from_embedded(Language::EnglishUS).unwrap();
+        assert_eq!(
+            WordSplitter::Hyphenation(dictionary1),
+            WordSplitter::Hyphenation(dictionary2)
+        );
+    }
+
+    #[cfg(feature = "hyphenation")]
+    #[test]
+    fn test_eq_hyphenation_different_language() {
+        use hyphenation::{Language, Load, Standard};
+
+        let dictionary1 = Standard::from_embedded(Language::EnglishUS).unwrap();
+        let dictionary2 = Standard::from_embedded(Language::EnglishGB).unwrap();
+        assert_ne!(
+            WordSplitter::Hyphenation(dictionary1),
+            WordSplitter::Hyphenation(dictionary2)
+        );
+    }
+
+    #[test]
+    fn test_eq_different_types_no_hyphenation_hyphen_splitter() {
+        assert_ne!(
+            WordSplitter::NoHyphenation,
+            WordSplitter::HyphenSplitter
+        );
+    }
+
+    #[test]
+    fn test_eq_different_types_hyphen_splitter_custom() {
+        assert_ne!(
+            WordSplitter::HyphenSplitter,
+            WordSplitter::Custom(|_| Vec::new())
+        );
+    }
+
+    #[cfg(feature = "hyphenation")]
+    #[test]
+    fn test_eq_different_types_hyphenation_no_hyphenation() {
+        use hyphenation::{Language, Load, Standard};
+
+        let dictionary = Standard::from_embedded(Language::EnglishUS).unwrap();
+        assert_ne!(
+            WordSplitter::Hyphenation(dictionary),
+            WordSplitter::NoHyphenation
+        );
+    }
+
+    #[cfg(feature = "hyphenation")]
+    #[test]
+    fn test_eq_different_types_hyphenation_custom() {
+        use hyphenation::{Language, Load, Standard};
+
+        let dictionary = Standard::from_embedded(Language::EnglishUS).unwrap();
+        assert_ne!(
+            WordSplitter::Hyphenation(dictionary),
+            WordSplitter::Custom(|_| Vec::new())
+        );
+    }
+
+    // Add additional tests to cover more edge cases if necessary.
+}
+True
+========================================
+    use crate::WrapAlgorithm;
+    use crate::wrap_algorithms::optimal_fit::Penalties;
+
+    #[test]
+    fn eq_first_fit() {
+        assert_eq!(
+            WrapAlgorithm::FirstFit,
+            WrapAlgorithm::FirstFit,
+            "FirstFit algorithms should be equal."
+        );
+    }
+
+    #[cfg(feature = "smawk")]
+    #[test]
+    fn eq_optimal_fit_with_equal_penalties() {
+        let penalties = Penalties::new();
+        assert_eq!(
+            WrapAlgorithm::OptimalFit(penalties),
+            WrapAlgorithm::OptimalFit(penalties),
+            "OptimalFit algorithms with equal penalties should be equal."
+        );
+    }
+
+    #[cfg(feature = "smawk")]
+    #[test]
+    fn eq_optimal_fit_with_different_penalties() {
+        let penalties_a = Penalties {
+            nline_penalty: 1000,
+            overflow_penalty: 2500,
+            short_last_line_fraction: 4,
+            short_last_line_penalty: 25,
+            hyphen_penalty: 25,
+        };
+        let penalties_b = Penalties {
+            nline_penalty: 2000,
+            overflow_penalty: 2500,
+            short_last_line_fraction: 4,
+            short_last_line_penalty: 25,
+            hyphen_penalty: 25,
+        };
+        assert_ne!(
+            WrapAlgorithm::OptimalFit(penalties_a),
+            WrapAlgorithm::OptimalFit(penalties_b),
+            "OptimalFit algorithms with different penalties should not be equal."
+        );
+    }
+
+    #[test]
+    fn eq_custom() {
+        let custom_a = WrapAlgorithm::Custom(|_, _| vec![]);
+        let custom_b = WrapAlgorithm::Custom(|_, _| vec![]);
+        assert_ne!(
+            custom_a, custom_b,
+            "Custom algorithms should not be equal."
+        );
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn wrap_algorithm_default_is_first_fit() {
+        let wrap_algorithm = WrapAlgorithm::default();
+        assert_eq!(wrap_algorithm, WrapAlgorithm::FirstFit);
+    }
+
+    #[cfg(feature = "smawk")]
+    #[test]
+    fn wrap_algorithm_default_is_optimal_fit_with_default_penalties() {
+        let wrap_algorithm = WrapAlgorithm::default();
+        assert_eq!(wrap_algorithm, WrapAlgorithm::OptimalFit(Penalties::default()));
+    }
+
+    #[test]
+    fn wrap_algorithm_clone_eq() {
+        let wrap_algorithm = WrapAlgorithm::default();
+        let wrap_algorithm_clone = wrap_algorithm.clone();
+        assert_eq!(wrap_algorithm, wrap_algorithm_clone);
+    }
+
+    #[test]
+    fn wrap_algorithm_debug_format() {
+        let wrap_algorithm = WrapAlgorithm::default();
+        assert_eq!(format!("{:?}", wrap_algorithm), "FirstFit");
+
+        #[cfg(feature = "smawk")]
+        {
+            let penalties = Penalties::default();
+            let wrap_algorithm = WrapAlgorithm::OptimalFit(penalties);
+            assert_eq!(format!("{:?}", wrap_algorithm), "OptimalFit(Penalties { nline_penalty: 1000, overflow_penalty: 2500, short_last_line_fraction: 4, short_last_line_penalty: 25, hyphen_penalty: 25 })")
+        }
+    }
+}
+True
+========================================
+#[cfg(test)]
+mod optimal_fit_tests {
+    use crate::wrap_algorithms::optimal_fit::Penalties;
+
+    #[test]
+    fn default_penalties() {
+        let default_penalties = Penalties::default();
+        let new_penalties = Penalties::new();
+        assert_eq!(default_penalties, new_penalties);
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::{wrap_columns, Options};
+
+    #[test]
+    #[should_panic]
+    fn wrap_columns_zero_columns() {
+        let text = "This text should panic because we're trying to wrap it into zero columns.";
+        wrap_columns(text, 0, 30, "", "", "");
+    }
+
+    #[test]
+    fn wrap_columns_single_column() {
+        let text = "This text is wrapped into a single column.";
+        assert_eq!(
+            wrap_columns(text, 1, 30, "", "", ""),
+            vec![
+                "This text is wrapped into a",
+                "single column."
+            ]
+        );
+    }
+
+    #[test]
+    fn wrap_columns_multiple_columns() {
+        let text = "This text is wrapped into multiple columns.";
+        assert_eq!(
+            wrap_columns(text, 2, 30, "|", "|", "|"),
+            vec![
+                "|This text|long enough|",
+                "|is       |for two    |",
+                "|wrapped  |columns.   |",
+                "|into     |           |",
+                "|multiple |           |",
+            ]
+        );
+    }
+
+    #[test]
+    fn wrap_columns_with_gaps() {
+        let text = "This text is wrapped with gaps around.";
+        assert_eq!(
+            wrap_columns(text, 2, 40, " ", " | ", " "),
+            vec![
+                " This           | wrapped       ",
+                " text is        | with gaps     ",
+                " wrapped with   | around.       ",
+            ]
+        );
+    }
+
+    #[test]
+    fn wrap_columns_with_options() {
+        let text = "This text is wrapped with custom options.";
+        let options = Options::new(40).break_words(false);
+        assert_eq!(
+            wrap_columns(text, 2, options, " ", "|", " "),
+            vec![
+                " This             | wrapped        ",
+                " text is wrapped | custom options.",
+                " with            |                ",
+            ]
+        );
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn test_break_apart() {
+        // Test breaking apart a word with no whitespace or penalty
+        let word = Word::from("HelloWorld");
+        let broken_words: Vec<Word> = word.break_apart(5).collect();
+        assert_eq!(
+            broken_words,
+            vec![
+                Word::from("Hello"),
+                Word::from("World")
+            ]
+        );
+
+        // Test breaking apart a word with whitespace
+        let word = Word::from("Hello  ");
+        let broken_words: Vec<Word> = word.break_apart(3).collect();
+        assert_eq!(
+            broken_words,
+            vec![
+                Word::from("Hel"),
+                Word::from("lo  ")
+            ]
+        );
+
+        // Test breaking apart a word with penalty
+        let word = Word {
+            word: "Hello-",
+            whitespace: "",
+            penalty: "-",
+            width: 6,
+        };
+        let broken_words: Vec<Word> = word.break_apart(5).collect();
+        assert_eq!(
+            broken_words,
+            vec![
+                Word::from("Hello"),
+                Word {
+                    word: "-",
+                    whitespace: "",
+                    penalty: "-",
+                    width: 1,
+                }
+            ]
+        );
+
+        // Test breaking apart a word that is smaller than line width
+        let word = Word::from("Hey");
+        let broken_words: Vec<Word> = word.break_apart(5).collect();
+        assert_eq!(
+            broken_words,
+            vec![
+                Word::from("Hey")
+            ]
+        );
+
+        // Test breaking apart an empty word
+        let word = Word::from("");
+        let broken_words: Vec<Word> = word.break_apart(5).collect();
+        assert_eq!(broken_words, vec![]);
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn test_word_from_empty_string() {
+        let input = "";
+        let word = Word::from(input);
+
+        assert_eq!(word.word, "");
+        assert_eq!(word.whitespace, "");
+        assert_eq!(word.penalty, "");
+        assert_eq!(word.width, 0);
+    }
+
+    #[test]
+    fn test_word_from_non_empty_string() {
+        let input = "hello";
+        let word = Word::from(input);
+
+        assert_eq!(word.word, "hello");
+        assert_eq!(word.whitespace, "");
+        assert_eq!(word.penalty, "");
+        assert_eq!(word.width, display_width("hello"));
+    }
+
+    #[test]
+    fn test_word_from_string_with_trailing_whitespace() {
+        let input = "hello   ";
+        let word = Word::from(input);
+
+        assert_eq!(word.word, "hello");
+        assert_eq!(word.whitespace, "   ");
+        assert_eq!(word.penalty, "");
+        assert_eq!(word.width, display_width("hello"));
+    }
+
+    #[test]
+    fn test_word_from_string_with_only_whitespace() {
+        let input = "     ";
+        let word = Word::from(input);
+
+        assert_eq!(word.word, "");
+        assert_eq!(word.whitespace, "     ");
+        assert_eq!(word.penalty, "");
+        assert_eq!(word.width, 0);
+    }
+
+    #[test]
+    fn test_word_from_string_with_internal_whitespace() {
+        let input = "he llo  ";
+        let word = Word::from(input);
+
+        assert_eq!(word.word, "he llo");
+        assert_eq!(word.whitespace, "  ");
+        assert_eq!(word.penalty, "");
+        assert_eq!(word.width, display_width("he llo"));
+    }
+
+    // A helper function to compute the display width of a string.
+    // It should be the same function used in the `Word::from` definition to
+    // compute the `width` field.
+    fn display_width(s: &str) -> usize {
+        // Mock implementation of display_width for testing purposes
+        // Please replace the mock implementation with the actual one used in the crate
+        s.chars().map(|ch| ch_width(ch)).sum()
+    }
+    
+    // A helper function to compute the width of a character.
+    // It should be the same function used in the `Word::from` definition to
+    // compute the `width` of characters.
+    fn ch_width(ch: char) -> usize {
+        // Mock implementation of ch_width for testing purposes
+        // Please replace the mock implementation with the actual one used in the crate
+        1
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::core::Word;  // Adjust crate path to use Word from core
+
+    #[test]
+    fn test_break_words() {
+        // Mock words to demonstrate breaking
+        let words = vec![
+            Word::from("short"),
+            Word::from("veryverylongword"),
+        ];
+        let line_width = 10;
+        let broken_words = break_words(words.iter().cloned(), line_width);
+
+        // Conditions to test
+        // 1. There should be 3 words after breaking (short, veryveryl, ongword)
+        assert_eq!(broken_words.len(), 3);
+
+        // 2. The first word should remain the same
+        assert_eq!(broken_words[0].as_str(), "short");
+
+        // 3. The combined length of the two broken words should equal the
+        // length of the original second word
+        assert_eq!(
+            broken_words[1].as_str().len() + broken_words[2].as_str().len(),
+            "veryverylongword".len()
+        );
+
+        // 4. The width of the broken words should not exceed line_width
+        assert!(broken_words[1].width() <= line_width as f64);
+        assert!(broken_words[2].width() <= line_width as f64);
+    }
+}
+False
+========================================
+    use crate::ch_width;
+
+    #[test]
+    fn test_ch_width() {
+        assert_eq!(ch_width('a'), 1);
+        assert_eq!(ch_width('あ'), 2);
+        assert_eq!(ch_width('😊'), 2);
+        assert_eq!(ch_width('\u{2006}'), 0); // zero-width space
+        assert_eq!(ch_width('\u{0000}'), 0); // null
+    }
+}
+False
+========================================
+    use crate::display_width;
+    
+    #[test]
+    fn test_display_width_plain_text() {
+        assert_eq!(display_width("Café Plain"), 10);
+    }
+
+    #[test]
+    fn test_display_width_ansi_escape() {
+        assert_eq!(display_width("\u{1b}[31mCafé Rouge\u{1b}[0m"), 10);
+    }
+
+    #[test]
+    fn test_display_width_non_ansi_escape() {
+        assert_eq!(display_width("Cafe\u{301} Plain"), 11);
+    }
+
+    #[cfg(feature = "unicode-width")]
+    #[test]
+    fn test_display_width_combined_character_unicode_width() {
+        assert_eq!(display_width("Café"), 4);
+    }
+
+    #[cfg(not(feature = "unicode-width"))]
+    #[test]
+    fn test_display_width_combined_character_no_unicode_width() {
+        assert_eq!(display_width("Café"), 5);
+    }
+
+    #[test]
+    fn test_display_width_emojis() {
+        assert_eq!(display_width("😂😭🥺🤣✨😍🙏🥰😊🔥"), 20);
+    }
+
+    #[test]
+    fn test_display_width_cjk_characters() {
+        assert_eq!(display_width("你好"), 4);
+    }
+
+    #[cfg(feature = "unicode-width")]
+    #[test]
+    fn test_display_width_emoji_modifier_sequences_unicode_width() {
+        assert_eq!(display_width("👨‍🦰"), 4);
+    }
+
+    #[cfg(not(feature = "unicode-width"))]
+    #[test]
+    fn test_display_width_emoji_modifier_sequences_no_unicode_width() {
+        assert_eq!(display_width("👨‍🦰"), 6);
+    }
+
+    #[test]
+    fn test_display_width_heart_emoji() {
+        assert_eq!(display_width("❤️"), 1);
+    }
+}
+False
+========================================
+    use crate::core::skip_ansi_escape_sequence;
+    use crate::line_ending::NonEmptyLines;
+    use std::iter::Iterator;
+
+    const CSI: (char, char) = ('\x1B', '[');
+    const ANSI_FINAL_BYTE: &[char] = &[
+        '\x40', '\x41', '\x42', '\x43', '\x44', '\x45', '\x46', '\x47', '\x48', '\x49', '\x4A',
+        '\x4B', '\x4C', '\x4D', '\x4E', '\x4F', '\x50', '\x51', '\x52', '\x53', '\x54', '\x55',
+        '\x56', '\x57', '\x58', '\x59', '\x5A', '\x5B', '\x5C', '\x5D', '\x5E', '\x5F', '\x60',
+        '\x61', '\x62', '\x63', '\x64', '\x65', '\x66', '\x67', '\x68', '\x69', '\x6A', '\x6B',
+        '\x6C', '\x6D', '\x6E', '\x6F', '\x70', '\x71', '\x72', '\x73', '\x74', '\x75', '\x76',
+        '\x77', '\x78', '\x79', '\x7A', '\x7B', '\x7C', '\x7D', '\x7E',
+    ];
+
+    #[test]
+    fn test_skip_ansi_escape_sequence() {
+        let csi = CSI.0;
+        let seq1 = "[31;1;4mHello World\x1B[0m";
+        let mut chars1 = seq1.chars();
+        assert!(skip_ansi_escape_sequence(csi, &mut chars1));
+        assert_eq!(chars1.collect::<String>(), "Hello World\x1B[0m");
+
+        let seq2 = "Hello \x1B[31;1;4mWorld\x1B[0m";
+        let mut chars2 = seq2.chars();
+        (0..6).for_each(|_| { chars2.next(); });
+        assert!(skip_ansi_escape_sequence(csi, &mut chars2));
+        assert_eq!(chars2.collect::<String>(), "World\x1B[0m");
+
+        let seq3 = "Hello World";
+        let mut chars3 = seq3.chars();
+        assert!(!skip_ansi_escape_sequence(csi, &mut chars3));
+        assert_eq!(chars3.collect::<String>(), "Hello World");
+
+        let seq4 = "\x1BHello World";
+        let mut chars4 = seq4.chars();
+        assert!(!skip_ansi_escape_sequence(csi, &mut chars4));
+        assert_eq!(chars4.collect::<String>(), "Hello World");
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::fill;
+    use crate::Options;
+
+    #[test]
+    fn fill_simple_case() {
+        assert_eq!(
+            fill("Memory safety without garbage collection.", 15),
+            "Memory safety\nwithout garbage\ncollection."
+        );
+    }
+
+    #[test]
+    fn fill_with_indent() {
+        let options = Options::new(15)
+            .initial_indent("- ")
+            .subsequent_indent("  ");
+        assert_eq!(
+            fill("Memory safety without garbage collection.", options),
+            "- Memory safety\n  without\n  garbage\n  collection."
+        );
+    }
+
+    #[test]
+    fn fill_empty_string() {
+        assert_eq!(fill("", 10), "");
+    }
+
+    #[test]
+    fn fill_string_without_wrapping() {
+        let text = "Short text.";
+        assert_eq!(fill(text, 20), text);
+    }
+
+    #[test]
+    fn fill_with_hyphenation() {
+        let options = Options::new(15).word_splitter(crate::word_splitters::HyphenSplitter);
+        assert_eq!(
+            fill("Internationalization is hard to fit in a narrow column.", options),
+            "International-\nization is hard\nto fit in a\nnarrow column."
+        );
+    }
+
+    #[test]
+    fn fill_preserve_existing_newlines() {
+        assert_eq!(
+            fill("This\ncontains\nnewlines.", 10),
+            "This\ncontains\nnewlines."
+        );
+    }
+
+    #[test]
+    fn fill_with_break_words() {
+        let options = Options::new(10).break_words(false);
+        assert_eq!(
+            fill("Thisisaverylongword.", options),
+            "Thisisavery\nlongword."
+        );
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn test_fill_inplace_single_line() {
+        let mut text = String::from("Single line text that fits the width.");
+        fill_inplace(&mut text, 50);
+        assert_eq!(text, "Single line text that fits the width.");
+    }
+
+    #[test]
+    fn test_fill_inplace_multiple_lines() {
+        let mut text = String::from("This text should be split across multiple lines.");
+        fill_inplace(&mut text, 10);
+        let expected = "This text\nshould be\nsplit\nacross\nmultiple\nlines.";
+        assert_eq!(text, expected);
+    }
+
+    #[test]
+    fn test_fill_inplace_empty_line() {
+        let mut text = String::from("");
+        fill_inplace(&mut text, 10);
+        assert_eq!(text, "");
+    }
+
+    #[test]
+    fn test_fill_inplace_preserves_existing_linebreaks() {
+        let mut text = String::from("Line with\nexisting line break.");
+        fill_inplace(&mut text, 50);
+        assert_eq!(text, "Line with\nexisting line break.");
+    }
+
+    #[test]
+    fn test_fill_inplace_existing_multiple_spaces() {
+        let mut text = String::from("Line  with  multiple  spaces.");
+        fill_inplace(&mut text, 50);
+        // Note: Whether the multiple spaces should be preserved or
+        // compacted into one space depends on the specification. Here
+        // we assume they should be preserved.
+        assert_eq!(text, "Line  with  multiple  spaces.");
+    }
+
+    #[test]
+    fn test_fill_inplace_long_word() {
+        let mut text = String::from("ThisIsALongWordThatCannotBeSplit.");
+        fill_inplace(&mut text, 10);
+        assert_eq!(text, "ThisIsALongWordThatCannotBeSplit.");
+    }
+
+    #[test]
+    fn test_fill_inplace_multiple_paragraphs() {
+        let mut text = String::from("First paragraph.\n\nSecond paragraph.\n\nThird paragraph.");
+        fill_inplace(&mut text, 50);
+        assert_eq!(text, "First paragraph.\n\nSecond paragraph.\n\nThird paragraph.");
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::core::Word;
+    use crate::fill::fill_slow_path;
+    use crate::line_ending::LineEnding;
+    use crate::options::Options;
+    use crate::wrap_algorithms::WrapAlgorithm;
+    use crate::word_separators::WordSeparator;
+    use crate::word_splitters::WordSplitter;
+
+    #[test]
+    fn fill_slow_path_short_text() {
+        let options = Options::new(10);
+        let filled = fill_slow_path("short text", options);
+        assert_eq!(filled, "short text");
+    }
+    
+    #[test]
+    fn fill_slow_path_long_text() {
+        let options = Options {
+            width: 10, // force the slow path
+            line_ending: LineEnding::LF,
+            initial_indent: "",
+            subsequent_indent: "",
+            break_words: true,
+            wrap_algorithm: WrapAlgorithm::FirstFit,
+            word_separator: WordSeparator::AsciiSpace,
+            word_splitter: WordSplitter::HyphenSplitter,
+        };
+        let filled = fill_slow_path("a longer piece of text that should be broken down into several lines", options);
+        assert_eq!(filled, "a longer\npiece of\ntext that\nshould be\nbroken\ndown into\nseveral\nlines");
+    }
+    
+    #[test]
+    fn fill_slow_path_custom_indent() {
+        let options = Options::new(10)
+            .initial_indent("> ")
+            .subsequent_indent(":: ")
+            .word_separator(WordSeparator::AsciiSpace)
+            .word_splitter(WordSplitter::HyphenSplitter);
+        let filled = fill_slow_path("indented text should be broken down with consistent indentation", options);
+        assert_eq!(filled, "> indented\n:: text\n:: should be\n:: broken\n:: down with\n:: consistent\n:: indentation");
+    }
+
+    #[test]
+    fn fill_slow_path_long_word() {
+        let options = Options::new(10)
+            .initial_indent("* ")
+            .subsequent_indent("- ")
+            .word_splitter(WordSplitter::NoHyphenation)
+            .break_words(true);
+        let filled = fill_slow_path("antidisestablishmentarianism is a long word", options);
+        assert_eq!(filled, "* antidisest\n- ablishmenta\n- rianism is\n- a long\n- word");
+    }
+    
+    #[test]
+    fn fill_slow_path_crlf_line_ending() {
+        let options = Options::new(20).line_ending(LineEnding::CRLF);
+        let filled = fill_slow_path("this text should be broken with CRLF", options);
+        assert_eq!(filled, "this text should be\r\nbroken with CRLF");
+    }
+}
+True
+========================================
+    use crate::dedent;
+
+    #[test]
+    fn test_dedent_empty_string() {
+        assert_eq!(dedent(""), "");
+    }
+
+    #[test]
+    fn test_dedent_no_indentation() {
+        let input = "No indentation\non these lines.\n";
+        assert_eq!(dedent(input), input);
+    }
+
+    #[test]
+    fn test_dedent_varied_indentation() {
+        assert_eq!(dedent("
+            Indented line
+          Less indented line
+        "), 
+        "Indented line\nLess indented line\n");
+    }
+
+    #[test]
+    fn test_dedent_single_line_with_indentation() {
+        assert_eq!(dedent("    Single line with spaces"), "Single line with spaces");
+    }
+
+    #[test]
+    fn test_dedent_single_line_with_tabs() {
+        assert_eq!(dedent("\tSingle line with tab"), "Single line with tab");
+    }
+
+    #[test]
+    fn test_dedent_with_empty_lines() {
+        assert_eq!(dedent("
+            
+            Indented line with empty lines
+            
+        "), 
+        "\nIndented line with empty lines\n\n");
+    }
+
+    #[test]
+    fn test_dedent_with_only_whitespace_lines() {
+        assert_eq!(dedent("    \n    \n    "), "\n\n");
+    }
+
+    #[test]
+    fn test_dedent_with_mixed_whitespace() {
+        assert_eq!(dedent("\t  Indented line\n\t\t  More indentation"), "  Indented line\n\t  More indentation\n");
+    }
+
+    #[test]
+    fn test_dedent_do_not_strip_trailing_newline() {
+        let input = "
+            Line with trailing newline
+        ";
+        assert!(dedent(input).ends_with('\n'));
+    }
+
+    #[test]
+    fn test_dedent_trailing_newline_when_input_lacks_one() {
+        let input = "
+            Line without trailing newline";
+        assert!(!dedent(input).ends_with('\n'));
+    }
+
+    #[test]
+    fn test_dedent_mixed_empty_and_non_empty_lines() {
+        assert_eq!(dedent("
+            Some indented line
+            
+            Another indented line
+        "), 
+        "Some indented line\n\nAnother indented line\n");
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn indent_empty_string() {
+        assert_eq!(indent("", "  "), "");
+    }
+
+    #[test]
+    fn indent_no_newline() {
+        assert_eq!(indent("Single line", "  "), "  Single line");
+    }
+
+    #[test]
+    fn indent_with_newline() {
+        assert_eq!(indent("First line.\nSecond line.\n", "  "), "  First line.\n  Second line.\n");
+    }
+
+    #[test]
+    fn indent_empty_lines() {
+        assert_eq!(indent("First line.\n\n\nSecond line.\n", "  "), "  First line.\n\n\n  Second line.\n");
+    }
+
+    #[test]
+    fn indent_empty_lines_with_comment() {
+        assert_eq!(indent("foo = 123\n\nprint(foo)\n", "# "), "# foo = 123\n#\n# print(foo)\n");
+    }
+
+    #[test]
+    fn indent_preserving_whitespace() {
+        assert_eq!(indent(" \t  Foo   ", "->"), "-> \t  Foo   ");
+    }
+
+    #[test]
+    fn indent_with_complex_prefix() {
+        assert_eq!(indent("Line\n\nAnother line", "=>  "), "=>  Line\n=>\n=>  Another line");
+    }
+
+    #[test]
+    fn indent_with_empty_prefix() {
+        assert_eq!(indent("Line\nAnother line", ""), "Line\nAnother line");
+    }
+
+    #[test]
+    fn indent_with_leading_and_trailing_newlines() {
+        assert_eq!(indent("\nLine\nAnother line\n", "  "), "  \n  Line\n  Another line\n  ");
+    }
+
+    #[test]
+    fn indent_with_empty_lines_and_no_whitespace_prefix() {
+        assert_eq!(indent("First line.\n\n\nSecond line.\n", "#"), "#First line.\n#\n#\n#Second line.\n");
+    }
+}
+True
+========================================
+    use crate::line_ending::LineEnding;
+
+    #[test]
+    fn test_as_str() {
+        assert_eq!(LineEnding::CRLF.as_str(), "\r\n");
+        assert_eq!(LineEnding::LF.as_str(), "\n");
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn test_break_words() {
+        let mut options = Options::new(10);
+
+        options = options.break_words(true);
+        assert!(options.break_words);
+
+        options = options.break_words(false);
+        assert!(!options.break_words);
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::wrap_algorithms::WrapAlgorithm;
+    use crate::line_ending::LineEnding;
+    use crate::word_separators::WordSeparator;
+    use crate::word_splitters::WordSplitter;
+
+    #[test]
+    fn test_initial_indent() {
+        let opt = Options::new(80).initial_indent("* ");
+        assert_eq!(opt.initial_indent, "* ");
+
+        let opt = opt.initial_indent("");
+        assert_eq!(opt.initial_indent, "");
+
+        let opt = Options::new(80).initial_indent(">> ");
+        assert_eq!(opt.initial_indent, ">> ");
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+
+    use crate::Options;
+    use crate::core::Word;
+    use crate::line_ending::LineEnding;
+    use crate::wrap_algorithms::WrapAlgorithm;
+    use crate::wrap_algorithms::WrapAlgorithm::OptimalFit;
+    use crate::word_splitters::WordSplitter;
+    use crate::word_separators::WordSeparator;
+
+    #[test]
+    fn test_line_ending_crlf() {
+        let options = Options::new(15).line_ending(LineEnding::CRLF);
+        assert_eq!(options.line_ending, LineEnding::CRLF);
+    }
+
+    #[test]
+    fn test_line_ending_lf() {
+        let options = Options::new(15).line_ending(LineEnding::LF);
+        assert_eq!(options.line_ending, LineEnding::LF);
+    }
+
+    #[test]
+    fn test_line_ending_retains_other_fields() {
+        let options = Options {
+            width: 42,
+            line_ending: LineEnding::LF,
+            initial_indent: ">> ",
+            subsequent_indent: "|| ",
+            break_words: false,
+            word_separator: WordSeparator::AsciiSpace,
+            wrap_algorithm: WrapAlgorithm::new(),
+            word_splitter: WordSplitter::NoHyphenation,
+        };
+
+        let new_options = options.line_ending(LineEnding::CRLF);
+        assert_eq!(new_options.line_ending, LineEnding::CRLF);
+        assert_eq!(new_options.width, 42);
+        assert_eq!(new_options.initial_indent, ">> ");
+        assert_eq!(new_options.subsequent_indent, "|| ");
+        assert_eq!(new_options.break_words, false);
+        assert_eq!(new_options.word_separator, WordSeparator::AsciiSpace);
+        assert_eq!(new_options.wrap_algorithm, WrapAlgorithm::new());
+        assert_eq!(new_options.word_splitter, WordSplitter::NoHyphenation);
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn options_new_default_values() {
+        let width = 80;
+        let options = Options::new(width);
+
+        assert_eq!(options.width, width);
+        assert_eq!(options.line_ending, LineEnding::LF);
+        assert_eq!(options.initial_indent, "");
+        assert_eq!(options.subsequent_indent, "");
+        assert_eq!(options.break_words, true);
+
+        #[cfg(feature = "unicode-linebreak")]
+        assert_eq!(options.word_separator, WordSeparator::UnicodeBreakProperties);
+        #[cfg(not(feature = "unicode-linebreak"))]
+        assert_eq!(options.word_separator, WordSeparator::AsciiSpace);
+
+        #[cfg(feature = "smawk")]
+        assert_eq!(options.wrap_algorithm, WrapAlgorithm::new_optimal_fit());
+        #[cfg(not(feature = "smawk"))]
+        assert_eq!(options.wrap_algorithm, WrapAlgorithm::FirstFit);
+
+        assert_eq!(options.word_splitter, WordSplitter::HyphenSplitter);
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::options::Options;
+
+    #[test]
+    fn test_subsequent_indent() {
+        // Test default subsequent_indent
+        let options = Options::new(15);
+        assert_eq!(options.subsequent_indent, "");
+
+        // Test setting subsequent_indent to a specific value
+        let options = options.subsequent_indent("-> ");
+        assert_eq!(options.subsequent_indent, "-> ");
+
+        // Test setting subsequent_indent to an empty string
+        let options = options.subsequent_indent("");
+        assert_eq!(options.subsequent_indent, "");
+
+        // Test setting subsequent_indent multiple times
+        let options = options
+            .subsequent_indent("-> ")
+            .subsequent_indent("-->")
+            .subsequent_indent("");
+        assert_eq!(options.subsequent_indent, "");
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::core::Word;
+    use crate::line_ending::LineEnding;
+    use crate::word_separators::WordSeparator;
+    use crate::word_splitters::WordSplitter;
+    use crate::wrap_algorithms::WrapAlgorithm;
+
+    #[test]
+    fn test_word_separator_ascii_space() {
+        let options = Options::new(80);
+        let new_options = options.word_separator(WordSeparator::AsciiSpace);
+        assert_eq!(new_options.word_separator, WordSeparator::AsciiSpace);
+    }
+
+    #[cfg(feature = "unicode-linebreak")]
+    #[test]
+    fn test_word_separator_unicode_break_properties() {
+        let options = Options::new(80);
+        let new_options = options.word_separator(WordSeparator::UnicodeBreakProperties);
+        assert_eq!(new_options.word_separator, WordSeparator::UnicodeBreakProperties);
+    }
+
+    #[test]
+    fn test_word_separator_custom() {
+        fn custom_separator(_line: &str) -> Box<dyn Iterator<Item = Word<'_>> + '_> {
+            Box::new(std::iter::empty())
+        }
+
+        let options = Options::new(80);
+        let new_options = options.word_separator(WordSeparator::Custom(custom_separator));
+        // WordSeparator::Custom can't be directly compared, so we test if it's set at all
+        match new_options.word_separator {
+            WordSeparator::Custom(_) => (),
+            _ => panic!("Expected WordSeparator::Custom"),
+        }
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+
+    use crate::wrap_algorithms::WrapAlgorithm;
+    use crate::word_splitters::WordSplitter;
+    use crate::word_separators::WordSeparator;
+    
+    #[test]
+    fn test_options_word_splitter() {
+        let mut options = Options::new(10)
+            .word_splitter(WordSplitter::HyphenSplitter)
+            .word_separator(WordSeparator::AsciiSpace)
+            .wrap_algorithm(WrapAlgorithm::FirstFit);
+
+        // We will test the word_splitter change, so we need a clone
+        // to compare against after applying word_splitter change
+        let original_options = options.clone();
+
+        // Original setter method should replace the word_splitter
+        options = options.word_splitter(WordSplitter::NoHyphenation);
+        assert_eq!(options.word_splitter, WordSplitter::NoHyphenation);
+
+        // Fields other than word_splitter should remain unchanged
+        assert_eq!(options.width, original_options.width);
+        assert_eq!(options.line_ending, original_options.line_ending);
+        assert_eq!(options.initial_indent, original_options.initial_indent);
+        assert_eq!(options.subsequent_indent, original_options.subsequent_indent);
+        assert_eq!(options.break_words, original_options.break_words);
+        assert_eq!(options.word_separator, original_options.word_separator);
+        assert_eq!(options.wrap_algorithm, original_options.wrap_algorithm);
+    }
+}
+True
+========================================
+    use crate::Options;
+    use crate::wrap_algorithms::WrapAlgorithm;
+    use crate::wrap_algorithms::optimal_fit::Penalties; // Adjusted import
+    use crate::line_ending::LineEnding;
+    use crate::word_separators::WordSeparator;
+    use crate::word_splitters::WordSplitter;
+
+    #[test]
+    fn test_wrap_algorithm_first_fit() {
+        let options = Options::new(15)
+            .line_ending(LineEnding::LF)
+            .initial_indent("")
+            .subsequent_indent("")
+            .break_words(false)
+            .word_separator(WordSeparator::AsciiSpace)
+            .word_splitter(WordSplitter::HyphenSplitter);
+
+        let new_options = options.wrap_algorithm(WrapAlgorithm::FirstFit);
+        assert_eq!(new_options.wrap_algorithm, WrapAlgorithm::FirstFit);
+    }
+
+    #[cfg(feature = "smawk")]
+    #[test]
+    fn test_wrap_algorithm_optimal_fit() {
+        let options = Options::new(15)
+            .line_ending(LineEnding::LF)
+            .initial_indent("")
+            .subsequent_indent("")
+            .break_words(false)
+            .word_separator(WordSeparator::AsciiSpace)
+            .word_splitter(WordSplitter::HyphenSplitter);
+        let penalties = Penalties::new();
+
+        let new_options = options.wrap_algorithm(WrapAlgorithm::OptimalFit(penalties));
+        if let WrapAlgorithm::OptimalFit(penalties) = new_options.wrap_algorithm {
+            assert_eq!(penalties, Penalties::new());
+        } else {
+            panic!("Expected WrapAlgorithm::OptimalFit");
+        }
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn test_refill_with_fixed_width() {
+        let text = "> Memory safety without garbage collection.";
+        let expected = "> Memory safety\n> without garbage\n> collection.";
+        let result = refill(text, 20);
+        assert_eq!(expected, result);
+    }
+
+    #[test]
+    fn test_refill_with_options() {
+        let text = "\
+            - This is
+            my indented
+            text.";
+        let options = Options::new(20)
+            .initial_indent("- ")
+            .subsequent_indent("  ");
+        let expected = "\
+            - This is my
+              indented text.";
+        let result = refill(text, options);
+        assert_eq!(expected, result);
+    }
+
+    #[test]
+    fn test_refill_with_bullet_points() {
+        let text = "\
+            - Bullet point
+              text here.";
+        let expected = "\
+            - Bullet point
+              text here.";
+        let result = refill(text, 30);
+        assert_eq!(expected, result);
+    }
+
+    #[test]
+    fn test_refill_with_shrinking_width() {
+        let text = "\
+            Some text that
+            will be shrunk.";
+        let expected = "\
+            Some text
+            that will
+            be shrunk.";
+        let result = refill(text, 10);
+        assert_eq!(expected, result);
+    }
+
+    #[test]
+    fn test_refill_without_changing() {
+        let text = "No newlines here.";
+        let expected = "No newlines here.";
+        let result = refill(text, 30);
+        assert_eq!(expected, result);
+    }
+
+    #[test]
+    fn test_refill_with_emtpy_string() {
+        let text = "";
+        let expected = "";
+        let result = refill(text, 20);
+        assert_eq!(expected, result);
+    }
+}
+True
+========================================
+    use crate::refill::unfill;
+    use crate::options::Options;
+    use crate::line_ending::LineEnding;
+
+    #[test]
+    fn test_unfill_simple() {
+        let text = "Hello\nworld.";
+        let (unfilled, options) = unfill(text);
+        assert_eq!(unfilled, "Hello world.\n");
+        assert_eq!(options.initial_indent, "");
+        assert_eq!(options.subsequent_indent, "");
+        assert_eq!(options.line_ending, LineEnding::LF);
+    }
+
+    #[test]
+    fn test_unfill_with_indentation() {
+        let text = "  Hello\n  world.";
+        let (unfilled, options) = unfill(text);
+        assert_eq!(unfilled, "Hello world.\n");
+        assert_eq!(options.initial_indent, "  ");
+        assert_eq!(options.subsequent_indent, "  ");
+        assert_eq!(options.line_ending, LineEnding::LF);
+    }
+
+    #[test]
+    fn test_unfill_with_different_indentation() {
+        let text = "  Hello\n    world.";
+        let (unfilled, options) = unfill(text);
+        assert_eq!(unfilled, "Hello world.\n");
+        assert_eq!(options.initial_indent, "  ");
+        assert_eq!(options.subsequent_indent, "    ");
+        assert_eq!(options.line_ending, LineEnding::LF);
+    }
+
+    #[test]
+    fn test_unfill_with_bullet_points() {
+        let text = "* Hello\n  world.";
+        let (unfilled, options) = unfill(text);
+        assert_eq!(unfilled, "Hello world.\n");
+        assert_eq!(options.initial_indent, "* ");
+        assert_eq!(options.subsequent_indent, "  ");
+        assert_eq!(options.line_ending, LineEnding::LF);
+    }
+
+    #[test]
+    fn test_unfill_with_mixed_line_endings() {
+        let text = "* Hello\r\n  world.";
+        let (unfilled, options) = unfill(text);
+        assert_eq!(unfilled, "Hello world.\n");
+        assert_eq!(options.initial_indent, "* ");
+        assert_eq!(options.subsequent_indent, "  ");
+        assert_eq!(options.line_ending, LineEnding::LF);
+    }
+
+    #[test]
+    fn test_unfill_with_crlf_line_endings() {
+        let text = "* Hello\r\n  world.\r\n";
+        let (unfilled, options) = unfill(text);
+        assert_eq!(unfilled, "Hello world.\r\n");
+        assert_eq!(options.initial_indent, "* ");
+        assert_eq!(options.subsequent_indent, "  ");
+        assert_eq!(options.line_ending, LineEnding::CRLF);
+    }
+
+    #[test]
+    fn test_unfill_single_line() {
+        let text = "Hello world.";
+        let (unfilled, options) = unfill(text);
+        assert_eq!(unfilled, "Hello world.\n");
+        assert_eq!(options.initial_indent, "");
+        assert_eq!(options.subsequent_indent, "");
+        assert_eq!(options.line_ending, LineEnding::LF);
+    }
+
+    #[test]
+    fn test_unfill_empty_string() {
+        let text = "";
+        let (unfilled, options) = unfill(text);
+        assert_eq!(unfilled, "\n");
+        assert_eq!(options.initial_indent, "");
+        assert_eq!(options.subsequent_indent, "");
+        assert_eq!(options.line_ending, LineEnding::LF);
+    }
+
+    #[test]
+    #[should_panic]
+    fn test_unfill_multiple_paragraphs() {
+        let text = "Hello world.\n\nNew paragraph.";
+        let _ = unfill(text);
+    }
+}
+True
+========================================
+    use crate::word_separators::{WordSeparator, Word};
+
+    #[test]
+    fn test_find_words_ascii_space() {
+        let separator = WordSeparator::AsciiSpace;
+        let words = separator.find_words("Hello   World!").collect::<Vec<_>>();
+        assert_eq!(words, vec![Word::from("Hello   "), Word::from("World!")]);
+    }
+
+    #[cfg(feature = "unicode-linebreak")]
+    #[test]
+    fn test_find_words_unicode_break_properties() {
+        let separator = WordSeparator::UnicodeBreakProperties;
+        let words = separator.find_words("Emojis: 😂😍").collect::<Vec<_>>();
+        assert_eq!(words, vec![Word::from("Emojis: "), Word::from("😂"), Word::from("😍")]);
+    }
+
+    #[cfg(feature = "unicode-linebreak")]
+    #[test]
+    fn test_find_words_unicode_break_properties_cjk() {
+        let separator = WordSeparator::UnicodeBreakProperties;
+        let words = separator.find_words("你好世界").collect::<Vec<_>>();
+        assert_eq!(words, vec![Word::from("你"), Word::from("好"), Word::from("世"), Word::from("界")]);
+    }
+
+    #[cfg(feature = "unicode-linebreak")]
+    #[test]
+    fn test_find_words_unicode_break_properties_with_word_joiner() {
+        let separator = WordSeparator::UnicodeBreakProperties;
+        let words = separator.find_words("Emojis: 😂\u{2060}😍").collect::<Vec<_>>();
+        assert_eq!(words, vec![Word::from("Emojis: "), Word::from("😂\u{2060}😍")]);
+    }
+
+    #[test]
+    fn test_find_words_custom() {
+        fn custom_separator(line: &str) -> Box<dyn Iterator<Item = Word> + '_> {
+            Box::new(
+                line.split_inclusive(' ')
+                    .map(Word::from)
+            )
+        }
+
+        let separator = WordSeparator::Custom(custom_separator);
+        let words = separator.find_words("Custom separator test").collect::<Vec<_>>();
+        assert_eq!(words, vec![Word::from("Custom "), Word::from("separator "), Word::from("test")]);
+    }
+}
+True
+========================================
+    use crate::word_separators::WordSeparator;
+
+    #[test]
+    fn new_word_separator_default() {
+        let separator = WordSeparator::new();
+        #[cfg(feature = "unicode-linebreak")]
+        assert_eq!(separator, WordSeparator::UnicodeBreakProperties);
+
+        #[cfg(not(feature = "unicode-linebreak"))]
+        assert_eq!(separator, WordSeparator::AsciiSpace);
+    }
+}
+True
+========================================
+    use crate::find_words_ascii_space;
+    use crate::super::Word;
+
+    #[test]
+    fn test_find_words_ascii_space_single_word() {
+        let input = "single";
+        let mut iterator = find_words_ascii_space(input);
+
+        assert_eq!(iterator.next(), Some(Word::from("single")));
+        assert_eq!(iterator.next(), None);
+    }
+
+    #[test]
+    fn test_find_words_ascii_space_multiple_words() {
+        let input = "multiple words";
+        let mut iterator = find_words_ascii_space(input);
+
+        assert_eq!(iterator.next(), Some(Word::from("multiple")));
+        assert_eq!(iterator.next(), Some(Word::from("words")));
+        assert_eq!(iterator.next(), None);
+    }
+
+    #[test]
+    fn test_find_words_ascii_space_leading_trailing_spaces() {
+        let input = "  leading and trailing  ";
+        let mut iterator = find_words_ascii_space(input);
+
+        assert_eq!(iterator.next(), Some(Word::from("leading")));
+        assert_eq!(iterator.next(), Some(Word::from("and")));
+        assert_eq!(iterator.next(), Some(Word::from("trailing")));
+        assert_eq!(iterator.next(), None);
+    }
+
+    #[test]
+    fn test_find_words_ascii_space_multiple_spaces() {
+        let input = "multiple   spaces";
+        let mut iterator = find_words_ascii_space(input);
+
+        assert_eq!(iterator.next(), Some(Word::from("multiple")));
+        assert_eq!(iterator.next(), Some(Word::from("spaces")));
+        assert_eq!(iterator.next(), None);
+    }
+
+    #[test]
+    fn test_find_words_ascii_space_empty_string() {
+        let input = "";
+        let mut iterator = find_words_ascii_space(input);
+
+        assert_eq!(iterator.next(), None);
+    }
+
+    #[test]
+    fn test_find_words_ascii_space_only_spaces() {
+        let input = "     ";
+        let mut iterator = find_words_ascii_space(input);
+
+        assert_eq!(iterator.next(), None);
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::core::Word;
+
+    #[test]
+    fn test_find_words_unicode_break_properties() {
+        let line = "The quick (\"brown\") fox can't jump 32.3 feet, right?";
+        let mut word_iter = find_words_unicode_break_properties(line);
+        assert_eq!(word_iter.next(), Some(Word::from("The ")));
+        assert_eq!(word_iter.next(), Some(Word::from("quick ")));
+        assert_eq!(word_iter.next(), Some(Word::from("(\"")));
+        assert_eq!(word_iter.next(), Some(Word::from("brown")));
+        assert_eq!(word_iter.next(), Some(Word::from("\") ")));
+        assert_eq!(word_iter.next(), Some(Word::from("fox ")));
+        assert_eq!(word_iter.next(), Some(Word::from("can't ")));
+        assert_eq!(word_iter.next(), Some(Word::from("jump ")));
+        assert_eq!(word_iter.next(), Some(Word::from("32.3 ")));
+        assert_eq!(word_iter.next(), Some(Word::from("feet")));
+        assert_eq!(word_iter.next(), Some(Word::from(", ")));
+        assert_eq!(word_iter.next(), Some(Word::from("right")));
+        assert_eq!(word_iter.next(), Some(Word::from("?")));
+        assert_eq!(word_iter.next(), None);
+    }
+
+    #[test]
+    fn test_find_words_unicode_break_properties_with_ansi() {
+        let line_with_ansi = "\x1b[31mHello\x1b[0m World";
+        let mut word_iter = find_words_unicode_break_properties(line_with_ansi);
+        assert_eq!(word_iter.next(), Some(Word::from("\x1b[31mHello\x1b[0m ")));
+        assert_eq!(word_iter.next(), Some(Word::from("World")));
+        assert_eq!(word_iter.next(), None);
+    }
+
+    #[test]
+    fn test_find_words_unicode_break_properties_empty_string() {
+        let empty_line = "";
+        let mut word_iter = find_words_unicode_break_properties(empty_line);
+        assert_eq!(word_iter.next(), None);
+    }
+
+    #[test]
+    fn test_find_words_unicode_break_properties_with_shy() {
+        let line_with_shy = "hy\u{00AD}phen\u{00AD}ation";
+        let mut word_iter = find_words_unicode_break_properties(line_with_shy);
+        assert_eq!(word_iter.next(), Some(Word::from("hy\u{00AD}phen\u{00AD}ation")));
+        assert_eq!(word_iter.next(), None);
+    }
+}
+True
+========================================
+    use crate::word_separators::strip_ansi_escape_sequences;
+
+    #[test]
+    fn test_strip_ansi_escape_sequences() {
+        let input = "\x1B[31mRed\x1B[0m Normal \x1B[32mGreen\x1B[0m";
+        let expected = "Red Normal Green";
+        let output = strip_ansi_escape_sequences(input);
+        assert_eq!(output, expected);
+    }
+
+    #[test]
+    fn test_strip_ansi_escape_sequences_empty() {
+        let input = "";
+        let expected = "";
+        let output = strip_ansi_escape_sequences(input);
+        assert_eq!(output, expected);
+    }
+
+    #[test]
+    fn test_strip_ansi_escape_sequences_no_ansi() {
+        let input = "No special characters";
+        let expected = "No special characters";
+        let output = strip_ansi_escape_sequences(input);
+        assert_eq!(output, expected);
+    }
+
+    #[test]
+    fn test_strip_ansi_escape_sequences_only_ansi() {
+        let input = "\x1B[31m\x1B[0m";
+        let expected = "";
+        let output = strip_ansi_escape_sequences(input);
+        assert_eq!(output, expected);
+    }
+
+    #[test]
+    fn test_strip_ansi_escape_sequences_nested_ansi() {
+        let input = "\x1B[1mBold \x1B[31mRed\x1B[0m\x1B[22m Normal";
+        let expected = "Bold Red Normal";
+        let output = strip_ansi_escape_sequences(input);
+        assert_eq!(output, expected);
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn no_hyphenation_splits() {
+        let splitter = WordSplitter::NoHyphenation;
+        assert_eq!(splitter.split_points("cannot-be-split"), Vec::<usize>::new());
+    }
+
+    #[test]
+    fn hyphen_splitter_splits() {
+        let splitter = WordSplitter::HyphenSplitter;
+        assert_eq!(splitter.split_points("can-be-split"), vec![4, 7]);
+        assert_eq!(splitter.split_points("--foo-bar"), vec![6]);
+        assert_eq!(splitter.split_points("hyphen-ated"), vec![7]);
+        assert_eq!(splitter.split_points("non-alphanumeric-"), Vec::<usize>::new());
+        assert_eq!(splitter.split_points("-leading-hyphen"), vec![9]);
+        assert_eq!(splitter.split_points("trailing-hyphen-"), Vec::<usize>::new());
+        assert_eq!(splitter.split_points("consecutive--hyphens"), Vec::<usize>::new());
+    }
+
+    #[test]
+    fn custom_splitter_splits() {
+        fn split_at_underscore(word: &str) -> Vec<usize> {
+            word.match_indices('_').map(|(idx, _)| idx + 1).collect()
+        }
+        let splitter = WordSplitter::Custom(split_at_underscore);
+        assert_eq!(splitter.split_points("a_long_identifier"), vec![2, 7]);
+        assert_eq!(splitter.split_points("no_underscores"), Vec::<usize>::new());
+        assert_eq!(splitter.split_points("multi__underscore"), vec![6, 8]);
+    }
+
+    // The following test will only compile if the `hyphenation` feature is enabled.
+    #[cfg(feature = "hyphenation")]
+    #[test]
+    fn hyphenation_splitter_splits() {
+        use hyphenation::{Language, Standard, Load};
+
+        let dictionary = Standard::from_embedded(Language::EnglishUS).unwrap();
+        let splitter = WordSplitter::Hyphenation(dictionary);
+        assert_eq!(splitter.split_points("hyphenation"), vec![2, 4, 6]);
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::word_splitters::{split_words, Word, WordSplitter};
+
+    #[test]
+    fn test_hyphen_splitter() {
+        let words = vec![
+            Word { word: "split-me", width: 8, whitespace: " ", penalty: "" },
+            Word { word: "not_split", width: 9, whitespace: " ", penalty: "" },
+        ];
+        let word_splitter = WordSplitter::HyphenSplitter;
+        let split = split_words(words.into_iter(), &word_splitter).collect::<Vec<_>>();
+
+        assert_eq!(split,
+            vec![
+                Word { word: "split-", width: 6, whitespace: "", penalty: "-" },
+                Word { word: "me", width: 2, whitespace: " ", penalty: "" },
+                Word { word: "not_split", width: 9, whitespace: " ", penalty: "" },
+            ]
+        );
+    }
+
+    #[test]
+    fn test_no_hyphen_splitter() {
+        let words = vec![
+            Word { word: "cannot-be-split", width: 16, whitespace: " ", penalty: "" },
+        ];
+        let word_splitter = WordSplitter::NoHyphenation;
+        let split = split_words(words.into_iter(), &word_splitter).collect::<Vec<_>>();
+
+        assert_eq!(split,
+            vec![
+                Word { word: "cannot-be-split", width: 16, whitespace: " ", penalty: "" },
+            ]
+        );
+    }
+
+    #[test]
+    fn test_custom_splitter() {
+        let words = vec![
+            Word { word: "custom_split", width: 12, whitespace: " ", penalty: "" },
+        ];
+        let word_splitter = WordSplitter::Custom(|word| vec![word.len() / 2]);
+        let split = split_words(words.into_iter(), &word_splitter).collect::<Vec<_>>();
+
+        assert_eq!(split,
+            vec![
+                Word { word: "custom_", width: 7, whitespace: "", penalty: "" },
+                Word { word: "split", width: 5, whitespace: " ", penalty: "" },
+            ]
+        );
+    }
+}
+True
+========================================
+    use crate::wrap;
+    use crate::Options;
+    use std::borrow::Cow::{Borrowed, Owned};
+
+    #[test]
+    fn test_wrap_simple() {
+        let text = "Memory safety without garbage collection.";
+        let width = 15;
+        let lines = wrap(text, width);
+
+        assert_eq!(
+            lines,
+            vec![
+                Borrowed("Memory safety"),
+                Borrowed("without garbage"),
+                Borrowed("collection."),
+            ]
+        );
+    }
+
+    #[test]
+    fn test_wrap_with_options() {
+        let options = Options::new(15)
+            .initial_indent("- ")
+            .subsequent_indent("  ");
+        let text = "Memory safety without garbage collection.";
+        let lines = wrap(text, &options);
+
+        assert_eq!(
+            lines,
+            vec![
+                Borrowed("- Memory safety"),
+                Owned("  without".to_string()),
+                Owned("  garbage".to_string()),
+                Owned("  collection.".to_string()),
+            ]
+        );
+    }
+
+    #[test]
+    fn test_wrap_with_indentation() {
+        let options = Options::new(15).subsequent_indent("....");
+        let text = "Wrapping text all day long.";
+        let lines = wrap(text, &options);
+
+        let annotated = lines
+            .iter()
+            .map(|line| match line {
+                Borrowed(text) => format!("[Borrowed] {}", text),
+                Owned(text) => format!("[Owned]    {}", text),
+            })
+            .collect::<Vec<_>>();
+
+        assert_eq!(
+            annotated,
+            vec![
+                "[Borrowed] Wrapping text",
+                "[Owned]    ....all day long.",
+            ]
+        );
+    }
+
+    #[test]
+    fn test_wrap_preserve_leading_whitespace() {
+        let text = "  Foo   bar baz";
+        let width = 8;
+        let lines = wrap(text, width);
+
+        assert_eq!(lines, vec![Borrowed("  Foo"), Borrowed("bar baz")]);
+    }
+
+    #[test]
+    fn test_wrap_discard_trailing_whitespace() {
+        let text = "Foo   bar baz";
+        let lines = wrap(text, 8);
+
+        assert_eq!(lines, vec![Borrowed("Foo"), Borrowed("bar baz")]);
+    }
+
+    #[test]
+    fn test_wrap_discard_extra_trailing_whitespace() {
+        let text = "Foo   bar   baz";
+        let lines = wrap(text, 10);
+
+        assert_eq!(lines, vec![Borrowed("Foo   bar"), Borrowed("baz")]);
+    }
+
+    #[test]
+    fn test_wrap_leading_whitespace_causing_empty_line() {
+        let text = "  foo bar";
+        let width = 4;
+        let lines = wrap(text, width);
+
+        assert_eq!(lines, vec![Borrowed(""), Borrowed("foo"), Borrowed("bar")]);
+    }
+
+    // Add additional tests to cover more edge cases and behaviors.
+    // ...
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::wrap::wrap_single_line;
+    use crate::options::Options;
+    use crate::line_ending::LineEnding;
+    use std::borrow::Cow;
+
+    #[test]
+    fn test_wrap_single_line_empty_indent() {
+        let line = "This is a test line that is longer than the line width we set below.";
+        let mut lines = Vec::new();
+        let options = Options {
+            width: 15,
+            line_ending: LineEnding::LF,
+            initial_indent: "",
+            subsequent_indent: "",
+            break_words: false,
+            wrap_algorithm: WrapAlgorithm::FirstFit,
+            word_separator: WordSeparator::new(),
+            word_splitter: WordSplitter::HyphenSplitter,
+        };
+
+        wrap_single_line(line, &options, &mut lines);
+
+        assert_eq!(lines, vec![Cow::from(line)]);
+    }
+
+    #[test]
+    fn test_wrap_single_line_with_initial_indent() {
+        let line = "This is a test line.";
+        let mut lines = Vec::new();
+        let options = Options {
+            width: 15,
+            line_ending: LineEnding::LF,
+            initial_indent: ">>",
+            subsequent_indent: "",
+            break_words: false,
+            wrap_algorithm: WrapAlgorithm::FirstFit,
+            word_separator: WordSeparator::new(),
+            word_splitter: WordSplitter::HyphenSplitter,
+        };
+
+        wrap_single_line(line, &options, &mut lines);
+
+        assert_eq!(lines, vec![Cow::from(">>This is a test line.")]);
+    }
+
+    #[test]
+    fn test_wrap_single_line_with_subsequent_indent() {
+        let line = "This is a test line.";
+        let mut lines = vec![Cow::from("First line.")];
+        let options = Options {
+            width: 15,
+            line_ending: LineEnding::LF,
+            initial_indent: "",
+            subsequent_indent: "++",
+            break_words: false,
+            wrap_algorithm: WrapAlgorithm::FirstFit,
+            word_separator: WordSeparator::new(),
+            word_splitter: WordSplitter::HyphenSplitter,
+        };
+
+        wrap_single_line(line, &options, &mut lines);
+
+        assert_eq!(lines, vec![Cow::from("First line."), Cow::from("++This is a test line.")]);
+    }
+
+    #[test]
+    fn test_wrap_single_line_with_indent_and_trim() {
+        let line = "This is a test line with spaces at the end     ";
+        let mut lines = Vec::new();
+        let options = Options {
+            width: 15,
+            line_ending: LineEnding::LF,
+            initial_indent: "##",
+            subsequent_indent: "",
+            break_words: false,
+            wrap_algorithm: WrapAlgorithm::FirstFit,
+            word_separator: WordSeparator::new(),
+            word_splitter: WordSplitter::HyphenSplitter,
+        };
+
+        wrap_single_line(line, &options, &mut lines);
+
+        assert_eq!(lines, vec![Cow::from("##This is a test line")]);
+    }
+
+    #[test]
+    fn test_wrap_single_line_slow_path() {
+        let line = "This is a test line that will invoke the slow path due to its length";
+        let mut lines = Vec::new();
+        let options = Options {
+            width: 10,
+            line_ending: LineEnding::LF,
+            initial_indent: "",
+            subsequent_indent: "",
+            break_words: false,
+            wrap_algorithm: WrapAlgorithm::FirstFit,
+            word_separator: WordSeparator::new(),
+            word_splitter: WordSplitter::HyphenSplitter,
+        };
+
+        wrap_single_line(line, &options, &mut lines);
+
+        // Since wrap_single_line_slow_path is not provided, we cannot
+        // assume the implementation. This test is only here to ensure
+        // the slow path is taken. The actual outcome is not checked.
+        assert!(lines.len() > 1);
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::core::Word;
+    use crate::options::Options;
+    use crate::wrap_algorithms::WrapAlgorithm;
+    use crate::line_ending::LineEnding;
+    use crate::word_separators::WordSeparator;
+    use crate::word_splitters::WordSplitter;
+    use std::borrow::Cow;
+
+    #[test]
+    fn test_wrap_single_line_slow_path_empty_line() {
+        let line = "";
+        let options = Options::new(10);
+        let mut lines = Vec::new();
+        wrap_single_line_slow_path(line, &options, &mut lines);
+        assert_eq!(lines, Vec::<Cow<str>>::new());
+    }
+
+    #[test]
+    fn test_wrap_single_line_slow_path_no_wrap() {
+        let line = "small line";
+        let options = Options::new(10);
+        let mut lines = Vec::new();
+        wrap_single_line_slow_path(line, &options, &mut lines);
+        assert_eq!(lines, vec![Cow::from("small line")]);
+    }
+
+    #[test]
+    fn test_wrap_single_line_slow_path_with_wrap() {
+        let line = "Wrap this line please";
+        let options = Options::new(10)
+            .word_separator(WordSeparator::AsciiSpace)
+            .wrap_algorithm(WrapAlgorithm::FirstFit);
+        let mut lines = Vec::new();
+        wrap_single_line_slow_path(line, &options, &mut lines);
+        assert_eq!(lines, vec![Cow::from("Wrap this "), Cow::from("line "), Cow::from("please")]);
+    }
+
+    #[test]
+    fn test_wrap_single_line_slow_path_with_long_word() {
+        let line = "Wrap this supercalifragilisticexpialidocious line please";
+        let options = Options::new(10)
+            .word_separator(WordSeparator::AsciiSpace)
+            .wrap_algorithm(WrapAlgorithm::FirstFit)
+            .break_words(true)
+            .word_splitter(WordSplitter::HyphenSplitter);
+        let mut lines = Vec::new();
+        wrap_single_line_slow_path(line, &options, &mut lines);
+        assert_eq!(
+            lines, 
+            vec![
+                Cow::from("Wrap this "),
+                Cow::from("supercalif"),
+                Cow::from("ragilistic"),
+                Cow::from("expialido"),
+                Cow::from("cious line"),
+                Cow::from("please")
+            ]
+        );
+    }
+
+    #[test]
+    fn test_wrap_single_line_slow_path_initial_indent() {
+        let line = "Wrap this line with initial indent";
+        let options = Options::new(12)
+            .word_separator(WordSeparator::AsciiSpace)
+            .wrap_algorithm(WrapAlgorithm::FirstFit)
+            .initial_indent(">> ");
+        let mut lines = Vec::new();
+        wrap_single_line_slow_path(line, &options, &mut lines);
+        assert_eq!(lines, vec![Cow::from(">> Wrap this"), Cow::from("line with"), Cow::from("initial"), Cow::from("indent")]);
+    }
+
+    #[test]
+    fn test_wrap_single_line_slow_path_subsequent_indent() {
+        let line = "Wrap this line with subsequent indent";
+        let options = Options::new(15)
+            .word_separator(WordSeparator::AsciiSpace)
+            .wrap_algorithm(WrapAlgorithm::FirstFit)
+            .subsequent_indent("... ");
+        let mut lines = Vec::new();
+        wrap_single_line_slow_path(line, &options, &mut lines);
+        assert_eq!(lines, vec![Cow::from("Wrap this line"), Cow::from("... with"), Cow::from("... subsequent"), Cow::from("... indent")]);
+    }
+
+    #[test]
+    fn test_wrap_single_line_slow_path_initial_and_subsequent_indent() {
+        let line = "Wrap this line with both indents";
+        let options = Options::new(16)
+            .word_separator(WordSeparator::AsciiSpace)
+            .wrap_algorithm(WrapAlgorithm::FirstFit)
+            .initial_indent(">>")
+            .subsequent_indent("...");
+        let mut lines = Vec::new();
+        wrap_single_line_slow_path(line, &options, &mut lines);
+        assert_eq!(lines, vec![Cow::from(">>Wrap this line"), Cow::from("...with both"), Cow::from("...indents")]);
+    }
+}
+True
+========================================
+#[cfg(test)]
+mod test {
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn test_new_default_algorithm() {
+        // Assume no features activated
+        let wrap_algorithm = WrapAlgorithm::new();
+        assert_eq!(wrap_algorithm, WrapAlgorithm::FirstFit);
+
+        // Testing with smawk feature,
+        // the test must then be run with this feature enabled.
+        // #[cfg(feature = "smawk")]
+        // assert!(matches!(wrap_algorithm, WrapAlgorithm::OptimalFit(_)));
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    #[cfg(feature = "smawk")]
+    fn new_optimal_fit_default_penalties() {
+        let optimal_fit = WrapAlgorithm::new_optimal_fit();
+        match optimal_fit {
+            WrapAlgorithm::OptimalFit(penalties) => {
+                assert_eq!(penalties, Penalties::new())
+            }
+            _ => panic!("Expected OptimalFit algorithm"),
+        }
+    }
+}
+True
+========================================
+    use crate::wrap_algorithms::{WrapAlgorithm, wrap_first_fit};
+    use crate::core::Word;
+    #[cfg(feature = "smawk")]
+    use crate::wrap_algorithms::optimal_fit::Penalties;
+
+    #[test]
+    fn wrap_first_fit_algorithm_works() {
+        let algorithm = WrapAlgorithm::FirstFit;
+        let words = vec![
+            Word::from("Hello"),
+            Word::from("world"),
+            Word::from("this"),
+            Word::from("is"),
+            Word::from("a"),
+            Word::from("test"),
+        ];
+        let line_widths = vec![10, 10];
+
+        let wrapped_lines = algorithm.wrap(&words, &line_widths);
+        assert_eq!(wrapped_lines, vec![&words[0..2], &words[2..5], &words[5..6]]);
+    }
+
+    #[test]
+    #[cfg(feature = "smawk")]
+    fn wrap_optimal_fit_algorithm_works() {
+        let penalties = Penalties::new();
+        let algorithm = WrapAlgorithm::OptimalFit(penalties);
+        let words = vec![
+            Word::from("Hello"),
+            Word::from("world"),
+            Word::from("this"),
+            Word::from("is"),
+            Word::from("a"),
+            Word::from("test"),
+        ];
+        let line_widths = vec![10, 10];
+
+        let wrapped_lines = algorithm.wrap(&words, &line_widths);
+        assert_eq!(wrapped_lines, vec![&words[0..2], &words[2..5], &words[5..6]]);
+    }
+
+    #[test]
+    fn wrap_custom_algorithm_works() {
+        fn custom_wrap<'a, 'b>(words: &'b [Word<'a>], _line_widths: &'b [usize]) -> Vec<&'b [Word<'a>]> {
+            words.split(|word| word.word.ends_with('.')).collect()
+        }
+
+        let algorithm = WrapAlgorithm::Custom(custom_wrap);
+        let words = vec![
+            Word::from("Hello."),
+            Word::from("world"),
+            Word::from("this"),
+            Word::from("is."),
+            Word::from("a"),
+            Word::from("test."),
+        ];
+        let line_widths = vec![10, 10];
+
+        let wrapped_lines = algorithm.wrap(&words, &line_widths);
+        assert_eq!(wrapped_lines, vec![&words[0..1], &words[1..4], &words[4..6]]);
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use std::cell::RefCell;
+
+    #[test]
+    fn test_line_numbers_get() {
+        let ln = LineNumbers {
+            line_numbers: RefCell::new(vec![0]),
+        };
+        
+        let minima = vec![(0, ()), (0, ()), (1, ()), (1, ())]; // Dummy T values as ()
+
+        // Test line number retrieval (should be recursive)
+        assert_eq!(1, ln.get(1, &minima));
+        assert_eq!(2, ln.get(2, &minima));
+        assert_eq!(2, ln.get(3, &minima));
+        
+        // Test retrieval from cache
+        assert_eq!(1, ln.get(1, &minima));
+        assert_eq!(2, ln.get(2, &minima));
+        assert_eq!(2, ln.get(3, &minima));
+        
+        // Test extending the cache
+        assert_eq!(3, ln.get(4, &minima));
+        assert_eq!(3, ln.get(5, &minima));
+
+        // Test cache size
+        assert_eq!(6, ln.line_numbers.borrow().len());
+    }
+}
+True
+========================================
+    use crate::wrap_algorithms::optimal_fit::LineNumbers;
+
+    #[test]
+    fn test_new_line_numbers() {
+        let line_numbers = LineNumbers::new(10);
+        let line_numbers_borrow = line_numbers.line_numbers.borrow();
+        assert_eq!(line_numbers_borrow.len(), 1);
+        assert_eq!(line_numbers_borrow[0], 0);
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn penalties_new_returns_default_values() {
+        let penalties = Penalties::new();
+
+        assert_eq!(penalties.nline_penalty, 1000);
+        assert_eq!(penalties.overflow_penalty, 50 * 50);
+        assert_eq!(penalties.short_last_line_fraction, 4);
+        assert_eq!(penalties.short_last_line_penalty, 25);
+        assert_eq!(penalties.hyphen_penalty, 25);
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::core::{Fragment, Word};
+    use crate::wrap_algorithms::optimal_fit::{wrap_optimal_fit, Penalties, OverflowError};
+
+    #[test]
+    fn test_wrap_optimal_fit_simple_case() {
+        let text = vec![
+            Word::from("To"),
+            Word::from("be,"),
+            Word::from("or"),
+            Word::from("not"),
+            Word::from("to"),
+            Word::from("be:"),
+            Word::from("that"),
+            Word::from("is"),
+            Word::from("the"),
+            Word::from("question"),
+        ];
+        let penalties = Penalties::default();
+        let line_widths = vec![10.0, 10.0, 10.0, 10.0];
+
+        let wrapped = wrap_optimal_fit(&text, &line_widths, &penalties).unwrap();
+
+        assert_eq!(
+            wrapped,
+            vec![
+                &text[0..2], // "To be,"
+                &text[2..5], // "or not"
+                &text[5..7], // "to be:"
+                &text[7..9], // "that is"
+                &text[9..10], // "the"
+            ]
+        );
+    }
+
+    #[test]
+    fn test_wrap_optimal_fit_overflow_error() {
+        let text = vec![
+            Word::from("infinity"),
+            Word::from("overflow"),
+        ];
+        let penalties = Penalties::default();
+        let line_widths = vec![f64::INFINITY];
+
+        let result = wrap_optimal_fit(&text, &line_widths, &penalties);
+        
+        assert!(matches!(result, Err(OverflowError)));
+    }
+
+    #[test]
+    fn test_wrap_optimal_fit_overflows_still_wrap() {
+        let text = vec![
+            Word::from("some"),
+            Word::from("extremely"),
+            Word::from("long"),
+            Word::from("nonexistentword"),
+        ];
+        let penalties = Penalties {
+            overflow_penalty: 0, // Disable overflow penalty
+            ..Penalties::default()
+        };
+        let line_widths = vec![15.0];
+
+        let wrapped = wrap_optimal_fit(&text, &line_widths, &penalties).unwrap();
+
+        assert_eq!(
+            wrapped,
+            vec![
+                &text[0..1], // "some"
+                &text[1..2], // "extremely"
+                &text[2..3], // "long"
+                &text[3..4], // "nonexistentword"
+            ]
+        );
+    }
+
+    #[test]
+    fn test_wrap_optimal_fit_with_hyphen_penalty() {
+        let text = vec![
+            Word {
+                word: "hyphen-",
+                whitespace: " ",
+                penalty: "-",
+                width: 7,
+            },
+            Word::from("ated"),
+            Word::from("word"),
+        ];
+        let penalties = Penalties {
+            hyphen_penalty: 50, // Increase penalty for hyphen
+            ..Penalties::default()
+        };
+        let line_widths = vec![10.0];
+
+        let wrapped = wrap_optimal_fit(&text, &line_widths, &penalties).unwrap();
+
+        assert_eq!(
+            wrapped,
+            vec![
+                &text[0..1], // "hyphen-"
+                &text[1..3], // "ated word"
+            ]
+        );
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::core::{Fragment, Word};
+
+    #[test]
+    fn wrap_first_fit_empty_input() {
+        let words: Vec<Word> = Vec::new();
+        assert_eq!(wrap_first_fit(&words, &[10.0]), Vec::<&[Word]>::new());
+    }
+
+    #[test]
+    fn wrap_first_fit_single_line() {
+        let words = vec![
+            Word::from("Hello "),
+            Word::from("world "),
+            Word::from("this "),
+            Word::from("is "),
+            Word::from("a "),
+            Word::from("test. "),
+        ];
+        let expected = vec![&words[..]];
+        assert_eq!(wrap_first_fit(&words, &[10.0]), expected);
+    }
+
+    #[test]
+    fn wrap_first_fit_multiple_lines() {
+        let words = vec![
+            Word::from("Hello "),
+            Word::from("world "),
+            Word::from("this "),
+            Word::from("is "),
+            Word::from("a "),
+            Word::from("test. "),
+        ];
+        let expected = vec![&words[..3], &words[3..]];
+        assert_eq!(wrap_first_fit(&words, &[15.0]), expected);
+    }
+
+    #[test]
+    fn wrap_first_fit_words_longer_than_line_width() {
+        let words = vec![
+            Word::from("Hello "),
+            Word::from("world "),
+            Word::from("this "),
+            Word::from("is "),
+            Word::from("a "),
+            Word::from("test. "),
+        ];
+        let expected = vec![&words[..1], &words[1..2], &words[2..3], &words[3..4], &words[4..5], &words[5..]];
+        assert_eq!(wrap_first_fit(&words, &[5.0]), expected);
+    }
+
+    #[test]
+    fn wrap_first_fit_variable_line_widths() {
+        let words = vec![
+            Word::from("Hello "),
+            Word::from("world "),
+            Word::from("this "),
+            Word::from("is "),
+            Word::from("a "),
+            Word::from("test. "),
+        ];
+        let expected = vec![&words[..2], &words[2..4], &words[4..]];
+        assert_eq!(wrap_first_fit(&words, &[10.0, 10.0, 5.0]), expected);
+    }
+
+    #[test]
+    fn wrap_first_fit_incomplete_line_widths() {
+        let words = vec![
+            Word::from("Hello "),
+            Word::from("world "),
+            Word::from("this "),
+            Word::from("is "),
+            Word::from("a "),
+            Word::from("test. "),
+        ];
+        let expected = vec![&words[..2], &words[2..4], &words[4..]];
+        // Only two line_widths are provided, the last one should be used for the remaining lines.
+        assert_eq!(wrap_first_fit(&words, &[10.0, 10.0]), expected);
+    }
+
+    #[test]
+    fn wrap_first_fit_line_width_zero() {
+        let words = vec![
+            Word::from("Hello "),
+            Word::from("world "),
+            Word::from("this "),
+            Word::from("is "),
+            Word::from("a "),
+            Word::from("test. "),
+        ];
+        // A line width of zero should cause each word to be on its own line.
+        let expected = words.iter().map(|w| std::slice::from_ref(w)).collect::<Vec<_>>();
+        assert_eq!(wrap_first_fit(&words, &[0.0]), expected);
+    }
+}
+True
+textwrap textwrap 47 53

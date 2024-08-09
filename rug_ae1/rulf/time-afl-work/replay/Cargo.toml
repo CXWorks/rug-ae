@@ -1,0 +1,519 @@
+[[bin]]
+name = "test_time20"
+path = "replay_files/replay_time20.rs"
+
+[[bin]]
+name = "test_time16"
+path = "replay_files/replay_time16.rs"
+
+[[bin]]
+name = "test_time37"
+path = "replay_files/replay_time37.rs"
+
+[[bin]]
+name = "test_time14"
+path = "replay_files/replay_time14.rs"
+
+[[bin]]
+name = "test_time111"
+path = "replay_files/replay_time111.rs"
+
+[[bin]]
+name = "test_time87"
+path = "replay_files/replay_time87.rs"
+
+[[bin]]
+name = "test_time95"
+path = "replay_files/replay_time95.rs"
+
+[[bin]]
+name = "test_time18"
+path = "replay_files/replay_time18.rs"
+
+[[bin]]
+name = "test_time117"
+path = "replay_files/replay_time117.rs"
+
+[[bin]]
+name = "test_time65"
+path = "replay_files/replay_time65.rs"
+
+[[bin]]
+name = "test_time0"
+path = "replay_files/replay_time0.rs"
+
+[[bin]]
+name = "test_time44"
+path = "replay_files/replay_time44.rs"
+
+[[bin]]
+name = "test_time91"
+path = "replay_files/replay_time91.rs"
+
+[[bin]]
+name = "test_time97"
+path = "replay_files/replay_time97.rs"
+
+[[bin]]
+name = "test_time70"
+path = "replay_files/replay_time70.rs"
+
+[[bin]]
+name = "test_time64"
+path = "replay_files/replay_time64.rs"
+
+[[bin]]
+name = "test_time19"
+path = "replay_files/replay_time19.rs"
+
+[[bin]]
+name = "test_time43"
+path = "replay_files/replay_time43.rs"
+
+[[bin]]
+name = "test_time12"
+path = "replay_files/replay_time12.rs"
+
+[[bin]]
+name = "test_time11"
+path = "replay_files/replay_time11.rs"
+
+[[bin]]
+name = "test_time36"
+path = "replay_files/replay_time36.rs"
+
+[[bin]]
+name = "test_time35"
+path = "replay_files/replay_time35.rs"
+
+[[bin]]
+name = "test_time122"
+path = "replay_files/replay_time122.rs"
+
+[[bin]]
+name = "test_time33"
+path = "replay_files/replay_time33.rs"
+
+[[bin]]
+name = "test_time66"
+path = "replay_files/replay_time66.rs"
+
+[[bin]]
+name = "test_time46"
+path = "replay_files/replay_time46.rs"
+
+[[bin]]
+name = "test_time50"
+path = "replay_files/replay_time50.rs"
+
+[[bin]]
+name = "test_time5"
+path = "replay_files/replay_time5.rs"
+
+[[bin]]
+name = "test_time30"
+path = "replay_files/replay_time30.rs"
+
+[[bin]]
+name = "test_time93"
+path = "replay_files/replay_time93.rs"
+
+[[bin]]
+name = "test_time125"
+path = "replay_files/replay_time125.rs"
+
+[[bin]]
+name = "test_time31"
+path = "replay_files/replay_time31.rs"
+
+[[bin]]
+name = "test_time77"
+path = "replay_files/replay_time77.rs"
+
+[[bin]]
+name = "test_time48"
+path = "replay_files/replay_time48.rs"
+
+[[bin]]
+name = "test_time79"
+path = "replay_files/replay_time79.rs"
+
+[[bin]]
+name = "test_time57"
+path = "replay_files/replay_time57.rs"
+
+[[bin]]
+name = "test_time80"
+path = "replay_files/replay_time80.rs"
+
+[[bin]]
+name = "test_time4"
+path = "replay_files/replay_time4.rs"
+
+[[bin]]
+name = "test_time17"
+path = "replay_files/replay_time17.rs"
+
+[[bin]]
+name = "test_time89"
+path = "replay_files/replay_time89.rs"
+
+[[bin]]
+name = "test_time102"
+path = "replay_files/replay_time102.rs"
+
+[[bin]]
+name = "test_time6"
+path = "replay_files/replay_time6.rs"
+
+[[bin]]
+name = "test_time99"
+path = "replay_files/replay_time99.rs"
+
+[[bin]]
+name = "test_time116"
+path = "replay_files/replay_time116.rs"
+
+[[bin]]
+name = "test_time121"
+path = "replay_files/replay_time121.rs"
+
+[[bin]]
+name = "test_time51"
+path = "replay_files/replay_time51.rs"
+
+[[bin]]
+name = "test_time39"
+path = "replay_files/replay_time39.rs"
+
+[[bin]]
+name = "test_time112"
+path = "replay_files/replay_time112.rs"
+
+[[bin]]
+name = "test_time40"
+path = "replay_files/replay_time40.rs"
+
+[[bin]]
+name = "test_time81"
+path = "replay_files/replay_time81.rs"
+
+[[bin]]
+name = "test_time13"
+path = "replay_files/replay_time13.rs"
+
+[[bin]]
+name = "test_time85"
+path = "replay_files/replay_time85.rs"
+
+[[bin]]
+name = "test_time26"
+path = "replay_files/replay_time26.rs"
+
+[[bin]]
+name = "test_time90"
+path = "replay_files/replay_time90.rs"
+
+[[bin]]
+name = "test_time96"
+path = "replay_files/replay_time96.rs"
+
+[[bin]]
+name = "test_time98"
+path = "replay_files/replay_time98.rs"
+
+[[bin]]
+name = "test_time124"
+path = "replay_files/replay_time124.rs"
+
+[[bin]]
+name = "test_time32"
+path = "replay_files/replay_time32.rs"
+
+[[bin]]
+name = "test_time52"
+path = "replay_files/replay_time52.rs"
+
+[[bin]]
+name = "test_time71"
+path = "replay_files/replay_time71.rs"
+
+[[bin]]
+name = "test_time15"
+path = "replay_files/replay_time15.rs"
+
+[[bin]]
+name = "test_time56"
+path = "replay_files/replay_time56.rs"
+
+[[bin]]
+name = "test_time25"
+path = "replay_files/replay_time25.rs"
+
+[[bin]]
+name = "test_time108"
+path = "replay_files/replay_time108.rs"
+
+[[bin]]
+name = "test_time73"
+path = "replay_files/replay_time73.rs"
+
+[[bin]]
+name = "test_time38"
+path = "replay_files/replay_time38.rs"
+
+[[bin]]
+name = "test_time9"
+path = "replay_files/replay_time9.rs"
+
+[[bin]]
+name = "test_time27"
+path = "replay_files/replay_time27.rs"
+
+[[bin]]
+name = "test_time123"
+path = "replay_files/replay_time123.rs"
+
+[[bin]]
+name = "test_time110"
+path = "replay_files/replay_time110.rs"
+
+[[bin]]
+name = "test_time113"
+path = "replay_files/replay_time113.rs"
+
+[[bin]]
+name = "test_time2"
+path = "replay_files/replay_time2.rs"
+
+[[bin]]
+name = "test_time60"
+path = "replay_files/replay_time60.rs"
+
+[[bin]]
+name = "test_time47"
+path = "replay_files/replay_time47.rs"
+
+[[bin]]
+name = "test_time84"
+path = "replay_files/replay_time84.rs"
+
+[[bin]]
+name = "test_time58"
+path = "replay_files/replay_time58.rs"
+
+[[bin]]
+name = "test_time120"
+path = "replay_files/replay_time120.rs"
+
+[[bin]]
+name = "test_time62"
+path = "replay_files/replay_time62.rs"
+
+[[bin]]
+name = "test_time83"
+path = "replay_files/replay_time83.rs"
+
+[[bin]]
+name = "test_time69"
+path = "replay_files/replay_time69.rs"
+
+[[bin]]
+name = "test_time10"
+path = "replay_files/replay_time10.rs"
+
+[[bin]]
+name = "test_time78"
+path = "replay_files/replay_time78.rs"
+
+[[bin]]
+name = "test_time114"
+path = "replay_files/replay_time114.rs"
+
+[[bin]]
+name = "test_time126"
+path = "replay_files/replay_time126.rs"
+
+[[bin]]
+name = "test_time55"
+path = "replay_files/replay_time55.rs"
+
+[[bin]]
+name = "test_time106"
+path = "replay_files/replay_time106.rs"
+
+[[bin]]
+name = "test_time3"
+path = "replay_files/replay_time3.rs"
+
+[[bin]]
+name = "test_time28"
+path = "replay_files/replay_time28.rs"
+
+[[bin]]
+name = "test_time104"
+path = "replay_files/replay_time104.rs"
+
+[[bin]]
+name = "test_time23"
+path = "replay_files/replay_time23.rs"
+
+[[bin]]
+name = "test_time100"
+path = "replay_files/replay_time100.rs"
+
+[[bin]]
+name = "test_time115"
+path = "replay_files/replay_time115.rs"
+
+[[bin]]
+name = "test_time68"
+path = "replay_files/replay_time68.rs"
+
+[[bin]]
+name = "test_time59"
+path = "replay_files/replay_time59.rs"
+
+[[bin]]
+name = "test_time24"
+path = "replay_files/replay_time24.rs"
+
+[[bin]]
+name = "test_time101"
+path = "replay_files/replay_time101.rs"
+
+[[bin]]
+name = "test_time34"
+path = "replay_files/replay_time34.rs"
+
+[[bin]]
+name = "test_time53"
+path = "replay_files/replay_time53.rs"
+
+[[bin]]
+name = "test_time72"
+path = "replay_files/replay_time72.rs"
+
+[[bin]]
+name = "test_time109"
+path = "replay_files/replay_time109.rs"
+
+[[bin]]
+name = "test_time67"
+path = "replay_files/replay_time67.rs"
+
+[[bin]]
+name = "test_time82"
+path = "replay_files/replay_time82.rs"
+
+[[bin]]
+name = "test_time105"
+path = "replay_files/replay_time105.rs"
+
+[[bin]]
+name = "test_time7"
+path = "replay_files/replay_time7.rs"
+
+[[bin]]
+name = "test_time29"
+path = "replay_files/replay_time29.rs"
+
+[[bin]]
+name = "test_time45"
+path = "replay_files/replay_time45.rs"
+
+[[bin]]
+name = "test_time63"
+path = "replay_files/replay_time63.rs"
+
+[[bin]]
+name = "test_time107"
+path = "replay_files/replay_time107.rs"
+
+[[bin]]
+name = "test_time54"
+path = "replay_files/replay_time54.rs"
+
+[[bin]]
+name = "test_time119"
+path = "replay_files/replay_time119.rs"
+
+[[bin]]
+name = "test_time118"
+path = "replay_files/replay_time118.rs"
+
+[[bin]]
+name = "test_time8"
+path = "replay_files/replay_time8.rs"
+
+[[bin]]
+name = "test_time49"
+path = "replay_files/replay_time49.rs"
+
+[[bin]]
+name = "test_time92"
+path = "replay_files/replay_time92.rs"
+
+[[bin]]
+name = "test_time61"
+path = "replay_files/replay_time61.rs"
+
+[[bin]]
+name = "test_time94"
+path = "replay_files/replay_time94.rs"
+
+[[bin]]
+name = "test_time22"
+path = "replay_files/replay_time22.rs"
+
+[[bin]]
+name = "test_time103"
+path = "replay_files/replay_time103.rs"
+
+[[bin]]
+name = "test_time75"
+path = "replay_files/replay_time75.rs"
+
+[[bin]]
+name = "test_time86"
+path = "replay_files/replay_time86.rs"
+
+[[bin]]
+name = "test_time1"
+path = "replay_files/replay_time1.rs"
+
+[[bin]]
+name = "test_time42"
+path = "replay_files/replay_time42.rs"
+
+[[bin]]
+name = "test_time88"
+path = "replay_files/replay_time88.rs"
+
+[[bin]]
+name = "test_time41"
+path = "replay_files/replay_time41.rs"
+
+[[bin]]
+name = "test_time21"
+path = "replay_files/replay_time21.rs"
+
+[[bin]]
+name = "test_time76"
+path = "replay_files/replay_time76.rs"
+
+[[bin]]
+name = "test_time74"
+path = "replay_files/replay_time74.rs"
+
+[package]
+name = "hello"
+version = "0.1.0"
+authors = [ "xiang",]
+edition = "2018"
+
+[dependencies.time]
+path = "../time"
+
+[profile.release]
+debug = 1

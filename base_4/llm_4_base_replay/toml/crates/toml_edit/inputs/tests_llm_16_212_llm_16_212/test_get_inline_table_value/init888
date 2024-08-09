@@ -1,0 +1,4 @@
+#"
+        [my_table]
+        key = "value"
+        "Parsing toml stringmy_tablekey

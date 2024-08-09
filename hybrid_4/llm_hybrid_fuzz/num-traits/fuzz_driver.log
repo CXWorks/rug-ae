@@ -1,0 +1,102 @@
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/num-traits/./src/bounds.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/num-traits/./src/sign.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/num-traits/./src/cast.rs
+err tests_llm_16_850_llm_16_850 test_wrapping_cast_to_i32_from_usize
+   Compiling num-traits v0.2.15 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/num-traits)
+error[E0416]: identifier `rug_fuzz_0` is bound more than once in the same pattern
+    --> src/cast.rs:8020:60
+     |
+8020 | ...   if let Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_0, mut rug_fuzz_1)) = <(i32, i32, usize, usize) as arbitrary::Arbitrary>::a...
+     |                                                      ^^^^^^^^^^ used in a pattern more than once
+
+error[E0416]: identifier `rug_fuzz_1` is bound more than once in the same pattern
+    --> src/cast.rs:8020:76
+     |
+8020 | ...   if let Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_0, mut rug_fuzz_1)) = <(i32, i32, usize, usize) as arbitrary::Arbitrary>::a...
+     |                                                                      ^^^^^^^^^^ used in a pattern more than once
+
+For more information about this error, try `rustc --explain E0416`.
+error: could not compile `num-traits` due to 2 previous errors
+
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/num-traits/./src/macros.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/num-traits/./src/ops/inv.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/num-traits/./src/ops/wrapping.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/num-traits/./src/ops/overflowing.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/num-traits/./src/ops/saturating.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/num-traits/./src/ops/checked.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/num-traits/./src/ops/mod.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/num-traits/./src/ops/mul_add.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/num-traits/./src/ops/euclid.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/num-traits/./src/identities.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/num-traits/./src/real.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/num-traits/./src/int.rs
+err tests_llm_16_1937_llm_16_1937 test_pow
+   Compiling num-traits v0.2.15 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/num-traits)
+error[E0277]: the trait bound `(usize, u32, usize, u32, usize, u32, usize, u32, usize, u32, usize, u32, usize, u32, usize, u32, usize, u32, usize, u32, usize, u32, usize, u32, usize, u32, usize, u32, usize, u32): Arbitrary<'_>` is not satisfied
+    --> src/int.rs:5379:527
+     |
+5379 | ... = <(usize, u32, usize, u32, usize, u32, usize, u32, usize, u32, usize, u32, usize, u32, usize, u32, usize, u32, usize, u32, usize, u32, usize, u32, usize, u32, usize, u32, usize, u32) as arbitrary::Arbitrary>::arbitrary(&m...
+     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Arbitrary<'_>` is not implemented for `(usize, u32, usize, u32, usize, u32, usize, u32, usize, u32, usize, u32, usize, u32, usize, u32, usize, u32, usize, u32, usize, u32, usize, u32, usize, u32, usize, u32, usize, u32)`
+     |
+     = help: the following other types implement trait `Arbitrary<'a>`:
+               ()
+               (B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, A)
+               (C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, B)
+               (D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, C)
+               (E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, D)
+               (F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, E)
+               (G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, F)
+               (H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, G)
+             and 19 others
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `num-traits` due to previous error
+
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/num-traits/./src/pow.rs
+err tests_llm_16_1249_llm_16_1249 test_pow_isize
+   Compiling num-traits v0.2.15 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/num-traits)
+error[E0277]: the trait bound `(isize, usize, isize, usize, isize, usize, isize, usize, isize, usize, isize, usize, isize, usize, isize, usize, isize, usize, isize, usize, isize, usize, isize, isize, usize, isize, usize, isize, usize, isize, usize): Arbitrary<'_>` is not satisfied
+    --> src/pow.rs:4640:544
+     |
+4640 | ... = <(isize, usize, isize, usize, isize, usize, isize, usize, isize, usize, isize, usize, isize, usize, isize, usize, isize, usize, isize, usize, isize, usize, isize, isize, usize, isize, usize, isize, usize, isize, usize) as arbitrary::Arbitrary>::arbitrary(&m...
+     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Arbitrary<'_>` is not implemented for `(isize, usize, isize, usize, isize, usize, isize, usize, isize, usize, isize, usize, isize, usize, isize, usize, isize, usize, isize, usize, isize, usize, isize, isize, usize, isize, usize, isize, usize, isize, usize)`
+     |
+     = help: the following other types implement trait `Arbitrary<'a>`:
+               ()
+               (B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, A)
+               (C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, B)
+               (D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, C)
+               (E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, D)
+               (F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, E)
+               (G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, F)
+               (H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, G)
+             and 19 others
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `num-traits` due to previous error
+
+err tests_llm_16_1878_llm_16_1878 u8_pow_u32
+   Compiling num-traits v0.2.15 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/num-traits)
+error[E0277]: the trait bound `(u8, u32, u8, u32, u8, u32, u8, u32, u8, u32, u8, u32, u8, u32, u8, u32, u8, u32, u8, u32, u8, u32, u8, u32, u8, u32, u8, u32, u8, u32, u8, u32, u8, u32, u8, u32, u8, u32, u8, u32): Arbitrary<'_>` is not satisfied
+    --> src/pow.rs:6508:697
+     |
+6508 | ... = <(u8, u32, u8, u32, u8, u32, u8, u32, u8, u32, u8, u32, u8, u32, u8, u32, u8, u32, u8, u32, u8, u32, u8, u32, u8, u32, u8, u32, u8, u32, u8, u32, u8, u32, u8, u32, u8, u32, u8, u32) as arbitrary::Arbitrary>::arbitrary(&m...
+     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Arbitrary<'_>` is not implemented for `(u8, u32, u8, u32, u8, u32, u8, u32, u8, u32, u8, u32, u8, u32, u8, u32, u8, u32, u8, u32, u8, u32, u8, u32, u8, u32, u8, u32, u8, u32, u8, u32, u8, u32, u8, u32, u8, u32, u8, u32)`
+     |
+     = help: the following other types implement trait `Arbitrary<'a>`:
+               ()
+               (B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, A)
+               (C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, B)
+               (D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, C)
+               (E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, D)
+               (F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, E)
+               (G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, F)
+               (H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, G)
+             and 19 others
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `num-traits` due to previous error
+
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/num-traits/./src/float.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/num-traits/./src/lib.rs
+done

@@ -1,0 +1,31 @@
+[[bin]]
+name = "test_semver0"
+path = "replay_files/replay_semver0.rs"
+
+[[bin]]
+name = "test_semver1"
+path = "replay_files/replay_semver1.rs"
+
+[[bin]]
+name = "test_semver4"
+path = "replay_files/replay_semver4.rs"
+
+[[bin]]
+name = "test_semver3"
+path = "replay_files/replay_semver3.rs"
+
+[[bin]]
+name = "test_semver2"
+path = "replay_files/replay_semver2.rs"
+
+[package]
+name = "hello"
+version = "0.1.0"
+authors = [ "xiang",]
+edition = "2018"
+
+[dependencies.semver]
+path = "../semver"
+
+[profile.release]
+debug = 1

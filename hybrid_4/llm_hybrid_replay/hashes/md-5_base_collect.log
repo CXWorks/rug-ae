@@ -1,0 +1,336 @@
+========================================
+    use crate::Md5Core;
+    use core::default::Default;
+
+    #[test]
+    fn md5core_default_test() {
+        let md5core = Md5Core::default();
+        assert_eq!(md5core.block_len, 0);
+        assert_eq!(
+            md5core.state,
+            [0x6745_2301, 0xEFCD_AB89, 0x98BA_DCFE, 0x1032_5476]
+        );
+    }
+}
+True
+========================================
+    use crate::Md5Core;
+    use digest::Reset;
+    use core::default::Default;
+
+    #[test]
+    fn test_reset() {
+        let mut core = Md5Core::default();
+        // Change the state to a non-default to prove reset works.
+        core.state[0] = 0;
+        core.state[1] = 0;
+        core.state[2] = 0;
+        core.state[3] = 0;
+        core.block_len = 1;
+
+        // Call reset
+        core.reset();
+
+        // After reset, state should be back to default
+        let default_core = Md5Core::default();
+        assert_eq!(core.state, default_core.state);
+        assert_eq!(core.block_len, default_core.block_len);
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use digest::core_api::AlgorithmName;
+    use core::fmt;
+
+    #[test]
+    fn test_write_alg_name() {
+        let mut output = String::new();
+        let result = <Md5Core as AlgorithmName>::write_alg_name(&mut output);
+        assert!(result.is_ok());
+        assert_eq!(output, "Md5");
+    }
+}
+False
+========================================
+    use crate::{Md5Core, Buffer, FixedOutputCore, Reset, UpdateCore, convert, compress, from_ref};
+    use digest::{Output, Block, BlockSize, OutputSize, BlockSizeUser, UpdateCoreWrapper};
+    use digest::consts::{U16, U64};
+    use hex_literal::hex;
+    use core::fmt;
+
+    #[test]
+    fn finalize_fixed_core_test() {
+        let mut core = Md5Core::default();
+        
+        // Test with an empty buffer (no data added, just padding)
+        let mut buffer = Buffer::<Md5Core>::new();
+        let mut output = Output::<Md5Core>::default();
+        core.finalize_fixed_core(&mut buffer, &mut output);
+
+        let expected = hex!("d41d8cd98f00b204e9800998ecf8427e");
+        assert_eq!(&output[..], &expected);
+
+        // Reset core and buffer
+        core.reset();
+        buffer.reset();
+
+        // Test with some data added
+        let mut core = UpdateCoreWrapper::from_core(core);
+        let data = b"hello";
+        core.update_with(data);
+
+        // Retrieve Md5Core from wrapper
+        let mut core = Md5Core::from(core);
+
+        // Finalize with the data added
+        let mut output = Output::<Md5Core>::default();
+        let mut buffer = Buffer::<Md5Core>::new();
+        core.finalize_fixed_core(&mut buffer, &mut output);
+
+        let expected = hex!("5d41402abc4b2a76b9719d911017c592");
+        assert_eq!(&output[..], &expected);
+
+        // Continue with more tests with different data blocks...
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use digest::{Digest, FixedOutput};
+
+    #[test]
+    fn test_update_blocks() {
+        // Initialize Md5Core with default state
+        let mut md5_core = Md5Core::default();
+        
+        // Define input blocks
+        let block = Block::<Md5Core>::default(); // Define this based on the actual Block implementation
+        let blocks = [block; 1]; // Use a single default block for this test
+
+        // Record the initial state for later comparison
+        let initial_state = md5_core.state;
+        
+        // Update Md5Core with the input blocks
+        Md5Core::update_blocks(&mut md5_core, &blocks);
+
+        // Verify the state has changed
+        assert_ne!(initial_state, md5_core.state, "State should be updated after processing a block");
+
+        // Verify block_len has increased
+        assert_eq!(md5_core.block_len, blocks.len() as u64, "block_len should be increased by the number of blocks");
+
+        // The following part of the test is optional and based on the ability
+        // to check the final hash output, which is implementation-dependent.
+        // The purpose is to check if the update with a known input block results
+        // in a known output hash state, which in a real-world scenario, would
+        // be checked against a precomputed hash value for the given input blocks.
+        
+        // Compute and check final hash output (if possible)
+        // let mut output = [0u8; 16];
+        // md5_core.finalize_fixed_core(&mut buffer, &mut output);
+        // let expected = [/* Expected hash bytes for the given blocks */];
+        // assert_eq!(output, expected, "Final hash output should match the expected value");
+
+        // Note that the Block::<Md5Core>::default() and the expected hash output bytes
+        // need to be defined based on the actual Md5Core and block implementation.
+        // The actual definition of the Block type and how to initialize it with test data
+        // is not given in your provided code above.
+    }
+}
+True
+========================================
+    use crate::compress;
+    use md5::compute_md5_hash;
+
+    #[test]
+    fn test_compress_single_block() {
+        let mut state = [0x67452301, 0xefcdab89, 0x98badcfe, 0x10325476];
+        let block = [0u8; 64];
+        let expected = compute_md5_hash(&block);
+        compress(&mut state, &[block]);
+        assert_eq!(state, expected);
+    }
+
+    #[test]
+    fn test_compress_multiple_blocks() {
+        let mut state = [0x67452301, 0xefcdab89, 0x98badcfe, 0x10325476];
+        let block = [0u8; 64];
+        let blocks = [block; 2];
+        let mut expected = compute_md5_hash(&block);
+        compress(&mut state, &blocks);
+        compress(&mut expected, &[block]);
+        assert_eq!(state, expected);
+    }
+}
+False
+========================================
+    use crate::compress_block;
+
+    #[test]
+    fn test_compress_block() {
+        let mut state: [u32; 4] = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476];
+        let input: [u8; 64] = [0; 64];  // Example input, you can change as needed
+
+        let expected: [u32; 4] = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476]; // Replace with expected state
+
+        compress_block(&mut state, &input);
+
+        assert_eq!(state, expected, "compress_block did not produce the expected state");
+    }
+}
+False
+========================================
+    use crate::op_f; // Change `crate` to `super` to refer to the parent module
+
+    #[test]
+    fn test_op_f() {
+        // Example test values
+        let w: u32 = 0x12345678;
+        let x: u32 = 0x89abcdef;
+        let y: u32 = 0xfedcba98;
+        let z: u32 = 0x76543210;
+        let m: u32 = 0xf0e1d2c3;
+        let c: u32 = 0x13579bdf;
+        let s: u32 = 7;
+
+        // You need to replace `0xsome_pre_calculated_value` with an actual u32 hex value
+        // Here, I will just put a placeholder value of `0x12345678` to compile the code
+        // Please replace `0x12345678` with the actual expected value
+        let expected: u32 = 0x12345678;
+
+        // Perform the test
+        let result = op_f(w, x, y, z, m, c, s);
+
+        // Check the result
+        assert_eq!(result, expected, "op_f did not return the expected result");
+    }
+}
+False
+========================================
+    use crate::op_g;
+
+    #[test]
+    fn test_op_g() {
+        // Test values based on known inputs and expected outputs
+        // for the `op_g` function. Adjust values based on your needs.
+        let w: u32 = 0x12345678;
+        let x: u32 = 0x89abcdef;
+        let y: u32 = 0xfedcba98;
+        let z: u32 = 0x76543210;
+        let m: u32 = 0xf0e1d2c3;
+        let c: u32 = 0x13579bdf;
+        let s: u32 = 17; // An arbitrary value for testing; change as needed.
+
+        // Expected result calculated manually or by a reference implementation
+        let expected: u32 = 0x12345678; // Replace with the actual expected result
+
+        // Execute the target function
+        let result = op_g(w, x, y, z, m, c, s);
+
+        // Assert to check if the result is as expected
+        assert_eq!(result, expected, "op_g did not return the expected value.");
+    }
+}
+False
+========================================
+    use crate::op_h;
+
+    #[test]
+    fn test_op_h() {
+        let w: u32 = 0x12345678;
+        let x: u32 = 0x89abcdef;
+        let y: u32 = 0xfedcba98;
+        let z: u32 = 0x76543210;
+        let m: u32 = 0x0fedcba9;
+        let c: u32 = 0x89abcdef;
+        let s: u32 = 5;
+        let result = op_h(w, x, y, z, m, c, s);
+        
+        let expected = (x ^ y ^ z)
+            .wrapping_add(w)
+            .wrapping_add(m)
+            .wrapping_add(c)
+            .rotate_left(s)
+            .wrapping_add(x);
+        
+        assert_eq!(result, expected, "op_h did not produce the expected result");
+    }
+}
+False
+========================================
+    use crate::compress::op_i;
+
+    #[test]
+    fn test_op_i() {
+        let w: u32 = 0x12345678;
+        let x: u32 = 0x87654321;
+        let y: u32 = 0xF0F0F0F0;
+        let z: u32 = 0x0F0F0F0F;
+        let m: u32 = 0xA5A5A5A5;
+        let c: u32 = 0x5A5A5A5A;
+        let s: u32 = 7;
+
+        let result = op_i(w, x, y, z, m, c, s);
+        assert_eq!(result, 0x6F9D5A44); // This example test assumes 0x6F9D5A44 to be correct expected result
+    }
+
+    // Additional test cases as needed
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::block::Block;
+    use crate::BLOCK_SIZE;
+    use digest::generic_array::GenericArray;
+    use digest::generic_array::typenum::U64;
+
+    #[test]
+    fn test_convert_empty() {
+        let blocks: &[Block] = &[];
+        let bytes = convert(blocks);
+        assert_eq!(bytes, &[]);
+    }
+
+    #[test]
+    fn test_convert_single_block() {
+        let block = GenericArray::<u8, U64>::default();
+        let blocks = &[Block(block)];
+        let bytes = convert(blocks);
+        assert_eq!(bytes, &[[0u8; BLOCK_SIZE]]);
+    }
+
+    #[test]
+    fn test_convert_multiple_blocks() {
+        let block = GenericArray::<u8, U64>::default();
+        let blocks = &[Block(block), Block(block)];
+        let bytes = convert(blocks);
+        assert_eq!(bytes, &[[0u8; BLOCK_SIZE], [0u8; BLOCK_SIZE]]);
+    }
+
+    #[test]
+    fn test_convert_non_default_blocks() {
+        let block = GenericArray::clone_from_slice(&[
+            1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+            21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,
+            39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56,
+            57, 58, 59, 60, 61, 62, 63, 64,
+        ]);
+        let blocks = &[Block(block)];
+        let bytes = convert(blocks);
+        assert_eq!(bytes, &[[
+            1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+            21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,
+            39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56,
+            57, 58, 59, 60, 61, 62, 63, 64,
+        ]]);
+    }
+}
+False
+hashes md-5 4 12

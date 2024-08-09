@@ -1,0 +1,2126 @@
+ChatCompletion(id='chatcmpl-8UWq8gq9NJkg3BAyvlXDBfoyWpYW0', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::Sha1Core;\n    use digest::Reset;\n\n    #[test]\n    fn sha1core_reset_test() {\n        let mut core = Sha1Core::default();\n\n        // Change the internal state.\n        core.h = [1, 2, 3, 4, 5];\n        core.block_len = 123;\n\n        // Reset the internal state.\n        core.reset();\n\n        let default_core = Sha1Core::default();\n\n        // After reset, the internal state should be the same as a new default.\n        assert_eq!(core.h, default_core.h, "h field did not reset as expected");\n        assert_eq!(core.block_len, default_core.block_len, "block_len field did not reset as expected");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702286768, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=168, prompt_tokens=728, total_tokens=896))
+71
+inject succeed hashes sha1 <Sha1Core as digest::Reset>::reset
+ChatCompletion(id='chatcmpl-8UWqSTDO4skX02TWzyzHQD8VftKuO', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use std::fmt;\n    use digest::core_api::AlgorithmName;\n    \n    #[test]\n    fn test_write_alg_name() {\n        struct TestSha1Core;\n        impl AlgorithmName for TestSha1Core {\n            fn write_alg_name(f: &mut fmt::Formatter<\'_>) -> fmt::Result {\n                f.write_str("Sha1")\n            }\n        }\n        \n        let mut output = String::new();\n        let mut formatter = fmt::Formatter::for_buffer(&mut output);\n        TestSha1Core::write_alg_name(&mut formatter).unwrap();\n        assert_eq!(&output, "Sha1");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702286788, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=147, prompt_tokens=169, total_tokens=316))
+71
+========================================
+inject err <Sha1Core as digest::core_api::AlgorithmName>::write_alg_name sha1/src/lib.rs write_alg_name
+#[cfg(test)]
+mod tests_llm_16_2 {
+    use super::*;
+
+use crate::*;
+    use std::fmt;
+    use digest::core_api::AlgorithmName;
+    
+    #[test]
+    fn test_write_alg_name() {
+        struct TestSha1Core;
+        impl AlgorithmName for TestSha1Core {
+            fn write_alg_name(f: &mut fmt::Formatter<'_>) -> fmt::Result {
+                f.write_str("Sha1")
+            }
+        }
+        
+        let mut output = String::new();
+        let mut formatter = fmt::Formatter::for_buffer(&mut output);
+        TestSha1Core::write_alg_name(&mut formatter).unwrap();
+        assert_eq!(&output, "Sha1");
+    }
+}
+   Compiling sha1 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/sha1)
+error[E0599]: no function or associated item named `for_buffer` found for struct `Formatter` in the current scope
+   --> sha1/src/lib.rs:195:45
+    |
+195 |         let mut formatter = fmt::Formatter::for_buffer(&mut output);
+    |                                             ^^^^^^^^^^ function or associated item not found in `Formatter<'_>`
+
+For more information about this error, try `rustc --explain E0599`.
+error: could not compile `sha1` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UWqdC7WduUyMRzzUkytXLncOoaaj', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use std::fmt;\n    \n    #[test]\n    fn test_write_alg_name() {\n        struct TestSha1Core;\n        impl Sha1Core for TestSha1Core {\n            fn write_alg_name(f: &mut fmt::Formatter<\'_>) -> fmt::Result {\n                f.write_str("Sha1")\n            }\n        }\n        \n        let test_sha1_core = TestSha1Core;\n        let alg_name = format!("{}", test_sha1_core.alg_name());\n        assert_eq!(&alg_name, "Sha1");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702286799, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=127, prompt_tokens=669, total_tokens=796))
+71
+========================================
+inject err <Sha1Core as digest::core_api::AlgorithmName>::write_alg_name sha1/src/lib.rs write_alg_name
+#[cfg(test)]
+mod tests_llm_16_2 {
+    use super::*;
+
+use crate::*;
+    use std::fmt;
+    
+    #[test]
+    fn test_write_alg_name() {
+        struct TestSha1Core;
+        impl Sha1Core for TestSha1Core {
+            fn write_alg_name(f: &mut fmt::Formatter<'_>) -> fmt::Result {
+                f.write_str("Sha1")
+            }
+        }
+        
+        let test_sha1_core = TestSha1Core;
+        let alg_name = format!("{}", test_sha1_core.alg_name());
+        assert_eq!(&alg_name, "Sha1");
+    }
+}
+   Compiling sha1 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/sha1)
+error[E0404]: expected trait, found struct `Sha1Core`
+   --> sha1/src/lib.rs:187:14
+    |
+187 |         impl Sha1Core for TestSha1Core {
+    |              ^^^^^^^^ not a trait
+
+For more information about this error, try `rustc --explain E0404`.
+error: could not compile `sha1` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+repair err <Sha1Core as digest::core_api::AlgorithmName>::write_alg_name sha1/src/lib.rs write_alg_name
+ChatCompletion(id='chatcmpl-8UWr0NzFKagcHVY4LjQMgAe2i7sMn', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use digest::{Digest, Output, Update};\n    use hex_literal::hex;\n\n    use super::Sha1Core;\n\n    #[test]\n    fn test_finalize_fixed_core() {\n        let mut core = Sha1Core::default();\n        let mut buffer = core.new_buffer();\n        let mut out = Output::<Sha1Core>::default();\n\n        // Test case with an empty input\n        core.finalize_fixed_core(&mut buffer, &mut out);\n        let result_empty = hex::encode(out);\n        assert_eq!(result_empty, "da39a3ee5e6b4b0d3255bfef95601890afd80709");\n\n        // Reset for the new test case\n        core.reset();\n        buffer.reset();\n\n        // Test case with "abc" input\n        let data = b"abc";\n        core.update_with_len(data, data.len() as u64);\n        core.finalize_fixed_core(&mut buffer, &mut out);\n        let result_abc = hex::encode(out);\n        assert_eq!(result_abc, "a9993e364706816aba3e25717850c26c9cd0d89d");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702286822, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=255, prompt_tokens=843, total_tokens=1098))
+71
+========================================
+inject err <Sha1Core as digest::core_api::FixedOutputCore>::finalize_fixed_core sha1/src/lib.rs finalize_fixed_core
+#[cfg(test)]
+mod tests_llm_16_3 {
+    use digest::{Digest, Output, Update};
+    use hex_literal::hex;
+
+    use crate::Sha1Core;
+
+    #[test]
+    fn test_finalize_fixed_core() {
+        let mut core = Sha1Core::default();
+        let mut buffer = core.new_buffer();
+        let mut out = Output::<Sha1Core>::default();
+
+        // Test case with an empty input
+        core.finalize_fixed_core(&mut buffer, &mut out);
+        let result_empty = hex::encode(out);
+        assert_eq!(result_empty, "da39a3ee5e6b4b0d3255bfef95601890afd80709");
+
+        // Reset for the new test case
+        core.reset();
+        buffer.reset();
+
+        // Test case with "abc" input
+        let data = b"abc";
+        core.update_with_len(data, data.len() as u64);
+        core.finalize_fixed_core(&mut buffer, &mut out);
+        let result_abc = hex::encode(out);
+        assert_eq!(result_abc, "a9993e364706816aba3e25717850c26c9cd0d89d");
+    }
+}
+   Compiling sha1 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/sha1)
+error[E0599]: no method named `new_buffer` found for struct `Sha1Core` in the current scope
+   --> sha1/src/lib.rs:187:31
+    |
+77  | pub struct Sha1Core {
+    | ------------------- method `new_buffer` not found for this struct
+...
+187 |         let mut buffer = core.new_buffer();
+    |                               ^^^^^^^^^^ method not found in `Sha1Core`
+
+error[E0599]: no method named `finalize_fixed_core` found for struct `Sha1Core` in the current scope
+   --> sha1/src/lib.rs:191:14
+    |
+77  | pub struct Sha1Core {
+    | ------------------- method `finalize_fixed_core` not found for this struct
+...
+191 |         core.finalize_fixed_core(&mut buffer, &mut out);
+    |              ^^^^^^^^^^^^^^^^^^^ method not found in `Sha1Core`
+    |
+   ::: /home/xiang/.cargo/registry/src/github.com-1ecc6299db9ec823/digest-0.10.7/src/core_api.rs:50:8
+    |
+50  |     fn finalize_fixed_core(&mut self, buffer: &mut Buffer<Self>, out: &mut Output<Self>);
+    |        ------------------- the method is available for `Sha1Core` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+    |
+179 |     use digest::core_api::FixedOutputCore;
+    |
+
+error[E0433]: failed to resolve: use of undeclared crate or module `hex`
+   --> sha1/src/lib.rs:192:28
+    |
+192 |         let result_empty = hex::encode(out);
+    |                            ^^^ use of undeclared crate or module `hex`
+
+error[E0599]: the method `reset` exists for struct `Sha1Core`, but its trait bounds were not satisfied
+   --> sha1/src/lib.rs:196:14
+    |
+77  | pub struct Sha1Core {
+    | -------------------
+    | |
+    | method `reset` not found for this struct
+    | doesn't satisfy `Sha1Core: Digest`
+    | doesn't satisfy `Sha1Core: FixedOutput`
+    | doesn't satisfy `Sha1Core: Update`
+...
+196 |         core.reset();
+    |              ^^^^^ method cannot be called on `Sha1Core` due to unsatisfied trait bounds
+    |
+    = note: the following trait bounds were not satisfied:
+            `Sha1Core: FixedOutput`
+            which is required by `Sha1Core: Digest`
+            `Sha1Core: Update`
+            which is required by `Sha1Core: Digest`
+note: the following traits must be implemented
+   --> /home/xiang/.cargo/registry/src/github.com-1ecc6299db9ec823/digest-0.10.7/src/lib.rs:77:1
+    |
+77  | pub trait Update {
+    | ^^^^^^^^^^^^^^^^
+...
+93  | pub trait FixedOutput: Update + OutputSizeUser + Sized {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    = help: items from traits can only be used if the trait is in scope
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+    |
+179 |     use digest::Reset;
+    |
+
+error[E0599]: no method named `update_with_len` found for struct `Sha1Core` in the current scope
+   --> sha1/src/lib.rs:201:14
+    |
+77  | pub struct Sha1Core {
+    | ------------------- method `update_with_len` not found for this struct
+...
+201 |         core.update_with_len(data, data.len() as u64);
+    |              ^^^^^^^^^^^^^^^ method not found in `Sha1Core`
+
+error[E0599]: no method named `finalize_fixed_core` found for struct `Sha1Core` in the current scope
+   --> sha1/src/lib.rs:202:14
+    |
+77  | pub struct Sha1Core {
+    | ------------------- method `finalize_fixed_core` not found for this struct
+...
+202 |         core.finalize_fixed_core(&mut buffer, &mut out);
+    |              ^^^^^^^^^^^^^^^^^^^ method not found in `Sha1Core`
+    |
+   ::: /home/xiang/.cargo/registry/src/github.com-1ecc6299db9ec823/digest-0.10.7/src/core_api.rs:50:8
+    |
+50  |     fn finalize_fixed_core(&mut self, buffer: &mut Buffer<Self>, out: &mut Output<Self>);
+    |        ------------------- the method is available for `Sha1Core` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+    |
+179 |     use digest::core_api::FixedOutputCore;
+    |
+
+error[E0433]: failed to resolve: use of undeclared crate or module `hex`
+   --> sha1/src/lib.rs:203:26
+    |
+203 |         let result_abc = hex::encode(out);
+    |                          ^^^ use of undeclared crate or module `hex`
+
+Some errors have detailed explanations: E0433, E0599.
+For more information about an error, try `rustc --explain E0433`.
+error: could not compile `sha1` due to 7 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UWrJFxZLYdWdbFuiYWysePmd1VnC', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_3 {\n    use super::Sha1Core;\n    use crate::compress;\n    use crate::consts::STATE_LEN;\n    use crate::utils::from_ref;\n    use digest::core_api::{Buffer, BufferKindUser, FixedOutputCore, UpdateCore};\n    use digest::crypto_common::BlockSizeUser;\n    use digest::FixedOutput;\n    use hex_literal::hex;\n\n    #[test]\n    fn test_finalize_fixed_core() {\n        let mut core = Sha1Core::default();\n        let mut buffer = <Sha1Core as BufferKindUser>::BufferKind::default();\n        let mut out = <Sha1Core as FixedOutputCore>::Output::default();\n        let bs = Sha1Core::BlockSize::to_usize();\n        let data = [];\n\n        // Update buffer with empty data to set the position\n        buffer.update(&data, bs, &mut core, |h, b| compress(h, from_ref(b)));\n\n        // Finalize with empty data\n        core.finalize_fixed_core(&mut buffer, &mut out);\n        let result_empty = hex::encode(out);\n        assert_eq!(result_empty, "da39a3ee5e6b4b0d3255bfef95601890afd80709");\n\n        // Reset core and buffer for the next test\n        core.reset();\n        buffer.reset();\n\n        // Update buffer with "abc" and finalize\n        let data = b"abc";\n        buffer.update(data, bs, &mut core, |h, b| compress(h, from_ref(b)));\n        core.finalize_fixed_core(&mut buffer, &mut out);\n        let result_abc = hex::encode(out);\n        assert_eq!(result_abc, "a9993e364706816aba3e25717850c26c9cd0d89d");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702286841, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=393, prompt_tokens=2635, total_tokens=3028))
+71
+========================================
+inject err <Sha1Core as digest::core_api::FixedOutputCore>::finalize_fixed_core sha1/src/lib.rs finalize_fixed_core
+#[cfg(test)]
+mod tests_llm_16_3_llm_16_3 {
+    use crate::Sha1Core;
+    use crate::compress;
+    use crate::consts::STATE_LEN;
+    use crate::utils::from_ref;
+    use digest::core_api::{Buffer, BufferKindUser, FixedOutputCore, UpdateCore};
+    use digest::crypto_common::BlockSizeUser;
+    use digest::FixedOutput;
+    use hex_literal::hex;
+
+    #[test]
+    fn test_finalize_fixed_core() {
+        let mut core = Sha1Core::default();
+        let mut buffer = <Sha1Core as BufferKindUser>::BufferKind::default();
+        let mut out = <Sha1Core as FixedOutputCore>::Output::default();
+        let bs = Sha1Core::BlockSize::to_usize();
+        let data = [];
+
+        // Update buffer with empty data to set the position
+        buffer.update(&data, bs, &mut core, |h, b| compress(h, from_ref(b)));
+
+        // Finalize with empty data
+        core.finalize_fixed_core(&mut buffer, &mut out);
+        let result_empty = hex::encode(out);
+        assert_eq!(result_empty, "da39a3ee5e6b4b0d3255bfef95601890afd80709");
+
+        // Reset core and buffer for the next test
+        core.reset();
+        buffer.reset();
+
+        // Update buffer with "abc" and finalize
+        let data = b"abc";
+        buffer.update(data, bs, &mut core, |h, b| compress(h, from_ref(b)));
+        core.finalize_fixed_core(&mut buffer, &mut out);
+        let result_abc = hex::encode(out);
+        assert_eq!(result_abc, "a9993e364706816aba3e25717850c26c9cd0d89d");
+    }
+}
+   Compiling sha1 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/sha1)
+error[E0432]: unresolved import `crate::consts`
+   --> sha1/src/lib.rs:181:16
+    |
+181 |     use crate::consts::STATE_LEN;
+    |                ^^^^^^
+    |                |
+    |                unresolved import
+    |                help: a similar path exists: `digest::consts`
+
+error[E0432]: unresolved import `crate::utils`
+   --> sha1/src/lib.rs:182:16
+    |
+182 |     use crate::utils::from_ref;
+    |                ^^^^^ could not find `utils` in the crate root
+
+error[E0576]: cannot find associated type `Output` in trait `FixedOutputCore`
+   --> sha1/src/lib.rs:192:54
+    |
+192 |         let mut out = <Sha1Core as FixedOutputCore>::Output::default();
+    |                                                      ^^^^^^ not found in `FixedOutputCore`
+
+error[E0223]: ambiguous associated type
+   --> sha1/src/lib.rs:193:18
+    |
+193 |         let bs = Sha1Core::BlockSize::to_usize();
+    |                  ^^^^^^^^^^^^^^^^^^^ help: use fully-qualified syntax: `<Sha1Core as Trait>::BlockSize`
+
+error[E0599]: no method named `update` found for struct `Eager` in the current scope
+   --> sha1/src/lib.rs:197:16
+    |
+197 |         buffer.update(&data, bs, &mut core, |h, b| compress(h, from_ref(b)));
+    |                ^^^^^^ method not found in `Eager`
+
+error[E0308]: mismatched types
+   --> sha1/src/lib.rs:200:34
+    |
+200 |         core.finalize_fixed_core(&mut buffer, &mut out);
+    |              ------------------- ^^^^^^^^^^^ expected struct `BlockBuffer`, found struct `Eager`
+    |              |
+    |              arguments to this function are incorrect
+    |
+    = note: expected mutable reference `&mut BlockBuffer<UInt<UInt<UInt<UInt<UInt<UInt<UInt<UTerm, B1>, B0>, B0>, B0>, B0>, B0>, B0>, Eager>`
+               found mutable reference `&mut Eager`
+note: associated function defined here
+   --> /home/xiang/.cargo/registry/src/github.com-1ecc6299db9ec823/digest-0.10.7/src/core_api.rs:50:8
+    |
+50  |     fn finalize_fixed_core(&mut self, buffer: &mut Buffer<Self>, out: &mut Output<Self>);
+    |        ^^^^^^^^^^^^^^^^^^^
+
+error[E0433]: failed to resolve: use of undeclared crate or module `hex`
+   --> sha1/src/lib.rs:201:28
+    |
+201 |         let result_empty = hex::encode(out);
+    |                            ^^^ use of undeclared crate or module `hex`
+
+error[E0599]: no method named `reset` found for struct `Sha1Core` in the current scope
+   --> sha1/src/lib.rs:205:14
+    |
+77  | pub struct Sha1Core {
+    | ------------------- method `reset` not found for this struct
+...
+205 |         core.reset();
+    |              ^^^^^ method not found in `Sha1Core`
+    |
+   ::: /home/xiang/.cargo/registry/src/github.com-1ecc6299db9ec823/crypto-common-0.1.6/src/lib.rs:114:8
+    |
+114 |     fn reset(&mut self);
+    |        ----- the method is available for `Sha1Core` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+    |
+179 |     use digest::Reset;
+    |
+
+error[E0599]: no method named `reset` found for struct `Eager` in the current scope
+   --> sha1/src/lib.rs:206:16
+    |
+206 |         buffer.reset();
+    |                ^^^^^ method not found in `Eager`
+
+error[E0599]: no method named `update` found for struct `Eager` in the current scope
+   --> sha1/src/lib.rs:210:16
+    |
+210 |         buffer.update(data, bs, &mut core, |h, b| compress(h, from_ref(b)));
+    |                ^^^^^^ method not found in `Eager`
+
+error[E0308]: mismatched types
+   --> sha1/src/lib.rs:211:34
+    |
+211 |         core.finalize_fixed_core(&mut buffer, &mut out);
+    |              ------------------- ^^^^^^^^^^^ expected struct `BlockBuffer`, found struct `Eager`
+    |              |
+    |              arguments to this function are incorrect
+    |
+    = note: expected mutable reference `&mut BlockBuffer<UInt<UInt<UInt<UInt<UInt<UInt<UInt<UTerm, B1>, B0>, B0>, B0>, B0>, B0>, B0>, Eager>`
+               found mutable reference `&mut Eager`
+note: associated function defined here
+   --> /home/xiang/.cargo/registry/src/github.com-1ecc6299db9ec823/digest-0.10.7/src/core_api.rs:50:8
+    |
+50  |     fn finalize_fixed_core(&mut self, buffer: &mut Buffer<Self>, out: &mut Output<Self>);
+    |        ^^^^^^^^^^^^^^^^^^^
+
+error[E0433]: failed to resolve: use of undeclared crate or module `hex`
+   --> sha1/src/lib.rs:212:26
+    |
+212 |         let result_abc = hex::encode(out);
+    |                          ^^^ use of undeclared crate or module `hex`
+
+Some errors have detailed explanations: E0223, E0308, E0432, E0433, E0576, E0599.
+For more information about an error, try `rustc --explain E0223`.
+error: could not compile `sha1` due to 12 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+repair err <Sha1Core as digest::core_api::FixedOutputCore>::finalize_fixed_core sha1/src/lib.rs finalize_fixed_core
+ChatCompletion(id='chatcmpl-8UWrsEJtTJuFw67DPew0SltQMRLNj', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use digest::{Digest, UpdateCore};\n    use digest::core_api::Block;\n\n    #[test]\n    fn test_update_blocks() {\n        let mut hasher = Sha1Core::default();\n        let initial_state = hasher.clone();\n        \n        // Prepare a single block to update the state.\n        let block = Block::<Sha1Core>::default();\n        let block_slice = &[block];\n        hasher.update_blocks(block_slice);\n        \n        // Ensure the block count is incremented.\n        assert_eq!(hasher.block_len, initial_state.block_len + block_slice.len() as u64);\n        \n        // Ensure the state is changed due to compress function.\n        assert_ne!(hasher.h, initial_state.h);\n        \n        // Update with multiple blocks to see the correct increment.\n        let block_count = 5;\n        let blocks = vec![Block::<Sha1Core>::default(); block_count];\n        hasher.update_blocks(&blocks);\n        \n        // Ensure the block_len is correctly updated to reflect 5 new blocks.\n        assert_eq!(hasher.block_len, initial_state.block_len + block_slice.len() as u64 + block_count as u64);\n        \n        // The state should be changed again due to compress function.\n        assert_ne!(hasher.h, initial_state.h);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702286876, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=278, prompt_tokens=755, total_tokens=1033))
+71
+========================================
+inject err <Sha1Core as digest::core_api::UpdateCore>::update_blocks sha1/src/lib.rs update_blocks
+#[cfg(test)]
+mod tests_llm_16_4 {
+    use super::*;
+
+use crate::*;
+    use digest::{Digest, UpdateCore};
+    use digest::core_api::Block;
+
+    #[test]
+    fn test_update_blocks() {
+        let mut hasher = Sha1Core::default();
+        let initial_state = hasher.clone();
+        
+        // Prepare a single block to update the state.
+        let block = Block::<Sha1Core>::default();
+        let block_slice = &[block];
+        hasher.update_blocks(block_slice);
+        
+        // Ensure the block count is incremented.
+        assert_eq!(hasher.block_len, initial_state.block_len + block_slice.len() as u64);
+        
+        // Ensure the state is changed due to compress function.
+        assert_ne!(hasher.h, initial_state.h);
+        
+        // Update with multiple blocks to see the correct increment.
+        let block_count = 5;
+        let blocks = vec![Block::<Sha1Core>::default(); block_count];
+        hasher.update_blocks(&blocks);
+        
+        // Ensure the block_len is correctly updated to reflect 5 new blocks.
+        assert_eq!(hasher.block_len, initial_state.block_len + block_slice.len() as u64 + block_count as u64);
+        
+        // The state should be changed again due to compress function.
+        assert_ne!(hasher.h, initial_state.h);
+    }
+}
+   Compiling sha1 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/sha1)
+error[E0432]: unresolved import `digest::UpdateCore`
+   --> sha1/src/lib.rs:182:26
+    |
+182 |     use digest::{Digest, UpdateCore};
+    |                          ^^^^^^^^^^ no `UpdateCore` in the root
+    |
+help: consider importing one of these items instead
+    |
+182 |     use digest::{Digest, crate::UpdateCore;
+    |                          ~~~~~~~~~~~~~~~~~~
+182 |     use digest::{Digest, digest::core_api::UpdateCore;
+    |                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `sha1` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UWsNe2uWLGKAIeQvQfTh6cMRwYRm', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content="```rust\n#[cfg(test)]\nmod tests_llm_16_4 {\n    use super::*;\n\n    use crate::Sha1Core; // Assuming `Sha1Core` is in the current crate's scope.\n    use digest::core_api::Block; // Utilize Block from `digest::core_api`\n    use digest::core_api::UpdateCore; // Correcting the import path for `UpdateCore`\n\n    #[test]\n    fn test_update_blocks() {\n        let mut hasher = Sha1Core::default();\n        let initial_state = hasher.clone();\n\n        // Assuming Block<Self> is similar to a generic array type.\n        // We need to know how to construct a `Block<Self>` for `Sha1Core`.\n        // If Block<Self> is a type alias for a fixed-size array (e.g., [u8; 64]),\n        // then refactor the code to use the correct type.\n        // For demonstration, let's assume Block<Self> is a type alias for [u8; 64]\n        // so I am replacing `Block::<Sha1Core>::default();` with `[0u8; 64];`\n        // This should be replaced with the appropriate code to construct a Block\n        \n        // Prepare a single block to update the state.\n        let block = [0u8; 64]; // Assuming Block<Self> is a type alias for [u8; 64]\n        let block_slice = &[block]; // Temporary slice, will be fixed in the next lines\n        // hasher.update_blocks expects &[Block<Self>]\n        // Fixing the type to be compatible with the update_blocks signature.\n        let block_refs = [&block]; // Creating a slice of references to blocks\n        \n        // Update block representation to compress function.\n        let mut blocks_compressed = vec![Default::default(); block_refs.len()]; // Assuming Block<Self> is initializable.\n        for (block_compressed, block_ref) in blocks_compressed.iter_mut().zip(block_refs.iter()) {\n            // Assuming we need to copy data from the block_ref to block_compressed\n            // This code assumes block_ref is &[u8] which we can copy to block_compressed.\n            block_compressed.copy_from_slice(block_ref); // This should be replaced with correct block preparation.\n        }\n        \n        // Update hasher with blocks in the expected format.\n        hasher.update_blocks(&blocks_compressed);\n        \n        // Ensure the block count is incremented.\n        assert_eq!(hasher.block_len, initial_state.block_len + blocks_compressed.len() as u64);\n        \n        // Ensure the state is changed due to compress function.\n        assert_ne!(hasher.h, initial_state.h);\n        \n        // Update with multiple blocks to see the correct increment.\n        let block_count = 5;\n        // Assuming a similar pattern as single block for multiple blocks\n        let mut multiple_blocks = vec![Default::default(); block_count]; // See assumption above for Block<Self>.\n        for block in multiple_blocks.iter_mut() {\n            // Prepare each block as we did for a single block.\n            // Block preparation depends on how Block<Self> is defined for Sha1Core\n            // Replace with the correct initialization of block as needed.\n            *block = [0u8; 64]; // This should be replaced with correct block initialization.\n        }\n        \n        // Update hasher with multiple blocks.\n        hasher.update_blocks(&multiple_blocks);\n        \n        // Ensure the block_len is correctly updated to reflect 5 new blocks.\n        assert_eq!(hasher.block_len, initial_state.block_len + block_count as u64);\n        \n        // The state should be changed again due to compress function.\n        assert_ne!(hasher.h, initial_state.h);\n    }\n}\n```", role='assistant', function_call=None, tool_calls=None))], created=1702286907, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=768, prompt_tokens=1552, total_tokens=2320))
+71
+========================================
+inject err <Sha1Core as digest::core_api::UpdateCore>::update_blocks sha1/src/lib.rs update_blocks
+#[cfg(test)]
+mod tests_llm_16_4_llm_16_4 {
+    use super::*;
+
+use crate::*;
+
+    use crate::Sha1Core; // Assuming `Sha1Core` is in the current crate's scope.
+    use digest::core_api::Block; // Utilize Block from `digest::core_api`
+    use digest::core_api::UpdateCore; // Correcting the import path for `UpdateCore`
+
+    #[test]
+    fn test_update_blocks() {
+        let mut hasher = Sha1Core::default();
+        let initial_state = hasher.clone();
+
+        // Assuming Block<Self> is similar to a generic array type.
+        // We need to know how to construct a `Block<Self>` for `Sha1Core`.
+        // If Block<Self> is a type alias for a fixed-size array (e.g., [u8; 64]),
+        // then refactor the code to use the correct type.
+        // For demonstration, let's assume Block<Self> is a type alias for [u8; 64]
+        // so I am replacing `Block::<Sha1Core>::default();` with `[0u8; 64];`
+        // This should be replaced with the appropriate code to construct a Block
+        
+        // Prepare a single block to update the state.
+        let block = [0u8; 64]; // Assuming Block<Self> is a type alias for [u8; 64]
+        let block_slice = &[block]; // Temporary slice, will be fixed in the next lines
+        // hasher.update_blocks expects &[Block<Self>]
+        // Fixing the type to be compatible with the update_blocks signature.
+        let block_refs = [&block]; // Creating a slice of references to blocks
+        
+        // Update block representation to compress function.
+        let mut blocks_compressed = vec![Default::default(); block_refs.len()]; // Assuming Block<Self> is initializable.
+        for (block_compressed, block_ref) in blocks_compressed.iter_mut().zip(block_refs.iter()) {
+            // Assuming we need to copy data from the block_ref to block_compressed
+            // This code assumes block_ref is &[u8] which we can copy to block_compressed.
+            block_compressed.copy_from_slice(block_ref); // This should be replaced with correct block preparation.
+        }
+        
+        // Update hasher with blocks in the expected format.
+        hasher.update_blocks(&blocks_compressed);
+        
+        // Ensure the block count is incremented.
+        assert_eq!(hasher.block_len, initial_state.block_len + blocks_compressed.len() as u64);
+        
+        // Ensure the state is changed due to compress function.
+        assert_ne!(hasher.h, initial_state.h);
+        
+        // Update with multiple blocks to see the correct increment.
+        let block_count = 5;
+        // Assuming a similar pattern as single block for multiple blocks
+        let mut multiple_blocks = vec![Default::default(); block_count]; // See assumption above for Block<Self>.
+        for block in multiple_blocks.iter_mut() {
+            // Prepare each block as we did for a single block.
+            // Block preparation depends on how Block<Self> is defined for Sha1Core
+            // Replace with the correct initialization of block as needed.
+            *block = [0u8; 64]; // This should be replaced with correct block initialization.
+        }
+        
+        // Update hasher with multiple blocks.
+        hasher.update_blocks(&multiple_blocks);
+        
+        // Ensure the block_len is correctly updated to reflect 5 new blocks.
+        assert_eq!(hasher.block_len, initial_state.block_len + block_count as u64);
+        
+        // The state should be changed again due to compress function.
+        assert_ne!(hasher.h, initial_state.h);
+    }
+}
+   Compiling sha1 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/sha1)
+error[E0282]: type annotations needed for `Vec<T>`
+   --> sha1/src/lib.rs:208:13
+    |
+208 |         let mut blocks_compressed = vec![Default::default(); block_refs.len()]; // Assuming Block<Self> is initializable.
+    |             ^^^^^^^^^^^^^^^^^^^^^
+...
+212 |             block_compressed.copy_from_slice(block_ref); // This should be replaced with correct block preparation.
+    |                              --------------- type must be known at this point
+    |
+help: consider giving `blocks_compressed` an explicit type, where the type for type parameter `T` is specified
+    |
+208 |         let mut blocks_compressed: Vec<T> = vec![Default::default(); block_refs.len()]; // Assuming Block<Self> is initializable.
+    |                                  ++++++++
+
+error[E0277]: the trait bound `[u8; 64]: Default` is not satisfied
+   --> sha1/src/lib.rs:227:40
+    |
+227 |         let mut multiple_blocks = vec![Default::default(); block_count]; // See assumption above for Block<Self>.
+    |                                        ^^^^^^^^^^^^^^^^ the trait `Default` is not implemented for `[u8; 64]`
+    |
+    = help: the following other types implement trait `Default`:
+              &[T]
+              &mut [T]
+              [T; 0]
+              [T; 10]
+              [T; 11]
+              [T; 12]
+              [T; 13]
+              [T; 14]
+            and 27 others
+
+error[E0308]: mismatched types
+   --> sha1/src/lib.rs:236:30
+    |
+236 |         hasher.update_blocks(&multiple_blocks);
+    |                ------------- ^^^^^^^^^^^^^^^^ expected slice, found struct `Vec`
+    |                |
+    |                arguments to this function are incorrect
+    |
+    = note: expected reference `&[GenericArray<u8, UInt<UInt<UInt<UInt<UInt<UInt<UInt<UTerm, B1>, B0>, B0>, B0>, B0>, B0>, B0>>]`
+               found reference `&Vec<[u8; 64]>`
+note: associated function defined here
+   --> /home/xiang/.cargo/registry/src/github.com-1ecc6299db9ec823/digest-0.10.7/src/core_api.rs:33:8
+    |
+33  |     fn update_blocks(&mut self, blocks: &[Block<Self>]);
+    |        ^^^^^^^^^^^^^
+
+Some errors have detailed explanations: E0277, E0282, E0308.
+For more information about an error, try `rustc --explain E0277`.
+error: could not compile `sha1` due to 3 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+repair err <Sha1Core as digest::core_api::UpdateCore>::update_blocks sha1/src/lib.rs update_blocks
+ChatCompletion(id='chatcmpl-8UWtTsN0PAjCtghQciUzc3oHTqsrR', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::Sha1Core;\n    use std::default::Default;\n\n    #[test]\n    fn default_initializes_correct_state() {\n        let sha1_core = Sha1Core::default();\n        assert_eq!(sha1_core.h, [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0]);\n        assert_eq!(sha1_core.block_len, 0);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702286975, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=117, prompt_tokens=777, total_tokens=894))
+71
+inject succeed hashes sha1 <Sha1Core as std::default::Default>::default
+ChatCompletion(id='chatcmpl-8UWtd63MQ4fQ7uNwbubqHI9EPyqdU', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::compress;\n    use sha1::compress::Sha1Core;\n    use sha1::{Block, Digest};\n    use generic_array::GenericArray;\n\n    const BLOCK_SIZE: usize = 64;\n\n    #[test]\n    fn test_compress() {\n        let mut state = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0];\n        let mut core = Sha1Core::new();\n        let data = b"The quick brown fox jumps over the lazy dog";\n        core.update(data);\n        let blocks = core.finalize_fixed_block(Some(0));\n        let blocks = GenericArray::from_slice(&blocks);\n        let blocks = [Block::clone_from_slice(blocks); 1];\n\n        let original_state = state;\n        compress(&mut state, &blocks);\n\n        let expected_state = [\n            0x2fd4e1c6, 0x7a2d28fc, 0xed849ee1, 0xbb76e739, 0x1b93eb12,\n        ];\n\n        assert_eq!(state, expected_state, "SHA-1 compress function failed");\n\n        // as the compress function is pure, compressing the same blocks again with the original\n        // state should result in the same state\n        compress(&mut state, &blocks);\n        assert_eq!(state, expected_state, "SHA-1 compress function is not pure");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702286985, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=327, prompt_tokens=231, total_tokens=558))
+71
+========================================
+inject err compress::compress sha1/src/compress.rs compress
+#[cfg(test)]
+mod tests_llm_16_6 {
+    use crate::compress;
+    use crate::compress::Sha1Core;
+    use crate::{Block, Digest};
+    use generic_array::GenericArray;
+
+    const BLOCK_SIZE: usize = 64;
+
+    #[test]
+    fn test_compress() {
+        let mut state = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0];
+        let mut core = Sha1Core::new();
+        let data = b"The quick brown fox jumps over the lazy dog";
+        core.update(data);
+        let blocks = core.finalize_fixed_block(Some(0));
+        let blocks = GenericArray::from_slice(&blocks);
+        let blocks = [Block::clone_from_slice(blocks); 1];
+
+        let original_state = state;
+        compress(&mut state, &blocks);
+
+        let expected_state = [
+            0x2fd4e1c6, 0x7a2d28fc, 0xed849ee1, 0xbb76e739, 0x1b93eb12,
+        ];
+
+        assert_eq!(state, expected_state, "SHA-1 compress function failed");
+
+        // as the compress function is pure, compressing the same blocks again with the original
+        // state should result in the same state
+        compress(&mut state, &blocks);
+        assert_eq!(state, expected_state, "SHA-1 compress function is not pure");
+    }
+}
+   Compiling sha1 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/sha1)
+error[E0432]: unresolved import `generic_array`
+  --> sha1/src/compress.rs:43:9
+   |
+43 |     use generic_array::GenericArray;
+   |         ^^^^^^^^^^^^^ help: a similar path exists: `digest::generic_array`
+
+error[E0599]: the function or associated item `new` exists for struct `Sha1Core`, but its trait bounds were not satisfied
+  --> sha1/src/compress.rs:50:34
+   |
+50 |         let mut core = Sha1Core::new();
+   |                                  ^^^ function or associated item cannot be called on `Sha1Core` due to unsatisfied trait bounds
+   |
+  ::: sha1/src/lib.rs:77:1
+   |
+77 | pub struct Sha1Core {
+   | -------------------
+   | |
+   | function or associated item `new` not found for this struct
+   | doesn't satisfy `Sha1Core: Digest`
+   | doesn't satisfy `Sha1Core: FixedOutput`
+   | doesn't satisfy `Sha1Core: Update`
+   |
+   = note: the following trait bounds were not satisfied:
+           `Sha1Core: FixedOutput`
+           which is required by `Sha1Core: Digest`
+           `Sha1Core: Update`
+           which is required by `Sha1Core: Digest`
+           `&Sha1Core: FixedOutput`
+           which is required by `&Sha1Core: Digest`
+           `&Sha1Core: Default`
+           which is required by `&Sha1Core: Digest`
+           `&Sha1Core: Update`
+           which is required by `&Sha1Core: Digest`
+           `&Sha1Core: HashMarker`
+           which is required by `&Sha1Core: Digest`
+           `&mut Sha1Core: FixedOutput`
+           which is required by `&mut Sha1Core: Digest`
+           `&mut Sha1Core: Default`
+           which is required by `&mut Sha1Core: Digest`
+           `&mut Sha1Core: Update`
+           which is required by `&mut Sha1Core: Digest`
+           `&mut Sha1Core: HashMarker`
+           which is required by `&mut Sha1Core: Digest`
+note: the following traits must be implemented
+  --> /home/xiang/.cargo/registry/src/github.com-1ecc6299db9ec823/digest-0.10.7/src/lib.rs:77:1
+   |
+77 | pub trait Update {
+   | ^^^^^^^^^^^^^^^^
+...
+93 | pub trait FixedOutput: Update + OutputSizeUser + Sized {
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Some errors have detailed explanations: E0432, E0599.
+For more information about an error, try `rustc --explain E0432`.
+error: could not compile `sha1` due to 2 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UWu2AWCzqsh0A5x7u8rQKfzXQGxx', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_6 {\n    use crate::compress::compress;\n    use crate::compress::Sha1Core;\n    use crate::digest::generic_array::GenericArray;\n    use crate::{Block, Digest, Digest as _};\n    use crate::digest::FixedOutput as _;\n    use crate::digest::Update as _;\n\n    const BLOCK_SIZE: usize = 64;\n\n    #[test]\n    fn test_compress() {\n        let mut state = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0];\n        let mut core = Sha1Core::new();\n        let data = b"The quick brown fox jumps over the lazy dog";\n\n        // We assume the existence of the necessary traits and methods\n        core.update(data);\n        let hash = core.finalize();\n        let blocks = core.finalize_fixed_block(Some(data.len() as u64 * 8));\n\n        let blocks_generic_array: &[GenericArray<u8, <Sha1Core as Digest>::OutputSize>] = \n            &[GenericArray::clone_from_slice(&blocks)];\n        let blocks: &[Block<Sha1Core>] = unsafe {\n            &*(blocks_generic_array as *const _ as *const [Block<Sha1Core>])\n        };\n\n        let original_state = state;\n        compress(&mut state, blocks);\n\n        // We assume the compress function actually changes the state\n        // and the `expected_state` is the correct result\n        let expected_state = [\n            0x2fd4e1c6, 0x7a2d28fc, 0xed849ee1, 0xbb76e739, 0x1b93eb12,\n        ];\n\n        assert_eq!(state, expected_state, "SHA-1 compress function failed");\n\n        // as the compress function is pure, compressing the same blocks again with the original\n        // state should result in the same state\n        state = original_state;\n        compress(&mut state, blocks);\n        assert_eq!(state, expected_state, "SHA-1 compress function is not pure");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702287010, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=464, prompt_tokens=1589, total_tokens=2053))
+71
+========================================
+inject err compress::compress sha1/src/compress.rs compress
+#[cfg(test)]
+mod tests_llm_16_6_llm_16_6 {
+    use crate::compress::compress;
+    use crate::compress::Sha1Core;
+    use crate::digest::generic_array::GenericArray;
+    use crate::{Block, Digest, Digest as _};
+    use crate::digest::FixedOutput as _;
+    use crate::digest::Update as _;
+
+    const BLOCK_SIZE: usize = 64;
+
+    #[test]
+    fn test_compress() {
+        let mut state = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0];
+        let mut core = Sha1Core::new();
+        let data = b"The quick brown fox jumps over the lazy dog";
+
+        // We assume the existence of the necessary traits and methods
+        core.update(data);
+        let hash = core.finalize();
+        let blocks = core.finalize_fixed_block(Some(data.len() as u64 * 8));
+
+        let blocks_generic_array: &[GenericArray<u8, <Sha1Core as Digest>::OutputSize>] = 
+            &[GenericArray::clone_from_slice(&blocks)];
+        let blocks: &[Block<Sha1Core>] = unsafe {
+            &*(blocks_generic_array as *const _ as *const [Block<Sha1Core>])
+        };
+
+        let original_state = state;
+        compress(&mut state, blocks);
+
+        // We assume the compress function actually changes the state
+        // and the `expected_state` is the correct result
+        let expected_state = [
+            0x2fd4e1c6, 0x7a2d28fc, 0xed849ee1, 0xbb76e739, 0x1b93eb12,
+        ];
+
+        assert_eq!(state, expected_state, "SHA-1 compress function failed");
+
+        // as the compress function is pure, compressing the same blocks again with the original
+        // state should result in the same state
+        state = original_state;
+        compress(&mut state, blocks);
+        assert_eq!(state, expected_state, "SHA-1 compress function is not pure");
+    }
+}
+   Compiling sha1 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/sha1)
+error[E0576]: cannot find associated type `OutputSize` in trait `Digest`
+  --> sha1/src/compress.rs:60:76
+   |
+60 |         let blocks_generic_array: &[GenericArray<u8, <Sha1Core as Digest>::OutputSize>] = 
+   |                                                                            ^^^^^^^^^^ not found in `Digest`
+
+error[E0599]: the function or associated item `new` exists for struct `Sha1Core`, but its trait bounds were not satisfied
+  --> sha1/src/compress.rs:52:34
+   |
+52 |         let mut core = Sha1Core::new();
+   |                                  ^^^ function or associated item cannot be called on `Sha1Core` due to unsatisfied trait bounds
+   |
+  ::: sha1/src/lib.rs:77:1
+   |
+77 | pub struct Sha1Core {
+   | -------------------
+   | |
+   | function or associated item `new` not found for this struct
+   | doesn't satisfy `Sha1Core: Digest`
+   | doesn't satisfy `Sha1Core: FixedOutput`
+   | doesn't satisfy `Sha1Core: Update`
+   |
+   = note: the following trait bounds were not satisfied:
+           `Sha1Core: FixedOutput`
+           which is required by `Sha1Core: Digest`
+           `Sha1Core: Update`
+           which is required by `Sha1Core: Digest`
+           `&Sha1Core: FixedOutput`
+           which is required by `&Sha1Core: Digest`
+           `&Sha1Core: Default`
+           which is required by `&Sha1Core: Digest`
+           `&Sha1Core: Update`
+           which is required by `&Sha1Core: Digest`
+           `&Sha1Core: HashMarker`
+           which is required by `&Sha1Core: Digest`
+           `&mut Sha1Core: FixedOutput`
+           which is required by `&mut Sha1Core: Digest`
+           `&mut Sha1Core: Default`
+           which is required by `&mut Sha1Core: Digest`
+           `&mut Sha1Core: Update`
+           which is required by `&mut Sha1Core: Digest`
+           `&mut Sha1Core: HashMarker`
+           which is required by `&mut Sha1Core: Digest`
+note: the following traits must be implemented
+  --> /home/xiang/.cargo/registry/src/github.com-1ecc6299db9ec823/digest-0.10.7/src/lib.rs:77:1
+   |
+77 | pub trait Update {
+   | ^^^^^^^^^^^^^^^^
+...
+93 | pub trait FixedOutput: Update + OutputSizeUser + Sized {
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Some errors have detailed explanations: E0576, E0599.
+For more information about an error, try `rustc --explain E0576`.
+error: could not compile `sha1` due to 2 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+repair err compress::compress sha1/src/compress.rs compress
+ChatCompletion(id='chatcmpl-8UWudUYyGU5ZDQ1V9TdN5nNUuHgC1', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::add;\n\n    #[test]\n    fn test_add() {\n        assert_eq!(add([0, 0, 0, 0], [1, 1, 1, 1]), [1, 1, 1, 1]);\n        assert_eq!(add([1, 2, 3, 4], [5, 6, 7, 8]), [6, 8, 10, 12]);\n        assert_eq!(add([0xffffffff; 4], [1; 4]), [0, 0, 0, 0]);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702287047, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_6aca3b5ce1', usage=CompletionUsage(completion_tokens=142, prompt_tokens=217, total_tokens=359))
+71
+========================================
+inject err compress::soft::add sha1/src/compress/soft.rs add
+#[cfg(test)]
+mod tests_llm_16_7 {
+    use crate::add;
+
+    #[test]
+    fn test_add() {
+        assert_eq!(add([0, 0, 0, 0], [1, 1, 1, 1]), [1, 1, 1, 1]);
+        assert_eq!(add([1, 2, 3, 4], [5, 6, 7, 8]), [6, 8, 10, 12]);
+        assert_eq!(add([0xffffffff; 4], [1; 4]), [0, 0, 0, 0]);
+    }
+}
+   Compiling sha1 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/sha1)
+error[E0432]: unresolved import `crate::add`
+   --> sha1/src/compress/soft.rs:263:9
+    |
+263 |     use crate::add;
+    |         ^^^^^^^^^^ no `add` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `sha1` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UWuosoFB2tHjawP9QC4bMEOcpFi5', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_7 {\n    use super::add;\n\n    #[test]\n    fn test_add() {\n        assert_eq!(add([0, 0, 0, 0], [1, 1, 1, 1]), [1, 1, 1, 1]);\n        assert_eq!(add([1, 2, 3, 4], [5, 6, 7, 8]), [6, 8, 10, 12]);\n        assert_eq!(add([0xffffffff; 4], [1; 4]), [0, 0, 0, 0]);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702287058, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_6aca3b5ce1', usage=CompletionUsage(completion_tokens=148, prompt_tokens=683, total_tokens=831))
+71
+========================================
+inject err compress::soft::add sha1/src/compress/soft.rs add
+#[cfg(test)]
+mod tests_llm_16_7_llm_16_7 {
+    use crate::add;
+
+    #[test]
+    fn test_add() {
+        assert_eq!(add([0, 0, 0, 0], [1, 1, 1, 1]), [1, 1, 1, 1]);
+        assert_eq!(add([1, 2, 3, 4], [5, 6, 7, 8]), [6, 8, 10, 12]);
+        assert_eq!(add([0xffffffff; 4], [1; 4]), [0, 0, 0, 0]);
+    }
+}
+   Compiling sha1 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/sha1)
+error[E0432]: unresolved import `crate::add`
+   --> sha1/src/compress/soft.rs:263:9
+    |
+263 |     use crate::add;
+    |         ^^^^^^^^^^ no `add` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `sha1` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+repair err compress::soft::add sha1/src/compress/soft.rs add
+ChatCompletion(id='chatcmpl-8UWv2d0HOQdTcTJ7dDT6G870BEg35', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::compress;\n    use super::BLOCK_SIZE;\n\n    #[test]\n    fn test_compress_single_block() {\n        let mut state = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0];\n        let block = [[0u8; BLOCK_SIZE]];\n        let expected_state = [0x5BAA61E4, 0xC9B93F3F, 0x06825571, 0xB2AA2F2E, 0x40B2FD3B];\n        compress(&mut state, &block);\n\n        assert_eq!(state, expected_state, "State after compressing single zero block should match expected state.");\n    }\n\n    #[test]\n    fn test_compress_multiple_blocks() {\n        let mut state = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0];\n        let blocks = [[0u8; BLOCK_SIZE], [0u8; BLOCK_SIZE]];\n        let expected_state = [0x66B27417, 0x572EDEC0, 0x1D3F6383, 0xDFD6B8B3, 0x4566E0E4];\n        compress(&mut state, &blocks);\n\n        assert_eq!(state, expected_state, "State after compressing multiple zero blocks should match expected state.");\n    }\n\n    #[test]\n    fn test_compress_with_actual_data() {\n        let mut state = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0];\n        let data = [0x61, 0x62, 0x63, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x18];\n        let blocks = [data; 1];\n        let expected_state = [0xA9993E36, 0x4706816A, 0xBA3E2571, 0x7850C26C, 0x9CD0D89D];\n        compress(&mut state, &blocks);\n\n        assert_eq!(state, expected_state, "State after compressing \'abc\' should match expected state.");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702287072, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=788, prompt_tokens=286, total_tokens=1074))
+71
+========================================
+inject err compress::soft::compress sha1/src/compress/soft.rs compress
+#[cfg(test)]
+mod tests_llm_16_8 {
+    use crate::compress;
+    use crate::BLOCK_SIZE;
+
+    #[test]
+    fn test_compress_single_block() {
+        let mut state = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0];
+        let block = [[0u8; BLOCK_SIZE]];
+        let expected_state = [0x5BAA61E4, 0xC9B93F3F, 0x06825571, 0xB2AA2F2E, 0x40B2FD3B];
+        compress(&mut state, &block);
+
+        assert_eq!(state, expected_state, "State after compressing single zero block should match expected state.");
+    }
+
+    #[test]
+    fn test_compress_multiple_blocks() {
+        let mut state = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0];
+        let blocks = [[0u8; BLOCK_SIZE], [0u8; BLOCK_SIZE]];
+        let expected_state = [0x66B27417, 0x572EDEC0, 0x1D3F6383, 0xDFD6B8B3, 0x4566E0E4];
+        compress(&mut state, &blocks);
+
+        assert_eq!(state, expected_state, "State after compressing multiple zero blocks should match expected state.");
+    }
+
+    #[test]
+    fn test_compress_with_actual_data() {
+        let mut state = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0];
+        let data = [0x61, 0x62, 0x63, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x18];
+        let blocks = [data; 1];
+        let expected_state = [0xA9993E36, 0x4706816A, 0xBA3E2571, 0x7850C26C, 0x9CD0D89D];
+        compress(&mut state, &blocks);
+
+        assert_eq!(state, expected_state, "State after compressing 'abc' should match expected state.");
+    }
+}
+   Compiling sha1 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/sha1)
+error[E0432]: unresolved import `crate::BLOCK_SIZE`
+   --> sha1/src/compress/soft.rs:264:9
+    |
+264 |     use crate::BLOCK_SIZE;
+    |         ^^^^^^^^^^^^^^^^^ no `BLOCK_SIZE` in the root
+
+error[E0308]: mismatched types
+   --> sha1/src/compress/soft.rs:292:30
+    |
+292 |         compress(&mut state, &blocks);
+    |         --------             ^^^^^^^ expected slice, found array `[[{integer}; 59]; 1]`
+    |         |
+    |         arguments to this function are incorrect
+    |
+    = note: expected reference `&[GenericArray<u8, UInt<UInt<UInt<UInt<UInt<UInt<UInt<UTerm, B1>, B0>, B0>, B0>, B0>, B0>, B0>>]`
+               found reference `&[[{integer}; 59]; 1]`
+note: function defined here
+   --> sha1/src/compress.rs:31:8
+    |
+31  | pub fn compress(state: &mut [u32; 5], blocks: &[Block<Sha1Core>]) {
+    |        ^^^^^^^^                       --------------------------
+
+Some errors have detailed explanations: E0308, E0432.
+For more information about an error, try `rustc --explain E0308`.
+error: could not compile `sha1` due to 2 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UWw4BFIllUmIEKCdO5GS8hOX82mV', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_8 {\n    use super::super::compress;\n    use crate::digest::consts::U64;\n    use crate::digest::generic_array::GenericArray;\n    use crate::digest::generic_array::typenum::Unsigned;\n    use crate::Sha1;\n\n    fn create_blocks(data: &[u8]) -> Vec<GenericArray<u8, U64>> {\n        data.chunks(U64::to_usize())\n            .map(|chunk| {\n                let mut block = GenericArray::default();\n                block[..chunk.len()].copy_from_slice(chunk);\n                block\n            })\n            .collect()\n    }\n\n    #[test]\n    fn test_compress_single_block() {\n        let mut state = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0];\n        let block = [0u8; 64];\n        let blocks = create_blocks(&block);\n        let expected_state = [0x5BAA61E4, 0xC9B93F3F, 0x06825571, 0xB2AA2F2E, 0x40B2FD3B];\n        compress(&mut state, &blocks);\n\n        assert_eq!(state, expected_state, "State after compressing single zero block should match expected state.");\n    }\n\n    #[test]\n    fn test_compress_multiple_blocks() {\n        let mut state = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0];\n        let blocks = [0u8; 64 * 2];\n        let blocks = create_blocks(&blocks);\n        let expected_state = [0x66B27417, 0x572EDEC0, 0x1D3F6383, 0xDFD6B8B3, 0x4566E0E4];\n        compress(&mut state, &blocks);\n\n        assert_eq!(state, expected_state, "State after compressing multiple zero blocks should match expected state.");\n    }\n\n    #[test]\n    fn test_compress_with_actual_data() {\n        let mut state = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0];\n        let data = [0x61, 0x62, 0x63, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x18];\n        let blocks = create_blocks(&data);\n        let expected_state = [0xA9993E36, 0x4706816A, 0xBA3E2571, 0x7850C26C, 0x9CD0D89D];\n        compress(&mut state, &blocks);\n\n        assert_eq!(state, expected_state, "State after compressing \'abc\' should match expected state.");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702287136, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=917, prompt_tokens=2271, total_tokens=3188))
+71
+========================================
+inject err compress::soft::compress sha1/src/compress/soft.rs compress
+#[cfg(test)]
+mod tests_llm_16_8_llm_16_8 {
+    use crate::super::compress;
+    use crate::digest::consts::U64;
+    use crate::digest::generic_array::GenericArray;
+    use crate::digest::generic_array::typenum::Unsigned;
+    use crate::Sha1;
+
+    fn create_blocks(data: &[u8]) -> Vec<GenericArray<u8, U64>> {
+        data.chunks(U64::to_usize())
+            .map(|chunk| {
+                let mut block = GenericArray::default();
+                block[..chunk.len()].copy_from_slice(chunk);
+                block
+            })
+            .collect()
+    }
+
+    #[test]
+    fn test_compress_single_block() {
+        let mut state = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0];
+        let block = [0u8; 64];
+        let blocks = create_blocks(&block);
+        let expected_state = [0x5BAA61E4, 0xC9B93F3F, 0x06825571, 0xB2AA2F2E, 0x40B2FD3B];
+        compress(&mut state, &blocks);
+
+        assert_eq!(state, expected_state, "State after compressing single zero block should match expected state.");
+    }
+
+    #[test]
+    fn test_compress_multiple_blocks() {
+        let mut state = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0];
+        let blocks = [0u8; 64 * 2];
+        let blocks = create_blocks(&blocks);
+        let expected_state = [0x66B27417, 0x572EDEC0, 0x1D3F6383, 0xDFD6B8B3, 0x4566E0E4];
+        compress(&mut state, &blocks);
+
+        assert_eq!(state, expected_state, "State after compressing multiple zero blocks should match expected state.");
+    }
+
+    #[test]
+    fn test_compress_with_actual_data() {
+        let mut state = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0];
+        let data = [0x61, 0x62, 0x63, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x18];
+        let blocks = create_blocks(&data);
+        let expected_state = [0xA9993E36, 0x4706816A, 0xBA3E2571, 0x7850C26C, 0x9CD0D89D];
+        compress(&mut state, &blocks);
+
+        assert_eq!(state, expected_state, "State after compressing 'abc' should match expected state.");
+    }
+}
+   Compiling sha1 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/sha1)
+error[E0433]: failed to resolve: `super` in paths can only be used in start position
+   --> sha1/src/compress/soft.rs:263:16
+    |
+263 |     use crate::super::compress;
+    |                ^^^^^ `super` in paths can only be used in start position
+
+For more information about this error, try `rustc --explain E0433`.
+error: could not compile `sha1` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+repair err compress::soft::compress sha1/src/compress/soft.rs compress
+ChatCompletion(id='chatcmpl-8UWx8xuCC2HYU33G96jeMDIEOTmdh', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::sha1_digest_block_u32;\n\n    #[test]\n    fn test_sha1_digest_block_u32() {\n        let mut state = [\n            0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0,\n        ];\n        let block = [\n            0x61626380, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000,\n            0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000,\n            0x00000000, 0x00000018,\n        ];\n\n        let expected_state = [\n            0x99F82E02, 0x78D39F3E, 0xB82F2D17, 0x831E119F, 0x66EFE4E4,\n        ];\n\n        sha1_digest_block_u32(&mut state, &block);\n\n        assert_eq!(state, expected_state, "SHA1 digest block calculation mismatch");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702287202, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=297, prompt_tokens=1015, total_tokens=1312))
+71
+========================================
+inject err compress::soft::sha1_digest_block_u32 sha1/src/compress/soft.rs sha1_digest_block_u32
+#[cfg(test)]
+mod tests_llm_16_9 {
+    use crate::sha1_digest_block_u32;
+
+    #[test]
+    fn test_sha1_digest_block_u32() {
+        let mut state = [
+            0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0,
+        ];
+        let block = [
+            0x61626380, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000,
+            0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000,
+            0x00000000, 0x00000018,
+        ];
+
+        let expected_state = [
+            0x99F82E02, 0x78D39F3E, 0xB82F2D17, 0x831E119F, 0x66EFE4E4,
+        ];
+
+        sha1_digest_block_u32(&mut state, &block);
+
+        assert_eq!(state, expected_state, "SHA1 digest block calculation mismatch");
+    }
+}
+   Compiling sha1 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/sha1)
+error[E0432]: unresolved import `crate::sha1_digest_block_u32`
+   --> sha1/src/compress/soft.rs:263:9
+    |
+263 |     use crate::sha1_digest_block_u32;
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `sha1_digest_block_u32` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `sha1` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UWxj2Jgv4h0DWGEDRgd1vahbFuio', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_9 {\n    use super::sha1_digest_block_u32;\n\n    #[test]\n    fn test_sha1_digest_block_u32() {\n        let mut state = [\n            0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0,\n        ];\n        let block = [\n            0x61626380, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000,\n            0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000,\n            0x00000000, 0x00000018,\n        ];\n\n        let expected_state = [\n            0x99F82E02, 0x78D39F3E, 0xB82F2D17, 0x831E119F, 0x66EFE4E4,\n        ];\n\n        sha1_digest_block_u32(&mut state, &block);\n\n        assert_eq!(state, expected_state, "SHA1 digest block calculation mismatch");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702287239, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=303, prompt_tokens=1811, total_tokens=2114))
+71
+========================================
+inject err compress::soft::sha1_digest_block_u32 sha1/src/compress/soft.rs sha1_digest_block_u32
+#[cfg(test)]
+mod tests_llm_16_9_llm_16_9 {
+    use crate::sha1_digest_block_u32;
+
+    #[test]
+    fn test_sha1_digest_block_u32() {
+        let mut state = [
+            0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0,
+        ];
+        let block = [
+            0x61626380, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000,
+            0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000,
+            0x00000000, 0x00000018,
+        ];
+
+        let expected_state = [
+            0x99F82E02, 0x78D39F3E, 0xB82F2D17, 0x831E119F, 0x66EFE4E4,
+        ];
+
+        sha1_digest_block_u32(&mut state, &block);
+
+        assert_eq!(state, expected_state, "SHA1 digest block calculation mismatch");
+    }
+}
+   Compiling sha1 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/sha1)
+error[E0432]: unresolved import `crate::sha1_digest_block_u32`
+   --> sha1/src/compress/soft.rs:263:9
+    |
+263 |     use crate::sha1_digest_block_u32;
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `sha1_digest_block_u32` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `sha1` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+repair err compress::soft::sha1_digest_block_u32 sha1/src/compress/soft.rs sha1_digest_block_u32
+ChatCompletion(id='chatcmpl-8UWy6Ms9plyEKBsQ9ZlRPhNPf1UoQ', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::sha1_digest_round_x4;\n    use super::K;\n    use super::sha1rnds4c;\n    use super::sha1rnds4p;\n    use super::sha1rnds4m;\n    use super::add;\n\n    #[test]\n    fn test_sha1_digest_round_x4() {\n        // Test vectors for SHA1 can be hard to generate manually, you might want to use precomputed values,\n        // for this example, we\'re going to use dummy values that would not correspond to real SHA1 application.\n        let abcd = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476];\n        let work = [0xdeadbeef, 0xcafebabe, 0x8badf00d, 0x0badc0de];\n\n        // Test with i = 0\n        let output_0 = sha1_digest_round_x4(abcd, work, 0);\n        let expected_0 = sha1rnds4c(abcd, add(work, [K[0]; 4]));\n        assert_eq!(output_0, expected_0, "sha1_digest_round_x4 failed for i = 0");\n\n        // Test with i = 1\n        let output_1 = sha1_digest_round_x4(abcd, work, 1);\n        let expected_1 = sha1rnds4p(abcd, add(work, [K[1]; 4]));\n        assert_eq!(output_1, expected_1, "sha1_digest_round_x4 failed for i = 1");\n\n        // Test with i = 2\n        let output_2 = sha1_digest_round_x4(abcd, work, 2);\n        let expected_2 = sha1rnds4m(abcd, add(work, [K[2]; 4]));\n        assert_eq!(output_2, expected_2, "sha1_digest_round_x4 failed for i = 2");\n\n        // Test with i = 3\n        let output_3 = sha1_digest_round_x4(abcd, work, 3);\n        let expected_3 = sha1rnds4p(abcd, add(work, [K[3]; 4]));\n        assert_eq!(output_3, expected_3, "sha1_digest_round_x4 failed for i = 3");\n\n        // Test with i out of bounds, expecting a panic\n        let result = std::panic::catch_unwind(|| {\n            sha1_digest_round_x4(abcd, work, 4);\n        });\n        assert!(result.is_err(), "sha1_digest_round_x4 should panic for invalid i");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702287262, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=587, prompt_tokens=295, total_tokens=882))
+71
+========================================
+inject err compress::soft::sha1_digest_round_x4 sha1/src/compress/soft.rs sha1_digest_round_x4
+#[cfg(test)]
+mod tests_llm_16_10 {
+    use crate::sha1_digest_round_x4;
+    use crate::K;
+    use crate::sha1rnds4c;
+    use crate::sha1rnds4p;
+    use crate::sha1rnds4m;
+    use crate::add;
+
+    #[test]
+    fn test_sha1_digest_round_x4() {
+        // Test vectors for SHA1 can be hard to generate manually, you might want to use precomputed values,
+        // for this example, we're going to use dummy values that would not correspond to real SHA1 application.
+        let abcd = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476];
+        let work = [0xdeadbeef, 0xcafebabe, 0x8badf00d, 0x0badc0de];
+
+        // Test with i = 0
+        let output_0 = sha1_digest_round_x4(abcd, work, 0);
+        let expected_0 = sha1rnds4c(abcd, add(work, [K[0]; 4]));
+        assert_eq!(output_0, expected_0, "sha1_digest_round_x4 failed for i = 0");
+
+        // Test with i = 1
+        let output_1 = sha1_digest_round_x4(abcd, work, 1);
+        let expected_1 = sha1rnds4p(abcd, add(work, [K[1]; 4]));
+        assert_eq!(output_1, expected_1, "sha1_digest_round_x4 failed for i = 1");
+
+        // Test with i = 2
+        let output_2 = sha1_digest_round_x4(abcd, work, 2);
+        let expected_2 = sha1rnds4m(abcd, add(work, [K[2]; 4]));
+        assert_eq!(output_2, expected_2, "sha1_digest_round_x4 failed for i = 2");
+
+        // Test with i = 3
+        let output_3 = sha1_digest_round_x4(abcd, work, 3);
+        let expected_3 = sha1rnds4p(abcd, add(work, [K[3]; 4]));
+        assert_eq!(output_3, expected_3, "sha1_digest_round_x4 failed for i = 3");
+
+        // Test with i out of bounds, expecting a panic
+        let result = std::panic::catch_unwind(|| {
+            sha1_digest_round_x4(abcd, work, 4);
+        });
+        assert!(result.is_err(), "sha1_digest_round_x4 should panic for invalid i");
+    }
+}
+   Compiling sha1 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/sha1)
+error[E0432]: unresolved import `crate::sha1_digest_round_x4`
+   --> sha1/src/compress/soft.rs:263:9
+    |
+263 |     use crate::sha1_digest_round_x4;
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `sha1_digest_round_x4` in the root
+
+error[E0432]: unresolved import `crate::K`
+   --> sha1/src/compress/soft.rs:264:9
+    |
+264 |     use crate::K;
+    |         ^^^^^^^^ no `K` in the root
+
+error[E0432]: unresolved import `crate::sha1rnds4c`
+   --> sha1/src/compress/soft.rs:265:9
+    |
+265 |     use crate::sha1rnds4c;
+    |         ^^^^^^^^^^^^^^^^^ no `sha1rnds4c` in the root
+
+error[E0432]: unresolved import `crate::sha1rnds4p`
+   --> sha1/src/compress/soft.rs:266:9
+    |
+266 |     use crate::sha1rnds4p;
+    |         ^^^^^^^^^^^^^^^^^ no `sha1rnds4p` in the root
+
+error[E0432]: unresolved import `crate::sha1rnds4m`
+   --> sha1/src/compress/soft.rs:267:9
+    |
+267 |     use crate::sha1rnds4m;
+    |         ^^^^^^^^^^^^^^^^^ no `sha1rnds4m` in the root
+
+error[E0432]: unresolved import `crate::add`
+   --> sha1/src/compress/soft.rs:268:9
+    |
+268 |     use crate::add;
+    |         ^^^^^^^^^^ no `add` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `sha1` due to 6 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UWyiIfyP2cWbCrwoCm0HWQ1YV7g7', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_10 {\n    use super::*;\n\n    #[test]\n    fn test_sha1_digest_round_x4() {\n        let abcd = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476];\n        let work = [0xdeadbeef, 0xcafebabe, 0x8badf00d, 0x0badc0de];\n\n        let output_0 = sha1_digest_round_x4(abcd, work, 0);\n        let expected_0 = sha1rnds4c(abcd, add(work, [K[0]; 4]));\n        assert_eq!(output_0, expected_0, "sha1_digest_round_x4 failed for i = 0");\n\n        let output_1 = sha1_digest_round_x4(abcd, work, 1);\n        let expected_1 = sha1rnds4p(abcd, add(work, [K[1]; 4]));\n        assert_eq!(output_1, expected_1, "sha1_digest_round_x4 failed for i = 1");\n\n        let output_2 = sha1_digest_round_x4(abcd, work, 2);\n        let expected_2 = sha1rnds4m(abcd, add(work, [K[2]; 4]));\n        assert_eq!(output_2, expected_2, "sha1_digest_round_x4 failed for i = 2");\n\n        let output_3 = sha1_digest_round_x4(abcd, work, 3);\n        let expected_3 = sha1rnds4p(abcd, add(work, [K[3]; 4]));\n        assert_eq!(output_3, expected_3, "sha1_digest_round_x4 failed for i = 3");\n\n        let result = std::panic::catch_unwind(|| {\n            sha1_digest_round_x4(abcd, work, 4);\n        });\n        assert!(result.is_err(), "sha1_digest_round_x4 should panic for invalid i");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702287300, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=446, prompt_tokens=1980, total_tokens=2426))
+71
+inject succeed hashes sha1 compress::soft::sha1_digest_round_x4
+ChatCompletion(id='chatcmpl-8UWzGrIyMURsYvUTvFpO4s0B8yqCo', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::sha1_first_add;\n\n    #[test]\n    fn test_sha1_first_add() {\n        let e: u32 = 0x12345678;\n        let w0: [u32; 4] = [0x89abcdef, 0xfedcba98, 0x76543210, 0x01234567];\n\n        let result = sha1_first_add(e, w0);\n        let expected: [u32; 4] = [0x9abcdef67, 0xfedcba98, 0x76543210, 0x01234567];\n\n        assert_eq!(result, expected, "sha1_first_add did not produce the expected result");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702287334, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=163, prompt_tokens=200, total_tokens=363))
+71
+========================================
+inject err compress::soft::sha1_first_add sha1/src/compress/soft.rs sha1_first_add
+#[cfg(test)]
+mod tests_llm_16_11 {
+    use crate::sha1_first_add;
+
+    #[test]
+    fn test_sha1_first_add() {
+        let e: u32 = 0x12345678;
+        let w0: [u32; 4] = [0x89abcdef, 0xfedcba98, 0x76543210, 0x01234567];
+
+        let result = sha1_first_add(e, w0);
+        let expected: [u32; 4] = [0x9abcdef67, 0xfedcba98, 0x76543210, 0x01234567];
+
+        assert_eq!(result, expected, "sha1_first_add did not produce the expected result");
+    }
+}
+   Compiling sha1 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/sha1)
+error[E0432]: unresolved import `crate::sha1_first_add`
+   --> sha1/src/compress/soft.rs:295:9
+    |
+295 |     use crate::sha1_first_add;
+    |         ^^^^^^^^^^^^^^^^^^^^^ no `sha1_first_add` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `sha1` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UWzaKpFBg1SMeNYQTuNKzQHM6q5Y', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_11 {\n    use super::sha1_first_add;\n\n    #[test]\n    fn test_sha1_first_add() {\n        let e: u32 = 0x12345678;\n        let w0: [u32; 4] = [0x89abcdef, 0xfedcba98, 0x76543210, 0x01234567];\n\n        let result = sha1_first_add(e, w0);\n        let expected: [u32; 4] = [0x9abcdef67, 0xfedcba98, 0x76543210, 0x01234567];\n\n        assert_eq!(result, expected, "sha1_first_add did not produce the expected result");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702287354, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=169, prompt_tokens=719, total_tokens=888))
+71
+========================================
+inject err compress::soft::sha1_first_add sha1/src/compress/soft.rs sha1_first_add
+#[cfg(test)]
+mod tests_llm_16_11_llm_16_11 {
+    use crate::sha1_first_add;
+
+    #[test]
+    fn test_sha1_first_add() {
+        let e: u32 = 0x12345678;
+        let w0: [u32; 4] = [0x89abcdef, 0xfedcba98, 0x76543210, 0x01234567];
+
+        let result = sha1_first_add(e, w0);
+        let expected: [u32; 4] = [0x9abcdef67, 0xfedcba98, 0x76543210, 0x01234567];
+
+        assert_eq!(result, expected, "sha1_first_add did not produce the expected result");
+    }
+}
+   Compiling sha1 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/sha1)
+error[E0432]: unresolved import `crate::sha1_first_add`
+   --> sha1/src/compress/soft.rs:295:9
+    |
+295 |     use crate::sha1_first_add;
+    |         ^^^^^^^^^^^^^^^^^^^^^ no `sha1_first_add` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `sha1` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+repair err compress::soft::sha1_first_add sha1/src/compress/soft.rs sha1_first_add
+ChatCompletion(id='chatcmpl-8UWzsCJWrNhQQDKH8LV3ZU9rtrutm', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::sha1_first_half;\n    use super::sha1_first_add;\n\n    #[test]\n    fn test_sha1_first_half() {\n        // Setup test cases\n        let test_cases = vec![\n            // Test that the function applies rotate left and sha1_first_add correctly\n            (\n                [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476],\n                [0x12345678, 0x9ABCDEF0, 0x0FEDCBA9, 0x87654321],\n                [0x8F1BBCDC, 0x98BADCFE, 0x10325476, 0x67452301],\n            ),\n            // Test with zeros\n            (\n                [0, 0, 0, 0],\n                [0, 0, 0, 0],\n                [0, 0, 0, 0],\n            ),\n            // Test with 32-bit MAX values\n            (\n                [0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF],\n                [0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF],\n                [0x8F1BBCDC, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF],\n            ),\n        ];\n\n        // Run the test cases\n        for (abcd, msg, expected) in test_cases {\n            let result = sha1_first_half(abcd, msg);\n            assert_eq!(result, expected);\n        }\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702287372, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=337, prompt_tokens=191, total_tokens=528))
+71
+========================================
+inject err compress::soft::sha1_first_half sha1/src/compress/soft.rs sha1_first_half
+#[cfg(test)]
+mod tests_llm_16_12 {
+    use crate::sha1_first_half;
+    use crate::sha1_first_add;
+
+    #[test]
+    fn test_sha1_first_half() {
+        // Setup test cases
+        let test_cases = vec![
+            // Test that the function applies rotate left and sha1_first_add correctly
+            (
+                [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476],
+                [0x12345678, 0x9ABCDEF0, 0x0FEDCBA9, 0x87654321],
+                [0x8F1BBCDC, 0x98BADCFE, 0x10325476, 0x67452301],
+            ),
+            // Test with zeros
+            (
+                [0, 0, 0, 0],
+                [0, 0, 0, 0],
+                [0, 0, 0, 0],
+            ),
+            // Test with 32-bit MAX values
+            (
+                [0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF],
+                [0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF],
+                [0x8F1BBCDC, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF],
+            ),
+        ];
+
+        // Run the test cases
+        for (abcd, msg, expected) in test_cases {
+            let result = sha1_first_half(abcd, msg);
+            assert_eq!(result, expected);
+        }
+    }
+}
+   Compiling sha1 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/sha1)
+error[E0432]: unresolved import `crate::sha1_first_half`
+   --> sha1/src/compress/soft.rs:295:9
+    |
+295 |     use crate::sha1_first_half;
+    |         ^^^^^^^^^^^^^^^^^^^^^^ no `sha1_first_half` in the root
+
+error[E0432]: unresolved import `crate::sha1_first_add`
+   --> sha1/src/compress/soft.rs:296:9
+    |
+296 |     use crate::sha1_first_add;
+    |         ^^^^^^^^^^^^^^^^^^^^^ no `sha1_first_add` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `sha1` due to 2 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UX0H4RXIQihLuoKzsZFGxbWBssI9', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_12 {\n    use super::sha1_first_half;\n\n    #[test]\n    fn test_sha1_first_half() {\n        // Setup an internal function for the sake of the test\n        fn sha1_first_add(abcd: [u32; 4], msg: [u32; 4]) -> [u32; 4] {\n            // ... (omitted) implement the `sha1_first_add` function here or\n            // mock the expected behavior if the actual function is private\n        }\n\n        // Mock the `sha1_first_add` function for testing `sha1_first_half`\n        // This is just a placeholder; actual implementation details are needed\n        impl super::SoftSha1 {\n            fn sha1_first_add(abcd: u32, msg: [u32; 4]) -> [u32; 4] {\n                // Assuming the `sha1_first_add` is a method of SoftSha1 for the sake of example\n                sha1_first_add([abcd; 4], msg)\n            }\n        }\n\n        // Setup test cases\n        let test_cases = vec![\n            // Test that the function applies rotate left and sha1_first_add correctly\n            (\n                [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476],\n                [0x12345678, 0x9ABCDEF0, 0x0FEDCBA9, 0x87654321],\n                // Mocked expected result, actual result may differ\n                [0x8F1BBCDC, 0x98BADCFE, 0x10325476, 0x67452301],\n            ),\n            // Test with zeros\n            (\n                [0, 0, 0, 0],\n                [0, 0, 0, 0],\n                // Mocked expected result, actual result may differ\n                [0, 0, 0, 0],\n            ),\n            // Test with 32-bit MAX values\n            (\n                [0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF],\n                [0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF],\n                // Mocked expected result, actual result may differ\n                [0x8F1BBCDC, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF],\n            ),\n        ];\n\n        // Run the test cases\n        for (abcd, msg, expected) in test_cases {\n            let result = sha1_first_half(abcd, msg);\n            assert_eq!(result, expected);\n        }\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702287397, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=562, prompt_tokens=1124, total_tokens=1686))
+71
+========================================
+inject err compress::soft::sha1_first_half sha1/src/compress/soft.rs sha1_first_half
+#[cfg(test)]
+mod tests_llm_16_12_llm_16_12 {
+    use crate::sha1_first_half;
+
+    #[test]
+    fn test_sha1_first_half() {
+        // Setup an internal function for the sake of the test
+        fn sha1_first_add(abcd: [u32; 4], msg: [u32; 4]) -> [u32; 4] {
+            // ... (omitted) implement the `sha1_first_add` function here or
+            // mock the expected behavior if the actual function is private
+        }
+
+        // Mock the `sha1_first_add` function for testing `sha1_first_half`
+        // This is just a placeholder; actual implementation details are needed
+        impl super::SoftSha1 {
+            fn sha1_first_add(abcd: u32, msg: [u32; 4]) -> [u32; 4] {
+                // Assuming the `sha1_first_add` is a method of SoftSha1 for the sake of example
+                sha1_first_add([abcd; 4], msg)
+            }
+        }
+
+        // Setup test cases
+        let test_cases = vec![
+            // Test that the function applies rotate left and sha1_first_add correctly
+            (
+                [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476],
+                [0x12345678, 0x9ABCDEF0, 0x0FEDCBA9, 0x87654321],
+                // Mocked expected result, actual result may differ
+                [0x8F1BBCDC, 0x98BADCFE, 0x10325476, 0x67452301],
+            ),
+            // Test with zeros
+            (
+                [0, 0, 0, 0],
+                [0, 0, 0, 0],
+                // Mocked expected result, actual result may differ
+                [0, 0, 0, 0],
+            ),
+            // Test with 32-bit MAX values
+            (
+                [0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF],
+                [0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF],
+                // Mocked expected result, actual result may differ
+                [0x8F1BBCDC, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF],
+            ),
+        ];
+
+        // Run the test cases
+        for (abcd, msg, expected) in test_cases {
+            let result = sha1_first_half(abcd, msg);
+            assert_eq!(result, expected);
+        }
+    }
+}
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling sha1 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/sha1)
+error[E0432]: unresolved import `crate::sha1_first_half`
+   --> sha1/src/compress/soft.rs:295:9
+    |
+295 |     use crate::sha1_first_half;
+    |         ^^^^^^^^^^^^^^^^^^^^^^ no `sha1_first_half` in the root
+
+error[E0412]: cannot find type `SoftSha1` in module `super`
+   --> sha1/src/compress/soft.rs:307:21
+    |
+307 |         impl super::SoftSha1 {
+    |                     ^^^^^^^^ not found in `super`
+
+error[E0308]: mismatched types
+   --> sha1/src/compress/soft.rs:300:61
+    |
+300 |         fn sha1_first_add(abcd: [u32; 4], msg: [u32; 4]) -> [u32; 4] {
+    |            --------------                                   ^^^^^^^^ expected array `[u32; 4]`, found `()`
+    |            |
+    |            implicitly returns `()` as its body has no tail or `return` expression
+    |
+note: consider returning one of these bindings
+   --> sha1/src/compress/soft.rs:300:27
+    |
+300 |         fn sha1_first_add(abcd: [u32; 4], msg: [u32; 4]) -> [u32; 4] {
+    |                           ^^^^            ^^^
+
+Some errors have detailed explanations: E0308, E0412, E0432.
+For more information about an error, try `rustc --explain E0308`.
+error: could not compile `sha1` due to 3 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+repair err compress::soft::sha1_first_half sha1/src/compress/soft.rs sha1_first_half
+ChatCompletion(id='chatcmpl-8UX19d6DogeWaNLx3IjPBeYv1PWdh', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::sha1msg1;\n\n    #[test]\n    fn test_sha1msg1() {\n        // Test vectors\n        let input_a = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476];\n        let input_b = [0x89ABCDEF, 0x01234567, 0xFEDCBA98, 0x76543210];\n\n        // Expected output\n        let expected = [input_a[0] ^ input_a[2],    // 0x67452301 ^ 0x98BADCFE\n                        input_a[1] ^ input_a[3],    // 0xEFCDAB89 ^ 0x10325476\n                        input_a[2] ^ input_b[0],    // 0x98BADCFE ^ 0x89ABCDEF\n                        input_a[3] ^ input_b[1]];   // 0x10325476 ^ 0x01234567\n\n        // Perform the test\n        let result = sha1msg1(input_a, input_b);\n\n        // Verify the result\n        assert_eq!(result, expected);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702287451, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=266, prompt_tokens=233, total_tokens=499))
+71
+========================================
+inject err compress::soft::sha1msg1 sha1/src/compress/soft.rs sha1msg1
+#[cfg(test)]
+mod tests_llm_16_13 {
+    use crate::sha1msg1;
+
+    #[test]
+    fn test_sha1msg1() {
+        // Test vectors
+        let input_a = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476];
+        let input_b = [0x89ABCDEF, 0x01234567, 0xFEDCBA98, 0x76543210];
+
+        // Expected output
+        let expected = [input_a[0] ^ input_a[2],    // 0x67452301 ^ 0x98BADCFE
+                        input_a[1] ^ input_a[3],    // 0xEFCDAB89 ^ 0x10325476
+                        input_a[2] ^ input_b[0],    // 0x98BADCFE ^ 0x89ABCDEF
+                        input_a[3] ^ input_b[1]];   // 0x10325476 ^ 0x01234567
+
+        // Perform the test
+        let result = sha1msg1(input_a, input_b);
+
+        // Verify the result
+        assert_eq!(result, expected);
+    }
+}
+   Compiling sha1 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/sha1)
+error[E0432]: unresolved import `crate::sha1msg1`
+   --> sha1/src/compress/soft.rs:295:9
+    |
+295 |     use crate::sha1msg1;
+    |         ^^^^^^^^^^^^^^^ no `sha1msg1` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `sha1` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UX1WwKWQmcSflyLsK8TCZFXIsVfl', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_13 {\n    use super::sha1msg1;\n\n    #[test]\n    fn test_sha1msg1() {\n        // Test vectors\n        let input_a = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476];\n        let input_b = [0x89ABCDEF, 0x01234567, 0xFEDCBA98, 0x76543210];\n\n        // Expected output\n        let expected = [input_a[0] ^ input_a[2],    // 0x67452301 ^ 0x98BADCFE\n                        input_a[1] ^ input_a[3],    // 0xEFCDAB89 ^ 0x10325476\n                        input_a[2] ^ input_b[0],    // 0x98BADCFE ^ 0x89ABCDEF\n                        input_a[3] ^ input_b[1]];   // 0x10325476 ^ 0x01234567\n\n        // Perform the test\n        let result = sha1msg1(input_a, input_b);\n\n        // Verify the result\n        assert_eq!(result, expected);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702287474, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=272, prompt_tokens=957, total_tokens=1229))
+71
+========================================
+inject err compress::soft::sha1msg1 sha1/src/compress/soft.rs sha1msg1
+#[cfg(test)]
+mod tests_llm_16_13_llm_16_13 {
+    use crate::sha1msg1;
+
+    #[test]
+    fn test_sha1msg1() {
+        // Test vectors
+        let input_a = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476];
+        let input_b = [0x89ABCDEF, 0x01234567, 0xFEDCBA98, 0x76543210];
+
+        // Expected output
+        let expected = [input_a[0] ^ input_a[2],    // 0x67452301 ^ 0x98BADCFE
+                        input_a[1] ^ input_a[3],    // 0xEFCDAB89 ^ 0x10325476
+                        input_a[2] ^ input_b[0],    // 0x98BADCFE ^ 0x89ABCDEF
+                        input_a[3] ^ input_b[1]];   // 0x10325476 ^ 0x01234567
+
+        // Perform the test
+        let result = sha1msg1(input_a, input_b);
+
+        // Verify the result
+        assert_eq!(result, expected);
+    }
+}
+   Compiling sha1 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/sha1)
+error[E0432]: unresolved import `crate::sha1msg1`
+   --> sha1/src/compress/soft.rs:295:9
+    |
+295 |     use crate::sha1msg1;
+    |         ^^^^^^^^^^^^^^^ no `sha1msg1` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `sha1` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+repair err compress::soft::sha1msg1 sha1/src/compress/soft.rs sha1msg1
+ChatCompletion(id='chatcmpl-8UX1rk1fpVhvsr1vc1dPDcLhFjgDh', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::sha1msg2;\n\n    #[test]\n    fn test_sha1msg2() {\n        // Test vector 1\n        {\n            let a = [0x61626364, 0x62636465, 0x63646566, 0x64656667];\n            let b = [0, 0x78797a7b, 0x797a7b7c, 0x7a7b7c7d];\n            let expected = [0xe0e1e2e2, 0xe1e2e3e3, 0xe2e3e4e4, 0xe3e4e4e1];\n            let result = sha1msg2(a, b);\n            assert_eq!(result, expected);\n        }\n\n        // Test vector 2\n        {\n            let a = [0x00010203, 0x01020304, 0x02030405, 0x03040506];\n            let b = [0, 0x18191a1b, 0x191a1b1c, 0x1a1b1c1d];\n            let expected = [0x191a1b10, 0x1a1b1c11, 0x1b1c1d12, 0x1c1d1d14];\n            let result = sha1msg2(a, b);\n            assert_eq!(result, expected);\n        }\n\n        // Additional test vectors can be added here\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702287495, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_6aca3b5ce1', usage=CompletionUsage(completion_tokens=342, prompt_tokens=286, total_tokens=628))
+71
+========================================
+inject err compress::soft::sha1msg2 sha1/src/compress/soft.rs sha1msg2
+#[cfg(test)]
+mod tests_llm_16_14 {
+    use crate::sha1msg2;
+
+    #[test]
+    fn test_sha1msg2() {
+        // Test vector 1
+        {
+            let a = [0x61626364, 0x62636465, 0x63646566, 0x64656667];
+            let b = [0, 0x78797a7b, 0x797a7b7c, 0x7a7b7c7d];
+            let expected = [0xe0e1e2e2, 0xe1e2e3e3, 0xe2e3e4e4, 0xe3e4e4e1];
+            let result = sha1msg2(a, b);
+            assert_eq!(result, expected);
+        }
+
+        // Test vector 2
+        {
+            let a = [0x00010203, 0x01020304, 0x02030405, 0x03040506];
+            let b = [0, 0x18191a1b, 0x191a1b1c, 0x1a1b1c1d];
+            let expected = [0x191a1b10, 0x1a1b1c11, 0x1b1c1d12, 0x1c1d1d14];
+            let result = sha1msg2(a, b);
+            assert_eq!(result, expected);
+        }
+
+        // Additional test vectors can be added here
+    }
+}
+   Compiling sha1 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/sha1)
+error[E0432]: unresolved import `crate::sha1msg2`
+   --> sha1/src/compress/soft.rs:295:9
+    |
+295 |     use crate::sha1msg2;
+    |         ^^^^^^^^^^^^^^^ no `sha1msg2` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `sha1` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UX2Nz9Mtw2nJBFVMOt20vIXLX2lx', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_14 {\n    use super::sha1msg2;\n\n    #[test]\n    fn test_sha1msg2() {\n        // Test vector 1\n        {\n            let a = [0x61626364, 0x62636465, 0x63646566, 0x64656667];\n            let b = [0, 0x78797a7b, 0x797a7b7c, 0x7a7b7c7d];\n            let expected = [0xe0e1e2e2, 0xe1e2e3e3, 0xe2e3e4e4, 0xe3e4e4e1];\n            let result = sha1msg2(a, b);\n            assert_eq!(result, expected);\n        }\n\n        // Test vector 2\n        {\n            let a = [0x00010203, 0x01020304, 0x02030405, 0x03040506];\n            let b = [0, 0x18191a1b, 0x191a1b1c, 0x1a1b1c1d];\n            let expected = [0x191a1b10, 0x1a1b1c11, 0x1b1c1d12, 0x1c1d1d14];\n            let result = sha1msg2(a, b);\n            assert_eq!(result, expected);\n        }\n\n        // Additional test vectors can be added here\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702287527, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=348, prompt_tokens=1162, total_tokens=1510))
+71
+========================================
+inject err compress::soft::sha1msg2 sha1/src/compress/soft.rs sha1msg2
+#[cfg(test)]
+mod tests_llm_16_14_llm_16_14 {
+    use crate::sha1msg2;
+
+    #[test]
+    fn test_sha1msg2() {
+        // Test vector 1
+        {
+            let a = [0x61626364, 0x62636465, 0x63646566, 0x64656667];
+            let b = [0, 0x78797a7b, 0x797a7b7c, 0x7a7b7c7d];
+            let expected = [0xe0e1e2e2, 0xe1e2e3e3, 0xe2e3e4e4, 0xe3e4e4e1];
+            let result = sha1msg2(a, b);
+            assert_eq!(result, expected);
+        }
+
+        // Test vector 2
+        {
+            let a = [0x00010203, 0x01020304, 0x02030405, 0x03040506];
+            let b = [0, 0x18191a1b, 0x191a1b1c, 0x1a1b1c1d];
+            let expected = [0x191a1b10, 0x1a1b1c11, 0x1b1c1d12, 0x1c1d1d14];
+            let result = sha1msg2(a, b);
+            assert_eq!(result, expected);
+        }
+
+        // Additional test vectors can be added here
+    }
+}
+   Compiling sha1 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/sha1)
+error[E0432]: unresolved import `crate::sha1msg2`
+   --> sha1/src/compress/soft.rs:295:9
+    |
+295 |     use crate::sha1msg2;
+    |         ^^^^^^^^^^^^^^^ no `sha1msg2` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `sha1` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+repair err compress::soft::sha1msg2 sha1/src/compress/soft.rs sha1msg2
+ChatCompletion(id='chatcmpl-8UX2xXOfNFaadI2ymhEQfb5u8lQMR', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::sha1rnds4c;\n\n    #[test]\n    fn test_sha1rnds4c() {\n        // Provide test values for abcd and msg for which the expected result is known\n        let abcd = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476];\n        let msg = [0xD76AA478, 0xE8C7B756, 0x242070DB, 0xC1BDCEEE];\n        // Provide the expected result for the given test values\n        let expected = [0xF0E1D143, 0x7DC311D4, 0x6D0B4CEB, 0xC0FBD4A2];\n        assert_eq!(sha1rnds4c(abcd, msg), expected, "sha1rnds4c did not return the expected result");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702287563, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_6aca3b5ce1', usage=CompletionUsage(completion_tokens=213, prompt_tokens=479, total_tokens=692))
+71
+========================================
+inject err compress::soft::sha1rnds4c sha1/src/compress/soft.rs sha1rnds4c
+#[cfg(test)]
+mod tests_llm_16_15 {
+    use crate::sha1rnds4c;
+
+    #[test]
+    fn test_sha1rnds4c() {
+        // Provide test values for abcd and msg for which the expected result is known
+        let abcd = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476];
+        let msg = [0xD76AA478, 0xE8C7B756, 0x242070DB, 0xC1BDCEEE];
+        // Provide the expected result for the given test values
+        let expected = [0xF0E1D143, 0x7DC311D4, 0x6D0B4CEB, 0xC0FBD4A2];
+        assert_eq!(sha1rnds4c(abcd, msg), expected, "sha1rnds4c did not return the expected result");
+    }
+}
+   Compiling sha1 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/sha1)
+error[E0432]: unresolved import `crate::sha1rnds4c`
+   --> sha1/src/compress/soft.rs:295:9
+    |
+295 |     use crate::sha1rnds4c;
+    |         ^^^^^^^^^^^^^^^^^ no `sha1rnds4c` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `sha1` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UX3GyuR3033xHSGkNGzPbZGUKGAc', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_15 {\n    use super::sha1rnds4c;\n\n    #[test]\n    fn test_sha1rnds4c() {\n        // Provide test values for abcd and msg for which the expected result is known\n        let abcd = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476];\n        let msg = [0xD76AA478, 0xE8C7B756, 0x242070DB, 0xC1BDCEEE];\n        // Provide the expected result for the given test values\n        let expected = [0xF0E1D143, 0x7DC311D4, 0x6D0B4CEB, 0xC0FBD4A2];\n        assert_eq!(sha1rnds4c(abcd, msg), expected, "sha1rnds4c did not return the expected result");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702287582, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=219, prompt_tokens=1103, total_tokens=1322))
+71
+========================================
+inject err compress::soft::sha1rnds4c sha1/src/compress/soft.rs sha1rnds4c
+#[cfg(test)]
+mod tests_llm_16_15_llm_16_15 {
+    use crate::sha1rnds4c;
+
+    #[test]
+    fn test_sha1rnds4c() {
+        // Provide test values for abcd and msg for which the expected result is known
+        let abcd = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476];
+        let msg = [0xD76AA478, 0xE8C7B756, 0x242070DB, 0xC1BDCEEE];
+        // Provide the expected result for the given test values
+        let expected = [0xF0E1D143, 0x7DC311D4, 0x6D0B4CEB, 0xC0FBD4A2];
+        assert_eq!(sha1rnds4c(abcd, msg), expected, "sha1rnds4c did not return the expected result");
+    }
+}
+   Compiling sha1 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/sha1)
+error[E0432]: unresolved import `crate::sha1rnds4c`
+   --> sha1/src/compress/soft.rs:295:9
+    |
+295 |     use crate::sha1rnds4c;
+    |         ^^^^^^^^^^^^^^^^^ no `sha1rnds4c` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `sha1` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+repair err compress::soft::sha1rnds4c sha1/src/compress/soft.rs sha1rnds4c
+ChatCompletion(id='chatcmpl-8UX3YSshrg52bcEAa4ix7fYB2YFWp', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::sha1rnds4m;\n\n    #[test]\n    fn test_sha1rnds4m() {\n        let abcd = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476];\n        let msg = [0xD76AA478, 0xE8C7B756, 0x242070DB, 0xC1BDCEEE];\n        let expected = [0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0];\n        let result = sha1rnds4m(abcd, msg);\n\n        assert_eq!(result, expected, "sha1rnds4m did not produce the expected result.");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702287600, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=183, prompt_tokens=483, total_tokens=666))
+71
+========================================
+inject err compress::soft::sha1rnds4m sha1/src/compress/soft.rs sha1rnds4m
+#[cfg(test)]
+mod tests_llm_16_16 {
+    use crate::sha1rnds4m;
+
+    #[test]
+    fn test_sha1rnds4m() {
+        let abcd = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476];
+        let msg = [0xD76AA478, 0xE8C7B756, 0x242070DB, 0xC1BDCEEE];
+        let expected = [0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0];
+        let result = sha1rnds4m(abcd, msg);
+
+        assert_eq!(result, expected, "sha1rnds4m did not produce the expected result.");
+    }
+}
+   Compiling sha1 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/sha1)
+error[E0432]: unresolved import `crate::sha1rnds4m`
+   --> sha1/src/compress/soft.rs:295:9
+    |
+295 |     use crate::sha1rnds4m;
+    |         ^^^^^^^^^^^^^^^^^ no `sha1rnds4m` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `sha1` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UX5TuETy6cFHwUQk9mSK3iQrnHRM', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_16 {\n    use super::sha1rnds4m;\n\n    #[test]\n    fn test_sha1rnds4m() {\n        let abcd = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476];\n        let msg = [0xD76AA478, 0xE8C7B756, 0x242070DB, 0xC1BDCEEE];\n        let expected = [0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0];\n        let result = sha1rnds4m(abcd, msg);\n\n        assert_eq!(result, expected, "sha1rnds4m did not produce the expected result.");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702287719, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=189, prompt_tokens=1047, total_tokens=1236))
+71
+========================================
+inject err compress::soft::sha1rnds4m sha1/src/compress/soft.rs sha1rnds4m
+#[cfg(test)]
+mod tests_llm_16_16_llm_16_16 {
+    use crate::sha1rnds4m;
+
+    #[test]
+    fn test_sha1rnds4m() {
+        let abcd = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476];
+        let msg = [0xD76AA478, 0xE8C7B756, 0x242070DB, 0xC1BDCEEE];
+        let expected = [0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0];
+        let result = sha1rnds4m(abcd, msg);
+
+        assert_eq!(result, expected, "sha1rnds4m did not produce the expected result.");
+    }
+}
+   Compiling sha1 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/sha1)
+error[E0432]: unresolved import `crate::sha1rnds4m`
+   --> sha1/src/compress/soft.rs:295:9
+    |
+295 |     use crate::sha1rnds4m;
+    |         ^^^^^^^^^^^^^^^^^ no `sha1rnds4m` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `sha1` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+repair err compress::soft::sha1rnds4m sha1/src/compress/soft.rs sha1rnds4m
+ChatCompletion(id='chatcmpl-8UX5jXhImQxpdzkmQ4uJMO9Q8qcfx', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::sha1rnds4p;\n\n    #[test]\n    fn test_sha1rnds4p() {\n        let abcd = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476];\n        let msg = [0xD76AA478, 0xE8C7B756, 0x242070DB, 0xC1BDCEEE];\n        let expected = [0x98badcfe, 0x10325476, 0xefcdab89, 0x67452301];\n        assert_eq!(sha1rnds4p(abcd, msg), expected);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702287735, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_6aca3b5ce1', usage=CompletionUsage(completion_tokens=159, prompt_tokens=479, total_tokens=638))
+71
+========================================
+inject err compress::soft::sha1rnds4p sha1/src/compress/soft.rs sha1rnds4p
+#[cfg(test)]
+mod tests_llm_16_17 {
+    use crate::sha1rnds4p;
+
+    #[test]
+    fn test_sha1rnds4p() {
+        let abcd = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476];
+        let msg = [0xD76AA478, 0xE8C7B756, 0x242070DB, 0xC1BDCEEE];
+        let expected = [0x98badcfe, 0x10325476, 0xefcdab89, 0x67452301];
+        assert_eq!(sha1rnds4p(abcd, msg), expected);
+    }
+}
+   Compiling sha1 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/sha1)
+error[E0432]: unresolved import `crate::sha1rnds4p`
+   --> sha1/src/compress/soft.rs:295:9
+    |
+295 |     use crate::sha1rnds4p;
+    |         ^^^^^^^^^^^^^^^^^ no `sha1rnds4p` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `sha1` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UX5uvsiCp8oyHnsobI0cpQo8hntG', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_17 {\n    use super::sha1rnds4p;\n\n    #[test]\n    fn test_sha1rnds4p() {\n        let abcd = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476];\n        let msg = [0xD76AA478, 0xE8C7B756, 0x242070DB, 0xC1BDCEEE];\n        let expected = [0x98badcfe, 0x10325476, 0xefcdab89, 0x67452301];\n        assert_eq!(sha1rnds4p(abcd, msg), expected);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702287746, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=165, prompt_tokens=995, total_tokens=1160))
+71
+========================================
+inject err compress::soft::sha1rnds4p sha1/src/compress/soft.rs sha1rnds4p
+#[cfg(test)]
+mod tests_llm_16_17_llm_16_17 {
+    use crate::sha1rnds4p;
+
+    #[test]
+    fn test_sha1rnds4p() {
+        let abcd = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476];
+        let msg = [0xD76AA478, 0xE8C7B756, 0x242070DB, 0xC1BDCEEE];
+        let expected = [0x98badcfe, 0x10325476, 0xefcdab89, 0x67452301];
+        assert_eq!(sha1rnds4p(abcd, msg), expected);
+    }
+}
+   Compiling sha1 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/sha1)
+error[E0432]: unresolved import `crate::sha1rnds4p`
+   --> sha1/src/compress/soft.rs:295:9
+    |
+295 |     use crate::sha1rnds4p;
+    |         ^^^^^^^^^^^^^^^^^ no `sha1rnds4p` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `sha1` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+repair err compress::soft::sha1rnds4p sha1/src/compress/soft.rs sha1rnds4p
+ChatCompletion(id='chatcmpl-8UX67Sh6dX3P1jfSuIeJ31EleX6FS', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::xor;\n\n    #[test]\n    fn test_xor() {\n        assert_eq!(\n            xor([0, 0, 0, 0], [0, 0, 0, 0]),\n            [0, 0, 0, 0]\n        );\n\n        assert_eq!(\n            xor([0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff], [0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff]),\n            [0, 0, 0, 0]\n        );\n\n        assert_eq!(\n            xor([0x0f0f0f0f, 0x0f0f0f0f, 0x0f0f0f0f, 0x0f0f0f0f], [0xf0f0f0f0, 0xf0f0f0f0, 0xf0f0f0f0, 0xf0f0f0f0]),\n            [0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff]\n        );\n\n        assert_eq!(\n            xor([0x12345678, 0x9abcdef0, 0x13579bdf, 0xfedcba98], [0x12345678, 0x9abcdef0, 0x13579bdf, 0xfedcba98]),\n            [0, 0, 0, 0]\n        );\n\n        assert_eq!(\n            xor([0x12345678, 0x87654321, 0x11111111, 0x22222222], [0x00000000, 0xffffffff, 0x33333333, 0x44444444]),\n            [0x12345678, 0x789abcde, 0x22222222, 0x66666666]\n        );\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702287759, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=414, prompt_tokens=203, total_tokens=617))
+71
+========================================
+inject err compress::soft::xor sha1/src/compress/soft.rs xor
+#[cfg(test)]
+mod tests_llm_16_18 {
+    use crate::xor;
+
+    #[test]
+    fn test_xor() {
+        assert_eq!(
+            xor([0, 0, 0, 0], [0, 0, 0, 0]),
+            [0, 0, 0, 0]
+        );
+
+        assert_eq!(
+            xor([0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff], [0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff]),
+            [0, 0, 0, 0]
+        );
+
+        assert_eq!(
+            xor([0x0f0f0f0f, 0x0f0f0f0f, 0x0f0f0f0f, 0x0f0f0f0f], [0xf0f0f0f0, 0xf0f0f0f0, 0xf0f0f0f0, 0xf0f0f0f0]),
+            [0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff]
+        );
+
+        assert_eq!(
+            xor([0x12345678, 0x9abcdef0, 0x13579bdf, 0xfedcba98], [0x12345678, 0x9abcdef0, 0x13579bdf, 0xfedcba98]),
+            [0, 0, 0, 0]
+        );
+
+        assert_eq!(
+            xor([0x12345678, 0x87654321, 0x11111111, 0x22222222], [0x00000000, 0xffffffff, 0x33333333, 0x44444444]),
+            [0x12345678, 0x789abcde, 0x22222222, 0x66666666]
+        );
+    }
+}
+   Compiling sha1 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/sha1)
+error[E0432]: unresolved import `crate::xor`
+   --> sha1/src/compress/soft.rs:295:9
+    |
+295 |     use crate::xor;
+    |         ^^^^^^^^^^ no `xor` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `sha1` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UX6kRhpsB821XBDG6lyGomwQBNnO', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_18 {\n    use super::xor;\n\n    #[test]\n    fn test_xor() {\n        assert_eq!(\n            xor([0, 0, 0, 0], [0, 0, 0, 0]),\n            [0, 0, 0, 0]\n        );\n\n        assert_eq!(\n            xor([0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff], [0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff]),\n            [0, 0, 0, 0]\n        );\n\n        assert_eq!(\n            xor([0x0f0f0f0f, 0x0f0f0f0f, 0x0f0f0f0f, 0x0f0f0f0f], [0xf0f0f0f0, 0xf0f0f0f0, 0xf0f0f0f0, 0xf0f0f0f0]),\n            [0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff]\n        );\n\n        assert_eq!(\n            xor([0x12345678, 0x9abcdef0, 0x13579bdf, 0xfedcba98], [0x12345678, 0x9abcdef0, 0x13579bdf, 0xfedcba98]),\n            [0, 0, 0, 0]\n        );\n\n        assert_eq!(\n            xor([0x12345678, 0x87654321, 0x11111111, 0x22222222], [0x00000000, 0xffffffff, 0x33333333, 0x44444444]),\n            [0x12345678, 0x789abcde, 0x22222222, 0x66666666]\n        );\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702287798, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_6aca3b5ce1', usage=CompletionUsage(completion_tokens=420, prompt_tokens=1213, total_tokens=1633))
+71
+========================================
+inject err compress::soft::xor sha1/src/compress/soft.rs xor
+#[cfg(test)]
+mod tests_llm_16_18_llm_16_18 {
+    use crate::xor;
+
+    #[test]
+    fn test_xor() {
+        assert_eq!(
+            xor([0, 0, 0, 0], [0, 0, 0, 0]),
+            [0, 0, 0, 0]
+        );
+
+        assert_eq!(
+            xor([0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff], [0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff]),
+            [0, 0, 0, 0]
+        );
+
+        assert_eq!(
+            xor([0x0f0f0f0f, 0x0f0f0f0f, 0x0f0f0f0f, 0x0f0f0f0f], [0xf0f0f0f0, 0xf0f0f0f0, 0xf0f0f0f0, 0xf0f0f0f0]),
+            [0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff]
+        );
+
+        assert_eq!(
+            xor([0x12345678, 0x9abcdef0, 0x13579bdf, 0xfedcba98], [0x12345678, 0x9abcdef0, 0x13579bdf, 0xfedcba98]),
+            [0, 0, 0, 0]
+        );
+
+        assert_eq!(
+            xor([0x12345678, 0x87654321, 0x11111111, 0x22222222], [0x00000000, 0xffffffff, 0x33333333, 0x44444444]),
+            [0x12345678, 0x789abcde, 0x22222222, 0x66666666]
+        );
+    }
+}
+   Compiling sha1 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/sha1)
+error[E0432]: unresolved import `crate::xor`
+   --> sha1/src/compress/soft.rs:295:9
+    |
+295 |     use crate::xor;
+    |         ^^^^^^^^^^ no `xor` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `sha1` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+repair err compress::soft::xor sha1/src/compress/soft.rs xor
+ChatCompletion(id='chatcmpl-8UX7HZvxdysLQInHf0KVLPcT666IE', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::compress;\n    use sha1::compress::soft::compress as soft_compress;\n    use shani_cpuid::get as cpuid_get;\n\n    #[test]\n    fn test_compress_equivalence() {\n        let mut state = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0];\n        let mut soft_state = state;\n        let blocks = [b"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".as_ref().try_into().unwrap()];\n\n        compress(&mut state, &blocks);\n        soft_compress(&mut soft_state, &blocks);\n\n        assert_eq!(state, soft_state, "Hardware-accelerated and software implementations of compress should be equivalent");\n    }\n\n    #[test]\n    fn test_compress_known_values() {\n        let mut state = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0];\n        let blocks = [b"The quick brown fox jumps over the lazy dog".as_ref().try_into().unwrap()];\n\n        compress(&mut state, &blocks);\n\n        let expected_state = [0x2fd4e1c6, 0x7a2d28fc, 0xed849ee1, 0xbb76e739, 0x1b93eb12];\n        assert_eq!(state, expected_state, "compress function did not produce the expected state");\n    }\n\n    #[test]\n    fn test_compress_with_cpuid_check() {\n        let mut state = [0x12345678, 0x9ABCDEF0, 0x0FEDCBA9, 0x87654321, 0xFEDCBA98];\n        let blocks = [b"Test block for CPUID check".as_ref().try_into().unwrap()];\n\n        if cpuid_get() {\n            unsafe {\n                super::digest_blocks(&mut state, &blocks);\n            }\n        } else {\n            soft_compress(&mut state, &blocks);\n        }\n\n        let mut expected_state = state;\n        compress(&mut expected_state, &blocks);\n\n        assert_eq!(state, expected_state, "compress function should be consistent with CPUID check");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702287831, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=502, prompt_tokens=223, total_tokens=725))
+71
+========================================
+inject err compress::x86::compress sha1/src/compress/x86.rs compress
+#[cfg(test)]
+mod tests_llm_16_19 {
+    use crate::compress;
+    use crate::compress::soft::compress as soft_compress;
+    use shani_cpuid::get as cpuid_get;
+
+    #[test]
+    fn test_compress_equivalence() {
+        let mut state = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0];
+        let mut soft_state = state;
+        let blocks = [b"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".as_ref().try_into().unwrap()];
+
+        compress(&mut state, &blocks);
+        soft_compress(&mut soft_state, &blocks);
+
+        assert_eq!(state, soft_state, "Hardware-accelerated and software implementations of compress should be equivalent");
+    }
+
+    #[test]
+    fn test_compress_known_values() {
+        let mut state = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0];
+        let blocks = [b"The quick brown fox jumps over the lazy dog".as_ref().try_into().unwrap()];
+
+        compress(&mut state, &blocks);
+
+        let expected_state = [0x2fd4e1c6, 0x7a2d28fc, 0xed849ee1, 0xbb76e739, 0x1b93eb12];
+        assert_eq!(state, expected_state, "compress function did not produce the expected state");
+    }
+
+    #[test]
+    fn test_compress_with_cpuid_check() {
+        let mut state = [0x12345678, 0x9ABCDEF0, 0x0FEDCBA9, 0x87654321, 0xFEDCBA98];
+        let blocks = [b"Test block for CPUID check".as_ref().try_into().unwrap()];
+
+        if cpuid_get() {
+            unsafe {
+                super::digest_blocks(&mut state, &blocks);
+            }
+        } else {
+            soft_compress(&mut state, &blocks);
+        }
+
+        let mut expected_state = state;
+        compress(&mut expected_state, &blocks);
+
+        assert_eq!(state, expected_state, "compress function should be consistent with CPUID check");
+    }
+}
+   Compiling sha1 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/sha1)
+error[E0432]: unresolved import `shani_cpuid`
+   --> sha1/src/compress/x86.rs:117:9
+    |
+117 |     use shani_cpuid::get as cpuid_get;
+    |         ^^^^^^^^^^^ help: a similar path exists: `super::shani_cpuid`
+
+error[E0599]: no method named `try_into` found for reference `&[u8]` in the current scope
+   --> sha1/src/compress/x86.rs:123:98
+    |
+123 |         let blocks = [b"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".as_ref().try_into().unwrap()];
+    |                                                                                                  ^^^^^^^^ method not found in `&[u8]`
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+    |
+115 |     use std::convert::TryInto;
+    |
+
+error[E0308]: mismatched types
+   --> sha1/src/compress/x86.rs:126:40
+    |
+126 |         soft_compress(&mut soft_state, &blocks);
+    |         -------------                  ^^^^^^^ expected array `[u8; 64]`, found struct `GenericArray`
+    |         |
+    |         arguments to this function are incorrect
+    |
+    = note: expected reference `&[[u8; 64]]`
+               found reference `&[GenericArray<u8, UInt<UInt<UInt<UInt<UInt<UInt<UInt<UTerm, B1>, B0>, B0>, B0>, B0>, B0>, B0>>]`
+note: function defined here
+   --> sha1/src/compress/soft.rs:248:8
+    |
+248 | pub fn compress(state: &mut [u32; 5], blocks: &[[u8; BLOCK_SIZE]]) {
+    |        ^^^^^^^^                       ---------------------------
+
+error[E0599]: no method named `try_into` found for reference `&[u8]` in the current scope
+   --> sha1/src/compress/x86.rs:134:79
+    |
+134 |         let blocks = [b"The quick brown fox jumps over the lazy dog".as_ref().try_into().unwrap()];
+    |                                                                               ^^^^^^^^ method not found in `&[u8]`
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+    |
+115 |     use std::convert::TryInto;
+    |
+
+error[E0599]: no method named `try_into` found for reference `&[u8]` in the current scope
+   --> sha1/src/compress/x86.rs:145:62
+    |
+145 |         let blocks = [b"Test block for CPUID check".as_ref().try_into().unwrap()];
+    |                                                              ^^^^^^^^ method not found in `&[u8]`
+    |
+    = help: items from traits can only be used if the trait is in scope
+    = note: 'std::convert::TryInto' is included in the prelude starting in Edition 2021
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+    |
+115 |     use std::convert::TryInto;
+    |
+
+error[E0308]: mismatched types
+   --> sha1/src/compress/x86.rs:156:39
+    |
+156 |         compress(&mut expected_state, &blocks);
+    |         --------                      ^^^^^^^ expected struct `GenericArray`, found array `[u8; 64]`
+    |         |
+    |         arguments to this function are incorrect
+    |
+    = note: expected reference `&[GenericArray<u8, UInt<UInt<UInt<UInt<UInt<UInt<UInt<UTerm, B1>, B0>, B0>, B0>, B0>, B0>, B0>>]`
+               found reference `&[[u8; 64]]`
+note: function defined here
+   --> sha1/src/compress.rs:31:8
+    |
+31  | pub fn compress(state: &mut [u32; 5], blocks: &[Block<Sha1Core>]) {
+    |        ^^^^^^^^                       --------------------------
+
+Some errors have detailed explanations: E0308, E0432, E0599.
+For more information about an error, try `rustc --explain E0308`.
+error: could not compile `sha1` due to 6 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UX7vV4ny0TygMh6efED4CAqTbyjz', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_19 {\n    use crate::compress::x86::compress;\n    use crate::compress::soft::compress as soft_compress;\n    use crate::compress::x86::shani_cpuid;\n    use crate::digest::generic_array::GenericArray;\n    use crate::digest::generic_array::typenum::U64;\n\n    #[test]\n    fn test_compress_equivalence() {\n        let mut state = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0];\n        let mut soft_state = state;\n        let block = GenericArray::clone_from_slice(b"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");\n        let blocks = [block];\n\n        compress(&mut state, &blocks);\n        soft_compress(&mut soft_state, &blocks);\n\n        assert_eq!(state, soft_state, "Hardware-accelerated and software implementations of compress should be equivalent");\n    }\n\n    #[test]\n    fn test_compress_known_values() {\n        let mut state = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0];\n        let block = GenericArray::clone_from_slice(b"The quick brown fox jumps over the lazy dog");\n        let blocks = [block];\n\n        compress(&mut state, &blocks);\n\n        let expected_state = [0x2fd4e1c6, 0x7a2d28fc, 0xed849ee1, 0xbb76e739, 0x1b93eb12];\n        assert_eq!(state, expected_state, "compress function did not produce the expected state");\n    }\n\n    #[test]\n    fn test_compress_with_cpuid_check() {\n        let mut state = [0x12345678, 0x9ABCDEF0, 0x0FEDCBA9, 0x87654321, 0xFEDCBA98];\n        let block = GenericArray::clone_from_slice(b"Test block for CPUID check");\n        let blocks = [block];\n\n        if shani_cpuid::get() {\n            unsafe {\n                crate::compress::x86::digest_blocks(&mut state, &blocks);\n            }\n        } else {\n            soft_compress(&mut state, &blocks);\n        }\n\n        let mut expected_state = state;\n        compress(&mut expected_state, &blocks);\n\n        assert_eq!(state, expected_state, "compress function should be consistent with CPUID check");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702287871, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=557, prompt_tokens=2357, total_tokens=2914))
+71
+========================================
+inject err compress::x86::compress sha1/src/compress/x86.rs compress
+#[cfg(test)]
+mod tests_llm_16_19_llm_16_19 {
+    use crate::compress::x86::compress;
+    use crate::compress::soft::compress as soft_compress;
+    use crate::compress::x86::shani_cpuid;
+    use crate::digest::generic_array::GenericArray;
+    use crate::digest::generic_array::typenum::U64;
+
+    #[test]
+    fn test_compress_equivalence() {
+        let mut state = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0];
+        let mut soft_state = state;
+        let block = GenericArray::clone_from_slice(b"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
+        let blocks = [block];
+
+        compress(&mut state, &blocks);
+        soft_compress(&mut soft_state, &blocks);
+
+        assert_eq!(state, soft_state, "Hardware-accelerated and software implementations of compress should be equivalent");
+    }
+
+    #[test]
+    fn test_compress_known_values() {
+        let mut state = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0];
+        let block = GenericArray::clone_from_slice(b"The quick brown fox jumps over the lazy dog");
+        let blocks = [block];
+
+        compress(&mut state, &blocks);
+
+        let expected_state = [0x2fd4e1c6, 0x7a2d28fc, 0xed849ee1, 0xbb76e739, 0x1b93eb12];
+        assert_eq!(state, expected_state, "compress function did not produce the expected state");
+    }
+
+    #[test]
+    fn test_compress_with_cpuid_check() {
+        let mut state = [0x12345678, 0x9ABCDEF0, 0x0FEDCBA9, 0x87654321, 0xFEDCBA98];
+        let block = GenericArray::clone_from_slice(b"Test block for CPUID check");
+        let blocks = [block];
+
+        if shani_cpuid::get() {
+            unsafe {
+                crate::compress::x86::digest_blocks(&mut state, &blocks);
+            }
+        } else {
+            soft_compress(&mut state, &blocks);
+        }
+
+        let mut expected_state = state;
+        compress(&mut expected_state, &blocks);
+
+        assert_eq!(state, expected_state, "compress function should be consistent with CPUID check");
+    }
+}
+   Compiling sha1 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/sha1)
+error[E0308]: mismatched types
+   --> sha1/src/compress/x86.rs:128:30
+    |
+128 |         compress(&mut state, &blocks);
+    |         --------             ^^^^^^^ expected slice `[[u8; 64]]`, found array of 1 element
+    |         |
+    |         arguments to this function are incorrect
+    |
+    = note: expected reference `&[[u8; 64]]`
+               found reference `&[GenericArray<u8, _>; 1]`
+note: function defined here
+   --> sha1/src/compress/x86.rs:102:8
+    |
+102 | pub fn compress(state: &mut [u32; 5], blocks: &[[u8; 64]]) {
+    |        ^^^^^^^^                       -------------------
+
+error[E0308]: mismatched types
+   --> sha1/src/compress/x86.rs:129:40
+    |
+129 |         soft_compress(&mut soft_state, &blocks);
+    |         -------------                  ^^^^^^^ expected slice `[[u8; 64]]`, found array of 1 element
+    |         |
+    |         arguments to this function are incorrect
+    |
+    = note: expected reference `&[[u8; 64]]`
+               found reference `&[GenericArray<u8, _>; 1]`
+note: function defined here
+   --> sha1/src/compress/soft.rs:248:8
+    |
+248 | pub fn compress(state: &mut [u32; 5], blocks: &[[u8; BLOCK_SIZE]]) {
+    |        ^^^^^^^^                       ---------------------------
+
+error[E0308]: mismatched types
+   --> sha1/src/compress/x86.rs:140:30
+    |
+140 |         compress(&mut state, &blocks);
+    |         --------             ^^^^^^^ expected slice `[[u8; 64]]`, found array of 1 element
+    |         |
+    |         arguments to this function are incorrect
+    |
+    = note: expected reference `&[[u8; 64]]`
+               found reference `&[GenericArray<u8, _>; 1]`
+note: function defined here
+   --> sha1/src/compress/x86.rs:102:8
+    |
+102 | pub fn compress(state: &mut [u32; 5], blocks: &[[u8; 64]]) {
+    |        ^^^^^^^^                       -------------------
+
+error[E0308]: mismatched types
+   --> sha1/src/compress/x86.rs:154:65
+    |
+154 |                 crate::compress::x86::digest_blocks(&mut state, &blocks);
+    |                 -----------------------------------             ^^^^^^^ expected slice `[[u8; 64]]`, found array of 1 element
+    |                 |
+    |                 arguments to this function are incorrect
+    |
+    = note: expected reference `&[[u8; 64]]`
+               found reference `&[GenericArray<u8, _>; 1]`
+note: function defined here
+   --> sha1/src/compress/x86.rs:34:11
+    |
+34  | unsafe fn digest_blocks(state: &mut [u32; 5], blocks: &[[u8; 64]]) {
+    |           ^^^^^^^^^^^^^                       -------------------
+
+error[E0308]: mismatched types
+   --> sha1/src/compress/x86.rs:157:39
+    |
+157 |             soft_compress(&mut state, &blocks);
+    |             -------------             ^^^^^^^ expected slice `[[u8; 64]]`, found array of 1 element
+    |             |
+    |             arguments to this function are incorrect
+    |
+    = note: expected reference `&[[u8; 64]]`
+               found reference `&[GenericArray<u8, _>; 1]`
+note: function defined here
+   --> sha1/src/compress/soft.rs:248:8
+    |
+248 | pub fn compress(state: &mut [u32; 5], blocks: &[[u8; BLOCK_SIZE]]) {
+    |        ^^^^^^^^                       ---------------------------
+
+error[E0308]: mismatched types
+   --> sha1/src/compress/x86.rs:161:39
+    |
+161 |         compress(&mut expected_state, &blocks);
+    |         --------                      ^^^^^^^ expected slice `[[u8; 64]]`, found array of 1 element
+    |         |
+    |         arguments to this function are incorrect
+    |
+    = note: expected reference `&[[u8; 64]]`
+               found reference `&[GenericArray<u8, _>; 1]`
+note: function defined here
+   --> sha1/src/compress/x86.rs:102:8
+    |
+102 | pub fn compress(state: &mut [u32; 5], blocks: &[[u8; 64]]) {
+    |        ^^^^^^^^                       -------------------
+
+For more information about this error, try `rustc --explain E0308`.
+error: could not compile `sha1` due to 6 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+repair err compress::x86::compress sha1/src/compress/x86.rs compress
+ChatCompletion(id='chatcmpl-8UX917NWNXcdNxDlwzIIcdL0IZXI9', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::digest_blocks;\n    use std::arch::x86_64::*;\n\n    #[test]\n    fn test_digest_blocks() {\n        unsafe {\n            // Initial state of the SHA1 algorithm after processing "abc"\n            let mut state: [u32; 5] = [\n                0x67452301,\n                0xEFCDAB89,\n                0x98BADCFE,\n                0x10325476,\n                0xC3D2E1F0,\n            ];\n            // "abc" in 512-bit block (64 bytes), the rest of block is padded according to the standard\n            let blocks: &[[u8; 64]] = &[[\n                0x61, 0x62, 0x63, 0x80, 0x00, 0x00, 0x00, 0x00, // "abc" + padding\n                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,\n                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,\n                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,\n                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,\n                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,\n                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,\n                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x18, // Length of "abc" in bits (24 bits = 0x18)\n            ]];\n\n            let expected: [u32; 5] = [\n                0xA9993E36,\n                0x4706816A,\n                0xBA3E2571,\n                0x7850C26C,\n                0x9CD0D89D,\n            ];\n\n            digest_blocks(&mut state, blocks);\n\n            assert_eq!(state, expected, "The resulting state does not match the expected one after processing the block");\n        }\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702287939, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=613, prompt_tokens=1251, total_tokens=1864))
+71
+========================================
+inject err compress::x86::digest_blocks sha1/src/compress/x86.rs digest_blocks
+#[cfg(test)]
+mod tests_llm_16_20 {
+    use crate::digest_blocks;
+    use std::arch::x86_64::*;
+
+    #[test]
+    fn test_digest_blocks() {
+        unsafe {
+            // Initial state of the SHA1 algorithm after processing "abc"
+            let mut state: [u32; 5] = [
+                0x67452301,
+                0xEFCDAB89,
+                0x98BADCFE,
+                0x10325476,
+                0xC3D2E1F0,
+            ];
+            // "abc" in 512-bit block (64 bytes), the rest of block is padded according to the standard
+            let blocks: &[[u8; 64]] = &[[
+                0x61, 0x62, 0x63, 0x80, 0x00, 0x00, 0x00, 0x00, // "abc" + padding
+                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x18, // Length of "abc" in bits (24 bits = 0x18)
+            ]];
+
+            let expected: [u32; 5] = [
+                0xA9993E36,
+                0x4706816A,
+                0xBA3E2571,
+                0x7850C26C,
+                0x9CD0D89D,
+            ];
+
+            digest_blocks(&mut state, blocks);
+
+            assert_eq!(state, expected, "The resulting state does not match the expected one after processing the block");
+        }
+    }
+}
+   Compiling sha1 v0.10.5 (/home/xiang/workspace/human/llm_base_bk/hashes/sha1)
+error[E0432]: unresolved import `crate::digest_blocks`
+   --> sha1/src/compress/x86.rs:115:9
+    |
+115 |     use crate::digest_blocks;
+    |         ^^^^^^^^^^^^^^^^^^^^ no `digest_blocks` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `sha1` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UX9vXTNOdO7Ns9q5P2grodBxaDqd', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_20 {\n    use crate::compress::x86::digest_blocks;\n    use std::arch::x86_64::*;\n\n    #[target_feature(enable = "sha")]\n    unsafe fn run_digest_blocks(state: &mut [u32; 5], blocks: &[[u8; 64]]) {\n        digest_blocks(state, blocks)\n    }\n\n    #[test]\n    fn test_digest_blocks() {\n        unsafe {\n            // Initial state of the SHA1 algorithm after processing "abc"\n            let mut state: [u32; 5] = [\n                0x67452301,\n                0xEFCDAB89,\n                0x98BADCFE,\n                0x10325476,\n                0xC3D2E1F0,\n            ];\n            // "abc" in 512-bit block (64 bytes), the rest of block is padded according to the standard\n            let blocks: &[[u8; 64]] = &[[\n                0x61, 0x62, 0x63, 0x80, 0x00, 0x00, 0x00, 0x00, // "abc" + padding\n                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,\n                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,\n                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,\n                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,\n                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,\n                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,\n                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x18, // Length of "abc" in bits (24 bits = 0x18)\n            ]];\n\n            let expected: [u32; 5] = [\n                0xA9993E36,\n                0x4706816A,\n                0xBA3E2571,\n                0x7850C26C,\n                0x9CD0D89D,\n            ];\n\n            run_digest_blocks(&mut state, blocks);\n\n            assert_eq!(state, expected, "The resulting state does not match the expected one after processing the block");\n        }\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702287995, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=671, prompt_tokens=2665, total_tokens=3336))
+71
+inject succeed hashes sha1 compress::x86::digest_blocks
+4 18 2 20 20

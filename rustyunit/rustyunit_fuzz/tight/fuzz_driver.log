@@ -1,0 +1,118 @@
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/tight/./src/expense.rs
+        let _rug_st_tests_llm_16_56_rrrruuuugggg_test_compare_dates_self_end_none_other_end_none = 0;
+ tests_llm_16_56 test_compare_dates_self_end_none_other_end_none
+        let _rug_st_tests_llm_16_56_rrrruuuugggg_test_compare_dates_self_end_none = 0;
+ tests_llm_16_56 test_compare_dates_self_end_none
+        let _rug_st_tests_llm_16_56_rrrruuuugggg_test_compare_dates_other_end_none = 0;
+ tests_llm_16_56 test_compare_dates_other_end_none
+        let _rug_st_tests_llm_16_56_rrrruuuugggg_test_compare_dates_self_greater = 0;
+ tests_llm_16_56 test_compare_dates_self_greater
+        let _rug_st_tests_llm_16_56_rrrruuuugggg_test_compare_dates_self_lesser = 0;
+ tests_llm_16_56 test_compare_dates_self_lesser
+        let _rug_st_tests_llm_16_56_rrrruuuugggg_test_compare_dates_equal = 0;
+ tests_llm_16_56 test_compare_dates_equal
+        let _rug_st_tests_llm_16_58_rrrruuuugggg_test_compare_id = 0;
+ tests_llm_16_58 test_compare_id
+        let _rug_st_tests_llm_16_71_rrrruuuugggg_test_remove_tags = 0;
+ tests_llm_16_71 test_remove_tags
+        let _rug_st_tests_llm_16_72_rrrruuuugggg_test_tags = 0;
+ tests_llm_16_72 test_tags
+        let _rug_st_tests_llm_16_73_rrrruuuugggg_test_calculate_spread = 0;
+ tests_llm_16_73 test_calculate_spread
+        let _rug_st_tests_llm_16_74_rrrruuuugggg_test_count_overlap_days = 0;
+ tests_llm_16_74 test_count_overlap_days
+        let _rug_st_tests_rug_19_rrrruuuugggg_test_new = 0;
+ tests_rug_19 test_new
+        let _rug_st_tests_rug_20_rrrruuuugggg_test_from_stdin = 0;
+ tests_rug_20 test_from_stdin
+        let _rug_st_tests_rug_21_rrrruuuugggg_test_rug = 0;
+ tests_rug_21 test_rug
+        let _rug_st_tests_rug_25_rrrruuuugggg_test_end_date = 0;
+ tests_rug_25 test_end_date
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/tight/./src/main.rs
+        let _rug_st_tests_rug_26_rrrruuuugggg_test_main = 0;
+ tests_rug_26 test_main
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/tight/./src/date.rs
+        let _rug_st_tests_llm_16_2_llm_16_1_rrrruuuugggg_test_add = 0;
+ tests_llm_16_2_llm_16_1 test_add
+        let _rug_st_tests_llm_16_4_rrrruuuugggg_test_add = 0;
+ tests_llm_16_4 test_add
+        let _rug_st_tests_llm_16_9_rrrruuuugggg_test_cmp = 0;
+ tests_llm_16_9 test_cmp
+        let _rug_st_tests_llm_16_11_rrrruuuugggg_test_partial_cmp = 0;
+ tests_llm_16_11 test_partial_cmp
+        let _rug_st_tests_llm_16_33_rrrruuuugggg_test_weekid_to_str_first = 0;
+ tests_llm_16_33 test_weekid_to_str_first
+        let _rug_st_tests_llm_16_33_rrrruuuugggg_test_weekid_to_str_second = 0;
+ tests_llm_16_33 test_weekid_to_str_second
+        let _rug_st_tests_llm_16_33_rrrruuuugggg_test_weekid_to_str_third = 0;
+ tests_llm_16_33 test_weekid_to_str_third
+        let _rug_st_tests_llm_16_33_rrrruuuugggg_test_weekid_to_str_fourth = 0;
+ tests_llm_16_33 test_weekid_to_str_fourth
+        let _rug_st_tests_llm_16_33_rrrruuuugggg_test_weekid_to_str_fifth = 0;
+ tests_llm_16_33 test_weekid_to_str_fifth
+        let _rug_st_tests_llm_16_33_rrrruuuugggg_test_weekid_to_str_unreachable = 0;
+ tests_llm_16_33 test_weekid_to_str_unreachable
+        let _rug_st_tests_llm_16_44_rrrruuuugggg_test_from_ymd = 0;
+ tests_llm_16_44 test_from_ymd
+        let _rug_st_tests_llm_16_51_rrrruuuugggg_test_days_in_month = 0;
+ tests_llm_16_51 test_days_in_month
+        let _rug_st_tests_llm_16_52_rrrruuuugggg_test_get_weekday_of_date = 0;
+ tests_llm_16_52 test_get_weekday_of_date
+        let _rug_st_tests_llm_16_53_rrrruuuugggg_test_suffix_for_day_1st = 0;
+ tests_llm_16_53 test_suffix_for_day_1st
+        let _rug_st_tests_llm_16_53_rrrruuuugggg_test_suffix_for_day_2nd = 0;
+ tests_llm_16_53 test_suffix_for_day_2nd
+        let _rug_st_tests_llm_16_53_rrrruuuugggg_test_suffix_for_day_3rd = 0;
+ tests_llm_16_53 test_suffix_for_day_3rd
+        let _rug_st_tests_llm_16_53_rrrruuuugggg_test_suffix_for_day_4th = 0;
+ tests_llm_16_53 test_suffix_for_day_4th
+        let _rug_st_tests_llm_16_53_rrrruuuugggg_test_suffix_for_day_31st = 0;
+ tests_llm_16_53 test_suffix_for_day_31st
+        let _rug_st_tests_rug_5_rrrruuuugggg_test_from_stdin = 0;
+ tests_rug_5 test_from_stdin
+        let _rug_st_tests_rug_6_rrrruuuugggg_test_rug = 0;
+ tests_rug_6 test_rug
+        let _rug_st_tests_rug_8_rrrruuuugggg_test_rug = 0;
+ tests_rug_8 test_rug
+        let _rug_st_tests_rug_9_rrrruuuugggg_test_rug = 0;
+ tests_rug_9 test_rug
+        let _rug_st_tests_rug_10_rrrruuuugggg_test_rug = 0;
+ tests_rug_10 test_rug
+        let _rug_st_tests_rug_11_rrrruuuugggg_test_rug = 0;
+ tests_rug_11 test_rug
+        let _rug_st_tests_rug_12_rrrruuuugggg_test_parse_weekday = 0;
+ tests_rug_12 test_parse_weekday
+        let _rug_st_tests_rug_13_rrrruuuugggg_test_rug = 0;
+ tests_rug_13 test_rug
+        let _rug_st_tests_rug_14_rrrruuuugggg_test_parse = 0;
+ tests_rug_14 test_parse
+        let _rug_st_tests_rug_16_rrrruuuugggg_test_rug = 0;
+ tests_rug_16 test_rug
+        let _rug_st_tests_rug_17_rrrruuuugggg_test_rug = 0;
+ tests_rug_17 test_rug
+        let _rug_st_tests_rug_18_rrrruuuugggg_test_rug = 0;
+ tests_rug_18 test_rug
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/tight/./src/data.rs
+        let _rug_st_tests_llm_16_12_rrrruuuugggg_test_add_tag = 0;
+ tests_llm_16_12 test_add_tag
+        let _rug_st_tests_llm_16_17_rrrruuuugggg_test_from_file = 0;
+ tests_llm_16_17 test_from_file
+        let _rug_st_tests_llm_16_18_rrrruuuugggg_test_insert = 0;
+ tests_llm_16_18 test_insert
+        let _rug_st_tests_llm_16_19_rrrruuuugggg_test_new = 0;
+ tests_llm_16_19 test_new
+        let _rug_st_tests_llm_16_24_rrrruuuugggg_test_initialise = 0;
+ tests_llm_16_24 test_initialise
+        let _rug_st_tests_rug_1_rrrruuuugggg_test_remove = 0;
+ tests_rug_1 test_remove
+        let _rug_st_tests_rug_2_rrrruuuugggg_test_rug = 0;
+ tests_rug_2 test_rug
+        let _rug_st_tests_rug_3_rrrruuuugggg_sample = 0;
+ tests_rug_3 sample
+                let _rug_st_tests_rug_3_prepare_rrrruuuugggg_sample = 0;
+ tests_rug_3_prepare sample
+        let _rug_st_tests_rug_4_rrrruuuugggg_test_rug = 0;
+ tests_rug_4 test_rug
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/tight/./src/rusty_monitor.rs
+done

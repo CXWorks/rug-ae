@@ -1,0 +1,3468 @@
+========================================
+    use super::*;
+
+use crate::*;
+
+    // Unit test for the `default` function of `VersionReq`.
+    #[test]
+    fn test_versionreq_default() {
+        let default_versionreq = VersionReq::default();
+
+        // Check if the default is equivalent to no comparators, which is equivalent to "*"
+        assert_eq!(default_versionreq.comparators.len(), 0);
+
+        // Check if the default version requirement matches everything but pre-releases
+        assert!(default_versionreq.matches(&Version::parse("1.0.0").unwrap()));
+        assert!(default_versionreq.matches(&Version::parse("0.0.1").unwrap()));
+        assert!(default_versionreq.matches(&Version::parse("9999.9999.9999").unwrap()));
+        assert!(!default_versionreq.matches(&Version::parse("1.0.0-alpha").unwrap()));
+        assert!(!default_versionreq.matches(&Version::parse("1.0.0-beta").unwrap()));
+
+        // Check if the default version requirement string representation is "*"
+        assert_eq!(format!("{}", default_versionreq), "*");
+    }
+}
+True
+========================================
+    use crate::Identifier;
+    use std::mem;
+    use std::ptr::NonNull;
+
+    const TAIL_BYTES: usize = mem::size_of::<usize>() - 1;
+
+    // A helper function to create a heap-allocated identifier for testing
+    unsafe fn heap_allocated_identifier(content: &str) -> Identifier {
+        // SAFETY: the content is an ASCII string and does not contain \0 bytes.
+        Identifier::new_unchecked(content)
+    }
+
+    #[test]
+    fn test_clone_empty_identifier() {
+        let id = Identifier::empty();
+        let cloned = id.clone();
+        assert!(id.eq(&cloned));
+    }
+
+    #[test]
+    fn test_clone_inline_identifier() {
+        // SAFETY: the string "inline" is ASCII and does not contain \0 bytes.
+        let id = unsafe { Identifier::new_unchecked("inline") };
+        let cloned = id.clone();
+        assert!(id.eq(&cloned));
+    }
+
+    #[test]
+    fn test_clone_heap_allocated_identifier() {
+        // SAFETY: the string is ASCII and does not contain \0 bytes.
+        let id = unsafe { heap_allocated_identifier("heap_allocated") };
+        let cloned = id.clone();
+        assert!(id.eq(&cloned));
+    }
+}
+True
+========================================
+    use crate::Identifier;
+
+    #[test]
+    fn test_eq_empty_identifiers() {
+        let id1 = Identifier::empty();
+        let id2 = Identifier::empty();
+        assert!(id1.eq(&id2));
+    }
+
+    #[test]
+    fn test_eq_inline_identifiers() {
+        unsafe {
+            let id1 = Identifier::new_unchecked("test");
+            let id2 = Identifier::new_unchecked("test");
+            assert!(id1.eq(&id2));
+        }
+    }
+
+    #[test]
+    fn test_eq_mixed_identifiers() {
+        unsafe {
+            let id1 = Identifier::new_unchecked("test");
+            let id2 = Identifier::empty();
+            assert!(!id1.eq(&id2));
+        }
+    }
+
+    #[test]
+    fn test_eq_heap_identifiers() {
+        unsafe {
+            let id1 = Identifier::new_unchecked("a long enough string to heap allocate");
+            let id2 = Identifier::new_unchecked("a long enough string to heap allocate");
+            assert!(id1.eq(&id2));
+        }
+    }
+
+    #[test]
+    fn test_eq_different_identifiers() {
+        unsafe {
+            let id1 = Identifier::new_unchecked("test1");
+            let id2 = Identifier::new_unchecked("test2");
+            assert!(!id1.eq(&id2));
+        }
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn test_drop_empty_identifier() {
+        let mut id = Identifier::empty();
+        std::mem::drop(&mut id); // Explicitly call drop
+        assert!(id.is_empty(), "Identifier should be empty after dropping");
+    }
+
+    #[test]
+    fn test_drop_heap_allocated_identifier() {
+        // We need a string longer than 8 bytes to ensure it's heap allocated.
+        let long_str = "123456789";
+        let mut id = unsafe { Identifier::new_unchecked(long_str) };
+        let ptr = id.head;
+        std::mem::drop(&mut id); // Explicitly call drop
+        // After dropping, we cannot safely assert anything about the memory,
+        // since it should have been deallocated. We assume correctness from
+        // the absence of memory safety violations, such as double-frees, which
+        // would be detected by the Rust compiler or a tool like Valgrind.
+    }
+
+    #[test]
+    fn test_drop_inline_identifier() {
+        let inline_str = "12345678";
+        let mut id = unsafe { Identifier::new_unchecked(inline_str) };
+        std::mem::drop(&mut id); // Explicitly call drop
+        // After dropping, the inline Identifier should require no deallocation,
+        // similar to dropping an empty Identifier.
+        assert!(id.is_inline(), "Identifier should be inline after dropping");
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use std::str::FromStr;
+
+    #[test]
+    fn test_build_metadata_as_str() {
+        let metadata_str = "12345";
+        let metadata = BuildMetadata::from_str(metadata_str).unwrap();
+        assert_eq!(metadata.as_str(), metadata_str);
+
+        let empty_metadata = BuildMetadata::from_str("").unwrap();
+        assert!(empty_metadata.as_str().is_empty());
+    }
+}
+True
+========================================
+    use crate::BuildMetadata;
+    use std::str::FromStr;
+
+    #[test]
+    fn test_is_empty_with_empty_metadata() {
+        let metadata = BuildMetadata::EMPTY;
+        assert!(metadata.is_empty());
+    }
+
+    #[test]
+    fn test_is_empty_with_non_empty_metadata() {
+        let metadata = BuildMetadata::from_str("1.0.0").unwrap();
+        assert!(!metadata.is_empty());
+    }
+
+    #[test]
+    fn test_is_empty_with_newly_created_empty_metadata() {
+        let metadata = BuildMetadata::new("").unwrap();
+        assert!(metadata.is_empty());
+    }
+
+    #[test]
+    fn test_is_empty_with_newly_created_non_empty_metadata() {
+        let metadata = BuildMetadata::new("build.123").unwrap();
+        assert!(!metadata.is_empty());
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::BuildMetadata;
+    use std::str::FromStr;
+
+    #[test]
+    fn test_build_metadata_new_valid() {
+        let text = "001";
+        assert!(BuildMetadata::new(text).is_ok());
+    }
+
+    #[test]
+    fn test_build_metadata_new_empty() {
+        let text = "";
+        assert!(BuildMetadata::new(text).is_ok());
+    }
+
+    #[test]
+    fn test_build_metadata_new_invalid() {
+        let text = "!InvalidMetadata";
+        assert!(BuildMetadata::new(text).is_err());
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn comparator_matches_version_exact() {
+        let comparator = Comparator {
+            op: Op::Exact,
+            major: 1,
+            minor: Some(0),
+            patch: Some(0),
+            pre: Prerelease::EMPTY,
+        };
+        let version = Version::new(1, 0, 0);
+        assert!(comparator.matches(&version));
+    }
+
+    #[test]
+    fn comparator_matches_version_greater() {
+        let comparator = Comparator {
+            op: Op::Greater,
+            major: 1,
+            minor: Some(0),
+            patch: Some(0),
+            pre: Prerelease::EMPTY,
+        };
+        let lower_version = Version::new(0, 9, 9);
+        let higher_version = Version::new(1, 0, 1);
+        assert!(!comparator.matches(&lower_version));
+        assert!(comparator.matches(&higher_version));
+    }
+
+    #[test]
+    fn comparator_matches_version_greater_eq() {
+        let comparator = Comparator {
+            op: Op::GreaterEq,
+            major: 1,
+            minor: Some(0),
+            patch: Some(0),
+            pre: Prerelease::EMPTY,
+        };
+        let equal_version = Version::new(1, 0, 0);
+        let higher_version = Version::new(1, 0, 1);
+        assert!(comparator.matches(&equal_version));
+        assert!(comparator.matches(&higher_version));
+    }
+
+    #[test]
+    fn comparator_matches_version_less() {
+        let comparator = Comparator {
+            op: Op::Less,
+            major: 1,
+            minor: Some(0),
+            patch: Some(0),
+            pre: Prerelease::EMPTY,
+        };
+        let lower_version = Version::new(0, 9, 9);
+        let equal_version = Version::new(1, 0, 0);
+        assert!(comparator.matches(&lower_version));
+        assert!(!comparator.matches(&equal_version));
+    }
+
+    #[test]
+    fn comparator_matches_version_less_eq() {
+        let comparator = Comparator {
+            op: Op::LessEq,
+            major: 1,
+            minor: Some(0),
+            patch: Some(0),
+            pre: Prerelease::EMPTY,
+        };
+        let lower_version = Version::new(0, 9, 9);
+        let equal_version = Version::new(1, 0, 0);
+        assert!(comparator.matches(&lower_version));
+        assert!(comparator.matches(&equal_version));
+    }
+
+    #[test]
+    fn comparator_matches_version_tilde() {
+        let comparator = Comparator {
+            op: Op::Tilde,
+            major: 1,
+            minor: Some(0),
+            patch: Some(0),
+            pre: Prerelease::EMPTY,
+        };
+        let patch_update_version = Version::new(1, 0, 1);
+        let minor_update_version = Version::new(1, 1, 0);
+        assert!(comparator.matches(&patch_update_version));
+        assert!(!comparator.matches(&minor_update_version));
+    }
+
+    #[test]
+    fn comparator_matches_version_caret() {
+        let comparator = Comparator {
+            op: Op::Caret,
+            major: 1,
+            minor: Some(0),
+            patch: Some(0),
+            pre: Prerelease::EMPTY,
+        };
+        let minor_update_version = Version::new(1, 1, 0);
+        let major_update_version = Version::new(2, 0, 0);
+        assert!(comparator.matches(&minor_update_version));
+        assert!(!comparator.matches(&major_update_version));
+    }
+
+    #[test]
+    fn comparator_matches_version_wildcard() {
+        let comparator = Comparator {
+            op: Op::Wildcard,
+            major: 1,
+            minor: Some(0),
+            patch: Some(0),
+            pre: Prerelease::EMPTY,
+        };
+        let minor_update_version = Version::new(1, 1, 0);
+        let major_update_version = Version::new(2, 0, 0);
+        assert!(comparator.matches(&minor_update_version));
+        assert!(comparator.matches(&major_update_version));
+    }
+
+    #[test]
+    fn comparator_matches_version_with_pre_release() {
+        let comparator = Comparator {
+            op: Op::Exact,
+            major: 1,
+            minor: Some(0),
+            patch: Some(0),
+            pre: Prerelease::new("alpha.1").unwrap(),
+        };
+        let version_with_pre = Version {
+            major: 1,
+            minor: 0,
+            patch: 0,
+            pre: Prerelease::new("alpha.1").unwrap(),
+            build: BuildMetadata::EMPTY,
+        };
+        let version_without_pre = Version::new(1, 0, 0);
+        assert!(comparator.matches(&version_with_pre));
+        assert!(!comparator.matches(&version_without_pre));
+    }
+
+    #[test]
+    fn comparator_matches_version_with_build_metadata() {
+        // Build metadata should be ignored when matching versions
+        let comparator = Comparator {
+            op: Op::Exact,
+            major: 1,
+            minor: Some(0),
+            patch: Some(0),
+            pre: Prerelease::new("alpha.1").unwrap(),
+        };
+        let version_with_build = Version {
+            major: 1,
+            minor: 0,
+            patch: 0,
+            pre: Prerelease::new("alpha.1").unwrap(),
+            build: BuildMetadata::new("20210327").unwrap(),
+        };
+        let version_without_build = Version {
+            major: 1,
+            minor: 0,
+            patch: 0,
+            pre: Prerelease::new("alpha.1").unwrap(),
+            build: BuildMetadata::EMPTY,
+        };
+        assert!(comparator.matches(&version_with_build));
+        assert!(comparator.matches(&version_without_build));
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn parse_valid_version() {
+        let test_cases = [
+            "1.0.0",
+            "1.0",
+            "^1.2.3",
+            "~1",
+            ">=1.0.0",
+            "<1.2.3",
+            "=1.0.0",
+        ];
+        for &version in &test_cases {
+            assert!(Comparator::parse(version).is_ok());
+        }
+    }
+
+    #[test]
+    fn parse_invalid_version() {
+        let test_cases = [
+            "",
+            "not a version",
+            "1.2.3.4",
+            "01.0.0",
+            "1.0.0-pre+build",
+        ];
+        for &version in &test_cases {
+            assert!(Comparator::parse(version).is_err());
+        }
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use std::str::FromStr;
+    
+    #[test]
+    fn test_prerelease_as_str() {
+        let prerelease = Prerelease::from_str("alpha.1").unwrap();
+        assert_eq!(prerelease.as_str(), "alpha.1");
+
+        let prerelease = Prerelease::from_str("beta").unwrap();
+        assert_eq!(prerelease.as_str(), "beta");
+
+        let prerelease = Prerelease::from_str("rc.0").unwrap();
+        assert_eq!(prerelease.as_str(), "rc.0");
+
+        let prerelease = Prerelease::from_str("rc.1").unwrap();
+        assert_eq!(prerelease.as_str(), "rc.1");
+
+        let prerelease = Prerelease::from_str("rc.1.2").unwrap();
+        assert_eq!(prerelease.as_str(), "rc.1.2");
+
+        let prerelease = Prerelease::from_str("1.2.3").unwrap();
+        assert_eq!(prerelease.as_str(), "1.2.3");
+
+        let empty_prerelease = Prerelease::EMPTY;
+        assert!(empty_prerelease.as_str().is_empty());
+    }
+}
+True
+========================================
+    use crate::Prerelease;
+    use std::str::FromStr;
+
+    #[test]
+    fn test_prerelease_is_empty_with_empty_string() {
+        let prerelease = Prerelease::from_str("").unwrap();
+        assert!(prerelease.is_empty());
+    }
+
+    #[test]
+    fn test_prerelease_is_empty_with_non_empty_string() {
+        let prerelease = Prerelease::from_str("alpha").unwrap();
+        assert!(!prerelease.is_empty());
+    }
+
+    #[test]
+    fn test_prerelease_is_empty_with_numeric() {
+        let prerelease = Prerelease::from_str("123").unwrap();
+        assert!(!prerelease.is_empty());
+    }
+
+    #[test]
+    fn test_prerelease_is_empty_with_mixed() {
+        let prerelease = Prerelease::from_str("alpha.1").unwrap();
+        assert!(!prerelease.is_empty());
+    }
+
+    #[test]
+    fn test_prerelease_is_empty_with_hyphens() {
+        let prerelease = Prerelease::from_str("alpha-beta").unwrap();
+        assert!(!prerelease.is_empty());
+    }
+
+    #[test]
+    fn test_prerelease_is_empty_with_empty_prerelease() {
+        let prerelease = Prerelease::from_str("0").unwrap();
+        assert!(!prerelease.is_empty());
+    }
+
+    #[test]
+    fn test_prerelease_is_empty_with_inline() {
+        let prerelease = Prerelease::new("0").unwrap();
+        assert!(!prerelease.is_empty());
+    }
+
+    #[test]
+    fn test_prerelease_is_empty_with_empty_struct() {
+        let prerelease = Prerelease::EMPTY;
+        assert!(prerelease.is_empty());
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::{Prerelease, Error};
+
+    #[test]
+    fn test_prerelease_new_valid() {
+        let valid_prerelease = "alpha.1";
+        assert!(Prerelease::new(valid_prerelease).is_ok());
+    }
+
+    #[test]
+    fn test_prerelease_new_empty() {
+        let empty_prerelease = "";
+        assert!(Prerelease::new(empty_prerelease).is_ok());
+    }
+
+    #[test]
+    fn test_prerelease_new_invalid() {
+        let invalid_prerelease = "!!invalid!!";
+        assert!(Prerelease::new(invalid_prerelease).is_err());
+    }
+
+    #[test]
+    fn test_prerelease_new_invalid_empty_numeric() {
+        let invalid_empty_numeric = "1.";
+        assert!(Prerelease::new(invalid_empty_numeric).is_err());
+    }
+
+    #[test]
+    fn test_prerelease_new_invalid_leading_zero() {
+        let invalid_leading_zero = "01";
+        assert!(Prerelease::new(invalid_leading_zero).is_err());
+    }
+
+    // Additional test cases for specific edge cases can be added here
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn test_new() {
+        let version = Version::new(1, 2, 3);
+
+        assert_eq!(1, version.major);
+        assert_eq!(2, version.minor);
+        assert_eq!(3, version.patch);
+        assert!(version.pre.is_empty());
+        assert!(version.build.is_empty());
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use std::str::FromStr;
+
+    #[test]
+    fn test_parse_valid_versions() {
+        let valid_versions = vec![
+            "0.0.0",
+            "1.0.0",
+            "1.2.3",
+            "10.20.30",
+            "1.2.3-alpha",
+            "1.2.3-beta.1",
+            "1.2.3-x.7.z.92",
+            "1.2.3+20130313144700",
+            "1.2.3-beta+exp.sha.5114f85",
+            "1.0.0-alpha.beta",
+            "1.0.0+0.build.1-rc.10000aaa-kk-0.1",
+        ];
+
+        for ver in valid_versions {
+            assert!(Version::parse(ver).is_ok());
+        }
+    }
+
+    #[test]
+    fn test_parse_invalid_versions() {
+        let invalid_versions = vec![
+            "",
+            "1",
+            "1.0",
+            "01.0.0",
+            "1.0.01",
+            "1.0.unknown",
+            "1.0.0-",
+            "1.0.0+",
+            "1.0.0-alpha_123",
+            "1.0.0+*",
+            "1.0.0+!",
+            "23456789999999999999.0.0",
+        ];
+
+        for ver in invalid_versions {
+            assert!(Version::parse(ver).is_err());
+        }
+    }
+
+    #[test]
+    fn test_parse_edge_cases() {
+        assert!(Version::parse("0.0.0-0").is_ok());
+        assert!(Version::parse("0.0.0+0").is_ok());
+        assert!(Version::parse("1.0.0-").is_err());
+        assert!(Version::parse("1.0.0+").is_err());
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::{Version, VersionReq};
+
+    #[test]
+    fn test_matches_exact() {
+        let req = VersionReq::parse("=1.2.3").unwrap();
+        let ver = Version::parse("1.2.3").unwrap();
+        assert!(req.matches(&ver));
+    }
+
+    #[test]
+    fn test_matches_wildcard() {
+        let req = VersionReq::parse("*").unwrap();
+        let ver = Version::parse("1.2.3").unwrap();
+        assert!(req.matches(&ver));
+    }
+
+    #[test]
+    fn test_matches_major_wildcard() {
+        let req = VersionReq::parse("1.*").unwrap();
+        let ver = Version::parse("1.2.3").unwrap();
+        assert!(req.matches(&ver));
+    }
+
+    #[test]
+    fn test_matches_minor_wildcard() {
+        let req = VersionReq::parse("1.2.*").unwrap();
+        let ver = Version::parse("1.2.3").unwrap();
+        assert!(req.matches(&ver));
+    }
+
+    #[test]
+    fn test_does_not_match() {
+        let req = VersionReq::parse("=1.2.3").unwrap();
+        let ver = Version::parse("2.0.0").unwrap();
+        assert!(!req.matches(&ver));
+    }
+
+    #[test]
+    fn test_matches_range() {
+        let req = VersionReq::parse(">=1.2.3, <2.0.0").unwrap();
+        let ver_in_range = Version::parse("1.2.3").unwrap();
+        let ver_out_of_range = Version::parse("2.0.0").unwrap();
+        assert!(req.matches(&ver_in_range));
+        assert!(!req.matches(&ver_out_of_range));
+    }
+
+    #[test]
+    fn test_matches_prerelease() {
+        let req = VersionReq::parse(">=1.2.3-rc1").unwrap();
+        let ver_prerelease = Version::parse("1.2.3-rc1").unwrap();
+        assert!(req.matches(&ver_prerelease));
+    }
+
+    #[test]
+    fn test_does_not_match_prerelease() {
+        let req = VersionReq::parse("=1.2.3").unwrap();
+        let ver_prerelease = Version::parse("1.2.3-rc1").unwrap();
+        assert!(!req.matches(&ver_prerelease));
+    }
+
+    #[test]
+    fn test_matches_build() {
+        let req = VersionReq::parse(">=1.2.3+build201").unwrap();
+        let ver_build = Version::parse("1.2.3+build201").unwrap();
+        assert!(req.matches(&ver_build));
+    }
+
+    #[test]
+    fn test_matches_ignore_build() {
+        let req = VersionReq::parse(">=1.2.3").unwrap();
+        let ver_build = Version::parse("1.2.3+build201").unwrap();
+        assert!(req.matches(&ver_build));
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use std::str::FromStr;
+
+    #[test]
+    fn test_parse_valid_version_req() {
+        let inputs = vec![
+            "1.0.0",
+            ">= 1.0.0, < 2.0.0",
+            ">=1",
+            "<2.1.1",
+            "=2.1.1",
+            "^0.1.2",
+            "~1",
+            "~1.2.3-beta",
+        ];
+
+        for input in inputs {
+            assert!(VersionReq::parse(input).is_ok());
+        }
+    }
+
+    #[test]
+    fn test_parse_invalid_version_req() {
+        let inputs = vec![
+            ">= 1.0.0, <2.0",
+            ">= 1.0.0 <2.0.0",
+            "1.0",
+            ">a.b",
+            "@1.0.0",
+            "^1.0.0, ",
+            ">=1.0 <2.0",
+            "*.*",
+        ];
+
+        for input in inputs {
+            assert!(VersionReq::parse(input).is_err());
+        }
+    }
+}
+True
+========================================
+    use crate::digits;
+
+    #[test]
+    fn test_digits_single_digit() {
+        assert_eq!(digits(0), 1);
+        assert_eq!(digits(1), 1);
+        assert_eq!(digits(9), 1);
+    }
+
+    #[test]
+    fn test_digits_multiple_digits() {
+        assert_eq!(digits(10), 2);
+        assert_eq!(digits(99), 2);
+        assert_eq!(digits(100), 3);
+        assert_eq!(digits(1234567890), 10);
+    }
+
+    #[test]
+    fn test_digits_large_number() {
+        assert_eq!(digits(u64::MAX), 20);
+    }
+}
+False
+========================================
+    use crate::pad;
+    use std::fmt::{self, Alignment, Write};
+
+    struct MockFormatter<'a> {
+        output: &'a mut String,
+        width: Option<usize>,
+        alignment: Option<Alignment>,
+        fill: char,
+    }
+
+    impl<'a> MockFormatter<'a> {
+        fn new(output: &'a mut String) -> Self {
+            MockFormatter {
+                output,
+                width: None,
+                alignment: None,
+                fill: ' ',
+            }
+        }
+
+        fn with_width(mut self, width: usize) -> Self {
+            self.width = Some(width);
+            self
+        }
+
+        fn with_alignment(mut self, alignment: Alignment) -> Self {
+            self.alignment = Some(alignment);
+            self
+        }
+
+        fn with_fill(mut self, fill: char) -> Self {
+            self.fill = fill;
+            self
+        }
+    }
+
+    impl<'a> Write for MockFormatter<'a> {
+        fn write_str(&mut self, s: &str) -> fmt::Result {
+            self.output.push_str(s);
+            Ok(())
+        }
+    }
+
+    impl<'a> fmt::Debug for MockFormatter<'a> {
+        fn fmt(&self, _f: &mut fmt::Formatter) -> fmt::Result {
+            Ok(())
+        }
+    }
+
+    #[test]
+    fn test_pad_no_padding() {
+        let mut output = String::new();
+        let mut formatter = MockFormatter::new(&mut output);
+        let do_display = |f: &mut fmt::Formatter| write!(f, "test");
+        let do_len = || 4;
+
+        pad(&mut formatter, do_display, do_len).unwrap();
+        assert_eq!(output, "test");
+    }
+
+    #[test]
+    fn test_pad_left_align() {
+        let mut output = String::new();
+        let mut formatter = MockFormatter::new(&mut output)
+            .with_width(10)
+            .with_alignment(Alignment::Left);
+
+        let do_display = |f: &mut fmt::Formatter| write!(f, "test");
+        let do_len = || 4;
+
+        pad(&mut formatter, do_display, do_len).unwrap();
+        assert_eq!(output, "test      ");
+    }
+
+    #[test]
+    fn test_pad_right_align() {
+        let mut output = String::new();
+        let mut formatter = MockFormatter::new(&mut output)
+            .with_width(10)
+            .with_alignment(Alignment::Right);
+
+        let do_display = |f: &mut fmt::Formatter| write!(f, "test");
+        let do_len = || 4;
+
+        pad(&mut formatter, do_display, do_len).unwrap();
+        assert_eq!(output, "      test");
+    }
+
+    #[test]
+    fn test_pad_center_align() {
+        let mut output = String::new();
+        let mut formatter = MockFormatter::new(&mut output)
+            .with_width(10)
+            .with_alignment(Alignment::Center);
+
+        let do_display = |f: &mut fmt::Formatter| write!(f, "test");
+        let do_len = || 4;
+
+        pad(&mut formatter, do_display, do_len).unwrap();
+        assert_eq!(output, "   test   ");
+    }
+
+    #[test]
+    fn test_pad_with_fill() {
+        let mut output = String::new();
+        let mut formatter = MockFormatter::new(&mut output)
+            .with_width(10)
+            .with_alignment(Alignment::Right)
+            .with_fill('*');
+
+        let do_display = |f: &mut fmt::Formatter| write!(f, "test");
+        let do_len = || 4;
+
+        pad(&mut formatter, do_display, do_len).unwrap();
+        assert_eq!(output, "******test");
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+
+    use crate::{Comparator, Op, Prerelease, Version, BuildMetadata};
+
+    #[test]
+    fn test_matches_caret_major() {
+        let cmp = Comparator {
+            op: Op::Caret,
+            major: 1,
+            minor: None,
+            patch: None,
+            pre: Prerelease::EMPTY,
+        };
+        let ver = Version::new(1, 0, 0);
+        assert!(matches_caret(&cmp, &ver));
+
+        let ver = Version::new(2, 0, 0);
+        assert!(!matches_caret(&cmp, &ver));
+    }
+
+    #[test]
+    fn test_matches_caret_minor() {
+        let cmp = Comparator {
+            op: Op::Caret,
+            major: 1,
+            minor: Some(2),
+            patch: None,
+            pre: Prerelease::EMPTY,
+        };
+        let ver = Version::new(1, 2, 0);
+        assert!(matches_caret(&cmp, &ver));
+
+        let ver = Version::new(2, 0, 0);
+        assert!(!matches_caret(&cmp, &ver));
+
+        let ver = Version::new(1, 3, 0);
+        assert!(matches_caret(&cmp, &ver));
+    }
+
+    #[test]
+    fn test_matches_caret_patch() {
+        let cmp = Comparator {
+            op: Op::Caret,
+            major: 0,
+            minor: Some(2),
+            patch: Some(3),
+            pre: Prerelease::EMPTY,
+        };
+        let ver = Version::new(0, 2, 3);
+        assert!(matches_caret(&cmp, &ver));
+
+        let ver = Version::new(0, 3, 0);
+        assert!(!matches_caret(&cmp, &ver));
+
+        let ver = Version::new(0, 2, 4);
+        assert!(matches_caret(&cmp, &ver));
+    }
+
+    #[test]
+    fn test_matches_caret_pre() {
+        let pre = Prerelease::new("alpha").unwrap();
+        let cmp = Comparator {
+            op: Op::Caret,
+            major: 1,
+            minor: Some(0),
+            patch: Some(0),
+            pre,
+        };
+        let ver = Version {
+            major: 1,
+            minor: 0,
+            patch: 0,
+            pre: Prerelease::new("alpha").unwrap(),
+            build: BuildMetadata::EMPTY,
+        };
+        assert!(matches_caret(&cmp, &ver));
+
+        let ver = Version {
+            major: 1,
+            minor: 0,
+            patch: 0,
+            pre: Prerelease::new("beta").unwrap(),
+            build: BuildMetadata::EMPTY,
+        };
+        assert!(!matches_caret(&cmp, &ver));
+
+        let ver = Version {
+            major: 1,
+            minor: 0,
+            patch: 1,
+            pre: Prerelease::new("alpha").unwrap(),
+            build: BuildMetadata::EMPTY,
+        };
+        assert!(matches_caret(&cmp, &ver));
+    }
+
+    #[test]
+    fn test_matches_caret_build() {
+        let cmp = Comparator {
+            op: Op::Caret,
+            major: 1,
+            minor: None,
+            patch: None,
+            pre: Prerelease::EMPTY,
+        };
+        let ver = Version {
+            major: 1,
+            minor: 0,
+            patch: 0,
+            pre: Prerelease::EMPTY,
+            build: BuildMetadata::new("build").unwrap(),
+        };
+        assert!(matches_caret(&cmp, &ver));
+        
+        let ver = Version {
+            major: 2,
+            minor: 0,
+            patch: 0,
+            pre: Prerelease::EMPTY,
+            build: BuildMetadata::new("build").unwrap(),
+        };
+        assert!(!matches_caret(&cmp, &ver));
+    }
+
+    #[test]
+    fn test_matches_caret_zero_major() {
+        let cmp = Comparator {
+            op: Op::Caret,
+            major: 0,
+            minor: None,
+            patch: None,
+            pre: Prerelease::EMPTY,
+        };
+        let ver = Version::new(0, 1, 0);
+        assert!(matches_caret(&cmp, &ver));
+
+        let ver = Version::new(1, 0, 0);
+        assert!(!matches_caret(&cmp, &ver));
+
+        let ver = Version::new(0, 0, 1);
+        assert!(matches_caret(&cmp, &ver));
+    }
+}
+True
+========================================
+    use crate::eval::matches_comparator;
+    use crate::version::{Prerelease, Version};
+    use crate::version_req::Comparator;
+    use crate::Op;
+    use crate::BuildMetadata;
+    use std::str::FromStr;
+
+    #[test]
+    fn test_matches_comparator_exact() {
+        // ...
+    }
+
+    // Other tests remain the same, just correct the imports at the beginning of the tests module
+}
+False
+========================================
+    use crate::eval::matches_exact;
+    use crate::version::Version;
+    use crate::comparator::Comparator;
+    use crate::version::Prerelease;
+    use crate::version::Op;
+    use crate::version::BuildMetadata;
+
+    #[test]
+    fn test_matches_exact_major_only() {
+        let cmp = Comparator {
+            op: Op::Exact,
+            major: 1,
+            minor: None,
+            patch: None,
+            pre: Prerelease::EMPTY,
+        };
+        let ver = Version::new(1, 0, 0);
+        assert!(matches_exact(&cmp, &ver));
+    }
+
+    // ... other tests ...
+}
+False
+========================================
+    use crate::matches_greater;
+    use crate::version::Version;
+    use crate::comparator::Comparator;
+    use crate::prerelease::Prerelease;
+    use crate::op::Op;
+
+    #[test]
+    fn test_matches_greater_major() {
+        let comparator = Comparator {
+            op: Op::Exact,
+            major: 1,
+            minor: Some(0),
+            patch: Some(0),
+            pre: Prerelease::EMPTY,
+        };
+        let version = Version::new(2, 0, 0);
+        assert!(matches_greater(&comparator, &version));
+    }
+
+    #[test]
+    fn test_matches_greater_minor() {
+        let comparator = Comparator {
+            op: Op::Exact,
+            major: 1,
+            minor: Some(0),
+            patch: Some(0),
+            pre: Prerelease::EMPTY,
+        };
+        let version = Version::new(1, 1, 0);
+        assert!(matches_greater(&comparator, &version));
+    }
+
+    #[test]
+    fn test_matches_greater_patch() {
+        let comparator = Comparator {
+            op: Op::Exact,
+            major: 1,
+            minor: Some(0),
+            patch: Some(0),
+            pre: Prerelease::EMPTY,
+        };
+        let version = Version::new(1, 0, 1);
+        assert!(matches_greater(&comparator, &version));
+    }
+
+    #[test]
+    fn test_matches_greater_pre() {
+        let comparator = Comparator {
+            op: Op::Exact,
+            major: 1,
+            minor: Some(0),
+            patch: Some(0),
+            pre: Prerelease::new("alpha").unwrap(),
+        };
+        let version = Version {
+            major: 1,
+            minor: 0,
+            patch: 0,
+            pre: Prerelease::new("beta").unwrap(),
+            build: Default::default(),
+        };
+        assert!(matches_greater(&comparator, &version));
+    }
+
+    #[test]
+    fn test_not_matches_greater_major() {
+        let comparator = Comparator {
+            op: Op::Exact,
+            major: 2,
+            minor: Some(0),
+            patch: Some(0),
+            pre: Prerelease::EMPTY,
+        };
+        let version = Version::new(1, 0, 0);
+        assert!(!matches_greater(&comparator, &version));
+    }
+
+    #[test]
+    fn test_not_matches_greater_minor() {
+        let comparator = Comparator {
+            op: Op::Exact,
+            major: 1,
+            minor: Some(1),
+            patch: Some(0),
+            pre: Prerelease::EMPTY,
+        };
+        let version = Version::new(1, 0, 0);
+        assert!(!matches_greater(&comparator, &version));
+    }
+
+    #[test]
+    fn test_not_matches_greater_patch() {
+        let comparator = Comparator {
+            op: Op::Exact,
+            major: 1,
+            minor: Some(0),
+            patch: Some(1),
+            pre: Prerelease::EMPTY,
+        };
+        let version = Version::new(1, 0, 0);
+        assert!(!matches_greater(&comparator, &version));
+    }
+
+    #[test]
+    fn test_not_matches_greater_pre() {
+        let comparator = Comparator {
+            op: Op::Exact,
+            major: 1,
+            minor: Some(0),
+            patch: Some(0),
+            pre: Prerelease::new("beta").unwrap(),
+        };
+        let version = Version {
+            major: 1,
+            minor: 0,
+            patch: 0,
+            pre: Prerelease::new("alpha").unwrap(),
+            build: Default::default(),
+        };
+        assert!(!matches_greater(&comparator, &version));
+    }
+
+    #[test]
+    fn test_matches_greater_no_minor_no_patch() {
+        let comparator = Comparator {
+            op: Op::Exact,
+            major: 1,
+            minor: None,
+            patch: None,
+            pre: Prerelease::EMPTY,
+        };
+        let version = Version::new(2, 0, 0);
+        assert!(!matches_greater(&comparator, &version));
+    }
+
+    #[test]
+    fn test_matches_greater_minor_no_patch() {
+        let comparator = Comparator {
+            op: Op::Exact,
+            major: 1,
+            minor: Some(0),
+            patch: None,
+            pre: Prerelease::EMPTY,
+        };
+        let version = Version::new(1, 1, 0);
+        assert!(!matches_greater(&comparator, &version));
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::{Op, Version, Comparator, Prerelease, BuildMetadata};
+    use std::str::FromStr;
+
+    #[test]
+    fn matches_impl_exact() {
+        let version = Version::new(1, 2, 3);
+        let comparator = Comparator {
+            op: Op::Exact,
+            major: 1,
+            minor: Some(2),
+            patch: Some(3),
+            pre: Prerelease::new("").unwrap(),
+        };
+        assert!(matches_impl(&comparator, &version));
+
+        let version = Version::new(1, 2, 4);
+        assert!(!matches_impl(&comparator, &version));
+    }
+
+    // ...rest of the tests
+}
+True
+========================================
+    use crate::{Version, Prerelease, eval::{self, matches_less}, Comparator, Op};
+
+    #[test]
+    fn matches_less_major() {
+        // Version with lower major
+        let ver = Version::new(1, 0, 0);
+        let cmp = Comparator {
+            op: Op::Less,
+            major: 2,
+            minor: None,
+            patch: None,
+            pre: Prerelease::EMPTY,
+        };
+        assert!(matches_less(&cmp, &ver));
+    }
+
+    #[test]
+    fn matches_less_major_eq() {
+        // Version with equal major, testing minor
+        let ver = Version::new(2, 0, 0);
+        let cmp = Comparator {
+            op: Op::Less,
+            major: 2,
+            minor: Some(1),
+            patch: None,
+            pre: Prerelease::EMPTY,
+        };
+        assert!(matches_less(&cmp, &ver));
+    }
+
+    #[test]
+    fn matches_less_minor() {
+        // Version with lower minor
+        let ver = Version::new(2, 0, 0);
+        let cmp = Comparator {
+            op: Op::Less,
+            major: 2,
+            minor: Some(1),
+            patch: None,
+            pre: Prerelease::EMPTY,
+        };
+        assert!(matches_less(&cmp, &ver));
+    }
+
+    #[test]
+    fn matches_less_minor_eq() {
+        // Version with equal minor, testing patch
+        let ver = Version::new(2, 1, 0);
+        let cmp = Comparator {
+            op: Op::Less,
+            major: 2,
+            minor: Some(1),
+            patch: Some(1),
+            pre: Prerelease::EMPTY,
+        };
+        assert!(matches_less(&cmp, &ver));
+    }
+
+    #[test]
+    fn matches_less_patch() {
+        // Version with lower patch
+        let ver = Version::new(2, 1, 0);
+        let cmp = Comparator {
+            op: Op::Less,
+            major: 2,
+            minor: Some(1),
+            patch: Some(1),
+            pre: Prerelease::EMPTY,
+        };
+        assert!(matches_less(&cmp, &ver));
+    }
+
+    #[test]
+    fn matches_less_pre_release_newer() {
+        // Version with newer pre-release
+        let ver = Version {
+            major: 2,
+            minor: 1,
+            patch: 1,
+            pre: Prerelease::new("beta.1").unwrap(),
+            build: Default::default(),
+        };
+        let cmp = Comparator {
+            op: Op::Less,
+            major: 2,
+            minor: Some(1),
+            patch: Some(1),
+            pre: Prerelease::new("alpha.1").unwrap(),
+        };
+        assert!(matches_less(&cmp, &ver));
+    }
+
+    #[test]
+    fn matches_less_pre_release_older() {
+        // Version with older pre-release
+        let ver = Version {
+            major: 2,
+            minor: 1,
+            patch: 1,
+            pre: Prerelease::new("alpha.1").unwrap(),
+            build: Default::default(),
+        };
+        let cmp = Comparator {
+            op: Op::Less,
+            major: 2,
+            minor: Some(1),
+            patch: Some(1),
+            pre: Prerelease::new("beta.1").unwrap(),
+        };
+        assert!(!matches_less(&cmp, &ver));
+    }
+
+    #[test]
+    fn matches_less_no_minor() {
+        // Comparator with no minor should always return false
+        let ver = Version::new(1, 0, 0);
+        let cmp = Comparator {
+            op: Op::Less,
+            major: 1,
+            minor: None,
+            patch: None,
+            pre: Prerelease::EMPTY,
+        };
+        assert!(!matches_less(&cmp, &ver));
+    }
+
+    #[test]
+    fn matches_less_no_patch() {
+        // Comparator with no patch should always return false
+        let ver = Version::new(1, 1, 0);
+        let cmp = Comparator {
+            op: Op::Less,
+            major: 1,
+            minor: Some(1),
+            patch: None,
+            pre: Prerelease::EMPTY,
+        };
+        assert!(!matches_less(&cmp, &ver));
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::{Version, Prerelease, BuildMetadata, VersionReq};
+
+    #[test]
+    fn matches_req_with_empty_prerelease() {
+        let req = VersionReq::parse("1.2.3").unwrap();
+        let ver = Version::new(1, 2, 3);
+        assert!(matches_req(&req, &ver));
+    }
+
+    #[test]
+    fn matches_req_with_prerelease() {
+        let req = VersionReq::parse("1.2.3-alpha").unwrap();
+        let mut ver = Version::new(1, 2, 3);
+        ver.pre = Prerelease::new("alpha").unwrap();
+        assert!(matches_req(&req, &ver));
+    }
+
+    #[test]
+    fn matches_req_with_post_release() {
+        let req = VersionReq::parse(">1.2.3").unwrap();
+        let ver = Version::new(1, 2, 4);
+        assert!(matches_req(&req, &ver));
+    }
+
+    #[test]
+    fn matches_req_with_prerelease_and_build() {
+        let req = VersionReq::parse("1.2.3-alpha+001").unwrap();
+        let mut ver = Version::new(1, 2, 3);
+        ver.pre = Prerelease::new("alpha").unwrap();
+        ver.build = BuildMetadata::new("001").unwrap();
+        assert!(matches_req(&req, &ver));
+    }
+
+    #[test]
+    fn does_not_match_with_incompatible_prerelease() {
+        let req = VersionReq::parse("1.2.3-alpha").unwrap();
+        let mut ver = Version::new(1, 2, 3);
+        ver.pre = Prerelease::new("beta").unwrap();
+        assert!(!matches_req(&req, &ver));
+    }
+
+    #[test]
+    fn prerelease_does_not_satisfy_plain_version_req() {
+        let req = VersionReq::parse("1.2.3").unwrap();
+        let mut ver = Version::new(1, 2, 3);
+        ver.pre = Prerelease::new("alpha").unwrap();
+        assert!(!matches_req(&req, &ver));
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::{Version, Prerelease, Comparator, Op};
+
+    #[test]
+    fn test_matches_tilde() {
+        fn comp(major: u64, minor: Option<u64>, patch: Option<u64>, pre: &str) -> Comparator {
+            Comparator {
+                op: Op::Tilde,
+                major,
+                minor,
+                patch,
+                pre: Prerelease::new(pre).unwrap(),
+            }
+        }
+
+        fn ver(major: u64, minor: u64, patch: u64, pre: &str) -> Version {
+            Version {
+                major,
+                minor,
+                patch,
+                pre: Prerelease::new(pre).unwrap(),
+                build: BuildMetadata::EMPTY,
+            }
+        }
+
+        assert!(matches_tilde(&comp(1, None, None, ""), &ver(1, 0, 0, "")));
+        assert!(matches_tilde(&comp(1, Some(0), None, ""), &ver(1, 0, 0, "")));
+        assert!(matches_tilde(&comp(1, Some(0), Some(0), ""), &ver(1, 0, 0, "")));
+        assert!(matches_tilde(&comp(1, Some(0), Some(0), ""), &ver(1, 0, 0, "alpha")));
+        assert!(matches_tilde(&comp(1, Some(0), Some(0), ""), &ver(1, 0, 1, "alpha")));
+        assert!(matches_tilde(&comp(1, Some(0), None, "alpha"), &ver(1, 0, 0, "alpha")));
+        assert!(matches_tilde(&comp(1, Some(0), Some(0), "alpha"), &ver(1, 0, 0, "alpha")));
+
+        assert!(!matches_tilde(&comp(1, None, None, ""), &ver(2, 0, 0, "")));
+        assert!(!matches_tilde(&comp(1, Some(0), None, ""), &ver(1, 1, 0, "")));
+        assert!(!matches_tilde(&comp(1, Some(0), Some(0), ""), &ver(1, 0, 1, "")));
+        assert!(!matches_tilde(&comp(1, Some(0), None, "alpha"), &ver(1, 0, 0, "beta")));
+        assert!(!matches_tilde(&comp(1, Some(0), Some(0), "alpha"), &ver(1, 0, 0, "beta")));
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::eval::pre_is_compatible;
+    use crate::{Comparator, Version, Op, Prerelease};
+
+    #[test]
+    fn test_pre_is_compatible() {
+        // Test cases where compatibility should be true
+        let true_cases = vec![
+            (
+                Comparator {
+                    op: Op::Exact,
+                    major: 1,
+                    minor: Some(0),
+                    patch: Some(0),
+                    pre: Prerelease::new("alpha.1").unwrap(),
+                },
+                Version::new(1, 0, 0),
+            ),
+        ];
+
+        for (cmp, ver) in true_cases {
+            assert!(pre_is_compatible(&cmp, &ver));
+        }
+
+        // Test cases where compatibility should be false
+        let false_cases = vec![
+            (
+                Comparator {
+                    op: Op::Exact,
+                    major: 1,
+                    minor: Some(1),
+                    patch: Some(0),
+                    pre: Prerelease::new("alpha.1").unwrap(),
+                },
+                Version::new(1, 0, 0),
+            ),
+            (
+                Comparator {
+                    op: Op::Exact,
+                    major: 1,
+                    minor: Some(0),
+                    patch: Some(1),
+                    pre: Prerelease::new("alpha.1").unwrap(),
+                },
+                Version::new(1, 0, 0),
+            ),
+            (
+                Comparator {
+                    op: Op::Exact,
+                    major: 1,
+                    minor: Some(0),
+                    patch: Some(0),
+                    pre: Prerelease::new("beta.1").unwrap(),
+                },
+                Version::new(1, 0, 0),
+            ),
+            // pre_is_compatible should return false if the prerelease is empty
+            (
+                Comparator {
+                    op: Op::Exact,
+                    major: 1,
+                    minor: Some(0),
+                    patch: Some(0),
+                    pre: Prerelease::EMPTY,
+                },
+                Version::new(1, 0, 0),
+            ),
+        ];
+
+        for (cmp, ver) in false_cases {
+            assert!(!pre_is_compatible(&cmp, &ver));
+        }
+    }
+}
+True
+========================================
+    use crate::Identifier;
+    use std::ptr::NonNull;
+    use std::mem;
+    use std::hash::{Hash, Hasher}; // Added this line to import Hash and Hasher
+
+    #[test]
+    fn as_str_empty_identifier() {
+        let id = Identifier::empty();
+        assert_eq!(id.as_str(), "");
+    }
+
+    #[test]
+    fn as_str_inline_identifier() {
+        // Use a known inline identifier value for test
+        let mut bytes = [0u8; mem::size_of::<Identifier>()];
+        let id_bytes = [0x12, 0x34, 0x56, 0x78, 0x90, 0xAB, 0xCD, 0xEF];
+        bytes[..id_bytes.len()].copy_from_slice(&id_bytes);
+        let inline_id: Identifier = unsafe { mem::transmute(bytes) };
+        // Since inline strings might not be valid UTF-8, use unsafe `from_utf8_unchecked` for comparison
+        assert_eq!(id_bytes, inline_id.as_str().as_bytes());
+    }
+
+    #[test]
+    fn as_str_heap_identifier() {
+        // Create a known heap-allocated identifier for test
+        let heap_str = "This is a test";
+        let heap_id = unsafe { Identifier::new_unchecked(heap_str) };
+        // SAFETY: We have a valid UTF-8 heap string
+        assert_eq!(heap_str, heap_id.as_str());
+    }
+
+    #[test]
+    fn as_str_equals_own_hash() {
+        let id = Identifier::empty();
+        let id_str = id.as_str();
+        let mut hasher = std::collections::hash_map::DefaultHasher::new();
+        id_str.hash(&mut hasher);
+        let str_hash = hasher.finish();
+        
+        let mut hasher = std::collections::hash_map::DefaultHasher::new();
+        id.hash(&mut hasher);
+        let id_hash = hasher.finish();
+        
+        assert_eq!(str_hash, id_hash);
+    }
+}
+True
+========================================
+    use crate::Identifier;
+    use std::mem;
+    use std::ptr::NonNull;
+
+    #[test]
+    fn test_identifier_empty() {
+        let empty_identifier = Identifier::empty();
+
+        assert!(empty_identifier.is_empty());
+        assert_eq!(empty_identifier.as_str(), "");
+        assert_eq!(mem::size_of_val(&empty_identifier.head), mem::size_of::<NonNull<u8>>());
+        assert_eq!(empty_identifier.tail.len(), mem::size_of_val(&empty_identifier.tail));
+    }
+
+    #[test]
+    fn test_identifier_default_equals_empty() {
+        let default_identifier = Identifier::default();
+        let empty_identifier = Identifier::empty();
+
+        assert!(default_identifier == empty_identifier);
+    }
+
+    #[test]
+    fn test_identifier_empty_is_cloneable() {
+        let empty_identifier = Identifier::empty();
+        let empty_identifier_clone = empty_identifier.clone();
+
+        assert!(empty_identifier == empty_identifier_clone);
+    }
+
+    #[test]
+    fn test_identifier_empty_is_default() {
+        let empty_identifier = Identifier::empty();
+        let default_identifier = Identifier::default();
+
+        assert!(empty_identifier == default_identifier);
+    }
+
+    #[test]
+    fn test_identifier_empty_is_not_inline() {
+        let empty_identifier = Identifier::empty();
+
+        assert!(!empty_identifier.is_inline());
+    }
+
+    #[test]
+    fn test_identifier_empty_hash() {
+        use std::collections::hash_map::DefaultHasher;
+        use std::hash::{Hash, Hasher};
+
+        let empty_identifier = Identifier::empty();
+        let mut hasher = DefaultHasher::new();
+        empty_identifier.hash(&mut hasher);
+        let empty_identifier_hash = hasher.finish();
+
+        let another_empty_identifier = Identifier::empty();
+        let mut hasher = DefaultHasher::new();
+        another_empty_identifier.hash(&mut hasher);
+        let another_empty_identifier_hash = hasher.finish();
+
+        assert_eq!(empty_identifier_hash, another_empty_identifier_hash);
+    }
+
+    #[test]
+    fn test_identifier_empty_drop() {
+        let empty_identifier = Identifier::empty();
+        mem::drop(empty_identifier);
+    }
+}
+True
+========================================
+    use crate::identifier::Identifier;
+    use std::mem;
+
+    #[test]
+    fn identifier_is_empty_on_default() {
+        let identifier = Identifier::default();
+        assert!(identifier.is_empty());
+    }
+
+    #[test]
+    fn identifier_is_not_empty_after_assigning() {
+        let identifier = unsafe { Identifier::new_unchecked("nonempty") };
+        assert!(!identifier.is_empty());
+    }
+
+    #[test]
+    fn identifier_is_empty_after_empty_call() {
+        let identifier = Identifier::empty();
+        assert!(identifier.is_empty());
+    }
+
+    #[test]
+    fn identifier_is_empty_after_drop() {
+        let identifier = Identifier::default();
+        mem::drop(identifier); // Here we use std::mem::drop instead of directly calling drop
+        // We cannot assert anything after a value has been dropped
+    }
+
+    #[test]
+    fn identifier_clone_retains_empty_state() {
+        let identifier = Identifier::empty();
+        let cloned_identifier = identifier.clone();
+        assert!(cloned_identifier.is_empty());
+    }
+
+    #[test]
+    fn identifier_clone_retains_non_empty_state() {
+        let identifier = unsafe { Identifier::new_unchecked("cloned") };
+        let cloned_identifier = identifier.clone();
+        assert!(!cloned_identifier.is_empty());
+    }
+
+    #[test]
+    fn identifier_is_empty_after_mem_forget() {
+        let identifier = Identifier::empty();
+        mem::forget(identifier);
+        // Since mem::forget() is a zero-cost abstraction that prevents the
+        // destructor (Drop) from running, the following assert statement
+        // cannot be used after std::mem::forget:
+        // assert!(identifier.is_empty());
+        // Therefore, this test will only ensure that mem::forget compiles
+        // without validation after the identifier has been forgotten.
+    }
+}
+True
+========================================
+    use crate::Identifier;
+
+    #[test]
+    fn is_empty_or_inline_empty() {
+        let identifier = Identifier::empty();
+        assert!(identifier.is_empty_or_inline());
+    }
+
+    #[test]
+    fn is_empty_or_inline_inline() {
+        let string = "inline"; // Adjust length as needed to fit inline
+        let identifier = unsafe { Identifier::new_unchecked(string) };
+        assert!(identifier.is_empty_or_inline());
+    }
+
+    #[test]
+    fn is_empty_or_inline_not_inline_nor_empty() {
+        let string = "not inline string"; // Make sure length > 8 to not fit inline
+        let identifier = unsafe { Identifier::new_unchecked(string) };
+        assert!(!identifier.is_empty_or_inline());
+    }
+}
+True
+========================================
+    use crate::Identifier;
+    use std::ptr::NonNull;
+
+    #[test]
+    fn test_identifier_is_inline_for_empty() {
+        let empty_identifier = Identifier::empty();
+        assert!(empty_identifier.is_inline());
+    }
+
+    #[test]
+    fn test_identifier_is_inline_for_inline() {
+        // Safety: "Inline" is a valid ASCII string without null bytes
+        let inline_identifier = unsafe { Identifier::new_unchecked("Inline") };
+        assert!(inline_identifier.is_inline());
+    }
+
+    #[test]
+    fn test_identifier_is_inline_for_not_inline() {
+        // Generate a not inline identifier.
+        // Safety: The string is ASCII and not null.
+        let not_inline_identifier = unsafe { Identifier::new_unchecked("NotInlineNotInline") };
+        assert!(!not_inline_identifier.is_inline());
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn new_unchecked_empty() {
+        let identifier = unsafe { Identifier::new_unchecked("") };
+        assert!(identifier.is_empty());
+    }
+
+    #[test]
+    #[should_panic(expected = "please refrain from storing >64 petabytes of text in semver version")]
+    fn new_unchecked_too_large() {
+        let large_str = "a".repeat(0x100_0000_0000_0000);
+        let _identifier = unsafe { Identifier::new_unchecked(&large_str) };
+    }
+
+    #[test]
+    fn new_unchecked_inline() {
+        let s = "abcd";
+        assert!(s.len() <= 8);
+        let identifier = unsafe { Identifier::new_unchecked(s) };
+        assert_eq!(s, identifier.as_str());
+    }
+
+    #[test]
+    fn new_unchecked_heap() {
+        let s = "abcdefghi";
+        assert!(s.len() > 8);
+        let identifier = unsafe { Identifier::new_unchecked(s) };
+        assert_eq!(s, identifier.as_str());
+    }
+
+    #[test]
+    fn new_unchecked_zero() {
+        let s = "0";
+        let identifier = unsafe { Identifier::new_unchecked(s) };
+        assert_eq!(s, identifier.as_str());
+    }
+
+    #[test]
+    fn new_unchecked_bounds() {
+        let s = "bounds";
+        let identifier = unsafe { Identifier::new_unchecked(s) };
+        assert_eq!(s, identifier.as_str());
+    }
+
+    #[test]
+    #[should_panic]
+    fn new_unchecked_unsafe() {
+        unsafe {
+            let s = std::str::from_utf8_unchecked(&[0xFF, 0xFF, 0xFF, 0xFF]);
+            let _identifier = Identifier::new_unchecked(s);
+        }
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use std::num::NonZeroUsize;
+
+    #[test]
+    fn test_bytes_for_small_varint() {
+        let len = NonZeroUsize::new(1).unwrap();
+        assert_eq!(bytes_for_varint(len), 1);
+    }
+
+    #[test]
+    fn test_bytes_for_large_varint() {
+        let len = NonZeroUsize::new(std::usize::MAX).unwrap();
+        let max_varint_bytes = (std::mem::size_of::<usize>() * 8 + 6) / 7;
+        assert_eq!(bytes_for_varint(len), max_varint_bytes);
+    }
+
+    #[test]
+    fn test_bytes_for_varint_with_specific_values() {
+        let test_values = vec![
+            (NonZeroUsize::new(1).unwrap(), 1),
+            (NonZeroUsize::new(127).unwrap(), 1),
+            (NonZeroUsize::new(128).unwrap(), 2),
+            (NonZeroUsize::new(16383).unwrap(), 2),
+            (NonZeroUsize::new(16384).unwrap(), 3),
+        ];
+        for (len, expected_bytes) in test_values {
+            assert_eq!(bytes_for_varint(len), expected_bytes);
+        }
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use std::ptr;
+    use std::num::NonZeroUsize;
+
+    #[test]
+    fn test_decode_len_single_byte() {
+        let bytes = [0x7F, 0x00]; // 127 length
+        let len = unsafe { identifier::decode_len(bytes.as_ptr()) };
+        assert_eq!(NonZeroUsize::new(127).unwrap(), len);
+    }
+
+    #[test]
+    fn test_decode_len_two_bytes() {
+        let bytes = [0xFF, 0x01]; // 128 + 1 = 129 length
+        let len = unsafe { identifier::decode_len(bytes.as_ptr()) };
+        assert_eq!(NonZeroUsize::new(129).unwrap(), len);
+    }
+
+    #[test]
+    fn test_decode_len_long() {
+        // 0xFF (127) + 0x80 (128) = 0xFF80 (255) length
+        let bytes = [0xFF, 0x80, 0x01, 0x00];
+        let len = unsafe { identifier::decode_len(bytes.as_ptr()) };
+        assert_eq!(NonZeroUsize::new(255).unwrap(), len);
+    }
+
+    #[test]
+    #[should_panic]
+    fn test_decode_len_with_zero() {
+        let bytes = [0x00, 0x00]; // 0 length, which should not occur
+        let _ = unsafe { identifier::decode_len(bytes.as_ptr()) };
+    }
+
+    // The function tests the boundary conditions and expect the `decode_len_cold` function 
+    // to be called inside `decode_len` for identifiers 128 bytes or longer.
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+
+    use std::num::NonZeroUsize;
+    
+    #[test]
+    #[should_panic]
+    fn test_decode_len_cold() {
+        let bytes_with_msb_set = [0x80; 128]; // All bytes have MSB set
+        let bytes = bytes_with_msb_set.as_ptr();
+        
+        // SAFETY: We have a valid pointer to 128 bytes and function expects an
+        // MSB set for each to indicate continuation of varint encoding
+        let len = unsafe { decode_len_cold(bytes) };
+        
+        // Since all MSB are set, it should loop infinitely and never return
+        // We have to use should_panic because the function is unsafe and
+        // contains an infinite loop for this input
+    }
+
+    #[test]
+    fn test_decode_len_cold_stop_byte() {
+        let mut bytes_with_stop_byte = [0x80; 128];
+        bytes_with_stop_byte[127] = 0x01; // Last byte is a valid stop byte
+        let bytes = bytes_with_stop_byte.as_ptr();
+        
+        // SAFETY: We have a valid pointer to 128 bytes.
+        // As the last byte is the stop byte (less than 0x80) the function should return.
+        let len = unsafe { decode_len_cold(bytes) };
+        
+        // Calculate the expected length
+        let mut expected_len = 0;
+        let mut shift = 0;
+        for &byte in &bytes_with_stop_byte[..] {
+            expected_len |= ((byte & 0x7f) as usize) << shift;
+            shift += 7;
+        }
+
+        // Validate the function returns the correct value
+        assert_eq!(len, NonZeroUsize::new(expected_len).unwrap());
+    }
+    
+    #[test]
+    fn test_decode_len_cold_with_len() {
+        let mut bytes = vec![];
+        let mut value = 0x7Fusize;
+        while value != 0 {
+            bytes.push((value & 0x7F) as u8 | 0x80);
+            value >>= 7;
+        }
+        // Correct the loop overshoot
+        let last_byte = bytes.pop().unwrap();
+        bytes.push(last_byte & 0x7F); // Set last byte MSB to 0 to indicate stop byte
+
+        let bytes_ptr = bytes.as_ptr();
+        
+        // SAFETY: We have a valid pointer to the bytes and the last byte is a valid stop byte.
+        let len = unsafe { decode_len_cold(bytes_ptr) };
+        
+        // Calculate the expected length
+        let mut expected_len = 0;
+        let mut shift = 0;
+        for &byte in &bytes[..] {
+            expected_len |= ((byte & 0x7F) as usize) << shift;
+            shift += 7;
+        }
+
+        // Validate the function returns the correct length
+        assert_eq!(len, NonZeroUsize::new(expected_len).unwrap());
+    }
+}
+False
+========================================
+    use crate::identifier::{Identifier, inline_as_str};
+
+    #[test]
+    fn test_inline_as_str_empty() {
+        // Verify handling of empty Identifier
+        let empty = Identifier::empty();
+        unsafe {
+            let result = inline_as_str(&empty);
+            assert!(result.is_empty());
+        }
+    }
+
+    #[test]
+    fn test_inline_as_str_single_char() {
+        // Test with a single ASCII character
+        let single_char = unsafe { Identifier::new_unchecked("a") };
+        unsafe {
+            let result = inline_as_str(&single_char);
+            assert_eq!(result, "a");
+        }
+    }
+
+    #[test]
+    fn test_inline_as_str_multiple_chars() {
+        // Test with multiple ASCII characters
+        let multi_char = unsafe { Identifier::new_unchecked("rust") };
+        unsafe {
+            let result = inline_as_str(&multi_char);
+            assert_eq!(result, "rust");
+        }
+    }
+
+    #[test]
+    #[should_panic(expected = "attempted to index into character boundary")]
+    fn test_inline_as_str_non_ascii() {
+        // Test with non-ASCII characters
+        let non_ascii = unsafe { Identifier::new_unchecked("🚀") };
+        unsafe {
+            let _result = inline_as_str(&non_ascii);
+        }
+    }
+}
+True
+========================================
+    use std::num::NonZeroUsize;
+    use std::ptr;
+    use crate::identifier::Identifier;
+    use crate::identifier::inline_len;
+
+    #[test]
+    fn test_inline_len_empty() {
+        let empty = Identifier::empty();
+        let length = unsafe { inline_len(&empty) };
+        assert_eq!(length, NonZeroUsize::new(8).unwrap());
+    }
+
+    #[test]
+    fn test_inline_len_one_byte() {
+        let one_byte = unsafe { Identifier::new_unchecked("a") };
+        let length = unsafe { inline_len(&one_byte) };
+        assert_eq!(length, NonZeroUsize::new(1).unwrap());
+    }
+
+    #[test]
+    fn test_inline_len_multiple_bytes() {
+        let multiple_bytes = unsafe { Identifier::new_unchecked("abcdefg") };
+        let length = unsafe { inline_len(&multiple_bytes) };
+        assert_eq!(length, NonZeroUsize::new(7).unwrap());
+    }
+
+    #[test]
+    fn test_inline_len_max_bytes() {
+        let max_bytes = unsafe { Identifier::new_unchecked("abcdefgh") };
+        let length = unsafe { inline_len(&max_bytes) };
+        assert_eq!(length, NonZeroUsize::new(8).unwrap());
+    }
+
+    #[test]
+    #[should_panic]
+    fn test_inline_len_panic_on_null_bytes() {
+        let null_bytes = unsafe { Identifier::new_unchecked("a\0") };
+        let _ = unsafe { inline_len(&null_bytes) };
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use std::ptr::NonNull;
+
+    #[test]
+    fn test_ptr_as_str() {
+        // SAFETY: We are using a static string, which is guaranteed to be valid for the
+        // duration of the test, and the string only contains ASCII characters, so it's valid UTF-8.
+        unsafe {
+            let s = "example";
+            let ptr = s.as_ptr();
+            let non_null_ptr = NonNull::new(ptr as *mut u8).unwrap();
+            let result = ptr_as_str(&non_null_ptr);
+
+            assert_eq!(result, "example");
+        }
+    }
+
+    // You may need to implement the helper functions `repr_to_ptr` and `decode_len` for the test
+    // This implementation is hypothetical, you need to provide the actual implementation.
+    unsafe fn repr_to_ptr(repr: NonNull<u8>) -> *const u8 {
+        // Convert the NonNull<u8> back to *const u8
+        repr.as_ptr()
+    }
+
+    unsafe fn decode_len(_ptr: *const u8) -> usize {
+        // Decode the length of the string. This is hypothetical so we return a dummy value.
+        // You must insert the actual logic to decode the length.
+        7 // the length of the string "example"
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use std::ptr::NonNull;
+
+    #[test]
+    fn test_ptr_to_repr_non_null() {
+        let mut data = 123u8;
+        let ptr = &mut data as *mut u8;
+
+        let non_null_repr = ptr_to_repr(ptr);
+        assert!(std::ptr::NonNull::new(ptr).is_some());
+        assert_eq!(non_null_repr.as_ptr() as usize & 1, 1);
+    }
+
+    #[test]
+    #[should_panic(expected = "is not zero")]
+    fn test_ptr_to_repr_null() {
+        let ptr = std::ptr::null_mut::<u8>();
+        let _non_null_repr = ptr_to_repr(ptr);
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use std::ptr::NonNull;
+
+    #[test]
+    fn test_repr_to_ptr() {
+        let mut value = 0u8;
+
+        // Get a mutable reference to the value
+        let modified_ref: NonNull<u8> = NonNull::from(&mut value);
+
+        // The pointer should be the same after the transformation
+        let result_ptr = repr_to_ptr(modified_ref);
+        let expected_ptr: *const u8 = &value as *const u8;
+
+        // The pointers should match
+        assert_eq!(expected_ptr, result_ptr, "The transformed pointer should be equal to the original pointer");
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use std::ptr::NonNull;
+
+    #[test]
+    fn test_repr_to_ptr_mut() {
+        let mut value: u8 = 42;
+        let nonnull_ptr = NonNull::new(&mut value as *mut u8).expect("NonNull::new failed");
+
+        let ptr_mut = repr_to_ptr_mut(nonnull_ptr);
+
+        unsafe {
+            // Check that the pointer points to the correct value
+            assert_eq!(*ptr_mut, 42);
+
+            // Modify the value through the pointer to ensure it's mutable
+            *ptr_mut = 24;
+            assert_eq!(value, 24);
+        }
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use std::cmp::Ordering;
+
+    #[test]
+    fn test_cmp() {
+        let meta1 = BuildMetadata::new("1.2.3").unwrap();
+        let meta2 = BuildMetadata::new("1.2.3").unwrap();
+        let meta3 = BuildMetadata::new("1.2.4").unwrap();
+        let meta4 = BuildMetadata::new("2.1.1").unwrap();
+        let meta5 = BuildMetadata::new("0.0").unwrap();
+        let meta6 = BuildMetadata::new("0").unwrap();
+        let meta7 = BuildMetadata::new("a.b.c").unwrap();
+        let meta8 = BuildMetadata::new("a").unwrap();
+        let meta9 = BuildMetadata::new("a.1.c").unwrap();
+
+        // meta1 == meta2
+        assert_eq!(meta1.cmp(&meta2), Ordering::Equal);
+
+        // meta1 < meta3
+        assert_eq!(meta1.cmp(&meta3), Ordering::Less);
+
+        // meta3 > meta1
+        assert_eq!(meta3.cmp(&meta1), Ordering::Greater);
+
+        // meta1 < meta4
+        assert_eq!(meta1.cmp(&meta4), Ordering::Less);
+
+        // meta5 == meta6 numerically, meta5 < meta6 on length
+        assert_eq!(meta5.cmp(&meta6), Ordering::Less);
+
+        // meta7 == meta7
+        assert_eq!(meta7.cmp(&meta7), Ordering::Equal);
+
+        // meta7 < meta9 (alphanumeric vs numeric comparison)
+        assert_eq!(meta7.cmp(&meta9), Ordering::Less);
+
+        // meta8 < meta9 (alphanumeric vs numeric comparison, and shorter)
+        assert_eq!(meta8.cmp(&meta9), Ordering::Less);
+    }
+}
+True
+========================================
+    use crate::Prerelease;
+    use std::cmp::Ordering;
+
+    #[test]
+    fn test_prerelease_cmp() {
+        let examples = vec![
+            ("1.0.0", "1.0.0", Ordering::Equal),
+            ("", "1.0.0", Ordering::Less),
+            ("1.0.0", "", Ordering::Greater),
+            ("alpha", "alpha", Ordering::Equal),
+            ("alpha.1", "alpha.2", Ordering::Less),
+            ("alpha.2", "alpha.1", Ordering::Greater),
+            ("alpha", "alpha.1", Ordering::Less),
+            ("alpha.2", "alpha.11", Ordering::Less),
+            ("alpha.11", "alpha.2", Ordering::Greater),
+            ("alpha.2", "alpha.a", Ordering::Less),
+            ("beta", "alpha", Ordering::Greater),
+            ("beta.2", "alpha", Ordering::Greater),
+            ("alpha", "beta", Ordering::Less),
+            ("0.3", "11", Ordering::Less),
+            ("11", "0.3", Ordering::Greater),
+            ("1.2.3", "1.2.3.4", Ordering::Less),
+            ("1.2.3.5", "1.2.3.4", Ordering::Greater),
+        ];
+
+        for (a, b, expected) in examples {
+            let a_pr = a.parse::<Prerelease>().expect("Valid Prerelease");
+            let b_pr = b.parse::<Prerelease>().expect("Valid Prerelease");
+            assert_eq!(a_pr.cmp(&b_pr), expected, "Comparing {} and {}", a, b);
+        }
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use std::cmp::Ordering;
+
+    #[test]
+    fn test_partial_cmp() {
+        let metadata1 = BuildMetadata::new("123").unwrap();
+        let metadata2 = BuildMetadata::new("123").unwrap();
+        let metadata3 = BuildMetadata::new("124").unwrap();
+        let metadata4 = BuildMetadata::new("abc").unwrap();
+        let metadata5 = BuildMetadata::new("abc").unwrap();
+        let metadata6 = BuildMetadata::new("abd").unwrap();
+        let metadata7 = BuildMetadata::new("123.abc").unwrap();
+        let metadata8 = BuildMetadata::new("123.abc").unwrap();
+        let metadata9 = BuildMetadata::new("123.abd").unwrap();
+
+        assert_eq!(metadata1.partial_cmp(&metadata2), Some(Ordering::Equal));
+        assert_eq!(metadata1.partial_cmp(&metadata3), Some(Ordering::Less));
+        assert_eq!(metadata3.partial_cmp(&metadata1), Some(Ordering::Greater));
+
+        assert_eq!(metadata4.partial_cmp(&metadata5), Some(Ordering::Equal));
+        assert_eq!(metadata4.partial_cmp(&metadata6), Some(Ordering::Less));
+        assert_eq!(metadata6.partial_cmp(&metadata4), Some(Ordering::Greater));
+
+        assert_eq!(metadata7.partial_cmp(&metadata8), Some(Ordering::Equal));
+        assert_eq!(metadata7.partial_cmp(&metadata9), Some(Ordering::Less));
+        assert_eq!(metadata9.partial_cmp(&metadata8), Some(Ordering::Greater));
+
+        assert_eq!(metadata1.partial_cmp(&metadata4), Some(Ordering::Greater));
+        assert_eq!(metadata4.partial_cmp(&metadata1), Some(Ordering::Less));
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use std::cmp::Ordering;
+
+    #[test]
+    fn test_partial_cmp() {
+        let prerelease1 = Prerelease::new("alpha.1").unwrap();
+        let prerelease2 = Prerelease::new("alpha.2").unwrap();
+        let prerelease3 = Prerelease::new("beta.1").unwrap();
+        let prerelease4 = Prerelease::new("beta.2").unwrap();
+        let prerelease5 = Prerelease::new("rc.1").unwrap();
+        let prerelease6 = Prerelease::new("rc.1").unwrap();
+
+        assert_eq!(prerelease1.partial_cmp(&prerelease2), Some(Ordering::Less));
+        assert_eq!(prerelease2.partial_cmp(&prerelease1), Some(Ordering::Greater));
+        assert_eq!(prerelease2.partial_cmp(&prerelease3), Some(Ordering::Less));
+        assert_eq!(prerelease3.partial_cmp(&prerelease4), Some(Ordering::Less));
+        assert_eq!(prerelease4.partial_cmp(&prerelease5), Some(Ordering::Less));
+        assert_eq!(prerelease5.partial_cmp(&prerelease6), Some(Ordering::Equal));
+        assert_eq!(prerelease6.partial_cmp(&prerelease1), Some(Ordering::Greater));
+        assert_eq!(prerelease1.partial_cmp(&prerelease1), Some(Ordering::Equal));
+    }
+}
+True
+========================================
+    use crate::Identifier;
+    use std::default::Default;
+
+    #[test]
+    fn test_default_identifier_is_empty() {
+        let default_identifier: Identifier = Default::default();
+        assert!(default_identifier.is_empty());
+    }
+
+    #[test]
+    fn test_default_identifier_equality() {
+        let default_identifier1: Identifier = Default::default();
+        let default_identifier2: Identifier = Default::default();
+        // Use debug asset helper for objects that don't support Debug
+        if default_identifier1 != default_identifier2 {
+            panic!("Default identifiers are not equal");
+        }
+    }
+
+    #[test]
+    fn test_default_identifier_hash() {
+        use std::collections::hash_map::DefaultHasher;
+        use std::hash::{Hash, Hasher};
+
+        let default_identifier: Identifier = Default::default();
+        let mut hasher1 = DefaultHasher::new();
+        let mut hasher2 = DefaultHasher::new();
+        default_identifier.hash(&mut hasher1);
+        default_identifier.hash(&mut hasher2);
+        assert_eq!(hasher1.finish(), hasher2.finish());
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use std::hash::{Hash, Hasher};
+    use std::collections::hash_map::DefaultHasher;
+    
+    #[test]
+    fn hash_empty_identifier() {
+        let identifier = Identifier::default();
+        let mut hasher1 = DefaultHasher::new();
+        let mut hasher2 = DefaultHasher::new();
+        identifier.hash(&mut hasher1);
+        Identifier::default().hash(&mut hasher2);
+        assert_eq!(hasher1.finish(), hasher2.finish());
+    }
+
+    #[test]
+    fn hash_non_empty_identifier() {
+        let identifier1 = unsafe { Identifier::new_unchecked("alpha") };
+        let identifier2 = unsafe { Identifier::new_unchecked("beta") };
+        let mut hasher1 = DefaultHasher::new();
+        let mut hasher2 = DefaultHasher::new();
+        let mut hasher3 = DefaultHasher::new();
+        identifier1.hash(&mut hasher1);
+        identifier1.clone().hash(&mut hasher2);
+        identifier2.hash(&mut hasher3);
+        assert_eq!(hasher1.finish(), hasher2.finish());
+        assert_ne!(hasher1.finish(), hasher3.finish());
+    }
+
+    #[test]
+    fn hash_consistent_with_equality() {
+        let identifier1 = unsafe { Identifier::new_unchecked("123") };
+        let identifier2 = unsafe { Identifier::new_unchecked("123") };
+        let identifier3 = unsafe { Identifier::new_unchecked("456") };
+        let mut hasher1 = DefaultHasher::new();
+        let mut hasher2 = DefaultHasher::new();
+        let mut hasher3 = DefaultHasher::new();
+        identifier1.hash(&mut hasher1);
+        identifier2.hash(&mut hasher2);
+        identifier3.hash(&mut hasher3);
+        // Using byte representations to compare since `Identifier` does not implement `Debug`.
+        let identifier1_bytes = identifier1.as_str().as_bytes();
+        let identifier2_bytes = identifier2.as_str().as_bytes();
+        let identifier3_bytes = identifier3.as_str().as_bytes();
+        assert_eq!(hasher1.finish(), hasher2.finish());
+        assert_ne!(hasher1.finish(), hasher3.finish());
+        assert_eq!(identifier1_bytes, identifier2_bytes);
+        assert_ne!(identifier1_bytes, identifier3_bytes);
+    }
+
+    #[test]
+    fn hash_handles_inline_and_heap_allocated_identifiers() {
+        let identifier_inline = unsafe { Identifier::new_unchecked("short") };
+        let identifier_heap = unsafe { Identifier::new_unchecked("this is a longer identifier") };
+        let mut hasher_inline = DefaultHasher::new();
+        let mut hasher_heap = DefaultHasher::new();
+        identifier_inline.hash(&mut hasher_inline);
+        identifier_heap.hash(&mut hasher_heap);
+        assert_ne!(hasher_inline.finish(), hasher_heap.finish());
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::{Comparator, Op, VersionReq, Version, Prerelease};
+
+    #[test]
+    fn from_iter_creates_version_req_with_given_comparators() {
+        let v1 = Comparator {
+            op: Op::GreaterEq,
+            major: 1,
+            minor: Some(0),
+            patch: Some(0),
+            pre: Prerelease::EMPTY,
+        };
+        let v2 = Comparator {
+            op: Op::Less,
+            major: 2,
+            minor: None,
+            patch: None,
+            pre: Prerelease::EMPTY,
+        };
+        let comparators = vec![v1, v2];
+        let version_req = VersionReq::from_iter(comparators.clone());
+        assert_eq!(version_req.comparators, comparators);
+    }
+
+    #[test]
+    fn from_iter_creates_star_version_req_for_empty_iter() {
+        let comparators: Vec<Comparator> = Vec::new();
+        let version_req = VersionReq::from_iter(comparators);
+        assert_eq!(version_req.comparators, Vec::new());
+    }
+
+    #[test]
+    fn from_iter_supports_iterator_chain() {
+        let comparators = vec![
+            Comparator {
+                op: Op::Tilde,
+                major: 1,
+                minor: Some(0),
+                patch: Some(0),
+                pre: Prerelease::EMPTY,
+            },
+            Comparator {
+                op: Op::Caret,
+                major: 2,
+                minor: Some(0),
+                patch: Some(0),
+                pre: Prerelease::EMPTY,
+            },
+        ];
+
+        let version_req = comparators
+            .into_iter()
+            .chain(std::iter::once(Comparator {
+                op: Op::Exact,
+                major: 3,
+                minor: Some(0),
+                patch: Some(0),
+                pre: Prerelease::EMPTY,
+            }))
+            .collect::<VersionReq>();
+
+        assert!(version_req.matches(&Version::parse("1.0.1").unwrap()));
+        assert!(version_req.matches(&Version::parse("2.1.0").unwrap()));
+        assert!(version_req.matches(&Version::parse("3.0.0").unwrap()));
+        assert!(!version_req.matches(&Version::parse("3.0.1").unwrap()));
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use std::ops::Deref;
+    use std::str::FromStr;
+
+    #[test]
+    fn deref_returns_correct_identifier() {
+        let build_metadata = BuildMetadata::from_str("test123").unwrap();
+        assert_eq!(*build_metadata, "test123");
+    }
+
+    #[test]
+    fn deref_returns_empty_identifier() {
+        let build_metadata = BuildMetadata::from_str("").unwrap();
+        assert_eq!(*build_metadata, "");
+    }
+
+    #[test]
+    fn deref_returns_composite_identifier() {
+        let build_metadata = BuildMetadata::from_str("123.456.789").unwrap();
+        assert_eq!(*build_metadata, "123.456.789");
+    }
+    
+    // Note:
+    // The non-ASCII character test has been removed as it is contrary to BuildMetadata's
+    // specification that it should only contain ASCII alphanumeric and hyphens. The 
+    // original test was therefore not valid and would not compile due to the `from_str` 
+    // implementation which likely only accepts ASCII characters as per specification.
+
+    // Add more tests as necessary
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use std::str::FromStr;
+    use std::ops::Deref;
+
+    #[test]
+    fn prerelease_deref_returns_identifier_as_str() {
+        let prerelease = Prerelease::from_str("alpha.1").unwrap();
+        assert_eq!(&*prerelease, "alpha.1");
+    }
+
+    #[test]
+    fn prerelease_deref_returns_identifier_as_str_with_multiple_parts() {
+        let prerelease = Prerelease::from_str("beta.2.3").unwrap();
+        assert_eq!(&*prerelease, "beta.2.3");
+    }
+
+    #[test]
+    fn prerelease_deref_empty() {
+        let prerelease = Prerelease::from_str("").unwrap();
+        assert_eq!(&*prerelease, "");
+    }
+
+    #[test]
+    fn prerelease_deref_with_hyphens() {
+        let prerelease = Prerelease::from_str("alpha-1").unwrap();
+        assert_eq!(&*prerelease, "alpha-1");
+    }
+
+    #[test]
+    fn prerelease_deref_with_mixed_characters() {
+        let prerelease = Prerelease::from_str("rc-123.x.y").unwrap();
+        assert_eq!(&*prerelease, "rc-123.x.y");
+    }
+
+    #[test]
+    fn prerelease_deref_numeric() {
+        let prerelease = Prerelease::from_str("12345").unwrap();
+        assert_eq!(&*prerelease, "12345");
+    }
+
+    #[test]
+    fn prerelease_deref_with_leading_zeros() {
+        let prerelease = Prerelease::from_str("00123").unwrap();
+        assert_eq!(&*prerelease, "00123");
+    }
+
+    #[test]
+    #[should_panic(expected = "IllegalCharacter")]
+    fn prerelease_deref_with_illegal_characters() {
+        let _prerelease = Prerelease::from_str("beta!").unwrap();
+    }
+
+    #[test]
+    #[should_panic(expected = "IllegalCharacter")]
+    fn prerelease_deref_with_empty_parts() {
+        let _prerelease = Prerelease::from_str("alpha..1").unwrap();
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::parse::{BuildMetadata, Error, ErrorKind, Position};
+
+    #[test]
+    fn test_from_str_valid_build() {
+        let valid_build_str = "001";
+        let build_metadata = BuildMetadata::from_str(valid_build_str);
+        assert!(build_metadata.is_ok());
+        assert_eq!(valid_build_str, build_metadata.unwrap().to_string());
+    }
+
+    #[test]
+    fn test_from_str_invalid_build() {
+        let invalid_build_str = "001-alpha";
+        let build_metadata = BuildMetadata::from_str(invalid_build_str);
+        assert!(build_metadata.is_err());
+        match build_metadata {
+            Err(Error { kind: ErrorKind::IllegalCharacter(Position::Build), .. }) => (),
+            _ => panic!("Expected Error::IllegalCharacter at Position::Build"),
+        }
+    }
+
+    #[test]
+    fn test_from_str_empty_build() {
+        let empty_build_str = "";
+        let build_metadata = BuildMetadata::from_str(empty_build_str);
+        assert!(build_metadata.is_err());
+        match build_metadata {
+            Err(Error { kind: ErrorKind::InvalidBuildMetadata, .. }) => (),
+            _ => panic!("Expected Error::InvalidBuildMetadata"),
+        }
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::parse::Comparator;
+    use crate::parse::Error;
+    use crate::error::ErrorKind;
+    use std::str::FromStr;
+
+    #[test]
+    fn test_from_str_valid_input() {
+        let inputs = vec![
+            ">=1.0.0",
+            "=1.0.0",
+            "<1.0.0",
+            "<=1.2.3",
+            ">1.2.3",
+            "~1.2.3",
+            "^1.2.3",
+        ];
+
+        for input in inputs {
+            let result = Comparator::from_str(input);
+            assert!(result.is_ok(), "Failed to parse input: {}", input);
+            let comparator = result.unwrap();
+            assert_eq!(comparator.to_string(), input.trim());
+        }
+    }
+
+    #[test]
+    fn test_from_str_empty_input() {
+        let input = " ";
+        let result = Comparator::from_str(input);
+        assert!(result.is_err());
+        if let Err(err) = result {
+            assert!(matches!(err, Error::Empty));
+        }
+    }
+
+    #[test]
+    fn test_from_str_invalid_input() {
+        let inputs = vec![
+            "!",
+            ">= 1.0.0", // space is not allowed
+            "= 1.0.0",
+            "< 1.0.0",
+            "<= 1.2.3",
+            "> 1.2.3",
+            "~ 1.2.3",
+            "^ 1.2.3",
+            ">=1.0.0 extra",
+        ];
+
+        for input in inputs {
+            let result = Comparator::from_str(input);
+            assert!(result.is_err(), "Unexpected success for input: {}", input);
+        }
+    }
+
+    #[test]
+    fn test_from_str_unexpected_char() {
+        let input = ">=1.0.0a";
+        let result = Comparator::from_str(input);
+        assert!(result.is_err());
+        if let Err(err) = result {
+            assert!(matches!(err, Error::UnexpectedCharAfter(pos, ch) if pos == ">1.0.0a".char_indices().nth(7).map(|(p, _)| p) && ch == 'a'));
+        }
+    }
+}
+False
+========================================
+    use crate::Prerelease;
+    use crate::error::ErrorKind;
+    use std::str::FromStr;
+
+    // Assuming `Error` and `Position` types are re-exported in `error.rs` or at the crate root for external use.
+    // If not, these paths need to be adjusted based on their actual public re-export paths.
+    use crate::error::{Error, Position};
+    
+    #[test]
+    fn test_from_str_valid_prerelease() {
+        let prerelease_str = "alpha.1";
+        assert!(Prerelease::from_str(prerelease_str).is_ok());
+    }
+
+    #[test]
+    fn test_from_str_invalid_prerelease() {
+        let prerelease_str = "alpha!";
+        assert!(matches!(
+            Prerelease::from_str(prerelease_str),
+            Err(Error {
+                kind: ErrorKind::IllegalCharacter(Position::Pre),
+                ..
+            })
+        ));
+    }
+
+    #[test]
+    fn test_from_str_empty_prerelease() {
+        let prerelease_str = "";
+        assert!(Prerelease::from_str(prerelease_str).is_err());
+    }
+
+    #[test]
+    fn test_from_str_non_empty_rest() {
+        let prerelease_str = "alpha.1.beta";
+        assert!(matches!(
+            Prerelease::from_str(prerelease_str),
+            Err(Error {
+                kind: ErrorKind::IllegalCharacter(Position::Pre),
+                ..
+            })
+        ));
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::Version;
+    use crate::error::Error;
+    use crate::error::ErrorKind::*;
+
+    #[test]
+    fn test_from_str_empty() {
+        assert!(matches!(Version::from_str("").unwrap_err().kind(), Empty));
+    }
+
+    #[test]
+    fn test_from_str_only_major() {
+        assert_eq!(Version::from_str("1").unwrap(), Version::new(1, 0, 0));
+    }
+
+    #[test]
+    fn test_from_str_major_minor() {
+        assert_eq!(Version::from_str("1.2").unwrap(), Version::new(1, 2, 0));
+    }
+
+    #[test]
+    fn test_from_str_major_minor_patch() {
+        assert_eq!(Version::from_str("1.2.3").unwrap(), Version::new(1, 2, 3));
+    }
+
+    #[test]
+    fn test_from_str_with_pre() {
+        assert_eq!(
+            Version::from_str("1.2.3-alpha1").unwrap(),
+            Version {
+                major: 1,
+                minor: 2,
+                patch: 3,
+                pre: Prerelease::new("alpha1").unwrap(),
+                build: BuildMetadata::EMPTY,
+            }
+        );
+    }
+
+    #[test]
+    fn test_from_str_with_build() {
+        assert_eq!(
+            Version::from_str("1.2.3+20130313144700").unwrap(),
+            Version {
+                major: 1,
+                minor: 2,
+                patch: 3,
+                pre: Prerelease::EMPTY,
+                build: BuildMetadata::new("20130313144700").unwrap(),
+            }
+        );
+    }
+
+    #[test]
+    fn test_from_str_with_pre_and_build() {
+        assert_eq!(
+            Version::from_str("1.2.3-alpha1+20130313144700").unwrap(),
+            Version {
+                major: 1,
+                minor: 2,
+                patch: 3,
+                pre: Prerelease::new("alpha1").unwrap(),
+                build: BuildMetadata::new("20130313144700").unwrap(),
+            }
+        );
+    }
+
+    #[test]
+    fn test_from_str_invalid_character() {
+        assert!(matches!(
+            Version::from_str("1.2.3-@").unwrap_err().kind(),
+            UnexpectedCharAfter(_, '@')
+        ));
+    }
+
+    #[test]
+    fn test_from_str_invalid_empty_segment() {
+        assert!(matches!(
+            Version::from_str("1.2.").unwrap_err().kind(),
+            EmptySegment(_)
+        ));
+    }
+}
+False
+========================================
+    use crate::version_req::VersionReq;
+    use std::str::FromStr;
+
+    #[test]
+    fn parse_star_as_everything() {
+        assert_eq!(
+            "*".parse::<VersionReq>().map(|v| v.comparators), 
+            Ok(VersionReq::STAR.comparators)
+        );
+    }
+    
+    #[test]
+    fn parse_empty_as_error() {
+        assert!("".parse::<VersionReq>().is_err());
+    }
+    
+    #[test]
+    fn parse_only_whitespace_as_error() {
+        assert!("    ".parse::<VersionReq>().is_err());
+    }
+    
+    #[test]
+    fn parse_space_then_star_as_everything() {
+        assert_eq!(
+            " *".parse::<VersionReq>().map(|v| v.comparators), 
+            Ok(VersionReq::STAR.comparators)
+        );
+    }
+    
+    #[test]
+    fn parse_star_then_unexpected_text_as_error() {
+        assert!("*abc".parse::<VersionReq>().is_err());
+    }
+    
+    #[test]
+    fn parse_star_then_comma_as_error() {
+        assert!("*, ".parse::<VersionReq>().is_err());
+    }
+    
+    #[test]
+    fn parse_valid_semver_req() {
+        let v_req = ">1.0.0, <2.0.0".parse::<VersionReq>().unwrap();
+        assert_eq!(v_req.to_string(), ">1.0.0, <2.0.0");
+    }
+    
+    #[test]
+    fn parse_invalid_semver_req() {
+        assert!(">==1.0.0".parse::<VersionReq>().is_err());
+    }
+    
+    // Add more tests as required to cover different parsing scenarios
+}
+False
+========================================
+    use super::*; // Import the necessary module to access `Error` and `ErrorKind`
+
+use crate::*;
+    use crate::error::Position;
+    use crate::parse::{Error, ErrorKind};
+    use std::fmt::Write; // For QuotedChar to work in the tests
+
+    struct QuotedChar(char);
+
+    impl std::fmt::Display for QuotedChar {
+        fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+            write!(f, "'{}'", self.0)
+        }
+    }
+
+    // Test the creation of a new Error with ErrorKind::Empty
+    #[test]
+    fn new_empty_error() {
+        let error = Error::new(ErrorKind::Empty);
+        matches!(error.kind, ErrorKind::Empty);
+        assert_eq!(error.to_string(), "empty string, expected a semver version");
+    }
+
+    // Test the creation of a new Error with ErrorKind::UnexpectedEnd
+    #[test]
+    fn new_unexpected_end_error() {
+        let position = Position::Major;
+        let error = Error::new(ErrorKind::UnexpectedEnd(position));
+        matches!(error.kind, ErrorKind::UnexpectedEnd(Position::Major));
+        assert_eq!(
+            error.to_string(),
+            "unexpected end of input while parsing major version number"
+        );
+    }
+
+    // Test the creation of a new Error with ErrorKind::UnexpectedChar
+    #[test]
+    fn new_unexpected_char_error() {
+        let position = Position::Minor;
+        let error = Error::new(ErrorKind::UnexpectedChar(position, 'x'));
+        matches!(error.kind, ErrorKind::UnexpectedChar(Position::Minor, 'x'));
+        assert_eq!(
+            error.to_string(),
+            "unexpected character 'x' while parsing minor version number"
+        );
+    }
+
+    // Test the creation of a new Error with ErrorKind::LeadingZero
+    #[test]
+    fn new_leading_zero_error() {
+        let position = Position::Patch;
+        let error = Error::new(ErrorKind::LeadingZero(position));
+        matches!(error.kind, ErrorKind::LeadingZero(Position::Patch));
+        assert_eq!(
+            error.to_string(),
+            "invalid leading zero in patch version number"
+        );
+    }
+
+    // Test the creation of a new Error with ErrorKind::Overflow
+    #[test]
+    fn new_overflow_error() {
+        let position = Position::Patch;
+        let error = Error::new(ErrorKind::Overflow(position));
+        matches!(error.kind, ErrorKind::Overflow(Position::Patch));
+        assert_eq!(
+            error.to_string(),
+            "value of patch version number exceeds u64::MAX"
+        );
+    }
+
+    // Test the creation of a new Error with ErrorKind::EmptySegment
+    #[test]
+    fn new_empty_segment_error() {
+        let position = Position::Build;
+        let error = Error::new(ErrorKind::EmptySegment(position));
+        matches!(error.kind, ErrorKind::EmptySegment(Position::Build));
+        assert_eq!(
+            error.to_string(),
+            "empty identifier segment in build metadata"
+        );
+    }
+
+    // Test the creation of a new Error with ErrorKind::IllegalCharacter
+    #[test]
+    fn new_illegal_character_error() {
+        let position = Position::Pre;
+        let error = Error::new(ErrorKind::IllegalCharacter(position));
+        matches!(error.kind, ErrorKind::IllegalCharacter(Position::Pre));
+        assert_eq!(
+            error.to_string(),
+            "unexpected character in pre-release identifier"
+        );
+    }
+
+    // Test the creation of a new Error with ErrorKind::UnexpectedCharAfter
+    #[test]
+    fn new_unexpected_char_after_error() {
+        let position = Position::Minor;
+        let error = Error::new(ErrorKind::UnexpectedCharAfter(position, 'y'));
+        matches!(error.kind, ErrorKind::UnexpectedCharAfter(Position::Minor, 'y'));
+        assert_eq!(
+            error.to_string(),
+            "unexpected character 'y' after minor version number"
+        );
+    }
+
+    // Note: Additional tests can be created for each of the `ErrorKind` variants
+    // following similar patterns to the tests above, ensuring each error string is
+    // constructed correctly and matches its designated message.
+}
+True
+========================================
+    use crate::parse::{build_identifier, BuildMetadata, Error, Position, identifier};
+
+    #[test]
+    fn test_build_identifier_valid() {
+        let input = "00123+remainder";
+        match build_identifier(input) {
+            Ok((build_metadata, rest)) => {
+                assert_eq!(build_metadata.identifier.to_string(), "00123");
+                assert_eq!(rest, "+remainder");
+            }
+            Err(_) => panic!("Expected Ok, got Err for a valid build identifier"),
+        }
+    }
+
+    #[test]
+    fn test_build_identifier_invalid() {
+        let input = "!";
+        assert!(build_identifier(input).is_err());
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::{Comparator, Op, Position, Prerelease};
+    use crate::parse::{comparator, Error, ErrorKind::{EmptySegment, UnexpectedAfterWildcard}};
+
+    #[test]
+    fn test_comparator_exact_version() {
+        let input = "1.2.3";
+        let expected = Comparator {
+            op: Op::Exact,
+            major: 1,
+            minor: Some(2),
+            patch: Some(3),
+            pre: Prerelease::EMPTY,
+        };
+        let (comparator, position, remainder) = comparator(input).unwrap();
+        assert_eq!(comparator, expected);
+        assert_eq!(position, Position::Patch);
+        assert!(remainder.is_empty());
+    }
+
+    #[test]
+    fn test_comparator_wildcard() {
+        let input = "1.*";
+        let expected = Comparator {
+            op: Op::Wildcard,
+            major: 1,
+            minor: None,
+            patch: None,
+            pre: Prerelease::EMPTY,
+        };
+        let (comparator, position, remainder) = comparator(input).unwrap();
+        assert_eq!(comparator, expected);
+        assert_eq!(position, Position::Major);
+        assert!(remainder.is_empty());
+    }
+
+    #[test]
+    fn test_comparator_with_op() {
+        let input = ">=1.2.3";
+        let expected = Comparator {
+            op: Op::Greater,
+            major: 1,
+            minor: Some(2),
+            patch: Some(3),
+            pre: Prerelease::EMPTY,
+        };
+        let (comparator, position, remainder) = comparator(input).unwrap();
+        assert_eq!(comparator, expected);
+        assert_eq!(position, Position::Patch);
+        assert!(remainder.is_empty());
+    }
+
+    #[test]
+    fn test_comparator_with_prerelease() {
+        let input = "1.2.3-alpha.1";
+        let expected = Comparator {
+            op: Op::Exact,
+            major: 1,
+            minor: Some(2),
+            patch: Some(3),
+            pre: Prerelease::new("alpha.1").unwrap(),
+        };
+        let (comparator, position, remainder) = comparator(input).unwrap();
+        assert_eq!(comparator, expected);
+        assert_eq!(position, Position::Pre);
+        assert!(remainder.is_empty());
+    }
+
+    #[test]
+    fn test_comparator_with_empty_prerelease() {
+        let input = "1.2.3-";
+        let error = comparator(input).unwrap_err();
+        assert!(matches!(*error.kind(), EmptySegment(Position::Pre)));
+    }
+
+    #[test]
+    fn test_comparator_unexpected_wildcard() {
+        let input = "1.*.3";
+        let error = comparator(input).unwrap_err();
+        assert!(matches!(*error.kind(), UnexpectedAfterWildcard));
+    }
+
+    #[test]
+    fn test_comparator_empty_input() {
+        let input = "";
+        assert!(comparator(input).is_err());
+    }
+}
+False
+========================================
+    use crate::dot;
+    use crate::error::{Error, ErrorKind, Position};
+
+    #[test]
+    fn test_dot_with_valid_input() {
+        assert_eq!(dot(".1.2.3", Position::Major), Ok("1.2.3"));
+        assert_eq!(dot(".alpha1", Position::Pre), Ok("alpha1"));
+        assert_eq!(dot(".build.123", Position::Build), Ok("build.123"));
+    }
+
+    #[test]
+    fn test_dot_with_unexpected_char() {
+        match dot("1.2.3", Position::Major) {
+            Err(Error(ErrorKind::UnexpectedCharAfter(Position::Major, '1'), _)) => (),
+            _ => panic!("Expected an error for unexpected char after dot"),
+        }
+
+        match dot("alpha1", Position::Pre) {
+            Err(Error(ErrorKind::UnexpectedCharAfter(Position::Pre, 'a'), _)) => (),
+            _ => panic!("Expected an error for unexpected char after dot"),
+        }
+    }
+
+    #[test]
+    fn test_dot_with_unexpected_end() {
+        match dot("", Position::Major) {
+            Err(Error(ErrorKind::UnexpectedEnd(Position::Major), _)) => (),
+            _ => panic!("Expected an error for unexpected end after dot"),
+        }
+    }
+}
+False
+========================================
+    use crate::parse::identifier;
+    use crate::error::{ErrorKind, Position};
+
+    #[test]
+    fn test_identifier_with_valid_input() {
+        let input = "alpha.1.2.3";
+        let expected = "alpha";
+        let position = Position::Pre;
+        let result = identifier(input, position).unwrap();
+        assert_eq!(result, (expected, ".1.2.3"));
+    }
+
+    #[test]
+    fn test_identifier_with_empty_input() {
+        let input = "";
+        let position = Position::Pre;
+        let result = identifier(input, position).unwrap();
+        assert_eq!(result, ("", input));
+    }
+
+    #[test]
+    fn test_identifier_with_empty_segment() {
+        let input = "..";
+        let position = Position::Pre;
+        let result = identifier(input, position).unwrap_err();
+        assert_eq!(
+            result.kind(),
+            ErrorKind::EmptySegment(position)
+        );
+    }
+
+    #[test]
+    fn test_identifier_with_leading_zero() {
+        let input = "01";
+        let position = Position::Pre;
+        let result = identifier(input, position).unwrap_err();
+        assert_eq!(
+            result.kind(),
+            ErrorKind::LeadingZero(position)
+        );
+    }
+
+    #[test]
+    fn test_identifier_with_valid_digits() {
+        let input = "123.456";
+        let expected = "123";
+        let position = Position::Pre;
+        let result = identifier(input, position).unwrap();
+        assert_eq!(result, (expected, ".456"));
+    }
+
+    #[test]
+    fn test_identifier_with_numeric_input() {
+        let input = "7";
+        let position = Position::Pre;
+        let result = identifier(input, position).unwrap();
+        assert_eq!(result, ("7", ""));
+    }
+
+    #[test]
+    fn test_identifier_with_dash_in_input() {
+        let input = "alpha-beta.1.2.3";
+        let expected = "alpha-beta";
+        let position = Position::Pre;
+        let result = identifier(input, position).unwrap();
+        assert_eq!(result, (expected, ".1.2.3"));
+    }
+
+    #[test]
+    fn test_identifier_with_only_dash() {
+        let input = "-";
+        let position = Position::Pre;
+        let result = identifier(input, position).unwrap();
+        assert_eq!(result, ("-", ""));
+    }
+
+    #[test]
+    fn test_identifier_with_characters_and_digits() {
+        let input = "rc1.2.3";
+        let expected = "rc1";
+        let position = Position::Pre;
+        let result = identifier(input, position).unwrap();
+        assert_eq!(result, (expected, ".2.3"));
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::error::{ErrorKind, ParseError as Error};
+
+    #[test]
+    fn test_numeric_identifier_valid() {
+        assert!(matches!(
+            numeric_identifier("123", Position::Major),
+            Ok((123, ""))
+        ));
+        assert!(matches!(
+            numeric_identifier("456extra", Position::Minor),
+            Ok((456, "extra"))
+        ));
+    }
+
+    #[test]
+    fn test_numeric_identifier_too_long() {
+        if let Err(Error::LeadingZero(Position::Patch)) = numeric_identifier("00123", Position::Patch) {
+            assert!(true);
+        } else {
+            assert!(false, "Leading zero in numeric identifier should be treated as an error");
+        }
+    }
+
+    #[test]
+    fn test_numeric_identifier_invalid() {
+        if let Err(Error::UnexpectedChar(Position::Pre, 'a')) = numeric_identifier("abc", Position::Pre) {
+            assert!(true);
+        } else {
+            assert!(false, "Unexpected character in numeric identifier should be treated as an error");
+        }
+        if let Err(Error::UnexpectedEnd(Position::Build)) = numeric_identifier("", Position::Build) {
+            assert!(true);
+        } else {
+            assert!(false, "Unexpected end in numeric identifier should be treated as an error");
+        }
+    }
+
+    #[test]
+    fn test_numeric_identifier_overflow() {
+        assert!(matches!(
+            numeric_identifier("999999999999999999999999999999999999", Position::Major),
+            Err(Error::Overflow(Position::Major))
+        ));
+    }
+}
+False
+========================================
+    use crate::op;
+    use crate::Op;
+
+    #[test]
+    fn test_op_exact() {
+        assert_eq!(op("="), (Op::Exact, ""));
+    }
+
+    #[test]
+    fn test_op_greater() {
+        assert_eq!(op(">"), (Op::Greater, ""));
+    }
+
+    #[test]
+    fn test_op_greater_eq() {
+        assert_eq!(op(">="), (Op::GreaterEq, ""));
+    }
+
+    #[test]
+    fn test_op_less() {
+        assert_eq!(op("<"), (Op::Less, ""));
+    }
+
+    #[test]
+    fn test_op_less_eq() {
+        assert_eq!(op("<="), (Op::LessEq, ""));
+    }
+
+    #[test]
+    fn test_op_tilde() {
+        assert_eq!(op("~"), (Op::Tilde, ""));
+    }
+
+    #[test]
+    fn test_op_caret() {
+        assert_eq!(op("^"), (Op::Caret, ""));
+    }
+
+    #[test]
+    fn test_op_default() {
+        assert_eq!(op("x"), (Op::Caret, "x"));
+    }
+
+    #[test]
+    fn test_op_with_following_input() {
+        assert_eq!(op(">="), (Op::GreaterEq, ""));
+        assert_eq!(op(">1.2.3"), (Op::Greater, "1.2.3"));
+        assert_eq!(op("<3.2.1"), (Op::Less, "3.2.1"));
+        assert_eq!(op("~2.5"), (Op::Tilde, "2.5"));
+        assert_eq!(op("^1.0.0"), (Op::Caret, "1.0.0"));
+    }
+}
+False
+========================================
+    use crate::prerelease_identifier;
+    use crate::errors::Error;
+    use crate::version::Identifier;
+    use crate::prerelease::Prerelease;
+
+    #[test]
+    fn test_prerelease_identifier_valid() {
+        let input = "alpha.1.2";
+        let expected_identifier = Identifier::AlphaNumeric("alpha".into());
+        let expected = Prerelease { identifier: expected_identifier };
+        let (result, rest) = prerelease_identifier(input).expect("Failed to parse prerelease identifier");
+        assert_eq!(result.identifier, expected.identifier);
+        assert_eq!(rest, "1.2");
+    }
+
+    #[test]
+    fn test_prerelease_identifier_empty() {
+        let input = "";
+        assert!(matches!(prerelease_identifier(input), Err(Error::EmptyIdentifier)));
+    }
+
+    #[test]
+    fn test_prerelease_identifier_invalid() {
+        let input = "!!alpha";
+        assert!(prerelease_identifier(input).is_err());
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::error::ErrorKind;
+    use crate::version_req;
+    use crate::comparator::Comparator;
+
+    #[test]
+    fn test_version_req_single_comparator() {
+        let mut comparators: Vec<Comparator> = Vec::new();
+        let result = version_req(">=1.2.3", &mut comparators, 0);
+        assert!(result.is_ok());
+        assert_eq!(result.unwrap(), 1);
+        assert_eq!(comparators.len(), 1);
+        assert_eq!(comparators[0].to_string(), ">=1.2.3");
+    }
+
+    #[test]
+    fn test_version_req_multiple_comparators() {
+        let mut comparators: Vec<Comparator> = Vec::new();
+        let result = version_req(">=1.2.3, <2.0.0", &mut comparators, 0);
+        assert!(result.is_ok());
+        assert_eq!(result.unwrap(), 2);
+        assert_eq!(comparators.len(), 2);
+        assert!(comparators.iter().any(|c| c.to_string() == ">=1.2.3"));
+        assert!(comparators.iter().any(|c| c.to_string() == "<2.0.0"));
+    }
+
+    #[test]
+    fn test_version_req_excessive_comparators() {
+        let mut comparators: Vec<Comparator> = vec![Comparator::new(Op::Tilde, Version::new(1,0,0)); 32];
+        let result = version_req(">=1.2.3", &mut comparators, 31);
+        assert!(result.is_err());
+        if let Err(e) = result {
+            assert!(matches!(e.kind(), ErrorKind::ExcessiveComparators));
+        }
+    }
+
+    #[test]
+    fn test_version_req_unexpected_char() {
+        let mut comparators: Vec<Comparator> = Vec::new();
+        let result = version_req(">=1.2.3a", &mut comparators, 0);
+        assert!(result.is_err());
+    }
+
+    #[test]
+    fn test_version_req_containing_wildcard() {
+        let mut comparators: Vec<Comparator> = Vec::new();
+        let result = version_req("1.*", &mut comparators, 0);
+        assert!(result.is_err());
+    }
+}
+False
+========================================
+    use crate::wildcard;
+
+    #[test]
+    fn wildcard_star() {
+        assert_eq!(wildcard("*rest"), Some(('*', "rest")));
+    }
+
+    #[test]
+    fn wildcard_lowercase_x() {
+        assert_eq!(wildcard("xrest"), Some(('x', "rest")));
+    }
+
+    #[test]
+    fn wildcard_uppercase_x() {
+        assert_eq!(wildcard("Xrest"), Some(('X', "rest")));
+    }
+
+    #[test]
+    fn wildcard_no_wildcard() {
+        assert_eq!(wildcard("rest"), None);
+    }
+
+    #[test]
+    fn wildcard_empty() {
+        assert_eq!(wildcard(""), None);
+    }
+
+    #[test]
+    fn wildcard_only_wildcard_star() {
+        assert_eq!(wildcard("*"), Some(('*', "")));
+    }
+
+    #[test]
+    fn wildcard_only_wildcard_x() {
+        assert_eq!(wildcard("x"), Some(('x', "")));
+    }
+
+    #[test]
+    fn wildcard_only_wildcard_uppercase_x() {
+        assert_eq!(wildcard("X"), Some(('X', "")));
+    }
+}
+False
+semver semver 45 66

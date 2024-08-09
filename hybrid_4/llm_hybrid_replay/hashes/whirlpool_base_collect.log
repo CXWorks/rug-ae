@@ -1,0 +1,343 @@
+========================================
+    use super::*;
+
+use crate::*;
+    use core::default::Default;
+
+    #[test]
+    fn default_initializes_zeroed() {
+        let whirlpool_core = WhirlpoolCore::default();
+
+        assert_eq!(whirlpool_core.bit_len, [0u64; 4]);
+        assert_eq!(whirlpool_core.state, [0u64; 8]);
+    }
+}
+True
+========================================
+    use crate::WhirlpoolCore;
+    use digest::Reset;
+    use core::fmt;
+
+    #[derive(PartialEq)]
+    struct Wrapper(WhirlpoolCore);
+
+    impl fmt::Debug for Wrapper {
+        fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+            fmt::Debug::fmt(&self.0, f)
+        }
+    }
+
+    #[test]
+    fn reset_test() {
+        let mut hasher = WhirlpoolCore::default();
+        hasher.reset();
+
+        let hasher_after = WhirlpoolCore::default();
+        let wrapper1 = Wrapper(hasher);
+        let wrapper2 = Wrapper(hasher_after);
+
+        assert_eq!(wrapper1, wrapper2, "Hasher should be equal to the default after reset.");
+    }
+}
+False
+========================================
+    use crate::WhirlpoolCore;
+    use digest::core_api::AlgorithmName;
+    use core::fmt;
+    use core::fmt::Write;
+
+    #[test]
+    fn test_write_alg_name() {
+        let mut output = String::new();
+        let res = WhirlpoolCore::write_alg_name(&mut output);
+        assert!(res.is_ok());
+        assert_eq!(output, "Whirlpool");
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use digest::core_api::{Buffer, FixedOutputCore, Output, OutputSizeUser, UpdateCore};
+    use digest::Update;
+
+    #[test]
+    fn test_finalize_fixed_core() {
+        let mut core = WhirlpoolCore::default();
+        let mut buffer = Buffer::<WhirlpoolCore>::default();
+        let mut output = Output::<WhirlpoolCore>::default();
+
+        // Update the core with some input
+        let input = b"The quick brown fox jumps over the lazy dog";
+        core.update(input);
+
+        // Finalize the hash
+        core.finalize_fixed_core(&mut buffer, &mut output);
+
+        // Convert to vec for comparison
+        let output_vec: Vec<u8> = output.into();
+
+        // Compare with the known correct hash
+        let expected: Vec<u8> = vec![
+            // Expected hash for "The quick brown fox jumps over the lazy dog"
+            // using Whirlpool algorithm
+            0x19, 0xFA, 0x61, 0xD7, 0x55, 0x22, 0x46, 0x91, 0x90, 0x52, 0x6F, 0x9F, 0x20, 0xD5, 0x7E, 0x0E,
+            0x67, 0x76, 0x0A, 0xB4, 0xA2, 0x6E, 0xD8, 0x52, 0x5E, 0x98, 0x28, 0x5A, 0x28, 0x46, 0x8E, 0x0F,
+            0xE7, 0xAB, 0xA6, 0x96, 0x0A, 0x60, 0xFF, 0x1F, 0x17, 0x99, 0x1F, 0x23, 0x15, 0x66, 0xE7, 0xBC,
+            0x4F, 0xEB, 0x9F, 0x2F, 0x46, 0x66, 0xB4, 0x5E, 0x5E, 0x38, 0x5C, 0x67, 0xE5, 0x57, 0x2F, 0x36,
+        ];
+
+        assert_eq!(output_vec, expected);
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::WhirlpoolCore;
+    use digest::core_api::UpdateCore;
+    use digest::core_api::Block;
+    use digest::core_api::BlockSizeUser;
+    use digest::core_api::FixedOutputCore;
+    use digest::core_api::Output;
+    use digest::core_api::OutputSizeUser;
+    use digest::core_api::Buffer;
+
+    #[test]
+    fn update_blocks_test() {
+        let mut core = WhirlpoolCore::default();
+        let block_size = <WhirlpoolCore as BlockSizeUser>::BlockSize::to_usize();
+
+        // Prepare a single block of the appropriate size
+        let mut block = vec![0u8; block_size];
+        for (byte, i) in block.iter_mut().zip(0u8..) {
+            *byte = i;
+        }
+        let blocks = vec![Block::<WhirlpoolCore>::from(block.as_slice())];
+
+        // Update the state with the block
+        core.update_blocks(&blocks);
+
+        // Verify the state has been updated
+        let mut output = Output::<WhirlpoolCore>::default();
+        let mut buffer = Buffer::<WhirlpoolCore>::default();
+        core.finalize_fixed_core(&mut buffer, &mut output);
+
+        let expected_output = vec![
+            // ...
+            // Byte output expected after the state update with the block
+            // ...
+        ];
+
+        assert_eq!(&output[..], &expected_output[..]);
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn update_len_adds_length_properly() {
+        let mut core = WhirlpoolCore::default();
+        let initial_len = core.bit_len;
+
+        // Add a length less than u64::MAX to check normal behavior
+        let len_to_add = 123456789;
+        core.update_len(len_to_add);
+        let mut expected_len = initial_len;
+        expected_len[3] += len_to_add;
+
+        assert_eq!(core.bit_len, expected_len, "Length should be added to the last element of the array");
+
+        // Reset and check behavior with a carry
+        core.reset();
+        let len_to_add = u64::MAX;
+        core.update_len(len_to_add);
+        core.update_len(1); // Adding 1 to cause an overflow and carry
+        let mut expected_len = initial_len;
+        expected_len[3] = 0;
+        expected_len[2] += 1;
+
+        assert_eq!(core.bit_len, expected_len, "Carry should propagate to the next element of the array");
+    }
+}
+True
+========================================
+    use crate::adc;
+
+    #[test]
+    fn test_adc_simple_addition() {
+        let mut a: u64 = 1;
+        let b: u64 = 2;
+        let mut carry: u64 = 0;
+        adc(&mut a, b, &mut carry);
+        assert_eq!(a, 3);
+        assert_eq!(carry, 0);
+    }
+
+    #[test]
+    fn test_adc_with_carry() {
+        let mut a: u64 = u64::MAX;
+        let b: u64 = 1;
+        let mut carry: u64 = 0;
+        adc(&mut a, b, &mut carry);
+        assert_eq!(a, 0);
+        assert_eq!(carry, 1);
+    }
+
+    #[test]
+    fn test_adc_large_numbers() {
+        let mut a: u64 = u64::MAX - 1;
+        let b: u64 = 1;
+        let mut carry: u64 = 1;
+        adc(&mut a, b, &mut carry);
+        assert_eq!(a, 1);
+        assert_eq!(carry, 1);
+    }
+
+    #[test]
+    fn test_adc_zero_addition() {
+        let mut a: u64 = 0;
+        let b: u64 = 0;
+        let mut carry: u64 = 0;
+        adc(&mut a, b, &mut carry);
+        assert_eq!(a, 0);
+        assert_eq!(carry, 0);
+    }
+
+    #[test]
+    fn test_adc_random_addition() {
+        let mut a: u64 = 123456789;
+        let b: u64 = 987654321;
+        let mut carry: u64 = 0;
+        adc(&mut a, b, &mut carry);
+        assert_eq!(a, 1111111110);
+        assert_eq!(carry, 0);
+    }
+}
+True
+========================================
+    use crate::compress;
+    use crate::BLOCK_SIZE;
+
+    #[test]
+    fn test_compress_single_block() {
+        let mut state = [0u64; 8];
+        let block = [0u8; BLOCK_SIZE];
+        let expected_state = [0u64; 8];
+        // The expected state must be determined or calculated in accordance with the compress function behavior
+
+        compress(&mut state, &[block]);
+
+        assert_eq!(state, expected_state, "State should match after compressing one block");
+    }
+
+    #[test]
+    fn test_compress_multiple_blocks() {
+        let mut state = [0u64; 8];
+        let block1 = [0u8; BLOCK_SIZE];
+        let block2 = [1u8; BLOCK_SIZE];
+        let blocks = [block1, block2];
+        let expected_state = [0u64; 8];
+        // The expected state must be determined or calculated in accordance with the compress function behavior
+
+        compress(&mut state, &blocks);
+
+        assert_eq!(state, expected_state, "State should match after compressing multiple blocks");
+    }
+
+    // You may need more test cases to cover different scenarios.
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+
+    const BLOCK_SIZE: usize = 64; // assuming BLOCK_SIZE is 64
+    const R: usize = 10; // assuming R is 10 for the rounds of whirlpool
+
+    // Fetching the C and RC constants from the outer scope
+    // The arrays C0, C1, C2, C3, C4, C5, C6, C7, and RC are defined 
+    // in the outer scope of this module
+    use crate::C0;
+    use crate::C1;
+    use crate::C2;
+    use crate::C3;
+    use crate::C4;
+    use crate::C5;
+    use crate::C6;
+    use crate::C7;
+    use crate::RC;
+    
+    #[test]
+    fn test_compress_block() {
+        // Define a test block and a test state
+        let test_block: [u8; BLOCK_SIZE] = [0; BLOCK_SIZE];
+        let mut test_state: [u64; 8] = [0; 8];
+        let expected_state: [u64; 8] = [
+            // The expected 8 u64 values after test_block has been compressed
+        ];
+
+        // Perform the compression
+        crate::compress::compress_block(&mut test_state, &test_block);
+
+        // Verify the state is as expected
+        assert_eq!(test_state, expected_state);
+    }
+
+    // Additional tests would be added here
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+
+    use digest::generic_array::GenericArray;
+    use digest::generic_array::typenum::U64;
+    use crate::BLOCK_SIZE;
+
+    #[test]
+    fn test_convert_empty() {
+        let blocks: &[GenericArray<u8, U64>] = &[];
+        let converted = convert(blocks);
+        assert_eq!(converted.len(), 0);
+    }
+
+    #[test]
+    fn test_convert_single() {
+        let block = GenericArray::<u8, U64>::default();
+        let blocks = &[block];
+        let converted = convert(blocks);
+        assert_eq!(converted.len(), 1);
+        assert_eq!(converted[0], [0u8; BLOCK_SIZE]);
+    }
+
+    #[test]
+    fn test_convert_multiple() {
+        let block = GenericArray::<u8, U64>::default();
+        let blocks = &[block, block];
+        let converted = convert(blocks);
+        assert_eq!(converted.len(), 2);
+        assert_eq!(converted[0], [0u8; BLOCK_SIZE]);
+        assert_eq!(converted[1], [0u8; BLOCK_SIZE]);
+    }
+
+    #[test]
+    #[should_panic(expected = "assertion failed")]
+    fn test_convert_invalid_alignment() {
+        let misaligned_block = [0u8; BLOCK_SIZE + 1];
+        let misaligned_blocks = &misaligned_block[0..BLOCK_SIZE];
+        let blocks = unsafe {
+            core::slice::from_raw_parts(misaligned_blocks.as_ptr() as *const GenericArray<u8, U64>, 1)
+        };
+        let _converted = convert(blocks);
+    }
+}
+True
+hashes whirlpool 5 10

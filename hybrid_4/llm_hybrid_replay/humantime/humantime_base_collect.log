@@ -1,0 +1,1197 @@
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::duration::OverflowOp;
+    use std::time::Duration;
+
+    #[test]
+    fn test_add_durations_without_overflow() {
+        let duration1 = Duration::from_secs(1_000).as_secs();
+        let duration2 = Duration::from_secs(2_000).as_secs();
+        assert_eq!(
+            <u64 as OverflowOp>::add(duration1, duration2).unwrap(),
+            Duration::from_secs(3_000).as_secs()
+        );
+    }
+
+    #[test]
+    fn test_add_durations_with_overflow() {
+        let duration1 = u64::MAX;
+        let duration2 = 1;
+        assert!(<u64 as OverflowOp>::add(duration1, duration2).is_err());
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use std::u64;
+
+    #[test]
+    fn test_mul_no_overflow() {
+        assert_eq!(2u64.mul(3), Ok(6));
+    }
+
+    #[test]
+    fn test_mul_with_overflow() {
+        assert_eq!(u64::MAX.mul(2), Err(Error::NumberOverflow));
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use std::time::Duration as StdDuration;
+    
+    #[test]
+    fn test_as_ref() {
+        let std_duration = StdDuration::new(3600, 0); // 1 hour
+        let human_duration = wrapper::Duration::from(std_duration);
+        let as_ref_result = AsRef::<StdDuration>::as_ref(&human_duration);
+        assert_eq!(&std_duration, as_ref_result);
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use std::time::Duration as StdDuration;
+
+    #[test]
+    fn test_from_std_duration() {
+        let std_duration = StdDuration::new(5, 0); // 5 seconds
+        let humantime_duration: wrapper::Duration = std_duration.into();
+        assert_eq!(humantime_duration.as_ref(), &std_duration);
+    }
+    
+    #[test]
+    fn test_from_std_duration_with_nanos() {
+        let std_duration = StdDuration::new(5, 500); // 5 seconds and 500 nanoseconds
+        let humantime_duration: wrapper::Duration = std_duration.into();
+        assert_eq!(*humantime_duration, std_duration);
+    }
+}
+True
+========================================
+    use crate::Duration;
+    use std::time::Duration as StdDuration;
+    use std::str::FromStr;
+    use std::convert::From;
+    use std::convert::Into;
+
+    #[test]
+    fn test_duration_into_std_duration() {
+        let parsed_duration = Duration::from_str("1h").expect("Failed to parse human-readable duration");
+        let std_duration: StdDuration = parsed_duration.into();
+        assert_eq!(std_duration, StdDuration::from_secs(60 * 60));
+    }
+
+    #[test]
+    fn test_std_duration_into_duration_and_back() {
+        let std_duration = StdDuration::from_secs(2 * 60 * 60); // 2 hours
+        let human_duration: Duration = Duration::from(std_duration);
+        let converted_back: StdDuration = human_duration.into();
+        assert_eq!(std_duration, converted_back);
+    }
+
+    #[test]
+    fn test_zero_duration_into() {
+        let human_duration = Duration::from(StdDuration::new(0, 0));
+        let std_duration: StdDuration = human_duration.into();
+        assert_eq!(std_duration, StdDuration::new(0, 0));
+    }
+
+    #[test]
+    fn test_max_duration_into() {
+        let human_duration = Duration::from(StdDuration::new(u64::MAX, 999_999_999));
+        let std_duration: StdDuration = human_duration.into();
+        assert_eq!(std_duration, StdDuration::new(u64::MAX, 999_999_999));
+    }
+}
+True
+========================================
+    use std::time::Duration as StdDuration;
+    use std::ops::Deref;
+    use crate::wrapper::Duration;
+
+    #[test]
+    fn deref_duration() {
+        let std_duration = StdDuration::new(3600, 0); // 1 hour
+        let my_duration = Duration::from(std_duration);
+        assert_eq!(*my_duration.deref(), std_duration);
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use std::str::FromStr;
+    use std::time::Duration as StdDuration;
+    use crate::parse::ParseError;
+
+    #[test]
+    fn test_from_str() {
+        let test_cases = vec![
+            ("5s", Ok(Duration(StdDuration::from_secs(5)))),
+            ("2m", Ok(Duration(StdDuration::from_secs(120)))),
+            ("3 h", Ok(Duration(StdDuration::from_secs(10800)))),
+            ("1day", Ok(Duration(StdDuration::from_secs(86400)))),
+            ("", Err(ParseError::NoUnit)),
+            ("5", Err(ParseError::NoUnit)),
+            ("5x", Err(ParseError::Invalid)),
+        ];
+
+        for (input, expected) in test_cases {
+            let result = Duration::from_str(input);
+            assert_eq!(result.is_ok(), expected.is_ok());
+            if let Ok(duration) = result {
+                assert_eq!(duration, expected.expect("Expected Ok"));
+            } else if let Err(e) = result {
+                assert!(matches!(e, expected.expect_err("Expected Err")));
+            }
+        }
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use std::time::{Duration, UNIX_EPOCH};
+    
+    #[test]
+    fn test_as_ref() {
+        let time = UNIX_EPOCH + Duration::new(1_500_000_000, 0); // Example timestamp
+        let timestamp = Timestamp::from(time);
+        let system_time_ref: &SystemTime = timestamp.as_ref();
+        assert_eq!(&time, system_time_ref);
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use std::time::{SystemTime, UNIX_EPOCH};
+    use std::str::FromStr;
+
+    // Test conversion from SystemTime to Timestamp
+    #[test]
+    fn test_from_system_time_to_timestamp() {
+        // Create a SystemTime
+        let system_time = UNIX_EPOCH + std::time::Duration::new(1_000_000, 0);
+        // Convert SystemTime to Timestamp
+        let timestamp = Timestamp::from(system_time);
+        // Convert Timestamp back to SystemTime and compare
+        assert_eq!(*timestamp, system_time);
+    }
+
+    // Test formatting to RFC3339
+    #[test]
+    fn test_timestamp_display() {
+        let system_time = UNIX_EPOCH + std::time::Duration::new(1_000_000, 0);
+        let timestamp = Timestamp::from(system_time);
+        let formatted_time = format!("{}", timestamp);
+        // You may need an actual expected value from formatting the system_time
+        // to an RFC3339 formatted string, this value is a placeholder
+        let expected_time = "2001-09-09T01:46:40Z";
+        assert_eq!(formatted_time, expected_time);
+    }
+
+    // Test conversion from &str to Timestamp and back to SystemTime
+    #[test]
+    fn test_from_str_to_timestamp() {
+        let rfc3339_str = "2001-09-09T01:46:40Z";
+        let timestamp = Timestamp::from_str(rfc3339_str).unwrap();
+        let system_time: SystemTime = timestamp.into();
+        let expected_time = UNIX_EPOCH + std::time::Duration::new(1_000_000, 0);
+        assert_eq!(system_time, expected_time);
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use std::time::{Duration, SystemTime, UNIX_EPOCH};
+    use std::str::FromStr;
+    use std::convert::Into;
+
+    #[test]
+    fn timestamp_into_systemtime() {
+        let timestamp_str = "2018-02-16T00:31:37Z";
+        let timestamp = Timestamp::from_str(timestamp_str).unwrap();
+        let expected = UNIX_EPOCH + Duration::new(1518743497, 0);
+        let result: SystemTime = timestamp.into();
+        assert_eq!(result, expected);
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use std::time::{Duration, SystemTime, UNIX_EPOCH};
+    use std::ops::Deref;
+
+    #[test]
+    fn test_deref() {
+        let time = UNIX_EPOCH + Duration::new(1_234_567_890, 0); // Example timestamp
+        let timestamp = Timestamp::from(time);
+
+        // Deref to SystemTime and compare
+        assert_eq!(&time, timestamp.deref());
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use std::str::FromStr;
+
+    #[test]
+    fn test_from_str_valid_input() {
+        let input = "2023-03-01T12:00:00Z"; // An example valid RFC3339 timestamp
+        let result = Timestamp::from_str(input);
+        assert!(result.is_ok());
+        let timestamp = result.expect("Failed to parse RFC3339 timestamp");
+    }
+
+    #[test]
+    fn test_from_str_invalid_input() {
+        let input = "invalid-timestamp"; // An invalid timestamp string
+        let result = Timestamp::from_str(input);
+        assert!(result.is_err());
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use std::time::{Duration, SystemTime, UNIX_EPOCH};
+
+    #[test]
+    fn test_get_ref() {
+        // Prepare a SystemTime
+        let now = SystemTime::now();
+
+        // Create a Rfc3339Timestamp from the SystemTime
+        let timestamp = Rfc3339Timestamp(now, Precision::Seconds);
+
+        // Get a reference to the SystemTime
+        let time_ref = timestamp.get_ref();
+
+        // Assert that the reference to SystemTime is equal to the original SystemTime
+        assert_eq!(now, *time_ref);
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use std::time::{Duration, SystemTime, UNIX_EPOCH};
+
+    #[test]
+    fn test_format_rfc3339_no_fractional_seconds() {
+        let time = UNIX_EPOCH + Duration::new(1_513_956_487, 0); // 2017-12-31T23:54:47Z
+        let formatted = super::format_rfc3339(time);
+        assert_eq!(formatted.to_string(), "2017-12-31T23:54:47Z");
+    }
+
+    #[test]
+    fn test_format_rfc3339_with_fractional_seconds() {
+        let time = UNIX_EPOCH + Duration::new(1_513_956_487, 123_456_789); // 2017-12-31T23:54:47.123456789Z
+        let formatted = super::format_rfc3339(time);
+        assert_eq!(formatted.to_string(), "2017-12-31T23:54:47.123456789Z");
+    }
+
+    #[test]
+    fn test_format_rfc3339_with_zero_seconds() {
+        let time = UNIX_EPOCH; // 1970-01-01T00:00:00Z
+        let formatted = super::format_rfc3339(time);
+        assert_eq!(formatted.to_string(), "1970-01-01T00:00:00Z");
+    }
+
+    #[test]
+    #[should_panic(expected = "all times should be after the epoch")]
+    fn test_format_rfc3339_before_epoch() {
+        let time = UNIX_EPOCH - Duration::new(1, 0);
+        let _formatted = super::format_rfc3339(time);
+    }
+
+    #[test]
+    fn test_format_rfc3339_year_9999() {
+        let time = UNIX_EPOCH + Duration::new(253_402_300_800 - 1, 0); // Just before year 9999
+        let formatted = super::format_rfc3339(time);
+        assert_eq!(formatted.to_string(), "9999-12-31T23:59:59Z");
+    }
+
+    #[test]
+    #[should_panic(expected = "all times should be after the epoch")]
+    fn test_format_rfc3339_invalid_utf8() {
+        // This shouldn't be possible given the implementation, but if the implementation were wrong, this should catch it
+        // This test case is invalid since the implementation ensures UTF-8 compatibility. Remove or modify it accordingly.
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use std::time::{Duration, UNIX_EPOCH};
+
+    #[test]
+    fn test_format_rfc3339_micros() {
+        let time = UNIX_EPOCH + Duration::new(1_512_345_678, 123_456_789); // A specific time
+        let timestamp = date::format_rfc3339_micros(time);
+        // Expected format for second: 1_512_345_678
+        // Expected format for microsecond: 123_456
+        let expected = "2017-12-05T06:54:38.123456Z";
+        assert_eq!(timestamp.to_string(), expected);
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use std::time::{Duration, UNIX_EPOCH};
+
+    #[test]
+    fn test_format_rfc3339_millis() {
+        let test_time = UNIX_EPOCH + Duration::new(1_513_957_687, 123_456_789); // 2018-02-14T00:28:07.123Z
+        let formatted_time = format_rfc3339_millis(test_time);
+        assert_eq!(formatted_time.to_string(), "2018-02-14T00:28:07.123Z");
+
+        let test_time_zero_millis = UNIX_EPOCH + Duration::new(1_513_957_687, 0); // 2018-02-14T00:28:07.000Z
+        let formatted_time_zero_millis = format_rfc3339_millis(test_time_zero_millis);
+        assert_eq!(formatted_time_zero_millis.to_string(), "2018-02-14T00:28:07.000Z");
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use std::time::{SystemTime, UNIX_EPOCH};
+
+    #[test]
+    fn test_format_rfc3339_nanos() {
+        let test_time = UNIX_EPOCH + std::time::Duration::new(1581656887, 123456789);
+        let formatted_time = format_rfc3339_nanos(test_time);
+        let formatted_time_str = formatted_time.to_string();
+        let expected_time_str = "2020-02-14T00:28:07.123456789Z";
+
+        assert_eq!(formatted_time_str, expected_time_str);
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use std::time::{SystemTime, UNIX_EPOCH};
+    use date::Rfc3339Timestamp;
+
+    #[test]
+    fn test_format_rfc3339_seconds() {
+        let time = UNIX_EPOCH + std::time::Duration::new(1_513_956_127, 0); // 2018-02-14T00:28:47Z
+        let formatted = format_rfc3339_seconds(time);
+        assert_eq!(formatted.to_string(), "2018-02-14T00:28:47Z");
+    }
+
+    #[test]
+    fn test_format_rfc3339_seconds_before_epoch() {
+        let time = UNIX_EPOCH - std::time::Duration::new(1, 0); // Before epoch
+        let formatted = format_rfc3339_seconds(time);
+        assert!(formatted.to_string().starts_with("1969-12-31T23:59:59Z"));
+    }
+
+    #[test]
+    fn test_format_rfc3339_seconds_edge_case() {
+        let max_time = UNIX_EPOCH + std::time::Duration::new(253_402_300_799, 999_999_999); // Just before year 10000
+        let formatted = format_rfc3339_seconds(max_time);
+        assert_eq!(formatted.to_string(), "9999-12-31T23:59:59Z");
+    }
+}
+True
+========================================
+    use crate::is_leap_year;
+
+    #[test]
+    fn test_leap_years() {
+        assert_eq!(is_leap_year(2000), true); // Divisible by 400
+        assert_eq!(is_leap_year(2004), true); // Divisible by 4 but not by 100
+        assert_eq!(is_leap_year(2012), true); // Divisible by 4 but not by 100
+        assert_eq!(is_leap_year(2016), true); // Divisible by 4 but not by 100
+    }
+
+    #[test]
+    fn test_non_leap_years() {
+        assert_eq!(is_leap_year(2001), false); // Not divisible by 4
+        assert_eq!(is_leap_year(2002), false); // Not divisible by 4
+        assert_eq!(is_leap_year(2003), false); // Not divisible by 4
+        assert_eq!(is_leap_year(1900), false); // Divisible by 4 and 100 but not 400
+        assert_eq!(is_leap_year(2100), false); // Divisible by 4 and 100 but not 400
+    }
+
+    #[test]
+    fn test_century_leap_years() {
+        assert_eq!(is_leap_year(1600), true); // Divisible by 400
+        assert_eq!(is_leap_year(2000), true); // Divisible by 400
+        assert_eq!(is_leap_year(2400), true); // Divisible by 400
+    }
+
+    #[test]
+    fn test_edge_cases() {
+        assert_eq!(is_leap_year(0), true); // Year 0 is a leap year by the proleptic Gregorian calendar
+        assert_eq!(is_leap_year(1), false); // Year 1 is not a leap year
+        assert_eq!(is_leap_year(4), true); // Year 4 is a leap year
+        assert_eq!(is_leap_year(u64::MAX), false); // u64::MAX (a multiple of 4) is not a leap year (fails other checks)
+    }
+}
+False
+========================================
+    use crate::parse_rfc3339;
+    use std::time::SystemTime;
+
+    #[test]
+    fn test_parse_rfc3339_valid() {
+        let inputs = vec![
+            "2018-02-14T00:28:07Z",
+            "2018-02-14T00:28:07.133Z",
+            "2018-02-14T00:28:07.133333Z",
+        ];
+
+        for input in inputs {
+            assert!(parse_rfc3339(input).is_ok());
+        }
+    }
+
+    #[test]
+    fn test_parse_rfc3339_invalid_format() {
+        let inputs = vec![
+            "2018-02-14 00:28:07Z",
+            "2018-02-14T00:28:07",
+            "20180214T002807Z",
+            "2018-02-14T00:28:07.133+00:00",
+        ];
+
+        for input in inputs {
+            match parse_rfc3339(input) {
+                Err(super::Error::InvalidFormat) => (),
+                _ => panic!("expected Error::InvalidFormat for input {}", input),
+            }
+        }
+    }
+
+    #[test]
+    fn test_parse_rfc3339_invalid_length() {
+        let input = "2018-02-14T00:28Z";
+        match parse_rfc3339(input) {
+            Err(super::Error::InvalidFormat) => (),
+            _ => panic!("expected Error::InvalidFormat for input {}", input),
+        }
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::date::parse_rfc3339_weak;
+    use crate::date::Error;
+    use std::time::{Duration, UNIX_EPOCH};
+
+    #[test]
+    fn test_parse_rfc3339_weak_valid() {
+        let datetime_str = "2018-02-14 00:28:07";
+        assert_eq!(
+            parse_rfc3339_weak(datetime_str),
+            Ok(UNIX_EPOCH + Duration::new(1518562087, 0))
+        );
+
+        let datetime_str_with_fraction = "2018-02-14 00:28:07.133";
+        assert_eq!(
+            parse_rfc3339_weak(datetime_str_with_fraction),
+            Ok(UNIX_EPOCH + Duration::new(1518562087, 133_000_000))
+        );
+
+        let datetime_str_with_t = "2018-02-14T00:28:07";
+        assert_eq!(
+            parse_rfc3339_weak(datetime_str_with_t),
+            Ok(UNIX_EPOCH + Duration::new(1518562087, 0))
+        );
+
+        let datetime_str_with_z = "2018-02-14 00:28:07Z";
+        assert_eq!(
+            parse_rfc3339_weak(datetime_str_with_z),
+            Ok(UNIX_EPOCH + Duration::new(1518562087, 0))
+        );
+    }
+
+    #[test]
+    fn test_parse_rfc3339_weak_invalid_format() {
+        let datetime_str_too_short = "2018-02-14";
+        assert_eq!(
+            parse_rfc3339_weak(datetime_str_too_short),
+            Err(Error::InvalidFormat)
+        );
+
+        let datetime_str_bad_chars = "2018-02-14X00:28:07";
+        assert_eq!(
+            parse_rfc3339_weak(datetime_str_bad_chars),
+            Err(Error::InvalidFormat)
+        );
+
+        let datetime_str_missing_parts = "2018-02-14 00:28";
+        assert_eq!(
+            parse_rfc3339_weak(datetime_str_missing_parts),
+            Err(Error::InvalidFormat)
+        );
+    }
+
+    #[test]
+    fn test_parse_rfc3339_weak_out_of_range() {
+        let datetime_str_invalid_month = "2018-13-14 00:28:07";
+        assert_eq!(
+            parse_rfc3339_weak(datetime_str_invalid_month),
+            Err(Error::OutOfRange)
+        );
+
+        let datetime_str_invalid_day = "2018-02-30 00:28:07";
+        assert_eq!(
+            parse_rfc3339_weak(datetime_str_invalid_day),
+            Err(Error::OutOfRange)
+        );
+
+        let datetime_str_invalid_hour = "2018-02-14 25:28:07";
+        assert_eq!(
+            parse_rfc3339_weak(datetime_str_invalid_hour),
+            Err(Error::OutOfRange)
+        );
+
+        let datetime_str_invalid_minute = "2018-02-14 00:68:07";
+        assert_eq!(
+            parse_rfc3339_weak(datetime_str_invalid_minute),
+            Err(Error::OutOfRange)
+        );
+
+        let datetime_str_invalid_second = "2018-02-14 00:28:67";
+        assert_eq!(
+            parse_rfc3339_weak(datetime_str_invalid_second),
+            Err(Error::OutOfRange)
+        );
+    }
+
+    #[test]
+    fn test_parse_rfc3339_weak_invalid_digit() {
+        let datetime_str_bad_fraction = "2018-02-14 00:28:07.12X";
+        assert_eq!(
+            parse_rfc3339_weak(datetime_str_bad_fraction),
+            Err(Error::InvalidDigit)
+        );
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn test_two_digits_valid_input() {
+        assert_eq!(two_digits(b'1', b'2').unwrap(), 12);
+        assert_eq!(two_digits(b'0', b'0').unwrap(), 0);
+        assert_eq!(two_digits(b'9', b'9').unwrap(), 99);
+    }
+
+    #[test]
+    fn test_two_digits_invalid_input() {
+        assert!(two_digits(b'/', b'0').is_err());
+        assert!(two_digits(b'1', b':').is_err());
+        assert!(two_digits(b' ', b'9').is_err());
+    }
+
+    #[test]
+    fn test_two_digits_boundary_input() {
+        assert_eq!(two_digits(b'0', b'9').unwrap(), 9);
+        assert_eq!(two_digits(b'1', b'0').unwrap(), 10);
+        assert_eq!(two_digits(b'9', b'0').unwrap(), 90);
+    }
+
+    #[test]
+    fn test_two_digits_non_digit_input() {
+        assert!(two_digits(b'a', b'b').is_err());
+        assert!(two_digits(b'!', b'@').is_err());
+        assert!(two_digits(b'Z', b'Z').is_err());
+    }
+}
+True
+========================================
+    use crate::two_digits_inner;
+
+    #[test]
+    fn test_two_digits_inner_valid_digits() {
+        assert_eq!(two_digits_inner('1', '2'), Some(12));
+        assert_eq!(two_digits_inner('0', '0'), Some(0));
+        assert_eq!(two_digits_inner('9', '9'), Some(99));
+    }
+
+    #[test]
+    fn test_two_digits_inner_invalid_first_digit() {
+        assert_eq!(two_digits_inner('a', '1'), None);
+    }
+
+    #[test]
+    fn test_two_digits_inner_invalid_second_digit() {
+        assert_eq!(two_digits_inner('2', 'x'), None);
+    }
+
+    #[test]
+    fn test_two_digits_inner_invalid_both_digits() {
+        assert_eq!(two_digits_inner('!', '#'), None);
+    }
+
+    #[test]
+    fn test_two_digits_inner_non_ascii_digits() {
+        assert_eq!(two_digits_inner('１', '２'), None); // Full-width characters
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use std::time::Duration;
+
+    #[test]
+    fn test_get_ref() {
+        let original_duration = Duration::new(5, 0); // Create a Duration
+        let formatted_duration = FormattedDuration(original_duration); // Create a FormattedDuration
+        let duration_ref = formatted_duration.get_ref(); // Use the get_ref method
+        assert_eq!(duration_ref, &original_duration); // Check if it returns the correct reference
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn test_off_initial() {
+        let input = "10s";
+        let parser = Parser {
+            iter: input.chars(),
+            src: input,
+            current: (0, 0),
+        };
+        assert_eq!(parser.off(), 0);
+    }
+
+    #[test]
+    fn test_off_partial() {
+        let input = "10s";
+        let mut parser = Parser {
+            iter: input.chars(),
+            src: input,
+            current: (0, 0),
+        };
+        parser.iter.next();
+        assert_eq!(parser.off(), 1);
+    }
+
+    #[test]
+    fn test_off_all_consumed() {
+        let input = "10s";
+        let mut parser = Parser {
+            iter: input.chars(),
+            src: input,
+            current: (0, 0),
+        };
+        parser.iter.by_ref().for_each(drop);
+        assert_eq!(parser.off(), input.len());
+    }
+
+    #[test]
+    fn test_off_partial_consumed() {
+        let input = "10s 20m";
+        let mut parser = Parser {
+            iter: input.chars(),
+            src: input,
+            current: (0, 0),
+        };
+        parser.iter.by_ref().take(4).for_each(drop); // "10s "
+        assert_eq!(parser.off(), 4);
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use std::time::Duration;
+
+    #[test]
+    fn test_parse_empty_string() {
+        let parser = Parser { iter: "".chars(), src: "", current: (0, 0) };
+        assert_eq!(parser.parse(), Err(Error::Empty));
+    }
+
+    #[test]
+    fn test_parse_valid_string() {
+        let parser = Parser { iter: "2h 30m".chars(), src: "2h 30m", current: (0, 0) };
+        assert_eq!(parser.parse(), Ok(Duration::new(2 * 3600 + 30 * 60, 0)));
+    }
+
+    #[test]
+    fn test_parse_string_with_invalid_character() {
+        let parser = Parser { iter: "2h 30m#".chars(), src: "2h 30m#", current: (0, 0) };
+        assert!(matches!(parser.parse(), Err(Error::InvalidCharacter(_))));
+    }
+
+    #[test]
+    fn test_parse_string_with_unknown_unit() {
+        let parser = Parser { iter: "2h 30x".chars(), src: "2h 30x", current: (0, 0) };
+        assert!(matches!(parser.parse(), Err(Error::UnknownUnit { .. })));
+    }
+
+    #[test]
+    fn test_parse_string_with_overflow() {
+        let parser = Parser { iter: "18446744073709551616ns".chars(), src: "18446744073709551616ns", current: (0, 0) };
+        assert_eq!(parser.parse(), Err(Error::NumberOverflow));
+    }
+
+    #[test]
+    fn test_parse_string_with_whitespace() {
+        let parser = Parser { iter: " \t\n2h\n\t 30m \t\n".chars(), src: " \t\n2h\n\t 30m \t\n", current: (0, 0) };
+        assert_eq!(parser.parse(), Ok(Duration::new(2 * 3600 + 30 * 60, 0)));
+    }
+
+    #[test]
+    fn test_parse_string_with_multiple_units() {
+        let parser = Parser { iter: "1h30m45s".chars(), src: "1h30m45s", current: (0, 0) };
+        assert_eq!(parser.parse(), Ok(Duration::new(1 * 3600 + 30 * 60 + 45, 0)));
+    }
+
+    #[test]
+    fn test_parse_string_number_expected() {
+        let parser = Parser { iter: "h".chars(), src: "h", current: (0, 0) };
+        assert!(matches!(parser.parse(), Err(Error::NumberExpected(_))));
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::duration::Error;
+
+    #[test]
+    fn test_parse_first_char_with_numbers() {
+        let mut parser = Parser {
+            iter: "12345".chars(),
+            src: "12345",
+            current: (0, 0),
+        };
+        assert_eq!(parser.parse_first_char(), Ok(Some(1)));
+    }
+
+    #[test]
+    fn test_parse_first_char_with_leading_whitespace() {
+        let mut parser = Parser {
+            iter: "  1".chars(),
+            src: "  1",
+            current: (0, 0),
+        };
+        assert_eq!(parser.parse_first_char(), Ok(Some(1)));
+    }
+
+    #[test]
+    fn test_parse_first_char_with_only_whitespace() {
+        let mut parser = Parser {
+            iter: "    ".chars(),
+            src: "    ",
+            current: (0, 0),
+        };
+        assert_eq!(parser.parse_first_char(), Ok(None));
+    }
+
+    #[test]
+    fn test_parse_first_char_with_no_numbers() {
+        let mut parser = Parser {
+            iter: "abc".chars(),
+            src: "abc",
+            current: (0, 0),
+        };
+        assert_eq!(parser.parse_first_char(), Err(Error::NumberExpected(0)));
+    }
+
+    #[test]
+    fn test_parse_first_char_with_empty_string() {
+        let mut parser = Parser {
+            iter: "".chars(),
+            src: "",
+            current: (0, 0),
+        };
+        assert_eq!(parser.parse_first_char(), Ok(None));
+    }
+
+    #[test]
+    fn test_parse_first_char_with_number_after_whitespace() {
+        let mut parser = Parser {
+            iter: "   9abc".chars(),
+            src: "   9abc",
+            current: (0, 0),
+        };
+        assert_eq!(parser.parse_first_char(), Ok(Some(9)));
+    }
+
+    #[test]
+    fn test_parse_first_char_with_non_number_after_whitespace() {
+        let mut parser = Parser {
+            iter: "   +abc".chars(),
+            src: "   +abc",
+            current: (0, 0),
+        };
+        assert_eq!(parser.parse_first_char(), Err(Error::NumberExpected(3)));
+    }
+}
+True
+========================================
+    use crate::duration::Error;
+    use crate::duration::Parser;
+    use std::str::Chars;
+
+    impl<'a> Parser<'a> {
+        fn new(src: &'a str) -> Self {
+            Self {
+                iter: src.chars(),
+                src,
+                current: (0, 0),
+            }
+        }
+    }
+
+    #[test]
+    fn parse_unit_seconds() {
+        let mut parser = Parser::new("10seconds");
+        assert_eq!(parser.parse_unit(10, 0, 7), Ok(()));
+        assert_eq!(parser.current, (10, 0));
+    }
+
+    #[test]
+    fn parse_unit_minutes() {
+        let mut parser = Parser::new("5minutes");
+        assert_eq!(parser.parse_unit(5, 0, 7), Ok(()));
+        assert_eq!(parser.current, (300, 0));
+    }
+
+    #[test]
+    fn parse_unit_hours() {
+        let mut parser = Parser::new("1hour");
+        assert_eq!(parser.parse_unit(1, 0, 4), Ok(()));
+        assert_eq!(parser.current, (3600, 0));
+    }
+
+    #[test]
+    fn parse_unit_days() {
+        let mut parser = Parser::new("2days");
+        assert_eq!(parser.parse_unit(2, 0, 4), Ok(()));
+        assert_eq!(parser.current, (2 * 86400, 0));
+    }
+
+    #[test]
+    fn parse_unit_weeks() {
+        let mut parser = Parser::new("3weeks");
+        assert_eq!(parser.parse_unit(3, 0, 5), Ok(()));
+        assert_eq!(parser.current, (3 * 86400 * 7, 0));
+    }
+
+    #[test]
+    fn parse_unit_nanos() {
+        let mut parser = Parser::new("100nanos");
+        assert_eq!(parser.parse_unit(100, 0, 5), Ok(()));
+        assert_eq!(parser.current, (0, 100));
+    }
+
+    #[test]
+    fn parse_unit_unknown() {
+        let mut parser = Parser::new("10something");
+        let start = 0;
+        let end = 10;
+        assert_eq!(parser.parse_unit(10, start, end), Err(Error::UnknownUnit {
+            start,
+            end,
+            unit: parser.src[start..end].to_string(),
+            value: 10,
+        }));
+    }
+}
+True
+========================================
+    use crate::format_duration;
+    use std::time::Duration;
+
+    #[test]
+    fn test_format_duration_zero() {
+        let duration = Duration::new(0, 0);
+        assert_eq!(format_duration(duration).to_string(), "0s");
+    }
+
+    #[test]
+    fn test_format_duration_seconds() {
+        let duration = Duration::new(45, 0);
+        assert_eq!(format_duration(duration).to_string(), "45s");
+    }
+
+    #[test]
+    fn test_format_duration_minutes_seconds() {
+        let duration = Duration::new(183, 0);
+        assert_eq!(format_duration(duration).to_string(), "3m 3s");
+    }
+
+    #[test]
+    fn test_format_duration_hours_minutes_seconds() {
+        let duration = Duration::new(3723, 0);
+        assert_eq!(format_duration(duration).to_string(), "1h 2m 3s");
+    }
+
+    #[test]
+    fn test_format_duration_days_hours_minutes_seconds() {
+        let duration = Duration::new(90123, 0);
+        assert_eq!(format_duration(duration).to_string(), "1d 1h 2m 3s");
+    }
+
+    #[test]
+    fn test_format_duration_with_milliseconds() {
+        let duration = Duration::new(0, 1_234_000_000);
+        assert_eq!(format_duration(duration).to_string(), "1s 234ms");
+    }
+
+    #[test]
+    fn test_format_duration_with_microseconds() {
+        let duration = Duration::new(0, 1_234_567);
+        assert_eq!(format_duration(duration).to_string(), "1ms 234us");
+    }
+
+    #[test]
+    fn test_format_duration_with_nanoseconds() {
+        let duration = Duration::new(0, 1_234);
+        assert_eq!(format_duration(duration).to_string(), "1us 234ns");
+    }
+
+    #[test]
+    fn test_format_duration_with_all_units() {
+        let duration = Duration::new(32_000_000, 1_234_567_890);
+        assert_eq!(format_duration(duration).to_string(), "1y 3d 7s 234ms 567us 890ns");
+    }
+
+    #[test]
+    fn test_format_duration_with_all_units_less_than_a_year() {
+        let duration = Duration::new(10_000_000, 0);
+        assert_eq!(format_duration(duration).to_string(), "4m 15d");
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use std::fmt::Write;
+    use std::fmt;
+
+    struct MockFormatter {
+        output: String,
+    }
+
+    impl MockFormatter {
+        fn new() -> MockFormatter {
+            MockFormatter {
+                output: String::new(),
+            }
+        }
+    }
+
+    impl fmt::Write for MockFormatter {
+        fn write_str(&mut self, s: &str) -> fmt::Result {
+            self.output.push_str(s);
+            Ok(())
+        }
+    }
+
+    #[test]
+    fn test_item() {
+        let mut started = false;
+        let mut formatter = MockFormatter::new();
+        let name = "hr";
+
+        // Test with value = 0, should not write anything
+        assert!(item(&mut formatter, &mut started, name, 0).is_ok());
+        assert_eq!(formatter.output, "");
+        assert!(!started);
+
+        // Test with value > 0
+        let value = 5;
+        assert!(item(&mut formatter, &mut started, name, value).is_ok());
+        assert_eq!(formatter.output, "5hr");
+        assert!(started);
+
+        // Reset and test with started = true, should prepend a space
+        started = true;
+        formatter.output.clear();
+        assert!(item(&mut formatter, &mut started, name, value).is_ok());
+        assert_eq!(formatter.output, " 5hr");  // Prepend a space because started is true
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use std::fmt;
+
+    #[test]
+    fn test_item_plural_singular() {
+        let mut output = String::new();
+        let mut f = fmt::Formatter::new(&mut output);
+        let mut started = false;
+        let name = "hour";
+        let value = 1;
+
+        let _ = item_plural(&mut f, &mut started, name, value);
+        assert_eq!(output, "1hour");
+    }
+
+    #[test]
+    fn test_item_plural_plural() {
+        let mut output = String::new();
+        let mut f = fmt::Formatter::new(&mut output);
+        let mut started = false;
+        let name = "minute";
+        let value = 2;
+
+        let _ = item_plural(&mut f, &mut started, name, value);
+        assert_eq!(output, "2minutes");
+    }
+
+    #[test]
+    fn test_item_plural_started() {
+        let mut output = String::new();
+        let mut f = fmt::Formatter::new(&mut output);
+        let mut started = true;
+        let name = "second";
+        let value = 5;
+
+        let _ = item_plural(&mut f, &mut started, name, value);
+        assert_eq!(output, " 5seconds");
+    }
+
+    #[test]
+    fn test_item_plural_zero() {
+        let mut output = String::new();
+        let mut f = fmt::Formatter::new(&mut output);
+        let mut started = false;
+        let name = "day";
+        let value = 0;
+
+        let _ = item_plural(&mut f, &mut started, name, value);
+        assert_eq!(output, "");
+        assert_eq!(started, false);
+    }
+
+    #[test]
+    fn test_item_plural_zero_started() {
+        let mut output = String::new();
+        let mut f = fmt::Formatter::new(&mut output);
+        let mut started = true;
+        let name = "week";
+        let value = 0;
+
+        let _ = item_plural(&mut f, &mut started, name, value);
+        assert_eq!(output, "");
+        assert_eq!(started, true);
+    }
+}
+False
+========================================
+    use crate::parse_duration;
+    use std::time::Duration;
+
+    #[test]
+    fn test_parse_seconds() {
+        assert_eq!(parse_duration("5s"), Ok(Duration::new(5, 0)));
+    }
+
+    #[test]
+    fn test_parse_minutes() {
+        assert_eq!(parse_duration("7min"), Ok(Duration::new(7 * 60, 0)));
+    }
+
+    #[test]
+    fn test_parse_hours() {
+        assert_eq!(parse_duration("3h"), Ok(Duration::new(3 * 3600, 0)));
+    }
+
+    #[test]
+    fn test_parse_days() {
+        assert_eq!(parse_duration("2d"), Ok(Duration::new(2 * 86400, 0)));
+    }
+
+    #[test]
+    fn test_parse_weeks() {
+        assert_eq!(parse_duration("1w"), Ok(Duration::new(7 * 86400, 0)));
+    }
+
+    #[test]
+    fn test_parse_months() {
+        assert_eq!(parse_duration("1M"), Ok(Duration::new(30 * 86400, 0)));
+    }
+
+    #[test]
+    fn test_parse_years() {
+        assert_eq!(parse_duration("1y"), Ok(Duration::new(365 * 86400, 0)));
+    }
+
+    #[test]
+    fn test_parse_combined() {
+        assert_eq!(
+            parse_duration("1h 30m 10s"),
+            Ok(Duration::new(1 * 3600 + 30 * 60 + 10, 0))
+        );
+    }
+
+    #[test]
+    fn test_parse_with_spaces() {
+        assert_eq!(
+            parse_duration("  2 min  "),
+            Ok(Duration::new(2 * 60, 0))
+        );
+    }
+
+    #[test]
+    fn test_parse_with_invalid_input() {
+        assert!(parse_duration("2x").is_err());
+    }
+
+    #[test]
+    fn test_parse_with_empty_input() {
+        assert!(parse_duration("").is_err());
+    }
+
+    #[test]
+    fn test_parse_with_invalid_suffix() {
+        assert!(parse_duration("10lightyears").is_err());
+    }
+}
+True
+humantime humantime 27 32

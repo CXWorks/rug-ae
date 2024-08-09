@@ -1,0 +1,831 @@
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/bincode/./src/atomic.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/bincode/./src/enc/encoder.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/bincode/./src/enc/write.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/bincode/./src/enc/impls.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/bincode/./src/enc/mod.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/bincode/./src/enc/impl_tuples.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/bincode/./src/varint/encode_unsigned.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/bincode/./src/varint/encode_signed.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/bincode/./src/varint/decode_signed.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/bincode/./src/varint/decode_unsigned.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/bincode/./src/varint/mod.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/bincode/./src/error.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/bincode/./src/config.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/bincode/./src/de/impls.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/bincode/./src/de/mod.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/bincode/./src/de/impl_tuples.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/bincode/./src/de/decoder.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/bincode/./src/de/impl_core.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/bincode/./src/de/read.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/bincode/./src/lib.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/bincode/./src/features/serde/de_borrowed.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/bincode/./src/features/serde/de_owned.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/bincode/./src/features/serde/mod.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/bincode/./src/features/serde/ser.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/bincode/./src/features/impl_std.rs
+err tests_llm_16_359 test_bytes_written
+   Compiling bincode v2.0.0-rc.3 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/bincode)
+error[E0425]: cannot find value `mock_writer` in this scope
+   --> src/features/impl_std.rs:867:48
+    |
+867 |         let mut io_writer = IoWriter::new(&mut mock_writer);
+    |                                                ^^^^^^^^^^^ not found in this scope
+
+error[E0282]: type annotations needed
+   --> src/de/read.rs:131:9
+    |
+131 |         debug_assert_eq!(reader.slice, & []);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+    |
+    = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+   --> |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+    |
+45  |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+    |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+   --> src/de/read.rs:131:9
+    |
+131 |         debug_assert_eq!(reader.slice, & []);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |         |
+    |         type must be known at this point
+    |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+    |
+    = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+            - impl PartialEq for u8;
+            - impl PartialEq<serde_json::Value> for u8;
+    = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+    = note: 1 redundant requirement hidden
+    = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+    = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+   --> |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+    |
+45  |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+    |                                                     ++++++++++++++++++
+
+error[E0282]: type annotations needed
+   --> src/de/read.rs:147:9
+    |
+147 |         debug_assert_eq!(reader.slice, & []);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+    |
+    = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+   --> |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+    |
+45  |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+    |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+   --> src/de/read.rs:147:9
+    |
+147 |         debug_assert_eq!(reader.slice, & []);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |         |
+    |         type must be known at this point
+    |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+    |
+    = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+            - impl PartialEq for u8;
+            - impl PartialEq<serde_json::Value> for u8;
+    = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+    = note: 1 redundant requirement hidden
+    = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+    = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+   --> |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+    |
+45  |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+    |                                                     ++++++++++++++++++
+
+error[E0282]: type annotations needed
+   --> src/de/read.rs:183:9
+    |
+183 |         debug_assert_eq!(reader.slice, & []);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+    |
+    = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+   --> |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+    |
+45  |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+    |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+   --> src/de/read.rs:183:9
+    |
+183 |         debug_assert_eq!(reader.slice, & []);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |         |
+    |         type must be known at this point
+    |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+    |
+    = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+            - impl PartialEq for u8;
+            - impl PartialEq<serde_json::Value> for u8;
+    = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+    = note: 1 redundant requirement hidden
+    = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+    = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+   --> |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+    |
+45  |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+    |                                                     ++++++++++++++++++
+
+error[E0282]: type annotations needed
+   --> src/de/read.rs:396:9
+    |
+396 |         debug_assert_eq!(reader.slice, & []);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+    |
+    = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+   --> |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+    |
+45  |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+    |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+   --> src/de/read.rs:396:9
+    |
+396 |         debug_assert_eq!(reader.slice, & []);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |         |
+    |         type must be known at this point
+    |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+    |
+    = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+            - impl PartialEq for u8;
+            - impl PartialEq<serde_json::Value> for u8;
+    = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+    = note: 1 redundant requirement hidden
+    = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+    = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+   --> |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+    |
+45  |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+    |                                                     ++++++++++++++++++
+
+Some errors have detailed explanations: E0282, E0283, E0425.
+For more information about an error, try `rustc --explain E0282`.
+error: could not compile `bincode` due to 9 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/bincode/./src/features/derive.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/bincode/./src/features/mod.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/bincode/./src/features/impl_alloc.rs
+err tests_llm_16_27 vec_writer_writes_bytes_correctly
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling bincode v2.0.0-rc.3 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/bincode)
+error[E0425]: cannot find value `writer` in this scope
+   --> src/features/impl_alloc.rs:556:9
+    |
+556 |         writer.write(data).unwrap();
+    |         ^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `writer` in this scope
+   --> src/features/impl_alloc.rs:557:26
+    |
+557 |         debug_assert_eq!(writer.inner, data);
+    |                          ^^^^^^ not found in this scope
+
+error[E0282]: type annotations needed
+   --> src/de/read.rs:131:9
+    |
+131 |         debug_assert_eq!(reader.slice, & []);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+    |
+    = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+   --> |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+    |
+45  |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+    |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+   --> src/de/read.rs:131:9
+    |
+131 |         debug_assert_eq!(reader.slice, & []);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |         |
+    |         type must be known at this point
+    |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+    |
+    = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+            - impl PartialEq for u8;
+            - impl PartialEq<serde_json::Value> for u8;
+    = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+    = note: 1 redundant requirement hidden
+    = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+    = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+   --> |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+    |
+45  |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+    |                                                     ++++++++++++++++++
+
+error[E0282]: type annotations needed
+   --> src/de/read.rs:147:9
+    |
+147 |         debug_assert_eq!(reader.slice, & []);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+    |
+    = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+   --> |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+    |
+45  |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+    |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+   --> src/de/read.rs:147:9
+    |
+147 |         debug_assert_eq!(reader.slice, & []);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |         |
+    |         type must be known at this point
+    |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+    |
+    = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+            - impl PartialEq for u8;
+            - impl PartialEq<serde_json::Value> for u8;
+    = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+    = note: 1 redundant requirement hidden
+    = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+    = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+   --> |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+    |
+45  |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+    |                                                     ++++++++++++++++++
+
+error[E0282]: type annotations needed
+   --> src/de/read.rs:183:9
+    |
+183 |         debug_assert_eq!(reader.slice, & []);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+    |
+    = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+   --> |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+    |
+45  |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+    |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+   --> src/de/read.rs:183:9
+    |
+183 |         debug_assert_eq!(reader.slice, & []);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |         |
+    |         type must be known at this point
+    |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+    |
+    = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+            - impl PartialEq for u8;
+            - impl PartialEq<serde_json::Value> for u8;
+    = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+    = note: 1 redundant requirement hidden
+    = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+    = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+   --> |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+    |
+45  |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+    |                                                     ++++++++++++++++++
+
+error[E0282]: type annotations needed
+   --> src/de/read.rs:396:9
+    |
+396 |         debug_assert_eq!(reader.slice, & []);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+    |
+    = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+   --> |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+    |
+45  |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+    |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+   --> src/de/read.rs:396:9
+    |
+396 |         debug_assert_eq!(reader.slice, & []);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |         |
+    |         type must be known at this point
+    |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+    |
+    = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+            - impl PartialEq for u8;
+            - impl PartialEq<serde_json::Value> for u8;
+    = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+    = note: 1 redundant requirement hidden
+    = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+    = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+   --> |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+    |
+45  |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+    |                                                     ++++++++++++++++++
+
+Some errors have detailed explanations: E0282, E0283, E0425.
+For more information about an error, try `rustc --explain E0282`.
+error: could not compile `bincode` due to 10 previous errors
+
+err tests_llm_16_27 vec_writer_with_capacity_writes_bytes_correctly
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling bincode v2.0.0-rc.3 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/bincode)
+error[E0425]: cannot find value `writer` in this scope
+   --> src/features/impl_alloc.rs:566:9
+    |
+566 |         writer.write(data).unwrap();
+    |         ^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `writer` in this scope
+   --> src/features/impl_alloc.rs:567:26
+    |
+567 |         debug_assert_eq!(writer.inner, data);
+    |                          ^^^^^^ not found in this scope
+
+error[E0282]: type annotations needed
+   --> src/de/read.rs:131:9
+    |
+131 |         debug_assert_eq!(reader.slice, & []);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+    |
+    = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+   --> |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+    |
+45  |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+    |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+   --> src/de/read.rs:131:9
+    |
+131 |         debug_assert_eq!(reader.slice, & []);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |         |
+    |         type must be known at this point
+    |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+    |
+    = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+            - impl PartialEq for u8;
+            - impl PartialEq<serde_json::Value> for u8;
+    = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+    = note: 1 redundant requirement hidden
+    = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+    = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+   --> |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+    |
+45  |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+    |                                                     ++++++++++++++++++
+
+error[E0282]: type annotations needed
+   --> src/de/read.rs:147:9
+    |
+147 |         debug_assert_eq!(reader.slice, & []);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+    |
+    = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+   --> |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+    |
+45  |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+    |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+   --> src/de/read.rs:147:9
+    |
+147 |         debug_assert_eq!(reader.slice, & []);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |         |
+    |         type must be known at this point
+    |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+    |
+    = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+            - impl PartialEq for u8;
+            - impl PartialEq<serde_json::Value> for u8;
+    = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+    = note: 1 redundant requirement hidden
+    = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+    = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+   --> |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+    |
+45  |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+    |                                                     ++++++++++++++++++
+
+error[E0282]: type annotations needed
+   --> src/de/read.rs:183:9
+    |
+183 |         debug_assert_eq!(reader.slice, & []);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+    |
+    = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+   --> |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+    |
+45  |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+    |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+   --> src/de/read.rs:183:9
+    |
+183 |         debug_assert_eq!(reader.slice, & []);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |         |
+    |         type must be known at this point
+    |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+    |
+    = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+            - impl PartialEq for u8;
+            - impl PartialEq<serde_json::Value> for u8;
+    = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+    = note: 1 redundant requirement hidden
+    = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+    = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+   --> |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+    |
+45  |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+    |                                                     ++++++++++++++++++
+
+error[E0282]: type annotations needed
+   --> src/de/read.rs:396:9
+    |
+396 |         debug_assert_eq!(reader.slice, & []);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+    |
+    = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+   --> |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+    |
+45  |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+    |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+   --> src/de/read.rs:396:9
+    |
+396 |         debug_assert_eq!(reader.slice, & []);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |         |
+    |         type must be known at this point
+    |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+    |
+    = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+            - impl PartialEq for u8;
+            - impl PartialEq<serde_json::Value> for u8;
+    = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+    = note: 1 redundant requirement hidden
+    = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+    = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+   --> |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+    |
+45  |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+    |                                                     ++++++++++++++++++
+
+Some errors have detailed explanations: E0282, E0283, E0425.
+For more information about an error, try `rustc --explain E0282`.
+error: could not compile `bincode` due to 10 previous errors
+
+err tests_llm_16_27 vec_writer_collect_returns_inner_vec
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling bincode v2.0.0-rc.3 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/bincode)
+error[E0425]: cannot find value `writer` in this scope
+   --> src/features/impl_alloc.rs:577:9
+    |
+577 |         writer.write(data).unwrap();
+    |         ^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `writer` in this scope
+   --> src/features/impl_alloc.rs:578:25
+    |
+578 |         let collected = writer.collect();
+    |                         ^^^^^^ not found in this scope
+
+error[E0282]: type annotations needed
+   --> src/de/read.rs:131:9
+    |
+131 |         debug_assert_eq!(reader.slice, & []);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+    |
+    = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+   --> |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+    |
+45  |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+    |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+   --> src/de/read.rs:131:9
+    |
+131 |         debug_assert_eq!(reader.slice, & []);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |         |
+    |         type must be known at this point
+    |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+    |
+    = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+            - impl PartialEq for u8;
+            - impl PartialEq<serde_json::Value> for u8;
+    = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+    = note: 1 redundant requirement hidden
+    = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+    = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+   --> |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+    |
+45  |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+    |                                                     ++++++++++++++++++
+
+error[E0282]: type annotations needed
+   --> src/de/read.rs:147:9
+    |
+147 |         debug_assert_eq!(reader.slice, & []);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+    |
+    = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+   --> |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+    |
+45  |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+    |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+   --> src/de/read.rs:147:9
+    |
+147 |         debug_assert_eq!(reader.slice, & []);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |         |
+    |         type must be known at this point
+    |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+    |
+    = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+            - impl PartialEq for u8;
+            - impl PartialEq<serde_json::Value> for u8;
+    = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+    = note: 1 redundant requirement hidden
+    = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+    = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+   --> |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+    |
+45  |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+    |                                                     ++++++++++++++++++
+
+error[E0282]: type annotations needed
+   --> src/de/read.rs:183:9
+    |
+183 |         debug_assert_eq!(reader.slice, & []);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+    |
+    = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+   --> |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+    |
+45  |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+    |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+   --> src/de/read.rs:183:9
+    |
+183 |         debug_assert_eq!(reader.slice, & []);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |         |
+    |         type must be known at this point
+    |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+    |
+    = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+            - impl PartialEq for u8;
+            - impl PartialEq<serde_json::Value> for u8;
+    = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+    = note: 1 redundant requirement hidden
+    = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+    = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+   --> |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+    |
+45  |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+    |                                                     ++++++++++++++++++
+
+error[E0282]: type annotations needed
+   --> src/de/read.rs:396:9
+    |
+396 |         debug_assert_eq!(reader.slice, & []);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+    |
+    = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+   --> |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+    |
+45  |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+    |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+   --> src/de/read.rs:396:9
+    |
+396 |         debug_assert_eq!(reader.slice, & []);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |         |
+    |         type must be known at this point
+    |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+    |
+    = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+            - impl PartialEq for u8;
+            - impl PartialEq<serde_json::Value> for u8;
+    = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+    = note: 1 redundant requirement hidden
+    = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+    = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+   --> |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+    |
+45  |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+    |                                                     ++++++++++++++++++
+
+Some errors have detailed explanations: E0282, E0283, E0425.
+For more information about an error, try `rustc --explain E0282`.
+error: could not compile `bincode` due to 10 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_27 vec_writer_appends_data_correctly
+    Blocking waiting for file lock on package cache
+   Compiling bincode v2.0.0-rc.3 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/bincode)
+error[E0425]: cannot find value `rug_fuzz_1` in this scope
+   --> src/features/impl_alloc.rs:598:21
+    |
+598 |         let data2 = rug_fuzz_1;
+    |                     ^^^^^^^^^^ help: a local variable with a similar name exists: `rug_fuzz_0`
+
+error[E0282]: type annotations needed
+   --> src/de/read.rs:131:9
+    |
+131 |         debug_assert_eq!(reader.slice, & []);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+    |
+    = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+   --> |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+    |
+45  |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+    |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+   --> src/de/read.rs:131:9
+    |
+131 |         debug_assert_eq!(reader.slice, & []);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |         |
+    |         type must be known at this point
+    |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+    |
+    = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+            - impl PartialEq for u8;
+            - impl PartialEq<serde_json::Value> for u8;
+    = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+    = note: 1 redundant requirement hidden
+    = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+    = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+   --> |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+    |
+45  |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+    |                                                     ++++++++++++++++++
+
+error[E0282]: type annotations needed
+   --> src/de/read.rs:147:9
+    |
+147 |         debug_assert_eq!(reader.slice, & []);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+    |
+    = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+   --> |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+    |
+45  |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+    |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+   --> src/de/read.rs:147:9
+    |
+147 |         debug_assert_eq!(reader.slice, & []);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |         |
+    |         type must be known at this point
+    |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+    |
+    = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+            - impl PartialEq for u8;
+            - impl PartialEq<serde_json::Value> for u8;
+    = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+    = note: 1 redundant requirement hidden
+    = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+    = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+   --> |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+    |
+45  |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+    |                                                     ++++++++++++++++++
+
+error[E0282]: type annotations needed
+   --> src/de/read.rs:183:9
+    |
+183 |         debug_assert_eq!(reader.slice, & []);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+    |
+    = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+   --> |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+    |
+45  |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+    |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+   --> src/de/read.rs:183:9
+    |
+183 |         debug_assert_eq!(reader.slice, & []);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |         |
+    |         type must be known at this point
+    |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+    |
+    = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+            - impl PartialEq for u8;
+            - impl PartialEq<serde_json::Value> for u8;
+    = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+    = note: 1 redundant requirement hidden
+    = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+    = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+   --> |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+    |
+45  |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+    |                                                     ++++++++++++++++++
+
+error[E0282]: type annotations needed
+   --> src/de/read.rs:396:9
+    |
+396 |         debug_assert_eq!(reader.slice, & []);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+    |
+    = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+   --> |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+    |
+45  |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+    |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+   --> src/de/read.rs:396:9
+    |
+396 |         debug_assert_eq!(reader.slice, & []);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |         |
+    |         type must be known at this point
+    |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+    |
+    = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+            - impl PartialEq for u8;
+            - impl PartialEq<serde_json::Value> for u8;
+    = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+    = note: 1 redundant requirement hidden
+    = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+    = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+   --> |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+    |
+45  |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+    |                                                     ++++++++++++++++++
+
+Some errors have detailed explanations: E0282, E0283, E0425.
+For more information about an error, try `rustc --explain E0282`.
+error: could not compile `bincode` due to 9 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/bincode/./src/utils.rs
+done
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/bincode/compatibility/src/sway.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/bincode/compatibility/src/membership.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/bincode/compatibility/src/misc.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/bincode/compatibility/src/rand.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/bincode/compatibility/src/lib.rs
+done
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/bincode/derive/src/derive_struct.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/bincode/derive/src/derive_enum.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/bincode/derive/src/attribute.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/bincode/derive/src/lib.rs
+done

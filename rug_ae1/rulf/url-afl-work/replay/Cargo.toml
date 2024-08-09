@@ -1,0 +1,259 @@
+[[bin]]
+name = "test_url37"
+path = "replay_files/replay_url37.rs"
+
+[[bin]]
+name = "test_url42"
+path = "replay_files/replay_url42.rs"
+
+[[bin]]
+name = "test_url28"
+path = "replay_files/replay_url28.rs"
+
+[[bin]]
+name = "test_url55"
+path = "replay_files/replay_url55.rs"
+
+[[bin]]
+name = "test_url48"
+path = "replay_files/replay_url48.rs"
+
+[[bin]]
+name = "test_url57"
+path = "replay_files/replay_url57.rs"
+
+[[bin]]
+name = "test_url24"
+path = "replay_files/replay_url24.rs"
+
+[[bin]]
+name = "test_url45"
+path = "replay_files/replay_url45.rs"
+
+[[bin]]
+name = "test_url5"
+path = "replay_files/replay_url5.rs"
+
+[[bin]]
+name = "test_url26"
+path = "replay_files/replay_url26.rs"
+
+[[bin]]
+name = "test_url0"
+path = "replay_files/replay_url0.rs"
+
+[[bin]]
+name = "test_url25"
+path = "replay_files/replay_url25.rs"
+
+[[bin]]
+name = "test_url49"
+path = "replay_files/replay_url49.rs"
+
+[[bin]]
+name = "test_url40"
+path = "replay_files/replay_url40.rs"
+
+[[bin]]
+name = "test_url23"
+path = "replay_files/replay_url23.rs"
+
+[[bin]]
+name = "test_url51"
+path = "replay_files/replay_url51.rs"
+
+[[bin]]
+name = "test_url56"
+path = "replay_files/replay_url56.rs"
+
+[[bin]]
+name = "test_url2"
+path = "replay_files/replay_url2.rs"
+
+[[bin]]
+name = "test_url38"
+path = "replay_files/replay_url38.rs"
+
+[[bin]]
+name = "test_url17"
+path = "replay_files/replay_url17.rs"
+
+[[bin]]
+name = "test_url50"
+path = "replay_files/replay_url50.rs"
+
+[[bin]]
+name = "test_url31"
+path = "replay_files/replay_url31.rs"
+
+[[bin]]
+name = "test_url12"
+path = "replay_files/replay_url12.rs"
+
+[[bin]]
+name = "test_url32"
+path = "replay_files/replay_url32.rs"
+
+[[bin]]
+name = "test_url8"
+path = "replay_files/replay_url8.rs"
+
+[[bin]]
+name = "test_url36"
+path = "replay_files/replay_url36.rs"
+
+[[bin]]
+name = "test_url58"
+path = "replay_files/replay_url58.rs"
+
+[[bin]]
+name = "test_url1"
+path = "replay_files/replay_url1.rs"
+
+[[bin]]
+name = "test_url52"
+path = "replay_files/replay_url52.rs"
+
+[[bin]]
+name = "test_url53"
+path = "replay_files/replay_url53.rs"
+
+[[bin]]
+name = "test_url16"
+path = "replay_files/replay_url16.rs"
+
+[[bin]]
+name = "test_url18"
+path = "replay_files/replay_url18.rs"
+
+[[bin]]
+name = "test_url10"
+path = "replay_files/replay_url10.rs"
+
+[[bin]]
+name = "test_url59"
+path = "replay_files/replay_url59.rs"
+
+[[bin]]
+name = "test_url9"
+path = "replay_files/replay_url9.rs"
+
+[[bin]]
+name = "test_url43"
+path = "replay_files/replay_url43.rs"
+
+[[bin]]
+name = "test_url44"
+path = "replay_files/replay_url44.rs"
+
+[[bin]]
+name = "test_url14"
+path = "replay_files/replay_url14.rs"
+
+[[bin]]
+name = "test_url29"
+path = "replay_files/replay_url29.rs"
+
+[[bin]]
+name = "test_url20"
+path = "replay_files/replay_url20.rs"
+
+[[bin]]
+name = "test_url39"
+path = "replay_files/replay_url39.rs"
+
+[[bin]]
+name = "test_url41"
+path = "replay_files/replay_url41.rs"
+
+[[bin]]
+name = "test_url35"
+path = "replay_files/replay_url35.rs"
+
+[[bin]]
+name = "test_url19"
+path = "replay_files/replay_url19.rs"
+
+[[bin]]
+name = "test_url4"
+path = "replay_files/replay_url4.rs"
+
+[[bin]]
+name = "test_url7"
+path = "replay_files/replay_url7.rs"
+
+[[bin]]
+name = "test_url60"
+path = "replay_files/replay_url60.rs"
+
+[[bin]]
+name = "test_url47"
+path = "replay_files/replay_url47.rs"
+
+[[bin]]
+name = "test_url30"
+path = "replay_files/replay_url30.rs"
+
+[[bin]]
+name = "test_url54"
+path = "replay_files/replay_url54.rs"
+
+[[bin]]
+name = "test_url3"
+path = "replay_files/replay_url3.rs"
+
+[[bin]]
+name = "test_url6"
+path = "replay_files/replay_url6.rs"
+
+[[bin]]
+name = "test_url34"
+path = "replay_files/replay_url34.rs"
+
+[[bin]]
+name = "test_url15"
+path = "replay_files/replay_url15.rs"
+
+[[bin]]
+name = "test_url21"
+path = "replay_files/replay_url21.rs"
+
+[[bin]]
+name = "test_url46"
+path = "replay_files/replay_url46.rs"
+
+[[bin]]
+name = "test_url33"
+path = "replay_files/replay_url33.rs"
+
+[[bin]]
+name = "test_url11"
+path = "replay_files/replay_url11.rs"
+
+[[bin]]
+name = "test_url27"
+path = "replay_files/replay_url27.rs"
+
+[[bin]]
+name = "test_url13"
+path = "replay_files/replay_url13.rs"
+
+[[bin]]
+name = "test_url22"
+path = "replay_files/replay_url22.rs"
+
+[[bin]]
+name = "test_url61"
+path = "replay_files/replay_url61.rs"
+
+[package]
+name = "hello"
+version = "0.1.0"
+authors = [ "xiang",]
+edition = "2018"
+
+[dependencies.url]
+path = "../rust-url/url"
+
+[profile.release]
+debug = 1

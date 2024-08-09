@@ -1,0 +1,75 @@
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/humantime/./src/duration.rs
+        let _rug_st_tests_llm_16_1_rrrruuuugggg_test_add_ok = 0;
+ tests_llm_16_1 test_add_ok
+        let _rug_st_tests_llm_16_1_rrrruuuugggg_test_add_error = 0;
+ tests_llm_16_1 test_add_error
+        let _rug_st_tests_llm_16_2_rrrruuuugggg_test_mul = 0;
+ tests_llm_16_2 test_mul
+        let _rug_st_tests_llm_16_32_rrrruuuugggg_test_get_ref = 0;
+ tests_llm_16_32 test_get_ref
+        let _rug_st_tests_llm_16_33_rrrruuuugggg_test_off = 0;
+ tests_llm_16_33 test_off
+        let _rug_st_tests_llm_16_36_rrrruuuugggg_test_parse_first_char_with_digit = 0;
+ tests_llm_16_36 test_parse_first_char_with_digit
+        let _rug_st_tests_llm_16_36_rrrruuuugggg_test_parse_first_char_with_whitespace = 0;
+ tests_llm_16_36 test_parse_first_char_with_whitespace
+        let _rug_st_tests_llm_16_36_rrrruuuugggg_test_parse_first_char_with_invalid_char = 0;
+ tests_llm_16_36 test_parse_first_char_with_invalid_char
+        let _rug_st_tests_llm_16_39_rrrruuuugggg_test_format_duration_zero = 0;
+ tests_llm_16_39 test_format_duration_zero
+        let _rug_st_tests_llm_16_39_rrrruuuugggg_test_format_duration_hours_and_minutes = 0;
+ tests_llm_16_39 test_format_duration_hours_and_minutes
+        let _rug_st_tests_llm_16_39_rrrruuuugggg_test_format_duration_milliseconds = 0;
+ tests_llm_16_39 test_format_duration_milliseconds
+        let _rug_st_tests_llm_16_45_rrrruuuugggg_test_parse_duration = 0;
+ tests_llm_16_45 test_parse_duration
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/humantime/./src/date.rs
+        let _rug_st_tests_llm_16_15_rrrruuuugggg_test_get_ref = 0;
+ tests_llm_16_15 test_get_ref
+        let _rug_st_tests_llm_16_16_rrrruuuugggg_test_format_rfc3339 = 0;
+ tests_llm_16_16 test_format_rfc3339
+        let _rug_st_tests_llm_16_21_rrrruuuugggg_test_format_rfc3339_nanos = 0;
+ tests_llm_16_21 test_format_rfc3339_nanos
+        let _rug_st_tests_llm_16_25_llm_16_24_rrrruuuugggg_test_is_leap_year = 0;
+ tests_llm_16_25_llm_16_24 test_is_leap_year
+        let _rug_st_tests_llm_16_26_rrrruuuugggg_test_parse_rfc3339_valid_timestamp = 0;
+ tests_llm_16_26 test_parse_rfc3339_valid_timestamp
+        let _rug_st_tests_llm_16_26_rrrruuuugggg_test_parse_rfc3339_invalid_timestamp = 0;
+ tests_llm_16_26 test_parse_rfc3339_invalid_timestamp
+        let _rug_st_tests_llm_16_27_rrrruuuugggg_test_parse_rfc3339_weak_valid = 0;
+ tests_llm_16_27 test_parse_rfc3339_weak_valid
+        let _rug_st_tests_llm_16_27_rrrruuuugggg_test_parse_rfc3339_weak_invalid_format = 0;
+ tests_llm_16_27 test_parse_rfc3339_weak_invalid_format
+        let _rug_st_tests_llm_16_27_rrrruuuugggg_test_parse_rfc3339_weak_invalid_out_of_range = 0;
+ tests_llm_16_27 test_parse_rfc3339_weak_invalid_out_of_range
+        let _rug_st_tests_llm_16_28_rrrruuuugggg_test_two_digits = 0;
+ tests_llm_16_28 test_two_digits
+        let _rug_st_tests_rug_5_rrrruuuugggg_test_rug = 0;
+ tests_rug_5 test_rug
+        let _rug_st_tests_rug_6_rrrruuuugggg_test_rug = 0;
+ tests_rug_6 test_rug
+        let _rug_st_tests_rug_7_rrrruuuugggg_test_rug = 0;
+ tests_rug_7 test_rug
+        let _rug_st_tests_rug_8_rrrruuuugggg_test_rug = 0;
+ tests_rug_8 test_rug
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/humantime/./src/wrapper.rs
+        let _rug_st_tests_llm_16_3_rrrruuuugggg_test_as_ref = 0;
+ tests_llm_16_3 test_as_ref
+        let _rug_st_tests_llm_16_4_rrrruuuugggg_test_from = 0;
+ tests_llm_16_4 test_from
+        let _rug_st_tests_llm_16_5_rrrruuuugggg_test_into_duration = 0;
+ tests_llm_16_5 test_into_duration
+        let _rug_st_tests_llm_16_6_rrrruuuugggg_test_deref = 0;
+ tests_llm_16_6 test_deref
+        let _rug_st_tests_llm_16_9_rrrruuuugggg_test_as_ref = 0;
+ tests_llm_16_9 test_as_ref
+        let _rug_st_tests_llm_16_10_rrrruuuugggg_test_from = 0;
+ tests_llm_16_10 test_from
+        let _rug_st_tests_llm_16_10_rrrruuuugggg_test_from_str = 0;
+ tests_llm_16_10 test_from_str
+        let _rug_st_tests_llm_16_11_rrrruuuugggg_test_into = 0;
+ tests_llm_16_11 test_into
+        let _rug_st_tests_llm_16_12_rrrruuuugggg_test_deref = 0;
+ tests_llm_16_12 test_deref
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/humantime/./src/lib.rs
+done

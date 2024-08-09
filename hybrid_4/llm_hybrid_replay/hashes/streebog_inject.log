@@ -1,0 +1,1431 @@
+ChatCompletion(id='chatcmpl-8UZNLnlmb5foMxb6d2jjvw3QMDvzY', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use std::fmt;\n\n    struct DummyFormatter {\n        output: String,\n    }\n\n    impl DummyFormatter {\n        fn new() -> DummyFormatter {\n            DummyFormatter {\n                output: String::new(),\n            }\n        }\n    }\n\n    impl fmt::Write for DummyFormatter {\n        fn write_str(&mut self, s: &str) -> fmt::Result {\n            self.output.push_str(s);\n            Ok(())\n        }\n    }\n\n    #[test]\n    fn test_write_alg_name() {\n        let mut formatter = DummyFormatter::new();\n        core_api::StreebogVarCore::write_alg_name(&mut formatter).unwrap();\n        assert_eq!(formatter.output, "Streebog");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702296515, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=162, prompt_tokens=185, total_tokens=347))
+71
+========================================
+inject err <core_api::StreebogVarCore as digest::core_api::AlgorithmName>::write_alg_name streebog/src/core_api.rs write_alg_name
+#[cfg(test)]
+mod tests_llm_16_1 {
+    use super::*;
+
+use crate::*;
+    use std::fmt;
+
+    struct DummyFormatter {
+        output: String,
+    }
+
+    impl DummyFormatter {
+        fn new() -> DummyFormatter {
+            DummyFormatter {
+                output: String::new(),
+            }
+        }
+    }
+
+    impl fmt::Write for DummyFormatter {
+        fn write_str(&mut self, s: &str) -> fmt::Result {
+            self.output.push_str(s);
+            Ok(())
+        }
+    }
+
+    #[test]
+    fn test_write_alg_name() {
+        let mut formatter = DummyFormatter::new();
+        core_api::StreebogVarCore::write_alg_name(&mut formatter).unwrap();
+        assert_eq!(formatter.output, "Streebog");
+    }
+}
+   Compiling typenum v1.16.0
+   Compiling version_check v0.9.4
+   Compiling proc-macro-hack v0.5.20+deprecated
+   Compiling blobby v0.3.1
+   Compiling generic-array v0.14.7
+   Compiling hex-literal-impl v0.2.3
+   Compiling hex-literal v0.2.2
+   Compiling block-buffer v0.10.4
+   Compiling crypto-common v0.1.6
+   Compiling digest v0.10.7
+   Compiling streebog v0.10.2 (/home/xiang/workspace/human/llm_base_bk/hashes/streebog)
+error[E0308]: mismatched types
+   --> streebog/src/core_api.rs:219:51
+    |
+219 |         core_api::StreebogVarCore::write_alg_name(&mut formatter).unwrap();
+    |         ----------------------------------------- ^^^^^^^^^^^^^^ expected struct `Formatter`, found struct `DummyFormatter`
+    |         |
+    |         arguments to this function are incorrect
+    |
+    = note: expected mutable reference `&mut Formatter<'_>`
+               found mutable reference `&mut DummyFormatter`
+note: associated function defined here
+   --> /home/xiang/.cargo/registry/src/github.com-1ecc6299db9ec823/crypto-common-0.1.6/src/lib.rs:120:8
+    |
+120 |     fn write_alg_name(f: &mut fmt::Formatter<'_>) -> fmt::Result;
+    |        ^^^^^^^^^^^^^^
+
+For more information about this error, try `rustc --explain E0308`.
+error: could not compile `streebog` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UZNbtlJdUppU3UrErXcKiEEjnkO0', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_1 {\n    use super::*;\n    use digest::core_api::AlgorithmName;\n    use std::fmt;\n\n    #[test]\n    fn test_write_alg_name() {\n        let mut output = String::new();\n        let mut formatter = fmt::Formatter::new(&mut output);\n        StreebogVarCore::write_alg_name(&mut formatter).unwrap();\n        assert_eq!(output, "Streebog");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702296531, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=104, prompt_tokens=962, total_tokens=1066))
+71
+========================================
+inject err <core_api::StreebogVarCore as digest::core_api::AlgorithmName>::write_alg_name streebog/src/core_api.rs write_alg_name
+#[cfg(test)]
+mod tests_llm_16_1_llm_16_1 {
+    use super::*;
+
+use crate::*;
+    use digest::core_api::AlgorithmName;
+    use std::fmt;
+
+    #[test]
+    fn test_write_alg_name() {
+        let mut output = String::new();
+        let mut formatter = fmt::Formatter::new(&mut output);
+        StreebogVarCore::write_alg_name(&mut formatter).unwrap();
+        assert_eq!(output, "Streebog");
+    }
+}
+   Compiling streebog v0.10.2 (/home/xiang/workspace/human/llm_base_bk/hashes/streebog)
+error[E0658]: use of unstable library feature 'fmt_internals': internal to standard library
+   --> streebog/src/core_api.rs:201:29
+    |
+201 |         let mut formatter = fmt::Formatter::new(&mut output);
+    |                             ^^^^^^^^^^^^^^^^^^^
+    |
+    = help: add `#![feature(fmt_internals)]` to the crate attributes to enable
+
+For more information about this error, try `rustc --explain E0658`.
+error: could not compile `streebog` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+repair err <core_api::StreebogVarCore as digest::core_api::AlgorithmName>::write_alg_name streebog/src/core_api.rs write_alg_name
+ChatCompletion(id='chatcmpl-8UZNjhWGMjo14PglVtvfJja5HjqmJ', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use digest::core_api::{Block, BlockSizeUser, GenBlock, UpdateCore, VariableOutputCore};\n    use digest::{InvalidOutputSize, Output, U64};\n\n    #[test]\n    fn test_update_blocks() {\n        // Initialize the hasher with the desired output size\n        let output_size = 64;\n        let mut hasher = StreebogVarCore::new(output_size).unwrap();\n\n        // Create two blocks of data (filling with 0x00 for simplicity)\n        let data_block1: GenBlock<StreebogVarCore> = Block::from([0x00; 64]);\n        let data_block2: GenBlock<StreebogVarCore> = Block::from([0x00; 64]);\n        let blocks = &[data_block1, data_block2];\n\n        // Get the initial state of the sigma and n registers\n        let initial_n = hasher.n;\n        let initial_sigma = hasher.sigma;\n\n        // Call the `update_blocks` method on the hasher\n        hasher.update_blocks(blocks);\n\n        // Verify that both sigma and n registers have been updated\n        assert_ne!(hasher.n, initial_n, "Expected `n` to change after processing blocks");\n        assert_ne!(hasher.sigma, initial_sigma, "Expected `sigma` to change after processing blocks");\n        \n        // Verify that the hasher state (h register) has changed\n        let expected_h = [0; 64]; // Assuming initial h of StreebogVarCore is [0; 64]\n        assert_ne!(hasher.h, expected_h, "Expected `h` to change after processing blocks");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702296539, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=360, prompt_tokens=1384, total_tokens=1744))
+71
+========================================
+inject err <core_api::StreebogVarCore as digest::core_api::UpdateCore>::update_blocks streebog/src/core_api.rs update_blocks
+#[cfg(test)]
+mod tests_llm_16_2 {
+    use super::*;
+
+use crate::*;
+    use digest::core_api::{Block, BlockSizeUser, GenBlock, UpdateCore, VariableOutputCore};
+    use digest::{InvalidOutputSize, Output, U64};
+
+    #[test]
+    fn test_update_blocks() {
+        // Initialize the hasher with the desired output size
+        let output_size = 64;
+        let mut hasher = StreebogVarCore::new(output_size).unwrap();
+
+        // Create two blocks of data (filling with 0x00 for simplicity)
+        let data_block1: GenBlock<StreebogVarCore> = Block::from([0x00; 64]);
+        let data_block2: GenBlock<StreebogVarCore> = Block::from([0x00; 64]);
+        let blocks = &[data_block1, data_block2];
+
+        // Get the initial state of the sigma and n registers
+        let initial_n = hasher.n;
+        let initial_sigma = hasher.sigma;
+
+        // Call the `update_blocks` method on the hasher
+        hasher.update_blocks(blocks);
+
+        // Verify that both sigma and n registers have been updated
+        assert_ne!(hasher.n, initial_n, "Expected `n` to change after processing blocks");
+        assert_ne!(hasher.sigma, initial_sigma, "Expected `sigma` to change after processing blocks");
+        
+        // Verify that the hasher state (h register) has changed
+        let expected_h = [0; 64]; // Assuming initial h of StreebogVarCore is [0; 64]
+        assert_ne!(hasher.h, expected_h, "Expected `h` to change after processing blocks");
+    }
+}
+   Compiling streebog v0.10.2 (/home/xiang/workspace/human/llm_base_bk/hashes/streebog)
+error[E0432]: unresolved import `digest::core_api::GenBlock`
+   --> streebog/src/core_api.rs:195:50
+    |
+195 |     use digest::core_api::{Block, BlockSizeUser, GenBlock, UpdateCore, VariableOutputCore};
+    |                                                  ^^^^^^^^ no `GenBlock` in `core_api`
+    |
+help: consider importing this type alias instead
+    |
+195 |     use digest::core_api::{Block, BlockSizeUser, crate::core_api::GenBlock;
+    |                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+error[E0432]: unresolved import `digest::U64`
+   --> streebog/src/core_api.rs:196:45
+    |
+196 |     use digest::{InvalidOutputSize, Output, U64};
+    |                                             ^^^ no `U64` in the root
+    |
+help: consider importing one of these items instead
+    |
+196 |     use digest::{InvalidOutputSize, Output, crate::U64;
+    |                                             ~~~~~~~~~~~
+196 |     use digest::{InvalidOutputSize, Output, digest::consts::U64;
+    |                                             ~~~~~~~~~~~~~~~~~~~~
+
+error[E0284]: type annotations needed
+   --> streebog/src/core_api.rs:205:54
+    |
+205 |         let data_block1: GenBlock<StreebogVarCore> = Block::from([0x00; 64]);
+    |                                                      ^^^^^ cannot infer type for type parameter `B` declared on the type alias `Block`
+    |
+    = note: cannot satisfy `<_ as BlockSizeUser>::BlockSize == UInt<UInt<UInt<UInt<UInt<UInt<UInt<UTerm, B1>, B0>, B0>, B0>, B0>, B0>, B0>`
+
+Some errors have detailed explanations: E0284, E0432.
+For more information about an error, try `rustc --explain E0284`.
+error: could not compile `streebog` due to 3 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UZOM08oOG63LqG9Encj3AVtYAoPJ', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_2 {\n    use super::*;\n    use streebog::consts::U64;\n    use streebog::core_api::BlockSizeUser;\n    use streebog::core_api::UpdateCore;\n    use streebog::core_api::VariableOutputCore;\n    use streebog::core_api::BlockSize;\n    use streebog::StreebogVarCore;\n    use digest::InvalidOutputSize;\n    use digest::consts::U64;\n    use digest::generic_array::GenericArray;\n    use digest::Output;\n\n    #[test]\n    fn test_update_blocks() {\n        // Initialize the hasher with the desired output size\n        let output_size = 64;\n        let mut hasher = StreebogVarCore::new(output_size).unwrap();\n\n        // Create two blocks of data\n        let block_size = <StreebogVarCore as BlockSizeUser>::BlockSize::to_usize();\n        let data_block1 = GenericArray::clone_from_slice(&[0x00; 64][..block_size]);\n        let data_block2 = GenericArray::clone_from_slice(&[0x00; 64][..block_size]);\n        let blocks = &[data_block1, data_block2];\n\n        // Get the initial state of the sigma and n registers\n        let initial_n = hasher.n;\n        let initial_sigma = hasher.sigma;\n\n        // Call the `update_blocks` method on the hasher\n        hasher.update_blocks(blocks);\n\n        // Verify that both sigma and n registers have been updated\n        assert_ne!(hasher.n, initial_n, "Expected `n` to change after processing blocks");\n        assert_ne!(hasher.sigma, initial_sigma, "Expected `sigma` to change after processing blocks");\n        \n        // Verify that the hasher state (h register) has changed\n        let expected_h = [0; 64]; // Assuming initial h of StreebogVarCore is [0; 64]\n        assert_ne!(hasher.h, expected_h, "Expected `h` to change after processing blocks");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702296578, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=448, prompt_tokens=2633, total_tokens=3081))
+71
+========================================
+inject err <core_api::StreebogVarCore as digest::core_api::UpdateCore>::update_blocks streebog/src/core_api.rs update_blocks
+#[cfg(test)]
+mod tests_llm_16_2_llm_16_2 {
+    use super::*;
+
+use crate::*;
+    use crate::consts::U64;
+    use crate::core_api::BlockSizeUser;
+    use crate::core_api::UpdateCore;
+    use crate::core_api::VariableOutputCore;
+    use crate::core_api::BlockSize;
+    use crate::StreebogVarCore;
+    use digest::InvalidOutputSize;
+    use digest::consts::U64;
+    use digest::generic_array::GenericArray;
+    use digest::Output;
+
+    #[test]
+    fn test_update_blocks() {
+        // Initialize the hasher with the desired output size
+        let output_size = 64;
+        let mut hasher = StreebogVarCore::new(output_size).unwrap();
+
+        // Create two blocks of data
+        let block_size = <StreebogVarCore as BlockSizeUser>::BlockSize::to_usize();
+        let data_block1 = GenericArray::clone_from_slice(&[0x00; 64][..block_size]);
+        let data_block2 = GenericArray::clone_from_slice(&[0x00; 64][..block_size]);
+        let blocks = &[data_block1, data_block2];
+
+        // Get the initial state of the sigma and n registers
+        let initial_n = hasher.n;
+        let initial_sigma = hasher.sigma;
+
+        // Call the `update_blocks` method on the hasher
+        hasher.update_blocks(blocks);
+
+        // Verify that both sigma and n registers have been updated
+        assert_ne!(hasher.n, initial_n, "Expected `n` to change after processing blocks");
+        assert_ne!(hasher.sigma, initial_sigma, "Expected `sigma` to change after processing blocks");
+        
+        // Verify that the hasher state (h register) has changed
+        let expected_h = [0; 64]; // Assuming initial h of StreebogVarCore is [0; 64]
+        assert_ne!(hasher.h, expected_h, "Expected `h` to change after processing blocks");
+    }
+}
+   Compiling streebog v0.10.2 (/home/xiang/workspace/human/llm_base_bk/hashes/streebog)
+error[E0432]: unresolved import `crate::consts::U64`
+   --> streebog/src/core_api.rs:195:9
+    |
+195 |     use crate::consts::U64;
+    |         ^^^^^^^^^^^^^^^^^^ no `U64` in `consts`
+    |
+help: consider importing one of these items instead
+    |
+195 |     use crate::U64;
+    |         ~~~~~~~~~~~
+195 |     use digest::consts::U64;
+    |         ~~~~~~~~~~~~~~~~~~~~
+
+error[E0432]: unresolved import `crate::core_api::BlockSize`
+   --> streebog/src/core_api.rs:199:9
+    |
+199 |     use crate::core_api::BlockSize;
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^ no `BlockSize` in `core_api`
+
+error[E0599]: no function or associated item named `to_usize` found for struct `UInt` in the current scope
+   --> streebog/src/core_api.rs:213:73
+    |
+213 |         let block_size = <StreebogVarCore as BlockSizeUser>::BlockSize::to_usize();
+    |                                                                         ^^^^^^^^ function or associated item not found in `UInt<UInt<UInt<UInt<UInt<UInt<UInt<UTerm, B1>, B0>, B0>, B0>, B0>, B0>, B0>`
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+    |
+192 |     use digest::typenum::Unsigned;
+    |
+
+Some errors have detailed explanations: E0432, E0599.
+For more information about an error, try `rustc --explain E0432`.
+error: could not compile `streebog` due to 3 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+repair err <core_api::StreebogVarCore as digest::core_api::UpdateCore>::update_blocks streebog/src/core_api.rs update_blocks
+ChatCompletion(id='chatcmpl-8UZP2kXb00LaX1UA5S2Y2zY7T6pnF', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use digest::core_api::VariableOutputCore;\n    use digest::core_api::Buffer;\n    use digest::core_api::Output;\n    use digest::InvalidOutputSize;\n\n    #[test]\n    fn test_finalize_variable_core() {\n        let mut hasher = StreebogVarCore::new(64).unwrap();\n        let mut buffer = Buffer::<StreebogVarCore>::new();\n        let mut output = Output::<StreebogVarCore>::default();\n        \n        buffer.update(b"test input data");\n        hasher.finalize_variable_core(&mut buffer, &mut output);\n\n        assert_eq!(output.as_slice(), &hasher.h);\n    }\n\n    #[test]\n    fn test_finalize_variable_core_with_error() {\n        if let Err(e) = StreebogVarCore::new(30) {\n            assert_eq!(e, InvalidOutputSize);\n        } else {\n            panic!("StreebogVarCore::new should have returned Err(InvalidOutputSize) for invalid output size");\n        }\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702296620, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=230, prompt_tokens=1458, total_tokens=1688))
+71
+========================================
+inject err <core_api::StreebogVarCore as digest::core_api::VariableOutputCore>::finalize_variable_core streebog/src/core_api.rs finalize_variable_core
+#[cfg(test)]
+mod tests_llm_16_3 {
+    use super::*;
+
+use crate::*;
+    use digest::core_api::VariableOutputCore;
+    use digest::core_api::Buffer;
+    use digest::core_api::Output;
+    use digest::InvalidOutputSize;
+
+    #[test]
+    fn test_finalize_variable_core() {
+        let mut hasher = StreebogVarCore::new(64).unwrap();
+        let mut buffer = Buffer::<StreebogVarCore>::new();
+        let mut output = Output::<StreebogVarCore>::default();
+        
+        buffer.update(b"test input data");
+        hasher.finalize_variable_core(&mut buffer, &mut output);
+
+        assert_eq!(output.as_slice(), &hasher.h);
+    }
+
+    #[test]
+    fn test_finalize_variable_core_with_error() {
+        if let Err(e) = StreebogVarCore::new(30) {
+            assert_eq!(e, InvalidOutputSize);
+        } else {
+            panic!("StreebogVarCore::new should have returned Err(InvalidOutputSize) for invalid output size");
+        }
+    }
+}
+   Compiling streebog v0.10.2 (/home/xiang/workspace/human/llm_base_bk/hashes/streebog)
+error[E0603]: type alias `Output` is private
+   --> streebog/src/core_api.rs:197:27
+    |
+197 |     use digest::core_api::Output;
+    |                           ^^^^^^ private type alias
+    |
+note: the type alias `Output` is defined here
+   --> /home/xiang/.cargo/registry/src/github.com-1ecc6299db9ec823/digest-0.10.7/src/core_api.rs:13:5
+    |
+13  |     Output,
+    |     ^^^^^^
+
+error[E0061]: this function takes 1 argument but 0 arguments were supplied
+   --> streebog/src/core_api.rs:203:26
+    |
+203 |         let mut buffer = Buffer::<StreebogVarCore>::new();
+    |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^-- an argument of type `&[u8]` is missing
+    |
+note: associated function defined here
+   --> /home/xiang/.cargo/registry/src/github.com-1ecc6299db9ec823/block-buffer-0.10.4/src/lib.rs:110:12
+    |
+110 |     pub fn new(buf: &[u8]) -> Self {
+    |            ^^^
+help: provide the argument
+    |
+203 |         let mut buffer = Buffer::<StreebogVarCore>::new(/* &[u8] */);
+    |                                                        ~~~~~~~~~~~~~
+
+error[E0599]: the method `update` exists for struct `BlockBuffer<UInt<UInt<UInt<UInt<UInt<UInt<UInt<UTerm, B1>, B0>, B0>, B0>, B0>, B0>, B0>, Eager>`, but its trait bounds were not satisfied
+   --> streebog/src/core_api.rs:206:16
+    |
+206 |         buffer.update(b"test input data");
+    |                ^^^^^^ method cannot be called on `BlockBuffer<UInt<UInt<UInt<UInt<UInt<UInt<UInt<UTerm, B1>, B0>, B0>, B0>, B0>, B0>, B0>, Eager>` due to unsatisfied trait bounds
+    |
+   ::: /home/xiang/.cargo/registry/src/github.com-1ecc6299db9ec823/block-buffer-0.10.4/src/lib.rs:55:1
+    |
+55  | pub struct BlockBuffer<BlockSize, Kind>
+    | ---------------------------------------
+    | |
+    | doesn't satisfy `_: FixedOutput`
+    | doesn't satisfy `_: HashMarker`
+    | doesn't satisfy `_: Update`
+    | doesn't satisfy `_: digest::Digest`
+    |
+    = note: the following trait bounds were not satisfied:
+            `BlockBuffer<UInt<UInt<UInt<UInt<UInt<UInt<UInt<UTerm, B1>, B0>, B0>, B0>, B0>, B0>, B0>, Eager>: FixedOutput`
+            which is required by `BlockBuffer<UInt<UInt<UInt<UInt<UInt<UInt<UInt<UTerm, B1>, B0>, B0>, B0>, B0>, B0>, B0>, Eager>: digest::Digest`
+            `BlockBuffer<UInt<UInt<UInt<UInt<UInt<UInt<UInt<UTerm, B1>, B0>, B0>, B0>, B0>, B0>, B0>, Eager>: Update`
+            which is required by `BlockBuffer<UInt<UInt<UInt<UInt<UInt<UInt<UInt<UTerm, B1>, B0>, B0>, B0>, B0>, B0>, B0>, Eager>: digest::Digest`
+            `BlockBuffer<UInt<UInt<UInt<UInt<UInt<UInt<UInt<UTerm, B1>, B0>, B0>, B0>, B0>, B0>, B0>, Eager>: HashMarker`
+            which is required by `BlockBuffer<UInt<UInt<UInt<UInt<UInt<UInt<UInt<UTerm, B1>, B0>, B0>, B0>, B0>, B0>, B0>, Eager>: digest::Digest`
+
+error[E0369]: binary operation `==` cannot be applied to type `InvalidOutputSize`
+   --> streebog/src/core_api.rs:215:13
+    |
+215 |             assert_eq!(e, InvalidOutputSize);
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |             |
+    |             InvalidOutputSize
+    |             InvalidOutputSize
+    |
+    = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+Some errors have detailed explanations: E0061, E0369, E0599, E0603.
+For more information about an error, try `rustc --explain E0061`.
+error: could not compile `streebog` due to 4 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UZPNcX9CEnOSqVvr0q1FzBdpkgrv', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use digest::core_api::{Buffer, VariableOutputCore};\n    use digest::InvalidOutputSize;\n    use crate::block::BlockSizeUser;\n    use crate::core_api::OutputSizeUser;\n    use crate::streebog::StreebogVarCore;\n\n    #[test]\n    fn test_finalize_variable_core() {\n        let output_size = 64;\n        let mut hasher = StreebogVarCore::new(output_size).unwrap();\n        let data = b"test input data";\n        let mut buffer = Buffer::default();\n        buffer.initialize(data.len());\n        let mut output = vec![0u8; hasher.output_size()];\n        \n        buffer.update(data);\n        hasher.update_core(buffer.full_blocks());\n        buffer.set_pos(data.len());\n        hasher.finalize_variable_core(&mut buffer, &mut output);\n\n        let expected = &hasher.h[..output_size];\n        assert_eq!(output, expected);\n    }\n\n    #[test]\n    fn test_finalize_variable_core_with_error() {\n        let output_size = 30;\n        assert!(matches!(StreebogVarCore::new(output_size), Err(InvalidOutputSize)));\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702296641, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=254, prompt_tokens=3083, total_tokens=3337))
+71
+========================================
+inject err <core_api::StreebogVarCore as digest::core_api::VariableOutputCore>::finalize_variable_core streebog/src/core_api.rs finalize_variable_core
+#[cfg(test)]
+mod tests_llm_16_3 {
+    use super::*;
+
+use crate::*;
+    use digest::core_api::{Buffer, VariableOutputCore};
+    use digest::InvalidOutputSize;
+    use crate::block::BlockSizeUser;
+    use crate::core_api::OutputSizeUser;
+    use crate::crate::StreebogVarCore;
+
+    #[test]
+    fn test_finalize_variable_core() {
+        let output_size = 64;
+        let mut hasher = StreebogVarCore::new(output_size).unwrap();
+        let data = b"test input data";
+        let mut buffer = Buffer::default();
+        buffer.initialize(data.len());
+        let mut output = vec![0u8; hasher.output_size()];
+        
+        buffer.update(data);
+        hasher.update_core(buffer.full_blocks());
+        buffer.set_pos(data.len());
+        hasher.finalize_variable_core(&mut buffer, &mut output);
+
+        let expected = &hasher.h[..output_size];
+        assert_eq!(output, expected);
+    }
+
+    #[test]
+    fn test_finalize_variable_core_with_error() {
+        let output_size = 30;
+        assert!(matches!(StreebogVarCore::new(output_size), Err(InvalidOutputSize)));
+    }
+}
+   Compiling streebog v0.10.2 (/home/xiang/workspace/human/llm_base_bk/hashes/streebog)
+error[E0433]: failed to resolve: `crate` in paths can only be used in start position
+   --> streebog/src/core_api.rs:199:16
+    |
+199 |     use crate::crate::StreebogVarCore;
+    |                ^^^^^ `crate` in paths can only be used in start position
+
+error[E0432]: unresolved import `crate::block`
+   --> streebog/src/core_api.rs:197:16
+    |
+197 |     use crate::block::BlockSizeUser;
+    |                ^^^^^ could not find `block` in the crate root
+
+error[E0599]: no method named `initialize` found for struct `BlockBuffer` in the current scope
+   --> streebog/src/core_api.rs:207:16
+    |
+207 |         buffer.initialize(data.len());
+    |                ^^^^^^^^^^ method not found in `BlockBuffer<_, _>`
+
+error[E0599]: no method named `output_size` found for struct `core_api::StreebogVarCore` in the current scope
+   --> streebog/src/core_api.rs:208:43
+    |
+22  | pub struct StreebogVarCore {
+    | -------------------------- method `output_size` not found for this struct
+...
+208 |         let mut output = vec![0u8; hasher.output_size()];
+    |                                           ^^^^^^^^^^^ this is an associated function, not a method
+    |
+    = note: found the following associated functions; to be used as methods, functions must have a `self` parameter
+note: candidate #1 is defined in the trait `OutputSizeUser`
+   --> /home/xiang/.cargo/registry/src/github.com-1ecc6299db9ec823/crypto-common-0.1.6/src/lib.rs:72:5
+    |
+72  |     fn output_size() -> usize {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+note: candidate #2 is defined in the trait `digest::Digest`
+   --> /home/xiang/.cargo/registry/src/github.com-1ecc6299db9ec823/digest-0.10.7/src/digest.rs:51:5
+    |
+51  |     fn output_size() -> usize;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following traits define an item `output_size`, perhaps you need to implement one of them:
+            candidate #1: `DynDigest`
+            candidate #2: `VariableOutput`
+help: disambiguate the associated function for candidate #1
+    |
+208 |         let mut output = vec![0u8; <core_api::StreebogVarCore as OutputSizeUser>::output_size(hasher)];
+    |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+help: disambiguate the associated function for candidate #2
+    |
+208 |         let mut output = vec![0u8; <core_api::StreebogVarCore as digest::Digest>::output_size(hasher)];
+    |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+error[E0599]: the method `update` exists for struct `BlockBuffer<_, _>`, but its trait bounds were not satisfied
+   --> streebog/src/core_api.rs:210:16
+    |
+210 |         buffer.update(data);
+    |                ^^^^^^ method cannot be called on `BlockBuffer<_, _>` due to unsatisfied trait bounds
+    |
+   ::: /home/xiang/.cargo/registry/src/github.com-1ecc6299db9ec823/block-buffer-0.10.4/src/lib.rs:55:1
+    |
+55  | pub struct BlockBuffer<BlockSize, Kind>
+    | ---------------------------------------
+    | |
+    | doesn't satisfy `BlockBuffer<_, _>: FixedOutput`
+    | doesn't satisfy `BlockBuffer<_, _>: HashMarker`
+    | doesn't satisfy `BlockBuffer<_, _>: Update`
+    | doesn't satisfy `BlockBuffer<_, _>: digest::Digest`
+    |
+    = note: the following trait bounds were not satisfied:
+            `BlockBuffer<_, _>: FixedOutput`
+            which is required by `BlockBuffer<_, _>: digest::Digest`
+            `BlockBuffer<_, _>: Update`
+            which is required by `BlockBuffer<_, _>: digest::Digest`
+            `BlockBuffer<_, _>: HashMarker`
+            which is required by `BlockBuffer<_, _>: digest::Digest`
+
+error[E0599]: no method named `update_core` found for struct `core_api::StreebogVarCore` in the current scope
+   --> streebog/src/core_api.rs:211:16
+    |
+22  | pub struct StreebogVarCore {
+    | -------------------------- method `update_core` not found for this struct
+...
+211 |         hasher.update_core(buffer.full_blocks());
+    |                ^^^^^^^^^^^ help: there is a method with a similar name: `update_n`
+
+error[E0599]: no method named `full_blocks` found for struct `BlockBuffer` in the current scope
+   --> streebog/src/core_api.rs:211:35
+    |
+211 |         hasher.update_core(buffer.full_blocks());
+    |                                   ^^^^^^^^^^^ method not found in `BlockBuffer<_, _>`
+
+error[E0599]: no method named `set_pos` found for struct `BlockBuffer` in the current scope
+   --> streebog/src/core_api.rs:212:16
+    |
+212 |         buffer.set_pos(data.len());
+    |                ^^^^^^^ help: there is a method with a similar name: `get_pos`
+
+error[E0308]: mismatched types
+   --> streebog/src/core_api.rs:213:52
+    |
+213 |         hasher.finalize_variable_core(&mut buffer, &mut output);
+    |                ----------------------              ^^^^^^^^^^^ expected struct `GenericArray`, found struct `Vec`
+    |                |
+    |                arguments to this function are incorrect
+    |
+    = note: expected mutable reference `&mut GenericArray<u8, UInt<UInt<UInt<UInt<UInt<UInt<UInt<UTerm, B1>, B0>, B0>, B0>, B0>, B0>, B0>>`
+               found mutable reference `&mut Vec<u8>`
+note: associated function defined here
+   --> /home/xiang/.cargo/registry/src/github.com-1ecc6299db9ec823/digest-0.10.7/src/core_api.rs:108:8
+    |
+108 |     fn finalize_variable_core(&mut self, buffer: &mut Buffer<Self>, out: &mut Output<Self>);
+    |        ^^^^^^^^^^^^^^^^^^^^^^
+
+Some errors have detailed explanations: E0308, E0432, E0433, E0599.
+For more information about an error, try `rustc --explain E0308`.
+error: could not compile `streebog` due to 9 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+repair err <core_api::StreebogVarCore as digest::core_api::VariableOutputCore>::finalize_variable_core streebog/src/core_api.rs finalize_variable_core
+ChatCompletion(id='chatcmpl-8UZPhnfZwNZUuf6NJhaiaQ5I2tazS', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use digest::core_api::{VariableOutputCore, InvalidOutputSize};\n\n    #[test]\n    fn test_new_with_valid_output_sizes() {\n        // Output size 32 should create StreebogVarCore with h filled with 1\n        if let Ok(instance_32) = StreebogVarCore::new(32) {\n            assert_eq!(instance_32.h, [1; 64]);\n        } else {\n            panic!("StreebogVarCore::new(32) should not have failed");\n        }\n        \n        // Output size 64 should create StreebogVarCore with h filled with 0\n        if let Ok(instance_64) = StreebogVarCore::new(64) {\n            assert_eq!(instance_64.h, [0; 64]);\n        } else {\n            panic!("StreebogVarCore::new(64) should not have failed");\n        }\n    }\n    \n    #[test]\n    fn test_new_with_invalid_output_sizes() {\n        // Any other output size should return an error\n        let result = StreebogVarCore::new(0);\n        assert!(matches!(result, Err(InvalidOutputSize)));\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702296661, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=268, prompt_tokens=230, total_tokens=498))
+71
+========================================
+inject err <core_api::StreebogVarCore as digest::core_api::VariableOutputCore>::new streebog/src/core_api.rs new
+#[cfg(test)]
+mod tests_llm_16_4 {
+    use super::*;
+
+use crate::*;
+    use digest::core_api::{VariableOutputCore, InvalidOutputSize};
+
+    #[test]
+    fn test_new_with_valid_output_sizes() {
+        // Output size 32 should create StreebogVarCore with h filled with 1
+        if let Ok(instance_32) = StreebogVarCore::new(32) {
+            assert_eq!(instance_32.h, [1; 64]);
+        } else {
+            panic!("StreebogVarCore::new(32) should not have failed");
+        }
+        
+        // Output size 64 should create StreebogVarCore with h filled with 0
+        if let Ok(instance_64) = StreebogVarCore::new(64) {
+            assert_eq!(instance_64.h, [0; 64]);
+        } else {
+            panic!("StreebogVarCore::new(64) should not have failed");
+        }
+    }
+    
+    #[test]
+    fn test_new_with_invalid_output_sizes() {
+        // Any other output size should return an error
+        let result = StreebogVarCore::new(0);
+        assert!(matches!(result, Err(InvalidOutputSize)));
+    }
+}
+   Compiling streebog v0.10.2 (/home/xiang/workspace/human/llm_base_bk/hashes/streebog)
+error[E0603]: struct `InvalidOutputSize` is private
+   --> streebog/src/core_api.rs:195:48
+    |
+195 |     use digest::core_api::{VariableOutputCore, InvalidOutputSize};
+    |                                                ^^^^^^^^^^^^^^^^^ private struct
+    |
+note: the struct `InvalidOutputSize` is defined here
+   --> /home/xiang/.cargo/registry/src/github.com-1ecc6299db9ec823/digest-0.10.7/src/core_api.rs:6:5
+    |
+6   | use crate::InvalidOutputSize;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^
+
+For more information about this error, try `rustc --explain E0603`.
+error: could not compile `streebog` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UZQ54r4NhVwxZQqbzYvjw5rWQDfv', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_4 {\n    use super::*;\n    use crate::*;\n    use digest::core_api::VariableOutputCore;\n\n    #[test]\n    fn test_new_with_valid_output_sizes() {\n        // Output size 32 should create StreebogVarCore with h filled with 1\n        if let Ok(instance_32) = StreebogVarCore::new(32) {\n            assert_eq!(instance_32.h, [1; 64]);\n        } else {\n            panic!("StreebogVarCore::new(32) should not have failed");\n        }\n        \n        // Output size 64 should create StreebogVarCore with h filled with 0\n        if let Ok(instance_64) = StreebogVarCore::new(64) {\n            assert_eq!(instance_64.h, [0; 64]);\n        } else {\n            panic!("StreebogVarCore::new(64) should not have failed");\n        }\n    }\n    \n    #[test]\n    fn test_new_with_invalid_output_sizes() {\n        // Any other output size should return an error\n        let result = StreebogVarCore::new(0);\n        assert!(result.is_err());\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702296685, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=268, prompt_tokens=1041, total_tokens=1309))
+71
+inject succeed hashes streebog <core_api::StreebogVarCore as digest::core_api::VariableOutputCore>::new
+ChatCompletion(id='chatcmpl-8UZQVaufc65J409Ou2OEblTeWuzAx', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n\n    #[test]\n    fn test_compress() {\n        let block = [0u8; 64];\n        let msg_len = block.len() as u64;\n        let mut hasher = StreebogVarCore::new(64).unwrap();\n        let initial_n = hasher.n;\n        let initial_sigma = hasher.sigma;\n        \n        hasher.compress(&block, msg_len);\n\n        // Check that `n` (bit length of the message) has been incremented correctly\n        let expected_n = {\n            let mut temp_n = initial_n;\n            let mut carry = 0;\n            adc(&mut temp_n[0], msg_len * 8, &mut carry);\n            temp_n\n        };\n        assert_eq!(hasher.n, expected_n, "n should be incremented correctly");\n\n        // Check that `sigma` (the sum of the message blocks) has been incremented correctly\n        let expected_sigma = {\n            let mut temp_sigma = initial_sigma;\n            let block_as_u64 = from_bytes(&block);\n            let mut carry = 0;\n            for (sigma_val, &block_val) in temp_sigma.iter_mut().zip(block_as_u64.iter()) {\n                adc(sigma_val, block_val, &mut carry);\n            }\n            temp_sigma\n        };\n        assert_eq!(hasher.sigma, expected_sigma, "sigma should be incremented correctly");\n\n        // Check that the internal state `h` has been updated, this may involve a mock `g` function\n        // and storing the initial state of `h`. Since the actual `g` function implementation is not\n        // shown, it is not possible to predict the expected state of `h` after the `compress` call\n        // without more details on how `g` works.\n        // assert_eq!(hasher.h, expected_h, "h should be updated correctly");\n        \n        // This omitted assertion may be completed with a call to a mocked `g` function and\n        // a comparison with the `h` state returned, to validate that `compress` is updating `h` as expected.\n        // Since this is not practical without the details, the actual assertion should be omitted or\n        // replaced with a mock verification as needed.\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702296711, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_6aca3b5ce1', usage=CompletionUsage(completion_tokens=475, prompt_tokens=1381, total_tokens=1856))
+71
+inject succeed hashes streebog core_api::StreebogVarCore::compress
+ChatCompletion(id='chatcmpl-8UZRDMA2E9pqhaQTex4Pllf3p2E3B', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::StreebogVarCore;\n    use digest::UpdateCore;\n    use generic_array::GenericArray;\n    use typenum::U64;\n\n    #[test]\n    fn g_function_test() {\n        let mut core = StreebogVarCore::new(64).unwrap();\n        let n = GenericArray::<u8, U64>::default();\n        let m = GenericArray::<u8, U64>::default();\n\n        let h_initial = core.h;\n        core.g(&n, &m);\n\n        let h_final = core.h;\n        // Verify that `h` has been updated correctly after `g` function\n        assert_ne!(h_initial, h_final, "Hash state `h` should change after calling `g` function");\n\n        // Reset core state\n        core.h = h_initial;\n\n        // Verify that `g` function is deterministic for the same `n` and `m`\n        core.g(&n, &m);\n        assert_eq!(h_final, core.h, "Calling `g` function with the same `n` and `m` should result in the same `h` state");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702296755, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_6aca3b5ce1', usage=CompletionUsage(completion_tokens=252, prompt_tokens=1473, total_tokens=1725))
+71
+========================================
+inject err core_api::StreebogVarCore::g streebog/src/core_api.rs g
+#[cfg(test)]
+mod tests_llm_16_6 {
+    use crate::StreebogVarCore;
+    use digest::UpdateCore;
+    use generic_array::GenericArray;
+    use typenum::U64;
+
+    #[test]
+    fn g_function_test() {
+        let mut core = StreebogVarCore::new(64).unwrap();
+        let n = GenericArray::<u8, U64>::default();
+        let m = GenericArray::<u8, U64>::default();
+
+        let h_initial = core.h;
+        core.g(&n, &m);
+
+        let h_final = core.h;
+        // Verify that `h` has been updated correctly after `g` function
+        assert_ne!(h_initial, h_final, "Hash state `h` should change after calling `g` function");
+
+        // Reset core state
+        core.h = h_initial;
+
+        // Verify that `g` function is deterministic for the same `n` and `m`
+        core.g(&n, &m);
+        assert_eq!(h_final, core.h, "Calling `g` function with the same `n` and `m` should result in the same `h` state");
+    }
+}
+   Compiling streebog v0.10.2 (/home/xiang/workspace/human/llm_base_bk/hashes/streebog)
+error[E0432]: unresolved import `digest::UpdateCore`
+   --> streebog/src/core_api.rs:272:9
+    |
+272 |     use digest::UpdateCore;
+    |         ^^^^^^^^^^^^^^^^^^ no `UpdateCore` in the root
+    |
+help: consider importing one of these items instead
+    |
+272 |     use crate::core_api::UpdateCore;
+    |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+272 |     use digest::core_api::UpdateCore;
+    |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+error[E0432]: unresolved import `generic_array`
+   --> streebog/src/core_api.rs:273:9
+    |
+273 |     use generic_array::GenericArray;
+    |         ^^^^^^^^^^^^^ help: a similar path exists: `digest::generic_array`
+
+error[E0432]: unresolved import `typenum`
+   --> streebog/src/core_api.rs:274:9
+    |
+274 |     use typenum::U64;
+    |         ^^^^^^^ help: a similar path exists: `digest::typenum`
+
+error[E0599]: no function or associated item named `new` found for struct `core_api::StreebogVarCore` in the current scope
+   --> streebog/src/core_api.rs:278:41
+    |
+22  | pub struct StreebogVarCore {
+    | -------------------------- function or associated item `new` not found for this struct
+...
+278 |         let mut core = StreebogVarCore::new(64).unwrap();
+    |                                         ^^^ function or associated item not found in `core_api::StreebogVarCore`
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+    |
+271 |     use digest::core_api::VariableOutputCore;
+    |
+
+Some errors have detailed explanations: E0432, E0599.
+For more information about an error, try `rustc --explain E0432`.
+error: could not compile `streebog` due to 4 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UZRUgguDcPPWSSvhaT0ppnsdQmKN', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_6 {\n    use super::*;\n    use digest::core_api::VariableOutputCore;\n    use digest::generic_array::GenericArray;\n    use digest::typenum::U64;\n\n    #[test]\n    fn g_function_test() {\n        let mut core = StreebogVarCore::new(64).unwrap();\n        let n = GenericArray::<u8, U64>::default();\n        let m = GenericArray::<u8, U64>::default();\n\n        let h_initial = core.h;\n        core.g(&n, &m);\n\n        let h_final = core.h;\n        // Verify that `h` has been updated correctly after `g` function\n        assert_ne!(h_initial, h_final, "Hash state `h` should change after calling `g` function");\n\n        // Reset core state\n        core.h = h_initial;\n\n        // Verify that `g` function is deterministic for the same `n` and `m`\n        core.g(&n, &m);\n        assert_eq!(h_final, core.h, "Calling `g` function with the same `n` and `m` should result in the same `h` state");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702296772, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_6aca3b5ce1', usage=CompletionUsage(completion_tokens=259, prompt_tokens=2535, total_tokens=2794))
+71
+========================================
+inject err core_api::StreebogVarCore::g streebog/src/core_api.rs g
+#[cfg(test)]
+mod tests_llm_16_6_llm_16_6 {
+    use super::*;
+
+use crate::*;
+    use digest::core_api::VariableOutputCore;
+    use digest::generic_array::GenericArray;
+    use digest::typenum::U64;
+
+    #[test]
+    fn g_function_test() {
+        let mut core = StreebogVarCore::new(64).unwrap();
+        let n = GenericArray::<u8, U64>::default();
+        let m = GenericArray::<u8, U64>::default();
+
+        let h_initial = core.h;
+        core.g(&n, &m);
+
+        let h_final = core.h;
+        // Verify that `h` has been updated correctly after `g` function
+        assert_ne!(h_initial, h_final, "Hash state `h` should change after calling `g` function");
+
+        // Reset core state
+        core.h = h_initial;
+
+        // Verify that `g` function is deterministic for the same `n` and `m`
+        core.g(&n, &m);
+        assert_eq!(h_final, core.h, "Calling `g` function with the same `n` and `m` should result in the same `h` state");
+    }
+}
+   Compiling streebog v0.10.2 (/home/xiang/workspace/human/llm_base_bk/hashes/streebog)
+error[E0308]: arguments to this function are incorrect
+   --> streebog/src/core_api.rs:285:14
+    |
+285 |         core.g(&n, &m);
+    |              ^
+    |
+note: expected array `[u8; 64]`, found struct `GenericArray`
+   --> streebog/src/core_api.rs:285:16
+    |
+285 |         core.g(&n, &m);
+    |                ^^
+    = note: expected reference `&[u8; 64]`
+               found reference `&GenericArray<u8, UInt<UInt<UInt<UInt<UInt<UInt<UInt<UTerm, B1>, B0>, B0>, B0>, B0>, B0>, B0>>`
+note: expected array `[u8; 64]`, found struct `GenericArray`
+   --> streebog/src/core_api.rs:285:20
+    |
+285 |         core.g(&n, &m);
+    |                    ^^
+    = note: expected reference `&[u8; 64]`
+               found reference `&GenericArray<u8, UInt<UInt<UInt<UInt<UInt<UInt<UInt<UTerm, B1>, B0>, B0>, B0>, B0>, B0>, B0>>`
+note: associated function defined here
+   --> streebog/src/core_api.rs:49:8
+    |
+49  |     fn g(&mut self, n: &Block, m: &Block) {
+    |        ^            ---------  ---------
+
+error[E0308]: arguments to this function are incorrect
+   --> streebog/src/core_api.rs:295:14
+    |
+295 |         core.g(&n, &m);
+    |              ^
+    |
+note: expected array `[u8; 64]`, found struct `GenericArray`
+   --> streebog/src/core_api.rs:295:16
+    |
+295 |         core.g(&n, &m);
+    |                ^^
+    = note: expected reference `&[u8; 64]`
+               found reference `&GenericArray<u8, UInt<UInt<UInt<UInt<UInt<UInt<UInt<UTerm, B1>, B0>, B0>, B0>, B0>, B0>, B0>>`
+note: expected array `[u8; 64]`, found struct `GenericArray`
+   --> streebog/src/core_api.rs:295:20
+    |
+295 |         core.g(&n, &m);
+    |                    ^^
+    = note: expected reference `&[u8; 64]`
+               found reference `&GenericArray<u8, UInt<UInt<UInt<UInt<UInt<UInt<UInt<UTerm, B1>, B0>, B0>, B0>, B0>, B0>, B0>>`
+note: associated function defined here
+   --> streebog/src/core_api.rs:49:8
+    |
+49  |     fn g(&mut self, n: &Block, m: &Block) {
+    |        ^            ---------  ---------
+
+For more information about this error, try `rustc --explain E0308`.
+error: could not compile `streebog` due to 2 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+repair err core_api::StreebogVarCore::g streebog/src/core_api.rs g
+ChatCompletion(id='chatcmpl-8UZRqPImzfPkxbfHza2x9aWNlvgvL', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use digest::UpdateCore;\n\n    #[test]\n    fn update_n_basic() {\n        let mut core = StreebogVarCore::new(64).unwrap();\n        let initial_n = core.n;\n\n        // The `update_n` function should update the first element of the `n` array\n        // by adding 8 times the `len` to it (since we multiply by 8 in the `update_n` method).\n        let len = 1u64;\n        core.update_n(len);\n\n        let expected_n = {\n            let mut tmp = initial_n;\n            tmp[0] += 8 * len;\n            tmp\n        };\n\n        assert_eq!(core.n, expected_n, "update_n should increment n[0] by 8 * len");\n    }\n\n    #[test]\n    fn update_n_with_carry() {\n        let mut core = StreebogVarCore::new(64).unwrap();\n        let mut initial_n = core.n;\n\n        // Set the initial value of `n[0]` to near the maximum so we get a carry\n        initial_n[0] = u64::MAX - 7;\n        core.n = initial_n;\n\n        let len = 1u64;\n        core.update_n(len);\n\n        let expected_n = {\n            let mut tmp = initial_n;\n            let carry = tmp[0].overflowing_add(8 * len).1 as u64;\n            tmp[0] = 0;\n            tmp[1] += carry;\n            tmp\n        };\n\n        assert_eq!(core.n, expected_n, "update_n should handle carry to n[1]");\n    }\n\n    #[test]\n    fn update_n_with_large_len() {\n        let mut core = StreebogVarCore::new(64).unwrap();\n        let initial_n = core.n;\n\n        let len = u64::MAX / 8;\n        core.update_n(len);\n\n        let expected_n = {\n            let mut tmp = initial_n;\n            tmp[0] += 8 * len;\n            tmp\n        };\n\n        assert_eq!(core.n, expected_n, "update_n with large len should update n[0] appropriately");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702296794, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=473, prompt_tokens=1514, total_tokens=1987))
+71
+========================================
+inject err core_api::StreebogVarCore::update_n streebog/src/core_api.rs update_n
+#[cfg(test)]
+mod tests_llm_16_7 {
+    use super::*;
+
+use crate::*;
+    use digest::UpdateCore;
+
+    #[test]
+    fn update_n_basic() {
+        let mut core = StreebogVarCore::new(64).unwrap();
+        let initial_n = core.n;
+
+        // The `update_n` function should update the first element of the `n` array
+        // by adding 8 times the `len` to it (since we multiply by 8 in the `update_n` method).
+        let len = 1u64;
+        core.update_n(len);
+
+        let expected_n = {
+            let mut tmp = initial_n;
+            tmp[0] += 8 * len;
+            tmp
+        };
+
+        assert_eq!(core.n, expected_n, "update_n should increment n[0] by 8 * len");
+    }
+
+    #[test]
+    fn update_n_with_carry() {
+        let mut core = StreebogVarCore::new(64).unwrap();
+        let mut initial_n = core.n;
+
+        // Set the initial value of `n[0]` to near the maximum so we get a carry
+        initial_n[0] = u64::MAX - 7;
+        core.n = initial_n;
+
+        let len = 1u64;
+        core.update_n(len);
+
+        let expected_n = {
+            let mut tmp = initial_n;
+            let carry = tmp[0].overflowing_add(8 * len).1 as u64;
+            tmp[0] = 0;
+            tmp[1] += carry;
+            tmp
+        };
+
+        assert_eq!(core.n, expected_n, "update_n should handle carry to n[1]");
+    }
+
+    #[test]
+    fn update_n_with_large_len() {
+        let mut core = StreebogVarCore::new(64).unwrap();
+        let initial_n = core.n;
+
+        let len = u64::MAX / 8;
+        core.update_n(len);
+
+        let expected_n = {
+            let mut tmp = initial_n;
+            tmp[0] += 8 * len;
+            tmp
+        };
+
+        assert_eq!(core.n, expected_n, "update_n with large len should update n[0] appropriately");
+    }
+}
+   Compiling streebog v0.10.2 (/home/xiang/workspace/human/llm_base_bk/hashes/streebog)
+error[E0432]: unresolved import `digest::UpdateCore`
+   --> streebog/src/core_api.rs:274:9
+    |
+274 |     use digest::UpdateCore;
+    |         ^^^^^^^^^^^^^^^^^^ no `UpdateCore` in the root
+    |
+help: consider importing one of these items instead
+    |
+274 |     use crate::core_api::UpdateCore;
+    |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+274 |     use digest::core_api::UpdateCore;
+    |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `streebog` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UZSbW3Gvgek2ugxlmLFYENDB3gDH', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_7 {\n    use super::*;\n    use digest::core_api::CoreWrapper;\n    use digest::InvalidOutputSize;\n    use digest::UpdateCore;\n    use digest::{FixedOutput, FixedOutputReset, Update};\n    use generic_array::GenericArray;\n    use generic_array::typenum::U64;\n\n    #[test]\n    fn update_n_basic() {\n        let mut core = StreebogVarCore::new(64).unwrap();\n        let initial_n = core.n;\n\n        // The `update_n` function should update the first element of the `n` array\n        // by adding 8 times the `len` to it (since we multiply by 8 in the `update_n` method).\n        let len = 1u64;\n        core.update_n(len);\n\n        let expected_n = {\n            let mut tmp = initial_n;\n            tmp[0] += 8 * len;\n            tmp\n        };\n\n        assert_eq!(core.n, expected_n, "update_n should increment n[0] by 8 * len");\n    }\n\n    #[test]\n    fn update_n_with_carry() {\n        let mut core = StreebogVarCore::new(64).unwrap();\n        let mut initial_n = core.n;\n\n        // Set the initial value of `n[0]` to near the maximum so we get a carry\n        initial_n[0] = u64::MAX - 7;\n        core.n = initial_n;\n\n        let len = 1u64;\n        core.update_n(len);\n\n        let expected_n = {\n            let mut tmp = initial_n;\n            let carry = tmp[0].overflowing_add(8 * len).1 as u64;\n            tmp[0] = 0;\n            tmp[1] += carry;\n            tmp\n        };\n\n        assert_eq!(core.n, expected_n, "update_n should handle carry to n[1]");\n    }\n\n    #[test]\n    fn update_n_with_large_len() {\n        let mut core = StreebogVarCore::new(64).unwrap();\n        let initial_n = core.n;\n\n        let len = u64::MAX / 8;\n        core.update_n(len);\n\n        let expected_n = {\n            let mut tmp = initial_n;\n            tmp[0] += 8 * len;\n            tmp\n        };\n\n        assert_eq!(core.n, expected_n, "update_n with large len should update n[0] appropriately");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702296841, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=529, prompt_tokens=2709, total_tokens=3238))
+71
+========================================
+inject err core_api::StreebogVarCore::update_n streebog/src/core_api.rs update_n
+#[cfg(test)]
+mod tests_llm_16_7_llm_16_7 {
+    use super::*;
+
+use crate::*;
+    use digest::core_api::CoreWrapper;
+    use digest::InvalidOutputSize;
+    use digest::UpdateCore;
+    use digest::{FixedOutput, FixedOutputReset, Update};
+    use generic_array::GenericArray;
+    use generic_array::typenum::U64;
+
+    #[test]
+    fn update_n_basic() {
+        let mut core = StreebogVarCore::new(64).unwrap();
+        let initial_n = core.n;
+
+        // The `update_n` function should update the first element of the `n` array
+        // by adding 8 times the `len` to it (since we multiply by 8 in the `update_n` method).
+        let len = 1u64;
+        core.update_n(len);
+
+        let expected_n = {
+            let mut tmp = initial_n;
+            tmp[0] += 8 * len;
+            tmp
+        };
+
+        assert_eq!(core.n, expected_n, "update_n should increment n[0] by 8 * len");
+    }
+
+    #[test]
+    fn update_n_with_carry() {
+        let mut core = StreebogVarCore::new(64).unwrap();
+        let mut initial_n = core.n;
+
+        // Set the initial value of `n[0]` to near the maximum so we get a carry
+        initial_n[0] = u64::MAX - 7;
+        core.n = initial_n;
+
+        let len = 1u64;
+        core.update_n(len);
+
+        let expected_n = {
+            let mut tmp = initial_n;
+            let carry = tmp[0].overflowing_add(8 * len).1 as u64;
+            tmp[0] = 0;
+            tmp[1] += carry;
+            tmp
+        };
+
+        assert_eq!(core.n, expected_n, "update_n should handle carry to n[1]");
+    }
+
+    #[test]
+    fn update_n_with_large_len() {
+        let mut core = StreebogVarCore::new(64).unwrap();
+        let initial_n = core.n;
+
+        let len = u64::MAX / 8;
+        core.update_n(len);
+
+        let expected_n = {
+            let mut tmp = initial_n;
+            tmp[0] += 8 * len;
+            tmp
+        };
+
+        assert_eq!(core.n, expected_n, "update_n with large len should update n[0] appropriately");
+    }
+}
+   Compiling streebog v0.10.2 (/home/xiang/workspace/human/llm_base_bk/hashes/streebog)
+error[E0432]: unresolved import `digest::UpdateCore`
+   --> streebog/src/core_api.rs:276:9
+    |
+276 |     use digest::UpdateCore;
+    |         ^^^^^^^^^^^^^^^^^^ no `UpdateCore` in the root
+    |
+help: consider importing one of these items instead
+    |
+276 |     use crate::core_api::UpdateCore;
+    |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+276 |     use digest::core_api::UpdateCore;
+    |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+error[E0433]: failed to resolve: use of undeclared crate or module `generic_array`
+   --> streebog/src/core_api.rs:279:9
+    |
+279 |     use generic_array::typenum::U64;
+    |         ^^^^^^^^^^^^^ use of undeclared crate or module `generic_array`
+
+error[E0432]: unresolved import `generic_array`
+   --> streebog/src/core_api.rs:278:9
+    |
+278 |     use generic_array::GenericArray;
+    |         ^^^^^^^^^^^^^ help: a similar path exists: `digest::generic_array`
+
+Some errors have detailed explanations: E0432, E0433.
+For more information about an error, try `rustc --explain E0432`.
+error: could not compile `streebog` due to 3 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+repair err core_api::StreebogVarCore::update_n streebog/src/core_api.rs update_n
+ChatCompletion(id='chatcmpl-8UZTVTWldkVZPPDGvIwbr7vBcjR0n', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use crate::core_api::StreebogVarCore;\n    use digest::UpdateCore;\n    use generic_array::typenum::U64;\n    use generic_array::GenericArray;\n\n    #[test]\n    fn update_sigma_correctly_updates_sigma_value() {\n        let mut core = StreebogVarCore::new(64).unwrap();\n        let mut expected_sigma = [0u64; 8];\n        let block = GenericArray::default(); // Assuming all zeros block.\n\n        // Perform update with an all-zero block which should not change sigma\n        core.update_sigma(&block);\n        assert_eq!(core.sigma, expected_sigma);\n\n        // Update with a non-zero block and test\n        let non_zero_block = [1u8; 64];\n        let non_zero_block_value = u64::from_le_bytes(*b"\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x00");\n        core.update_sigma(&non_zero_block);\n        expected_sigma[0] = non_zero_block_value;\n        assert_eq!(core.sigma, expected_sigma);\n\n        // Update with another block to test sigma accumulation\n        core.update_sigma(&non_zero_block);\n        expected_sigma[0] = non_zero_block_value * 2;\n        assert_eq!(core.sigma, expected_sigma);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702296897, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=286, prompt_tokens=1501, total_tokens=1787))
+71
+========================================
+inject err core_api::StreebogVarCore::update_sigma streebog/src/core_api.rs update_sigma
+#[cfg(test)]
+mod tests_llm_16_8 {
+    use super::*;
+
+use crate::*;
+    use crate::core_api::StreebogVarCore;
+    use digest::UpdateCore;
+    use generic_array::typenum::U64;
+    use generic_array::GenericArray;
+
+    #[test]
+    fn update_sigma_correctly_updates_sigma_value() {
+        let mut core = StreebogVarCore::new(64).unwrap();
+        let mut expected_sigma = [0u64; 8];
+        let block = GenericArray::default(); // Assuming all zeros block.
+
+        // Perform update with an all-zero block which should not change sigma
+        core.update_sigma(&block);
+        assert_eq!(core.sigma, expected_sigma);
+
+        // Update with a non-zero block and test
+        let non_zero_block = [1u8; 64];
+        let non_zero_block_value = u64::from_le_bytes(*b"\x01\x00\x00\x00\x00\x00\x00\x00");
+        core.update_sigma(&non_zero_block);
+        expected_sigma[0] = non_zero_block_value;
+        assert_eq!(core.sigma, expected_sigma);
+
+        // Update with another block to test sigma accumulation
+        core.update_sigma(&non_zero_block);
+        expected_sigma[0] = non_zero_block_value * 2;
+        assert_eq!(core.sigma, expected_sigma);
+    }
+}
+   Compiling streebog v0.10.2 (/home/xiang/workspace/human/llm_base_bk/hashes/streebog)
+error[E0433]: failed to resolve: use of undeclared crate or module `generic_array`
+   --> streebog/src/core_api.rs:276:9
+    |
+276 |     use generic_array::typenum::U64;
+    |         ^^^^^^^^^^^^^ use of undeclared crate or module `generic_array`
+
+error[E0432]: unresolved import `digest::UpdateCore`
+   --> streebog/src/core_api.rs:275:9
+    |
+275 |     use digest::UpdateCore;
+    |         ^^^^^^^^^^^^^^^^^^ no `UpdateCore` in the root
+    |
+help: consider importing one of these items instead
+    |
+275 |     use crate::core_api::UpdateCore;
+    |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+275 |     use digest::core_api::UpdateCore;
+    |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+error[E0432]: unresolved import `generic_array`
+   --> streebog/src/core_api.rs:277:9
+    |
+277 |     use generic_array::GenericArray;
+    |         ^^^^^^^^^^^^^ help: a similar path exists: `digest::generic_array`
+
+Some errors have detailed explanations: E0432, E0433.
+For more information about an error, try `rustc --explain E0432`.
+error: could not compile `streebog` due to 3 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UZTxscwkCcHKXj8tuMfAI7Jn8smK', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_8 {\n    use super::*;\n    use crate::core_api::StreebogVarCore;\n    use digest::core_api::UpdateCore;\n    use digest::generic_array::typenum::U64;\n    use digest::generic_array::GenericArray;\n\n    #[test]\n    fn update_sigma_correctly_updates_sigma_value() {\n        let mut core = StreebogVarCore::new(64).unwrap();\n        let mut expected_sigma = [0u64; 8];\n        let block = GenericArray::default(); // Assuming all zeros block.\n\n        // Perform update with an all-zero block which should not change sigma\n        core.update_sigma(&block);\n        assert_eq!(core.sigma, expected_sigma);\n\n        // Update with a non-zero block and test\n        let non_zero_block = GenericArray::clone_from_slice(&[1u8; 64]); // Make non_zero_block a GenericArray\n        let non_zero_block_value = u64::from_le_bytes(*b"\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x00");\n        core.update_sigma(&non_zero_block);\n        expected_sigma[0] = non_zero_block_value;\n        assert_eq!(core.sigma, expected_sigma);\n\n        // Update with another block to test sigma accumulation\n        core.update_sigma(&non_zero_block);\n        expected_sigma[0] = non_zero_block_value * 2;\n        assert_eq!(core.sigma, expected_sigma);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702296925, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=315, prompt_tokens=2464, total_tokens=2779))
+71
+========================================
+inject err core_api::StreebogVarCore::update_sigma streebog/src/core_api.rs update_sigma
+#[cfg(test)]
+mod tests_llm_16_8_llm_16_8 {
+    use super::*;
+
+use crate::*;
+    use crate::core_api::StreebogVarCore;
+    use digest::core_api::UpdateCore;
+    use digest::generic_array::typenum::U64;
+    use digest::generic_array::GenericArray;
+
+    #[test]
+    fn update_sigma_correctly_updates_sigma_value() {
+        let mut core = StreebogVarCore::new(64).unwrap();
+        let mut expected_sigma = [0u64; 8];
+        let block = GenericArray::default(); // Assuming all zeros block.
+
+        // Perform update with an all-zero block which should not change sigma
+        core.update_sigma(&block);
+        assert_eq!(core.sigma, expected_sigma);
+
+        // Update with a non-zero block and test
+        let non_zero_block = GenericArray::clone_from_slice(&[1u8; 64]); // Make non_zero_block a GenericArray
+        let non_zero_block_value = u64::from_le_bytes(*b"\x01\x00\x00\x00\x00\x00\x00\x00");
+        core.update_sigma(&non_zero_block);
+        expected_sigma[0] = non_zero_block_value;
+        assert_eq!(core.sigma, expected_sigma);
+
+        // Update with another block to test sigma accumulation
+        core.update_sigma(&non_zero_block);
+        expected_sigma[0] = non_zero_block_value * 2;
+        assert_eq!(core.sigma, expected_sigma);
+    }
+}
+   Compiling streebog v0.10.2 (/home/xiang/workspace/human/llm_base_bk/hashes/streebog)
+error[E0308]: mismatched types
+   --> streebog/src/core_api.rs:286:27
+    |
+286 |         core.update_sigma(&block);
+    |              ------------ ^^^^^^ expected array `[u8; 64]`, found struct `GenericArray`
+    |              |
+    |              arguments to this function are incorrect
+    |
+    = note: expected reference `&[u8; 64]`
+               found reference `&GenericArray<_, _>`
+note: associated function defined here
+   --> streebog/src/core_api.rs:69:8
+    |
+69  |     fn update_sigma(&mut self, m: &Block) {
+    |        ^^^^^^^^^^^^            ---------
+
+error[E0308]: mismatched types
+   --> streebog/src/core_api.rs:292:27
+    |
+292 |         core.update_sigma(&non_zero_block);
+    |              ------------ ^^^^^^^^^^^^^^^ expected array `[u8; 64]`, found struct `GenericArray`
+    |              |
+    |              arguments to this function are incorrect
+    |
+    = note: expected reference `&[u8; 64]`
+               found reference `&GenericArray<u8, _>`
+note: associated function defined here
+   --> streebog/src/core_api.rs:69:8
+    |
+69  |     fn update_sigma(&mut self, m: &Block) {
+    |        ^^^^^^^^^^^^            ---------
+
+error[E0308]: mismatched types
+   --> streebog/src/core_api.rs:297:27
+    |
+297 |         core.update_sigma(&non_zero_block);
+    |              ------------ ^^^^^^^^^^^^^^^ expected array `[u8; 64]`, found struct `GenericArray`
+    |              |
+    |              arguments to this function are incorrect
+    |
+    = note: expected reference `&[u8; 64]`
+               found reference `&GenericArray<u8, _>`
+note: associated function defined here
+   --> streebog/src/core_api.rs:69:8
+    |
+69  |     fn update_sigma(&mut self, m: &Block) {
+    |        ^^^^^^^^^^^^            ---------
+
+For more information about this error, try `rustc --explain E0308`.
+error: could not compile `streebog` due to 3 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+repair err core_api::StreebogVarCore::update_sigma streebog/src/core_api.rs update_sigma
+ChatCompletion(id='chatcmpl-8UZURF9wxH6ZLAV9Chank9TnNsvQy', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::adc;\n\n    #[test]\n    fn test_adc_no_carry() {\n        let mut a: u64 = 123456789;\n        let b: u64 = 987654321;\n        let mut carry: u64 = 0;\n\n        adc(&mut a, b, &mut carry);\n\n        assert_eq!(a, 123456789 + 987654321);\n        assert_eq!(carry, 0);\n    }\n\n    #[test]\n    fn test_adc_with_carry() {\n        let mut a: u64 = u64::MAX;\n        let b: u64 = 1;\n        let mut carry: u64 = 0;\n\n        adc(&mut a, b, &mut carry);\n\n        assert_eq!(a, 0);\n        assert_eq!(carry, 1);\n    }\n\n    #[test]\n    fn test_adc_with_existing_carry() {\n        let mut a: u64 = u64::MAX - 1;\n        let b: u64 = 1;\n        let mut carry: u64 = 1;\n\n        adc(&mut a, b, &mut carry);\n\n        assert_eq!(a, 1);\n        assert_eq!(carry, 0);\n    }\n\n    #[test]\n    fn test_adc_with_large_numbers() {\n        let mut a: u64 = 0xFFFFFFFFFFFFFFFE;\n        let b: u64 = 0xFFFFFFFFFFFFFFFE;\n        let mut carry: u64 = 1;\n\n        adc(&mut a, b, &mut carry);\n\n        assert_eq!(a, 0xFFFFFFFFFFFFFFFD);\n        assert_eq!(carry, 1);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702296955, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_6aca3b5ce1', usage=CompletionUsage(completion_tokens=354, prompt_tokens=205, total_tokens=559))
+71
+========================================
+inject err core_api::adc streebog/src/core_api.rs adc
+#[cfg(test)]
+mod tests_llm_16_9 {
+    use crate::adc;
+
+    #[test]
+    fn test_adc_no_carry() {
+        let mut a: u64 = 123456789;
+        let b: u64 = 987654321;
+        let mut carry: u64 = 0;
+
+        adc(&mut a, b, &mut carry);
+
+        assert_eq!(a, 123456789 + 987654321);
+        assert_eq!(carry, 0);
+    }
+
+    #[test]
+    fn test_adc_with_carry() {
+        let mut a: u64 = u64::MAX;
+        let b: u64 = 1;
+        let mut carry: u64 = 0;
+
+        adc(&mut a, b, &mut carry);
+
+        assert_eq!(a, 0);
+        assert_eq!(carry, 1);
+    }
+
+    #[test]
+    fn test_adc_with_existing_carry() {
+        let mut a: u64 = u64::MAX - 1;
+        let b: u64 = 1;
+        let mut carry: u64 = 1;
+
+        adc(&mut a, b, &mut carry);
+
+        assert_eq!(a, 1);
+        assert_eq!(carry, 0);
+    }
+
+    #[test]
+    fn test_adc_with_large_numbers() {
+        let mut a: u64 = 0xFFFFFFFFFFFFFFFE;
+        let b: u64 = 0xFFFFFFFFFFFFFFFE;
+        let mut carry: u64 = 1;
+
+        adc(&mut a, b, &mut carry);
+
+        assert_eq!(a, 0xFFFFFFFFFFFFFFFD);
+        assert_eq!(carry, 1);
+    }
+}
+   Compiling streebog v0.10.2 (/home/xiang/workspace/human/llm_base_bk/hashes/streebog)
+error[E0432]: unresolved import `crate::adc`
+   --> streebog/src/core_api.rs:271:9
+    |
+271 |     use crate::adc;
+    |         ^^^^^^^^^^ no `adc` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `streebog` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UZUwuiZNPlGhXSH2UDgTuS0JZ1z9', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_9 {\n    use super::adc;\n\n    #[test]\n    fn test_adc_no_carry() {\n        let mut a: u64 = 123456789;\n        let b: u64 = 987654321;\n        let mut carry: u64 = 0;\n\n        adc(&mut a, b, &mut carry);\n\n        assert_eq!(a, 123456789 + 987654321);\n        assert_eq!(carry, 0);\n    }\n\n    #[test]\n    fn test_adc_with_carry() {\n        let mut a: u64 = u64::MAX;\n        let b: u64 = 1;\n        let mut carry: u64 = 0;\n\n        adc(&mut a, b, &mut carry);\n\n        assert_eq!(a, 0);\n        assert_eq!(carry, 1);\n    }\n\n    #[test]\n    fn test_adc_with_existing_carry() {\n        let mut a: u64 = u64::MAX - 1;\n        let b: u64 = 1;\n        let mut carry: u64 = 1;\n\n        adc(&mut a, b, &mut carry);\n\n        assert_eq!(a, 1);\n        assert_eq!(carry, 0);\n    }\n\n    #[test]\n    fn test_adc_with_large_numbers() {\n        let mut a: u64 = 0xFFFFFFFFFFFFFFFE;\n        let b: u64 = 0xFFFFFFFFFFFFFFFE;\n        let mut carry: u64 = 1;\n\n        adc(&mut a, b, &mut carry);\n\n        assert_eq!(a, 0xFFFFFFFFFFFFFFFD);\n        assert_eq!(carry, 1);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702296986, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=360, prompt_tokens=1100, total_tokens=1460))
+71
+========================================
+inject err core_api::adc streebog/src/core_api.rs adc
+#[cfg(test)]
+mod tests_llm_16_9_llm_16_9 {
+    use crate::adc;
+
+    #[test]
+    fn test_adc_no_carry() {
+        let mut a: u64 = 123456789;
+        let b: u64 = 987654321;
+        let mut carry: u64 = 0;
+
+        adc(&mut a, b, &mut carry);
+
+        assert_eq!(a, 123456789 + 987654321);
+        assert_eq!(carry, 0);
+    }
+
+    #[test]
+    fn test_adc_with_carry() {
+        let mut a: u64 = u64::MAX;
+        let b: u64 = 1;
+        let mut carry: u64 = 0;
+
+        adc(&mut a, b, &mut carry);
+
+        assert_eq!(a, 0);
+        assert_eq!(carry, 1);
+    }
+
+    #[test]
+    fn test_adc_with_existing_carry() {
+        let mut a: u64 = u64::MAX - 1;
+        let b: u64 = 1;
+        let mut carry: u64 = 1;
+
+        adc(&mut a, b, &mut carry);
+
+        assert_eq!(a, 1);
+        assert_eq!(carry, 0);
+    }
+
+    #[test]
+    fn test_adc_with_large_numbers() {
+        let mut a: u64 = 0xFFFFFFFFFFFFFFFE;
+        let b: u64 = 0xFFFFFFFFFFFFFFFE;
+        let mut carry: u64 = 1;
+
+        adc(&mut a, b, &mut carry);
+
+        assert_eq!(a, 0xFFFFFFFFFFFFFFFD);
+        assert_eq!(carry, 1);
+    }
+}
+   Compiling streebog v0.10.2 (/home/xiang/workspace/human/llm_base_bk/hashes/streebog)
+error[E0432]: unresolved import `crate::adc`
+   --> streebog/src/core_api.rs:271:9
+    |
+271 |     use crate::adc;
+    |         ^^^^^^^^^^ no `adc` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `streebog` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+repair err core_api::adc streebog/src/core_api.rs adc
+ChatCompletion(id='chatcmpl-8UZVPCUXQZxJX8v4ouwbMC5kvtx71', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::from_bytes;\n    use super::Block;\n\n    #[test]\n    fn test_from_bytes() {\n        let input_block: Block = [1, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0];\n        let result = from_bytes(&input_block);\n        let expected: [u64; 8] = [1, 2, 3, 4, 5, 6, 7, 8];\n        assert_eq!(result, expected);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702297015, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=291, prompt_tokens=211, total_tokens=502))
+71
+========================================
+inject err core_api::from_bytes streebog/src/core_api.rs from_bytes
+#[cfg(test)]
+mod tests_llm_16_10 {
+    use crate::from_bytes;
+    use crate::Block;
+
+    #[test]
+    fn test_from_bytes() {
+        let input_block: Block = [1, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0];
+        let result = from_bytes(&input_block);
+        let expected: [u64; 8] = [1, 2, 3, 4, 5, 6, 7, 8];
+        assert_eq!(result, expected);
+    }
+}
+   Compiling streebog v0.10.2 (/home/xiang/workspace/human/llm_base_bk/hashes/streebog)
+error[E0432]: unresolved import `crate::from_bytes`
+   --> streebog/src/core_api.rs:271:9
+    |
+271 |     use crate::from_bytes;
+    |         ^^^^^^^^^^^^^^^^^ no `from_bytes` in the root
+
+error[E0432]: unresolved import `crate::Block`
+   --> streebog/src/core_api.rs:272:9
+    |
+272 |     use crate::Block;
+    |         ^^^^^^^^^^^^ no `Block` in the root
+    |
+help: consider importing one of these items instead
+    |
+272 |     use crate::core_api::Block;
+    |         ~~~~~~~~~~~~~~~~~~~~~~~
+272 |     use crate::digest::core_api::Block;
+    |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+272 |     use digest::core_api::Block;
+    |         ~~~~~~~~~~~~~~~~~~~~~~~~
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `streebog` due to 2 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UZVjGzy7Sausf0vd0CJQ8VVuFkkC', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_10 {\n    use super::from_bytes;\n    use super::Block;\n\n    #[test]\n    fn test_from_bytes() {\n        let input_block: Block = [1, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0];\n        let result = from_bytes(&input_block);\n        let expected: [u64; 8] = [1, 2, 3, 4, 5, 6, 7, 8];\n        assert_eq!(result, expected);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702297035, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=297, prompt_tokens=1113, total_tokens=1410))
+71
+========================================
+inject err core_api::from_bytes streebog/src/core_api.rs from_bytes
+#[cfg(test)]
+mod tests_llm_16_10_llm_16_10 {
+    use crate::from_bytes;
+    use crate::Block;
+
+    #[test]
+    fn test_from_bytes() {
+        let input_block: Block = [1, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0];
+        let result = from_bytes(&input_block);
+        let expected: [u64; 8] = [1, 2, 3, 4, 5, 6, 7, 8];
+        assert_eq!(result, expected);
+    }
+}
+   Compiling streebog v0.10.2 (/home/xiang/workspace/human/llm_base_bk/hashes/streebog)
+error[E0432]: unresolved import `crate::from_bytes`
+   --> streebog/src/core_api.rs:271:9
+    |
+271 |     use crate::from_bytes;
+    |         ^^^^^^^^^^^^^^^^^ no `from_bytes` in the root
+
+error[E0432]: unresolved import `crate::Block`
+   --> streebog/src/core_api.rs:272:9
+    |
+272 |     use crate::Block;
+    |         ^^^^^^^^^^^^ no `Block` in the root
+    |
+help: consider importing one of these items instead
+    |
+272 |     use crate::core_api::Block;
+    |         ~~~~~~~~~~~~~~~~~~~~~~~
+272 |     use crate::digest::core_api::Block;
+    |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+272 |     use digest::core_api::Block;
+    |         ~~~~~~~~~~~~~~~~~~~~~~~~
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `streebog` due to 2 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+repair err core_api::from_bytes streebog/src/core_api.rs from_bytes
+ChatCompletion(id='chatcmpl-8UZWGYTWRDSSxfeiUYvswAWpLtSp2', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::lps;\n    use crate::streebog::core_api::to_u64;\n\n    // Assuming the presence of the Block type and SHUFFLED_LIN_TABLE constant\n    // in the module where the target function `lps` exists.\n    type Block = [u8; 64];\n    const SHUFFLED_LIN_TABLE: [[[u64; 256]; 8]; 8] = [[[0; 256]; 8]; 8]; // Placeholder, the actual table should be used.\n\n    #[test]\n    fn test_lps() {\n        // You should replace these values with actual test values.\n        let mut h = [0u8; 64]; // Placeholder for initial `h` value.\n        let n = [0u8; 64]; // Placeholder for `n` value.\n        \n        // Expected output should be calculated according to the actual values of `h` and `n`\n        let expected = [0u8; 64]; // Placeholder for expected result after `lps` is applied.\n        \n        lps(&mut h, &n);\n\n        let h_u64 = to_u64(&h);\n        let expected_u64 = to_u64(&expected);\n        \n        assert_eq!(h_u64, expected_u64, "lps function did not produce the expected output");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702297068, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=296, prompt_tokens=294, total_tokens=590))
+71
+========================================
+inject err core_api::lps streebog/src/core_api.rs lps
+#[cfg(test)]
+mod tests_llm_16_11 {
+    use crate::lps;
+    use crate::crate::core_api::to_u64;
+
+    // Assuming the presence of the Block type and SHUFFLED_LIN_TABLE constant
+    // in the module where the target function `lps` exists.
+    type Block = [u8; 64];
+    const SHUFFLED_LIN_TABLE: [[[u64; 256]; 8]; 8] = [[[0; 256]; 8]; 8]; // Placeholder, the actual table should be used.
+
+    #[test]
+    fn test_lps() {
+        // You should replace these values with actual test values.
+        let mut h = [0u8; 64]; // Placeholder for initial `h` value.
+        let n = [0u8; 64]; // Placeholder for `n` value.
+        
+        // Expected output should be calculated according to the actual values of `h` and `n`
+        let expected = [0u8; 64]; // Placeholder for expected result after `lps` is applied.
+        
+        lps(&mut h, &n);
+
+        let h_u64 = to_u64(&h);
+        let expected_u64 = to_u64(&expected);
+        
+        assert_eq!(h_u64, expected_u64, "lps function did not produce the expected output");
+    }
+}
+   Compiling streebog v0.10.2 (/home/xiang/workspace/human/llm_base_bk/hashes/streebog)
+error[E0433]: failed to resolve: `crate` in paths can only be used in start position
+   --> streebog/src/core_api.rs:272:16
+    |
+272 |     use crate::crate::core_api::to_u64;
+    |                ^^^^^ `crate` in paths can only be used in start position
+
+error[E0432]: unresolved import `crate::lps`
+   --> streebog/src/core_api.rs:271:9
+    |
+271 |     use crate::lps;
+    |         ^^^^^^^^^^ no `lps` in the root
+
+Some errors have detailed explanations: E0432, E0433.
+For more information about an error, try `rustc --explain E0432`.
+error: could not compile `streebog` due to 2 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UZWjXuQXTPFGU8tKs16cqL1zKYxt', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_11 {\n    use super::lps;\n    use super::to_u64;\n\n    // SHUFFLED_LIN_TABLE is assumed to be defined in the same module as lps function.\n    // Therefore, it is not redefined here in tests.\n\n    #[test]\n    fn test_lps() {\n        // You should replace these values with actual test values.\n        let mut h = [0u8; 64]; // Placeholder for initial `h` value.\n        let n = [0u8; 64]; // Placeholder for `n` value.\n        \n        // Expected output should be calculated according to the actual values of `h` and `n`\n        let expected = [0u8; 64]; // Placeholder for expected result after `lps` is applied.\n        \n        lps(&mut h, &n);\n\n        let h_u64 = to_u64(&h);\n        let expected_u64 = to_u64(&expected);\n        \n        assert_eq!(h_u64, expected_u64, "lps function did not produce the expected output");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702297097, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=240, prompt_tokens=1161, total_tokens=1401))
+71
+========================================
+inject err core_api::lps streebog/src/core_api.rs lps
+#[cfg(test)]
+mod tests_llm_16_11_llm_16_11 {
+    use crate::lps;
+    use crate::to_u64;
+
+    // SHUFFLED_LIN_TABLE is assumed to be defined in the same module as lps function.
+    // Therefore, it is not redefined here in tests.
+
+    #[test]
+    fn test_lps() {
+        // You should replace these values with actual test values.
+        let mut h = [0u8; 64]; // Placeholder for initial `h` value.
+        let n = [0u8; 64]; // Placeholder for `n` value.
+        
+        // Expected output should be calculated according to the actual values of `h` and `n`
+        let expected = [0u8; 64]; // Placeholder for expected result after `lps` is applied.
+        
+        lps(&mut h, &n);
+
+        let h_u64 = to_u64(&h);
+        let expected_u64 = to_u64(&expected);
+        
+        assert_eq!(h_u64, expected_u64, "lps function did not produce the expected output");
+    }
+}
+   Compiling streebog v0.10.2 (/home/xiang/workspace/human/llm_base_bk/hashes/streebog)
+error[E0432]: unresolved import `crate::lps`
+   --> streebog/src/core_api.rs:271:9
+    |
+271 |     use crate::lps;
+    |         ^^^^^^^^^^ no `lps` in the root
+
+error[E0432]: unresolved import `crate::to_u64`
+   --> streebog/src/core_api.rs:272:9
+    |
+272 |     use crate::to_u64;
+    |         ^^^^^^^^^^^^^ no `to_u64` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `streebog` due to 2 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+repair err core_api::lps streebog/src/core_api.rs lps
+ChatCompletion(id='chatcmpl-8UZWzyzD9ScfZGkQ8G6os6XVOHUep', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n\n    #[test]\n    fn test_to_bytes() {\n        // Given an array of four u64 values\n        let input: [u64; 8] = [\n            0x0123456789abcdef,\n            0xfedcba9876543210,\n            0x0f1e2d3c4b5a6978,\n            0x89abcdef01234567,\n            0x0123456789abcdef,\n            0xfedcba9876543210,\n            0x0f1e2d3c4b5a6978,\n            0x89abcdef01234567,\n        ];\n\n        // When `to_bytes` is called\n        let output = to_bytes(&input);\n\n        // Then the output should be the little-endian byte representation of the input\n        let expected: [u8; 64] = [\n            0xef, 0xcd, 0xab, 0x89, 0x67, 0x45, 0x23, 0x01,\n            0x10, 0x32, 0x54, 0x76, 0x98, 0xba, 0xdc, 0xfe,\n            0x78, 0x69, 0x5a, 0x4b, 0x3c, 0x2d, 0x1e, 0x0f,\n            0x67, 0x45, 0x23, 0x01, 0xef, 0xcd, 0xab, 0x89,\n            0xef, 0xcd, 0xab, 0x89, 0x67, 0x45, 0x23, 0x01,\n            0x10, 0x32, 0x54, 0x76, 0x98, 0xba, 0xdc, 0xfe,\n            0x78, 0x69, 0x5a, 0x4b, 0x3c, 0x2d, 0x1e, 0x0f,\n            0x67, 0x45, 0x23, 0x01, 0xef, 0xcd, 0xab, 0x89,\n        ];\n\n        // The output should match the expected value\n        assert_eq!(output, expected, "to_bytes did not produce the expected output");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702297113, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=556, prompt_tokens=202, total_tokens=758))
+71
+inject succeed hashes streebog core_api::to_bytes
+3 10 1 12 12

@@ -1,0 +1,602 @@
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/month.rs
+        let _rug_st_tests_llm_16_361_rrrruuuugggg_test_month_from = 0;
+ tests_llm_16_361 test_month_from
+        let _rug_st_tests_llm_16_363_rrrruuuugggg_test_from_number = 0;
+ tests_llm_16_363 test_from_number
+        let _rug_st_tests_llm_16_364_rrrruuuugggg_test_next = 0;
+ tests_llm_16_364 test_next
+        let _rug_st_tests_llm_16_365_rrrruuuugggg_test_previous = 0;
+ tests_llm_16_365 test_previous
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/time.rs
+        let _rug_st_tests_llm_16_172_rrrruuuugggg_test_add = 0;
+ tests_llm_16_172 test_add
+        let _rug_st_tests_llm_16_380_rrrruuuugggg_test_adjusting_add = 0;
+ tests_llm_16_380 test_adjusting_add
+        let _rug_st_tests_llm_16_380_rrrruuuugggg_test_adjusting_add_with_date_adjustment = 0;
+ tests_llm_16_380 test_adjusting_add_with_date_adjustment
+        let _rug_st_tests_llm_16_380_rrrruuuugggg_test_adjusting_add_std = 0;
+ tests_llm_16_380 test_adjusting_add_std
+        let _rug_st_tests_llm_16_380_rrrruuuugggg_test_adjusting_sub = 0;
+ tests_llm_16_380 test_adjusting_sub
+        let _rug_st_tests_llm_16_380_rrrruuuugggg_test_adjusting_sub_with_date_adjustment = 0;
+ tests_llm_16_380 test_adjusting_sub_with_date_adjustment
+        let _rug_st_tests_llm_16_380_rrrruuuugggg_test_adjusting_sub_std = 0;
+ tests_llm_16_380 test_adjusting_sub_std
+        let _rug_st_tests_llm_16_393_rrrruuuugggg_test_as_hms_nano = 0;
+ tests_llm_16_393 test_as_hms_nano
+        let _rug_st_tests_llm_16_394_rrrruuuugggg_test_from_hms_valid = 0;
+ tests_llm_16_394 test_from_hms_valid
+        let _rug_st_tests_llm_16_394_rrrruuuugggg_test_from_hms_invalid_hour = 0;
+ tests_llm_16_394 test_from_hms_invalid_hour
+        let _rug_st_tests_llm_16_394_rrrruuuugggg_test_from_hms_invalid_minute = 0;
+ tests_llm_16_394 test_from_hms_invalid_minute
+        let _rug_st_tests_llm_16_394_rrrruuuugggg_test_from_hms_invalid_second = 0;
+ tests_llm_16_394 test_from_hms_invalid_second
+        let _rug_st_tests_llm_16_395_rrrruuuugggg_test_from_hms_micro_ok = 0;
+ tests_llm_16_395 test_from_hms_micro_ok
+        let _rug_st_tests_llm_16_395_rrrruuuugggg_test_from_hms_micro_err_hour = 0;
+ tests_llm_16_395 test_from_hms_micro_err_hour
+        let _rug_st_tests_llm_16_395_rrrruuuugggg_test_from_hms_micro_err_minute = 0;
+ tests_llm_16_395 test_from_hms_micro_err_minute
+        let _rug_st_tests_llm_16_395_rrrruuuugggg_test_from_hms_micro_err_second = 0;
+ tests_llm_16_395 test_from_hms_micro_err_second
+        let _rug_st_tests_llm_16_395_rrrruuuugggg_test_from_hms_micro_err_microsecond = 0;
+ tests_llm_16_395 test_from_hms_micro_err_microsecond
+        let _rug_st_tests_llm_16_401_llm_16_400_rrrruuuugggg_test_hour = 0;
+ tests_llm_16_401_llm_16_400 test_hour
+        let _rug_st_tests_llm_16_403_rrrruuuugggg_test_microsecond = 0;
+ tests_llm_16_403 test_microsecond
+        let _rug_st_tests_llm_16_406_rrrruuuugggg_test_minute = 0;
+ tests_llm_16_406 test_minute
+        let _rug_st_tests_rug_238_rrrruuuugggg_test_rug = 0;
+ tests_rug_238 test_rug
+        let _rug_st_tests_rug_239_rrrruuuugggg_test_from_hms_milli = 0;
+ tests_rug_239 test_from_hms_milli
+        let _rug_st_tests_rug_240_rrrruuuugggg_test_rug = 0;
+ tests_rug_240 test_rug
+        let _rug_st_tests_rug_245_rrrruuuugggg_test_rug = 0;
+ tests_rug_245 test_rug
+        let _rug_st_tests_rug_247_rrrruuuugggg_test_rug = 0;
+ tests_rug_247 test_rug
+        let _rug_st_tests_rug_248_rrrruuuugggg_test_adjusting_add_std = 0;
+ tests_rug_248 test_adjusting_add_std
+        let _rug_st_tests_rug_249_rrrruuuugggg_test_rug = 0;
+ tests_rug_249 test_rug
+        let _rug_st_tests_rug_251_rrrruuuugggg_test_rug = 0;
+ tests_rug_251 test_rug
+        let _rug_st_tests_rug_252_rrrruuuugggg_test_rug = 0;
+ tests_rug_252 test_rug
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/error/parse_from_description.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/error/component_range.rs
+        let _rug_st_tests_llm_16_337_rrrruuuugggg_test_name = 0;
+ tests_llm_16_337 test_name
+err tests_llm_16_337 test_name
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling time v0.3.7 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time)
+error[E0521]: borrowed data escapes outside of closure
+  --> src/error/component_range.rs:79:177
+   |
+78 | ...h(|rug_data| {
+   |       --------
+   |       |
+   |       `rug_data` is a reference that is only valid in the closure body
+   |       has type `&'1 [u8]`
+79 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2, mut rug_fuzz_3, mut rug_fuzz_4)) = <(&str, i64, i64, i64, bool) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+   |                                                                                                                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |                                                                                                                                                                    |
+   |                                                                                                                                                                    `rug_data` escapes the closure body here
+   |                                                                                                                                                                    argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `time` due to previous error
+
+        let _rug_st_tests_rug_122_rrrruuuugggg_test_rug = 0;
+ tests_rug_122 test_rug
+err tests_rug_122 test_rug
+   Compiling time v0.3.7 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time)
+error[E0521]: borrowed data escapes outside of closure
+   --> src/error/component_range.rs:103:177
+    |
+102 | ...h(|rug_data| {
+    |       --------
+    |       |
+    |       `rug_data` is a reference that is only valid in the closure body
+    |       has type `&'1 [u8]`
+103 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2, mut rug_fuzz_3, mut rug_fuzz_4)) = <(&str, i64, i64, i64, bool) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+    |                                                                                                                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |                                                                                                                                                                    |
+    |                                                                                                                                                                    `rug_data` escapes the closure body here
+    |                                                                                                                                                                    argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `time` due to previous error
+
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/error/invalid_format_description.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/error/different_variant.rs
+        let _rug_st_tests_llm_16_340_rrrruuuugggg_test_from = 0;
+ tests_llm_16_340 test_from
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/error/try_from_parsed.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/error/conversion_range.rs
+        let _rug_st_tests_llm_16_97_rrrruuuugggg_test_try_from_conversion_range = 0;
+ tests_llm_16_97 test_try_from_conversion_range
+        let _rug_st_tests_rug_124_rrrruuuugggg_test_conversion_range = 0;
+ tests_rug_124 test_conversion_range
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/error/indeterminate_offset.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/error/parse.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/error/format.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/error/mod.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/duration.rs
+        let _rug_st_tests_llm_16_13_rrrruuuugggg_test_partial_cmp = 0;
+ tests_llm_16_13 test_partial_cmp
+        let _rug_st_tests_llm_16_19_rrrruuuugggg_test_sum = 0;
+ tests_llm_16_19 test_sum
+        let _rug_st_tests_llm_16_28_rrrruuuugggg_test_div = 0;
+ tests_llm_16_28 test_div
+        let _rug_st_tests_llm_16_29_rrrruuuugggg_test_div_duration_by_f64 = 0;
+ tests_llm_16_29 test_div_duration_by_f64
+        let _rug_st_tests_llm_16_31_llm_16_30_rrrruuuugggg_div_test = 0;
+ tests_llm_16_31_llm_16_30 div_test
+        let _rug_st_tests_llm_16_41_rrrruuuugggg_test_div = 0;
+ tests_llm_16_41 test_div
+        let _rug_st_tests_llm_16_43_rrrruuuugggg_test_div = 0;
+ tests_llm_16_43 test_div
+        let _rug_st_tests_llm_16_44_rrrruuuugggg_test_div = 0;
+ tests_llm_16_44 test_div
+        let _rug_st_tests_llm_16_57_rrrruuuugggg_test_mul = 0;
+ tests_llm_16_57 test_mul
+        let _rug_st_tests_llm_16_61_llm_16_60_rrrruuuugggg_test_mul = 0;
+ tests_llm_16_61_llm_16_60 test_mul
+        let _rug_st_tests_llm_16_63_llm_16_62_rrrruuuugggg_test_mul = 0;
+ tests_llm_16_63_llm_16_62 test_mul
+        let _rug_st_tests_llm_16_64_rrrruuuugggg_test_mul = 0;
+ tests_llm_16_64 test_mul
+        let _rug_st_tests_llm_16_65_rrrruuuugggg_test_mul = 0;
+ tests_llm_16_65 test_mul
+        let _rug_st_tests_llm_16_65_rrrruuuugggg_test_mul_panic = 0;
+ tests_llm_16_65 test_mul_panic
+        let _rug_st_tests_llm_16_66_rrrruuuugggg_test_mul = 0;
+ tests_llm_16_66 test_mul
+        let _rug_st_tests_llm_16_84_rrrruuuugggg_test_neg = 0;
+ tests_llm_16_84 test_neg
+        let _rug_st_tests_llm_16_87_rrrruuuugggg_test_sub = 0;
+ tests_llm_16_87 test_sub
+        let _rug_st_tests_llm_16_92_rrrruuuugggg_test_default = 0;
+ tests_llm_16_92 test_default
+        let _rug_st_tests_llm_16_266_llm_16_265_rrrruuuugggg_test_mul = 0;
+ tests_llm_16_266_llm_16_265 test_mul
+        let _rug_st_tests_llm_16_268_llm_16_267_rrrruuuugggg_test_mul = 0;
+ tests_llm_16_268_llm_16_267 test_mul
+        let _rug_st_tests_llm_16_274_llm_16_273_rrrruuuugggg_test_mul = 0;
+ tests_llm_16_274_llm_16_273 test_mul
+        let _rug_st_tests_llm_16_280_rrrruuuugggg_test_sub_assign = 0;
+ tests_llm_16_280 test_sub_assign
+        let _rug_st_tests_llm_16_289_rrrruuuugggg_test_checked_add = 0;
+ tests_llm_16_289 test_checked_add
+        let _rug_st_tests_llm_16_290_rrrruuuugggg_test_checked_div = 0;
+ tests_llm_16_290 test_checked_div
+        let _rug_st_tests_llm_16_291_rrrruuuugggg_test_checked_mul = 0;
+ tests_llm_16_291 test_checked_mul
+        let _rug_st_tests_llm_16_296_rrrruuuugggg_test_hours = 0;
+ tests_llm_16_296 test_hours
+        let _rug_st_tests_llm_16_297_rrrruuuugggg_test_is_negative = 0;
+ tests_llm_16_297 test_is_negative
+        let _rug_st_tests_llm_16_298_rrrruuuugggg_test_is_positive = 0;
+ tests_llm_16_298 test_is_positive
+        let _rug_st_tests_llm_16_299_rrrruuuugggg_test_is_zero = 0;
+ tests_llm_16_299 test_is_zero
+        let _rug_st_tests_llm_16_300_rrrruuuugggg_test_microseconds = 0;
+ tests_llm_16_300 test_microseconds
+        let _rug_st_tests_llm_16_301_rrrruuuugggg_test_milliseconds = 0;
+ tests_llm_16_301 test_milliseconds
+        let _rug_st_tests_llm_16_302_rrrruuuugggg_test_minutes = 0;
+ tests_llm_16_302 test_minutes
+        let _rug_st_tests_llm_16_303_rrrruuuugggg_test_nanoseconds = 0;
+ tests_llm_16_303 test_nanoseconds
+        let _rug_st_tests_llm_16_308_rrrruuuugggg_test_new_unchecked = 0;
+ tests_llm_16_308 test_new_unchecked
+        let _rug_st_tests_llm_16_310_llm_16_309_rrrruuuugggg_test_saturating_add = 0;
+ tests_llm_16_310_llm_16_309 test_saturating_add
+        let _rug_st_tests_llm_16_317_rrrruuuugggg_test_seconds_f32 = 0;
+ tests_llm_16_317 test_seconds_f32
+        let _rug_st_tests_llm_16_318_rrrruuuugggg_test_seconds_f64 = 0;
+ tests_llm_16_318 test_seconds_f64
+        let _rug_st_tests_llm_16_319_rrrruuuugggg_test_subsec_microseconds = 0;
+ tests_llm_16_319 test_subsec_microseconds
+        let _rug_st_tests_llm_16_320_rrrruuuugggg_test_subsec_milliseconds = 0;
+ tests_llm_16_320 test_subsec_milliseconds
+        let _rug_st_tests_llm_16_321_rrrruuuugggg_test_subsec_nanoseconds = 0;
+ tests_llm_16_321 test_subsec_nanoseconds
+        let _rug_st_tests_llm_16_326_rrrruuuugggg_test_whole_days = 0;
+ tests_llm_16_326 test_whole_days
+        let _rug_st_tests_llm_16_327_rrrruuuugggg_test_whole_hours = 0;
+ tests_llm_16_327 test_whole_hours
+        let _rug_st_tests_llm_16_328_rrrruuuugggg_test_whole_microseconds = 0;
+ tests_llm_16_328 test_whole_microseconds
+        let _rug_st_tests_llm_16_329_rrrruuuugggg_test_whole_milliseconds_positive_seconds = 0;
+ tests_llm_16_329 test_whole_milliseconds_positive_seconds
+        let _rug_st_tests_llm_16_329_rrrruuuugggg_test_whole_milliseconds_negative_seconds = 0;
+ tests_llm_16_329 test_whole_milliseconds_negative_seconds
+        let _rug_st_tests_llm_16_329_rrrruuuugggg_test_whole_milliseconds_milliseconds = 0;
+ tests_llm_16_329 test_whole_milliseconds_milliseconds
+        let _rug_st_tests_llm_16_329_rrrruuuugggg_test_whole_milliseconds_negative_milliseconds = 0;
+ tests_llm_16_329 test_whole_milliseconds_negative_milliseconds
+        let _rug_st_tests_llm_16_330_rrrruuuugggg_test_whole_minutes = 0;
+ tests_llm_16_330 test_whole_minutes
+        let _rug_st_tests_llm_16_331_rrrruuuugggg_test_whole_nanoseconds = 0;
+ tests_llm_16_331 test_whole_nanoseconds
+err tests_llm_16_331 test_whole_nanoseconds
+   Compiling time v0.3.7 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time)
+error[E0277]: the trait bound `(i64, i32, i64, i32, i64, i32, i32, i64, i32, i32, i64, i32, i64, i32, i64, i32, i64, i32, i32, i64, i32, i32, i64, i32, i64, i32, i32): Arbitrary<'_>` is not satisfied
+    --> src/duration.rs:1906:476
+     |
+1906 | ... = <(i64, i32, i64, i32, i64, i32, i32, i64, i32, i32, i64, i32, i64, i32, i64, i32, i64, i32, i32, i64, i32, i32, i64, i32, i64, i32, i32) as arbitrary::Arbitrary>::arbitrary(&m...
+     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Arbitrary<'_>` is not implemented for `(i64, i32, i64, i32, i64, i32, i32, i64, i32, i32, i64, i32, i64, i32, i64, i32, i64, i32, i32, i64, i32, i32, i64, i32, i64, i32, i32)`
+     |
+     = help: the following other types implement trait `Arbitrary<'a>`:
+               ()
+               (B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, A)
+               (C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, B)
+               (D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, C)
+               (E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, D)
+               (F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, E)
+               (G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, F)
+               (H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, G)
+             and 19 others
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `time` due to previous error
+
+        let _rug_st_tests_llm_16_334_rrrruuuugggg_test_whole_weeks = 0;
+ tests_llm_16_334 test_whole_weeks
+        let _rug_st_tests_rug_85_rrrruuuugggg_test_rug = 0;
+ tests_rug_85 test_rug
+        let _rug_st_tests_rug_86_rrrruuuugggg_test_rug = 0;
+ tests_rug_86 test_rug
+        let _rug_st_tests_rug_87_rrrruuuugggg_test_rug = 0;
+ tests_rug_87 test_rug
+        let _rug_st_tests_rug_88_rrrruuuugggg_test_weeks = 0;
+ tests_rug_88 test_weeks
+        let _rug_st_tests_rug_89_rrrruuuugggg_test_days = 0;
+ tests_rug_89 test_days
+        let _rug_st_tests_rug_90_rrrruuuugggg_test_rug = 0;
+ tests_rug_90 test_rug
+        let _rug_st_tests_rug_91_rrrruuuugggg_test_nanoseconds_i128 = 0;
+ tests_rug_91 test_nanoseconds_i128
+        let _rug_st_tests_rug_92_rrrruuuugggg_test_rug = 0;
+ tests_rug_92 test_rug
+        let _rug_st_tests_rug_93_rrrruuuugggg_test_rug = 0;
+ tests_rug_93 test_rug
+        let _rug_st_tests_rug_94_rrrruuuugggg_test_rug = 0;
+ tests_rug_94 test_rug
+        let _rug_st_tests_rug_95_rrrruuuugggg_test_checked_sub = 0;
+ tests_rug_95 test_checked_sub
+        let _rug_st_tests_rug_96_rrrruuuugggg_test_saturating_sub = 0;
+ tests_rug_96 test_saturating_sub
+        let _rug_st_tests_rug_97_rrrruuuugggg_test_rug = 0;
+ tests_rug_97 test_rug
+        let _rug_st_tests_rug_98_rrrruuuugggg_test_rug = 0;
+ tests_rug_98 test_rug
+        let _rug_st_tests_rug_101_rrrruuuugggg_test_rug = 0;
+ tests_rug_101 test_rug
+        let _rug_st_tests_rug_104_rrrruuuugggg_test_sub = 0;
+ tests_rug_104 test_sub
+        let _rug_st_tests_rug_107_rrrruuuugggg_test_rug = 0;
+ tests_rug_107 test_rug
+        let _rug_st_tests_rug_113_rrrruuuugggg_test_rug = 0;
+ tests_rug_113 test_rug
+        let _rug_st_tests_rug_114_rrrruuuugggg_test_rug = 0;
+ tests_rug_114 test_rug
+        let _rug_st_tests_rug_120_rrrruuuugggg_test_rug = 0;
+ tests_rug_120 test_rug
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/primitive_date_time.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/utc_offset.rs
+        let _rug_st_tests_llm_16_202_rrrruuuugggg_test_neg = 0;
+ tests_llm_16_202 test_neg
+        let _rug_st_tests_llm_16_417_rrrruuuugggg_test_from_whole_seconds = 0;
+ tests_llm_16_417 test_from_whole_seconds
+        let _rug_st_tests_llm_16_420_rrrruuuugggg_test_is_positive_positive_offset = 0;
+ tests_llm_16_420 test_is_positive_positive_offset
+        let _rug_st_tests_llm_16_420_rrrruuuugggg_test_is_positive_negative_offset = 0;
+ tests_llm_16_420 test_is_positive_negative_offset
+        let _rug_st_tests_llm_16_420_rrrruuuugggg_test_is_positive_zero_offset = 0;
+ tests_llm_16_420 test_is_positive_zero_offset
+        let _rug_st_tests_llm_16_420_rrrruuuugggg_test_is_positive_max_offset = 0;
+ tests_llm_16_420 test_is_positive_max_offset
+        let _rug_st_tests_llm_16_420_rrrruuuugggg_test_is_positive_min_offset = 0;
+ tests_llm_16_420 test_is_positive_min_offset
+        let _rug_st_tests_llm_16_425_rrrruuuugggg_test_seconds_past_minute = 0;
+ tests_llm_16_425 test_seconds_past_minute
+        let _rug_st_tests_llm_16_430_rrrruuuugggg_test_whole_seconds_positive_offset = 0;
+ tests_llm_16_430 test_whole_seconds_positive_offset
+        let _rug_st_tests_llm_16_430_rrrruuuugggg_test_whole_seconds_negative_offset = 0;
+ tests_llm_16_430 test_whole_seconds_negative_offset
+        let _rug_st_tests_rug_254_rrrruuuugggg_test_rug = 0;
+ tests_rug_254 test_rug
+        let _rug_st_tests_rug_255_rrrruuuugggg_test_from_hms = 0;
+ tests_rug_255 test_from_hms
+        let _rug_st_tests_rug_258_rrrruuuugggg_test_rug = 0;
+ tests_rug_258 test_rug
+        let _rug_st_tests_rug_259_rrrruuuugggg_test_rug = 0;
+ tests_rug_259 test_rug
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/instant.rs
+        let _rug_st_tests_llm_16_148_rrrruuuugggg_test_partial_cmp = 0;
+ tests_llm_16_148 test_partial_cmp
+        let _rug_st_tests_llm_16_151_rrrruuuugggg_test_from = 0;
+ tests_llm_16_151 test_from
+        let _rug_st_tests_llm_16_160_rrrruuuugggg_test_sub_positive_duration = 0;
+ tests_llm_16_160 test_sub_positive_duration
+        let _rug_st_tests_llm_16_160_rrrruuuugggg_test_sub_negative_duration = 0;
+ tests_llm_16_160 test_sub_negative_duration
+        let _rug_st_tests_llm_16_160_rrrruuuugggg_test_sub_zero_duration = 0;
+ tests_llm_16_160 test_sub_zero_duration
+        let _rug_st_tests_llm_16_160_rrrruuuugggg_test_checked_sub_positive_duration = 0;
+ tests_llm_16_160 test_checked_sub_positive_duration
+        let _rug_st_tests_llm_16_160_rrrruuuugggg_test_checked_sub_negative_duration = 0;
+ tests_llm_16_160 test_checked_sub_negative_duration
+        let _rug_st_tests_llm_16_160_rrrruuuugggg_test_checked_sub_zero_duration = 0;
+ tests_llm_16_160 test_checked_sub_zero_duration
+        let _rug_st_tests_llm_16_160_rrrruuuugggg_test_into_inner = 0;
+ tests_llm_16_160 test_into_inner
+        let _rug_st_tests_llm_16_341_rrrruuuugggg_test_eq_returns_true_if_self_is_equal_to_rhs = 0;
+ tests_llm_16_341 test_eq_returns_true_if_self_is_equal_to_rhs
+        let _rug_st_tests_llm_16_341_rrrruuuugggg_test_eq_returns_false_if_self_is_not_equal_to_rhs = 0;
+ tests_llm_16_341 test_eq_returns_false_if_self_is_not_equal_to_rhs
+        let _rug_st_tests_llm_16_341_rrrruuuugggg_test_eq_returns_true_if_self_is_equal_to_rhs_std_instant = 0;
+ tests_llm_16_341 test_eq_returns_true_if_self_is_equal_to_rhs_std_instant
+        let _rug_st_tests_llm_16_341_rrrruuuugggg_test_eq_returns_false_if_self_is_not_equal_to_rhs_std_instant = 0;
+ tests_llm_16_341 test_eq_returns_false_if_self_is_not_equal_to_rhs_std_instant
+        let _rug_st_tests_llm_16_342_rrrruuuugggg_test_partial_cmp = 0;
+ tests_llm_16_342 test_partial_cmp
+        let _rug_st_tests_llm_16_346_rrrruuuugggg_test_add = 0;
+ tests_llm_16_346 test_add
+        let _rug_st_tests_llm_16_357_rrrruuuugggg_test_elapsed = 0;
+ tests_llm_16_357 test_elapsed
+        let _rug_st_tests_llm_16_360_rrrruuuugggg_test_now = 0;
+ tests_llm_16_360 test_now
+        let _rug_st_tests_rug_127_rrrruuuugggg_test_checked_add = 0;
+ tests_rug_127 test_checked_add
+        let _rug_st_tests_rug_128_rrrruuuugggg_test_rug = 0;
+ tests_rug_128 test_rug
+        let _rug_st_tests_rug_129_rrrruuuugggg_test_rug = 0;
+ tests_rug_129 test_rug
+        let _rug_st_tests_rug_131_rrrruuuugggg_test_rug = 0;
+ tests_rug_131 test_rug
+        let _rug_st_tests_rug_132_rrrruuuugggg_test_rug = 0;
+ tests_rug_132 test_rug
+        let _rug_st_tests_rug_133_rrrruuuugggg_test_rug = 0;
+ tests_rug_133 test_rug
+        let _rug_st_tests_rug_136_rrrruuuugggg_test_sub = 0;
+ tests_rug_136 test_sub
+        let _rug_st_tests_rug_137_rrrruuuugggg_test_rug = 0;
+ tests_rug_137 test_rug
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/format_description/modifier.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/format_description/component.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/format_description/parse.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/format_description/mod.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/sys/local_offset_at/imp.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/sys/local_offset_at/unix.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/sys/local_offset_at/mod.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/sys/local_offset_at/windows.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/sys/mod.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/date.rs
+        let _rug_st_tests_llm_16_204_llm_16_299_rrrruuuugggg_test___from_ordinal_date_unchecked = 0;
+ tests_llm_16_204_llm_16_299 test___from_ordinal_date_unchecked
+        let _rug_st_tests_llm_16_206_rrrruuuugggg_test_day = 0;
+ tests_llm_16_206 test_day
+        let _rug_st_tests_llm_16_207_rrrruuuugggg_test_from_calendar_date_success = 0;
+ tests_llm_16_207 test_from_calendar_date_success
+        let _rug_st_tests_llm_16_207_rrrruuuugggg_test_from_calendar_date_failure = 0;
+ tests_llm_16_207 test_from_calendar_date_failure
+        let _rug_st_tests_llm_16_208_rrrruuuugggg_test_from_iso_week_date_valid = 0;
+ tests_llm_16_208 test_from_iso_week_date_valid
+        let _rug_st_tests_llm_16_208_rrrruuuugggg_test_from_iso_week_date_invalid = 0;
+ tests_llm_16_208 test_from_iso_week_date_invalid
+        let _rug_st_tests_llm_16_214_rrrruuuugggg_test_from_ordinal_date_valid = 0;
+ tests_llm_16_214 test_from_ordinal_date_valid
+        let _rug_st_tests_llm_16_214_rrrruuuugggg_test_from_ordinal_date_invalid = 0;
+ tests_llm_16_214 test_from_ordinal_date_invalid
+        let _rug_st_tests_llm_16_223_rrrruuuugggg_test_month_day = 0;
+ tests_llm_16_223 test_month_day
+        let _rug_st_tests_llm_16_227_llm_16_226_rrrruuuugggg_test_ordinal = 0;
+ tests_llm_16_227_llm_16_226 test_ordinal
+        let _rug_st_tests_llm_16_233_rrrruuuugggg_test_to_calendar_date = 0;
+ tests_llm_16_233 test_to_calendar_date
+        let _rug_st_tests_llm_16_238_rrrruuuugggg_test_to_ordinal_date = 0;
+ tests_llm_16_238 test_to_ordinal_date
+        let _rug_st_tests_llm_16_250_llm_16_249_rrrruuuugggg_test_year = 0;
+ tests_llm_16_250_llm_16_249 test_year
+        let _rug_st_tests_rug_28_rrrruuuugggg_test_from_julian_day = 0;
+ tests_rug_28 test_from_julian_day
+        let _rug_st_tests_rug_29_rrrruuuugggg_test_from_julian_day_unchecked = 0;
+ tests_rug_29 test_from_julian_day_unchecked
+        let _rug_st_tests_rug_30_rrrruuuugggg_test_month = 0;
+ tests_rug_30 test_month
+        let _rug_st_tests_rug_31_rrrruuuugggg_test_rug = 0;
+ tests_rug_31 test_rug
+        let _rug_st_tests_rug_32_rrrruuuugggg_test_iso_week = 0;
+ tests_rug_32 test_iso_week
+        let _rug_st_tests_rug_45_rrrruuuugggg_test_with_time = 0;
+ tests_rug_45 test_with_time
+        let _rug_st_tests_rug_46_rrrruuuugggg_test_rug = 0;
+ tests_rug_46 test_rug
+        let _rug_st_tests_rug_47_rrrruuuugggg_test_rug = 0;
+ tests_rug_47 test_rug
+        let _rug_st_tests_rug_49_rrrruuuugggg_test_with_hms_nano = 0;
+ tests_rug_49 test_with_hms_nano
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/weekday.rs
+        let _rug_st_tests_llm_16_437_rrrruuuugggg_test_next_weekday = 0;
+ tests_llm_16_437 test_next_weekday
+        let _rug_st_tests_llm_16_439_llm_16_438_rrrruuuugggg_test_number_days_from_monday = 0;
+ tests_llm_16_439_llm_16_438 test_number_days_from_monday
+        let _rug_st_tests_llm_16_442_rrrruuuugggg_test_number_from_monday = 0;
+ tests_llm_16_442 test_number_from_monday
+        let _rug_st_tests_llm_16_443_rrrruuuugggg_test_number_from_sunday = 0;
+ tests_llm_16_443 test_number_from_sunday
+        let _rug_st_tests_llm_16_444_rrrruuuugggg_test_previous = 0;
+ tests_llm_16_444 test_previous
+        let _rug_st_tests_rug_262_rrrruuuugggg_test_rug = 0;
+ tests_rug_262 test_rug
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/offset_date_time.rs
+        let _rug_st_tests_rug_142_rrrruuuugggg_test_now_utc = 0;
+ tests_rug_142 test_now_utc
+        let _rug_st_tests_rug_143_rrrruuuugggg_test_to_offset = 0;
+ tests_rug_143 test_to_offset
+        let _rug_st_tests_rug_144_rrrruuuugggg_test_from_unix_timestamp = 0;
+ tests_rug_144 test_from_unix_timestamp
+        let _rug_st_tests_rug_145_rrrruuuugggg_test_from_unix_timestamp_nanos = 0;
+ tests_rug_145 test_from_unix_timestamp_nanos
+        let _rug_st_tests_rug_180_rrrruuuugggg_test_replace_offset = 0;
+ tests_rug_180 test_replace_offset
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/macros.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/serde/visitor.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/serde/rfc2822.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/serde/mod.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/serde/timestamp.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/serde/rfc3339.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/tests.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/quickcheck.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/rand.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/rusty_monitor.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/parsing/parsed.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/parsing/combinator/rfc/rfc2822.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/parsing/combinator/rfc/mod.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/parsing/combinator/rfc/rfc2234.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/parsing/combinator/mod.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/parsing/component.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/parsing/shim.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/parsing/parsable.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/parsing/mod.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/util.rs
+        let _rug_st_tests_llm_16_435_rrrruuuugggg_test_is_leap_year = 0;
+ tests_llm_16_435 test_is_leap_year
+        let _rug_st_tests_llm_16_436_rrrruuuugggg_test_weeks_in_year = 0;
+ tests_llm_16_436 test_weeks_in_year
+        let _rug_st_tests_rug_1_rrrruuuugggg_test_rug = 0;
+ tests_rug_1 test_rug
+        let _rug_st_tests_rug_2_rrrruuuugggg_test_rug = 0;
+ tests_rug_2 test_rug
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/lib.rs
+        let _rug_st_tests_llm_16_46_llm_16_45_rrrruuuugggg_test_div_assign = 0;
+ tests_llm_16_46_llm_16_45 test_div_assign
+        let _rug_st_tests_llm_16_47_rrrruuuugggg_test_div_assign = 0;
+ tests_llm_16_47 test_div_assign
+        let _rug_st_tests_llm_16_48_rrrruuuugggg_test_div_assign = 0;
+ tests_llm_16_48 test_div_assign
+        let _rug_st_tests_llm_16_52_llm_16_51_rrrruuuugggg_test_div_assign = 0;
+ tests_llm_16_52_llm_16_51 test_div_assign
+        let _rug_st_tests_llm_16_54_rrrruuuugggg_test_div_assign = 0;
+ tests_llm_16_54 test_div_assign
+        let _rug_st_tests_llm_16_70_rrrruuuugggg_test_mul_assign = 0;
+ tests_llm_16_70 test_mul_assign
+        let _rug_st_tests_llm_16_73_rrrruuuugggg_test_mul_assign = 0;
+ tests_llm_16_73 test_mul_assign
+        let _rug_st_tests_llm_16_75_rrrruuuugggg_test_mul_assign = 0;
+ tests_llm_16_75 test_mul_assign
+        let _rug_st_tests_llm_16_81_rrrruuuugggg_test_mul_assign = 0;
+ tests_llm_16_81 test_mul_assign
+        let _rug_st_tests_llm_16_83_llm_16_82_rrrruuuugggg_test_mul_assign = 0;
+ tests_llm_16_83_llm_16_82 test_mul_assign
+        let _rug_st_tests_llm_16_91_llm_16_90_rrrruuuugggg_test_sub_assign = 0;
+ tests_llm_16_91_llm_16_90 test_sub_assign
+        let _rug_st_tests_llm_16_157_rrrruuuugggg_add_assign = 0;
+ tests_llm_16_157 add_assign
+        let _rug_st_tests_llm_16_167_rrrruuuugggg_test_sub_assign = 0;
+ tests_llm_16_167 test_sub_assign
+        let _rug_st_tests_llm_16_348_llm_16_347_rrrruuuugggg_test_add_assign = 0;
+ tests_llm_16_348_llm_16_347 test_add_assign
+        let _rug_st_tests_rug_60_rrrruuuugggg_test_rug = 0;
+ tests_rug_60 test_rug
+        let _rug_st_tests_rug_61_rrrruuuugggg_test_rug = 0;
+ tests_rug_61 test_rug
+        let _rug_st_tests_rug_70_rrrruuuugggg_test_rug = 0;
+ tests_rug_70 test_rug
+        let _rug_st_tests_rug_72_rrrruuuugggg_test_rug = 0;
+ tests_rug_72 test_rug
+        let _rug_st_tests_rug_74_rrrruuuugggg_test_rug = 0;
+ tests_rug_74 test_rug
+        let _rug_st_tests_rug_75_rrrruuuugggg_test_rug = 0;
+ tests_rug_75 test_rug
+        let _rug_st_tests_rug_83_rrrruuuugggg_test_rug = 0;
+ tests_rug_83 test_rug
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/ext.rs
+        let _rug_st_tests_llm_16_107_rrrruuuugggg_test_milliseconds = 0;
+ tests_llm_16_107 test_milliseconds
+        let _rug_st_tests_llm_16_113_llm_16_112_rrrruuuugggg_test_seconds = 0;
+ tests_llm_16_113_llm_16_112 test_seconds
+        let _rug_st_tests_llm_16_114_rrrruuuugggg_test_weeks = 0;
+ tests_llm_16_114 test_weeks
+        let _rug_st_tests_llm_16_133_rrrruuuugggg_test_hours = 0;
+ tests_llm_16_133 test_hours
+        let _rug_st_tests_llm_16_136_rrrruuuugggg_test_milliseconds = 0;
+ tests_llm_16_136 test_milliseconds
+        let _rug_st_tests_llm_16_138_rrrruuuugggg_test_minutes = 0;
+ tests_llm_16_138 test_minutes
+        let _rug_st_tests_llm_16_143_rrrruuuugggg_test_weeks = 0;
+ tests_llm_16_143 test_weeks
+        let _rug_st_tests_rug_3_rrrruuuugggg_test_nanoseconds = 0;
+ tests_rug_3 test_nanoseconds
+        let _rug_st_tests_rug_5_rrrruuuugggg_test_rug = 0;
+ tests_rug_5 test_rug
+        let _rug_st_tests_rug_6_rrrruuuugggg_test_rug = 0;
+ tests_rug_6 test_rug
+        let _rug_st_tests_rug_7_rrrruuuugggg_test_rug = 0;
+ tests_rug_7 test_rug
+        let _rug_st_tests_rug_8_rrrruuuugggg_test_rug = 0;
+ tests_rug_8 test_rug
+        let _rug_st_tests_rug_10_rrrruuuugggg_test_hours = 0;
+ tests_rug_10 test_hours
+        let _rug_st_tests_rug_11_rrrruuuugggg_test_days = 0;
+ tests_rug_11 test_days
+        let _rug_st_tests_rug_12_rrrruuuugggg_test_rug = 0;
+ tests_rug_12 test_rug
+        let _rug_st_tests_rug_13_rrrruuuugggg_test_std_microseconds = 0;
+ tests_rug_13 test_std_microseconds
+        let _rug_st_tests_rug_14_rrrruuuugggg_test_std_milliseconds = 0;
+ tests_rug_14 test_std_milliseconds
+        let _rug_st_tests_rug_15_rrrruuuugggg_test_rug = 0;
+ tests_rug_15 test_rug
+        let _rug_st_tests_rug_16_rrrruuuugggg_test_rug = 0;
+ tests_rug_16 test_rug
+        let _rug_st_tests_rug_17_rrrruuuugggg_test_std_hours = 0;
+ tests_rug_17 test_std_hours
+        let _rug_st_tests_rug_18_rrrruuuugggg_test_std_days = 0;
+ tests_rug_18 test_std_days
+        let _rug_st_tests_rug_19_rrrruuuugggg_test_rug = 0;
+ tests_rug_19 test_rug
+        let _rug_st_tests_rug_20_rrrruuuugggg_test_rug = 0;
+ tests_rug_20 test_rug
+        let _rug_st_tests_rug_21_rrrruuuugggg_test_rug = 0;
+ tests_rug_21 test_rug
+        let _rug_st_tests_rug_22_rrrruuuugggg_test_std_milliseconds = 0;
+ tests_rug_22 test_std_milliseconds
+        let _rug_st_tests_rug_23_rrrruuuugggg_test_std_seconds = 0;
+ tests_rug_23 test_std_seconds
+        let _rug_st_tests_rug_24_rrrruuuugggg_test_std_minutes = 0;
+ tests_rug_24 test_std_minutes
+        let _rug_st_tests_rug_25_rrrruuuugggg_test_rug = 0;
+ tests_rug_25 test_rug
+        let _rug_st_tests_rug_26_rrrruuuugggg_test_std_days = 0;
+ tests_rug_26 test_std_days
+        let _rug_st_tests_rug_27_rrrruuuugggg_test_std_weeks = 0;
+ tests_rug_27 test_std_weeks
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/formatting/formattable.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/./src/formatting/mod.rs
+done
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/time-macros/src/offset.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/time-macros/src/quote.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/time-macros/src/time.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/time-macros/src/helpers/string.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/time-macros/src/helpers/mod.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/time-macros/src/format_description/modifier.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/time-macros/src/format_description/component.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/time-macros/src/format_description/error.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/time-macros/src/format_description/parse.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/time-macros/src/format_description/mod.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/time-macros/src/date.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/time-macros/src/datetime.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/time-macros/src/error.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/time-macros/src/to_tokens.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/time/time-macros/src/lib.rs
+done

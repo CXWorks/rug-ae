@@ -1,0 +1,643 @@
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom/benchmarks/src/lib.rs
+done
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom/./src/character/complete.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom/./src/character/tests.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom/./src/character/mod.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom/./src/character/streaming.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom/./src/combinator/tests.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom/./src/combinator/mod.rs
+err tests_llm_16_408 success_parser_works_with_non_str_input
+   Compiling nom v7.1.2 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom)
+error[E0425]: cannot find function `parser` in this scope
+    --> src/combinator/mod.rs:1347:61
+     |
+1347 |         let result: IResult<&[u8], _, CustomError<&[u8]>> = parser(rug_fuzz_1);
+     |                                                             ^^^^^^ not found in this scope
+     |
+note: these functions exist but are inaccessible
+    --> src/combinator/mod.rs:1188:5
+     |
+1188 |     fn parser(i: &str) -> IResult<&str, Option<&str>, Error<&str>> {
+     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::combinator::tests_llm_16_403::parser`: not accessible
+     |
+    ::: src/character/complete.rs:1259:5
+     |
+1259 |     fn parser(input: &str) -> IResult<&str, &str> {
+     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::character::complete::tests_llm_16_311::parser`: not accessible
+...
+1331 |     fn parser(input: &str) -> IResult<&str, &str> {
+     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::character::complete::tests_llm_16_313::parser`: not accessible
+...
+2000 |     fn parser(input: &str) -> IResult<&str, &str> {
+     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::character::complete::tests_llm_16_331::parser`: not accessible
+...
+2255 |     fn parser(input: &str) -> IResult<&str, &str, Error<&str>> {
+     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::character::complete::tests_llm_16_338::parser`: not accessible
+     |
+    ::: src/character/streaming.rs:1356:5
+     |
+1356 |     fn parser(i: &str) -> IResult<&str, char> {
+     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::character::streaming::tests_llm_16_357::parser`: not accessible
+     |
+    ::: src/bytes/complete.rs:729:5
+     |
+729  |     fn parser(input: &str) -> IResult<&str, String> {
+     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::bytes::complete::tests_llm_16_283_llm_16_283::parser`: not accessible
+     |
+    ::: src/bits/complete.rs:260:3
+     |
+260  |   fn parser(input: (&[u8], usize), count: usize) -> IResult<(&[u8], usize), u8> {
+     |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::complete::tests_llm_16_276::parser`: not accessible
+     |
+    ::: src/multi/mod.rs:1756:5
+     |
+1756 |     fn parser(s: &[u8]) -> IResult<&[u8], &[u8]> {
+     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::multi::tests_llm_16_450_llm_16_450::parser`: not accessible
+     |
+    ::: src/number/complete.rs:2183:5
+     |
+2183 |     fn parser(input: &[u8]) -> IResult<&[u8], u128> {
+     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::number::complete::tests_llm_16_468::parser`: not accessible
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `nom` due to previous error
+
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom/./src/multi/tests.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom/./src/multi/mod.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom/./src/traits.rs
+err tests_llm_16_8 compare_equal
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling nom v7.1.2 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom)
+error[E0425]: cannot find value `rug_fuzz_1` in this scope
+    --> src/traits.rs:1484:24
+     |
+1484 |         let b: &[u8] = rug_fuzz_1;
+     |                        ^^^^^^^^^^ help: a local variable with a similar name exists: `rug_fuzz_0`
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `nom` due to previous error
+
+err tests_llm_16_8 compare_incomplete
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling nom v7.1.2 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom)
+error[E0425]: cannot find value `rug_fuzz_1` in this scope
+    --> src/traits.rs:1496:24
+     |
+1496 |         let b: &[u8] = rug_fuzz_1;
+     |                        ^^^^^^^^^^ help: a local variable with a similar name exists: `rug_fuzz_0`
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `nom` due to previous error
+
+err tests_llm_16_8 compare_error
+   Compiling nom v7.1.2 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom)
+error[E0425]: cannot find value `rug_fuzz_1` in this scope
+    --> src/traits.rs:1509:24
+     |
+1509 |         let b: &[u8] = rug_fuzz_1;
+     |                        ^^^^^^^^^^ help: a local variable with a similar name exists: `rug_fuzz_0`
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `nom` due to previous error
+
+err tests_llm_16_8 compare_prefix
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling nom v7.1.2 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom)
+error[E0425]: cannot find value `rug_fuzz_1` in this scope
+    --> src/traits.rs:1522:24
+     |
+1522 |         let b: &[u8] = rug_fuzz_1;
+     |                        ^^^^^^^^^^ help: a local variable with a similar name exists: `rug_fuzz_0`
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `nom` due to previous error
+
+err tests_llm_16_13 compare_no_case_test
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling nom v7.1.2 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom)
+error[E0425]: cannot find value `rug_fuzz_1` in this scope
+    --> src/traits.rs:1704:37
+     |
+1704 |         let comparison: [u8; 11] = *rug_fuzz_1;
+     |                                     ^^^^^^^^^^ help: a local variable with a similar name exists: `rug_fuzz_0`
+
+error[E0425]: cannot find value `rug_fuzz_3` in this scope
+    --> src/traits.rs:1714:34
+     |
+1714 |         let error_input: &[u8] = rug_fuzz_3;
+     |                                  ^^^^^^^^^^ help: a local variable with a similar name exists: `rug_fuzz_0`
+
+error[E0425]: cannot find value `rug_fuzz_5` in this scope
+    --> src/traits.rs:1720:50
+     |
+1720 |         let different_len_comparison: [u8; 5] = *rug_fuzz_5;
+     |                                                  ^^^^^^^^^^ help: a local variable with a similar name exists: `rug_fuzz_0`
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `nom` due to 3 previous errors
+
+err tests_llm_16_31 test_parse_to_success
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling nom v7.1.2 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom)
+error[E0425]: cannot find value `input` in this scope
+    --> src/traits.rs:2034:54
+     |
+2034 |         let result: Option<i32> = ParseTo::parse_to(&input);
+     |                                                      ^^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `nom` due to previous error
+
+err tests_llm_16_31 test_parse_to_invalid_parse
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling nom v7.1.2 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom)
+error[E0425]: cannot find value `input` in this scope
+    --> src/traits.rs:2057:54
+     |
+2057 |         let result: Option<i32> = ParseTo::parse_to(&input);
+     |                                                      ^^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `nom` due to previous error
+
+err tests_llm_16_31 test_parse_to_valid_utf8_invalid_parse
+   Compiling nom v7.1.2 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom)
+error[E0425]: cannot find value `input` in this scope
+    --> src/traits.rs:2066:54
+     |
+2066 |         let result: Option<i32> = ParseTo::parse_to(&input);
+     |                                                      ^^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `nom` due to previous error
+
+err tests_llm_16_31 test_parse_to_empty
+    Blocking waiting for file lock on package cache
+   Compiling nom v7.1.2 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom)
+error[E0425]: cannot find value `input` in this scope
+    --> src/traits.rs:2075:54
+     |
+2075 |         let result: Option<i32> = ParseTo::parse_to(&input);
+     |                                                      ^^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `nom` due to previous error
+
+err tests_llm_16_36_llm_16_36 test_is_hex_digit
+   Compiling nom v7.1.2 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom)
+error[E0277]: the trait bound `(char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char): tests_llm_16_394::test_fail_always_fails::arbitrary::Arbitrary<'_>` is not satisfied
+    --> src/traits.rs:2224:578
+     |
+2224 | ... = <(char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char) as arbitrary::Arbitrary>::arbitrary(&m...
+     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `tests_llm_16_394::test_fail_always_fails::arbitrary::Arbitrary<'_>` is not implemented for `(char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char)`
+     |
+     = help: the following other types implement trait `tests_llm_16_394::test_fail_always_fails::arbitrary::Arbitrary<'a>`:
+               ()
+               (B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, A)
+               (C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, B)
+               (D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, C)
+               (E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, D)
+               (F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, E)
+               (G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, F)
+               (H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, G)
+             and 19 others
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `nom` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_41 compare_with_equal_bytes
+   Compiling nom v7.1.2 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom)
+error[E0425]: cannot find value `input_str` in this scope
+    --> src/traits.rs:2370:57
+     |
+2370 |         let result = <&str as Compare<&[u8]>>::compare(&input_str, &input_bytes[..]);
+     |                                                         ^^^^^^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `nom` due to previous error
+
+err tests_llm_16_41 compare_with_non_equal_bytes
+   Compiling nom v7.1.2 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom)
+error[E0425]: cannot find value `input_str` in this scope
+    --> src/traits.rs:2381:57
+     |
+2381 |         let result = <&str as Compare<&[u8]>>::compare(&input_str, &input_bytes[..]);
+     |                                                         ^^^^^^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `nom` due to previous error
+
+err tests_llm_16_41 compare_with_partial_bytes
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling nom v7.1.2 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom)
+error[E0425]: cannot find value `input_str` in this scope
+    --> src/traits.rs:2392:57
+     |
+2392 |         let result = <&str as Compare<&[u8]>>::compare(&input_str, &input_bytes[..]);
+     |                                                         ^^^^^^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `nom` due to previous error
+
+err tests_llm_16_41 compare_with_extra_bytes
+   Compiling nom v7.1.2 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom)
+error[E0425]: cannot find value `input_str` in this scope
+    --> src/traits.rs:2403:57
+     |
+2403 |         let result = <&str as Compare<&[u8]>>::compare(&input_str, &input_bytes[..]);
+     |                                                         ^^^^^^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `nom` due to previous error
+
+err tests_llm_16_42 test_compare_no_case_equal
+   Compiling nom v7.1.2 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom)
+error[E0425]: cannot find value `input_str` in this scope
+    --> src/traits.rs:2420:73
+     |
+2420 |             < & str as traits::Compare < & [u8] > > ::compare_no_case(& input_str,
+     |                                                                         ^^^^^^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `nom` due to previous error
+
+err tests_llm_16_42 test_compare_no_case_incomplete
+   Compiling nom v7.1.2 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom)
+error[E0425]: cannot find value `input_str` in this scope
+    --> src/traits.rs:2433:73
+     |
+2433 |             < & str as traits::Compare < & [u8] > > ::compare_no_case(& input_str,
+     |                                                                         ^^^^^^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `nom` due to previous error
+
+err tests_llm_16_42 test_compare_no_case_error
+   Compiling nom v7.1.2 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom)
+error[E0425]: cannot find value `input_str` in this scope
+    --> src/traits.rs:2446:73
+     |
+2446 |             < & str as traits::Compare < & [u8] > > ::compare_no_case(& input_str,
+     |                                                                         ^^^^^^^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `nom` due to previous error
+
+err tests_llm_16_43 test_compare_equal
+   Compiling nom v7.1.2 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom)
+error[E0532]: expected tuple struct or tuple variant, found unit variant `Ok`
+    --> src/traits.rs:2459:20
+     |
+593  |     Ok,
+     |     -- `Ok` defined here
+...
+2459 |             if let Ok((mut rug_fuzz_0, mut rug_fuzz_1)) = <(&str, &str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured:...
+     |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |
+help: use this syntax instead
+     |
+2459 |             if let Ok = <(&str, &str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data)){
+     |                    ~~
+help: consider importing one of these items instead
+     |
+2450 |     use core::result::Result::Ok;
+     |
+2450 |     use crate::lib::std::prelude::v1::rust_2024::Ok;
+     |
+2450 |     use std::result::Result::Ok;
+     |
+
+For more information about this error, try `rustc --explain E0532`.
+error: could not compile `nom` due to previous error
+
+err tests_llm_16_43 test_compare_incomplete
+   Compiling nom v7.1.2 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom)
+error[E0532]: expected tuple struct or tuple variant, found unit variant `Ok`
+    --> src/traits.rs:2469:20
+     |
+593  |     Ok,
+     |     -- `Ok` defined here
+...
+2469 |             if let Ok((mut rug_fuzz_0, mut rug_fuzz_1)) = <(&str, &str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured:...
+     |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |
+help: use this syntax instead
+     |
+2469 |             if let Ok = <(&str, &str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data)){
+     |                    ~~
+help: consider importing one of these items instead
+     |
+2450 |     use core::result::Result::Ok;
+     |
+2450 |     use crate::lib::std::prelude::v1::rust_2024::Ok;
+     |
+2450 |     use std::result::Result::Ok;
+     |
+
+For more information about this error, try `rustc --explain E0532`.
+error: could not compile `nom` due to previous error
+
+err tests_llm_16_43 test_compare_error
+   Compiling nom v7.1.2 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom)
+error[E0532]: expected tuple struct or tuple variant, found unit variant `Ok`
+    --> src/traits.rs:2479:20
+     |
+593  |     Ok,
+     |     -- `Ok` defined here
+...
+2479 |             if let Ok((mut rug_fuzz_0, mut rug_fuzz_1)) = <(&str, &str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured:...
+     |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |
+help: use this syntax instead
+     |
+2479 |             if let Ok = <(&str, &str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data)){
+     |                    ~~
+help: consider importing one of these items instead
+     |
+2450 |     use core::result::Result::Ok;
+     |
+2450 |     use crate::lib::std::prelude::v1::rust_2024::Ok;
+     |
+2450 |     use std::result::Result::Ok;
+     |
+
+For more information about this error, try `rustc --explain E0532`.
+error: could not compile `nom` due to previous error
+
+err tests_llm_16_68 test_is_oct_digit
+   Compiling nom v7.1.2 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom)
+error[E0277]: the trait bound `(u8, bool, u8, bool, u8, bool, u8, bool, u8, bool, u8, bool, u8, bool, u8, bool, u8, bool, u8, bool, u8, bool, u8, bool, u8, bool, u8, bool): tests_llm_16_394::test_fail_always_fails::arbitrary::Arbitrary<'_>` is not satisfied
+    --> src/traits.rs:3175:493
+     |
+3175 | ... = <(u8, bool, u8, bool, u8, bool, u8, bool, u8, bool, u8, bool, u8, bool, u8, bool, u8, bool, u8, bool, u8, bool, u8, bool, u8, bool, u8, bool) as arbitrary::Arbitrary>::arbitrary(&m...
+     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `tests_llm_16_394::test_fail_always_fails::arbitrary::Arbitrary<'_>` is not implemented for `(u8, bool, u8, bool, u8, bool, u8, bool, u8, bool, u8, bool, u8, bool, u8, bool, u8, bool, u8, bool, u8, bool, u8, bool, u8, bool, u8, bool)`
+     |
+     = help: the following other types implement trait `tests_llm_16_394::test_fail_always_fails::arbitrary::Arbitrary<'a>`:
+               ()
+               (B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, A)
+               (C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, B)
+               (D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, C)
+               (E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, D)
+               (F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, E)
+               (G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, F)
+               (H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, G)
+             and 19 others
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `nom` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_72 test_find_token
+   Compiling nom v7.1.2 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom)
+error[E0521]: borrowed data escapes outside of closure
+    --> src/traits.rs:3277:192
+     |
+3276 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+3277 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2, mut rug_fuzz_3, mut rug_fuzz_4, mut rug_fuzz_5)) = <(&str, u8, u8, u8, u8, u8) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                                                                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                                                                                                   |
+     |                                                                                                                                                                                   `rug_data` escapes the closure body here
+     |                                                                                                                                                                                   argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `nom` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_186 test_is_hex_digit
+    Blocking waiting for file lock on package cache
+   Compiling nom v7.1.2 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom)
+error[E0277]: the trait bound `(char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char): tests_llm_16_394::test_fail_always_fails::arbitrary::Arbitrary<'_>` is not satisfied
+    --> src/traits.rs:3969:595
+     |
+3969 | ... = <(char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char) as arbitrary::Arbitrary>::arbitrary(&m...
+     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `tests_llm_16_394::test_fail_always_fails::arbitrary::Arbitrary<'_>` is not implemented for `(char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char, char)`
+     |
+     = help: the following other types implement trait `tests_llm_16_394::test_fail_always_fails::arbitrary::Arbitrary<'a>`:
+               ()
+               (B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, A)
+               (C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, B)
+               (D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, C)
+               (E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, D)
+               (F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, E)
+               (G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, F)
+               (H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, G)
+             and 19 others
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `nom` due to previous error
+
+err tests_llm_16_198_llm_16_198 test_convert
+   Compiling nom v7.1.2 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom)
+error[E0521]: borrowed data escapes outside of closure
+    --> src/traits.rs:4173:181
+     |
+4172 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+4173 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2, mut rug_fuzz_3, mut rug_fuzz_4)) = <(&str, usize, &str, &str, &str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                                                                                        |
+     |                                                                                                                                                                        `rug_data` escapes the closure body here
+     |                                                                                                                                                                        argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `nom` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_204_llm_16_204 convert_verbose_error
+   Compiling nom v7.1.2 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom)
+error[E0521]: borrowed data escapes outside of closure
+    --> src/traits.rs:4197:181
+     |
+4196 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+4197 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2, mut rug_fuzz_3, mut rug_fuzz_4)) = <(&str, &str, &str, usize, &str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                                                                                        |
+     |                                                                                                                                                                        `rug_data` escapes the closure body here
+     |                                                                                                                                                                        argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `nom` due to previous error
+
+err tests_rug_57 test_iter_indices
+   Compiling nom v7.1.2 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom)
+error[E0425]: cannot find value `p0` in this scope
+    --> src/traits.rs:5876:41
+     |
+5876 |         <&[u8] as Input>::iter_indices(&p0);
+     |                                         ^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `nom` due to previous error
+
+err tests_rug_63 test_take
+   Compiling nom v7.1.2 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom)
+error: lifetime may not live long enough
+    --> src/traits.rs:5912:17
+     |
+5909 |         .for_each(|rug_data| {
+     |                    -------- has type `&'1 [u8]`
+...
+5912 |         let p0: &'static str = rug_fuzz_0;
+     |                 ^^^^^^^^^^^^ type annotation requires that `'1` must outlive `'static`
+
+error: could not compile `nom` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_rug_64 test_take_from
+   Compiling nom v7.1.2 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom)
+error: lifetime may not live long enough
+    --> src/traits.rs:5927:21
+     |
+5924 |         .for_each(|rug_data| {
+     |                    -------- has type `&'1 [u8]`
+...
+5927 |         let mut p0: &'static str = rug_fuzz_0;
+     |                     ^^^^^^^^^^^^ type annotation requires that `'1` must outlive `'static`
+
+error: could not compile `nom` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_rug_65 test_take_split
+   Compiling nom v7.1.2 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom)
+error: lifetime may not live long enough
+    --> src/traits.rs:5942:21
+     |
+5939 |         .for_each(|rug_data| {
+     |                    -------- has type `&'1 [u8]`
+...
+5942 |         let mut p0: &'static str = rug_fuzz_0;
+     |                     ^^^^^^^^^^^^ type annotation requires that `'1` must outlive `'static`
+
+error: could not compile `nom` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_rug_66 test_iter_indices
+   Compiling nom v7.1.2 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom)
+error: lifetime may not live long enough
+    --> src/traits.rs:5959:17
+     |
+5956 |         .for_each(|rug_data| {
+     |                    -------- has type `&'1 [u8]`
+...
+5959 |         let p0: &'static str = rug_fuzz_0;
+     |                 ^^^^^^^^^^^^ type annotation requires that `'1` must outlive `'static`
+
+error: could not compile `nom` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_rug_70 test_compare
+   Compiling nom v7.1.2 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom)
+error[E0521]: borrowed data escapes outside of closure
+    --> src/traits.rs:5974:122
+     |
+5973 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+5974 | ...et Ok((mut rug_fuzz_0_ext, mut rug_fuzz_1)) = <([u8; 13], &str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                             |
+     |                                                                                                             `rug_data` escapes the closure body here
+     |                                                                                                             argument requires that `'1` must outlive `'static`
+
+error[E0597]: `rug_fuzz_0_ext` does not live long enough
+    --> src/traits.rs:5976:18
+     |
+5976 | let rug_fuzz_0 = & rug_fuzz_0_ext;
+     |                  ^^^^^^^^^^^^^^^^ borrowed value does not live long enough
+5977 |         let mut p0: &'static [u8] = rug_fuzz_0;
+     |                     ------------- type annotation requires that `rug_fuzz_0_ext` is borrowed for `'static`
+...
+5984 | });    }
+     | - `rug_fuzz_0_ext` dropped here while still borrowed
+
+Some errors have detailed explanations: E0521, E0597.
+For more information about an error, try `rustc --explain E0521`.
+error: could not compile `nom` due to 2 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+err tests_rug_72 test_find_substring
+   Compiling nom v7.1.2 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom)
+error[E0425]: cannot find value `rug_fuzz_1` in this scope
+    --> src/traits.rs:6015:29
+     |
+6015 |         let mut p1: &[u8] = rug_fuzz_1;
+     |                             ^^^^^^^^^^ help: a local variable with a similar name exists: `rug_fuzz_0`
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `nom` due to previous error
+
+err tests_rug_73 test_parse_to
+   Compiling nom v7.1.2 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom)
+error: lifetime may not live long enough
+    --> src/traits.rs:6028:17
+     |
+6025 |         .for_each(|rug_data| {
+     |                    -------- has type `&'1 [u8]`
+...
+6028 |         let p0: &'static str = rug_fuzz_0;
+     |                 ^^^^^^^^^^^^ type annotation requires that `'1` must outlive `'static`
+
+error: could not compile `nom` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_rug_74 test_compare_no_case
+   Compiling nom v7.1.2 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom)
+error[E0425]: cannot find value `rug_fuzz_1` in this scope
+    --> src/traits.rs:6044:28
+     |
+6044 |         let p1: [u8; 7] = *rug_fuzz_1;
+     |                            ^^^^^^^^^^ help: a local variable with a similar name exists: `rug_fuzz_0`
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `nom` due to previous error
+
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom/./src/sequence/tests.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom/./src/sequence/mod.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom/./src/str.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom/./src/bits/complete.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom/./src/bits/mod.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom/./src/bits/streaming.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom/./src/internal.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom/./src/macros.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom/./src/bytes/complete.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom/./src/bytes/tests.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom/./src/bytes/mod.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom/./src/bytes/streaming.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom/./src/error.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom/./src/branch/tests.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom/./src/branch/mod.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom/./src/lib.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom/./src/number/complete.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom/./src/number/mod.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/nom/./src/number/streaming.rs
+done

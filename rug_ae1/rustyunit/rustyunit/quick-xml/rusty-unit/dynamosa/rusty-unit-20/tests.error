@@ -1,0 +1,1792 @@
+   Compiling quick-xml v0.23.0 (/Users/tim/Documents/master-thesis/evaluation/quick-xml/rusty-unit-20)
+[2022-05-26T16:11:20Z INFO  instrumentation] MAIN: Instrumenting crate quick_xml
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:938 ~ quick_xml[b1a8]::escapei::test_unescape#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:53 ~ quick_xml[b1a8]::escapei::unescape)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:56 ~ quick_xml[b1a8]::escapei::do_unescape)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:60 ~ quick_xml[b1a8]::escapei::named_entity)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:63 ~ quick_xml[b1a8]::escapei::parse_number)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:64 ~ quick_xml[b1a8]::escapei::parse_hexadecimal)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:65 ~ quick_xml[b1a8]::escapei::parse_decimal)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:61 ~ quick_xml[b1a8]::escapei::push_utf8)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:934 ~ quick_xml[b1a8]::escapei::{impl#2}::fmt)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:954 ~ quick_xml[b1a8]::escapei::test_unescape_with#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:54 ~ quick_xml[b1a8]::escapei::unescape_with)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:973 ~ quick_xml[b1a8]::escapei::test_escape#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:47 ~ quick_xml[b1a8]::escapei::escape)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:50 ~ quick_xml[b1a8]::escapei::_escape)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:46 ~ quick_xml[b1a8]::escapei::to_escape)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:992 ~ quick_xml[b1a8]::escapei::test_partial_escape#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:49 ~ quick_xml[b1a8]::escapei::partial_escape)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:48 ~ quick_xml[b1a8]::escapei::to_partial_escape)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1125 ~ quick_xml[b1a8]::events::attributes::xml::single::single_quoted#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:182 ~ quick_xml[b1a8]::events::attributes::{impl#5}::new)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:212 ~ quick_xml[b1a8]::events::attributes::{impl#14}::new)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:188 ~ quick_xml[b1a8]::events::attributes::{impl#6}::next)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:224 ~ quick_xml[b1a8]::events::attributes::{impl#14}::next)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:213 ~ quick_xml[b1a8]::events::attributes::{impl#14}::recover)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:216 ~ quick_xml[b1a8]::events::attributes::{impl#14}::skip_eq_value)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:668 ~ quick_xml[b1a8]::reader::is_whitespace)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:214 ~ quick_xml[b1a8]::events::attributes::{impl#14}::skip_value)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:221 ~ quick_xml[b1a8]::events::attributes::{impl#14}::key_only)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:219 ~ quick_xml[b1a8]::events::attributes::{impl#14}::check_for_duplicates)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:222 ~ quick_xml[b1a8]::events::attributes::{impl#14}::double_q)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:223 ~ quick_xml[b1a8]::events::attributes::{impl#14}::single_q)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:197 ~ quick_xml[b1a8]::events::attributes::{impl#10}::map)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:179 ~ quick_xml[b1a8]::events::attributes::{impl#4}::from)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:202 ~ quick_xml[b1a8]::events::attributes::{impl#11}::key)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:203 ~ quick_xml[b1a8]::events::attributes::{impl#11}::value)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1019 ~ quick_xml[b1a8]::events::attributes::{impl#17}::eq)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1053 ~ quick_xml[b1a8]::events::attributes::{impl#22}::eq)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:170 ~ quick_xml[b1a8]::events::attributes::{impl#1}::fmt)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:716 ~ quick_xml[b1a8]::utils::write_byte_string)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:715 ~ quick_xml[b1a8]::utils::write_cow_string)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1050 ~ quick_xml[b1a8]::events::attributes::{impl#20}::fmt)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1138 ~ quick_xml[b1a8]::events::attributes::xml::single::double_quoted#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1151 ~ quick_xml[b1a8]::events::attributes::xml::single::unquoted#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1164 ~ quick_xml[b1a8]::events::attributes::xml::single::key_only#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1177 ~ quick_xml[b1a8]::events::attributes::xml::single::key_start_invalid#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1190 ~ quick_xml[b1a8]::events::attributes::xml::single::key_contains_invalid#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1203 ~ quick_xml[b1a8]::events::attributes::xml::single::missed_value#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1216 ~ quick_xml[b1a8]::events::attributes::xml::first::single_quoted#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1232 ~ quick_xml[b1a8]::events::attributes::xml::first::double_quoted#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1248 ~ quick_xml[b1a8]::events::attributes::xml::first::unquoted#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1264 ~ quick_xml[b1a8]::events::attributes::xml::first::key_only#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1280 ~ quick_xml[b1a8]::events::attributes::xml::first::key_start_invalid#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1296 ~ quick_xml[b1a8]::events::attributes::xml::first::key_contains_invalid#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1312 ~ quick_xml[b1a8]::events::attributes::xml::first::missed_value#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1364 ~ quick_xml[b1a8]::events::attributes::xml::sparsed::single_quoted#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1377 ~ quick_xml[b1a8]::events::attributes::xml::sparsed::double_quoted#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1390 ~ quick_xml[b1a8]::events::attributes::xml::sparsed::unquoted#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1403 ~ quick_xml[b1a8]::events::attributes::xml::sparsed::key_only#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1416 ~ quick_xml[b1a8]::events::attributes::xml::sparsed::key_start_invalid#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1429 ~ quick_xml[b1a8]::events::attributes::xml::sparsed::key_contains_invalid#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1442 ~ quick_xml[b1a8]::events::attributes::xml::sparsed::missed_value#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1455 ~ quick_xml[b1a8]::events::attributes::xml::duplicated::with_check::single_quoted#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1474 ~ quick_xml[b1a8]::events::attributes::xml::duplicated::with_check::double_quoted#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1493 ~ quick_xml[b1a8]::events::attributes::xml::duplicated::with_check::unquoted#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1512 ~ quick_xml[b1a8]::events::attributes::xml::duplicated::with_check::key_only#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1531 ~ quick_xml[b1a8]::events::attributes::xml::duplicated::without_check::single_quoted#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:184 ~ quick_xml[b1a8]::events::attributes::{impl#5}::with_checks)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1550 ~ quick_xml[b1a8]::events::attributes::xml::duplicated::without_check::double_quoted#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1569 ~ quick_xml[b1a8]::events::attributes::xml::duplicated::without_check::unquoted#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1588 ~ quick_xml[b1a8]::events::attributes::xml::duplicated::without_check::key_only#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1607 ~ quick_xml[b1a8]::events::attributes::xml::mixed_quote#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1629 ~ quick_xml[b1a8]::events::attributes::html::single::single_quoted#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:183 ~ quick_xml[b1a8]::events::attributes::{impl#5}::html)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1642 ~ quick_xml[b1a8]::events::attributes::html::single::double_quoted#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1655 ~ quick_xml[b1a8]::events::attributes::html::single::unquoted#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1668 ~ quick_xml[b1a8]::events::attributes::html::single::key_only#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1681 ~ quick_xml[b1a8]::events::attributes::html::single::key_start_invalid#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1694 ~ quick_xml[b1a8]::events::attributes::html::single::key_contains_invalid#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1707 ~ quick_xml[b1a8]::events::attributes::html::single::missed_value#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1720 ~ quick_xml[b1a8]::events::attributes::html::first::single_quoted#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1736 ~ quick_xml[b1a8]::events::attributes::html::first::double_quoted#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1752 ~ quick_xml[b1a8]::events::attributes::html::first::unquoted#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1768 ~ quick_xml[b1a8]::events::attributes::html::first::key_only#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1784 ~ quick_xml[b1a8]::events::attributes::html::first::key_start_invalid#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1800 ~ quick_xml[b1a8]::events::attributes::html::first::key_contains_invalid#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1816 ~ quick_xml[b1a8]::events::attributes::html::first::missed_value#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1868 ~ quick_xml[b1a8]::events::attributes::html::sparsed::single_quoted#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1881 ~ quick_xml[b1a8]::events::attributes::html::sparsed::double_quoted#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1894 ~ quick_xml[b1a8]::events::attributes::html::sparsed::unquoted#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1907 ~ quick_xml[b1a8]::events::attributes::html::sparsed::key_only#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1920 ~ quick_xml[b1a8]::events::attributes::html::sparsed::key_start_invalid#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1933 ~ quick_xml[b1a8]::events::attributes::html::sparsed::key_contains_invalid#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1946 ~ quick_xml[b1a8]::events::attributes::html::sparsed::missed_value#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1959 ~ quick_xml[b1a8]::events::attributes::html::duplicated::with_check::single_quoted#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1978 ~ quick_xml[b1a8]::events::attributes::html::duplicated::with_check::double_quoted#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1997 ~ quick_xml[b1a8]::events::attributes::html::duplicated::with_check::unquoted#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2016 ~ quick_xml[b1a8]::events::attributes::html::duplicated::with_check::key_only#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2035 ~ quick_xml[b1a8]::events::attributes::html::duplicated::without_check::single_quoted#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2054 ~ quick_xml[b1a8]::events::attributes::html::duplicated::without_check::double_quoted#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2073 ~ quick_xml[b1a8]::events::attributes::html::duplicated::without_check::unquoted#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2092 ~ quick_xml[b1a8]::events::attributes::html::duplicated::without_check::key_only#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2111 ~ quick_xml[b1a8]::events::attributes::html::mixed_quote#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:454 ~ quick_xml[b1a8]::events::{impl#8}::from_str)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:452 ~ quick_xml[b1a8]::events::{impl#8}::new)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:458 ~ quick_xml[b1a8]::events::{impl#8}::partial_escape)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:419 ~ quick_xml[b1a8]::events::{impl#6}::from_escaped)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:457 ~ quick_xml[b1a8]::events::{impl#8}::escape)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:626 ~ quick_xml[b1a8]::reader::{impl#2}::from_str)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:554 ~ quick_xml[b1a8]::reader::{impl#0}::from_reader)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2444 ~ quick_xml[b1a8]::reader::{impl#20}::default)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:456 ~ quick_xml[b1a8]::events::{impl#8}::into_inner)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:628 ~ quick_xml[b1a8]::reader::{impl#2}::read_event_unbuffered)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:594 ~ quick_xml[b1a8]::reader::{impl#0}::read_event_buffered)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:568 ~ quick_xml[b1a8]::reader::{impl#0}::read_until_close)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:658 ~ quick_xml[b1a8]::reader::{impl#4}::peek_one)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:653 ~ quick_xml[b1a8]::reader::{impl#4}::read_bang_element)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:660 ~ quick_xml[b1a8]::reader::{impl#5}::new)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:661 ~ quick_xml[b1a8]::reader::{impl#5}::parse)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:664 ~ quick_xml[b1a8]::reader::{impl#5}::to_err)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:576 ~ quick_xml[b1a8]::reader::{impl#0}::read_bang)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:652 ~ quick_xml[b1a8]::reader::{impl#4}::read_bytes_until)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:571 ~ quick_xml[b1a8]::reader::{impl#0}::read_end)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:408 ~ quick_xml[b1a8]::events::{impl#4}::borrowed)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:583 ~ quick_xml[b1a8]::reader::{impl#0}::read_question_mark)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:348 ~ quick_xml[b1a8]::events::{impl#0}::borrowed)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:396 ~ quick_xml[b1a8]::events::{impl#3}::from_start)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:654 ~ quick_xml[b1a8]::reader::{impl#4}::read_element)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:666 ~ quick_xml[b1a8]::reader::{impl#6}::change)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:587 ~ quick_xml[b1a8]::reader::{impl#0}::read_start)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:562 ~ quick_xml[b1a8]::reader::{impl#0}::read_until_open)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:655 ~ quick_xml[b1a8]::reader::{impl#4}::skip_whitespace)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:657 ~ quick_xml[b1a8]::reader::{impl#4}::skip_one)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:586 ~ quick_xml[b1a8]::reader::{impl#0}::close_expanded_empty)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:409 ~ quick_xml[b1a8]::events::{impl#4}::owned)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2280 ~ quick_xml[b1a8]::events::test::local_name#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:591 ~ quick_xml[b1a8]::reader::{impl#0}::read_event)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:649 ~ quick_xml[b1a8]::reader::{impl#3}::peek_one)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:644 ~ quick_xml[b1a8]::reader::{impl#3}::read_bang_element)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:643 ~ quick_xml[b1a8]::reader::{impl#3}::read_bytes_until)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:645 ~ quick_xml[b1a8]::reader::{impl#3}::read_element)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:646 ~ quick_xml[b1a8]::reader::{impl#3}::skip_whitespace)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:648 ~ quick_xml[b1a8]::reader::{impl#3}::skip_one)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:908 ~ quick_xml[b1a8]::errors::{impl#6}::fmt)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:359 ~ quick_xml[b1a8]::events::{impl#0}::local_name)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:358 ~ quick_xml[b1a8]::events::{impl#0}::name)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:412 ~ quick_xml[b1a8]::events::{impl#4}::local_name)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:411 ~ quick_xml[b1a8]::events::{impl#4}::name)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2311 ~ quick_xml[b1a8]::events::test::bytestart_create#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:352 ~ quick_xml[b1a8]::events::{impl#0}::owned_name)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:468 ~ quick_xml[b1a8]::events::{impl#11}::deref)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2321 ~ quick_xml[b1a8]::events::test::bytestart_set_name#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:388 ~ quick_xml[b1a8]::events::{impl#1}::attributes_raw)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:382 ~ quick_xml[b1a8]::events::{impl#1}::push_attribute)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:176 ~ quick_xml[b1a8]::events::attributes::{impl#3}::from)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:373 ~ quick_xml[b1a8]::events::{impl#0}::set_name)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2346 ~ quick_xml[b1a8]::events::test::bytestart_clear_attributes#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:385 ~ quick_xml[b1a8]::events::{impl#1}::clear_attributes)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:386 ~ quick_xml[b1a8]::events::{impl#1}::attributes)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:424 ~ quick_xml[b1a8]::events::{impl#6}::from_plain_str)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:421 ~ quick_xml[b1a8]::events::{impl#6}::from_plain)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:426 ~ quick_xml[b1a8]::events::{impl#6}::into_inner)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:405 ~ quick_xml[b1a8]::events::{impl#3}::into_owned)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:354 ~ quick_xml[b1a8]::events::{impl#0}::into_owned)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:350 ~ quick_xml[b1a8]::events::{impl#0}::owned)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:397 ~ quick_xml[b1a8]::events::{impl#3}::version)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:20 ~ quick_xml[b1a8]::errors::{impl#3}::from)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:356 ~ quick_xml[b1a8]::events::{impl#0}::to_borrowed)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:427 ~ quick_xml[b1a8]::events::{impl#6}::unescaped)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:430 ~ quick_xml[b1a8]::events::{impl#6}::make_unescaped)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:480 ~ quick_xml[b1a8]::events::{impl#14}::deref)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:357 ~ quick_xml[b1a8]::events::{impl#0}::to_end)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2571 ~ quick_xml[b1a8]::reader::test::buffered::read_bytes_until::empty#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:3254 ~ quick_xml[b1a8]::utils::{impl#5}::eq)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:722 ~ quick_xml[b1a8]::utils::{impl#1}::fmt)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2575 ~ quick_xml[b1a8]::reader::test::buffered::read_bytes_until::non_existent#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2579 ~ quick_xml[b1a8]::reader::test::buffered::read_bytes_until::at_the_start#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2583 ~ quick_xml[b1a8]::reader::test::buffered::read_bytes_until::inside#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2587 ~ quick_xml[b1a8]::reader::test::buffered::read_bytes_until::in_the_end#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2591 ~ quick_xml[b1a8]::reader::test::buffered::read_bang_element::cdata::not_properly_start#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2414 ~ quick_xml[b1a8]::reader::{impl#12}::fmt)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2595 ~ quick_xml[b1a8]::reader::test::buffered::read_bang_element::cdata::not_closed#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2599 ~ quick_xml[b1a8]::reader::test::buffered::read_bang_element::cdata::empty#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2417 ~ quick_xml[b1a8]::reader::{impl#14}::eq)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2603 ~ quick_xml[b1a8]::reader::test::buffered::read_bang_element::cdata::with_content#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2607 ~ quick_xml[b1a8]::reader::test::buffered::read_bang_element::comment::not_properly_start#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2611 ~ quick_xml[b1a8]::reader::test::buffered::read_bang_element::comment::not_properly_end#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2615 ~ quick_xml[b1a8]::reader::test::buffered::read_bang_element::comment::not_closed1#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2619 ~ quick_xml[b1a8]::reader::test::buffered::read_bang_element::comment::not_closed2#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2623 ~ quick_xml[b1a8]::reader::test::buffered::read_bang_element::comment::not_closed3#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2627 ~ quick_xml[b1a8]::reader::test::buffered::read_bang_element::comment::empty#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2631 ~ quick_xml[b1a8]::reader::test::buffered::read_bang_element::comment::with_content#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2635 ~ quick_xml[b1a8]::reader::test::buffered::read_bang_element::doctype::uppercase::not_properly_start#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2639 ~ quick_xml[b1a8]::reader::test::buffered::read_bang_element::doctype::uppercase::without_space#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2643 ~ quick_xml[b1a8]::reader::test::buffered::read_bang_element::doctype::uppercase::empty#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2647 ~ quick_xml[b1a8]::reader::test::buffered::read_bang_element::doctype::uppercase::not_closed#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2651 ~ quick_xml[b1a8]::reader::test::buffered::read_bang_element::doctype::lowercase::not_properly_start#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2655 ~ quick_xml[b1a8]::reader::test::buffered::read_bang_element::doctype::lowercase::without_space#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2659 ~ quick_xml[b1a8]::reader::test::buffered::read_bang_element::doctype::lowercase::empty#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2663 ~ quick_xml[b1a8]::reader::test::buffered::read_bang_element::doctype::lowercase::not_closed#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2667 ~ quick_xml[b1a8]::reader::test::buffered::read_element::empty#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2671 ~ quick_xml[b1a8]::reader::test::buffered::read_element::open::empty_tag#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2675 ~ quick_xml[b1a8]::reader::test::buffered::read_element::open::normal#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2679 ~ quick_xml[b1a8]::reader::test::buffered::read_element::open::empty_ns_empty_tag#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2683 ~ quick_xml[b1a8]::reader::test::buffered::read_element::open::empty_ns#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2687 ~ quick_xml[b1a8]::reader::test::buffered::read_element::open::with_attributes#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2691 ~ quick_xml[b1a8]::reader::test::buffered::read_element::self_closed::empty_tag#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2695 ~ quick_xml[b1a8]::reader::test::buffered::read_element::self_closed::normal#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2699 ~ quick_xml[b1a8]::reader::test::buffered::read_element::self_closed::empty_ns_empty_tag#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2703 ~ quick_xml[b1a8]::reader::test::buffered::read_element::self_closed::empty_ns#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2707 ~ quick_xml[b1a8]::reader::test::buffered::read_element::self_closed::with_attributes#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2711 ~ quick_xml[b1a8]::reader::test::buffered::issue_344::cdata#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2265 ~ quick_xml[b1a8]::events::{impl#45}::fmt)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:393 ~ quick_xml[b1a8]::events::{impl#2}::fmt)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:416 ~ quick_xml[b1a8]::events::{impl#5}::fmt)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:449 ~ quick_xml[b1a8]::events::{impl#7}::fmt)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:461 ~ quick_xml[b1a8]::events::{impl#9}::fmt)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2166 ~ quick_xml[b1a8]::events::{impl#24}::fmt)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2715 ~ quick_xml[b1a8]::reader::test::buffered::issue_344::comment#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2719 ~ quick_xml[b1a8]::reader::test::buffered::issue_344::doctype_uppercase#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2723 ~ quick_xml[b1a8]::reader::test::buffered::issue_344::doctype_lowercase#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2841 ~ quick_xml[b1a8]::reader::test::borrowed::read_bytes_until::empty#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2845 ~ quick_xml[b1a8]::reader::test::borrowed::read_bytes_until::non_existent#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2849 ~ quick_xml[b1a8]::reader::test::borrowed::read_bytes_until::at_the_start#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2853 ~ quick_xml[b1a8]::reader::test::borrowed::read_bytes_until::inside#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2857 ~ quick_xml[b1a8]::reader::test::borrowed::read_bytes_until::in_the_end#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2861 ~ quick_xml[b1a8]::reader::test::borrowed::read_bang_element::cdata::not_properly_start#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2865 ~ quick_xml[b1a8]::reader::test::borrowed::read_bang_element::cdata::not_closed#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2869 ~ quick_xml[b1a8]::reader::test::borrowed::read_bang_element::cdata::empty#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2873 ~ quick_xml[b1a8]::reader::test::borrowed::read_bang_element::cdata::with_content#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2877 ~ quick_xml[b1a8]::reader::test::borrowed::read_bang_element::comment::not_properly_start#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2881 ~ quick_xml[b1a8]::reader::test::borrowed::read_bang_element::comment::not_properly_end#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2885 ~ quick_xml[b1a8]::reader::test::borrowed::read_bang_element::comment::not_closed1#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2889 ~ quick_xml[b1a8]::reader::test::borrowed::read_bang_element::comment::not_closed2#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2893 ~ quick_xml[b1a8]::reader::test::borrowed::read_bang_element::comment::not_closed3#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2897 ~ quick_xml[b1a8]::reader::test::borrowed::read_bang_element::comment::empty#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2901 ~ quick_xml[b1a8]::reader::test::borrowed::read_bang_element::comment::with_content#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2905 ~ quick_xml[b1a8]::reader::test::borrowed::read_bang_element::doctype::uppercase::not_properly_start#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2909 ~ quick_xml[b1a8]::reader::test::borrowed::read_bang_element::doctype::uppercase::without_space#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2913 ~ quick_xml[b1a8]::reader::test::borrowed::read_bang_element::doctype::uppercase::empty#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2917 ~ quick_xml[b1a8]::reader::test::borrowed::read_bang_element::doctype::uppercase::not_closed#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2921 ~ quick_xml[b1a8]::reader::test::borrowed::read_bang_element::doctype::lowercase::not_properly_start#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2925 ~ quick_xml[b1a8]::reader::test::borrowed::read_bang_element::doctype::lowercase::without_space#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2929 ~ quick_xml[b1a8]::reader::test::borrowed::read_bang_element::doctype::lowercase::empty#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2933 ~ quick_xml[b1a8]::reader::test::borrowed::read_bang_element::doctype::lowercase::not_closed#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2937 ~ quick_xml[b1a8]::reader::test::borrowed::read_element::empty#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2941 ~ quick_xml[b1a8]::reader::test::borrowed::read_element::open::empty_tag#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2945 ~ quick_xml[b1a8]::reader::test::borrowed::read_element::open::normal#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2949 ~ quick_xml[b1a8]::reader::test::borrowed::read_element::open::empty_ns_empty_tag#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2953 ~ quick_xml[b1a8]::reader::test::borrowed::read_element::open::empty_ns#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2957 ~ quick_xml[b1a8]::reader::test::borrowed::read_element::open::with_attributes#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2961 ~ quick_xml[b1a8]::reader::test::borrowed::read_element::self_closed::empty_tag#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2965 ~ quick_xml[b1a8]::reader::test::borrowed::read_element::self_closed::normal#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2969 ~ quick_xml[b1a8]::reader::test::borrowed::read_element::self_closed::empty_ns_empty_tag#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2973 ~ quick_xml[b1a8]::reader::test::borrowed::read_element::self_closed::empty_ns#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2977 ~ quick_xml[b1a8]::reader::test::borrowed::read_element::self_closed::with_attributes#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2981 ~ quick_xml[b1a8]::reader::test::borrowed::issue_344::cdata#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2985 ~ quick_xml[b1a8]::reader::test::borrowed::issue_344::comment#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2989 ~ quick_xml[b1a8]::reader::test::borrowed::issue_344::doctype_uppercase#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2993 ~ quick_xml[b1a8]::reader::test::borrowed::issue_344::doctype_lowercase#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:464 ~ quick_xml[b1a8]::events::{impl#10}::into_owned)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:410 ~ quick_xml[b1a8]::events::{impl#4}::into_owned)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:425 ~ quick_xml[b1a8]::events::{impl#6}::into_owned)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:455 ~ quick_xml[b1a8]::events::{impl#8}::into_owned)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:719 ~ quick_xml[b1a8]::utils::{impl#0}::fmt)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:3295 ~ quick_xml[b1a8]::writer::indentation::self_closed#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:758 ~ quick_xml[b1a8]::writer::{impl#0}::new_with_indent)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:791 ~ quick_xml[b1a8]::writer::{impl#2}::new)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:349 ~ quick_xml[b1a8]::events::{impl#0}::borrowed_name)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:376 ~ quick_xml[b1a8]::events::{impl#1}::with_attributes)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:379 ~ quick_xml[b1a8]::events::{impl#1}::extend_attributes)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:761 ~ quick_xml[b1a8]::writer::{impl#0}::write_event)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:491 ~ quick_xml[b1a8]::events::{impl#17}::as_ref)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:765 ~ quick_xml[b1a8]::writer::{impl#0}::write_wrapped)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:764 ~ quick_xml[b1a8]::writer::{impl#0}::write)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:792 ~ quick_xml[b1a8]::writer::{impl#2}::grow)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:793 ~ quick_xml[b1a8]::writer::{impl#2}::shrink)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:476 ~ quick_xml[b1a8]::events::{impl#13}::deref)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:446 ~ quick_xml[b1a8]::events::{impl#6}::escaped)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:484 ~ quick_xml[b1a8]::events::{impl#15}::deref)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:472 ~ quick_xml[b1a8]::events::{impl#12}::deref)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:3302 ~ quick_xml[b1a8]::writer::indentation::empty_paired#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:3309 ~ quick_xml[b1a8]::writer::indentation::paired_with_inner#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:3316 ~ quick_xml[b1a8]::writer::indentation::paired_with_text#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:3323 ~ quick_xml[b1a8]::writer::indentation::mixed_content#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:3330 ~ quick_xml[b1a8]::writer::indentation::nested#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2146 ~ quick_xml[b1a8]::events::{impl#18}::clone)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2183 ~ quick_xml[b1a8]::events::{impl#29}::clone)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:3337 ~ quick_xml[b1a8]::writer::indentation::element_writer_empty#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:767 ~ quick_xml[b1a8]::writer::{impl#0}::create_element)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:778 ~ quick_xml[b1a8]::writer::{impl#1}::with_attribute)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:787 ~ quick_xml[b1a8]::writer::{impl#1}::write_empty)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:3344 ~ quick_xml[b1a8]::writer::indentation::element_writer_text#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:784 ~ quick_xml[b1a8]::writer::{impl#1}::write_text_content)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:3351 ~ quick_xml[b1a8]::writer::indentation::element_writer_nested#1)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:788 ~ quick_xml[b1a8]::writer::{impl#1}::write_inner_content)
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:21Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:3789 ~ quick_xml[b1a8]::main)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:14 ~ quick_xml[b1a8]::errors::{impl#0}::from)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:16 ~ quick_xml[b1a8]::errors::{impl#1}::from)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:18 ~ quick_xml[b1a8]::errors::{impl#2}::from)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:24 ~ quick_xml[b1a8]::errors::{impl#4}::fmt)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:26 ~ quick_xml[b1a8]::errors::{impl#5}::source)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:44 ~ quick_xml[b1a8]::escapei::{impl#0}::fmt)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:151 ~ quick_xml[b1a8]::events::attributes::{impl#0}::unescaped_value)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:152 ~ quick_xml[b1a8]::events::attributes::{impl#0}::unescaped_value_with_custom_entities)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:153 ~ quick_xml[b1a8]::events::attributes::{impl#0}::make_unescaped_value)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:154 ~ quick_xml[b1a8]::events::attributes::{impl#0}::unescape_and_decode_value)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:156 ~ quick_xml[b1a8]::events::attributes::{impl#0}::unescape_and_decode_value_with_custom_entities)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:158 ~ quick_xml[b1a8]::events::attributes::{impl#0}::do_unescape_and_decode_value)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:161 ~ quick_xml[b1a8]::events::attributes::{impl#0}::unescape_and_decode_without_bom)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:163 ~ quick_xml[b1a8]::events::attributes::{impl#0}::unescape_and_decode_without_bom_with_custom_entities)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:165 ~ quick_xml[b1a8]::events::attributes::{impl#0}::do_unescape_and_decode_without_bom)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:173 ~ quick_xml[b1a8]::events::attributes::{impl#2}::from)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:193 ~ quick_xml[b1a8]::events::attributes::{impl#8}::fmt)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:206 ~ quick_xml[b1a8]::events::attributes::{impl#12}::fmt)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:209 ~ quick_xml[b1a8]::events::attributes::{impl#13}::from)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:355 ~ quick_xml[b1a8]::events::{impl#0}::to_owned)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:361 ~ quick_xml[b1a8]::events::{impl#0}::unescaped)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:362 ~ quick_xml[b1a8]::events::{impl#0}::unescaped_with_custom_entities)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:364 ~ quick_xml[b1a8]::events::{impl#0}::make_unescaped)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:366 ~ quick_xml[b1a8]::events::{impl#0}::unescape_and_decode)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:368 ~ quick_xml[b1a8]::events::{impl#0}::unescape_and_decode_with_custom_entities)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:370 ~ quick_xml[b1a8]::events::{impl#0}::do_unescape_and_decode_with_custom_entities)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:387 ~ quick_xml[b1a8]::events::{impl#1}::html_attributes)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:389 ~ quick_xml[b1a8]::events::{impl#1}::try_get_attribute)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:398 ~ quick_xml[b1a8]::events::{impl#3}::encoding)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:401 ~ quick_xml[b1a8]::events::{impl#3}::standalone)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:404 ~ quick_xml[b1a8]::events::{impl#3}::new)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:422 ~ quick_xml[b1a8]::events::{impl#6}::from_escaped_str)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:428 ~ quick_xml[b1a8]::events::{impl#6}::unescaped_with_custom_entities)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:432 ~ quick_xml[b1a8]::events::{impl#6}::unescape_and_decode_without_bom)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:434 ~ quick_xml[b1a8]::events::{impl#6}::unescape_and_decode_without_bom_with_custom_entities)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:436 ~ quick_xml[b1a8]::events::{impl#6}::do_unescape_and_decode_without_bom)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:439 ~ quick_xml[b1a8]::events::{impl#6}::unescape_and_decode)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:441 ~ quick_xml[b1a8]::events::{impl#6}::unescape_and_decode_with_custom_entities)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:443 ~ quick_xml[b1a8]::events::{impl#6}::do_unescape_and_decode_with_custom_entities)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:488 ~ quick_xml[b1a8]::events::{impl#16}::deref)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:555 ~ quick_xml[b1a8]::reader::{impl#0}::expand_empty_elements)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:556 ~ quick_xml[b1a8]::reader::{impl#0}::trim_text)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:557 ~ quick_xml[b1a8]::reader::{impl#0}::trim_text_end)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:558 ~ quick_xml[b1a8]::reader::{impl#0}::trim_markup_names_in_closing_tags)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:559 ~ quick_xml[b1a8]::reader::{impl#0}::check_end_names)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:560 ~ quick_xml[b1a8]::reader::{impl#0}::check_comments)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:561 ~ quick_xml[b1a8]::reader::{impl#0}::buffer_position)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:597 ~ quick_xml[b1a8]::reader::{impl#0}::event_namespace)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:601 ~ quick_xml[b1a8]::reader::{impl#0}::attribute_namespace)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:605 ~ quick_xml[b1a8]::reader::{impl#0}::read_namespaced_event)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:609 ~ quick_xml[b1a8]::reader::{impl#0}::decode_without_bom)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:611 ~ quick_xml[b1a8]::reader::{impl#0}::decode)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:613 ~ quick_xml[b1a8]::reader::{impl#0}::decoder)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:614 ~ quick_xml[b1a8]::reader::{impl#0}::read_to_end)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:616 ~ quick_xml[b1a8]::reader::{impl#0}::read_text)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:618 ~ quick_xml[b1a8]::reader::{impl#0}::into_inner)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:619 ~ quick_xml[b1a8]::reader::{impl#0}::get_ref)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:620 ~ quick_xml[b1a8]::reader::{impl#0}::get_mut)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:622 ~ quick_xml[b1a8]::reader::{impl#1}::from_file)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:627 ~ quick_xml[b1a8]::reader::{impl#2}::from_bytes)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:629 ~ quick_xml[b1a8]::reader::{impl#2}::read_to_end_unbuffered)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:670 ~ quick_xml[b1a8]::reader::{impl#7}::namespace)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:672 ~ quick_xml[b1a8]::reader::{impl#7}::is_match)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:675 ~ quick_xml[b1a8]::reader::{impl#8}::find)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:680 ~ quick_xml[b1a8]::reader::{impl#8}::pop)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:683 ~ quick_xml[b1a8]::reader::{impl#8}::push)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:684 ~ quick_xml[b1a8]::reader::{impl#8}::resolve)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:690 ~ quick_xml[b1a8]::reader::{impl#9}::decode)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:692 ~ quick_xml[b1a8]::reader::{impl#9}::decode_owned)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:757 ~ quick_xml[b1a8]::writer::{impl#0}::new)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:759 ~ quick_xml[b1a8]::writer::{impl#0}::into_inner)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:760 ~ quick_xml[b1a8]::writer::{impl#0}::inner)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:766 ~ quick_xml[b1a8]::writer::{impl#0}::write_indent)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:781 ~ quick_xml[b1a8]::writer::{impl#1}::with_attributes)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:785 ~ quick_xml[b1a8]::writer::{impl#1}::write_cdata_content)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:786 ~ quick_xml[b1a8]::writer::{impl#1}::write_pi_content)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1014 ~ quick_xml[b1a8]::events::attributes::{impl#15}::clone)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1020 ~ quick_xml[b1a8]::events::attributes::{impl#17}::ne)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1027 ~ quick_xml[b1a8]::events::attributes::{impl#18}::clone)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1030 ~ quick_xml[b1a8]::events::attributes::{impl#19}::fmt)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1054 ~ quick_xml[b1a8]::events::attributes::{impl#22}::ne)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1074 ~ quick_xml[b1a8]::events::attributes::{impl#23}::clone)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1079 ~ quick_xml[b1a8]::events::attributes::{impl#25}::eq)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1080 ~ quick_xml[b1a8]::events::attributes::{impl#25}::ne)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1085 ~ quick_xml[b1a8]::events::attributes::{impl#27}::assert_receiver_is_total_eq)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1088 ~ quick_xml[b1a8]::events::attributes::{impl#28}::partial_cmp)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1091 ~ quick_xml[b1a8]::events::attributes::{impl#29}::cmp)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1094 ~ quick_xml[b1a8]::events::attributes::{impl#30}::hash)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1109 ~ quick_xml[b1a8]::events::attributes::{impl#31}::clone)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1112 ~ quick_xml[b1a8]::events::attributes::{impl#33}::fmt)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1119 ~ quick_xml[b1a8]::events::attributes::{impl#34}::clone)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1121 ~ quick_xml[b1a8]::events::attributes::{impl#35}::fmt)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2151 ~ quick_xml[b1a8]::events::{impl#20}::assert_receiver_is_total_eq)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2156 ~ quick_xml[b1a8]::events::{impl#22}::eq)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2157 ~ quick_xml[b1a8]::events::{impl#22}::ne)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2163 ~ quick_xml[b1a8]::events::{impl#23}::clone)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2171 ~ quick_xml[b1a8]::events::{impl#26}::assert_receiver_is_total_eq)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2176 ~ quick_xml[b1a8]::events::{impl#28}::eq)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2177 ~ quick_xml[b1a8]::events::{impl#28}::ne)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2188 ~ quick_xml[b1a8]::events::{impl#31}::assert_receiver_is_total_eq)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2193 ~ quick_xml[b1a8]::events::{impl#33}::eq)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2194 ~ quick_xml[b1a8]::events::{impl#33}::ne)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2200 ~ quick_xml[b1a8]::events::{impl#34}::clone)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2205 ~ quick_xml[b1a8]::events::{impl#36}::assert_receiver_is_total_eq)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2210 ~ quick_xml[b1a8]::events::{impl#38}::eq)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2211 ~ quick_xml[b1a8]::events::{impl#38}::ne)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2217 ~ quick_xml[b1a8]::events::{impl#39}::clone)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2222 ~ quick_xml[b1a8]::events::{impl#41}::assert_receiver_is_total_eq)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2227 ~ quick_xml[b1a8]::events::{impl#43}::eq)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2228 ~ quick_xml[b1a8]::events::{impl#43}::ne)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2262 ~ quick_xml[b1a8]::events::{impl#44}::clone)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2270 ~ quick_xml[b1a8]::events::{impl#47}::assert_receiver_is_total_eq)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2275 ~ quick_xml[b1a8]::events::{impl#49}::eq)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2276 ~ quick_xml[b1a8]::events::{impl#49}::ne)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2388 ~ quick_xml[b1a8]::reader::{impl#10}::clone)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2405 ~ quick_xml[b1a8]::reader::{impl#11}::clone)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2426 ~ quick_xml[b1a8]::reader::{impl#15}::clone)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2434 ~ quick_xml[b1a8]::reader::{impl#17}::fmt)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2436 ~ quick_xml[b1a8]::reader::{impl#18}::clone)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2442 ~ quick_xml[b1a8]::reader::{impl#19}::fmt)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2446 ~ quick_xml[b1a8]::reader::{impl#21}::clone)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2450 ~ quick_xml[b1a8]::reader::{impl#22}::clone)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2453 ~ quick_xml[b1a8]::reader::{impl#24}::fmt)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:3244 ~ quick_xml[b1a8]::utils::{impl#3}::eq)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:3245 ~ quick_xml[b1a8]::utils::{impl#3}::ne)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:3255 ~ quick_xml[b1a8]::utils::{impl#5}::ne)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:3283 ~ quick_xml[b1a8]::writer::{impl#3}::clone)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:3291 ~ quick_xml[b1a8]::writer::{impl#4}::clone)
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:879 ~ quick_xml[b1a8]::errors::Error::Io::{constructor#0})
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:882 ~ quick_xml[b1a8]::errors::Error::Utf8::{constructor#0})
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:885 ~ quick_xml[b1a8]::errors::Error::UnexpectedEof::{constructor#0})
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:891 ~ quick_xml[b1a8]::errors::Error::UnexpectedToken::{constructor#0})
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:894 ~ quick_xml[b1a8]::errors::Error::UnexpectedBang::{constructor#0})
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:899 ~ quick_xml[b1a8]::errors::Error::XmlDeclWithoutVersion::{constructor#0})
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:902 ~ quick_xml[b1a8]::errors::Error::InvalidAttr::{constructor#0})
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:905 ~ quick_xml[b1a8]::errors::Error::EscapeError::{constructor#0})
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:911 ~ quick_xml[b1a8]::escapei::EscapeError::EntityWithNull::{constructor#0})
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:914 ~ quick_xml[b1a8]::escapei::EscapeError::UnrecognizedSymbol::{constructor#0})
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:918 ~ quick_xml[b1a8]::escapei::EscapeError::UnterminatedEntity::{constructor#0})
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:923 ~ quick_xml[b1a8]::escapei::EscapeError::InvalidHexadecimal::{constructor#0})
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:928 ~ quick_xml[b1a8]::escapei::EscapeError::InvalidDecimal::{constructor#0})
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:931 ~ quick_xml[b1a8]::escapei::EscapeError::InvalidCodepoint::{constructor#0})
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1033 ~ quick_xml[b1a8]::events::attributes::AttrError::ExpectedEq::{constructor#0})
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1036 ~ quick_xml[b1a8]::events::attributes::AttrError::ExpectedValue::{constructor#0})
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1039 ~ quick_xml[b1a8]::events::attributes::AttrError::UnquotedValue::{constructor#0})
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1042 ~ quick_xml[b1a8]::events::attributes::AttrError::ExpectedQuote::{constructor#0})
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1046 ~ quick_xml[b1a8]::events::attributes::AttrError::Duplicated::{constructor#0})
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1058 ~ quick_xml[b1a8]::events::attributes::Attr::DoubleQ::{constructor#0})
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1062 ~ quick_xml[b1a8]::events::attributes::Attr::SingleQ::{constructor#0})
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1066 ~ quick_xml[b1a8]::events::attributes::Attr::Unquoted::{constructor#0})
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1070 ~ quick_xml[b1a8]::events::attributes::Attr::Empty::{constructor#0})
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1100 ~ quick_xml[b1a8]::events::attributes::State::Next::{constructor#0})
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1103 ~ quick_xml[b1a8]::events::attributes::State::SkipValue::{constructor#0})
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1106 ~ quick_xml[b1a8]::events::attributes::State::SkipEqValue::{constructor#0})
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2232 ~ quick_xml[b1a8]::events::Event::Start::{constructor#0})
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2235 ~ quick_xml[b1a8]::events::Event::End::{constructor#0})
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2238 ~ quick_xml[b1a8]::events::Event::Empty::{constructor#0})
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2241 ~ quick_xml[b1a8]::events::Event::Text::{constructor#0})
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2244 ~ quick_xml[b1a8]::events::Event::Comment::{constructor#0})
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2247 ~ quick_xml[b1a8]::events::Event::CData::{constructor#0})
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2250 ~ quick_xml[b1a8]::events::Event::Decl::{constructor#0})
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2253 ~ quick_xml[b1a8]::events::Event::PI::{constructor#0})
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:2256 ~ quick_xml[b1a8]::events::Event::DocType::{constructor#0})
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:3240 ~ quick_xml[b1a8]::utils::ByteBuf::{constructor#0})
+[2022-05-26T16:11:22Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:3247 ~ quick_xml[b1a8]::utils::Bytes::{constructor#0})
+    Finished test [unoptimized + debuginfo] target(s) in 3.57s
+     Running unittests src/lib.rs (target/debug/deps/quick_xml-38e42704f1d97ea2)

@@ -1,0 +1,304 @@
+========================================
+    use crate::convert::{Day, Per, Second, Minute, Hour};
+
+    #[test]
+    fn day_per_second() {
+        let day = Day;
+        let per_second: u32 = day.per(Second);
+        assert_eq!(per_second, 86_400);
+    }
+
+    #[test]
+    fn day_per_minute() {
+        let day = Day;
+        let per_minute: u32 = day.per(Minute);
+        assert_eq!(per_minute, 1_440);
+    }
+
+    #[test]
+    fn day_per_hour() {
+        let day = Day;
+        let per_hour: u32 = day.per(Hour);
+        assert_eq!(per_hour, 24);
+    }
+}
+False
+========================================
+    use crate::convert::{Hour, Day, Per};
+
+    #[test]
+    fn hour_per_day() {
+        let hour = Hour;
+        let result: <(Hour, Day) as Per>::Output = hour.per(Day);
+        assert_eq!(result, <(Hour, Day)>::VALUE);
+    }
+
+    // Additional tests can be added here
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+
+    use crate::convert::{Day, Hour, Microsecond, Millisecond, Minute, Per, Second, Week};
+
+    #[test]
+    fn microseconds_per_day() {
+        let micros_per_day = Microsecond.per(Day);
+        assert_eq!(micros_per_day, <(Microsecond, Day) as Per>::VALUE);
+    }
+
+    #[test]
+    fn microseconds_per_hour() {
+        let micros_per_hour = Microsecond.per(Hour);
+        assert_eq!(micros_per_hour, <(Microsecond, Hour) as Per>::VALUE);
+    }
+
+    #[test]
+    fn microseconds_per_millisecond() {
+        let micros_per_millisecond = Microsecond.per(Millisecond);
+        assert_eq!(micros_per_millisecond, <(Microsecond, Millisecond) as Per>::VALUE);
+    }
+
+    #[test]
+    fn microseconds_per_minute() {
+        let micros_per_minute = Microsecond.per(Minute);
+        assert_eq!(micros_per_minute, <(Microsecond, Minute) as Per>::VALUE);
+    }
+
+    #[test]
+    fn microseconds_per_second() {
+        let micros_per_second = Microsecond.per(Second);
+        assert_eq!(micros_per_second, <(Microsecond, Second) as Per>::VALUE);
+    }
+
+    #[test]
+    fn microseconds_per_week() {
+        let micros_per_week = Microsecond.per(Week);
+        assert_eq!(micros_per_week, <(Microsecond, Week) as Per>::VALUE);
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn millisecond_per_day() {
+        let millisecond = Millisecond;
+        let milliseconds_per_day: i64 = millisecond.per(Day);
+        assert_eq!(milliseconds_per_day, 86_400_000);
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::convert::{Minute, Day};
+    use crate::convert::sealed::Sealed;
+    use crate::convert::Per;
+
+    #[derive(Copy, Clone)]
+    struct Hours;
+
+    #[derive(Copy, Clone)]
+    struct NotAnActualUnit;
+
+    // Assuming Day, Minute already implements Sealed
+    // Assuming Day, Minute, Hours, NotAnActualUnit implements Copy and Clone
+    // Assuming Per is already implemented for (Minute, Day) and (Minute, Hours) somewhere in the code.
+    // We define a new unit for the strict purpose of this test and implement Sealed for it.
+
+    impl Sealed for NotAnActualUnit {}
+
+    impl Per for (Minute, NotAnActualUnit) {
+        type Output = u32;
+        const VALUE: Self::Output = 123;
+    }
+
+    #[test]
+    fn minute_per_day() {
+        // Assuming Per for (Minute, Day) is already implemented and VALUE is set properly
+        let minutes = Minute;
+        let days = Day;
+        let minutes_per_day: u32 = minutes.per(days); // The type annotation here is necessary
+        assert_eq!(minutes_per_day, 1440); // Replace 1440 with the actual VALUE from the implemented Per for (Minute, Day)
+    }
+
+    #[test]
+    fn minute_per_custom_unit() {
+        // This uses the custom unit NotAnActualUnit and it's Per implementation
+        let minutes = Minute;
+        let custom_unit = NotAnActualUnit;
+        let minutes_per_custom_unit = minutes.per(custom_unit);
+        assert_eq!(minutes_per_custom_unit, 123); // The value is the one provided in Per for (Minute, NotAnActualUnit)
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::convert::{Day, Nanosecond, Per};
+
+    #[test]
+    fn nanoseconds_per_day() {
+        assert_eq!(Nanosecond.per(Day), <(Nanosecond, Day) as Per>::VALUE);
+    }
+}
+True
+========================================
+    use crate::convert::{Second, Minute, Hour, Day, Week};
+
+    #[test]
+    fn test_seconds_per_minute() {
+        assert_eq!(Second.per(Minute), 60);
+    }
+
+    #[test]
+    fn test_seconds_per_hour() {
+        assert_eq!(Second.per(Hour), 3600);
+    }
+
+    #[test]
+    fn test_seconds_per_day() {
+        assert_eq!(Second.per(Day), 86400);
+    }
+
+    #[test]
+    fn test_seconds_per_week() {
+        assert_eq!(Second.per(Week), 604800);
+    }
+}
+True
+========================================
+    use crate::convert::{Day, Hour, Per, Week};
+
+    // You would need to create dummy implementations of the Per trait
+    // for the combinations of Week with Day and Hour, (Week, Day) and (Week, Hour)
+    // Since we do not have the exact trait implementations, we will have to assume
+    // what these implementations would be for test purposes.
+
+    // Here is an example of what the dummy implementations might look like
+    // You would need to do this for all types that Week can be converted into
+    impl Per for (Week, Day) {
+        type Output = i32;
+        const VALUE: Self::Output = 7; // Assuming there are 7 days in a week
+    }
+
+    impl Per for (Week, Hour) {
+        type Output = i32;
+        const VALUE: Self::Output = 7 * 24; // Assuming there are 7 days in a week, each with 24 hours
+    }
+
+    #[test]
+    fn week_per_day() {
+        let week = Week;
+        let days_per_week = week.per(Day);
+        assert_eq!(days_per_week, 7); // Assuming 1 week has 7 days
+    }
+
+    #[test]
+    fn week_per_hour() {
+        let week = Week;
+        let hours_per_week = week.per(Hour);
+        assert_eq!(hours_per_week, 7 * 24); // Assuming 1 week has 7 days, each has 24 hours
+    }
+
+    // Add tests for each trait impl
+}
+False
+========================================
+    use crate::days_in_year;
+
+    #[test]
+    fn test_days_in_year() {
+        assert_eq!(days_in_year(1900), 365);
+        assert_eq!(days_in_year(2000), 366);
+        assert_eq!(days_in_year(2004), 366);
+        assert_eq!(days_in_year(2005), 365);
+        assert_eq!(days_in_year(2100), 365);
+        assert_eq!(days_in_year(2001), 365);
+        assert_eq!(days_in_year(2012), 366);
+        assert_eq!(days_in_year(2015), 365);
+        assert_eq!(days_in_year(2016), 366);
+        assert_eq!(days_in_year(2017), 365);
+        assert_eq!(days_in_year(2019), 365);
+        assert_eq!(days_in_year(2020), 366);
+        assert_eq!(days_in_year(2024), 366);
+        assert_eq!(days_in_year(2025), 365);
+    }
+}
+False
+========================================
+    use crate::is_leap_year;
+
+    #[test]
+    fn test_is_leap_year() {
+        assert!(!is_leap_year(1900), "1900 is not a leap year");
+        assert!(is_leap_year(2000), "2000 is a leap year");
+        assert!(is_leap_year(2004), "2004 is a leap year");
+        assert!(!is_leap_year(2005), "2005 is not a leap year");
+        assert!(!is_leap_year(2100), "2100 is not a leap year");
+        assert!(is_leap_year(2400), "2400 is a leap year");
+        assert!(!is_leap_year(1901), "1901 is not a leap year");
+        assert!(is_leap_year(1996), "1996 is a leap year");
+        assert!(!is_leap_year(1903), "1903 is not a leap year");
+    }
+}
+False
+========================================
+    use crate::weeks_in_year;
+
+    #[test]
+    fn test_weeks_in_year_regular_years() {
+        assert_eq!(weeks_in_year(2018), 52);
+        assert_eq!(weeks_in_year(2019), 52);
+        assert_eq!(weeks_in_year(2021), 52);
+        assert_eq!(weeks_in_year(2022), 52);
+    }
+
+    #[test]
+    fn test_weeks_in_year_leap_years() {
+        assert_eq!(weeks_in_year(2020), 53);
+        assert_eq!(weeks_in_year(2024), 53);
+        assert_eq!(weeks_in_year(2028), 53);
+    }
+
+    #[test]
+    fn test_weeks_in_year_edge_cases() {
+        assert_eq!(weeks_in_year(1992), 53);
+        assert_eq!(weeks_in_year(1600), 52);
+        assert_eq!(weeks_in_year(2000), 52);
+        assert_eq!(weeks_in_year(2400), 52);
+    }
+
+    #[test]
+    fn test_weeks_in_year_first_and_last_of_cycle() {
+        assert_eq!(weeks_in_year(1), 52);
+        assert_eq!(weeks_in_year(399), 52);
+        assert_eq!(weeks_in_year(400), 52);
+        assert_eq!(weeks_in_year(401), 52);
+    }
+
+    #[test]
+    fn test_weeks_in_year_arbitrary_test_cases() {
+        assert_eq!(weeks_in_year(4), 53);
+        assert_eq!(weeks_in_year(100), 52);
+        assert_eq!(weeks_in_year(300), 52);
+        assert_eq!(weeks_in_year(303), 53);
+        assert_eq!(weeks_in_year(399), 52);
+        assert_eq!(weeks_in_year(400), 52);
+    }
+
+    #[test]
+    fn test_weeks_in_year_max_min_values() {
+        assert_eq!(weeks_in_year(i32::MIN), 52);
+        assert_eq!(weeks_in_year(i32::MAX), 52);
+    }
+}
+False
+time time-core 4 11

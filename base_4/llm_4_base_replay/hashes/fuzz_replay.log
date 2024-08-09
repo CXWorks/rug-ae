@@ -1,0 +1,144 @@
+hashes blake2 blake2 ['/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/blake2/src/simd/simdty.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/blake2/src/simd/simdop.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/blake2/src/simd/simdint.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/blake2/src/simd/simd_opt.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/blake2/src/simd/simd_opt/u64x4.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/blake2/src/simd/simd_opt/u32x4.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/blake2/src/macros.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/blake2/src/consts.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/blake2/src/as_bytes.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/blake2/src/lib.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/blake2/src/simd.rs']
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/blake2/src/simd/simdty.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/blake2/src/simd/simdop.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/blake2/src/simd/simdint.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/blake2/src/simd/simd_opt.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/blake2/src/simd/simd_opt/u64x4.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/blake2/src/simd/simd_opt/u32x4.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/blake2/src/macros.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/blake2/src/consts.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/blake2/src/as_bytes.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/blake2/src/lib.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/blake2/src/simd.rs
+done
+hashes fsb fsb ['/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/fsb/src/macros.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/fsb/src/lib.rs']
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/fsb/src/macros.rs
+err tests_llm_16_7_llm_16_7 reset_test
+err tests_llm_16_19 test_finalize_fixed_core
+err tests_llm_16_27 test_computing_w_indices
+err tests_llm_16_29 dividing_bits_invalid_size
+err tests_llm_16_29 dividing_bits_valid_size_five
+err tests_llm_16_29 dividing_bits_valid_size_six
+err tests_llm_16_30_llm_16_30 test_shift_and_truncate_no_shift
+err tests_llm_16_30_llm_16_30 test_shift_and_truncate_small_shift
+err tests_llm_16_30_llm_16_30 test_shift_and_truncate_large_shift
+err tests_llm_16_39_llm_16_39 test_dividing_bits_5
+err tests_llm_16_39_llm_16_39 test_dividing_bits_6
+err tests_llm_16_39_llm_16_39 test_dividing_bits_invalid_size
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/fsb/src/lib.rs
+done
+hashes gost94 gost94 ['/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/gost94/src/params.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/gost94/src/lib.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/gost94/src/gost94_core.rs']
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/gost94/src/params.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/gost94/src/lib.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/gost94/src/gost94_core.rs
+err tests_llm_16_8 shuffle_test
+err tests_llm_16_10 update_sigma_test
+err tests_llm_16_17_llm_16_17 test_sbox
+done
+hashes groestl groestl ['/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/groestl/src/table.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/groestl/src/compress512.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/groestl/src/compress1024.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/groestl/src/lib.rs']
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/groestl/src/table.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/groestl/src/compress512.rs
+err tests_llm_16_18_llm_16_18 test_rndq
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/groestl/src/compress1024.rs
+err tests_llm_16_9_llm_16_9 test_column
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/groestl/src/lib.rs
+err tests_llm_16_2 update_blocks_empty
+err tests_llm_16_2 update_blocks_single
+err tests_llm_16_2 update_blocks_multiple
+err tests_llm_16_2 update_blocks_state_change
+err tests_llm_16_2 update_blocks_invalid_size
+err tests_llm_16_6 update_blocks_test
+done
+hashes md-5 md5 ['/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/md5/src/compress.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/md5/src/lib.rs']
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/md5/src/compress.rs
+err tests_llm_16_11_llm_16_11 test_op_i
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/md5/src/lib.rs
+err tests_llm_16_2 test_reset
+done
+hashes md2 md2 ['/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/md2/src/consts.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/md2/src/lib.rs']
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/md2/src/consts.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/md2/src/lib.rs
+done
+hashes md4 md4 ['/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/md4/src/lib.rs']
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/md4/src/lib.rs
+err tests_llm_16_1 test_default
+err tests_llm_16_5_llm_16_5 test_update_blocks
+done
+hashes ripemd ripemd ['/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/ripemd/src/c128.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/ripemd/src/c320.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/ripemd/src/c256.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/ripemd/src/lib.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/ripemd/src/c160.rs']
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/ripemd/src/c128.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/ripemd/src/c320.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/ripemd/src/c256.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/ripemd/src/lib.rs
+err tests_llm_16_7 test_reset
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/ripemd/src/c160.rs
+done
+hashes sha1 sha1 ['/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/sha1/src/compress/aarch64.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/sha1/src/compress/soft.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/sha1/src/compress/x86.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/sha1/src/compress.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/sha1/src/lib.rs']
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/sha1/src/compress/aarch64.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/sha1/src/compress/soft.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/sha1/src/compress/x86.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/sha1/src/compress.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/sha1/src/lib.rs
+done
+hashes sha2 sha2 ['/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/sha2/src/sha512.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/sha2/src/sha512/aarch64.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/sha2/src/sha512/soft.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/sha2/src/sha512/x86.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/sha2/src/sha256/aarch64.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/sha2/src/sha256/soft.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/sha2/src/sha256/x86.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/sha2/src/core_api.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/sha2/src/sha256.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/sha2/src/consts.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/sha2/src/lib.rs']
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/sha2/src/sha512.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/sha2/src/sha512/aarch64.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/sha2/src/sha512/soft.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/sha2/src/sha512/x86.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/sha2/src/sha256/aarch64.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/sha2/src/sha256/soft.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/sha2/src/sha256/x86.rs
+err tests_llm_16_24 test_compress
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/sha2/src/core_api.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/sha2/src/sha256.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/sha2/src/consts.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/sha2/src/lib.rs
+done
+hashes sha3 sha3 ['/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/sha3/src/state.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/sha3/src/macros.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/sha3/src/lib.rs']
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/sha3/src/state.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/sha3/src/macros.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/sha3/src/lib.rs
+done
+hashes shabal shabal ['/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/shabal/src/core_api.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/shabal/src/consts.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/shabal/src/lib.rs']
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/shabal/src/core_api.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/shabal/src/consts.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/shabal/src/lib.rs
+done
+hashes sm3 sm3 ['/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/sm3/src/compress.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/sm3/src/consts.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/sm3/src/lib.rs']
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/sm3/src/compress.rs
+err tests_llm_16_6 test_compress
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/sm3/src/consts.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/sm3/src/lib.rs
+done
+hashes streebog streebog ['/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/streebog/src/table.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/streebog/src/core_api.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/streebog/src/consts.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/streebog/src/lib.rs']
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/streebog/src/table.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/streebog/src/core_api.rs
+err tests_llm_16_12 test_to_bytes
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/streebog/src/consts.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/streebog/src/lib.rs
+done
+hashes tiger tiger ['/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/tiger/src/tables.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/tiger/src/compress.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/tiger/src/lib.rs']
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/tiger/src/tables.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/tiger/src/compress.rs
+err tests_llm_16_11_llm_16_11 test_compress
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/tiger/src/lib.rs
+err tests_llm_16_5 update_blocks_test
+err tests_llm_16_10 compress_mock
+err tests_llm_16_10 update_blocks_single_block
+err tests_llm_16_10 update_blocks_multiple_blocks
+done
+hashes whirlpool whirlpool ['/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/whirlpool/src/compress.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/whirlpool/src/consts.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/whirlpool/src/lib.rs']
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/whirlpool/src/compress.rs
+err tests_llm_16_8 test_compress_single_block
+err tests_llm_16_8 test_compress_multiple_blocks
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/whirlpool/src/consts.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/hashes/whirlpool/src/lib.rs
+err tests_llm_16_6 update_len_adds_length_properly
+err tests_llm_16_7 test_adc_simple_addition
+err tests_llm_16_7 test_adc_with_carry
+err tests_llm_16_7 test_adc_large_numbers
+err tests_llm_16_7 test_adc_zero_addition
+err tests_llm_16_7 test_adc_random_addition
+err tests_llm_16_10_llm_16_10 test_convert_single
+err tests_llm_16_10_llm_16_10 test_convert_multiple
+err tests_llm_16_10_llm_16_10 test_convert_invalid_alignment
+done

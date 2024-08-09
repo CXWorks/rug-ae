@@ -1,0 +1,46 @@
+lsd lsd . ['/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/flags.rs', '/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/app.rs', '/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/color.rs', '/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/main.rs', '/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/color/theme.rs', '/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/config_file.rs', '/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/display.rs', '/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/sort.rs', '/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/meta/owner.rs', '/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/meta/filetype.rs', '/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/meta/inode.rs', '/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/meta/date.rs', '/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/meta/links.rs', '/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/meta/permissions.rs', '/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/meta/symlink.rs', '/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/meta/access_control.rs', '/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/meta/mod.rs', '/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/meta/name.rs', '/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/meta/size.rs', '/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/meta/windows_utils.rs', '/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/meta/indicator.rs', '/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/core.rs', '/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/icon.rs', '/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/flags/sorting.rs', '/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/flags/color.rs', '/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/flags/indicators.rs', '/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/flags/icons.rs', '/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/flags/date.rs', '/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/flags/permission.rs', '/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/flags/ignore_globs.rs', '/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/flags/symlinks.rs', '/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/flags/dereference.rs', '/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/flags/display.rs', '/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/flags/hyperlink.rs', '/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/flags/recursion.rs', '/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/flags/layout.rs', '/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/flags/blocks.rs', '/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/flags/total_size.rs', '/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/flags/symlink_arrow.rs', '/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/flags/size.rs']
+/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/flags.rs
+/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/app.rs
+/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/color.rs
+/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/main.rs
+/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/color/theme.rs
+err tests_llm_16_159 test_with_yaml
+/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/config_file.rs
+/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/display.rs
+/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/sort.rs
+/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/meta/owner.rs
+/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/meta/filetype.rs
+/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/meta/inode.rs
+/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/meta/date.rs
+/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/meta/links.rs
+/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/meta/permissions.rs
+/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/meta/symlink.rs
+/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/meta/access_control.rs
+/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/meta/mod.rs
+/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/meta/name.rs
+err tests_llm_16_125 test_eq
+/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/meta/size.rs
+/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/meta/windows_utils.rs
+/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/meta/indicator.rs
+/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/core.rs
+/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/icon.rs
+err tests_llm_16_225 test_get_default_icons_by_extension
+err tests_rug_86 test_rug
+/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/flags/sorting.rs
+/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/flags/color.rs
+/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/flags/indicators.rs
+/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/flags/icons.rs
+/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/flags/date.rs
+/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/flags/permission.rs
+/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/flags/ignore_globs.rs
+/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/flags/symlinks.rs
+/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/flags/dereference.rs
+/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/flags/display.rs
+/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/flags/hyperlink.rs
+/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/flags/recursion.rs
+/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/flags/layout.rs
+/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/flags/blocks.rs
+/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/flags/total_size.rs
+/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/flags/symlink_arrow.rs
+/mnt/sda/xiang/rustyunit/rustyunit_replay/lsd/./src/flags/size.rs
+done

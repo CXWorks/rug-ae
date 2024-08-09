@@ -1,0 +1,28 @@
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/rustc-demangle/./src/legacy.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/rustc-demangle/./src/v0.rs
+err tests_llm_16_47 test_basic_type
+   Compiling rustc-demangle v0.1.23 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/rustc-demangle)
+error[E0277]: the trait bound `(u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8): Arbitrary<'_>` is not satisfied
+    --> src/v0.rs:1947:748
+     |
+1947 | ... = <(u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8) as arbitrary::Arbitrary>::arbitrary(&m...
+     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Arbitrary<'_>` is not implemented for `(u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8, &str, u8)`
+     |
+     = help: the following other types implement trait `Arbitrary<'a>`:
+               ()
+               (B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, A)
+               (C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, B)
+               (D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, C)
+               (E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, D)
+               (F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, E)
+               (G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, F)
+               (H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, G)
+             and 19 others
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `rustc-demangle` due to previous error
+
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/rustc-demangle/./src/lib.rs
+done
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/rustc-demangle/crates/capi/src/lib.rs
+done

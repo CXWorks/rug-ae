@@ -1,0 +1,326 @@
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/blake2/src/simd/simdty.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/blake2/src/simd/simdop.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/blake2/src/simd/simdint.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/blake2/src/simd/simd_opt.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/blake2/src/simd/simd_opt/u64x4.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/blake2/src/simd/simd_opt/u32x4.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/blake2/src/macros.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/blake2/src/consts.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/blake2/src/as_bytes.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/blake2/src/lib.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/blake2/src/simd.rs
+done
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/fsb/src/macros.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/fsb/src/lib.rs
+done
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/gost94/src/params.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/gost94/src/lib.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/gost94/src/gost94_core.rs
+err tests_llm_16_8 shuffle_test
+   Compiling gost94 v0.10.4 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/gost94)
+error[E0277]: the trait bound `(u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8): Arbitrary<'_>` is not satisfied
+   --> gost94/src/gost94_core.rs:360:1105
+    |
+360 | ... = <(u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8) as arbitrary::Arbitrary>::arbitrary(&m...
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Arbitrary<'_>` is not implemented for `(u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8)`
+    |
+    = help: the following other types implement trait `Arbitrary<'a>`:
+              ()
+              (B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, A)
+              (C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, B)
+              (D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, C)
+              (E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, D)
+              (F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, E)
+              (G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, F)
+              (H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, G)
+            and 19 others
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `gost94` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_10 update_sigma_test
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling gost94 v0.10.4 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/gost94)
+error[E0277]: the trait bound `(u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8): Arbitrary<'_>` is not satisfied
+   --> gost94/src/gost94_core.rs:548:595
+    |
+548 | ... = <(u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8) as arbitrary::Arbitrary>::arbitrary(&m...
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Arbitrary<'_>` is not implemented for `(u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8)`
+    |
+    = help: the following other types implement trait `Arbitrary<'a>`:
+              ()
+              (B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, A)
+              (C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, B)
+              (D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, C)
+              (E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, D)
+              (F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, E)
+              (G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, F)
+              (H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, G)
+            and 19 others
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `gost94` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_17_llm_16_17 test_sbox
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling gost94 v0.10.4 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/gost94)
+error[E0277]: the trait bound `(u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32): Arbitrary<'_>` is not satisfied
+   --> gost94/src/gost94_core.rs:640:2617
+    |
+640 | ... = <(u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32) as arbitrary::Arbitrary>::arbitrary(&m...
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Arbitrary<'_>` is not implemented for `(u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32)`
+    |
+    = help: the following other types implement trait `Arbitrary<'a>`:
+              ()
+              (B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, A)
+              (C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, B)
+              (D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, C)
+              (E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, D)
+              (F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, E)
+              (G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, F)
+              (H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, G)
+            and 19 others
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `gost94` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+done
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/groestl/src/table.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/groestl/src/compress512.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/groestl/src/compress1024.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/groestl/src/lib.rs
+done
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/md5/src/compress.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/md5/src/lib.rs
+done
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/md2/src/consts.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/md2/src/lib.rs
+done
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/md4/src/lib.rs
+done
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/ripemd/src/c128.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/ripemd/src/c320.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/ripemd/src/c256.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/ripemd/src/lib.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/ripemd/src/c160.rs
+done
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/sha1/src/compress/aarch64.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/sha1/src/compress/soft.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/sha1/src/compress/x86.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/sha1/src/compress.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/sha1/src/lib.rs
+done
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/sha2/src/sha512.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/sha2/src/sha512/aarch64.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/sha2/src/sha512/soft.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/sha2/src/sha512/x86.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/sha2/src/sha256/aarch64.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/sha2/src/sha256/soft.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/sha2/src/sha256/x86.rs
+err tests_llm_16_24 test_compress
+   Compiling sha2 v0.10.7 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/sha2)
+error[E0277]: the trait bound `(u32, u32, u32, u32, u32, u32, u32, u32, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u32, u32, u32, u32, u32, u32, u32, u32): Arbitrary<'_>` is not satisfied
+   --> sha2/src/sha256/x86.rs:100:1377
+    |
+100 | ... = <(u32, u32, u32, u32, u32, u32, u32, u32, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u32, u32, u32, u32, u32, u32, u32, u32) as arbitrary::Arbitrary>::arbitrary(&m...
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Arbitrary<'_>` is not implemented for `(u32, u32, u32, u32, u32, u32, u32, u32, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u32, u32, u32, u32, u32, u32, u32, u32)`
+    |
+    = help: the following other types implement trait `Arbitrary<'a>`:
+              ()
+              (B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, A)
+              (C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, B)
+              (D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, C)
+              (E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, D)
+              (F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, E)
+              (G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, F)
+              (H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, G)
+            and 19 others
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `sha2` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/sha2/src/core_api.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/sha2/src/sha256.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/sha2/src/consts.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/sha2/src/lib.rs
+done
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/sha3/src/state.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/sha3/src/macros.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/sha3/src/lib.rs
+done
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/shabal/src/core_api.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/shabal/src/consts.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/shabal/src/lib.rs
+done
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/sm3/src/compress.rs
+err tests_llm_16_6 test_compress
+   Compiling libc v0.2.151
+   Compiling proc-macro2 v1.0.70
+   Compiling cfg-if v1.0.0
+   Compiling unicode-ident v1.0.12
+   Compiling version_check v0.9.4
+   Compiling syn v1.0.109
+   Compiling typenum v1.16.0
+   Compiling cc v1.0.79
+   Compiling gimli v0.28.1
+   Compiling ppv-lite86 v0.2.17
+   Compiling adler v1.0.2
+   Compiling anyhow v1.0.75
+   Compiling memchr v2.6.4
+   Compiling proc-macro-hack v0.5.20+deprecated
+   Compiling either v1.9.0
+   Compiling rustc-demangle v0.1.23
+   Compiling pretty-hex v0.3.0
+   Compiling lazy_static v1.4.0
+   Compiling blobby v0.3.1
+   Compiling arbitrary v1.3.2
+   Compiling miniz_oxide v0.7.1
+   Compiling generic-array v0.14.7
+   Compiling object v0.32.1
+   Compiling backtrace v0.3.69
+   Compiling quote v1.0.33
+   Compiling getrandom v0.2.11
+   Compiling hex-literal-impl v0.2.3
+   Compiling rand_core v0.6.4
+   Compiling rand_chacha v0.3.1
+   Compiling hex-literal v0.2.2
+   Compiling block-buffer v0.10.4
+   Compiling crypto-common v0.1.6
+   Compiling addr2line v0.21.0
+   Compiling rand v0.8.5
+   Compiling digest v0.10.7
+   Compiling bolero-generator-derive v0.8.0
+   Compiling bolero-generator v0.8.0
+   Compiling bolero-engine v0.8.1
+   Compiling bolero v0.8.0
+   Compiling sm3 v0.4.2 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/sm3)
+error[E0277]: the trait bound `(u32, u32, u32, u32, u32, u32, u32, u32, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u32, u32, u32, u32, u32, u32, u32, u32): Arbitrary<'_>` is not satisfied
+   --> sm3/src/compress.rs:211:1377
+    |
+211 | ... = <(u32, u32, u32, u32, u32, u32, u32, u32, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u32, u32, u32, u32, u32, u32, u32, u32) as arbitrary::Arbitrary>::arbitrary(&m...
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Arbitrary<'_>` is not implemented for `(u32, u32, u32, u32, u32, u32, u32, u32, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u32, u32, u32, u32, u32, u32, u32, u32)`
+    |
+    = help: the following other types implement trait `Arbitrary<'a>`:
+              ()
+              (B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, A)
+              (C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, B)
+              (D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, C)
+              (E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, D)
+              (F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, E)
+              (G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, F)
+              (H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, G)
+            and 19 others
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `sm3` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/sm3/src/consts.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/sm3/src/lib.rs
+done
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/streebog/src/table.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/streebog/src/core_api.rs
+err tests_llm_16_12 test_to_bytes
+   Compiling streebog v0.10.2 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/streebog)
+error[E0277]: the trait bound `(u64, u64, u64, u64, u64, u64, u64, u64, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8): Arbitrary<'_>` is not satisfied
+   --> streebog/src/core_api.rs:257:1241
+    |
+257 | ... = <(u64, u64, u64, u64, u64, u64, u64, u64, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8) as arbitrary::Arbitrary>::arbitrary(&m...
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Arbitrary<'_>` is not implemented for `(u64, u64, u64, u64, u64, u64, u64, u64, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8)`
+    |
+    = help: the following other types implement trait `Arbitrary<'a>`:
+              ()
+              (B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, A)
+              (C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, B)
+              (D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, C)
+              (E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, D)
+              (F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, E)
+              (G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, F)
+              (H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, G)
+            and 19 others
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `streebog` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/streebog/src/consts.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/streebog/src/lib.rs
+done
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/tiger/src/tables.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/tiger/src/compress.rs
+err tests_llm_16_11_llm_16_11 test_compress
+    Blocking waiting for file lock on package cache
+   Compiling libc v0.2.151
+   Compiling cfg-if v1.0.0
+   Compiling proc-macro2 v1.0.70
+   Compiling unicode-ident v1.0.12
+   Compiling typenum v1.16.0
+   Compiling syn v1.0.109
+   Compiling version_check v0.9.4
+   Compiling cc v1.0.79
+   Compiling memchr v2.6.4
+   Compiling gimli v0.28.1
+   Compiling adler v1.0.2
+   Compiling anyhow v1.0.75
+   Compiling ppv-lite86 v0.2.17
+   Compiling proc-macro-hack v0.5.20+deprecated
+   Compiling either v1.9.0
+   Compiling rustc-demangle v0.1.23
+   Compiling pretty-hex v0.3.0
+   Compiling lazy_static v1.4.0
+   Compiling blobby v0.3.1
+   Compiling arbitrary v1.3.2
+   Compiling miniz_oxide v0.7.1
+   Compiling generic-array v0.14.7
+   Compiling object v0.32.1
+   Compiling backtrace v0.3.69
+   Compiling quote v1.0.33
+   Compiling getrandom v0.2.11
+   Compiling hex-literal-impl v0.2.3
+   Compiling rand_core v0.6.4
+   Compiling rand_chacha v0.3.1
+   Compiling hex-literal v0.2.2
+   Compiling rand v0.8.5
+   Compiling block-buffer v0.10.4
+   Compiling crypto-common v0.1.6
+   Compiling addr2line v0.21.0
+   Compiling digest v0.10.7
+   Compiling bolero-generator-derive v0.8.0
+   Compiling bolero-generator v0.8.0
+   Compiling bolero-engine v0.8.1
+   Compiling bolero v0.8.0
+   Compiling tiger v0.2.1 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/tiger)
+error[E0277]: the trait bound `(u64, u64, u64, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u64, u64, u64): Arbitrary<'_>` is not satisfied
+  --> tiger/src/compress.rs:71:1207
+   |
+71 | ... = <(u64, u64, u64, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u64, u64, u64) as arbitrary::Arbitrary>::arbitrary(&m...
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Arbitrary<'_>` is not implemented for `(u64, u64, u64, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u8, u64, u64, u64)`
+   |
+   = help: the following other types implement trait `Arbitrary<'a>`:
+             ()
+             (B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, A)
+             (C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, B)
+             (D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, C)
+             (E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, D)
+             (F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, E)
+             (G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, F)
+             (H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, G)
+           and 19 others
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `tiger` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/tiger/src/lib.rs
+done
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/whirlpool/src/compress.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/whirlpool/src/consts.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/hashes/whirlpool/src/lib.rs
+done

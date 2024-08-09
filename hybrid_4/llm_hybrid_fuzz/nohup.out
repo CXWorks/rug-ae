@@ -1,0 +1,2 @@
+['chrono', 'humantime', 'semver', 'rust-crc32fast', 'mio', 'rustc-demangle', 'bincode', 'num-traits', 'uuid', 'time', 'hashes', 'json', 'itoa', 'textwrap', 'toml', 'ryu', 'nom']
+done

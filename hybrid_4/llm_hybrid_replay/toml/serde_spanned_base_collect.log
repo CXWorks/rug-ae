@@ -1,0 +1,293 @@
+========================================
+    use crate::spanned::Spanned;
+    use std::cmp::Ordering;
+
+    #[test]
+    fn test_cmp() {
+        let span_a = std::ops::Range { start: 0, end: 5 };
+        let span_b = std::ops::Range { start: 5, end: 10 };
+        let spanned_value_a = Spanned { span: span_a.clone(), value: 10 };
+        let spanned_value_b = Spanned { span: span_b, value: 20 };
+        let spanned_value_c = Spanned { span: span_a, value: 10 };
+
+        assert_eq!(spanned_value_a.cmp(&spanned_value_b), Ordering::Less);
+        assert_eq!(spanned_value_b.cmp(&spanned_value_a), Ordering::Greater);
+        assert_eq!(spanned_value_a.cmp(&spanned_value_c), Ordering::Equal);
+    }
+}
+True
+========================================
+    use crate::Spanned;
+    use std::cmp::PartialEq;
+
+    #[test]
+    fn test_eq() {
+        let span_a = Spanned {
+            span: 0..5,
+            value: "hello".to_string(),
+        };
+        let span_b = Spanned {
+            span: 5..10,
+            value: "hello".to_string(),
+        };
+        let span_c = Spanned {
+            span: 0..5,
+            value: "world".to_string(),
+        };
+        let span_d = Spanned {
+            span: 5..10,
+            value: "world".to_string(),
+        };
+
+        assert!(span_a.eq(&span_b), "Values are equal but spans are different");
+        assert!(!span_a.eq(&span_c), "Values are different and spans are equal");
+        assert!(!span_c.eq(&span_d), "Values are equal but spans are different");
+        assert!(span_b.eq(&span_d), "Values are equal and spans are different");
+    }
+}
+True
+========================================
+    use crate::Spanned;
+    use std::cmp::Ordering;
+
+    #[test]
+    fn test_partial_cmp_equal() {
+        let span_a = Spanned { span: 0..5, value: 10 };
+        let span_b = Spanned { span: 3..8, value: 10 };
+
+        assert_eq!(span_a.partial_cmp(&span_b), Some(Ordering::Equal));
+    }
+
+    #[test]
+    fn test_partial_cmp_less() {
+        let span_a = Spanned { span: 0..5, value: 5 };
+        let span_b = Spanned { span: 3..8, value: 10 };
+
+        assert_eq!(span_a.partial_cmp(&span_b), Some(Ordering::Less));
+    }
+
+    #[test]
+    fn test_partial_cmp_greater() {
+        let span_a = Spanned { span: 0..5, value: 10 };
+        let span_b = Spanned { span: 3..8, value: 5 };
+
+        assert_eq!(span_a.partial_cmp(&span_b), Some(Ordering::Greater));
+    }
+
+    #[test]
+    fn test_partial_cmp_none() {
+        let span_a = Spanned { span: 0..5, value: std::f64::NAN };
+        let span_b = Spanned { span: 3..8, value: 5.0 };
+
+        assert_eq!(span_a.partial_cmp(&span_b), None);
+    }
+}
+True
+========================================
+    use crate::Spanned;
+    use std::convert::AsMut;
+
+    #[test]
+    fn test_as_mut() {
+        let mut spanned_value = Spanned {
+            span: 0..10,
+            value: 42,
+        };
+
+        let value_mut: &mut i32 = spanned_value.as_mut();
+        *value_mut = 10;
+
+        assert_eq!(*spanned_value.get_ref(), 10);
+    }
+}
+True
+========================================
+    use crate::Spanned;
+    use std::convert::AsRef;
+
+    #[test]
+    fn test_as_ref() {
+        let spanned_value = Spanned { span: 0..10, value: 42 };
+        let value_ref: &i32 = spanned_value.as_ref();
+        assert_eq!(value_ref, &spanned_value.value);
+    }
+}
+True
+========================================
+    use crate::Spanned;
+    use std::hash::{Hash, Hasher};
+
+    // Dummy hasher that just accumulates the raw bytes.
+    struct DummyHasher(u64);
+    impl Hasher for DummyHasher {
+        fn finish(&self) -> u64 {
+            self.0
+        }
+        fn write(&mut self, bytes: &[u8]) {
+            for byte in bytes {
+                self.0 = self.0.wrapping_add(u64::from(*byte));
+            }
+        }
+    }
+
+    #[test]
+    fn hash_spanned_value() {
+        let spanned_a = Spanned {
+            span: 0..0, // span should not affect the hash
+            value: "Test Value A",
+        };
+        let spanned_b = Spanned {
+            span: 100..100, // span should not affect the hash
+            value: "Test Value A",
+        };
+
+        // Hasher instances
+        let mut hasher_a = DummyHasher(0);
+        let mut hasher_b = DummyHasher(0);
+
+        // Hash spanned values
+        spanned_a.hash(&mut hasher_a);
+        spanned_b.hash(&mut hasher_b);
+
+        // Hashes should match as values are the same
+        assert_eq!(hasher_a.finish(), hasher_b.finish());
+    }
+
+    #[test]
+    fn hash_different_spanned_values() {
+        let spanned_a = Spanned {
+            span: 0..0, // span should not affect the hash
+            value: "Test Value A",
+        };
+        let spanned_b = Spanned {
+            span: 100..100, // span should not affect the hash
+            value: "Test Value B",
+        };
+
+        // Hasher instances
+        let mut hasher_a = DummyHasher(0);
+        let mut hasher_b = DummyHasher(0);
+
+        // Hash spanned values
+        spanned_a.hash(&mut hasher_a);
+        spanned_b.hash(&mut hasher_b);
+
+        // Hashes should not match as the values inside Spanned are different
+        assert_ne!(hasher_a.finish(), hasher_b.finish());
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use std::borrow::Borrow;
+
+    #[test]
+    fn spanned_borrow_returns_correct_str_slice() {
+        let spanned = Spanned {
+            span: 0..10,
+            value: "Hello, World!".to_string(),
+        };
+        let borrowed: &str = spanned.borrow();
+        assert_eq!(borrowed, "Hello, World!");
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn test_get_mut() {
+        let mut spanned_value = Spanned {
+            span: 0..10,
+            value: 42,
+        };
+
+        *spanned_value.get_mut() = 100;
+
+        assert_eq!(spanned_value.value, 100);
+    }
+}
+True
+========================================
+    use crate::Spanned;
+
+    #[test]
+    fn test_get_ref() {
+        // Example for a simple type like i32
+        let spanned_i32 = Spanned {
+            span: 0..10,
+            value: 42,
+        };
+        assert_eq!(spanned_i32.get_ref(), &42);
+        
+        // Example for a heap-allocated type like String
+        let spanned_string = Spanned {
+            span: 10..20,
+            value: "Hello, World!".to_string(),
+        };
+        assert_eq!(spanned_string.get_ref(), "Hello, World!");
+        
+        // Example for a complex type like Vec
+        let spanned_vec = Spanned {
+            span: 20..30,
+            value: vec![1, 2, 3],
+        };
+        assert_eq!(spanned_vec.get_ref(), &vec![1, 2, 3]);
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn test_into_inner() {
+        // Test with a simple primitive type
+        let spanned_int = Spanned {
+            span: 0..10,
+            value: 42,
+        };
+        let value_int = spanned_int.into_inner();
+        assert_eq!(value_int, 42);
+
+        // Test with a more complex type, like a String
+        let spanned_string = Spanned {
+            span: 10..20,
+            value: String::from("Hello, World!"),
+        };
+        let value_string = spanned_string.into_inner();
+        assert_eq!(value_string, "Hello, World!");
+
+        // Test with a type that implements Eq but not Copy
+        let spanned_vec = Spanned {
+            span: 20..30,
+            value: vec![1, 2, 3],
+        };
+        let value_vec = spanned_vec.into_inner();
+        assert_eq!(value_vec, vec![1, 2, 3]);
+    }
+}
+True
+========================================
+    use crate::Spanned;
+    use std::ops::Range;
+
+    #[test]
+    fn test_span() {
+        let spanned_value: Spanned<String> = Spanned {
+            span: Range { start: 5, end: 10 },
+            value: "example".to_string(),
+        };
+
+        let span = spanned_value.span();
+        assert_eq!(5, span.start);
+        assert_eq!(10, span.end);
+    }
+}
+True
+toml serde_spanned 11 11

@@ -1,0 +1,2678 @@
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/serde_spanned/src/spanned.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/serde_spanned/src/lib.rs
+done
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/serde_toml/src/lib.rs
+done
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml/src/de.rs
+err tests_llm_16_22_llm_16_22 test_deserialize_newtype_struct
+    Blocking waiting for file lock on package cache
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling proc-macro2 v1.0.56
+   Compiling quote v1.0.26
+   Compiling libc v0.2.151
+   Compiling unicode-ident v1.0.4
+   Compiling cfg-if v1.0.0
+   Compiling memchr v2.5.0
+   Compiling syn v1.0.105
+   Compiling version_check v0.9.4
+   Compiling serde_derive v1.0.160
+   Compiling io-lifetimes v1.0.3
+   Compiling cc v1.0.73
+   Compiling serde v1.0.160
+   Compiling rustix v0.37.7
+   Compiling autocfg v1.1.0
+   Compiling lazy_static v1.4.0
+   Compiling linux-raw-sys v0.3.6
+   Compiling gimli v0.28.1
+   Compiling bitflags v1.3.2
+   Compiling adler v1.0.2
+   Compiling ppv-lite86 v0.2.17
+   Compiling anyhow v1.0.75
+   Compiling either v1.8.0
+   Compiling rustc-demangle v0.1.23
+   Compiling pretty-hex v0.3.0
+   Compiling once_cell v1.15.0
+   Compiling log v0.4.17
+   Compiling heck v0.4.0
+   Compiling arbitrary v1.3.2
+   Compiling serde_json v1.0.96
+   Compiling utf8parse v0.2.1
+   Compiling crossbeam-utils v0.8.11
+   Compiling regex-syntax v0.6.27
+   Compiling os_str_bytes v6.3.0
+   Compiling termcolor v1.1.3
+   Compiling fnv v1.0.7
+   Compiling ryu v1.0.11
+   Compiling colorchoice v1.0.0
+   Compiling equivalent v1.0.0
+   Compiling itoa v1.0.3
+   Compiling strsim v0.10.0
+   Compiling anstyle v1.0.0
+   Compiling hashbrown v0.14.0
+   Compiling anstyle-query v1.0.0
+   Compiling same-file v1.0.6
+   Compiling winnow v0.4.6
+   Compiling similar v2.2.0
+   Compiling normalize-line-endings v0.3.0
+   Compiling anstyle-parse v0.2.0
+   Compiling miniz_oxide v0.7.1
+   Compiling walkdir v2.3.2
+   Compiling thread_local v1.1.4
+   Compiling clap_lex v0.3.0
+   Compiling proc-macro-error-attr v1.0.4
+   Compiling proc-macro-error v1.0.4
+   Compiling num-traits v0.2.15
+   Compiling num-integer v0.1.45
+   Compiling indexmap v2.0.0
+   Compiling backtrace v0.3.69
+   Compiling object v0.32.1
+   Compiling aho-corasick v0.7.19
+   Compiling bstr v0.2.17
+   Compiling syn v2.0.15
+   Compiling include_dir_macros v0.7.3
+   Compiling regex v1.6.0
+   Compiling getrandom v0.2.11
+   Compiling num_cpus v1.13.1
+   Compiling addr2line v0.21.0
+   Compiling include_dir v0.7.3
+   Compiling rand_core v0.6.4
+   Compiling threadpool v1.8.1
+   Compiling toml-test-data v1.3.0
+   Compiling rand_chacha v0.3.1
+   Compiling globset v0.4.9
+   Compiling rand v0.8.5
+   Compiling ignore v0.4.18
+   Compiling is-terminal v0.4.7
+   Compiling anstream v0.3.1
+   Compiling chrono v0.4.22
+   Compiling snapbox-macros v0.3.4
+   Compiling snapbox v0.4.11
+   Compiling bolero-generator-derive v0.8.0
+   Compiling clap_derive v4.0.21
+   Compiling bolero-generator v0.8.0
+   Compiling clap v4.0.32
+   Compiling libtest-mimic v0.6.0
+   Compiling bolero-engine v0.8.1
+   Compiling bolero v0.8.0
+   Compiling serde_spanned v0.6.3 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/serde_spanned)
+   Compiling toml_datetime v0.6.3 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_datetime)
+   Compiling toml-test v0.3.4
+   Compiling toml_edit v0.19.11 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit)
+   Compiling toml-test-harness v0.4.3
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml)
+error[E0521]: borrowed data escapes outside of closure
+   --> crates/toml/src/de.rs:360:158
+    |
+359 | ...h(|rug_data| {
+    |       --------
+    |       |
+    |       `rug_data` is a reference that is only valid in the closure body
+    |       has type `&'1 [u8]`
+360 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2, mut rug_fuzz_3)) = <(&str, &str, &str, &str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+    |                                                                                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |                                                                                                                                                 |
+    |                                                                                                                                                 `rug_data` escapes the closure body here
+    |                                                                                                                                                 argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_273_llm_16_273 test_value_deserializer_new
+    Blocking waiting for file lock on package cache
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+    Blocking waiting for file lock on package cache
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml)
+error: prefix `Example` is unknown
+   --> crates/toml/src/de.rs:544:27
+    |
+544 |             title = 'TOML Example'
+    |                           ^^^^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+544 |             title = 'TOML Example '
+    |                                  +
+
+error[E0762]: unterminated character literal
+   --> crates/toml/src/de.rs:544:34
+    |
+544 |             title = 'TOML Example'
+    |                                  ^
+
+For more information about this error, try `rustc --explain E0762`.
+error: could not compile `toml` due to 2 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `toml` due to 2 previous errors
+
+err tests_llm_16_274 test_from_str_valid_toml
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml)
+error[E0765]: unterminated double quote string
+   --> crates/toml/src/de.rs:604:9
+    |
+604 | /         "#;
+605 | |         let toml_str = rug_fuzz_0;
+606 | |         let parsed: Result<TestConfig, _> = from_str(toml_str);
+607 | |         debug_assert!(parsed.is_err());
+608 | |         let _rug_ed_tests_llm_16_274_rrrruuuugggg_test_from_str_missing_keys = 0;
+609 | |     }
+610 | | }
+    | |__^
+
+For more information about this error, try `rustc --explain E0765`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `toml` due to previous error
+
+err tests_llm_16_274 test_from_str_invalid_toml
+    Blocking waiting for file lock on package cache
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml)
+error[E0765]: unterminated double quote string
+   --> crates/toml/src/de.rs:604:9
+    |
+604 | /         "#;
+605 | |         let toml_str = rug_fuzz_0;
+606 | |         let parsed: Result<TestConfig, _> = from_str(toml_str);
+607 | |         debug_assert!(parsed.is_err());
+608 | |         let _rug_ed_tests_llm_16_274_rrrruuuugggg_test_from_str_missing_keys = 0;
+609 | |     }
+610 | | }
+    | |__^
+
+For more information about this error, try `rustc --explain E0765`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `toml` due to previous error
+
+err tests_llm_16_274 test_from_str_missing_keys
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml)
+error[E0765]: unterminated double quote string
+   --> crates/toml/src/de.rs:604:9
+    |
+604 | /         "#;
+605 | |         let toml_str = rug_fuzz_0;
+606 | |         let parsed: Result<TestConfig, _> = from_str(toml_str);
+607 | |         debug_assert!(parsed.is_err());
+608 | |              }
+609 | | });    }
+610 | | }
+    | |__^
+
+For more information about this error, try `rustc --explain E0765`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `toml` due to previous error
+
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml/src/map.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml/src/table.rs
+err tests_llm_16_327 test_from_str_valid
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+    Blocking waiting for file lock on package cache
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml)
+error: prefix `table` is unknown
+   --> crates/toml/src/table.rs:210:42
+    |
+210 |             panic!("section key is not a table")
+    |                                          ^^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+210 |             panic!("section key is not a table ")
+    |                                               +
+
+error: prefix `value` is unknown
+   --> crates/toml/src/table.rs:217:37
+    |
+217 |         let rug_fuzz_0 = "key = : : value";
+    |                                     ^^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+217 |         let rug_fuzz_0 = "key = : : value ";
+    |                                          +
+
+error[E0765]: unterminated double quote string
+   --> crates/toml/src/table.rs:217:42
+    |
+217 |           let rug_fuzz_0 = "key = : : value";
+    |  __________________________________________^
+218 | |         let toml_str = rug_fuzz_0;
+219 | |         let map = Map::<String, Value>::from_str(toml_str);
+220 | |         debug_assert!(map.is_err());
+221 | |         let _rug_ed_tests_llm_16_327_rrrruuuugggg_test_from_str_invalid = 0;
+222 | |     }
+223 | | }
+    | |__^
+
+For more information about this error, try `rustc --explain E0765`.
+error: could not compile `toml` due to 3 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `toml` due to 3 previous errors
+
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml/src/value.rs
+err tests_llm_16_205_llm_16_205 test_deserialize_newtype_struct
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml)
+error[E0521]: borrowed data escapes outside of closure
+    --> crates/toml/src/value.rs:1934:114
+     |
+1933 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+1934 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1)) = <(&str, &str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data)){
+     |                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                     |
+     |                                                                                                     `rug_data` escapes the closure body here
+     |                                                                                                     argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_226 test_from_str_valid_toml
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml)
+error: prefix `serialized` is unknown
+    --> crates/toml/src/value.rs:2441:70
+     |
+2441 |             Err(serde::ser::Error::custom("NonSerializable cannot be serialized"))
+     |                                                                      ^^^^^^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+2441 |             Err(serde::ser::Error::custom("NonSerializable cannot be serialized "))
+     |                                                                                +
+
+error: prefix `expected` is unknown
+    --> crates/toml/src/value.rs:2510:46
+     |
+2510 |             panic!("vec[0] is not a Table as expected");
+     |                                              ^^^^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+2510 |             panic!("vec[0] is not a Table as expected ");
+     |                                                      +
+
+error: prefix `field` is unknown
+    --> crates/toml/src/value.rs:2555:47
+     |
+2555 |         let rug_fuzz_1 = "Failed to serialize field";
+     |                                               ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+2555 |         let rug_fuzz_1 = "Failed to serialize field ";
+     |                                                    +
+
+error: prefix `field` is unknown
+    --> crates/toml/src/value.rs:2557:47
+     |
+2557 |         let rug_fuzz_3 = "Failed to serialize field";
+     |                                               ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+2557 |         let rug_fuzz_3 = "Failed to serialize field ";
+     |                                                    +
+
+error: prefix `serialization` is unknown
+    --> crates/toml/src/value.rs:2558:41
+     |
+2558 |         let rug_fuzz_4 = "Failed to end serialization";
+     |                                         ^^^^^^^^^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+2558 |         let rug_fuzz_4 = "Failed to end serialization ";
+     |                                                      +
+
+error: prefix `serialize` is unknown
+    --> crates/toml/src/value.rs:2584:34
+     |
+2584 |         let rug_fuzz_2 = "Should serialize";
+     |                                  ^^^^^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+2584 |         let rug_fuzz_2 = "Should serialize ";
+     |                                           +
+
+error: prefix `Ok` is unknown
+    --> crates/toml/src/value.rs:2851:82
+     |
+2851 |         debug_assert!(serialize_map_result.is_ok(), "serialize_map should return Ok");
+     |                                                                                  ^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+2851 |         debug_assert!(serialize_map_result.is_ok(), "serialize_map should return Ok ");
+     |                                                                                    +
+
+error: prefix `empty` is unknown
+    --> crates/toml/src/value.rs:2854:76
+     |
+2854 |             value_serialize_map.ser.map.len(), 0, "initial table should be empty"
+     |                                                                            ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+2854 |             value_serialize_map.ser.map.len(), 0, "initial table should be empty "
+     |                                                                                 +
+
+error: prefix `succeed` is unknown
+    --> crates/toml/src/value.rs:2869:78
+     |
+2869 |         debug_assert!(map.is_ok(), "serialize_key and serialize_value should succeed");
+     |                                                                              ^^^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+2869 |         debug_assert!(map.is_ok(), "serialize_key and serialize_value should succeed ");
+     |                                                                                     +
+
+error: prefix `pair` is unknown
+    --> crates/toml/src/value.rs:2874:51
+     |
+2874 |                 "map should contain the key-value pair"
+     |                                                   ^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+2874 |                 "map should contain the key-value pair "
+     |                                                       +
+
+error: prefix `table` is unknown
+    --> crates/toml/src/value.rs:2877:51
+     |
+2877 |             panic!("serialize_map should return a table");
+     |                                                   ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+2877 |             panic!("serialize_map should return a table ");
+     |                                                        +
+
+error: prefix `world` is unknown
+    --> crates/toml/src/value.rs:2918:31
+     |
+2918 |         let test_str = "hello world";
+     |                               ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+2918 |         let test_str = "hello world ";
+     |                                    +
+
+error: prefix `variant` is unknown
+    --> crates/toml/src/value.rs:2944:48
+     |
+2944 |             _ => panic!("Expected Value::Table variant"),
+     |                                                ^^^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+2944 |             _ => panic!("Expected Value::Table variant "),
+     |                                                       +
+
+error: prefix `Example` is unknown
+    --> crates/toml/src/value.rs:2966:74
+     |
+2966 |             Err(e) => debug_assert_eq!(e.to_string(), "unsupported type: Example"),
+     |                                                                          ^^^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+2966 |             Err(e) => debug_assert_eq!(e.to_string(), "unsupported type: Example "),
+     |                                                                                 +
+
+error: prefix `type` is unknown
+    --> crates/toml/src/value.rs:2967:57
+     |
+2967 |             _ => panic!("Expected error for unsupported type"),
+     |                                                         ^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+2967 |             _ => panic!("Expected error for unsupported type "),
+     |                                                             +
+
+error: prefix `ValueSerializeVec` is unknown
+    --> crates/toml/src/value.rs:3008:32
+     |
+3008 |             panic!("Expected a ValueSerializeVec");
+     |                                ^^^^^^^^^^^^^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+3008 |             panic!("Expected a ValueSerializeVec ");
+     |                                                 +
+
+error: prefix `Integer` is unknown
+    --> crates/toml/src/value.rs:3074:56
+     |
+3074 |             panic!("Value was not serialized as Value::Integer");
+     |                                                        ^^^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+3074 |             panic!("Value was not serialized as Value::Integer ");
+     |                                                               +
+
+error: prefix `String` is unknown
+    --> crates/toml/src/value.rs:3112:77
+     |
+3112 |             Ok(_) => panic!("serialize_unit_variant did not return a Value::String"),
+     |                                                                             ^^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+3112 |             Ok(_) => panic!("serialize_unit_variant did not return a Value::String "),
+     |                                                                                   +
+
+error: prefix `array` is unknown
+    --> crates/toml/src/value.rs:3159:39
+     |
+3159 |         let rug_fuzz_0 = "I am not an array";
+     |                                       ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+3159 |         let rug_fuzz_0 = "I am not an array ";
+     |                                            +
+
+error: prefix `string` is unknown
+    --> crates/toml/src/value.rs:3333:32
+     |
+3333 |         let rug_fuzz_0 = "test string";
+     |                                ^^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+3333 |         let rug_fuzz_0 = "test string ";
+     |                                      +
+
+error: prefix `string` is unknown
+    --> crates/toml/src/value.rs:3335:51
+     |
+3335 |         debug_assert_eq!(val.as_str(), Some("test string"));
+     |                                                   ^^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+3335 |         debug_assert_eq!(val.as_str(), Some("test string "));
+     |                                                         +
+
+error: prefix `table` is unknown
+    --> crates/toml/src/value.rs:3367:33
+     |
+3367 |         let rug_fuzz_0 = "Not a table";
+     |                                 ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+3367 |         let rug_fuzz_0 = "Not a table ";
+     |                                      +
+
+error: prefix `table` is unknown
+    --> crates/toml/src/value.rs:3387:33
+     |
+3387 |         let rug_fuzz_0 = "Not a table";
+     |                                 ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+3387 |         let rug_fuzz_0 = "Not a table ";
+     |                                      +
+
+error: prefix `string` is unknown
+    --> crates/toml/src/value.rs:3645:29
+     |
+3645 |         let rug_fuzz_0 = "A string";
+     |                             ^^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+3645 |         let rug_fuzz_0 = "A string ";
+     |                                   +
+
+error: prefix `test` is unknown
+    --> crates/toml/src/value.rs:3698:35
+     |
+3698 |         let rug_fuzz_1 = "another test";
+     |                                   ^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+3698 |         let rug_fuzz_1 = "another test ";
+     |                                       +
+
+error: prefix `Table` is unknown
+    --> crates/toml/src/value.rs:3742:37
+     |
+3742 |             panic!("Expected Value::Table");
+     |                                     ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+3742 |             panic!("Expected Value::Table ");
+     |                                          +
+
+error: prefix `Table` is unknown
+    --> crates/toml/src/value.rs:3772:37
+     |
+3772 |             panic!("Expected Value::Table");
+     |                                     ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+3772 |             panic!("Expected Value::Table ");
+     |                                          +
+
+error[E0765]: unterminated double quote string
+    --> crates/toml/src/value.rs:3772:42
+     |
+3772 |               panic!("Expected Value::Table");
+     |  __________________________________________^
+3773 | |         }
+3774 | |         let _rug_ed_tests_llm_16_350_rrrruuuugggg_try_from_map_to_value = 0;
+3775 | |     }
+3776 | | }
+     | |__^
+
+For more information about this error, try `rustc --explain E0765`.
+error: could not compile `toml` due to 28 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `toml` due to 28 previous errors
+
+err tests_llm_16_231_llm_16_231 test_serialize_field
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml)
+error[E0521]: borrowed data escapes outside of closure
+    --> crates/toml/src/value.rs:2463:136
+     |
+2462 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+2463 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2)) = <(&str, &str, &str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                                           |
+     |                                                                                                                           `rug_data` escapes the closure body here
+     |                                                                                                                           argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_231_llm_16_231 test_serialize_field_error
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml)
+error[E0521]: borrowed data escapes outside of closure
+    --> crates/toml/src/value.rs:2482:92
+     |
+2481 |         .for_each(|rug_data| {
+     |                    --------
+     |                    |
+     |                    `rug_data` is a reference that is only valid in the closure body
+     |                    has type `&'1 [u8]`
+2482 |             if let Ok((mut rug_fuzz_0)) = <(&str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data)){
+     |                                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                            |
+     |                                                                                            `rug_data` escapes the closure body here
+     |                                                                                            argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_256_llm_16_256 test_serialize_struct
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml)
+error[E0521]: borrowed data escapes outside of closure
+    --> crates/toml/src/value.rs:3001:115
+     |
+3000 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+3001 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1)) = <(&str, usize) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                      |
+     |                                                                                                      `rug_data` escapes the closure body here
+     |                                                                                                      argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_257 test_serialize_struct_variant_unsupported
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml)
+error[E0521]: borrowed data escapes outside of closure
+    --> crates/toml/src/value.rs:3023:158
+     |
+3022 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+3023 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2, mut rug_fuzz_3)) = <(&str, u32, &str, usize) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                                                                 |
+     |                                                                                                                                                 `rug_data` escapes the closure body here
+     |                                                                                                                                                 argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_259_llm_16_259 test_serialize_tuple_struct
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml)
+error[E0521]: borrowed data escapes outside of closure
+    --> crates/toml/src/value.rs:3069:115
+     |
+3068 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+3069 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1)) = <(&str, usize) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                      |
+     |                                                                                                      `rug_data` escapes the closure body here
+     |                                                                                                      argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_260 test_serialize_tuple_variant
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml)
+error[E0521]: borrowed data escapes outside of closure
+    --> crates/toml/src/value.rs:3092:158
+     |
+3091 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+3092 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2, mut rug_fuzz_3)) = <(&str, u32, &str, usize) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                                                                 |
+     |                                                                                                                                                 `rug_data` escapes the closure body here
+     |                                                                                                                                                 argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_267 test_serialize_unit_variant
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml)
+error[E0521]: borrowed data escapes outside of closure
+    --> crates/toml/src/value.rs:3177:135
+     |
+3176 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+3177 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2)) = <(&str, u32, &str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                                          |
+     |                                                                                                                          `rug_data` escapes the closure body here
+     |                                                                                                                          argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml/src/macros.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml/src/edit.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml/src/lib.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml/src/fmt.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml/src/ser.rs
+err tests_llm_16_93 test_serialize_unit_struct
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml)
+error[E0521]: borrowed data escapes outside of closure
+    --> crates/toml/src/ser.rs:1291:92
+     |
+1290 |         .for_each(|rug_data| {
+     |                    --------
+     |                    |
+     |                    `rug_data` is a reference that is only valid in the closure body
+     |                    has type `&'1 [u8]`
+1291 |             if let Ok((mut rug_fuzz_0)) = <(&str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data)){
+     |                                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                            |
+     |                                                                                            `rug_data` escapes the closure body here
+     |                                                                                            argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_106_llm_16_106 test_serialize_newtype_variant
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml)
+error[E0521]: borrowed data escapes outside of closure
+    --> crates/toml/src/ser.rs:1455:179
+     |
+1454 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+1455 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2, mut rug_fuzz_3, mut rug_fuzz_4)) = <(&str, &str, u32, &str, &str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                                                                                      |
+     |                                                                                                                                                                      `rug_data` escapes the closure body here
+     |                                                                                                                                                                      argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_114 test_serialize_tuple_struct
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml)
+error[E0521]: borrowed data escapes outside of closure
+    --> crates/toml/src/ser.rs:1604:115
+     |
+1603 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+1604 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1)) = <(&str, usize) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                      |
+     |                                                                                                      `rug_data` escapes the closure body here
+     |                                                                                                      argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_121 test_serialize_unit_struct
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml)
+error[E0521]: borrowed data escapes outside of closure
+    --> crates/toml/src/ser.rs:1711:92
+     |
+1710 |         .for_each(|rug_data| {
+     |                    --------
+     |                    |
+     |                    `rug_data` is a reference that is only valid in the closure body
+     |                    has type `&'1 [u8]`
+1711 |             if let Ok((mut rug_fuzz_0)) = <(&str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data)){
+     |                                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                            |
+     |                                                                                            `rug_data` escapes the closure body here
+     |                                                                                            argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_122_llm_16_122 serialize_unit_variant_first
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml)
+error[E0521]: borrowed data escapes outside of closure
+    --> crates/toml/src/ser.rs:1727:157
+     |
+1726 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+1727 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2, mut rug_fuzz_3)) = <(&str, u32, &str, &str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                                                                |
+     |                                                                                                                                                `rug_data` escapes the closure body here
+     |                                                                                                                                                argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_122_llm_16_122 serialize_unit_variant_second
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml)
+error[E0521]: borrowed data escapes outside of closure
+    --> crates/toml/src/ser.rs:1741:157
+     |
+1740 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+1741 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2, mut rug_fuzz_3)) = <(&str, u32, &str, &str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                                                                |
+     |                                                                                                                                                `rug_data` escapes the closure body here
+     |                                                                                                                                                argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_122_llm_16_122 serialize_unit_variant_invalid_variant
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml)
+error[E0521]: borrowed data escapes outside of closure
+    --> crates/toml/src/ser.rs:1755:135
+     |
+1754 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+1755 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2)) = <(&str, u32, &str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+     |                                                                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                                          |
+     |                                                                                                                          `rug_data` escapes the closure body here
+     |                                                                                                                          argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_307_llm_16_307 test_unsupported_type_with_some
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml)
+error[E0521]: borrowed data escapes outside of closure
+    --> crates/toml/src/ser.rs:1816:92
+     |
+1815 |         .for_each(|rug_data| {
+     |                    --------
+     |                    |
+     |                    `rug_data` is a reference that is only valid in the closure body
+     |                    has type `&'1 [u8]`
+1816 |             if let Ok((mut rug_fuzz_0)) = <(&str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data)){
+     |                                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                            |
+     |                                                                                            `rug_data` escapes the closure body here
+     |                                                                                            argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_307_llm_16_307 test_unsupported_type_implements_error_trait
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml)
+error[E0521]: borrowed data escapes outside of closure
+    --> crates/toml/src/ser.rs:1824:92
+     |
+1823 |         .for_each(|rug_data| {
+     |                    --------
+     |                    |
+     |                    `rug_data` is a reference that is only valid in the closure body
+     |                    has type `&'1 [u8]`
+1824 |             if let Ok((mut rug_fuzz_0)) = <(&str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data)){
+     |                                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                            |
+     |                                                                                            `rug_data` escapes the closure body here
+     |                                                                                            argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_307_llm_16_307 test_unsupported_type_implements_std_error
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml)
+error[E0521]: borrowed data escapes outside of closure
+    --> crates/toml/src/ser.rs:1833:92
+     |
+1832 |         .for_each(|rug_data| {
+     |                    --------
+     |                    |
+     |                    `rug_data` is a reference that is only valid in the closure body
+     |                    has type `&'1 [u8]`
+1833 |             if let Ok((mut rug_fuzz_0)) = <(&str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data)){
+     |                                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                            |
+     |                                                                                            `rug_data` escapes the closure body here
+     |                                                                                            argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_307_llm_16_307 test_unsupported_type_implements_display
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+    Blocking waiting for file lock on package cache
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml)
+error[E0521]: borrowed data escapes outside of closure
+    --> crates/toml/src/ser.rs:1842:92
+     |
+1841 |         .for_each(|rug_data| {
+     |                    --------
+     |                    |
+     |                    `rug_data` is a reference that is only valid in the closure body
+     |                    has type `&'1 [u8]`
+1842 |             if let Ok((mut rug_fuzz_0)) = <(&str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data)){
+     |                                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                            |
+     |                                                                                            `rug_data` escapes the closure body here
+     |                                                                                            argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_307_llm_16_307 test_unsupported_type_implements_debug
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml)
+error[E0521]: borrowed data escapes outside of closure
+    --> crates/toml/src/ser.rs:1851:114
+     |
+1850 | ...h(|rug_data| {
+     |       --------
+     |       |
+     |       `rug_data` is a reference that is only valid in the closure body
+     |       has type `&'1 [u8]`
+1851 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1)) = <(&str, &str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data)){
+     |                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |                                                                                                     |
+     |                                                                                                     `rug_data` escapes the closure body here
+     |                                                                                                     argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_319_llm_16_319 test_to_string_pretty
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml v0.7.5 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml)
+error: prefix `error` is unknown
+    --> crates/toml/src/ser.rs:1921:42
+     |
+1921 |     #[should_panic(expected = "serialize error")]
+     |                                          ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1921 |     #[should_panic(expected = "serialize error ")]
+     |                                               +
+
+error: prefix `error` is unknown
+    --> crates/toml/src/ser.rs:1935:45
+     |
+1935 |             Err(S::Error::custom("serialize error"))
+     |                                             ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1935 |             Err(S::Error::custom("serialize error "))
+     |                                                  +
+
+error[E0765]: unterminated double quote string
+    --> crates/toml/src/ser.rs:1935:50
+     |
+1935 |               Err(S::Error::custom("serialize error"))
+     |  __________________________________________________^
+1936 | |         }
+1937 | |     }
+1938 | | }
+     | |__^
+
+For more information about this error, try `rustc --explain E0765`.
+error: could not compile `toml` due to 3 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `toml` due to 3 previous errors
+
+done
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_datetime/src/datetime.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_datetime/src/lib.rs
+done
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit/src/index.rs
+err tests_llm_16_201 test_document_index
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml_edit v0.19.11 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit)
+error: unknown start of token: \
+   --> crates/toml_edit/src/index.rs:406:32
+    |
+406 |         let rug_fuzz_0 = "[pkg]\nname = \"my-package\"\n";
+    |                                ^
+
+error: unknown start of token: \
+   --> crates/toml_edit/src/index.rs:406:41
+    |
+406 |         let rug_fuzz_0 = "[pkg]\nname = \"my-package\"\n";
+    |                                         ^
+
+error: this file contains an unclosed delimiter
+   --> crates/toml_edit/src/index.rs:498:3
+    |
+337 | mod tests_llm_16_201 {
+    |                      - unclosed delimiter
+...
+344 |     fn test_document_index() {
+    |                              - unclosed delimiter
+...
+349 |         .for_each(|rug_data| {
+    |                  - unclosed delimiter
+...
+498 | }
+    |   ^
+
+error: expected `;`, found `host`
+   --> crates/toml_edit/src/index.rs:352:21
+    |
+352 |             [server]
+    |                     ^ help: add `;` here
+353 |             host = "localhost"
+    |             ---- unexpected token
+
+error: expected `;`, found `port`
+   --> crates/toml_edit/src/index.rs:353:31
+    |
+353 |             host = "localhost"
+    |                               ^ help: add `;` here
+354 |             port = 80
+    |             ---- unexpected token
+
+error: expected `;`, found `"#;
+               let toml = rug_fuzz_0;
+               let document = toml.parse::<Document>().unwrap();
+               debug_assert_eq!(
+                   document[rug_fuzz_1] [rug_fuzz_2].as_value().unwrap().as_str(),
+                   Some("localhost`
+   --> crates/toml_edit/src/index.rs:354:22
+    |
+354 |               port = 80
+    |                        ^ help: add `;` here
+355 | /         "#;
+356 | |         let toml = rug_fuzz_0;
+357 | |         let document = toml.parse::<Document>().unwrap();
+358 | |         debug_assert_eq!(
+359 | |             document[rug_fuzz_1] [rug_fuzz_2].as_value().unwrap().as_str(),
+360 | |             Some("localhost")
+    | |___________________________- unexpected token
+
+error: expected `;`, found `")
+               );
+               debug_assert_eq!(
+                   document[rug_fuzz_3] [rug_fuzz_4].as_value().unwrap().as_integer(), Some(80)
+               );
+                    }
+       });    }
+           #[test]
+           #[should_panic]
+           fn test_document_index_missing() {
+               let _rug_st_tests_llm_16_201_rrrruuuugggg_test_document_index_missing = 0;
+               let rug_fuzz_0 = r#"`
+   --> crates/toml_edit/src/index.rs:360:28
+    |
+360 |               Some("localhost")
+    |                              ^ help: add `;` here
+    |  ____________________________|
+    | |
+361 | |         );
+362 | |         debug_assert_eq!(
+363 | |             document[rug_fuzz_3] [rug_fuzz_4].as_value().unwrap().as_integer(), Some(80)
+...   |
+370 | |         let _rug_st_tests_llm_16_201_rrrruuuugggg_test_document_index_missing = 0;
+371 | |         let rug_fuzz_0 = r#"
+    | |____________________________- unexpected token
+
+error: expected `;`, found `host`
+   --> crates/toml_edit/src/index.rs:372:21
+    |
+372 |             [server]
+    |                     ^ help: add `;` here
+373 |             host = "localhost"
+    |             ---- unexpected token
+
+error: expected `;`, found `"#;
+               let rug_fuzz_1 = "server`
+   --> crates/toml_edit/src/index.rs:373:31
+    |
+373 |               host = "localhost"
+    |                                 ^ help: add `;` here
+374 | /         "#;
+375 | |         let rug_fuzz_1 = "server";
+    | |________________________________- unexpected token
+
+error: expected `;`, found `";
+               let rug_fuzz_2 = "port`
+   --> crates/toml_edit/src/index.rs:375:33
+    |
+375 |           let rug_fuzz_1 = "server";
+    |                                   ^ help: add `;` here
+    |  _________________________________|
+    | |
+376 | |         let rug_fuzz_2 = "port";
+    | |______________________________- unexpected token
+
+error: expected `;`, found `";
+               let toml = rug_fuzz_0;
+               let document = toml.parse::<Document>().unwrap();
+               let _ = document[rug_fuzz_1][rug_fuzz_2];
+               let _rug_ed_tests_llm_16_201_rrrruuuugggg_test_document_index_missing = 0;
+           }
+           #[test]
+           fn test_document_index_set_and_retrieve() {
+               let _rug_st_tests_llm_16_201_rrrruuuugggg_test_document_index_set_and_retrieve = 0;
+               let rug_fuzz_0 = "localhost`
+   --> crates/toml_edit/src/index.rs:376:31
+    |
+376 |           let rug_fuzz_2 = "port";
+    |                                 ^ help: add `;` here
+    |  _______________________________|
+    | |
+377 | |         let toml = rug_fuzz_0;
+378 | |         let document = toml.parse::<Document>().unwrap();
+379 | |         let _ = document[rug_fuzz_1][rug_fuzz_2];
+...   |
+384 | |         let _rug_st_tests_llm_16_201_rrrruuuugggg_test_document_index_set_and_retrieve = 0;
+385 | |         let rug_fuzz_0 = "localhost";
+    | |___________________________________- unexpected token
+
+error: expected `;`, found `";
+               let rug_fuzz_1 = "server`
+   --> crates/toml_edit/src/index.rs:385:36
+    |
+385 |           let rug_fuzz_0 = "localhost";
+    |                                      ^ help: add `;` here
+    |  ____________________________________|
+    | |
+386 | |         let rug_fuzz_1 = "server";
+    | |________________________________- unexpected token
+
+error: expected `;`, found `";
+               let rug_fuzz_2 = "host`
+   --> crates/toml_edit/src/index.rs:386:33
+    |
+386 |           let rug_fuzz_1 = "server";
+    |                                   ^ help: add `;` here
+    |  _________________________________|
+    | |
+387 | |         let rug_fuzz_2 = "host";
+    | |______________________________- unexpected token
+
+error: expected `;`, found `";
+               let rug_fuzz_3 = "server`
+   --> crates/toml_edit/src/index.rs:387:31
+    |
+387 |           let rug_fuzz_2 = "host";
+    |                                 ^ help: add `;` here
+    |  _______________________________|
+    | |
+388 | |         let rug_fuzz_3 = "server";
+    | |________________________________- unexpected token
+
+error: expected `;`, found `";
+               let rug_fuzz_4 = "host`
+   --> crates/toml_edit/src/index.rs:388:33
+    |
+388 |           let rug_fuzz_3 = "server";
+    |                                   ^ help: add `;` here
+    |  _________________________________|
+    | |
+389 | |         let rug_fuzz_4 = "host";
+    | |______________________________- unexpected token
+
+error: expected `;`, found `";
+               let mut document = Document::new();
+               let host = Item::Value(Value::from(rug_fuzz_0));
+               document[rug_fuzz_1][rug_fuzz_2] = host;
+               debug_assert_eq!(
+                   document[rug_fuzz_3] [rug_fuzz_4].as_value().unwrap().as_str(),
+                   Some("localhost`
+   --> crates/toml_edit/src/index.rs:389:31
+    |
+389 |           let rug_fuzz_4 = "host";
+    |                                 ^ help: add `;` here
+    |  _______________________________|
+    | |
+390 | |         let mut document = Document::new();
+391 | |         let host = Item::Value(Value::from(rug_fuzz_0));
+392 | |         document[rug_fuzz_1][rug_fuzz_2] = host;
+393 | |         debug_assert_eq!(
+394 | |             document[rug_fuzz_3] [rug_fuzz_4].as_value().unwrap().as_str(),
+395 | |             Some("localhost")
+    | |___________________________- unexpected token
+
+error: expected `;`, found `")
+               );
+               let _rug_ed_tests_llm_16_201_rrrruuuugggg_test_document_index_set_and_retrieve = 0;
+           }
+       }
+       #[cfg(test)]
+       mod tests_llm_16_205_llm_16_205 {
+           use crate::{value::Value, Item, Document};
+           #[test]
+           fn test_index_mut() {
+               let _rug_st_tests_llm_16_205_llm_16_205_rrrruuuugggg_test_index_mut = 0;
+               let rug_fuzz_0 = "`
+   --> crates/toml_edit/src/index.rs:395:28
+    |
+395 |               Some("localhost")
+    |                              ^ help: add `;` here
+    |  ____________________________|
+    | |
+396 | |         );
+397 | |         let _rug_ed_tests_llm_16_201_rrrruuuugggg_test_document_index_set_and_retrieve = 0;
+398 | |     }
+...   |
+405 | |         let _rug_st_tests_llm_16_205_llm_16_205_rrrruuuugggg_test_index_mut = 0;
+406 | |         let rug_fuzz_0 = "[pkg]\nname = \"my-package\"\n";
+    | |__________________________- unexpected token
+
+error: expected one of `.`, `;`, `?`, `}`, or an operator, found `nname`
+   --> crates/toml_edit/src/index.rs:337:22
+    |
+337 | mod tests_llm_16_201 {
+    |                      ^ unclosed delimiter
+...
+406 |         let rug_fuzz_0 = "[pkg]\nname = \"my-package\"\n";
+    |                                -^^^^^ expected one of `.`, `;`, `?`, `}`, or an operator
+    |                                |
+    |                                help: `}` may belong here
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `#`
+   --> crates/toml_edit/src/index.rs:445:1
+    |
+444 | }
+    |  - expected one of `)`, `,`, `.`, `?`, or an operator
+445 | #[cfg(test)]
+    | ^ unexpected token
+
+error: expected `;`, found keyword `mod`
+   --> crates/toml_edit/src/index.rs:445:13
+    |
+445 | #[cfg(test)]
+    |             ^ help: add `;` here
+446 | mod tests_llm_16_206_llm_16_206 {
+    | --- unexpected token
+
+error: expected expression, found `)`
+   --> crates/toml_edit/src/index.rs:498:3
+    |
+498 | }
+    |   ^ expected expression
+
+error: could not compile `toml_edit` due to 21 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `toml_edit` due to 21 previous errors
+
+err tests_llm_16_201 test_document_index_missing
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml_edit v0.19.11 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit)
+error: unknown start of token: \
+   --> crates/toml_edit/src/index.rs:408:32
+    |
+408 |         let rug_fuzz_0 = "[pkg]\nname = \"my-package\"\n";
+    |                                ^
+
+error: unknown start of token: \
+   --> crates/toml_edit/src/index.rs:408:41
+    |
+408 |         let rug_fuzz_0 = "[pkg]\nname = \"my-package\"\n";
+    |                                         ^
+
+error: this file contains an unclosed delimiter
+   --> crates/toml_edit/src/index.rs:500:3
+    |
+337 | mod tests_llm_16_201 {
+    |                      - unclosed delimiter
+...
+368 |     fn test_document_index_missing() {
+    |                                      - unclosed delimiter
+...
+373 |         .for_each(|rug_data| {
+    |                  - unclosed delimiter
+...
+500 | }
+    |   ^
+
+error: expected `;`, found `host`
+   --> crates/toml_edit/src/index.rs:376:21
+    |
+376 |             [server]
+    |                     ^ help: add `;` here
+377 |             host = "localhost"
+    |             ---- unexpected token
+
+error: expected `;`, found `"#;
+               let toml = rug_fuzz_0;
+               let document = toml.parse::<Document>().unwrap();
+               let _ = document[rug_fuzz_1][rug_fuzz_2];
+                    }
+       });    }
+           #[test]
+           fn test_document_index_set_and_retrieve() {
+               let _rug_st_tests_llm_16_201_rrrruuuugggg_test_document_index_set_and_retrieve = 0;
+               let rug_fuzz_0 = "localhost`
+   --> crates/toml_edit/src/index.rs:377:31
+    |
+377 |               host = "localhost"
+    |                                 ^ help: add `;` here
+378 | /         "#;
+379 | |         let toml = rug_fuzz_0;
+380 | |         let document = toml.parse::<Document>().unwrap();
+381 | |         let _ = document[rug_fuzz_1][rug_fuzz_2];
+...   |
+386 | |         let _rug_st_tests_llm_16_201_rrrruuuugggg_test_document_index_set_and_retrieve = 0;
+387 | |         let rug_fuzz_0 = "localhost";
+    | |___________________________________- unexpected token
+
+error: expected `;`, found `";
+               let rug_fuzz_1 = "server`
+   --> crates/toml_edit/src/index.rs:387:36
+    |
+387 |           let rug_fuzz_0 = "localhost";
+    |                                      ^ help: add `;` here
+    |  ____________________________________|
+    | |
+388 | |         let rug_fuzz_1 = "server";
+    | |________________________________- unexpected token
+
+error: expected `;`, found `";
+               let rug_fuzz_2 = "host`
+   --> crates/toml_edit/src/index.rs:388:33
+    |
+388 |           let rug_fuzz_1 = "server";
+    |                                   ^ help: add `;` here
+    |  _________________________________|
+    | |
+389 | |         let rug_fuzz_2 = "host";
+    | |______________________________- unexpected token
+
+error: expected `;`, found `";
+               let rug_fuzz_3 = "server`
+   --> crates/toml_edit/src/index.rs:389:31
+    |
+389 |           let rug_fuzz_2 = "host";
+    |                                 ^ help: add `;` here
+    |  _______________________________|
+    | |
+390 | |         let rug_fuzz_3 = "server";
+    | |________________________________- unexpected token
+
+error: expected `;`, found `";
+               let rug_fuzz_4 = "host`
+   --> crates/toml_edit/src/index.rs:390:33
+    |
+390 |           let rug_fuzz_3 = "server";
+    |                                   ^ help: add `;` here
+    |  _________________________________|
+    | |
+391 | |         let rug_fuzz_4 = "host";
+    | |______________________________- unexpected token
+
+error: expected `;`, found `";
+               let mut document = Document::new();
+               let host = Item::Value(Value::from(rug_fuzz_0));
+               document[rug_fuzz_1][rug_fuzz_2] = host;
+               debug_assert_eq!(
+                   document[rug_fuzz_3] [rug_fuzz_4].as_value().unwrap().as_str(),
+                   Some("localhost`
+   --> crates/toml_edit/src/index.rs:391:31
+    |
+391 |           let rug_fuzz_4 = "host";
+    |                                 ^ help: add `;` here
+    |  _______________________________|
+    | |
+392 | |         let mut document = Document::new();
+393 | |         let host = Item::Value(Value::from(rug_fuzz_0));
+394 | |         document[rug_fuzz_1][rug_fuzz_2] = host;
+395 | |         debug_assert_eq!(
+396 | |             document[rug_fuzz_3] [rug_fuzz_4].as_value().unwrap().as_str(),
+397 | |             Some("localhost")
+    | |___________________________- unexpected token
+
+error: expected `;`, found `")
+               );
+               let _rug_ed_tests_llm_16_201_rrrruuuugggg_test_document_index_set_and_retrieve = 0;
+           }
+       }
+       #[cfg(test)]
+       mod tests_llm_16_205_llm_16_205 {
+           use crate::{value::Value, Item, Document};
+           #[test]
+           fn test_index_mut() {
+               let _rug_st_tests_llm_16_205_llm_16_205_rrrruuuugggg_test_index_mut = 0;
+               let rug_fuzz_0 = "`
+   --> crates/toml_edit/src/index.rs:397:28
+    |
+397 |               Some("localhost")
+    |                              ^ help: add `;` here
+    |  ____________________________|
+    | |
+398 | |         );
+399 | |         let _rug_ed_tests_llm_16_201_rrrruuuugggg_test_document_index_set_and_retrieve = 0;
+400 | |     }
+...   |
+407 | |         let _rug_st_tests_llm_16_205_llm_16_205_rrrruuuugggg_test_index_mut = 0;
+408 | |         let rug_fuzz_0 = "[pkg]\nname = \"my-package\"\n";
+    | |__________________________- unexpected token
+
+error: expected one of `.`, `;`, `?`, `}`, or an operator, found `nname`
+   --> crates/toml_edit/src/index.rs:337:22
+    |
+337 | mod tests_llm_16_201 {
+    |                      ^ unclosed delimiter
+...
+408 |         let rug_fuzz_0 = "[pkg]\nname = \"my-package\"\n";
+    |                                -^^^^^ expected one of `.`, `;`, `?`, `}`, or an operator
+    |                                |
+    |                                help: `}` may belong here
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `#`
+   --> crates/toml_edit/src/index.rs:447:1
+    |
+446 | }
+    |  - expected one of `)`, `,`, `.`, `?`, or an operator
+447 | #[cfg(test)]
+    | ^ unexpected token
+
+error: expected `;`, found keyword `mod`
+   --> crates/toml_edit/src/index.rs:447:13
+    |
+447 | #[cfg(test)]
+    |             ^ help: add `;` here
+448 | mod tests_llm_16_206_llm_16_206 {
+    | --- unexpected token
+
+error: expected expression, found `)`
+   --> crates/toml_edit/src/index.rs:500:3
+    |
+500 | }
+    |   ^ expected expression
+
+error: could not compile `toml_edit` due to 15 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `toml_edit` due to 15 previous errors
+
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit/src/item.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit/src/table.rs
+err tests_llm_16_470_llm_16_470 test_table_occupied_entry_into_mut
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml_edit v0.19.11 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit)
+error: prefix `occupied` is unknown
+    --> crates/toml_edit/src/table.rs:1335:42
+     |
+1335 |             panic!("package entry is not occupied");
+     |                                          ^^^^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1335 |             panic!("package entry is not occupied ");
+     |                                                  +
+
+error: prefix `entry` is unknown
+    --> crates/toml_edit/src/table.rs:1559:39
+     |
+1559 |             panic!("Expected occupied entry");
+     |                                       ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1559 |             panic!("Expected occupied entry ");
+     |                                            +
+
+error: prefix `entry` is unknown
+    --> crates/toml_edit/src/table.rs:1573:37
+     |
+1573 |             panic!("Expected vacant entry");
+     |                                     ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1573 |             panic!("Expected vacant entry ");
+     |                                          +
+
+error: prefix `present` is unknown
+    --> crates/toml_edit/src/table.rs:1715:48
+     |
+1715 |         let rug_fuzz_4 = "expected decor to be present";
+     |                                                ^^^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1715 |         let rug_fuzz_4 = "expected decor to be present ";
+     |                                                       +
+
+error: prefix `empty` is unknown
+    --> crates/toml_edit/src/table.rs:1743:59
+     |
+1743 |         debug_assert_eq!(table.len(), 0, "Table should be empty");
+     |                                                           ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1743 |         debug_assert_eq!(table.len(), 0, "Table should be empty ");
+     |                                                                +
+
+error: prefix `items` is unknown
+    --> crates/toml_edit/src/table.rs:1756:66
+     |
+1756 |         debug_assert_eq!(table.len(), 2, "Table should contain 2 items");
+     |                                                                  ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1756 |         debug_assert_eq!(table.len(), 2, "Table should contain 2 items ");
+     |                                                                       +
+
+error: prefix `items` is unknown
+    --> crates/toml_edit/src/table.rs:1771:77
+     |
+1771 |         debug_assert_eq!(table.len(), 2, "Table should count only non-empty items");
+     |                                                                             ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1771 |         debug_assert_eq!(table.len(), 2, "Table should count only non-empty items ");
+     |                                                                                  +
+
+error: prefix `items` is unknown
+    --> crates/toml_edit/src/table.rs:1790:81
+     |
+1790 |         debug_assert_eq!(table.len(), 2, "Table should count non-empty subtable items");
+     |                                                                                 ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1790 |         debug_assert_eq!(table.len(), 2, "Table should count non-empty subtable items ");
+     |                                                                                      +
+
+error: unknown start of token: \
+    --> crates/toml_edit/src/table.rs:1883:30
+     |
+1883 |         let rug_fuzz_0 = "[a]\n[a.b]\n";
+     |                              ^
+
+error: unknown start of token: \
+    --> crates/toml_edit/src/table.rs:1883:37
+     |
+1883 |         let rug_fuzz_0 = "[a]\n[a.b]\n";
+     |                                     ^
+
+error: prefix `n` is unknown
+    --> crates/toml_edit/src/table.rs:1883:38
+     |
+1883 |         let rug_fuzz_0 = "[a]\n[a.b]\n";
+     |                                      ^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1883 |         let rug_fuzz_0 = "[a]\n[a.b]\n ";
+     |                                       +
+
+error: prefix `toml` is unknown
+    --> crates/toml_edit/src/table.rs:1884:35
+     |
+1884 |         let rug_fuzz_1 = "invalid toml";
+     |                                   ^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1884 |         let rug_fuzz_1 = "invalid toml ";
+     |                                       +
+
+error: unknown start of token: \
+    --> crates/toml_edit/src/table.rs:1893:49
+     |
+1893 |         debug_assert_eq!(doc.to_string(), "[a.b]\n");
+     |                                                 ^
+
+error: prefix `n` is unknown
+    --> crates/toml_edit/src/table.rs:1893:50
+     |
+1893 |         debug_assert_eq!(doc.to_string(), "[a.b]\n");
+     |                                                  ^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1893 |         debug_assert_eq!(doc.to_string(), "[a.b]\n ");
+     |                                                   +
+
+error: unknown start of token: \
+    --> crates/toml_edit/src/table.rs:1899:30
+     |
+1899 |         let rug_fuzz_0 = "[a]\n[a.b]\n";
+     |                              ^
+
+error: unknown start of token: \
+    --> crates/toml_edit/src/table.rs:1899:37
+     |
+1899 |         let rug_fuzz_0 = "[a]\n[a.b]\n";
+     |                                     ^
+
+error: prefix `n` is unknown
+    --> crates/toml_edit/src/table.rs:1899:38
+     |
+1899 |         let rug_fuzz_0 = "[a]\n[a.b]\n";
+     |                                      ^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1899 |         let rug_fuzz_0 = "[a]\n[a.b]\n ";
+     |                                       +
+
+error: prefix `toml` is unknown
+    --> crates/toml_edit/src/table.rs:1900:35
+     |
+1900 |         let rug_fuzz_1 = "invalid toml";
+     |                                   ^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1900 |         let rug_fuzz_1 = "invalid toml ";
+     |                                       +
+
+error: unknown start of token: \
+    --> crates/toml_edit/src/table.rs:1912:47
+     |
+1912 |         debug_assert_eq!(doc.to_string(), "[a]\n[a.b]\n");
+     |                                               ^
+
+error: unknown start of token: \
+    --> crates/toml_edit/src/table.rs:1912:54
+     |
+1912 |         debug_assert_eq!(doc.to_string(), "[a]\n[a.b]\n");
+     |                                                      ^
+
+error: prefix `n` is unknown
+    --> crates/toml_edit/src/table.rs:1912:55
+     |
+1912 |         debug_assert_eq!(doc.to_string(), "[a]\n[a.b]\n");
+     |                                                       ^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1912 |         debug_assert_eq!(doc.to_string(), "[a]\n[a.b]\n ");
+     |                                                        +
+
+error: unknown start of token: \
+    --> crates/toml_edit/src/table.rs:1918:30
+     |
+1918 |         let rug_fuzz_0 = "[a]\n";
+     |                              ^
+
+error: prefix `n` is unknown
+    --> crates/toml_edit/src/table.rs:1918:31
+     |
+1918 |         let rug_fuzz_0 = "[a]\n";
+     |                               ^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1918 |         let rug_fuzz_0 = "[a]\n ";
+     |                                +
+
+error: prefix `toml` is unknown
+    --> crates/toml_edit/src/table.rs:1919:35
+     |
+1919 |         let rug_fuzz_1 = "invalid toml";
+     |                                   ^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1919 |         let rug_fuzz_1 = "invalid toml ";
+     |                                       +
+
+error: unknown start of token: \
+    --> crates/toml_edit/src/table.rs:1934:30
+     |
+1934 |         let rug_fuzz_0 = "[a]\nx = 1\n[a.b]\n";
+     |                              ^
+
+error: unknown start of token: \
+    --> crates/toml_edit/src/table.rs:1934:37
+     |
+1934 |         let rug_fuzz_0 = "[a]\nx = 1\n[a.b]\n";
+     |                                     ^
+
+error: unknown start of token: \
+    --> crates/toml_edit/src/table.rs:1934:44
+     |
+1934 |         let rug_fuzz_0 = "[a]\nx = 1\n[a.b]\n";
+     |                                            ^
+
+error: prefix `n` is unknown
+    --> crates/toml_edit/src/table.rs:1934:45
+     |
+1934 |         let rug_fuzz_0 = "[a]\nx = 1\n[a.b]\n";
+     |                                             ^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1934 |         let rug_fuzz_0 = "[a]\nx = 1\n[a.b]\n ";
+     |                                              +
+
+error: prefix `toml` is unknown
+    --> crates/toml_edit/src/table.rs:1935:35
+     |
+1935 |         let rug_fuzz_1 = "invalid toml";
+     |                                   ^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1935 |         let rug_fuzz_1 = "invalid toml ";
+     |                                       +
+
+error: unknown start of token: \
+    --> crates/toml_edit/src/table.rs:1944:47
+     |
+1944 |         debug_assert_eq!(doc.to_string(), "[a]\nx = 1\n[a.b]\n");
+     |                                               ^
+
+error: unknown start of token: \
+    --> crates/toml_edit/src/table.rs:1944:54
+     |
+1944 |         debug_assert_eq!(doc.to_string(), "[a]\nx = 1\n[a.b]\n");
+     |                                                      ^
+
+error: unknown start of token: \
+    --> crates/toml_edit/src/table.rs:1944:61
+     |
+1944 |         debug_assert_eq!(doc.to_string(), "[a]\nx = 1\n[a.b]\n");
+     |                                                             ^
+
+error: prefix `n` is unknown
+    --> crates/toml_edit/src/table.rs:1944:62
+     |
+1944 |         debug_assert_eq!(doc.to_string(), "[a]\nx = 1\n[a.b]\n");
+     |                                                              ^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1944 |         debug_assert_eq!(doc.to_string(), "[a]\nx = 1\n[a.b]\n ");
+     |                                                               +
+
+error: prefix `c` is unknown
+    --> crates/toml_edit/src/table.rs:1995:29
+     |
+1995 |         let rug_fuzz_0 = "b.c";
+     |                             ^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1995 |         let rug_fuzz_0 = "b.c ";
+     |                              +
+
+error: prefix `a` is unknown
+    --> crates/toml_edit/src/table.rs:1999:29
+     |
+1999 |         let rug_fuzz_4 = "b.a";
+     |                             ^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1999 |         let rug_fuzz_4 = "b.a ";
+     |                              +
+
+error[E0765]: unterminated double quote string
+    --> crates/toml_edit/src/table.rs:2117:50
+     |
+2117 |           debug_assert_eq!(vacant_entry.key(), "baz");
+     |  __________________________________________________^
+2118 | |         let _rug_ed_tests_llm_16_519_rrrruuuugggg_key_vacant_entry = 0;
+2119 | |     }
+2120 | | }
+     | |__^
+
+For more information about this error, try `rustc --explain E0765`.
+error: could not compile `toml_edit` due to 36 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `toml_edit` due to 36 previous errors
+
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit/src/value.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit/src/key.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit/src/document.rs
+err tests_llm_16_20_llm_16_20 test_from_str_valid_toml
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml_edit v0.19.11 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit)
+error: prefix `Example` is unknown
+   --> crates/toml_edit/src/document.rs:214:32
+    |
+214 |         let rug_fuzz_1 = "TOML Example";
+    |                                ^^^^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+214 |         let rug_fuzz_1 = "TOML Example ";
+    |                                       +
+
+error: character literal may only contain one codepoint
+   --> crates/toml_edit/src/document.rs:226:73
+    |
+226 |             table.contains_key(rug_fuzz_2), "The table should contain a 'title' entry."
+    |                                                                         ^^^^^^^
+    |
+help: if you meant to write a `str` literal, use double quotes
+    |
+226 |             table.contains_key(rug_fuzz_2), "The table should contain a "title" entry."
+    |                                                                         ~~~~~~~
+
+error: prefix `Example` is unknown
+   --> crates/toml_edit/src/document.rs:229:76
+    |
+229 |             table[rug_fuzz_3].as_value().unwrap().as_str().unwrap(), "TOML Example"
+    |                                                                            ^^^^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+229 |             table[rug_fuzz_3].as_value().unwrap().as_str().unwrap(), "TOML Example "
+    |                                                                                   +
+
+error: unknown start of token: \
+   --> crates/toml_edit/src/document.rs:354:33
+    |
+354 |         let rug_fuzz_0 = "key = \"value\"";
+    |                                 ^
+
+error: this file contains an unclosed delimiter
+   --> crates/toml_edit/src/document.rs:376:3
+    |
+169 | mod tests_llm_16_20_llm_16_20 {
+    |                               - unclosed delimiter
+...
+174 |     fn test_from_str_valid_toml() {
+    |                                   - unclosed delimiter
+...
+179 |         .for_each(|rug_data| {
+    |                  - unclosed delimiter
+...
+376 | }
+    |   ^
+
+error: mismatched closing delimiter: `}`
+   --> crates/toml_edit/src/document.rs:197:13
+    |
+174 |     fn test_from_str_valid_toml() {
+    |                                   - closing delimiter possibly meant for this
+...
+197 |             [package
+    |             ^ unclosed delimiter
+...
+362 |     }
+    |     ^ mismatched closing delimiter
+
+error: expected `;`, found `name`
+   --> crates/toml_edit/src/document.rs:182:22
+    |
+182 |             [package]
+    |                      ^ help: add `;` here
+183 |             name = "your_package"
+    |             ---- unexpected token
+
+error: expected `;`, found `version`
+   --> crates/toml_edit/src/document.rs:183:34
+    |
+183 |             name = "your_package"
+    |                                  ^ help: add `;` here
+184 |             version = "0.1.0"
+    |             ------- unexpected token
+
+error: expected `;`, found `"#;
+               let toml_str = rug_fuzz_0;
+               let doc_result = Document::from_str(toml_str);
+               debug_assert!(doc_result.is_ok());
+               let doc = doc_result.unwrap();
+               debug_assert_eq!(doc.to_string(), toml_str.trim());
+                    }
+       });    }
+           #[test]
+           fn test_from_str_invalid_toml() {
+               let _rug_st_tests_llm_16_20_llm_16_20_rrrruuuugggg_test_from_str_invalid_toml = 0;
+               let rug_fuzz_0 = r#"`
+   --> crates/toml_edit/src/document.rs:184:30
+    |
+184 |               version = "0.1.0"
+    |                                ^ help: add `;` here
+185 | /         "#;
+186 | |         let toml_str = rug_fuzz_0;
+187 | |         let doc_result = Document::from_str(toml_str);
+188 | |         debug_assert!(doc_result.is_ok());
+...   |
+195 | |         let _rug_st_tests_llm_16_20_llm_16_20_rrrruuuugggg_test_from_str_invalid_toml = 0;
+196 | |         let rug_fuzz_0 = r#"
+    | |____________________________- unexpected token
+
+error: expected one of `!`, `.`, `::`, `?`, `]`, `{`, or an operator, found `name`
+   --> crates/toml_edit/src/document.rs:197:13
+    |
+197 |             [package
+    |             ^       - help: `]` may belong here
+    |             |
+    |             unclosed delimiter
+198 |             name = "your_package"
+    |             ^^^^
+
+error: could not compile `toml_edit` due to 10 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `toml_edit` due to 10 previous errors
+
+err tests_llm_16_20_llm_16_20 test_from_str_invalid_toml
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml_edit v0.19.11 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit)
+error: prefix `Example` is unknown
+   --> crates/toml_edit/src/document.rs:214:32
+    |
+214 |         let rug_fuzz_1 = "TOML Example";
+    |                                ^^^^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+214 |         let rug_fuzz_1 = "TOML Example ";
+    |                                       +
+
+error: character literal may only contain one codepoint
+   --> crates/toml_edit/src/document.rs:226:73
+    |
+226 |             table.contains_key(rug_fuzz_2), "The table should contain a 'title' entry."
+    |                                                                         ^^^^^^^
+    |
+help: if you meant to write a `str` literal, use double quotes
+    |
+226 |             table.contains_key(rug_fuzz_2), "The table should contain a "title" entry."
+    |                                                                         ~~~~~~~
+
+error: prefix `Example` is unknown
+   --> crates/toml_edit/src/document.rs:229:76
+    |
+229 |             table[rug_fuzz_3].as_value().unwrap().as_str().unwrap(), "TOML Example"
+    |                                                                            ^^^^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+229 |             table[rug_fuzz_3].as_value().unwrap().as_str().unwrap(), "TOML Example "
+    |                                                                                   +
+
+error: unknown start of token: \
+   --> crates/toml_edit/src/document.rs:354:33
+    |
+354 |         let rug_fuzz_0 = "key = \"value\"";
+    |                                 ^
+
+error: this file contains an unclosed delimiter
+   --> crates/toml_edit/src/document.rs:376:3
+    |
+169 | mod tests_llm_16_20_llm_16_20 {
+    |                               - unclosed delimiter
+...
+189 |     fn test_from_str_invalid_toml() {
+    |                                     - unclosed delimiter
+...
+194 |         .for_each(|rug_data| {
+    |                  - unclosed delimiter
+...
+376 | }
+    |   ^
+
+error: mismatched closing delimiter: `}`
+   --> crates/toml_edit/src/document.rs:197:13
+    |
+189 |     fn test_from_str_invalid_toml() {
+    |                                     - closing delimiter possibly meant for this
+...
+197 |             [package
+    |             ^ unclosed delimiter
+...
+362 |     }
+    |     ^ mismatched closing delimiter
+
+error: expected one of `!`, `,`, `.`, `::`, `;`, `?`, `]`, `{`, or an operator, found `name`
+   --> crates/toml_edit/src/document.rs:197:13
+    |
+197 |             [package
+    |             ^       - help: `]` may belong here
+    |             |
+    |             unclosed delimiter
+198 |             name = "your_package"
+    |             ^^^^
+
+error: could not compile `toml_edit` due to 7 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `toml_edit` due to 7 previous errors
+
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit/src/internal_string.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit/src/raw_string.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit/src/array.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit/src/ser/pretty.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit/src/ser/map.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit/src/ser/value.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit/src/ser/key.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit/src/ser/array.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit/src/ser/mod.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit/src/visit_mut.rs
+err tests_llm_16_576 test_visit_document_mut
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml_edit v0.19.11 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit)
+error: expected one of `!` or `[`, found `Example`
+   --> crates/toml_edit/src/visit_mut.rs:272:15
+    |
+272 |             # Example TOML
+    |               ^^^^^^^ expected one of `!` or `[`
+
+error: could not compile `toml_edit` due to previous error
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `toml_edit` due to previous error
+
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit/src/parser/state.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit/src/parser/table.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit/src/parser/value.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit/src/parser/key.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit/src/parser/datetime.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit/src/parser/macros.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit/src/parser/document.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit/src/parser/numbers.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit/src/parser/array.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit/src/parser/trivia.rs
+err tests_llm_16_421_llm_16_421 test_from_utf8_unchecked_valid
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml_edit v0.19.11 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit)
+error[E0521]: borrowed data escapes outside of closure
+   --> crates/toml_edit/src/parser/trivia.rs:131:121
+    |
+130 | ...h(|rug_data| {
+    |       --------
+    |       |
+    |       `rug_data` is a reference that is only valid in the closure body
+    |       has type `&'1 [u8]`
+131 | ...et Ok((mut rug_fuzz_0_ext, mut rug_fuzz_1)) = <([u8; 5], &str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+    |                                                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |                                                                                                            |
+    |                                                                                                            `rug_data` escapes the closure body here
+    |                                                                                                            argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml_edit` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_421_llm_16_421 test_from_utf8_unchecked_invalid
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml_edit v0.19.11 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit)
+error[E0521]: borrowed data escapes outside of closure
+   --> crates/toml_edit/src/parser/trivia.rs:145:121
+    |
+144 | ...h(|rug_data| {
+    |       --------
+    |       |
+    |       `rug_data` is a reference that is only valid in the closure body
+    |       has type `&'1 [u8]`
+145 | ...et Ok((mut rug_fuzz_0_ext, mut rug_fuzz_1)) = <([u8; 6], &str) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+    |                                                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |                                                                                                            |
+    |                                                                                                            `rug_data` escapes the closure body here
+    |                                                                                                            argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml_edit` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit/src/parser/errors.rs
+err tests_llm_16_350 test_extend_wrong_type_panic_empty_path
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml_edit v0.19.11 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit)
+error[E0521]: borrowed data escapes outside of closure
+   --> crates/toml_edit/src/parser/errors.rs:508:115
+    |
+507 | ...h(|rug_data| {
+    |       --------
+    |       |
+    |       `rug_data` is a reference that is only valid in the closure body
+    |       has type `&'1 [u8]`
+508 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1)) = <(&str, usize) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+    |                                                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |                                                                                                      |
+    |                                                                                                      `rug_data` escapes the closure body here
+    |                                                                                                      argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml_edit` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_350 test_extend_wrong_type_valid
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml_edit v0.19.11 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit)
+error[E0521]: borrowed data escapes outside of closure
+   --> crates/toml_edit/src/parser/errors.rs:518:159
+    |
+517 | ...h(|rug_data| {
+    |       --------
+    |       |
+    |       `rug_data` is a reference that is only valid in the closure body
+    |       has type `&'1 [u8]`
+518 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2, mut rug_fuzz_3)) = <(&str, &str, &str, usize) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+    |                                                                                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |                                                                                                                                                  |
+    |                                                                                                                                                  `rug_data` escapes the closure body here
+    |                                                                                                                                                  argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml_edit` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+err tests_llm_16_350 test_extend_wrong_type_index_out_of_bounds
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml_edit v0.19.11 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit)
+error[E0521]: borrowed data escapes outside of closure
+   --> crates/toml_edit/src/parser/errors.rs:539:159
+    |
+538 | ...h(|rug_data| {
+    |       --------
+    |       |
+    |       `rug_data` is a reference that is only valid in the closure body
+    |       has type `&'1 [u8]`
+539 | ...et Ok((mut rug_fuzz_0, mut rug_fuzz_1, mut rug_fuzz_2, mut rug_fuzz_3)) = <(&str, &str, &str, usize) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data...
+    |                                                                                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |                                                                                                                                                  |
+    |                                                                                                                                                  `rug_data` escapes the closure body here
+    |                                                                                                                                                  argument requires that `'1` must outlive `'static`
+
+For more information about this error, try `rustc --explain E0521`.
+error: could not compile `toml_edit` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit/src/parser/mod.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit/src/parser/inline_table.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit/src/parser/strings.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit/src/encode.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit/src/de/table.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit/src/de/value.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit/src/de/key.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit/src/de/table_enum.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit/src/de/spanned.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit/src/de/datetime.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit/src/de/array.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit/src/de/mod.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit/src/inline_table.rs
+err tests_llm_16_212_llm_16_212 test_get_inline_table_value
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml_edit v0.19.11 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit)
+error: prefix `value` is unknown
+    --> crates/toml_edit/src/inline_table.rs:1120:39
+     |
+1120 |                 panic!("Item is not a value");
+     |                                       ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1120 |                 panic!("Item is not a value ");
+     |                                            +
+
+error: prefix `found` is unknown
+    --> crates/toml_edit/src/inline_table.rs:1123:40
+     |
+1123 |             panic!("Key-value pair not found");
+     |                                        ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1123 |             panic!("Key-value pair not found ");
+     |                                             +
+
+error: unknown start of token: `
+    --> crates/toml_edit/src/inline_table.rs:1149:46
+     |
+1149 |             panic!("Expected a Value for key `key1`");
+     |                                              ^
+     |
+help: Unicode character '`' (Grave Accent) looks like ''' (Single Quote), but it is not
+     |
+1149 |             panic!("Expected a Value for key 'key1`");
+     |                                              ~
+
+error: unknown start of token: `
+    --> crates/toml_edit/src/inline_table.rs:1149:51
+     |
+1149 |             panic!("Expected a Value for key `key1`");
+     |                                                   ^
+     |
+help: Unicode character '`' (Grave Accent) looks like ''' (Single Quote), but it is not
+     |
+1149 |             panic!("Expected a Value for key `key1'");
+     |                                                   ~
+
+error: prefix `value` is unknown
+    --> crates/toml_edit/src/inline_table.rs:1188:35
+     |
+1188 |         let rug_fuzz_1 = "initial value";
+     |                                   ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1188 |         let rug_fuzz_1 = "initial value ";
+     |                                        +
+
+error: prefix `value` is unknown
+    --> crates/toml_edit/src/inline_table.rs:1197:60
+     |
+1197 |             debug_assert_eq!(value.as_str(), Some("initial value"));
+     |                                                            ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1197 |             debug_assert_eq!(value.as_str(), Some("initial value "));
+     |                                                                 +
+
+error: prefix `first` is unknown
+    --> crates/toml_edit/src/inline_table.rs:1309:34
+     |
+1309 |         let rug_fuzz_0 = "parent.first";
+     |                                  ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1309 |         let rug_fuzz_0 = "parent.first ";
+     |                                       +
+
+error: prefix `second` is unknown
+    --> crates/toml_edit/src/inline_table.rs:1311:34
+     |
+1311 |         let rug_fuzz_2 = "parent.second";
+     |                                  ^^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1311 |         let rug_fuzz_2 = "parent.second ";
+     |                                        +
+
+error: prefix `first` is unknown
+    --> crates/toml_edit/src/inline_table.rs:1320:40
+     |
+1320 |         debug_assert_eq!(path, "parent.first");
+     |                                        ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1320 |         debug_assert_eq!(path, "parent.first ");
+     |                                             +
+
+error: prefix `second` is unknown
+    --> crates/toml_edit/src/inline_table.rs:1323:40
+     |
+1323 |         debug_assert_eq!(path, "parent.second");
+     |                                        ^^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1323 |         debug_assert_eq!(path, "parent.second ");
+     |                                              +
+
+error: prefix `Example` is unknown
+    --> crates/toml_edit/src/inline_table.rs:1331:41
+     |
+1331 |         let rug_fuzz_0 = "title = 'TOML Example'\n[owner]\nname = 'Tom Preston-Werner'\n";
+     |                                         ^^^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1331 |         let rug_fuzz_0 = "title = 'TOML Example '\n[owner]\nname = 'Tom Preston-Werner'\n";
+     |                                                +
+
+error: character literal may only contain one codepoint
+    --> crates/toml_edit/src/inline_table.rs:1331:48
+     |
+1331 |         let rug_fuzz_0 = "title = 'TOML Example'\n[owner]\nname = 'Tom Preston-Werner'\n";
+     |                                                ^^^^^^^^^^^^^^^^^^^^
+     |
+help: if you meant to write a `str` literal, use double quotes
+     |
+1331 |         let rug_fuzz_0 = "title = 'TOML Example"\n[owner]\nname = "Tom Preston-Werner'\n";
+     |                                                ~~~~~~~~~~~~~~~~~~~~
+
+error: prefix `Werner` is unknown
+    --> crates/toml_edit/src/inline_table.rs:1331:80
+     |
+1331 |         let rug_fuzz_0 = "title = 'TOML Example'\n[owner]\nname = 'Tom Preston-Werner'\n";
+     |                                                                                ^^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1331 |         let rug_fuzz_0 = "title = 'TOML Example'\n[owner]\nname = 'Tom Preston-Werner '\n";
+     |                                                                                      +
+
+error[E0762]: unterminated character literal
+    --> crates/toml_edit/src/inline_table.rs:1331:86
+     |
+1331 |         let rug_fuzz_0 = "title = 'TOML Example'\n[owner]\nname = 'Tom Preston-Werner'\n";
+     |                                                                                      ^^^^^
+
+For more information about this error, try `rustc --explain E0762`.
+error: could not compile `toml_edit` due to 14 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `toml_edit` due to 14 previous errors
+
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit/src/lib.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit/src/array_of_tables.rs
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit/src/visit.rs
+err tests_llm_16_548 test_visit_document
+warning: skipping duplicate package `example` found at `/home/xiang/.cargo/git/checkouts/libfuzzer-sys-e07fde05820d7bc6/35ce7d7/example_arbitrary`
+   Compiling toml_edit v0.19.11 (/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit)
+error: prefix `yet` is unknown
+   --> crates/toml_edit/src/visit.rs:391:77
+    |
+391 |         debug_assert!(! visitor.visited_table, "Table should not be visited yet");
+    |                                                                             ^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+391 |         debug_assert!(! visitor.visited_table, "Table should not be visited yet ");
+    |                                                                                +
+
+error: prefix `visit_table` is unknown
+   --> crates/toml_edit/src/visit.rs:394:75
+    |
+394 |             visitor.visited_table, "Table should be visited after calling visit_table"
+    |                                                                           ^^^^^^^^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+394 |             visitor.visited_table, "Table should be visited after calling visit_table "
+    |                                                                                      +
+
+error: prefix `initially` is unknown
+   --> crates/toml_edit/src/visit.rs:425:73
+    |
+425 |             ! visitor.visited, "Visitor should not be marked as visited initially"
+    |                                                                         ^^^^^^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+425 |             ! visitor.visited, "Visitor should not be marked as visited initially "
+    |                                                                                  +
+
+error: prefix `visit_table_like` is unknown
+   --> crates/toml_edit/src/visit.rs:429:73
+    |
+429 |             visitor.visited, "Visitor should be marked as visited after visit_table_like"
+    |                                                                         ^^^^^^^^^^^^^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+429 |             visitor.visited, "Visitor should be marked as visited after visit_table_like "
+    |                                                                                         +
+
+error: unknown start of token: \
+   --> crates/toml_edit/src/visit.rs:511:34
+    |
+511 |         let rug_fuzz_0 = "[table]\nkey = \"value\"";
+    |                                  ^
+
+error: unknown start of token: \
+   --> crates/toml_edit/src/visit.rs:511:42
+    |
+511 |         let rug_fuzz_0 = "[table]\nkey = \"value\"";
+    |                                          ^
+
+error: this file contains an unclosed delimiter
+   --> crates/toml_edit/src/visit.rs:708:3
+    |
+276 | mod tests_llm_16_548 {
+    |                      - unclosed delimiter
+...
+289 |     fn test_visit_document() {
+    |                              - unclosed delimiter
+...
+294 |         .for_each(|rug_data| {
+    |                  - unclosed delimiter
+...
+708 | }
+    |   ^
+
+error: expected `;`, found `name`
+   --> crates/toml_edit/src/visit.rs:297:22
+    |
+297 |             [package]
+    |                      ^ help: add `;` here
+298 |             name = "toml_edit"
+    |             ---- unexpected token
+
+error: expected `;`, found `version`
+   --> crates/toml_edit/src/visit.rs:298:31
+    |
+298 |             name = "toml_edit"
+    |                               ^ help: add `;` here
+299 |             version = "1.0.0"
+    |             ------- unexpected token
+
+error: expected `;`, found `"#;
+               let toml_str = rug_fuzz_0;
+               let mut doc = toml_str.parse::<Document>().expect(rug_fuzz_1);
+               let mut visitor = TestVisitor::default();
+               debug_assert_eq!(visitor.visited_documents, 0);
+               visitor.visit_document(&doc);
+               debug_assert_eq!(visitor.visited_documents, 1);
+               doc[rug_fuzz_2][rug_fuzz_3] = Item::Value(Value::from(rug_fuzz_4));
+               doc[rug_fuzz_5][rug_fuzz_6] = Item::Value(Value::from(rug_fuzz_7));
+               visitor.visit_document(&doc);
+               debug_assert_eq!(visitor.visited_documents, 2);
+                    }
+       });    }
+       }
+       #[cfg(test)]
+       mod tests_llm_16_550_llm_16_550 {
+           use super::*;
+           use crate::*;
+           use crate::visit::Visit;
+           #[derive(Default)]
+           struct TestVisitor {
+               visited_inline_tables: Vec<InlineTable>,
+           }
+           impl<'doc> Visit<'doc> for TestVisitor {
+               fn visit_inline_table(&mut self, node: &'doc InlineTable) {
+                   self.visited_inline_tables.push(node.clone());
+               }
+           }
+           #[test]
+           fn test_visit_inline_table() {
+               let _rug_st_tests_llm_16_550_llm_16_550_rrrruuuugggg_test_visit_inline_table = 0;
+               let rug_fuzz_0 = 0;
+               let mut visitor = TestVisitor::default();
+               let table = InlineTable::new();
+               visitor.visit_inline_table(&table);
+               debug_assert_eq!(visitor.visited_inline_tables.len(), 1);
+               debug_assert!(visitor.visited_inline_tables[rug_fuzz_0].is_empty());
+               let _rug_ed_tests_llm_16_550_llm_16_550_rrrruuuugggg_test_visit_inline_table = 0;
+           }
+       }
+       #[cfg(test)]
+       mod tests_llm_16_551 {
+           use crate::{visit::Visit, repr::{Formatted, Decor}};
+           struct TestVisitor {
+               visited_integer: Option<i64>,
+           }
+           impl TestVisitor {
+               fn new() -> Self {
+                   TestVisitor {
+                       visited_integer: None,
+                   }
+               }
+           }
+           impl<'doc> Visit<'doc> for TestVisitor {
+               fn visit_integer(&mut self, node: &'doc Formatted<i64>) {
+                   self.visited_integer = Some(*node.value());
+               }
+           }
+           #[test]
+           fn visit_integer_test() {
+               let _rug_st_tests_llm_16_551_rrrruuuugggg_visit_integer_test = 0;
+               let rug_fuzz_0 = 42;
+               let mut visitor = TestVisitor::new();
+               let formatted_integer = Formatted::new(rug_fuzz_0);
+               visitor.visit_integer(&formatted_integer);
+               debug_assert_eq!(visitor.visited_integer, Some(42));
+               let _rug_ed_tests_llm_16_551_rrrruuuugggg_visit_integer_test = 0;
+           }
+       }
+       #[cfg(test)]
+       mod tests_llm_16_554 {
+           use crate::visit::Visit;
+           use crate::table::Table;
+           struct MockVisit {
+               visited_table: bool,
+           }
+           impl MockVisit {
+               fn new() -> Self {
+                   MockVisit { visited_table: false }
+               }
+           }
+           impl Visit<'_> for MockVisit {
+               fn visit_table(&mut self, _node: &'_ Table) {
+                   self.visited_table = true;
+               }
+           }
+           #[test]
+           fn test_visit_table() {
+               let _rug_st_tests_llm_16_554_rrrruuuugggg_test_visit_table = 0;
+               let mut visitor = MockVisit::new();
+               let table = Table::new();
+               debug_assert!(! visitor.visited_table, "Table`
+   --> crates/toml_edit/src/visit.rs:299:30
+    |
+299 |               version = "1.0.0"
+    |                                ^ help: add `;` here
+300 | /         "#;
+301 | |         let toml_str = rug_fuzz_0;
+302 | |         let mut doc = toml_str.parse::<Document>().expect(rug_fuzz_1);
+303 | |         let mut visitor = TestVisitor::default();
+...   |
+390 | |         let table = Table::new();
+391 | |         debug_assert!(! visitor.visited_table, "Table should not be visited yet");
+    | |_____________________________________________________- unexpected token
+
+error: expected `;`, found `should`
+   --> crates/toml_edit/src/visit.rs:391:54
+    |
+391 |         debug_assert!(! visitor.visited_table, "Table should not be visited yet");
+    |                                                      ^------ unexpected token
+    |                                                      |
+    |                                                      help: add `;` here
+
+error: expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `not`
+   --> crates/toml_edit/src/visit.rs:276:22
+    |
+276 | mod tests_llm_16_548 {
+    |                      ^ unclosed delimiter
+...
+391 |         debug_assert!(! visitor.visited_table, "Table should not be visited yet");
+    |                                                             -^^^ expected one of 8 possible tokens
+    |                                                             |
+    |                                                             help: `}` may belong here
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `#`
+   --> crates/toml_edit/src/visit.rs:520:1
+    |
+519 | }
+    |  - expected one of `)`, `,`, `.`, `?`, or an operator
+520 | #[cfg(test)]
+    | ^ unexpected token
+
+error: expected `;`, found keyword `mod`
+   --> crates/toml_edit/src/visit.rs:520:13
+    |
+520 | #[cfg(test)]
+    |             ^ help: add `;` here
+521 | mod tests_llm_16_564 {
+    | --- unexpected token
+
+error: expected expression, found `)`
+   --> crates/toml_edit/src/visit.rs:708:3
+    |
+708 | }
+    |   ^ expected expression
+
+error: could not compile `toml_edit` due to 15 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `toml_edit` due to 15 previous errors
+
+/mnt/sda/xiang/llm4/llm_4_base_fuzz/toml/crates/toml_edit/src/repr.rs
+done

@@ -1,0 +1,24 @@
+rust-crc32fast crc32fast {'combine::tests_llm_16_20::test_combine': 'combine__tests_llm_16_20__test_combine', 'baseline::tests_llm_16_13::test_combine': 'baseline__tests_llm_16_13__test_combine', 'combine::tests_llm_16_20::test_combine_degenerate_case': 'combine__tests_llm_16_20__test_combine_degenerate_case', 'combine::tests_llm_16_20::test_combine_zero_length': 'combine__tests_llm_16_20__test_combine_zero_length', 'combine::tests_llm_16_21_llm_16_21::test_gf2_matrix_square': 'combine__tests_llm_16_21_llm_16_21__test_gf2_matrix_square', 'specialized::pclmulqdq::tests_llm_16_25::test_finalize_returns_state': 'specialized__pclmulqdq__tests_llm_16_25__test_finalize_returns_state', 'specialized::pclmulqdq::tests_llm_16_27_llm_16_27::test_reset': 'specialized__pclmulqdq__tests_llm_16_27_llm_16_27__test_reset', 'tests_llm_16_10::test_new_with_initial_len': 'tests_llm_16_10__test_new_with_initial_len', 'tests_llm_16_11_llm_16_11::reset_should_reset_amount_and_state': 'tests_llm_16_11_llm_16_11__reset_should_reset_amount_and_state', 'tests_llm_16_23::test_hash_hello_world': 'tests_llm_16_23__test_hash_hello_world', 'tests_llm_16_23::test_hash_incrementing_bytes': 'tests_llm_16_23__test_hash_incrementing_bytes', 'tests_llm_16_23::test_hash_single_byte': 'tests_llm_16_23__test_hash_single_byte', 'tests_llm_16_2_llm_16_2::test_finish_after_combine': 'tests_llm_16_2_llm_16_2__test_finish_after_combine', 'tests_llm_16_23::test_hash_repeating_bytes': 'tests_llm_16_23__test_hash_repeating_bytes', 'tests_llm_16_2_llm_16_2::test_finish_after_multiple_updates': 'tests_llm_16_2_llm_16_2__test_finish_after_multiple_updates', 'tests_llm_16_2_llm_16_2::test_finish_after_reset': 'tests_llm_16_2_llm_16_2__test_finish_after_reset', 'tests_llm_16_4::test_hasher_combine': 'tests_llm_16_4__test_hasher_combine', 'tests_llm_16_6_llm_16_6::internal_new_baseline_amount': 'tests_llm_16_6_llm_16_6__internal_new_baseline_amount', 'tests_llm_16_6_llm_16_6::internal_new_baseline_initial_state': 'tests_llm_16_6_llm_16_6__internal_new_baseline_initial_state', 'tests_llm_16_2_llm_16_2::test_finish_after_single_update': 'tests_llm_16_2_llm_16_2__test_finish_after_single_update', 'tests_llm_16_6_llm_16_6::internal_new_baseline_reset': 'tests_llm_16_6_llm_16_6__internal_new_baseline_reset', 'tests_llm_16_6_llm_16_6::internal_new_baseline_update_finalize': 'tests_llm_16_6_llm_16_6__internal_new_baseline_update_finalize', 'tests_llm_16_7_llm_16_7::test_internal_new_specialized_with_supported_algorithm': 'tests_llm_16_7_llm_16_7__test_internal_new_specialized_with_supported_algorithm', 'tests_llm_16_8_llm_16_8::test_new': 'tests_llm_16_8_llm_16_8__test_new'}
+timeout or err combine::tests_llm_16_20::test_combine
+timeout or err baseline::tests_llm_16_13::test_combine
+timeout or err combine::tests_llm_16_20::test_combine_degenerate_case
+timeout or err combine::tests_llm_16_20::test_combine_zero_length
+timeout or err combine::tests_llm_16_21_llm_16_21::test_gf2_matrix_square
+timeout or err specialized::pclmulqdq::tests_llm_16_25::test_finalize_returns_state
+timeout or err specialized::pclmulqdq::tests_llm_16_27_llm_16_27::test_reset
+timeout or err tests_llm_16_10::test_new_with_initial_len
+timeout or err tests_llm_16_11_llm_16_11::reset_should_reset_amount_and_state
+timeout or err tests_llm_16_23::test_hash_hello_world
+timeout or err tests_llm_16_23::test_hash_incrementing_bytes
+timeout or err tests_llm_16_23::test_hash_single_byte
+timeout or err tests_llm_16_2_llm_16_2::test_finish_after_combine
+timeout or err tests_llm_16_23::test_hash_repeating_bytes
+timeout or err tests_llm_16_2_llm_16_2::test_finish_after_multiple_updates
+timeout or err tests_llm_16_2_llm_16_2::test_finish_after_reset
+timeout or err tests_llm_16_6_llm_16_6::internal_new_baseline_amount
+timeout or err tests_llm_16_6_llm_16_6::internal_new_baseline_initial_state
+timeout or err tests_llm_16_2_llm_16_2::test_finish_after_single_update
+timeout or err tests_llm_16_6_llm_16_6::internal_new_baseline_reset
+timeout or err tests_llm_16_7_llm_16_7::test_internal_new_specialized_with_supported_algorithm
+timeout or err tests_llm_16_8_llm_16_8::test_new
+rust-crc32fast done

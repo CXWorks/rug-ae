@@ -1,0 +1,1 @@
+{"<Md2Core as core::default::Default>::default": true, "<Md2Core as digest::Reset>::reset": false, "<Md2Core as digest::core_api::AlgorithmName>::write_alg_name": false, "<Md2Core as digest::core_api::FixedOutputCore>::finalize_fixed_core": false, "<Md2Core as digest::core_api::UpdateCore>::update_blocks": false, "Md2Core::compress": false}

@@ -1,0 +1,486 @@
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::*;
+    use digest::core_api::AlgorithmName;
+    use std::fmt;
+
+    #[test]
+    fn test_write_alg_name() {
+        let shabal_core = ShabalVarCore::default();
+        let alg_name = shabal_core.algorithm_name();
+        assert_eq!(alg_name, "Shabal");
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::core_api::ShabalVarCore;
+    use digest::core_api::{BlockSizeUser, UpdateCore, Block, InvalidOutputSize, OutputSizeUser, VariableOutputCore};
+    use digest::HashMarker;
+    use generic_array::GenericArray;
+    use typenum::U64;
+    use num::Wrapping;
+    use core::fmt;
+    use std::mem;
+
+    #[test]
+    fn update_blocks_test() {
+        // Output size determined from the original code, which is the size of INIT_256
+        let output_size = <ShabalVarCore as OutputSizeUser>::OutputSize::to_usize();
+        // Initialize ShabalVarCore
+        let mut shabal_core = ShabalVarCore::new(output_size).unwrap();
+        let initial_core = shabal_core.clone();
+
+        // Block size determined from the original code and the BlockSizeUser trait
+        let block_size = <ShabalVarCore as BlockSizeUser>::BlockSize::to_usize();
+        let block = GenericArray::default(); // Empty block, use an actual block in real cases
+
+        // Update ShabalVarCore with one block
+        shabal_core.update_blocks(core::slice::from_ref(&block));
+
+        // Update one block manually
+        let mut manual_core = initial_core;
+        let m = read_m(&block);
+        manual_core.add_m(&m);
+        manual_core.xor_w();
+        manual_core.perm(&m);
+        manual_core.sub_m(&m);
+        manual_core.swap_b_c();
+        manual_core.w += Wrapping(1);
+
+        // ShabalVarCore after update_blocks should be equal to manually updated core
+        assert_eq!(shabal_core.a, manual_core.a);
+        assert_eq!(shabal_core.b, manual_core.b);
+        assert_eq!(shabal_core.c, manual_core.c);
+        assert_eq!(shabal_core.w, manual_core.w);
+    }
+
+    // Helper function to read a message block
+    fn read_m(block: &Block<U64>) -> M {
+        let mut m = [Wrapping(0u32); 16];
+        for (o, chunk) in m.iter_mut().zip(block.chunks_exact(4)) {
+            let mut buf = [0u8; 4];
+            buf.copy_from_slice(chunk);
+            *o = Wrapping(u32::from_le_bytes(buf));
+        }
+        m
+    }
+
+    // Mock function to create a new ShabalVarCore for testing
+    impl ShabalVarCore {
+        // I use a mock new function for testing instead of the original new function
+        // because the original new function initializes with real INIT_256 constants and is not public.
+        fn new(output_size: usize) -> Result<Self, InvalidOutputSize> {
+            if output_size != 32 && output_size != 64 {
+                return Err(InvalidOutputSize);
+            }
+
+            let w = Wrapping(0);
+            let a = [Wrapping(0u32); 12];
+            let b = [Wrapping(0u32); 16];
+            let c = [Wrapping(0u32); 16];
+            Ok(Self { a, b, c, w })
+        }
+    }
+}
+False
+========================================
+    use super::*; // Use the parent module's items
+
+use crate::*;
+    use crate::core_api::ShabalVarCore;
+    use digest::core_api::{Buffer, BufferKindUser, OutputSizeUser, UpdateCore, VariableOutputCore};
+    use digest::generic_array::GenericArray;
+    use digest::typenum::Unsigned;
+
+    #[test]
+    fn test_finalize_variable_core() {
+        const OUTPUT_SIZE: usize = 64; // Choose a desired output size
+        let mut core = ShabalVarCore::new(OUTPUT_SIZE).expect("Invalid output size");
+        
+        // Initialize a buffer with the block size
+        let block_size = <ShabalVarCore as BufferKindUser>::BufferKind::BlockSize::USIZE;
+        let mut buffer = Buffer::<ShabalVarCore>::new();
+        
+        // Write some data into the buffer
+        let data = b"some data to hash";
+        buffer.update(data, &mut core);
+        
+        // Initialize the output buffer
+        let mut output = core.digest_finalize(&mut buffer);
+        
+        // Expected output hash for the input "some data to hash" with output size 64
+        // This hash output is assumed and should be replaced with the actual expected hash for the given data
+        // Replace with actual expected hash
+        let expected_hash = GenericArray::<u8, <ShabalVarCore as OutputSizeUser>::OutputSize>::default();
+        
+        // Assert that the output hash matches the expected hash
+        assert_eq!(output, expected_hash, "Hash output does not match the expected hash");
+    }
+}
+False
+========================================
+    use crate::core_api::ShabalVarCore;
+    use crate::consts;
+    use digest::core_api::{InvalidOutputSize, VariableOutputCore};
+    use std::num::Wrapping;
+    
+    #[test]
+    fn new_correct_init() {
+        let output_sizes = vec![24, 28, 32, 48, 64];
+        let expected_inits = vec![
+            consts::INIT_192,
+            consts::INIT_224,
+            consts::INIT_256,
+            consts::INIT_384,
+            consts::INIT_512,
+        ];
+
+        for (output_size, expected_init) in output_sizes.into_iter().zip(expected_inits) {
+            let shabal_var_core = ShabalVarCore::new(output_size);
+            assert!(shabal_var_core.is_ok());
+
+            let core = shabal_var_core.unwrap();
+            for (i, &val) in expected_init.0.iter().enumerate() {
+                assert_eq!(core.a[i], Wrapping(val as u64));
+            }
+            for (i, &val) in expected_init.1.iter().enumerate() {
+                assert_eq!(core.b[i], Wrapping(val as u64));
+            }
+            for (i, &val) in expected_init.2.iter().enumerate() {
+                assert_eq!(core.c[i], Wrapping(val as u64));
+            }
+            assert_eq!(core.w, Wrapping(1u64));
+        }
+    }
+
+    #[test]
+    fn new_invalid_output_size() {
+        let output_sizes = vec![0, 1, 23, 25, 29, 31, 33, 47, 49, 63, 65, 100];
+        for output_size in output_sizes {
+            let shabal_var_core = ShabalVarCore::new(output_size);
+            assert!(shabal_var_core.is_err());
+            if let Err(e) = shabal_var_core {
+                assert!(matches!(e, InvalidOutputSize));
+            }
+        }
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use core::num::Wrapping;
+
+    #[test]
+    fn test_add_m() {
+        let mut core = ShabalVarCore::new(32).unwrap();
+        let mut m = [Wrapping(0u32); 16];
+        for i in 0..16 {
+            m[i] = Wrapping(i as u32); // use some arbitrary values for m
+        }
+
+        // Save initial state of b for comparison
+        let initial_b = core.b;
+
+        // Call add_m
+        core.add_m(&m);
+
+        // Check each element in b to ensure it was incremented properly
+        for i in 0..16 {
+            assert_eq!(core.b[i], initial_b[i] + m[i]);
+        }
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use core_api::ShabalVarCore;
+    use std::num::Wrapping;
+
+    // Helper function to create a ShabalVarCore with specified state for testing
+    fn create_test_core() -> ShabalVarCore {
+        // Example state, should be set to a valid initial state
+        let a = [Wrapping(0x0); 12];
+        let b = [Wrapping(0x0); 16];
+        let c = [Wrapping(0x0); 16];
+        ShabalVarCore {
+            a,
+            b,
+            c,
+            w: Wrapping(0x0),
+        }
+    }
+
+    #[test]
+    fn perm_correctness() {
+        // Create a core with a known state
+        let mut core = create_test_core();
+
+        // Create a known M for testing
+        let m = [Wrapping(0x0); 16];
+
+        // Expected state after applying perm
+        let expected_a = core.a;
+        let expected_b = core.b.iter().map(|x| Wrapping(x.0.rotate_left(17))).collect::<Vec<_>>();
+        let expected_c = core.c;
+
+        core.perm(&m);
+
+        // Assert the core state after perm matches the expected state
+        assert_eq!(core.a, expected_a, "Expected a to be {:?}, but found {:?}.", expected_a, core.a);
+        // Compare the result for b, use Wrapping to avoid overflow issues
+        assert!(core.b.iter().zip(expected_b.iter()).all(|(x, y)| x == y),
+            "Expected b to be {:?}, but found {:?}.", expected_b, core.b);
+        // c should remain the same after perm
+        assert_eq!(core.c, expected_c, "Expected c to be {:?}, but found {:?}.", expected_c, core.c);
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::core_api::ShabalVarCore;
+    use crate::digest::core_api::Block;
+    use crate::digest::{FixedOutput, Update, Buffer};
+    use crate::consts;
+    use digest::consts::U64;
+    use digest::generic_array::GenericArray;
+    use std::num::Wrapping;
+    use std::convert::TryInto;
+
+    #[test]
+    fn test_perm_blocks() {
+        let output_size = 64;
+        let mut shabal = ShabalVarCore::new(output_size).unwrap();
+
+        let orig_state = shabal.clone();
+
+        let m = [
+            Wrapping(0x243F_6A88), Wrapping(0x85A3_08D3), Wrapping(0x1319_8A2E), Wrapping(0x0370_7344),
+            Wrapping(0xA409_3822), Wrapping(0x299F_31D0), Wrapping(0x082E_FA98), Wrapping(0xEC4E_6C89),
+            Wrapping(0x4528_21E6), Wrapping(0x38D0_1377), Wrapping(0xBE54_66CF), Wrapping(0x34E9_0C6C),
+            Wrapping(0xC0AC_29B7), Wrapping(0xC97C_50DD), Wrapping(0x3F84_D5B5), Wrapping(0xB547_0917),
+        ];
+
+        shabal.perm_blocks(&m);
+
+        let mut buffer = Buffer::new();
+        buffer.update(&m.iter().flat_map(|x| x.0.to_le_bytes()).collect::<Vec<u8>>());
+
+        let m_block: Block = GenericArray::clone_from_slice(&buffer.finalize_fixed()[..]);
+
+        let mut shabal_clone = orig_state.clone();
+        shabal_clone.update_blocks(&[m_block]);
+
+        assert_eq!(shabal_clone.a, shabal.a, "ShabalVarCore a state not equal after perm_blocks");
+
+        shabal_clone.perm(&m);
+
+        assert_eq!(shabal_clone.b, shabal.b, "ShabalVarCore b state not equal after perm_blocks");
+        assert_eq!(shabal_clone.c, shabal.c, "ShabalVarCore c state not equal after perm_blocks");
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use std::num::Wrapping;
+
+    #[test]
+    fn test_perm_elt() {
+        let mut core = ShabalVarCore::new(32).unwrap();
+        let a_orig = core.a;
+        let b_orig = core.b;
+        let c_orig = core.c;
+
+        // Test values
+        let xa0 = 0;
+        let xa1 = 1;
+        let xb0 = 0;
+        let xb1 = 1;
+        let xb2 = 2;
+        let xb3 = 3;
+        let xc0 = 0;
+        let xm = Wrapping(0x12345678u32);
+
+        // Apply permutation element
+        core.perm_elt(xa0, xa1, xb0, xb1, xb2, xb3, xc0, xm);
+
+        // Check expected changes based on perm_elt definition
+        assert_ne!(core.a[xa0], a_orig[xa0], "a[xa0] should have changed");
+        assert_ne!(core.b[xb0], b_orig[xb0], "b[xb0] should have changed");
+        assert_eq!(core.a[xa1], a_orig[xa1], "a[xa1] should not have changed");
+        assert_eq!(core.b[xb1], b_orig[xb1], "b[xb1] should not have changed");
+        assert_eq!(core.b[xb2], b_orig[xb2], "b[xb2] should not have changed");
+        assert_eq!(core.b[xb3], b_orig[xb3], "b[xb3] should not have changed");
+        assert_eq!(core.c[xc0], c_orig[xc0], "c[xc0] should not have changed");
+        // Verify other a, b, c remain unchanged
+        for i in 1..12 {
+            assert_eq!(core.a[i], a_orig[i], "a[{}] should not have changed", i);
+        }
+        for i in 1..16 {
+            assert_eq!(core.b[i], b_orig[i], "b[{}] should not have changed", i);
+            assert_eq!(core.c[i], c_orig[i], "c[{}] should not have changed", i);
+        }
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+
+    use crate::consts;
+    use crate::core_api::ShabalVarCore;
+    use crate::generic_array::typenum::U64;
+    use crate::generic_array::GenericArray;
+    use crate::digest::InvalidOutputSize;
+    use crate::digest::consts::{U28, U32, U48, U64 as U64_};
+    use std::num::Wrapping;
+    use std::fmt;
+
+    type BlockSize = U64;
+    type Block = GenericArray<u8, BlockSize>;
+    type M = [Wrapping<u32>; 16];
+
+    fn read_m(block: &Block) -> M {
+        let mut m = [Wrapping(0u32); 16];
+        for (o, chunk) in m.iter_mut().zip(block.chunks_exact(4)) {
+            *o = Wrapping(u32::from_le_bytes(chunk.try_into().unwrap()));
+        }
+        m
+    }
+
+    #[test]
+    fn test_sub_m() {
+        let mut core = ShabalVarCore::new(32).unwrap();
+        let initial_c = core.c;
+
+        let mut test_m = [Wrapping(0u32); 16];
+        for i in 0..16 {
+            test_m[i] = Wrapping(1u32);
+        }
+
+        core.sub_m(&test_m);
+
+        for i in 0..16 {
+            assert_eq!(core.c[i], initial_c[i] - test_m[i]);
+        }
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use core::num::Wrapping;
+    use digest::InvalidOutputSize;
+
+    #[test]
+    fn test_swap_b_c() {
+        // Initialize ShabalVarCore with specific state
+        let mut shabal = ShabalVarCore::new(32).unwrap(); // Assuming we are working with SHA-256
+
+        // Mock the `b` and `c` vectors with distinct test values
+        shabal.b = [Wrapping(1); 16];
+        shabal.c = [Wrapping(2); 16];
+        
+        // Store the original vectors
+        let original_b = shabal.b;
+        let original_c = shabal.c;
+        
+        // Perform the swap
+        shabal.swap_b_c();
+        
+        // Assert that `b` and `c` have been swapped
+        assert_eq!(shabal.b, original_c, "b should have the original values of c");
+        assert_eq!(shabal.c, original_b, "c should have the original values of b");
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use std::num::Wrapping;
+
+    #[test]
+    fn test_xor_w() {
+        let mut core = ShabalVarCore {
+            a: [Wrapping(0); 12], // Initialize a with a known value
+            b: [Wrapping(0); 16], // b and c are not involved in the xor_w function
+            c: [Wrapping(0); 16],
+            w: Wrapping(0x123456789ABCDEF0), // Set a known value for w
+        };
+        // Values of a[0] and a[1] after xor_w should be
+        // a[0] = a[0] XOR (w as u32) = 0 XOR 0x9ABCDEF0
+        // a[1] = a[1] XOR (w >> 32 as u32) = 0 XOR 0x12345678
+        core.xor_w();
+        assert_eq!(core.a[0], Wrapping(0x9ABCDEF0));
+        assert_eq!(core.a[1], Wrapping(0x12345678));
+        // a[2] to a[11] should remain unchanged
+        for i in 2..core.a.len() {
+            assert_eq!(core.a[i], Wrapping(0));
+        }
+    }
+}
+True
+========================================
+    use crate::core_api::read_m;
+    use crate::core::Block;
+    use std::num::Wrapping;
+
+    #[test]
+    fn test_read_m() {
+        let input: Block = [
+            0x00, 0x00, 0x00, 0x00, // 0 in little-endian
+            0x01, 0x00, 0x00, 0x00, // 1 in little-endian
+            0x02, 0x00, 0x00, 0x00, // 2 in little-endian
+            0x03, 0x00, 0x00, 0x00, // 3 in little-endian
+            0x04, 0x00, 0x00, 0x00, // 4 in little-endian
+            0x05, 0x00, 0x00, 0x00, // 5 in little-endian
+            0x06, 0x00, 0x00, 0x00, // 6 in little-endian
+            0x07, 0x00, 0x00, 0x00, // 7 in little-endian
+            0x08, 0x00, 0x00, 0x00, // 8 in little-endian
+            0x09, 0x00, 0x00, 0x00, // 9 in little-endian
+            0x0A, 0x00, 0x00, 0x00, // 10 in little-endian
+            0x0B, 0x00, 0x00, 0x00, // 11 in little-endian
+            0x0C, 0x00, 0x00, 0x00, // 12 in little-endian
+            0x0D, 0x00, 0x00, 0x00, // 13 in little-endian
+            0x0E, 0x00, 0x00, 0x00, // 14 in little-endian
+            0x0F, 0x00, 0x00, 0x00, // 15 in little-endian
+        ];
+        let m = read_m(&input);
+        let expected = [
+            Wrapping(0x00000000),
+            Wrapping(0x00000001),
+            Wrapping(0x00000002),
+            Wrapping(0x00000003),
+            Wrapping(0x00000004),
+            Wrapping(0x00000005),
+            Wrapping(0x00000006),
+            Wrapping(0x00000007),
+            Wrapping(0x00000008),
+            Wrapping(0x00000009),
+            Wrapping(0x0000000A),
+            Wrapping(0x0000000B),
+            Wrapping(0x0000000C),
+            Wrapping(0x0000000D),
+            Wrapping(0x0000000E),
+            Wrapping(0x0000000F),
+        ];
+        assert_eq!(m, expected);
+    }
+}
+False
+hashes shabal 5 12

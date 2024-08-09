@@ -1,0 +1,574 @@
+   Compiling tight v1.0.1 (/Users/tim/Documents/master-thesis/evaluation/tight/rusty-unit-0)
+[2022-05-26T19:56:34Z INFO  instrumentation] MAIN: Instrumenting crate tight
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:94 ~ tight[4453]::data::{impl#2}::new)
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:137 ~ tight[4453]::date::{impl#0}::from_ymd)
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:236 ~ tight[4453]::expense::{impl#0}::new)
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:250 ~ tight[4453]::expense::{impl#0}::end_date)
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:156 ~ tight[4453]::date::{impl#6}::add)
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:153 ~ tight[4453]::date::{impl#5}::add)
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:147 ~ tight[4453]::date::{impl#3}::add)
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:139 ~ tight[4453]::date::days_in_month)
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:140 ~ tight[4453]::date::get_weekday_of_date)
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:740 ~ tight[4453]::date::{impl#42}::eq)
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:144 ~ tight[4453]::date::{impl#2}::partial_cmp)
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:142 ~ tight[4453]::date::{impl#1}::cmp)
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:98 ~ tight[4453]::data::{impl#2}::insert)
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:241 ~ tight[4453]::expense::{impl#0}::compare_dates)
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:243 ~ tight[4453]::expense::{impl#0}::amount)
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:99 ~ tight[4453]::data::{impl#2}::remove)
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:242 ~ tight[4453]::expense::{impl#0}::compare_id)
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:364 ~ tight[4453]::data::{impl#3}::fmt)
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:91 ~ tight[4453]::data::{impl#0}::fmt)
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:100 ~ tight[4453]::data::{impl#2}::find)
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:103 ~ tight[4453]::data::{impl#2}::expenses_between)
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:246 ~ tight[4453]::expense::{impl#0}::get_end_date)
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:247 ~ tight[4453]::expense::{impl#0}::get_start_date)
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:244 ~ tight[4453]::expense::{impl#0}::description)
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:734 ~ tight[4453]::date::{impl#38}::fmt)
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:607 ~ tight[4453]::date::{impl#34}::eq)
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:150 ~ tight[4453]::date::{impl#4}::sub)
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:158 ~ tight[4453]::date::{impl#7}::parse)
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:480 ~ tight[4453]::date::{impl#28}::fmt)
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:204 ~ tight[4453]::date::{impl#26}::fmt)
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:166 ~ tight[4453]::date::{impl#10}::parse)
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:167 ~ tight[4453]::date::{impl#10}::parse_weekday)
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:168 ~ tight[4453]::date::{impl#10}::parse_nth)
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:35Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:173 ~ tight[4453]::date::{impl#12}::parse_date)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:170 ~ tight[4453]::date::{impl#11}::parse)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:164 ~ tight[4453]::date::{impl#9}::weekid_to_str)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:172 ~ tight[4453]::date::{impl#12}::parse)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:174 ~ tight[4453]::date::{impl#12}::parse_count)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:162 ~ tight[4453]::date::suffix_for_day)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:161 ~ tight[4453]::date::{impl#8}::parse_days)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:160 ~ tight[4453]::date::{impl#8}::parse)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:245 ~ tight[4453]::expense::{impl#0}::tags)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:251 ~ tight[4453]::expense::count_overlap_days)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:248 ~ tight[4453]::expense::{impl#0}::remove_tags)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1662 ~ tight[4453]::main#1)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:95 ~ tight[4453]::data::{impl#2}::from_file)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:97 ~ tight[4453]::data::{impl#2}::add_tag)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:101 ~ tight[4453]::data::{impl#2}::save)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:104 ~ tight[4453]::data::initialise)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:138 ~ tight[4453]::date::{impl#0}::from_stdin)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:176 ~ tight[4453]::date::{impl#13}::from_stdin)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:178 ~ tight[4453]::date::{impl#14}::fmt)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:180 ~ tight[4453]::date::{impl#15}::fmt)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:182 ~ tight[4453]::date::{impl#16}::fmt)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:184 ~ tight[4453]::date::{impl#17}::fmt)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:186 ~ tight[4453]::date::{impl#18}::fmt)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:188 ~ tight[4453]::date::{impl#19}::fmt)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:190 ~ tight[4453]::date::{impl#20}::fmt)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:192 ~ tight[4453]::date::{impl#21}::fmt)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:194 ~ tight[4453]::date::{impl#22}::fmt)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:196 ~ tight[4453]::date::{impl#23}::fmt)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:198 ~ tight[4453]::date::{impl#24}::fmt)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:200 ~ tight[4453]::date::{impl#25}::fmt)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:237 ~ tight[4453]::expense::{impl#0}::from_stdin)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:252 ~ tight[4453]::expense::calculate_spread)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:254 ~ tight[4453]::expense::{impl#1}::fmt)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:256 ~ tight[4453]::expense::{impl#2}::fmt)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:283 ~ tight[4453]::main)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:544 ~ tight[4453]::date::{impl#29}::fmt)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:601 ~ tight[4453]::date::{impl#30}::fmt)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:604 ~ tight[4453]::date::{impl#32}::clone)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:608 ~ tight[4453]::date::{impl#34}::ne)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:611 ~ tight[4453]::date::{impl#36}::assert_receiver_is_total_eq)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:662 ~ tight[4453]::date::{impl#37}::fmt)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:737 ~ tight[4453]::date::{impl#40}::clone)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:794 ~ tight[4453]::date::{impl#43}::fmt)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:848 ~ tight[4453]::date::{impl#44}::fmt)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:905 ~ tight[4453]::date::{impl#45}::fmt)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:959 ~ tight[4453]::date::{impl#46}::fmt)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1010 ~ tight[4453]::date::{impl#47}::fmt)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1074 ~ tight[4453]::date::{impl#48}::fmt)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1132 ~ tight[4453]::date::{impl#49}::fmt)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrument switch int
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1186 ~ tight[4453]::date::{impl#50}::fmt)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1582 ~ tight[4453]::expense::{impl#4}::fmt)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1587 ~ tight[4453]::expense::{impl#5}::fmt)
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:361 ~ tight[4453]::data::DataError::{constructor#0})
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:477 ~ tight[4453]::date::DateError::{constructor#0})
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:483 ~ tight[4453]::date::Duration::Day::{constructor#0})
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:486 ~ tight[4453]::date::Duration::Week::{constructor#0})
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:489 ~ tight[4453]::date::Duration::Month::{constructor#0})
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:492 ~ tight[4453]::date::Duration::Year::{constructor#0})
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:908 ~ tight[4453]::date::MonthDelta::OnDate::{constructor#0})
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:911 ~ tight[4453]::date::MonthDelta::OnWeek::{constructor#0})
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1013 ~ tight[4453]::date::RepDelta::Day::{constructor#0})
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1016 ~ tight[4453]::date::RepDelta::Week::{constructor#0})
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1019 ~ tight[4453]::date::RepDelta::Month::{constructor#0})
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1022 ~ tight[4453]::date::RepDelta::Year::{constructor#0})
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1079 ~ tight[4453]::date::RepEnd::Date::{constructor#0})
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1082 ~ tight[4453]::date::RepEnd::Count::{constructor#0})
+[2022-05-26T19:56:36Z INFO  instrumentation::mir] MIR: Instrumenting DefId(0:1584 ~ tight[4453]::expense::ExpenseError::{constructor#0})
+    Finished test [unoptimized + debuginfo] target(s) in 2.42s
+     Running unittests src/main.rs (target/debug/deps/tight-a9b07a1c1ba5a9c2)

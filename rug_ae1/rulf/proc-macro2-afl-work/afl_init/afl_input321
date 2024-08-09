@@ -1,0 +1,1 @@
+cargo:rustc-cfg=no_bind_by_move_pattern_guard1281

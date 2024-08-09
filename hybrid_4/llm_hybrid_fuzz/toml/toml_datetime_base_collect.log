@@ -1,0 +1,173 @@
+========================================
+    use crate::{Datetime, Date};
+
+    #[test]
+    fn from_date_to_datetime() {
+        let date = Date {
+            year: 2023,
+            month: 4,
+            day: 1,
+        };
+
+        let datetime: Datetime = Datetime::from(date);
+
+        assert_eq!(datetime.date, Some(date));
+        assert_eq!(datetime.time, None);
+        assert_eq!(datetime.offset, None);
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn test_from_time() {
+        let time = Time {
+            hour: 12,
+            minute: 34,
+            second: 56,
+            nanosecond: 789,
+        };
+
+        let datetime: Datetime = Datetime::from(time.clone());
+        assert_eq!(datetime.date, None);
+        assert_eq!(datetime.time, Some(time));
+        assert_eq!(datetime.offset, None);
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use std::str::FromStr;
+
+    #[test]
+    fn test_valid_full_date_time() {
+        let input = "2023-03-14T11:53:21.123Z";
+        let result = Datetime::from_str(input);
+        assert!(result.is_ok());
+        let datetime = result.unwrap();
+        assert_eq!(datetime.date.unwrap().year, 2023);
+        assert_eq!(datetime.date.unwrap().month, 3);
+        assert_eq!(datetime.date.unwrap().day, 14);
+        assert_eq!(datetime.time.unwrap().hour, 11);
+        assert_eq!(datetime.time.unwrap().minute, 53);
+        assert_eq!(datetime.time.unwrap().second, 21);
+        assert_eq!(datetime.time.unwrap().nanosecond, 123_000_000);
+        assert_eq!(datetime.offset, Some(Offset::Z));
+    }
+
+    #[test]
+    fn test_valid_date_only() {
+        let input = "2023-03-14";
+        let result = Datetime::from_str(input);
+        assert!(result.is_ok());
+        let datetime = result.unwrap();
+        assert_eq!(datetime.date.unwrap().year, 2023);
+        assert_eq!(datetime.date.unwrap().month, 3);
+        assert_eq!(datetime.date.unwrap().day, 14);
+        assert!(datetime.time.is_none());
+        assert!(datetime.offset.is_none());
+    }
+
+    #[test]
+    fn test_valid_time_only() {
+        let input = "11:53:21.123";
+        let result = Datetime::from_str(input);
+        assert!(result.is_ok());
+        let datetime = result.unwrap();
+        assert!(datetime.date.is_none());
+        assert_eq!(datetime.time.unwrap().hour, 11);
+        assert_eq!(datetime.time.unwrap().minute, 53);
+        assert_eq!(datetime.time.unwrap().second, 21);
+        assert_eq!(datetime.time.unwrap().nanosecond, 123_000_000);
+        assert!(datetime.offset.is_none());
+    }
+
+    #[test]
+    fn test_valid_date_time_with_offset() {
+        let input = "2023-03-14T11:53:21.123+01:30";
+        let result = Datetime::from_str(input);
+        assert!(result.is_ok());
+        let datetime = result.unwrap();
+        if let Some(Offset::Custom { minutes }) = datetime.offset {
+            assert_eq!(minutes, 90);
+        } else {
+            panic!("Expected custom offset");
+        }
+    }
+
+    #[test]
+    fn test_invalid_too_short() {
+        let input = "23";
+        let result = Datetime::from_str(input);
+        assert!(result.is_err());
+    }
+
+    #[test]
+    fn test_invalid_bad_format() {
+        let input = "2023-AA-14";
+        let result = Datetime::from_str(input);
+        assert!(result.is_err());
+    }
+
+    #[test]
+    fn test_invalid_bad_time() {
+        let input = "2023-03-14T99:99:99";
+        let result = Datetime::from_str(input);
+        assert!(result.is_err());
+    }
+
+    #[test]
+    fn test_invalid_bad_offset() {
+        let input = "2023-03-14T11:53:21.123+25:00";
+        let result = Datetime::from_str(input);
+        assert!(result.is_err());
+    }
+
+    #[test]
+    fn test_invalid_trailing_characters() {
+        let input = "2023-03-14T11:53:21.123Zgarbage";
+        let result = Datetime::from_str(input);
+        assert!(result.is_err());
+    }
+}
+True
+========================================
+    use super::*; // Use items from the parent module
+
+use crate::*;
+    use std::str::Chars;
+
+    #[test]
+    fn test_digit_success() {
+        let mut chars: Chars = "1".chars();
+        assert_eq!(digit(&mut chars), Ok(1));
+    }
+
+    #[test]
+    fn test_digit_non_digit() {
+        let mut chars: Chars = "a".chars();
+        assert!(digit(&mut chars).is_err());
+    }
+
+    #[test]
+    fn test_digit_empty() {
+        let mut chars: Chars = "".chars();
+        assert!(digit(&mut chars).is_err());
+    }
+
+    #[test]
+    fn test_digit_boundary() {
+        let mut chars: Chars = "0".chars();
+        assert_eq!(digit(&mut chars), Ok(0));
+
+        let mut chars: Chars = "9".chars();
+        assert_eq!(digit(&mut chars), Ok(9));
+    }
+}
+False
+toml toml_datetime 3 4

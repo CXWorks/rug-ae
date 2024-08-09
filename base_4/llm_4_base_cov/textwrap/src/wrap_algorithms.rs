@@ -1,0 +1,674 @@
+//! Word wrapping algorithms.
+//!
+//! After a text has been broken into words (or [`Fragment`]s), one
+//! now has to decide how to break the fragments into lines. The
+//! simplest algorithm for this is implemented by
+//! [`wrap_first_fit()`]: it uses no look-ahead and simply adds
+//! fragments to the line as long as they fit. However, this can lead
+//! to poor line breaks if a large fragment almost-but-not-quite fits
+//! on a line. When that happens, the fragment is moved to the next
+//! line and it will leave behind a large gap.
+//!
+//! A more advanced algorithm, implemented by [`wrap_optimal_fit()`],
+//! will take this into account. The optimal-fit algorithm considers
+//! all possible line breaks and will attempt to minimize the gaps
+//! left behind by overly short lines.
+//!
+//! While both algorithms run in linear time, the first-fit algorithm
+//! is about 4 times faster than the optimal-fit algorithm.
+#[cfg(feature = "smawk")]
+mod optimal_fit;
+#[cfg(feature = "smawk")]
+pub use optimal_fit::{wrap_optimal_fit, OverflowError, Penalties};
+use crate::core::{Fragment, Word};
+/// Describes how to wrap words into lines.
+///
+/// The simplest approach is to wrap words one word at a time and
+/// accept the first way of wrapping which fit
+/// ([`WrapAlgorithm::FirstFit`]). If the `smawk` Cargo feature is
+/// enabled, a more complex algorithm is available which will look at
+/// an entire paragraph at a time in order to find optimal line breaks
+/// ([`WrapAlgorithm::OptimalFit`]).
+#[derive(Clone, Copy)]
+pub enum WrapAlgorithm {
+    /// Wrap words using a fast and simple algorithm.
+    ///
+    /// This algorithm uses no look-ahead when finding line breaks.
+    /// Implemented by [`wrap_first_fit()`], please see that function
+    /// for details and examples.
+    FirstFit,
+    /// Wrap words using an advanced algorithm with look-ahead.
+    ///
+    /// This wrapping algorithm considers the entire paragraph to find
+    /// optimal line breaks. When wrapping text, "penalties" are
+    /// assigned to line breaks based on the gaps left at the end of
+    /// lines. See [`Penalties`] for details.
+    ///
+    /// The underlying wrapping algorithm is implemented by
+    /// [`wrap_optimal_fit()`], please see that function for examples.
+    ///
+    /// **Note:** Only available when the `smawk` Cargo feature is
+    /// enabled.
+    #[cfg(feature = "smawk")]
+    OptimalFit(Penalties),
+    /// Custom wrapping function.
+    ///
+    /// Use this if you want to implement your own wrapping algorithm.
+    /// The function can freely decide how to turn a slice of
+    /// [`Word`]s into lines.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// use textwrap::core::Word;
+    /// use textwrap::{wrap, Options, WrapAlgorithm};
+    ///
+    /// fn stair<'a, 'b>(words: &'b [Word<'a>], _: &'b [usize]) -> Vec<&'b [Word<'a>]> {
+    ///     let mut lines = Vec::new();
+    ///     let mut step = 1;
+    ///     let mut start_idx = 0;
+    ///     while start_idx + step <= words.len() {
+    ///       lines.push(&words[start_idx .. start_idx+step]);
+    ///       start_idx += step;
+    ///       step += 1;
+    ///     }
+    ///     lines
+    /// }
+    ///
+    /// let options = Options::new(10).wrap_algorithm(WrapAlgorithm::Custom(stair));
+    /// assert_eq!(wrap("First, second, third, fourth, fifth, sixth", options),
+    ///            vec!["First,",
+    ///                 "second, third,",
+    ///                 "fourth, fifth, sixth"]);
+    /// ```
+    Custom(
+        for<'a, 'b> fn(
+            words: &'b [Word<'a>],
+            line_widths: &'b [usize],
+        ) -> Vec<&'b [Word<'a>]>,
+    ),
+}
+impl PartialEq for WrapAlgorithm {
+    /// Compare two wrap algorithms.
+    ///
+    /// ```
+    /// use textwrap::WrapAlgorithm;
+    ///
+    /// assert_eq!(WrapAlgorithm::FirstFit, WrapAlgorithm::FirstFit);
+    /// #[cfg(feature = "smawk")] {
+    ///     assert_eq!(WrapAlgorithm::new_optimal_fit(), WrapAlgorithm::new_optimal_fit());
+    /// }
+    /// ```
+    ///
+    /// Note that `WrapAlgorithm::Custom` values never compare equal:
+    ///
+    /// ```
+    /// use textwrap::WrapAlgorithm;
+    ///
+    /// assert_ne!(WrapAlgorithm::Custom(|words, line_widths| vec![words]),
+    ///            WrapAlgorithm::Custom(|words, line_widths| vec![words]));
+    /// ```
+    fn eq(&self, other: &Self) -> bool {
+        match (self, other) {
+            (WrapAlgorithm::FirstFit, WrapAlgorithm::FirstFit) => true,
+            #[cfg(feature = "smawk")]
+            (WrapAlgorithm::OptimalFit(a), WrapAlgorithm::OptimalFit(b)) => a == b,
+            (_, _) => false,
+        }
+    }
+}
+impl std::fmt::Debug for WrapAlgorithm {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            WrapAlgorithm::FirstFit => f.write_str("FirstFit"),
+            #[cfg(feature = "smawk")]
+            WrapAlgorithm::OptimalFit(penalties) => {
+                write!(f, "OptimalFit({:?})", penalties)
+            }
+            WrapAlgorithm::Custom(_) => f.write_str("Custom(...)"),
+        }
+    }
+}
+impl WrapAlgorithm {
+    /// Create new wrap algorithm.
+    ///
+    /// The best wrapping algorithm is used by default, i.e.,
+    /// [`WrapAlgorithm::OptimalFit`] if available, otherwise
+    /// [`WrapAlgorithm::FirstFit`].
+    pub const fn new() -> Self {
+        #[cfg(not(feature = "smawk"))] { WrapAlgorithm::FirstFit }
+        #[cfg(feature = "smawk")] { WrapAlgorithm::new_optimal_fit() }
+    }
+    /// New [`WrapAlgorithm::OptimalFit`] with default penalties. This
+    /// works well for monospace text.
+    ///
+    /// **Note:** Only available when the `smawk` Cargo feature is
+    /// enabled.
+    #[cfg(feature = "smawk")]
+    pub const fn new_optimal_fit() -> Self {
+        WrapAlgorithm::OptimalFit(Penalties::new())
+    }
+    /// Wrap words according to line widths.
+    ///
+    /// The `line_widths` slice gives the target line width for each
+    /// line (the last slice element is repeated as necessary). This
+    /// can be used to implement hanging indentation.
+    #[inline]
+    pub fn wrap<'a, 'b>(
+        &self,
+        words: &'b [Word<'a>],
+        line_widths: &'b [usize],
+    ) -> Vec<&'b [Word<'a>]> {
+        let f64_line_widths = line_widths.iter().map(|w| *w as f64).collect::<Vec<_>>();
+        match self {
+            WrapAlgorithm::FirstFit => wrap_first_fit(words, &f64_line_widths),
+            #[cfg(feature = "smawk")]
+            WrapAlgorithm::OptimalFit(penalties) => {
+                wrap_optimal_fit(words, &f64_line_widths, penalties).unwrap()
+            }
+            WrapAlgorithm::Custom(func) => func(words, line_widths),
+        }
+    }
+}
+impl Default for WrapAlgorithm {
+    fn default() -> Self {
+        WrapAlgorithm::new()
+    }
+}
+/// Wrap abstract fragments into lines with a first-fit algorithm.
+///
+/// The `line_widths` slice gives the target line width for each line
+/// (the last slice element is repeated as necessary). This can be
+/// used to implement hanging indentation.
+///
+/// The fragments must already have been split into the desired
+/// widths, this function will not (and cannot) attempt to split them
+/// further when arranging them into lines.
+///
+/// # First-Fit Algorithm
+///
+/// This implements a simple “greedy” algorithm: accumulate fragments
+/// one by one and when a fragment no longer fits, start a new line.
+/// There is no look-ahead, we simply take first fit of the fragments
+/// we find.
+///
+/// While fast and predictable, this algorithm can produce poor line
+/// breaks when a long fragment is moved to a new line, leaving behind
+/// a large gap:
+///
+/// ```
+/// use textwrap::core::Word;
+/// use textwrap::wrap_algorithms::wrap_first_fit;
+/// use textwrap::WordSeparator;
+///
+/// // Helper to convert wrapped lines to a Vec<String>.
+/// fn lines_to_strings(lines: Vec<&[Word<'_>]>) -> Vec<String> {
+///     lines.iter().map(|line| {
+///         line.iter().map(|word| &**word).collect::<Vec<_>>().join(" ")
+///     }).collect::<Vec<_>>()
+/// }
+///
+/// let text = "These few words will unfortunately not wrap nicely.";
+/// let words = WordSeparator::AsciiSpace.find_words(text).collect::<Vec<_>>();
+/// assert_eq!(lines_to_strings(wrap_first_fit(&words, &[15.0])),
+///            vec!["These few words",
+///                 "will",  // <-- short line
+///                 "unfortunately",
+///                 "not wrap",
+///                 "nicely."]);
+///
+/// // We can avoid the short line if we look ahead:
+/// #[cfg(feature = "smawk")]
+/// use textwrap::wrap_algorithms::{wrap_optimal_fit, Penalties};
+/// #[cfg(feature = "smawk")]
+/// assert_eq!(lines_to_strings(wrap_optimal_fit(&words, &[15.0], &Penalties::new()).unwrap()),
+///            vec!["These few",
+///                 "words will",
+///                 "unfortunately",
+///                 "not wrap",
+///                 "nicely."]);
+/// ```
+///
+/// The [`wrap_optimal_fit()`] function was used above to get better
+/// line breaks. It uses an advanced algorithm which tries to avoid
+/// short lines. This function is about 4 times faster than
+/// [`wrap_optimal_fit()`].
+///
+/// # Examples
+///
+/// Imagine you're building a house site and you have a number of
+/// tasks you need to execute. Things like pour foundation, complete
+/// framing, install plumbing, electric cabling, install insulation.
+///
+/// The construction workers can only work during daytime, so they
+/// need to pack up everything at night. Because they need to secure
+/// their tools and move machines back to the garage, this process
+/// takes much more time than the time it would take them to simply
+/// switch to another task.
+///
+/// You would like to make a list of tasks to execute every day based
+/// on your estimates. You can model this with a program like this:
+///
+/// ```
+/// use textwrap::core::{Fragment, Word};
+/// use textwrap::wrap_algorithms::wrap_first_fit;
+///
+/// #[derive(Debug)]
+/// struct Task<'a> {
+///     name: &'a str,
+///     hours: f64,   // Time needed to complete task.
+///     sweep: f64,   // Time needed for a quick sweep after task during the day.
+///     cleanup: f64, // Time needed for full cleanup if day ends with this task.
+/// }
+///
+/// impl Fragment for Task<'_> {
+///     fn width(&self) -> f64 { self.hours }
+///     fn whitespace_width(&self) -> f64 { self.sweep }
+///     fn penalty_width(&self) -> f64 { self.cleanup }
+/// }
+///
+/// // The morning tasks
+/// let tasks = vec![
+///     Task { name: "Foundation",  hours: 4.0, sweep: 2.0, cleanup: 3.0 },
+///     Task { name: "Framing",     hours: 3.0, sweep: 1.0, cleanup: 2.0 },
+///     Task { name: "Plumbing",    hours: 2.0, sweep: 2.0, cleanup: 2.0 },
+///     Task { name: "Electrical",  hours: 2.0, sweep: 1.0, cleanup: 2.0 },
+///     Task { name: "Insulation",  hours: 2.0, sweep: 1.0, cleanup: 2.0 },
+///     Task { name: "Drywall",     hours: 3.0, sweep: 1.0, cleanup: 2.0 },
+///     Task { name: "Floors",      hours: 3.0, sweep: 1.0, cleanup: 2.0 },
+///     Task { name: "Countertops", hours: 1.0, sweep: 1.0, cleanup: 2.0 },
+///     Task { name: "Bathrooms",   hours: 2.0, sweep: 1.0, cleanup: 2.0 },
+/// ];
+///
+/// // Fill tasks into days, taking `day_length` into account. The
+/// // output shows the hours worked per day along with the names of
+/// // the tasks for that day.
+/// fn assign_days<'a>(tasks: &[Task<'a>], day_length: f64) -> Vec<(f64, Vec<&'a str>)> {
+///     let mut days = Vec::new();
+///     // Assign tasks to days. The assignment is a vector of slices,
+///     // with a slice per day.
+///     let assigned_days: Vec<&[Task<'a>]> = wrap_first_fit(&tasks, &[day_length]);
+///     for day in assigned_days.iter() {
+///         let last = day.last().unwrap();
+///         let work_hours: f64 = day.iter().map(|t| t.hours + t.sweep).sum();
+///         let names = day.iter().map(|t| t.name).collect::<Vec<_>>();
+///         days.push((work_hours - last.sweep + last.cleanup, names));
+///     }
+///     days
+/// }
+///
+/// // With a single crew working 8 hours a day:
+/// assert_eq!(
+///     assign_days(&tasks, 8.0),
+///     [
+///         (7.0, vec!["Foundation"]),
+///         (8.0, vec!["Framing", "Plumbing"]),
+///         (7.0, vec!["Electrical", "Insulation"]),
+///         (5.0, vec!["Drywall"]),
+///         (7.0, vec!["Floors", "Countertops"]),
+///         (4.0, vec!["Bathrooms"]),
+///     ]
+/// );
+///
+/// // With two crews working in shifts, 16 hours a day:
+/// assert_eq!(
+///     assign_days(&tasks, 16.0),
+///     [
+///         (14.0, vec!["Foundation", "Framing", "Plumbing"]),
+///         (15.0, vec!["Electrical", "Insulation", "Drywall", "Floors"]),
+///         (6.0, vec!["Countertops", "Bathrooms"]),
+///     ]
+/// );
+/// ```
+///
+/// Apologies to anyone who actually knows how to build a house and
+/// knows how long each step takes :-)
+pub fn wrap_first_fit<'a, T: Fragment>(
+    fragments: &'a [T],
+    line_widths: &[f64],
+) -> Vec<&'a [T]> {
+    let default_line_width = line_widths.last().copied().unwrap_or(0.0);
+    let mut lines = Vec::new();
+    let mut start = 0;
+    let mut width = 0.0;
+    for (idx, fragment) in fragments.iter().enumerate() {
+        let line_width = line_widths
+            .get(lines.len())
+            .copied()
+            .unwrap_or(default_line_width);
+        if width + fragment.width() + fragment.penalty_width() > line_width
+            && idx > start
+        {
+            lines.push(&fragments[start..idx]);
+            start = idx;
+            width = 0.0;
+        }
+        width += fragment.width() + fragment.whitespace_width();
+    }
+    lines.push(&fragments[start..]);
+    lines
+}
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[derive(Debug, PartialEq)]
+    struct Word(f64);
+    #[rustfmt::skip]
+    impl Fragment for Word {
+        fn width(&self) -> f64 {
+            self.0
+        }
+        fn whitespace_width(&self) -> f64 {
+            1.0
+        }
+        fn penalty_width(&self) -> f64 {
+            0.0
+        }
+    }
+    #[test]
+    fn wrap_string_longer_than_f64() {
+        let words = vec![
+            Word(1e307), Word(2e307), Word(3e307), Word(4e307), Word(5e307), Word(6e307),
+        ];
+        assert_eq!(
+            wrap_first_fit(& words, & [15e307]), & [vec![Word(1e307), Word(2e307),
+            Word(3e307), Word(4e307), Word(5e307)], vec![Word(6e307)]]
+        );
+    }
+}
+#[cfg(test)]
+mod tests_llm_16_10 {
+    use crate::WrapAlgorithm;
+    use crate::wrap_algorithms::optimal_fit::Penalties;
+    #[test]
+    fn eq_first_fit() {
+        let _rug_st_tests_llm_16_10_rrrruuuugggg_eq_first_fit = 0;
+        debug_assert_eq!(
+            WrapAlgorithm::FirstFit, WrapAlgorithm::FirstFit,
+            "FirstFit algorithms should be equal."
+        );
+        let _rug_ed_tests_llm_16_10_rrrruuuugggg_eq_first_fit = 0;
+    }
+    #[cfg(feature = "smawk")]
+    #[test]
+    fn eq_optimal_fit_with_equal_penalties() {
+        let _rug_st_tests_llm_16_10_rrrruuuugggg_eq_optimal_fit_with_equal_penalties = 0;
+        let penalties = Penalties::new();
+        debug_assert_eq!(
+            WrapAlgorithm::OptimalFit(penalties), WrapAlgorithm::OptimalFit(penalties),
+            "OptimalFit algorithms with equal penalties should be equal."
+        );
+        let _rug_ed_tests_llm_16_10_rrrruuuugggg_eq_optimal_fit_with_equal_penalties = 0;
+    }
+    #[cfg(feature = "smawk")]
+    #[test]
+    fn eq_optimal_fit_with_different_penalties() {
+        let _rug_st_tests_llm_16_10_rrrruuuugggg_eq_optimal_fit_with_different_penalties = 0;
+        let rug_fuzz_0 = 1000;
+        let rug_fuzz_1 = 2500;
+        let rug_fuzz_2 = 4;
+        let rug_fuzz_3 = 25;
+        let rug_fuzz_4 = 25;
+        let rug_fuzz_5 = 2000;
+        let rug_fuzz_6 = 2500;
+        let rug_fuzz_7 = 4;
+        let rug_fuzz_8 = 25;
+        let rug_fuzz_9 = 25;
+        let penalties_a = Penalties {
+            nline_penalty: rug_fuzz_0,
+            overflow_penalty: rug_fuzz_1,
+            short_last_line_fraction: rug_fuzz_2,
+            short_last_line_penalty: rug_fuzz_3,
+            hyphen_penalty: rug_fuzz_4,
+        };
+        let penalties_b = Penalties {
+            nline_penalty: rug_fuzz_5,
+            overflow_penalty: rug_fuzz_6,
+            short_last_line_fraction: rug_fuzz_7,
+            short_last_line_penalty: rug_fuzz_8,
+            hyphen_penalty: rug_fuzz_9,
+        };
+        debug_assert_ne!(
+            WrapAlgorithm::OptimalFit(penalties_a),
+            WrapAlgorithm::OptimalFit(penalties_b),
+            "OptimalFit algorithms with different penalties should not be equal."
+        );
+        let _rug_ed_tests_llm_16_10_rrrruuuugggg_eq_optimal_fit_with_different_penalties = 0;
+    }
+    #[test]
+    fn eq_custom() {
+        let _rug_st_tests_llm_16_10_rrrruuuugggg_eq_custom = 0;
+        let custom_a = WrapAlgorithm::Custom(|_, _| vec![]);
+        let custom_b = WrapAlgorithm::Custom(|_, _| vec![]);
+        debug_assert_ne!(custom_a, custom_b, "Custom algorithms should not be equal.");
+        let _rug_ed_tests_llm_16_10_rrrruuuugggg_eq_custom = 0;
+    }
+}
+#[cfg(test)]
+mod tests_llm_16_11 {
+    use super::*;
+    use crate::*;
+    #[test]
+    fn wrap_algorithm_default_is_first_fit() {
+        let _rug_st_tests_llm_16_11_rrrruuuugggg_wrap_algorithm_default_is_first_fit = 0;
+        let wrap_algorithm = WrapAlgorithm::default();
+        debug_assert_eq!(wrap_algorithm, WrapAlgorithm::FirstFit);
+        let _rug_ed_tests_llm_16_11_rrrruuuugggg_wrap_algorithm_default_is_first_fit = 0;
+    }
+    #[cfg(feature = "smawk")]
+    #[test]
+    fn wrap_algorithm_default_is_optimal_fit_with_default_penalties() {
+        let _rug_st_tests_llm_16_11_rrrruuuugggg_wrap_algorithm_default_is_optimal_fit_with_default_penalties = 0;
+        let wrap_algorithm = WrapAlgorithm::default();
+        debug_assert_eq!(
+            wrap_algorithm, WrapAlgorithm::OptimalFit(Penalties::default())
+        );
+        let _rug_ed_tests_llm_16_11_rrrruuuugggg_wrap_algorithm_default_is_optimal_fit_with_default_penalties = 0;
+    }
+    #[test]
+    fn wrap_algorithm_clone_eq() {
+        let _rug_st_tests_llm_16_11_rrrruuuugggg_wrap_algorithm_clone_eq = 0;
+        let wrap_algorithm = WrapAlgorithm::default();
+        let wrap_algorithm_clone = wrap_algorithm.clone();
+        debug_assert_eq!(wrap_algorithm, wrap_algorithm_clone);
+        let _rug_ed_tests_llm_16_11_rrrruuuugggg_wrap_algorithm_clone_eq = 0;
+    }
+    #[test]
+    fn wrap_algorithm_debug_format() {
+        let _rug_st_tests_llm_16_11_rrrruuuugggg_wrap_algorithm_debug_format = 0;
+        let wrap_algorithm = WrapAlgorithm::default();
+        debug_assert_eq!(format!("{:?}", wrap_algorithm), "FirstFit");
+        #[cfg(feature = "smawk")]
+        {
+            let penalties = Penalties::default();
+            let wrap_algorithm = WrapAlgorithm::OptimalFit(penalties);
+            debug_assert_eq!(
+                format!("{:?}", wrap_algorithm),
+                "OptimalFit(Penalties { nline_penalty: 1000, overflow_penalty: 2500, short_last_line_fraction: 4, short_last_line_penalty: 25, hyphen_penalty: 25 })"
+            )
+        }
+        let _rug_ed_tests_llm_16_11_rrrruuuugggg_wrap_algorithm_debug_format = 0;
+    }
+}
+#[cfg(test)]
+mod test {
+    use super::*;
+    use crate::*;
+    #[test]
+    fn test_new_default_algorithm() {
+        let wrap_algorithm = WrapAlgorithm::new();
+        assert_eq!(wrap_algorithm, WrapAlgorithm::FirstFit);
+    }
+}
+#[cfg(test)]
+mod tests_llm_16_47 {
+    use super::*;
+    use crate::*;
+    #[test]
+    #[cfg(feature = "smawk")]
+    fn new_optimal_fit_default_penalties() {
+        let _rug_st_tests_llm_16_47_rrrruuuugggg_new_optimal_fit_default_penalties = 0;
+        let optimal_fit = WrapAlgorithm::new_optimal_fit();
+        match optimal_fit {
+            WrapAlgorithm::OptimalFit(penalties) => {
+                debug_assert_eq!(penalties, Penalties::new())
+            }
+            _ => panic!("Expected OptimalFit algorithm"),
+        }
+        let _rug_ed_tests_llm_16_47_rrrruuuugggg_new_optimal_fit_default_penalties = 0;
+    }
+}
+#[cfg(test)]
+mod tests_llm_16_48 {
+    use crate::wrap_algorithms::{WrapAlgorithm, wrap_first_fit};
+    use crate::core::Word;
+    #[cfg(feature = "smawk")]
+    use crate::wrap_algorithms::optimal_fit::Penalties;
+    #[test]
+    fn wrap_first_fit_algorithm_works() {
+        let algorithm = WrapAlgorithm::FirstFit;
+        let words = vec![
+            Word::from("Hello"), Word::from("world"), Word::from("this"),
+            Word::from("is"), Word::from("a"), Word::from("test"),
+        ];
+        let line_widths = vec![10, 10];
+        let wrapped_lines = algorithm.wrap(&words, &line_widths);
+        assert_eq!(wrapped_lines, vec![& words[0..2], & words[2..5], & words[5..6]]);
+    }
+    #[test]
+    #[cfg(feature = "smawk")]
+    fn wrap_optimal_fit_algorithm_works() {
+        let penalties = Penalties::new();
+        let algorithm = WrapAlgorithm::OptimalFit(penalties);
+        let words = vec![
+            Word::from("Hello"), Word::from("world"), Word::from("this"),
+            Word::from("is"), Word::from("a"), Word::from("test"),
+        ];
+        let line_widths = vec![10, 10];
+        let wrapped_lines = algorithm.wrap(&words, &line_widths);
+        assert_eq!(wrapped_lines, vec![& words[0..2], & words[2..5], & words[5..6]]);
+    }
+    #[test]
+    fn wrap_custom_algorithm_works() {
+        fn custom_wrap<'a, 'b>(
+            words: &'b [Word<'a>],
+            _line_widths: &'b [usize],
+        ) -> Vec<&'b [Word<'a>]> {
+            words.split(|word| word.word.ends_with('.')).collect()
+        }
+        let algorithm = WrapAlgorithm::Custom(custom_wrap);
+        let words = vec![
+            Word::from("Hello."), Word::from("world"), Word::from("this"),
+            Word::from("is."), Word::from("a"), Word::from("test."),
+        ];
+        let line_widths = vec![10, 10];
+        let wrapped_lines = algorithm.wrap(&words, &line_widths);
+        assert_eq!(wrapped_lines, vec![& words[0..1], & words[1..4], & words[4..6]]);
+    }
+}
+#[cfg(test)]
+mod tests_llm_16_53_llm_16_53 {
+    use super::*;
+    use crate::*;
+    use crate::core::{Fragment, Word};
+    #[test]
+    fn wrap_first_fit_empty_input() {
+        let _rug_st_tests_llm_16_53_llm_16_53_rrrruuuugggg_wrap_first_fit_empty_input = 0;
+        let rug_fuzz_0 = 10.0;
+        let words: Vec<Word> = Vec::new();
+        debug_assert_eq!(
+            wrap_first_fit(& words, & [rug_fuzz_0]), Vec:: < & [Word] > ::new()
+        );
+        let _rug_ed_tests_llm_16_53_llm_16_53_rrrruuuugggg_wrap_first_fit_empty_input = 0;
+    }
+    #[test]
+    fn wrap_first_fit_single_line() {
+        let _rug_st_tests_llm_16_53_llm_16_53_rrrruuuugggg_wrap_first_fit_single_line = 0;
+        let rug_fuzz_0 = "Hello ";
+        let rug_fuzz_1 = 10.0;
+        let words = vec![
+            Word::from(rug_fuzz_0), Word::from("world "), Word::from("this "),
+            Word::from("is "), Word::from("a "), Word::from("test. ")
+        ];
+        let expected = vec![& words[..]];
+        debug_assert_eq!(wrap_first_fit(& words, & [rug_fuzz_1]), expected);
+        let _rug_ed_tests_llm_16_53_llm_16_53_rrrruuuugggg_wrap_first_fit_single_line = 0;
+    }
+    #[test]
+    fn wrap_first_fit_multiple_lines() {
+        let _rug_st_tests_llm_16_53_llm_16_53_rrrruuuugggg_wrap_first_fit_multiple_lines = 0;
+        let rug_fuzz_0 = "Hello ";
+        let rug_fuzz_1 = 3;
+        let rug_fuzz_2 = 15.0;
+        let words = vec![
+            Word::from(rug_fuzz_0), Word::from("world "), Word::from("this "),
+            Word::from("is "), Word::from("a "), Word::from("test. ")
+        ];
+        let expected = vec![& words[..rug_fuzz_1], & words[3..]];
+        debug_assert_eq!(wrap_first_fit(& words, & [rug_fuzz_2]), expected);
+        let _rug_ed_tests_llm_16_53_llm_16_53_rrrruuuugggg_wrap_first_fit_multiple_lines = 0;
+    }
+    #[test]
+    fn wrap_first_fit_words_longer_than_line_width() {
+        let _rug_st_tests_llm_16_53_llm_16_53_rrrruuuugggg_wrap_first_fit_words_longer_than_line_width = 0;
+        let rug_fuzz_0 = "Hello ";
+        let rug_fuzz_1 = 1;
+        let rug_fuzz_2 = 5.0;
+        let words = vec![
+            Word::from(rug_fuzz_0), Word::from("world "), Word::from("this "),
+            Word::from("is "), Word::from("a "), Word::from("test. ")
+        ];
+        let expected = vec![
+            & words[..rug_fuzz_1], & words[1..2], & words[2..3], & words[3..4], & words[4
+            ..5], & words[5..]
+        ];
+        debug_assert_eq!(wrap_first_fit(& words, & [rug_fuzz_2]), expected);
+        let _rug_ed_tests_llm_16_53_llm_16_53_rrrruuuugggg_wrap_first_fit_words_longer_than_line_width = 0;
+    }
+    #[test]
+    fn wrap_first_fit_variable_line_widths() {
+        let _rug_st_tests_llm_16_53_llm_16_53_rrrruuuugggg_wrap_first_fit_variable_line_widths = 0;
+        let rug_fuzz_0 = "Hello ";
+        let rug_fuzz_1 = 2;
+        let rug_fuzz_2 = 10.0;
+        let rug_fuzz_3 = 10.0;
+        let rug_fuzz_4 = 5.0;
+        let words = vec![
+            Word::from(rug_fuzz_0), Word::from("world "), Word::from("this "),
+            Word::from("is "), Word::from("a "), Word::from("test. ")
+        ];
+        let expected = vec![& words[..rug_fuzz_1], & words[2..4], & words[4..]];
+        debug_assert_eq!(
+            wrap_first_fit(& words, & [rug_fuzz_2, rug_fuzz_3, rug_fuzz_4]), expected
+        );
+        let _rug_ed_tests_llm_16_53_llm_16_53_rrrruuuugggg_wrap_first_fit_variable_line_widths = 0;
+    }
+    #[test]
+    fn wrap_first_fit_incomplete_line_widths() {
+        let _rug_st_tests_llm_16_53_llm_16_53_rrrruuuugggg_wrap_first_fit_incomplete_line_widths = 0;
+        let rug_fuzz_0 = "Hello ";
+        let rug_fuzz_1 = 2;
+        let rug_fuzz_2 = 10.0;
+        let rug_fuzz_3 = 10.0;
+        let words = vec![
+            Word::from(rug_fuzz_0), Word::from("world "), Word::from("this "),
+            Word::from("is "), Word::from("a "), Word::from("test. ")
+        ];
+        let expected = vec![& words[..rug_fuzz_1], & words[2..4], & words[4..]];
+        debug_assert_eq!(wrap_first_fit(& words, & [rug_fuzz_2, rug_fuzz_3]), expected);
+        let _rug_ed_tests_llm_16_53_llm_16_53_rrrruuuugggg_wrap_first_fit_incomplete_line_widths = 0;
+    }
+    #[test]
+    fn wrap_first_fit_line_width_zero() {
+        let _rug_st_tests_llm_16_53_llm_16_53_rrrruuuugggg_wrap_first_fit_line_width_zero = 0;
+        let rug_fuzz_0 = "Hello ";
+        let rug_fuzz_1 = 0.0;
+        let words = vec![
+            Word::from(rug_fuzz_0), Word::from("world "), Word::from("this "),
+            Word::from("is "), Word::from("a "), Word::from("test. ")
+        ];
+        let expected = words.iter().map(|w| std::slice::from_ref(w)).collect::<Vec<_>>();
+        debug_assert_eq!(wrap_first_fit(& words, & [rug_fuzz_1]), expected);
+        let _rug_ed_tests_llm_16_53_llm_16_53_rrrruuuugggg_wrap_first_fit_line_width_zero = 0;
+    }
+}

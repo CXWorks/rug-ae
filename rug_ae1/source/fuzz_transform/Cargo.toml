@@ -1,0 +1,11 @@
+[package]
+name = "rust-learn"
+version = "0.1.0"
+authors = ["cxworks <cxworks@qq.com>"]
+edition = "2018"
+
+[dependencies]
+syn = { version = "1.0.109", features = ["full", "visit", "fold"] }
+quote = "1.0"
+proc-macro2 = "1.0"
+prettyplease = "0.1.25"

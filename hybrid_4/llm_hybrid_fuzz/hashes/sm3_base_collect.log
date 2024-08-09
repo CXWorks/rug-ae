@@ -1,0 +1,434 @@
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::*;
+    use digest::{Digest, FixedOutput, Reset};
+    use generic_array::GenericArray;
+
+    #[test]
+    fn reset_test() {
+        let mut core = Sm3Core::default();
+        let mut hasher = crate::Sm3::new();
+        
+        hasher.update(b"some data to hash");
+        let hash_before_reset = hasher.finalize_fixed();
+        
+        hasher.reset();
+        
+        hasher.update(b"");
+        let hash_after_reset = hasher.finalize_fixed();
+        
+        let default_core = Sm3Core::default();
+        let hash_after_reset_expected = default_core.finalize_fixed();
+
+        assert_eq!(hash_after_reset[..], hash_after_reset_expected[..]);
+    }
+}
+False
+========================================
+    use crate::{Sm3, Digest};
+    use std::fmt::{self, Write};
+
+    #[test]
+    fn test_write_alg_name() {
+        let sm3 = Sm3::new();
+        let mut buffer = String::new();
+        write!(&mut buffer, "{}", sm3.algorithm_name()).unwrap();
+        assert_eq!(buffer, "Sm3");
+    }
+}
+False
+========================================
+    use digest::core_api::CoreWrapper;
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn test_finalize_fixed_core() {
+        let mut core = Sm3Core::default();
+        let mut buffer = <CoreWrapper<Sm3Core> as CoreWrapper>::Buffer::default();
+        let mut output = <CoreWrapper<Sm3Core> as CoreWrapper>::Output::default();
+        
+        // Update the state with an empty message
+        CoreWrapper::<Sm3Core>::update_core(&mut core, &buffer);
+
+        // Finalize the core with an empty buffer
+        CoreWrapper::<Sm3Core>::finalize_fixed_core(&mut core, &mut buffer, &mut output);
+        let result = &output[..];
+
+        // Expected hash for an empty input
+        let expected = [
+            0x1a, 0xbd, 0x46, 0x46, 0xa3, 0xa1, 0x9e, 0x3a,
+            0x1f, 0x59, 0x1d, 0x1e, 0x7a, 0x3a, 0x9f, 0x42,
+            0x3e, 0x3a, 0x6f, 0x4e, 0x26, 0x3a, 0xbf, 0xa5,
+            0xaf, 0xc0, 0x5f, 0x0b, 0xc9, 0x44, 0x5c, 0xe9,
+        ];
+
+        // Check if the result matches the expected hash
+        assert_eq!(result, expected, "Hash of an empty input should match the known value.");
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use digest::{
+        core_api::{
+            BlockSizeUser, Buffer, BufferKindUser, FixedOutputCore, Output, OutputSizeUser, UpdateCore
+        },
+    };
+    use generic_array::GenericArray;
+    use generic_array::typenum::Unsigned;
+    
+    #[test]
+    fn test_update_blocks() {
+        let mut core = Sm3Core::default();
+        let initial_block_len = core.block_len;
+
+        let block_size = <Sm3Core as BlockSizeUser>::BlockSize::to_usize();
+        let block_data = vec![0u8; block_size];
+        let mut blocks = Vec::new();
+        
+        for chunk in block_data.chunks_exact(block_size) {
+            blocks.push(GenericArray::clone_from_slice(chunk));
+        }
+
+        for block in blocks.iter() {
+            core.update_blocks(core::slice::from_ref(block));
+        }
+
+        let expected_block_len = initial_block_len + blocks.len() as u64;
+        assert_eq!(
+            core.block_len, expected_block_len,
+            "Block length was not updated correctly"
+        );
+
+        // Other assertions can be done here depending on the `compress` function's implementation
+        // and its effects on `core.h`.
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use digest::Digest;
+
+    #[test]
+    fn default_initializes_properly() {
+        let sm3 = Sm3Core::default();
+        assert_eq!(sm3.block_len, 0);
+        assert_eq!(sm3.h, consts::H0);
+    }
+}
+True
+========================================
+    use crate::compress;
+    use crate::compress::Block;
+    use crate::Sm3Core;
+
+    #[test]
+    fn test_compress() {
+        let mut state = [
+            0x7380166f, 0x4914b2b9, 0x172442d7, 0xda8a0600,
+            0xa96f30bc, 0x163138aa, 0xe38dee4d, 0xb0fb0e4e,
+        ];
+        let data: [u8; 64] = [
+            0x61, 0x62, 0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x6a, 0x6b, 0x6c, 0x6d, 0x6e, 0x6f, 0x70,
+            0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78, 0x79, 0x7a, 0x30, 0x31, 0x32, 0x33, 0x34, 0x35,
+            0x36, 0x37, 0x38, 0x39, 0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39, 0x30, 0x31,
+            0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39, 0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37,
+        ];
+        let blocks = [
+            Block::<Sm3Core>::from(data)
+        ];
+
+        let expected_state = [
+            0x66c7f0f4, 0x62eeedd9, 0xd1f2d46b, 0xdc10e4e2,
+            0x4167c487, 0x5cf2f7a2, 0x297da02b, 0x8f4ba8e0,
+        ];
+
+        compress(&mut state, &blocks);
+
+        assert_eq!(state, expected_state, "compress function did not result in expected state");
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn test_compress_u32() {
+        let mut state = [0u32; 8];
+        let block = [0u32; 16];
+        
+        // Before the call, we should expect the state to be all zeros
+        assert_eq!(state, [0, 0, 0, 0, 0, 0, 0, 0]);
+
+        compress_u32(&mut state, &block);
+
+        // It's difficult to predict state changes without the presence of
+        // the macros R1, R2, t, w1, w2 without their definitions,
+        // so let's just assert the state has changed.
+        // In real test we should check against precise expected values.
+        assert_ne!(state, [0, 0, 0, 0, 0, 0, 0, 0]);
+    }
+}
+True
+========================================
+    use crate::ff1;
+
+    #[test]
+    fn test_ff1() {
+        let x = 0x0f0f0f0f;
+        let y = 0xf0f0f0f0;
+        let z = 0xff00ff00;
+
+        assert_eq!(ff1(x, y, z), x ^ y ^ z);
+    }
+}
+False
+========================================
+    use crate::ff2;
+
+    #[test]
+    fn test_ff2() {
+        // Test cases where all inputs are the same should result in that value
+        assert_eq!(ff2(0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF), 0xFFFFFFFF);
+        assert_eq!(ff2(0x00000000, 0x00000000, 0x00000000), 0x00000000);
+        
+        // Test cases where two inputs are the same and one is different
+        assert_eq!(ff2(0xFFFFFFFF, 0xFFFFFFFF, 0x00000000), 0xFFFFFFFF);
+        assert_eq!(ff2(0x00000000, 0x00000000, 0xFFFFFFFF), 0x00000000);
+        
+        // Test cases with different inputs
+        assert_eq!(ff2(0xAAAAAAAA, 0x55555555, 0xFFFFFFFF), 0xFFFFFFFD);
+        assert_eq!(ff2(0xAAAAAAAA, 0x55555555, 0xAAAAAAAA), 0xAAAAAAAA);
+    }
+}
+False
+========================================
+    use crate::gg1;
+
+    #[test]
+    fn test_gg1() {
+        assert_eq!(gg1(0b1010, 0b1100, 0b1001), 0b1111);
+        assert_eq!(gg1(0, 0, 0), 0);
+        assert_eq!(gg1(0xffffffff, 0, 0xffffffff), 0);
+        assert_eq!(gg1(0xffffffff, 0xffffffff, 0xffffffff), 0xffffffff);
+        assert_eq!(gg1(0x12345678, 0x87654321, 0xffffffff), 0x954b29a9);
+    }
+}
+False
+========================================
+    use crate::gg2;
+
+    #[test]
+    fn test_gg2() {
+        assert_eq!(gg2(0, 0, 0), 0);
+        assert_eq!(gg2(0, 0, 1), 1);
+        assert_eq!(gg2(0, 1, 0), 0);
+        assert_eq!(gg2(0, 1, 1), 1);
+        assert_eq!(gg2(1, 0, 0), 0);
+        assert_eq!(gg2(1, 0, 1), 1);
+        assert_eq!(gg2(1, 1, 0), 1);
+        assert_eq!(gg2(1, 1, 1), 1);
+    }
+}
+False
+========================================
+    use crate::p0;
+
+    #[test]
+    fn test_p0() {
+        assert_eq!(p0(0), 0);
+        assert_eq!(p0(1), 1);
+        let x: u32 = 0x12345678;
+        let expected: u32 = x ^ x.rotate_left(9) ^ x.rotate_left(17);
+        assert_eq!(p0(x), expected);
+        let x: u32 = 0x80000000;
+        let expected: u32 = x ^ x.rotate_left(9) ^ x.rotate_left(17);
+        assert_eq!(p0(x), expected);
+        let x = u32::MAX;
+        let expected: u32 = x ^ x.rotate_left(9) ^ x.rotate_left(17);
+        assert_eq!(p0(x), expected);
+    }
+}
+False
+========================================
+    use crate::p1;
+
+    #[test]
+    fn test_p1() {
+        assert_eq!(p1(0), 0);
+        assert_eq!(p1(1), 0b1000000000000000000000000000001);
+        assert_eq!(p1(0x12345678), 0x12345678u32 ^ 0x12345678u32.rotate_left(15) ^ 0x12345678u32.rotate_left(23));
+    }
+}
+False
+========================================
+    use crate::{sm3_round1, ff1, gg1, p0};
+
+    #[test]
+    fn test_sm3_round1() {
+        let a = 0x7380166f;
+        let b = 0x4914b2b9;
+        let c = 0x172442d7;
+        let d = 0xda8a0600;
+        let e = 0xa96f30bc;
+        let f = 0x163138aa;
+        let g = 0xe38dee4d;
+        let h = 0xb0fb0e4e;
+        let t = 0x79cc4519;
+        let w1 = 0xe9b5dba5;
+        let w2 = 0x3956c25b;
+
+        let expected = [
+            0x7380166f,
+            0x2914b2b9,
+            0x172442d7,
+            0x7a8a0600,
+            0xa96f30bc,
+            0xb63138aa,
+            0xe38dee4d,
+            0xe8b7a8e7, // This expected value must be calculated in advance
+        ];
+        
+        let result = sm3_round1(a, b, c, d, e, f, g, h, t, w1, w2);
+        assert_eq!(result, expected);
+    }
+
+    // You should add additional tests to cover different cases for the sm3_round1 function
+}
+False
+========================================
+    use crate::sm3_round2;
+
+    #[test]
+    fn test_sm3_round2() {
+        // Define ff2 and gg2 functions and any other necessary items.
+        fn ff2(x: u32, y: u32, z: u32) -> u32 {
+            x ^ y ^ z
+        }
+
+        fn gg2(x: u32, y: u32, z: u32) -> u32 {
+            x ^ y ^ z
+        }
+
+        fn p0(x: u32) -> u32 {
+            x ^ x.rotate_left(9) ^ x.rotate_left(17)
+        }
+
+        // Test values
+        let a: u32 = 0x7380166f;
+        let b: u32 = 0x4914b2b9;
+        let c: u32 = 0x172442d7;
+        let d: u32 = 0xda8a0600;
+        let e: u32 = 0xa96f30bc;
+        let f: u32 = 0x163138aa;
+        let g: u32 = 0xe38dee4d;
+        let h: u32 = 0xb0fb0e4e;
+        let t: u32 = 0x79cc4519;
+        let w1: u32 = 0xe9b6c7aa;
+        let w2: u32 = 0x983e5152;
+
+        let result = sm3_round2(a, b, c, d, e, f, g, h, t, w1, w2);
+
+        // Expected values also need to be provided, for example:
+        let expected: [u32; 8] = [
+            0x7380166f, // Expected result for a
+            0x24c4723e, // Expected result for b
+            0x172442d7, // Expected result for c
+            0x1da595fa, // Expected result for d
+            0xa96f30bc, // Expected result for e
+            0xc6b8e75b, // Expected result for f
+            0xe38dee4d, // Expected result for g
+            0x2f840398, // Expected result for h
+        ];
+
+        assert_eq!(result, expected);
+    }
+}
+False
+========================================
+    use crate::t;
+
+    #[test]
+    fn test_t() {
+        let values = [
+            (0, 0x79cc4519), // Tj for 0 <= j < 16
+            (15, 0x79cc4519), // Tj for 0 <= j < 16
+            (16, 0x7a879d8a), // Tj for 16 <= j < 64
+            (63, 0x7a879d8a), // Tj for 16 <= j < 64
+        ];
+
+        for (i, expected) in values.iter() {
+            assert_eq!(t(*i), *expected, "t({}) did not return the expected value.", i);
+        }
+    }
+}
+False
+========================================
+    use crate::w1;
+
+    #[test]
+    fn test_w1() {
+        let x: [u32; 16] = [
+            1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
+        ];
+
+        for i in 0..x.len() {
+            let result = w1(&x, i);
+            assert_eq!(result, x[i]);
+        }
+        
+        // Test with indices greater than 15, to ensure wrapping
+        let result = w1(&x, 16);
+        assert_eq!(result, x[0]);
+
+        let result = w1(&x, 17);
+        assert_eq!(result, x[1]);
+
+        let result = w1(&x, 18);
+        assert_eq!(result, x[2]);
+        
+        // And so on for other indices which will verify the wrapping behavior
+    }
+}
+False
+========================================
+    use super::*; // Import all the functions from the parent module
+
+use crate::*;
+
+    fn init_test_array() -> [u32; 16] {
+        [0x7380166f, 0x4914b2b9, 0x172442d7, 0xda8a0600, 0xa96f30bc, 0x163138aa, 0xe38dee4d, 0xb0fb0e4e, 
+         0x58f1fae2, 0xf8e2d4c2, 0x05ba1f33, 0x2e1aa175, 0xefe2872f, 0x6dcb5a8f, 0x6fb077e1, 0x4e4a6f7c]
+    }
+
+    #[test]
+    fn test_w2() {
+        let mut test_array = init_test_array();
+        let i = 16; // Example index to test; this should be >= 16
+
+        // Directly call the `w2` function, we don't need to replicate its logic here
+        let result_w2 = w2(&mut test_array, i);
+
+        // Validate the result
+        // Due to the nature of the `w2` function, we don't have a predetermined expected value
+        // as it depends on the implementation of `w1` and `p1` and their interactions in `w2`.
+        // However, we can still test that `w2` modifies the expected index in the array `x`.
+        let array_index = i & 0x0f;
+        assert_eq!(result_w2, test_array[array_index], "w2 function did not correctly update the array at the expected index.");
+
+        // additional validations can be added here if there are any known relationships
+        // or patterns that result from the execution of `w2` that we can test.
+    }
+}
+True
+hashes sm3 4 18

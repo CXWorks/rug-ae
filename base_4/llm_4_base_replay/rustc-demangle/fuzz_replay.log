@@ -1,0 +1,9 @@
+rustc-demangle rustc-demangle . ['/mnt/sda/xiang/llm4/llm_4_base_replay/rustc-demangle/./src/legacy.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/rustc-demangle/./src/v0.rs', '/mnt/sda/xiang/llm4/llm_4_base_replay/rustc-demangle/./src/lib.rs']
+/mnt/sda/xiang/llm4/llm_4_base_replay/rustc-demangle/./src/legacy.rs
+/mnt/sda/xiang/llm4/llm_4_base_replay/rustc-demangle/./src/v0.rs
+err tests_llm_16_47 test_basic_type
+/mnt/sda/xiang/llm4/llm_4_base_replay/rustc-demangle/./src/lib.rs
+done
+rustc-demangle rustc-demangle-capi crates/capi ['/mnt/sda/xiang/llm4/llm_4_base_replay/rustc-demangle/crates/capi/src/lib.rs']
+/mnt/sda/xiang/llm4/llm_4_base_replay/rustc-demangle/crates/capi/src/lib.rs
+done

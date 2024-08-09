@@ -1,0 +1,2966 @@
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml/./src/reader.rs
+        let _rug_st_tests_llm_16_228_rrrruuuugggg_test_bangtype_parse_comment = 0;
+ tests_llm_16_228 test_bangtype_parse_comment
+        let _rug_st_tests_llm_16_228_rrrruuuugggg_test_bangtype_parse_cdata = 0;
+ tests_llm_16_228 test_bangtype_parse_cdata
+        let _rug_st_tests_llm_16_228_rrrruuuugggg_test_bangtype_parse_doctype = 0;
+ tests_llm_16_228 test_bangtype_parse_doctype
+        let _rug_st_tests_llm_16_236_rrrruuuugggg_is_match_match_case = 0;
+ tests_llm_16_236 is_match_match_case
+        let _rug_st_tests_llm_16_236_rrrruuuugggg_is_match_no_match_case = 0;
+ tests_llm_16_236 is_match_no_match_case
+        let _rug_st_tests_llm_16_236_rrrruuuugggg_is_match_match_case_with_prefix = 0;
+ tests_llm_16_236 is_match_match_case_with_prefix
+        let _rug_st_tests_llm_16_236_rrrruuuugggg_is_match_no_match_case_with_prefix = 0;
+ tests_llm_16_236 is_match_no_match_case_with_prefix
+        let _rug_st_tests_llm_16_236_rrrruuuugggg_is_match_match_case_with_namespace = 0;
+ tests_llm_16_236 is_match_match_case_with_namespace
+        let _rug_st_tests_llm_16_236_rrrruuuugggg_is_match_no_match_case_with_namespace = 0;
+ tests_llm_16_236 is_match_no_match_case_with_namespace
+        let _rug_st_tests_llm_16_238_llm_16_237_rrrruuuugggg_test_namespace = 0;
+ tests_llm_16_238_llm_16_237 test_namespace
+err tests_llm_16_238_llm_16_237 test_namespace
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error: unexpected closing delimiter: `}`
+    --> src/reader.rs:1956:8
+     |
+1939 |     fn test_namespace() {
+     |                         - this opening brace...
+...
+1956 | });    }
+     | -      ^ unexpected closing delimiter
+     | |
+     | ...matches this closing brace
+
+error: mismatched closing delimiter: `}`
+    --> src/reader.rs:1944:18
+     |
+1936 | mod tests_llm_16_238_llm_16_237 {
+     |                                 - closing delimiter possibly meant for this
+...
+1944 |         .for_each(|rug_data| {
+     |                  ^ unclosed delimiter
+...
+1956 | });    }
+     | ^ mismatched closing delimiter
+
+error: mismatched closing delimiter: `)`
+    --> src/reader.rs:1936:33
+     |
+1936 | mod tests_llm_16_238_llm_16_237 {
+     |                                 ^ unclosed delimiter
+...
+1956 | });    }
+     |  ^ mismatched closing delimiter
+
+error: could not compile `quick-xml` due to 3 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `quick-xml` due to 3 previous errors
+
+        let _rug_st_tests_llm_16_249_rrrruuuugggg_test_from_bytes = 0;
+ tests_llm_16_249 test_from_bytes
+        let _rug_st_tests_llm_16_253_rrrruuuugggg_test_read_event_unbuffered = 0;
+ tests_llm_16_253 test_read_event_unbuffered
+err tests_llm_16_253 test_read_event_unbuffered
+    Blocking waiting for file lock on package cache
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error: unknown start of token: \
+    --> src/reader.rs:2099:28
+     |
+2099 |         let rug_fuzz_0 = b"\xEF\xBB\xBFHello, World!";
+     |                            ^
+
+error: unknown start of token: \
+    --> src/reader.rs:2099:32
+     |
+2099 |         let rug_fuzz_0 = b"\xEF\xBB\xBFHello, World!";
+     |                                ^
+
+error: unknown start of token: \
+    --> src/reader.rs:2099:36
+     |
+2099 |         let rug_fuzz_0 = b"\xEF\xBB\xBFHello, World!";
+     |                                    ^
+
+error: unknown start of token: \
+    --> src/reader.rs:2119:28
+     |
+2119 |         let rug_fuzz_0 = b"\xEF\xBB\xBFHello, \xFF World!";
+     |                            ^
+
+error: unknown start of token: \
+    --> src/reader.rs:2119:32
+     |
+2119 |         let rug_fuzz_0 = b"\xEF\xBB\xBFHello, \xFF World!";
+     |                                ^
+
+error: unknown start of token: \
+    --> src/reader.rs:2119:36
+     |
+2119 |         let rug_fuzz_0 = b"\xEF\xBB\xBFHello, \xFF World!";
+     |                                    ^
+
+error: unknown start of token: \
+    --> src/reader.rs:2119:47
+     |
+2119 |         let rug_fuzz_0 = b"\xEF\xBB\xBFHello, \xFF World!";
+     |                                               ^
+
+error: unknown start of token: \
+    --> src/reader.rs:2172:44
+     |
+2172 |         let rug_fuzz_2 = "Start: BytesStart\n";
+     |                                            ^
+
+error: unknown start of token: \
+    --> src/reader.rs:2192:39
+     |
+2192 |             rug_fuzz_2, "End: BytesEnd\n", "Start: BytesStart\n", "End: BytesEnd\n"
+     |                                       ^
+
+error: unknown start of token: \
+    --> src/reader.rs:2192:62
+     |
+2192 |             rug_fuzz_2, "End: BytesEnd\n", "Start: BytesStart\n", "End: BytesEnd\n"
+     |                                                              ^
+
+error: unknown start of token: \
+    --> src/reader.rs:2192:81
+     |
+2192 |             rug_fuzz_2, "End: BytesEnd\n", "Start: BytesStart\n", "End: BytesEnd\n"
+     |                                                                                 ^
+
+error: unknown start of token: \
+    --> src/reader.rs:2258:48
+     |
+2258 |         let rug_fuzz_0 = b"<root>hello world   \n</root>";
+     |                                                ^
+
+error: unknown start of token: \
+    --> src/reader.rs:2330:41
+     |
+2330 |         let rug_fuzz_2 = b"xmlns:prefix=\"the:namespace:uri\"";
+     |                                         ^
+
+error: this file contains an unclosed delimiter
+    --> src/reader.rs:2808:3
+     |
+1983 | mod tests_llm_16_253 {
+     |                      - unclosed delimiter
+...
+1989 |     fn test_read_event_unbuffered() {
+     |                                     - unclosed delimiter
+...
+1994 |         .for_each(|rug_data| {
+     |                  - unclosed delimiter
+...
+2808 | }
+     |   ^
+
+error: expected `::`, found `<`
+    --> src/reader.rs:1997:31
+     |
+1997 |                         <tag2><!--Test comment-->Test</tag2>
+     |                               ^ expected `::`
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `#`
+    --> src/reader.rs:2338:1
+     |
+2337 | }
+     |  - expected one of `)`, `,`, `.`, `?`, or an operator
+2338 | #[cfg(test)]
+     | ^ unexpected token
+
+error: expected `;`, found keyword `mod`
+    --> src/reader.rs:2338:13
+     |
+2338 | #[cfg(test)]
+     |             ^ help: add `;` here
+2339 | mod tests_rug_23 {
+     | --- unexpected token
+
+error: expected expression, found `)`
+    --> src/reader.rs:2808:3
+     |
+2808 | }
+     |   ^ expected expression
+
+error: could not compile `quick-xml` due to 18 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `quick-xml` due to 18 previous errors
+
+        let _rug_st_tests_llm_16_254_rrrruuuugggg_test_attribute_namespace = 0;
+ tests_llm_16_254 test_attribute_namespace
+err tests_llm_16_254 test_attribute_namespace
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error: unknown start of token: \
+    --> src/reader.rs:2102:28
+     |
+2102 |         let rug_fuzz_0 = b"\xEF\xBB\xBFHello, World!";
+     |                            ^
+
+error: unknown start of token: \
+    --> src/reader.rs:2102:32
+     |
+2102 |         let rug_fuzz_0 = b"\xEF\xBB\xBFHello, World!";
+     |                                ^
+
+error: unknown start of token: \
+    --> src/reader.rs:2102:36
+     |
+2102 |         let rug_fuzz_0 = b"\xEF\xBB\xBFHello, World!";
+     |                                    ^
+
+error: unknown start of token: \
+    --> src/reader.rs:2122:28
+     |
+2122 |         let rug_fuzz_0 = b"\xEF\xBB\xBFHello, \xFF World!";
+     |                            ^
+
+error: unknown start of token: \
+    --> src/reader.rs:2122:32
+     |
+2122 |         let rug_fuzz_0 = b"\xEF\xBB\xBFHello, \xFF World!";
+     |                                ^
+
+error: unknown start of token: \
+    --> src/reader.rs:2122:36
+     |
+2122 |         let rug_fuzz_0 = b"\xEF\xBB\xBFHello, \xFF World!";
+     |                                    ^
+
+error: unknown start of token: \
+    --> src/reader.rs:2122:47
+     |
+2122 |         let rug_fuzz_0 = b"\xEF\xBB\xBFHello, \xFF World!";
+     |                                               ^
+
+error: unknown start of token: \
+    --> src/reader.rs:2175:44
+     |
+2175 |         let rug_fuzz_2 = "Start: BytesStart\n";
+     |                                            ^
+
+error: unknown start of token: \
+    --> src/reader.rs:2195:39
+     |
+2195 |             rug_fuzz_2, "End: BytesEnd\n", "Start: BytesStart\n", "End: BytesEnd\n"
+     |                                       ^
+
+error: unknown start of token: \
+    --> src/reader.rs:2195:62
+     |
+2195 |             rug_fuzz_2, "End: BytesEnd\n", "Start: BytesStart\n", "End: BytesEnd\n"
+     |                                                              ^
+
+error: unknown start of token: \
+    --> src/reader.rs:2195:81
+     |
+2195 |             rug_fuzz_2, "End: BytesEnd\n", "Start: BytesStart\n", "End: BytesEnd\n"
+     |                                                                                 ^
+
+error: unknown start of token: \
+    --> src/reader.rs:2261:48
+     |
+2261 |         let rug_fuzz_0 = b"<root>hello world   \n</root>";
+     |                                                ^
+
+error: unknown start of token: \
+    --> src/reader.rs:2333:41
+     |
+2333 |         let rug_fuzz_2 = b"xmlns:prefix=\"the:namespace:uri\"";
+     |                                         ^
+
+error: this file contains an unclosed delimiter
+    --> src/reader.rs:2811:3
+     |
+2036 | mod tests_llm_16_254 {
+     |                      - unclosed delimiter
+...
+2041 |     fn test_attribute_namespace() {
+     |                                   - unclosed delimiter
+...
+2046 |         .for_each(|rug_data| {
+     |                  - unclosed delimiter
+...
+2811 | }
+     |   ^
+
+error: expected `::`, found `<`
+    --> src/reader.rs:2049:32
+     |
+2049 |                          <tag2><!--Test comment-->Test</tag2>
+     |                                ^ expected `::`
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `#`
+    --> src/reader.rs:2341:1
+     |
+2340 | }
+     |  - expected one of `)`, `,`, `.`, `?`, or an operator
+2341 | #[cfg(test)]
+     | ^ unexpected token
+
+error: expected `;`, found keyword `mod`
+    --> src/reader.rs:2341:13
+     |
+2341 | #[cfg(test)]
+     |             ^ help: add `;` here
+2342 | mod tests_rug_23 {
+     | --- unexpected token
+
+error: expected expression, found `)`
+    --> src/reader.rs:2811:3
+     |
+2811 | }
+     |   ^ expected expression
+
+error: could not compile `quick-xml` due to 18 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `quick-xml` due to 18 previous errors
+
+        let _rug_st_tests_llm_16_259_rrrruuuugggg_test_check_end_names = 0;
+ tests_llm_16_259 test_check_end_names
+        let _rug_st_tests_llm_16_264_rrrruuuugggg_test_decode_without_bom = 0;
+ tests_llm_16_264 test_decode_without_bom
+err tests_llm_16_264 test_decode_without_bom
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error[E0425]: cannot find value `data` in this scope
+    --> src/reader.rs:2109:54
+     |
+2109 |         let reader = Reader::from_reader(Cursor::new(data));
+     |                                                      ^^^^ not found in this scope
+
+error[E0425]: cannot find value `data` in this scope
+    --> src/reader.rs:2110:48
+     |
+2110 |         let result = reader.decode_without_bom(data).unwrap();
+     |                                                ^^^^ not found in this scope
+
+error[E0282]: type annotations needed
+    --> src/events/attributes.rs:1865:9
+     |
+1865 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+    --> src/events/attributes.rs:1865:9
+     |
+1865 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |         |
+     |         type must be known at this point
+     |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+             - impl PartialEq for u8;
+             - impl PartialEq<serde_json::Value> for u8;
+     = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+     = note: 1 redundant requirement hidden
+     = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+Some errors have detailed explanations: E0282, E0283, E0425.
+For more information about an error, try `rustc --explain E0282`.
+error: could not compile `quick-xml` due to 4 previous errors
+
+        let _rug_st_tests_llm_16_264_rrrruuuugggg_test_decode_without_bom_without_bom = 0;
+ tests_llm_16_264 test_decode_without_bom_without_bom
+err tests_llm_16_264 test_decode_without_bom_without_bom
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error[E0425]: cannot find value `data` in this scope
+    --> src/reader.rs:2119:54
+     |
+2119 |         let reader = Reader::from_reader(Cursor::new(data));
+     |                                                      ^^^^ not found in this scope
+
+error[E0425]: cannot find value `data` in this scope
+    --> src/reader.rs:2120:48
+     |
+2120 |         let result = reader.decode_without_bom(data).unwrap();
+     |                                                ^^^^ not found in this scope
+
+error[E0282]: type annotations needed
+    --> src/events/attributes.rs:1865:9
+     |
+1865 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+    --> src/events/attributes.rs:1865:9
+     |
+1865 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |         |
+     |         type must be known at this point
+     |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+             - impl PartialEq for u8;
+             - impl PartialEq<serde_json::Value> for u8;
+     = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+     = note: 1 redundant requirement hidden
+     = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+Some errors have detailed explanations: E0282, E0283, E0425.
+For more information about an error, try `rustc --explain E0282`.
+error: could not compile `quick-xml` due to 4 previous errors
+
+        let _rug_st_tests_llm_16_264_rrrruuuugggg_test_decode_without_bom_invalid_utf8 = 0;
+ tests_llm_16_264 test_decode_without_bom_invalid_utf8
+err tests_llm_16_264 test_decode_without_bom_invalid_utf8
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error[E0425]: cannot find value `data` in this scope
+    --> src/reader.rs:2129:54
+     |
+2129 |         let reader = Reader::from_reader(Cursor::new(data));
+     |                                                      ^^^^ not found in this scope
+
+error[E0425]: cannot find value `data` in this scope
+    --> src/reader.rs:2130:48
+     |
+2130 |         let result = reader.decode_without_bom(data);
+     |                                                ^^^^ not found in this scope
+
+error[E0282]: type annotations needed
+    --> src/events/attributes.rs:1865:9
+     |
+1865 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+    --> src/events/attributes.rs:1865:9
+     |
+1865 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |         |
+     |         type must be known at this point
+     |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+             - impl PartialEq for u8;
+             - impl PartialEq<serde_json::Value> for u8;
+     = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+     = note: 1 redundant requirement hidden
+     = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+Some errors have detailed explanations: E0282, E0283, E0425.
+For more information about an error, try `rustc --explain E0282`.
+error: could not compile `quick-xml` due to 4 previous errors
+
+        let _rug_st_tests_llm_16_273_rrrruuuugggg_test_get_mut = 0;
+ tests_llm_16_273 test_get_mut
+        let _rug_st_tests_llm_16_284_rrrruuuugggg_test_read_event_buffered = 0;
+ tests_llm_16_284 test_read_event_buffered
+err tests_llm_16_284 test_read_event_buffered
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error: unknown start of token: \
+    --> src/reader.rs:2184:44
+     |
+2184 |         let rug_fuzz_2 = "Start: BytesStart\n";
+     |                                            ^
+
+error: unknown start of token: \
+    --> src/reader.rs:2204:39
+     |
+2204 |             rug_fuzz_2, "End: BytesEnd\n", "Start: BytesStart\n", "End: BytesEnd\n"
+     |                                       ^
+
+error: unknown start of token: \
+    --> src/reader.rs:2204:62
+     |
+2204 |             rug_fuzz_2, "End: BytesEnd\n", "Start: BytesStart\n", "End: BytesEnd\n"
+     |                                                              ^
+
+error: unknown start of token: \
+    --> src/reader.rs:2204:81
+     |
+2204 |             rug_fuzz_2, "End: BytesEnd\n", "Start: BytesStart\n", "End: BytesEnd\n"
+     |                                                                                 ^
+
+error: unknown start of token: \
+    --> src/reader.rs:2270:48
+     |
+2270 |         let rug_fuzz_0 = b"<root>hello world   \n</root>";
+     |                                                ^
+
+error: unknown start of token: \
+    --> src/reader.rs:2342:41
+     |
+2342 |         let rug_fuzz_2 = b"xmlns:prefix=\"the:namespace:uri\"";
+     |                                         ^
+
+error: this file contains an unclosed delimiter
+    --> src/reader.rs:2820:3
+     |
+2150 | mod tests_llm_16_284 {
+     |                      - unclosed delimiter
+...
+2154 |     fn test_read_event_buffered() {
+     |                                   - unclosed delimiter
+...
+2159 |         .for_each(|rug_data| {
+     |                  - unclosed delimiter
+...
+2820 | }
+     |   ^
+
+error: expected `::`, found `<`
+    --> src/reader.rs:2162:65
+     |
+2162 | ...                   <tag2><!--Test comment-->Test</tag2>
+     |                             ^ expected `::`
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `#`
+    --> src/reader.rs:2350:1
+     |
+2349 | }
+     |  - expected one of `)`, `,`, `.`, `?`, or an operator
+2350 | #[cfg(test)]
+     | ^ unexpected token
+
+error: expected `;`, found keyword `mod`
+    --> src/reader.rs:2350:13
+     |
+2350 | #[cfg(test)]
+     |             ^ help: add `;` here
+2351 | mod tests_rug_23 {
+     | --- unexpected token
+
+error: expected expression, found `)`
+    --> src/reader.rs:2820:3
+     |
+2820 | }
+     |   ^ expected expression
+
+error: could not compile `quick-xml` due to 11 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `quick-xml` due to 11 previous errors
+
+        let _rug_st_tests_llm_16_294_rrrruuuugggg_test_trim_markup_names_in_closing_tags = 0;
+ tests_llm_16_294 test_trim_markup_names_in_closing_tags
+        let _rug_st_tests_llm_16_300_rrrruuuugggg_test_is_whitespace = 0;
+ tests_llm_16_300 test_is_whitespace
+        let _rug_st_tests_rug_9_rrrruuuugggg_test_from_reader = 0;
+ tests_rug_9 test_from_reader
+        let _rug_st_tests_rug_11_rrrruuuugggg_test_trim_text = 0;
+ tests_rug_11 test_trim_text
+        let _rug_st_tests_rug_12_rrrruuuugggg_test_trim_text_end = 0;
+ tests_rug_12 test_trim_text_end
+        let _rug_st_tests_rug_13_rrrruuuugggg_test_rug = 0;
+ tests_rug_13 test_rug
+        let _rug_st_tests_rug_21_rrrruuuugggg_test_read_event = 0;
+ tests_rug_21 test_read_event
+        let _rug_st_tests_rug_22_rrrruuuugggg_test_event_namespace = 0;
+ tests_rug_22 test_event_namespace
+err tests_rug_22 test_event_namespace
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error[E0425]: cannot find value `rug_fuzz_2` in this scope
+    --> src/reader.rs:2362:32
+     |
+2362 |         let namespace_buffer = rug_fuzz_2;
+     |                                ^^^^^^^^^^ help: a local variable with a similar name exists: `rug_fuzz_0`
+
+error[E0282]: type annotations needed
+    --> src/events/attributes.rs:1865:9
+     |
+1865 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+    --> src/events/attributes.rs:1865:9
+     |
+1865 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |         |
+     |         type must be known at this point
+     |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+             - impl PartialEq for u8;
+             - impl PartialEq<serde_json::Value> for u8;
+     = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+     = note: 1 redundant requirement hidden
+     = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+Some errors have detailed explanations: E0282, E0283, E0425.
+For more information about an error, try `rustc --explain E0282`.
+error: could not compile `quick-xml` due to 3 previous errors
+
+        let _rug_st_tests_rug_23_rrrruuuugggg_test_read_namespaced_event = 0;
+ tests_rug_23 test_read_namespaced_event
+err tests_rug_23 test_read_namespaced_event
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error: unknown start of token: \
+    --> src/reader.rs:2639:28
+     |
+2639 |         let rug_fuzz_0 = b"\t  Hello, World!";
+     |                            ^
+
+error[E0765]: unterminated double quote string
+    --> src/reader.rs:2812:39
+     |
+2812 |           let rug_fuzz_0 = b"sample data";
+     |  _______________________________________^
+2813 | |         let mut p0: reader::Decoder = reader::Decoder;
+2814 | |         let p1: &[u8] = rug_fuzz_0;
+2815 | |         <reader::Decoder>::decode(&p0, p1).unwrap();
+...    |
+2831 | |     }
+2832 | | }
+     | |__^
+
+For more information about this error, try `rustc --explain E0765`.
+error: could not compile `quick-xml` due to 2 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `quick-xml` due to 2 previous errors
+
+        let _rug_st_tests_rug_26_rrrruuuugggg_test_read_to_end = 0;
+ tests_rug_26 test_read_to_end
+err tests_rug_26 test_read_to_end
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error[E0425]: cannot find value `rug_fuzz_1` in this scope
+    --> src/reader.rs:2439:29
+     |
+2439 |         let mut p1: &[u8] = rug_fuzz_1;
+     |                             ^^^^^^^^^^ help: a local variable with a similar name exists: `rug_fuzz_0`
+
+error[E0282]: type annotations needed
+    --> src/events/attributes.rs:1865:9
+     |
+1865 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+    --> src/events/attributes.rs:1865:9
+     |
+1865 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |         |
+     |         type must be known at this point
+     |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+             - impl PartialEq for u8;
+             - impl PartialEq<serde_json::Value> for u8;
+     = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+     = note: 1 redundant requirement hidden
+     = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+Some errors have detailed explanations: E0282, E0283, E0425.
+For more information about an error, try `rustc --explain E0282`.
+error: could not compile `quick-xml` due to 3 previous errors
+
+        let _rug_st_tests_rug_30_rrrruuuugggg_test_from_file = 0;
+ tests_rug_30 test_from_file
+        let _rug_st_tests_rug_31_rrrruuuugggg_test_from_str = 0;
+ tests_rug_31 test_from_str
+        let _rug_st_tests_rug_34_rrrruuuugggg_test_read_bang_element = 0;
+ tests_rug_34 test_read_bang_element
+        let _rug_st_tests_rug_36_rrrruuuugggg_test_skip_whitespace = 0;
+ tests_rug_36 test_skip_whitespace
+        let _rug_st_tests_rug_37_rrrruuuugggg_test_skip_one = 0;
+ tests_rug_37 test_skip_one
+        let _rug_st_tests_rug_38_rrrruuuugggg_test_peek_one = 0;
+ tests_rug_38 test_peek_one
+        let _rug_st_tests_rug_39_rrrruuuugggg_test_rug = 0;
+ tests_rug_39 test_rug
+err tests_rug_39 test_rug
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error[E0597]: `rug_fuzz_0_ext` does not live long enough
+    --> src/reader.rs:2619:18
+     |
+2619 | let rug_fuzz_0 = & rug_fuzz_0_ext;
+     |                  ^^^^^^^^^^^^^^^^ borrowed value does not live long enough
+2620 |         let mut p0: &'static [u8] = rug_fuzz_0;
+     |                     ------------- type annotation requires that `rug_fuzz_0_ext` is borrowed for `'static`
+...
+2626 | });    }
+     | - `rug_fuzz_0_ext` dropped here while still borrowed
+
+For more information about this error, try `rustc --explain E0597`.
+error: could not compile `quick-xml` due to previous error
+
+        let _rug_st_tests_rug_40_rrrruuuugggg_test_rug = 0;
+ tests_rug_40 test_rug
+err tests_rug_40 test_rug
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error[E0597]: `rug_fuzz_0_ext` does not live long enough
+    --> src/reader.rs:2637:18
+     |
+2637 | let rug_fuzz_0 = & rug_fuzz_0_ext;
+     |                  ^^^^^^^^^^^^^^^^ borrowed value does not live long enough
+2638 |         let data: &'static [u8] = rug_fuzz_0;
+     |                   ------------- type annotation requires that `rug_fuzz_0_ext` is borrowed for `'static`
+...
+2643 | });    }
+     | - `rug_fuzz_0_ext` dropped here while still borrowed
+
+For more information about this error, try `rustc --explain E0597`.
+error: could not compile `quick-xml` due to previous error
+
+        let _rug_st_tests_rug_41_rrrruuuugggg_test_read_element = 0;
+ tests_rug_41 test_read_element
+err tests_rug_41 test_read_element
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error[E0597]: `rug_fuzz_0_ext` does not live long enough
+    --> src/reader.rs:2653:18
+     |
+2653 | let rug_fuzz_0 = & rug_fuzz_0_ext;
+     |                  ^^^^^^^^^^^^^^^^ borrowed value does not live long enough
+2654 |         let data: &'static [u8] = rug_fuzz_0;
+     |                   ------------- type annotation requires that `rug_fuzz_0_ext` is borrowed for `'static`
+...
+2660 | });    }
+     | - `rug_fuzz_0_ext` dropped here while still borrowed
+
+For more information about this error, try `rustc --explain E0597`.
+error: could not compile `quick-xml` due to previous error
+
+        let _rug_st_tests_rug_42_rrrruuuugggg_test_skip_whitespace = 0;
+ tests_rug_42 test_skip_whitespace
+err tests_rug_42 test_skip_whitespace
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error[E0597]: `rug_fuzz_0_ext` does not live long enough
+    --> src/reader.rs:2670:18
+     |
+2670 | let rug_fuzz_0 = & rug_fuzz_0_ext;
+     |                  ^^^^^^^^^^^^^^^^ borrowed value does not live long enough
+2671 |         let mut p0: &'static [u8] = rug_fuzz_0;
+     |                     ------------- type annotation requires that `rug_fuzz_0_ext` is borrowed for `'static`
+...
+2677 | });    }
+     | - `rug_fuzz_0_ext` dropped here while still borrowed
+
+For more information about this error, try `rustc --explain E0597`.
+error: could not compile `quick-xml` due to previous error
+
+        let _rug_st_tests_rug_43_rrrruuuugggg_test_rug = 0;
+ tests_rug_43 test_rug
+err tests_rug_43 test_rug
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error[E0597]: `rug_fuzz_0_ext` does not live long enough
+    --> src/reader.rs:2687:18
+     |
+2687 | let rug_fuzz_0 = & rug_fuzz_0_ext;
+     |                  ^^^^^^^^^^^^^^^^ borrowed value does not live long enough
+2688 |         let mut p0: &'static [u8] = rug_fuzz_0;
+     |                     ------------- type annotation requires that `rug_fuzz_0_ext` is borrowed for `'static`
+...
+2693 | });    }
+     | - `rug_fuzz_0_ext` dropped here while still borrowed
+
+For more information about this error, try `rustc --explain E0597`.
+error: could not compile `quick-xml` due to previous error
+
+        let _rug_st_tests_rug_45_rrrruuuugggg_test_rug = 0;
+ tests_rug_45 test_rug
+        let _rug_st_tests_rug_46_rrrruuuugggg_test_to_err = 0;
+ tests_rug_46 test_to_err
+        let _rug_st_tests_rug_47_rrrruuuugggg_test_rug = 0;
+ tests_rug_47 test_rug
+err tests_rug_47 test_rug
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error[E0425]: cannot find value `p0` in this scope
+    --> src/reader.rs:2745:39
+     |
+2745 |         ReadElementState::change(&mut p0, p1);
+     |                                       ^^ help: a local variable with a similar name exists: `p1`
+
+error[E0282]: type annotations needed
+    --> src/events/attributes.rs:1865:9
+     |
+1865 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+    --> src/events/attributes.rs:1865:9
+     |
+1865 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |         |
+     |         type must be known at this point
+     |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+             - impl PartialEq for u8;
+             - impl PartialEq<serde_json::Value> for u8;
+     = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+     = note: 1 redundant requirement hidden
+     = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+Some errors have detailed explanations: E0282, E0283, E0425.
+For more information about an error, try `rustc --explain E0282`.
+error: could not compile `quick-xml` due to 3 previous errors
+
+        let _rug_st_tests_rug_48_rrrruuuugggg_test_find = 0;
+ tests_rug_48 test_find
+err tests_rug_48 test_find
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error[E0425]: cannot find value `rug_fuzz_3` in this scope
+    --> src/reader.rs:2764:29
+     |
+2764 |         let buffer: &[u8] = rug_fuzz_3;
+     |                             ^^^^^^^^^^ help: a local variable with a similar name exists: `rug_fuzz_0`
+
+error[E0282]: type annotations needed
+    --> src/events/attributes.rs:1865:9
+     |
+1865 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+    --> src/events/attributes.rs:1865:9
+     |
+1865 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |         |
+     |         type must be known at this point
+     |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+             - impl PartialEq for u8;
+             - impl PartialEq<serde_json::Value> for u8;
+     = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+     = note: 1 redundant requirement hidden
+     = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+Some errors have detailed explanations: E0282, E0283, E0425.
+For more information about an error, try `rustc --explain E0282`.
+error: could not compile `quick-xml` due to 3 previous errors
+
+        let _rug_st_tests_rug_49_rrrruuuugggg_test_pop = 0;
+ tests_rug_49 test_pop
+        let _rug_st_tests_rug_50_rrrruuuugggg_test_push = 0;
+ tests_rug_50 test_push
+        let _rug_st_tests_rug_51_rrrruuuugggg_test_resolve = 0;
+ tests_rug_51 test_resolve
+err tests_rug_51 test_resolve
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error[E0425]: cannot find value `rug_fuzz_3` in this scope
+    --> src/reader.rs:2836:25
+     |
+2836 |         let p2: &[u8] = rug_fuzz_3;
+     |                         ^^^^^^^^^^ help: a local variable with a similar name exists: `rug_fuzz_0`
+
+error[E0282]: type annotations needed
+    --> src/events/attributes.rs:1865:9
+     |
+1865 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+    --> src/events/attributes.rs:1865:9
+     |
+1865 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |         |
+     |         type must be known at this point
+     |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+             - impl PartialEq for u8;
+             - impl PartialEq<serde_json::Value> for u8;
+     = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+     = note: 1 redundant requirement hidden
+     = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+Some errors have detailed explanations: E0282, E0283, E0425.
+For more information about an error, try `rustc --explain E0282`.
+error: could not compile `quick-xml` due to 3 previous errors
+
+        let _rug_st_tests_rug_52_rrrruuuugggg_test_rug = 0;
+ tests_rug_52 test_rug
+err tests_rug_52 test_rug
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error[E0425]: cannot find value `p0` in this scope
+    --> src/reader.rs:2855:36
+     |
+2855 |         <reader::Decoder>::decode(&p0, p1).unwrap();
+     |                                    ^^ help: a local variable with a similar name exists: `p1`
+
+error[E0282]: type annotations needed
+    --> src/events/attributes.rs:1865:9
+     |
+1865 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+    --> src/events/attributes.rs:1865:9
+     |
+1865 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |         |
+     |         type must be known at this point
+     |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+             - impl PartialEq for u8;
+             - impl PartialEq<serde_json::Value> for u8;
+     = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+     = note: 1 redundant requirement hidden
+     = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+Some errors have detailed explanations: E0282, E0283, E0425.
+For more information about an error, try `rustc --explain E0282`.
+error: could not compile `quick-xml` due to 3 previous errors
+
+        let _rug_st_tests_rug_53_rrrruuuugggg_test_rug = 0;
+ tests_rug_53 test_rug
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml/./src/se/var.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml/./src/se/mod.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml/./src/writer.rs
+        let _rug_st_tests_llm_16_314_rrrruuuugggg_test_write_inner_content = 0;
+ tests_llm_16_314 test_write_inner_content
+        let _rug_st_tests_llm_16_319_rrrruuuugggg_test_grow = 0;
+ tests_llm_16_319 test_grow
+        let _rug_st_tests_llm_16_320_rrrruuuugggg_test_new = 0;
+ tests_llm_16_320 test_new
+        let _rug_st_tests_llm_16_321_rrrruuuugggg_test_shrink = 0;
+ tests_llm_16_321 test_shrink
+        let _rug_st_tests_llm_16_323_rrrruuuugggg_test_inner = 0;
+ tests_llm_16_323 test_inner
+        let _rug_st_tests_rug_123_rrrruuuugggg_test_rug = 0;
+ tests_rug_123 test_rug
+        let _rug_st_tests_rug_124_rrrruuuugggg_test_writer = 0;
+ tests_rug_124 test_writer
+        let _rug_st_tests_rug_125_rrrruuuugggg_test_rug = 0;
+ tests_rug_125 test_rug
+        let _rug_st_tests_rug_126_rrrruuuugggg_test_write_event = 0;
+ tests_rug_126 test_write_event
+err tests_rug_126 test_write_event
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error[E0425]: cannot find value `writer` in this scope
+   --> src/writer.rs:713:9
+    |
+713 |         writer.write_event(event);
+    |         ^^^^^^ not found in this scope
+
+error[E0282]: type annotations needed
+    --> src/events/attributes.rs:1865:9
+     |
+1865 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+    --> src/events/attributes.rs:1865:9
+     |
+1865 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |         |
+     |         type must be known at this point
+     |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+             - impl PartialEq for u8;
+             - impl PartialEq<serde_json::Value> for u8;
+     = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+     = note: 1 redundant requirement hidden
+     = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+Some errors have detailed explanations: E0282, E0283, E0425.
+For more information about an error, try `rustc --explain E0282`.
+error: could not compile `quick-xml` due to 3 previous errors
+
+        let _rug_st_tests_rug_127_rrrruuuugggg_test_rug = 0;
+ tests_rug_127 test_rug
+        let _rug_st_tests_rug_128_rrrruuuugggg_test_create_element = 0;
+ tests_rug_128 test_create_element
+err tests_rug_128 test_create_element
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error[E0425]: cannot find value `writer` in this scope
+   --> src/writer.rs:741:9
+    |
+741 |         writer.create_element(name);
+    |         ^^^^^^ not found in this scope
+
+error[E0282]: type annotations needed
+    --> src/events/attributes.rs:1865:9
+     |
+1865 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+    --> src/events/attributes.rs:1865:9
+     |
+1865 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |         |
+     |         type must be known at this point
+     |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+             - impl PartialEq for u8;
+             - impl PartialEq<serde_json::Value> for u8;
+     = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+     = note: 1 redundant requirement hidden
+     = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+Some errors have detailed explanations: E0282, E0283, E0425.
+For more information about an error, try `rustc --explain E0282`.
+error: could not compile `quick-xml` due to 3 previous errors
+
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml/./src/events/attributes.rs
+        let _rug_st_tests_llm_16_46_rrrruuuugggg_test_from = 0;
+ tests_llm_16_46 test_from
+        let _rug_st_tests_llm_16_48_rrrruuuugggg_test_from = 0;
+ tests_llm_16_48 test_from
+        let _rug_st_tests_llm_16_49_rrrruuuugggg_test_from_attr = 0;
+ tests_llm_16_49 test_from_attr
+err tests_llm_16_49 test_from_attr
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error[E0425]: cannot find value `rug_fuzz_1` in this scope
+    --> src/events/attributes.rs:1818:28
+     |
+1818 |         let value: &[u8] = rug_fuzz_1;
+     |                            ^^^^^^^^^^ help: a local variable with a similar name exists: `rug_fuzz_0`
+
+error[E0282]: type annotations needed
+    --> src/events/attributes.rs:1878:9
+     |
+1878 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+    --> src/events/attributes.rs:1878:9
+     |
+1878 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |         |
+     |         type must be known at this point
+     |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+             - impl PartialEq for u8;
+             - impl PartialEq<serde_json::Value> for u8;
+     = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+     = note: 1 redundant requirement hidden
+     = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+Some errors have detailed explanations: E0282, E0283, E0425.
+For more information about an error, try `rustc --explain E0282`.
+error: could not compile `quick-xml` due to 3 previous errors
+
+        let _rug_st_tests_llm_16_185_llm_16_184_rrrruuuugggg_test_key = 0;
+ tests_llm_16_185_llm_16_184 test_key
+err tests_llm_16_185_llm_16_184 test_key
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error[E0425]: cannot find value `attr` in this scope
+    --> src/events/attributes.rs:1837:26
+     |
+1837 |         debug_assert_eq!(attr.key(), & b"key1"[..]);
+     |                          ^^^^ not found in this scope
+
+error[E0425]: cannot find value `rug_fuzz_3` in this scope
+    --> src/events/attributes.rs:1838:52
+     |
+1838 |         let attr = Attr::SingleQ(&rug_fuzz_2[..], &rug_fuzz_3[..]);
+     |                                                    ^^^^^^^^^^ help: a local variable with a similar name exists: `rug_fuzz_0`
+
+error[E0425]: cannot find value `rug_fuzz_5` in this scope
+    --> src/events/attributes.rs:1842:36
+     |
+1842 |         let attr = Attr::Unquoted(&rug_fuzz_5[..], &rug_fuzz_6[..]);
+     |                                    ^^^^^^^^^^ help: a local variable with a similar name exists: `rug_fuzz_0`
+
+error[E0282]: type annotations needed
+    --> src/events/attributes.rs:1875:9
+     |
+1875 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+    --> src/events/attributes.rs:1875:9
+     |
+1875 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |         |
+     |         type must be known at this point
+     |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+             - impl PartialEq for u8;
+             - impl PartialEq<serde_json::Value> for u8;
+     = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+     = note: 1 redundant requirement hidden
+     = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+Some errors have detailed explanations: E0282, E0283, E0425.
+For more information about an error, try `rustc --explain E0282`.
+error: could not compile `quick-xml` due to 5 previous errors
+
+        let _rug_st_tests_llm_16_186_rrrruuuugggg_test_value_doubleq = 0;
+ tests_llm_16_186 test_value_doubleq
+        let _rug_st_tests_llm_16_186_rrrruuuugggg_test_value_singleq = 0;
+ tests_llm_16_186 test_value_singleq
+        let _rug_st_tests_llm_16_186_rrrruuuugggg_test_value_empty = 0;
+ tests_llm_16_186 test_value_empty
+        let _rug_st_tests_llm_16_186_rrrruuuugggg_test_value_unquoted = 0;
+ tests_llm_16_186 test_value_unquoted
+        let _rug_st_tests_llm_16_189_rrrruuuugggg_test_do_unescape_and_decode_value = 0;
+ tests_llm_16_189 test_do_unescape_and_decode_value
+err tests_llm_16_189 test_do_unescape_and_decode_value
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error[E0423]: expected value, found module `reader`
+    --> src/events/attributes.rs:1923:62
+     |
+1923 |         let result = attribute.do_unescape_and_decode_value(&reader, custom_entities);
+     |                                                              ^^^^^^ not a value
+
+error[E0282]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |         |
+     |         type must be known at this point
+     |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+             - impl PartialEq for u8;
+             - impl PartialEq<serde_json::Value> for u8;
+     = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+     = note: 1 redundant requirement hidden
+     = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+Some errors have detailed explanations: E0282, E0283, E0423.
+For more information about an error, try `rustc --explain E0282`.
+error: could not compile `quick-xml` due to 3 previous errors
+
+        let _rug_st_tests_llm_16_190_rrrruuuugggg_test_do_unescape_and_decode_without_bom = 0;
+ tests_llm_16_190 test_do_unescape_and_decode_without_bom
+err tests_llm_16_190 test_do_unescape_and_decode_without_bom
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error: unexpected closing delimiter: `}`
+    --> src/events/attributes.rs:1952:8
+     |
+1932 |     fn test_do_unescape_and_decode_without_bom() {
+     |                                                  - this opening brace...
+...
+1952 | });    }
+     | -      ^ unexpected closing delimiter
+     | |
+     | ...matches this closing brace
+
+error: mismatched closing delimiter: `}`
+    --> src/events/attributes.rs:1937:18
+     |
+1926 | mod tests_llm_16_190 {
+     |                      - closing delimiter possibly meant for this
+...
+1937 |         .for_each(|rug_data| {
+     |                  ^ unclosed delimiter
+...
+1952 | });    }
+     | ^ mismatched closing delimiter
+
+error: mismatched closing delimiter: `)`
+    --> src/events/attributes.rs:1926:22
+     |
+1926 | mod tests_llm_16_190 {
+     |                      ^ unclosed delimiter
+...
+1952 | });    }
+     |  ^ mismatched closing delimiter
+
+error: could not compile `quick-xml` due to 3 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `quick-xml` due to 3 previous errors
+
+        let _rug_st_tests_llm_16_208_rrrruuuugggg_test_with_checks = 0;
+ tests_llm_16_208 test_with_checks
+        let _rug_st_tests_llm_16_220_rrrruuuugggg_test_recover = 0;
+ tests_llm_16_220 test_recover
+err tests_llm_16_220 test_recover
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error: unexpected closing delimiter: `}`
+    --> src/events/attributes.rs:1995:8
+     |
+1978 |     fn test_recover() {
+     |                       - this opening brace...
+...
+1995 | });    }
+     | -      ^ unexpected closing delimiter
+     | |
+     | ...matches this closing brace
+
+error: mismatched closing delimiter: `}`
+    --> src/events/attributes.rs:1983:18
+     |
+1975 | mod tests_llm_16_220 {
+     |                      - closing delimiter possibly meant for this
+...
+1983 |         .for_each(|rug_data| {
+     |                  ^ unclosed delimiter
+...
+1995 | });    }
+     | ^ mismatched closing delimiter
+
+error: mismatched closing delimiter: `)`
+    --> src/events/attributes.rs:1975:22
+     |
+1975 | mod tests_llm_16_220 {
+     |                      ^ unclosed delimiter
+...
+1995 | });    }
+     |  ^ mismatched closing delimiter
+
+error: could not compile `quick-xml` due to 3 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `quick-xml` due to 3 previous errors
+
+        let _rug_st_tests_llm_16_223_rrrruuuugggg_test_skip_eq_value = 0;
+ tests_llm_16_223 test_skip_eq_value
+        let _rug_st_tests_llm_16_225_rrrruuuugggg_test_skip_value = 0;
+ tests_llm_16_225 test_skip_value
+        let _rug_st_tests_rug_60_rrrruuuugggg_test_rug = 0;
+ tests_rug_60 test_rug
+        let _rug_st_tests_rug_61_rrrruuuugggg_test_rug = 0;
+ tests_rug_61 test_rug
+        let _rug_st_tests_rug_64_rrrruuuugggg_test_attribute_unescape_and_decode_value_with_custom_entities = 0;
+ tests_rug_64 test_attribute_unescape_and_decode_value_with_custom_entities
+        let _rug_st_tests_rug_65_rrrruuuugggg_test_rug = 0;
+ tests_rug_65 test_rug
+        let _rug_st_tests_rug_66_rrrruuuugggg_test_unescape_and_decode_without_bom_with_custom_entities = 0;
+ tests_rug_66 test_unescape_and_decode_without_bom_with_custom_entities
+        let _rug_st_tests_rug_67_rrrruuuugggg_test_new = 0;
+ tests_rug_67 test_new
+        let _rug_st_tests_rug_68_rrrruuuugggg_test_html = 0;
+ tests_rug_68 test_html
+err tests_rug_68 test_html
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error[E0597]: `rug_fuzz_0_ext` does not live long enough
+    --> src/events/attributes.rs:2151:18
+     |
+2151 | let rug_fuzz_0 = & rug_fuzz_0_ext;
+     |                  ^^^^^^^^^^^^^^^^ borrowed value does not live long enough
+2152 |         let p0: &[u8] = rug_fuzz_0;
+     |                         ---------- cast requires that `rug_fuzz_0_ext` is borrowed for `'static`
+...
+2156 | });    }
+     | - `rug_fuzz_0_ext` dropped here while still borrowed
+
+For more information about this error, try `rustc --explain E0597`.
+error: could not compile `quick-xml` due to previous error
+
+        let _rug_st_tests_rug_72_rrrruuuugggg_test_new = 0;
+ tests_rug_72 test_new
+        let _rug_st_tests_rug_73_rrrruuuugggg_test_check_for_duplicates = 0;
+ tests_rug_73 test_check_for_duplicates
+        let _rug_st_tests_rug_74_rrrruuuugggg_test_key_only = 0;
+ tests_rug_74 test_key_only
+        let _rug_st_tests_rug_75_rrrruuuugggg_test_double_q = 0;
+ tests_rug_75 test_double_q
+        let _rug_st_tests_rug_76_rrrruuuugggg_test_single_q = 0;
+ tests_rug_76 test_single_q
+        let _rug_st_tests_rug_77_rrrruuuugggg_test_next = 0;
+ tests_rug_77 test_next
+err tests_rug_77 test_next
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error[E0425]: cannot find value `iter_state` in this scope
+    --> src/events/attributes.rs:2273:9
+     |
+2273 |         iter_state.next(slice);
+     |         ^^^^^^^^^^ not found in this scope
+
+error[E0282]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |         |
+     |         type must be known at this point
+     |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+             - impl PartialEq for u8;
+             - impl PartialEq<serde_json::Value> for u8;
+     = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+     = note: 1 redundant requirement hidden
+     = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+Some errors have detailed explanations: E0282, E0283, E0425.
+For more information about an error, try `rustc --explain E0282`.
+error: could not compile `quick-xml` due to 3 previous errors
+
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml/./src/events/mod.rs
+        let _rug_st_tests_llm_16_39_rrrruuuugggg_test_deref = 0;
+ tests_llm_16_39 test_deref
+err tests_llm_16_39 test_deref
+    Blocking waiting for file lock on package cache
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error[E0425]: cannot find value `name` in this scope
+    --> src/events/mod.rs:1103:36
+     |
+1103 |         let bytes_end = BytesEnd { name };
+     |                                    ^^^^ not found in this scope
+
+error[E0282]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |         |
+     |         type must be known at this point
+     |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+             - impl PartialEq for u8;
+             - impl PartialEq<serde_json::Value> for u8;
+     = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+     = note: 1 redundant requirement hidden
+     = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+Some errors have detailed explanations: E0282, E0283, E0425.
+For more information about an error, try `rustc --explain E0282`.
+error: could not compile `quick-xml` due to 3 previous errors
+
+        let _rug_st_tests_llm_16_40_rrrruuuugggg_test_deref = 0;
+ tests_llm_16_40 test_deref
+        let _rug_st_tests_llm_16_43_rrrruuuugggg_test_as_ref = 0;
+ tests_llm_16_43 test_as_ref
+err tests_llm_16_43 test_as_ref
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error[E0425]: cannot find value `event` in this scope
+    --> src/events/mod.rs:1142:26
+     |
+1142 |         debug_assert_eq!(event.as_ref(), & event);
+     |                          ^^^^^ not found in this scope
+
+error[E0425]: cannot find value `event` in this scope
+    --> src/events/mod.rs:1142:44
+     |
+1142 |         debug_assert_eq!(event.as_ref(), & event);
+     |                                            ^^^^^ not found in this scope
+
+error[E0282]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |         |
+     |         type must be known at this point
+     |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+             - impl PartialEq for u8;
+             - impl PartialEq<serde_json::Value> for u8;
+     = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+     = note: 1 redundant requirement hidden
+     = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+Some errors have detailed explanations: E0282, E0283, E0425.
+For more information about an error, try `rustc --explain E0282`.
+error: could not compile `quick-xml` due to 4 previous errors
+
+        let _rug_st_tests_llm_16_77_rrrruuuugggg_test_from_str = 0;
+ tests_llm_16_77 test_from_str
+        let _rug_st_tests_llm_16_82_llm_16_81_rrrruuuugggg_test_new = 0;
+ tests_llm_16_82_llm_16_81 test_new
+        let _rug_st_tests_llm_16_86_llm_16_85_rrrruuuugggg_test_encoding = 0;
+ tests_llm_16_86_llm_16_85 test_encoding
+        let _rug_st_tests_llm_16_88_llm_16_87_rrrruuuugggg_test_from_start = 0;
+ tests_llm_16_88_llm_16_87 test_from_start
+        let _rug_st_tests_llm_16_89_rrrruuuugggg_test_into_owned = 0;
+ tests_llm_16_89 test_into_owned
+        let _rug_st_tests_llm_16_92_rrrruuuugggg_test_standalone_no_decl = 0;
+ tests_llm_16_92 test_standalone_no_decl
+        let _rug_st_tests_llm_16_92_rrrruuuugggg_test_standalone_yes = 0;
+ tests_llm_16_92 test_standalone_yes
+        let _rug_st_tests_llm_16_92_rrrruuuugggg_test_standalone_custom = 0;
+ tests_llm_16_92 test_standalone_custom
+        let _rug_st_tests_llm_16_94_llm_16_93_rrrruuuugggg_test_version = 0;
+ tests_llm_16_94_llm_16_93 test_version
+        let _rug_st_tests_llm_16_96_llm_16_95_rrrruuuugggg_test_borrowed = 0;
+ tests_llm_16_96_llm_16_95 test_borrowed
+err tests_llm_16_96_llm_16_95 test_borrowed
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error[E0425]: cannot find value `name` in this scope
+    --> src/events/mod.rs:1380:44
+     |
+1380 |         let bytes_end = BytesEnd::borrowed(name);
+     |                                            ^^^^ not found in this scope
+
+error[E0425]: cannot find value `name` in this scope
+    --> src/events/mod.rs:1381:44
+     |
+1381 |         debug_assert_eq!(bytes_end.name(), name);
+     |                                            ^^^^ not found in this scope
+
+error[E0282]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |         |
+     |         type must be known at this point
+     |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+             - impl PartialEq for u8;
+             - impl PartialEq<serde_json::Value> for u8;
+     = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+     = note: 1 redundant requirement hidden
+     = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+Some errors have detailed explanations: E0282, E0283, E0425.
+For more information about an error, try `rustc --explain E0282`.
+error: could not compile `quick-xml` due to 4 previous errors
+
+        let _rug_st_tests_llm_16_102_llm_16_101_rrrruuuugggg_test_name = 0;
+ tests_llm_16_102_llm_16_101 test_name
+err tests_llm_16_102_llm_16_101 test_name
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error[E0425]: cannot find value `bytes_end` in this scope
+    --> src/events/mod.rs:1393:26
+     |
+1393 |         debug_assert_eq!(bytes_end.name(), b"example");
+     |                          ^^^^^^^^^ not found in this scope
+
+error[E0282]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |         |
+     |         type must be known at this point
+     |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+             - impl PartialEq for u8;
+             - impl PartialEq<serde_json::Value> for u8;
+     = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+     = note: 1 redundant requirement hidden
+     = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+Some errors have detailed explanations: E0282, E0283, E0425.
+For more information about an error, try `rustc --explain E0282`.
+error: could not compile `quick-xml` due to 3 previous errors
+
+        let _rug_st_tests_llm_16_103_rrrruuuugggg_test_owned = 0;
+ tests_llm_16_103 test_owned
+        let _rug_st_tests_llm_16_108_rrrruuuugggg_test_borrowed = 0;
+ tests_llm_16_108 test_borrowed
+        let _rug_st_tests_llm_16_109_rrrruuuugggg_test_borrowed_name = 0;
+ tests_llm_16_109 test_borrowed_name
+err tests_llm_16_109 test_borrowed_name
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error[E0425]: cannot find value `name` in this scope
+    --> src/events/mod.rs:1449:48
+     |
+1449 |         let result = BytesStart::borrowed_name(name);
+     |                                                ^^^^ not found in this scope
+
+error[E0425]: cannot find value `name` in this scope
+    --> src/events/mod.rs:1451:32
+     |
+1451 |             buf: Cow::Borrowed(name),
+     |                                ^^^^ not found in this scope
+
+error[E0425]: cannot find value `name` in this scope
+    --> src/events/mod.rs:1452:23
+     |
+1452 |             name_len: name.len(),
+     |                       ^^^^ not found in this scope
+
+error[E0282]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |         |
+     |         type must be known at this point
+     |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+             - impl PartialEq for u8;
+             - impl PartialEq<serde_json::Value> for u8;
+     = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+     = note: 1 redundant requirement hidden
+     = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+Some errors have detailed explanations: E0282, E0283, E0425.
+For more information about an error, try `rustc --explain E0282`.
+error: could not compile `quick-xml` due to 5 previous errors
+
+        let _rug_st_tests_llm_16_158_rrrruuuugggg_test_from_escaped = 0;
+ tests_llm_16_158 test_from_escaped
+        let _rug_st_tests_llm_16_159_rrrruuuugggg_test_from_escaped_str = 0;
+ tests_llm_16_159 test_from_escaped_str
+        let _rug_st_tests_llm_16_165_rrrruuuugggg_test_into_inner = 0;
+ tests_llm_16_165 test_into_inner
+err tests_llm_16_165 test_into_inner
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error[E0425]: cannot find value `text` in this scope
+    --> src/events/mod.rs:1508:21
+     |
+1508 |         let inner = text.into_inner();
+     |                     ^^^^ not found in this scope
+
+error[E0282]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |         |
+     |         type must be known at this point
+     |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+             - impl PartialEq for u8;
+             - impl PartialEq<serde_json::Value> for u8;
+     = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+     = note: 1 redundant requirement hidden
+     = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+Some errors have detailed explanations: E0282, E0283, E0425.
+For more information about an error, try `rustc --explain E0282`.
+error: could not compile `quick-xml` due to 3 previous errors
+
+        let _rug_st_tests_llm_16_170_rrrruuuugggg_test_unescape_and_decode = 0;
+ tests_llm_16_170 test_unescape_and_decode
+        let _rug_st_tests_llm_16_179_llm_16_178_rrrruuuugggg_test_unescaped_with_custom_entities = 0;
+ tests_llm_16_179_llm_16_178 test_unescaped_with_custom_entities
+err tests_llm_16_179_llm_16_178 test_unescaped_with_custom_entities
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error[E0425]: cannot find value `rug_fuzz_1` in this scope
+    --> src/events/mod.rs:1548:32
+     |
+1548 |         custom_entities.insert(rug_fuzz_1.to_vec(), rug_fuzz_2.to_vec());
+     |                                ^^^^^^^^^^ help: a local variable with a similar name exists: `rug_fuzz_0`
+
+error[E0425]: cannot find value `rug_fuzz_3` in this scope
+    --> src/events/mod.rs:1552:38
+     |
+1552 |         let expected = Cow::Borrowed(rug_fuzz_3);
+     |                                      ^^^^^^^^^^ help: a local variable with a similar name exists: `rug_fuzz_0`
+
+error[E0282]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |         |
+     |         type must be known at this point
+     |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+             - impl PartialEq for u8;
+             - impl PartialEq<serde_json::Value> for u8;
+     = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+     = note: 1 redundant requirement hidden
+     = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+Some errors have detailed explanations: E0282, E0283, E0425.
+For more information about an error, try `rustc --explain E0282`.
+error: could not compile `quick-xml` due to 4 previous errors
+
+        let _rug_st_tests_rug_78_rrrruuuugggg_test_rug = 0;
+ tests_rug_78 test_rug
+        let _rug_st_tests_rug_80_rrrruuuugggg_test_into_owned = 0;
+ tests_rug_80 test_into_owned
+        let _rug_st_tests_rug_81_rrrruuuugggg_test_to_owned = 0;
+ tests_rug_81 test_to_owned
+        let _rug_st_tests_rug_82_rrrruuuugggg_test_to_borrowed = 0;
+ tests_rug_82 test_to_borrowed
+        let _rug_st_tests_rug_83_rrrruuuugggg_test_rug = 0;
+ tests_rug_83 test_rug
+err tests_rug_83 test_rug
+    Blocking waiting for file lock on package cache
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error[E0425]: cannot find value `p0` in this scope
+    --> src/events/mod.rs:1648:9
+     |
+1648 |         p0.to_end();
+     |         ^^ not found in this scope
+
+error[E0282]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |         |
+     |         type must be known at this point
+     |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+             - impl PartialEq for u8;
+             - impl PartialEq<serde_json::Value> for u8;
+     = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+     = note: 1 redundant requirement hidden
+     = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+Some errors have detailed explanations: E0282, E0283, E0425.
+For more information about an error, try `rustc --explain E0282`.
+error: could not compile `quick-xml` due to 3 previous errors
+
+        let _rug_st_tests_rug_84_rrrruuuugggg_test_rug = 0;
+ tests_rug_84 test_rug
+        let _rug_st_tests_rug_85_rrrruuuugggg_test_local_name = 0;
+ tests_rug_85 test_local_name
+err tests_rug_85 test_local_name
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error[E0425]: cannot find value `name` in this scope
+    --> src/events/mod.rs:1683:51
+     |
+1683 |         let p0: BytesStart = BytesStart::borrowed(name, name.len());
+     |                                                   ^^^^ not found in this scope
+
+error[E0425]: cannot find value `name` in this scope
+    --> src/events/mod.rs:1683:57
+     |
+1683 |         let p0: BytesStart = BytesStart::borrowed(name, name.len());
+     |                                                         ^^^^ not found in this scope
+
+error[E0282]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |         |
+     |         type must be known at this point
+     |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+             - impl PartialEq for u8;
+             - impl PartialEq<serde_json::Value> for u8;
+     = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+     = note: 1 redundant requirement hidden
+     = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+Some errors have detailed explanations: E0282, E0283, E0425.
+For more information about an error, try `rustc --explain E0282`.
+error: could not compile `quick-xml` due to 4 previous errors
+
+        let _rug_st_tests_rug_86_rrrruuuugggg_test_unescaped = 0;
+ tests_rug_86 test_unescaped
+err tests_rug_86 test_unescaped
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error[E0425]: cannot find value `p0` in this scope
+    --> src/events/mod.rs:1697:22
+     |
+1697 |         let result = p0.unescaped();
+     |                      ^^ not found in this scope
+
+error[E0282]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |         |
+     |         type must be known at this point
+     |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+             - impl PartialEq for u8;
+             - impl PartialEq<serde_json::Value> for u8;
+     = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+     = note: 1 redundant requirement hidden
+     = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+Some errors have detailed explanations: E0282, E0283, E0425.
+For more information about an error, try `rustc --explain E0282`.
+error: could not compile `quick-xml` due to 3 previous errors
+
+        let _rug_st_tests_rug_87_rrrruuuugggg_test_unescaped_with_custom_entities = 0;
+ tests_rug_87 test_unescaped_with_custom_entities
+err tests_rug_87 test_unescaped_with_custom_entities
+    Blocking waiting for file lock on package cache
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error: unexpected closing delimiter: `)`
+    --> src/events/mod.rs:1717:2
+     |
+1714 |         let mut p1: HashMap<Vec<u8>, Vec<u8>> = HashMap::new();
+     |                                                             -- block is empty, you might have not meant to close it
+...
+1717 | });    }
+     |  ^ unexpected closing delimiter
+
+error: mismatched closing delimiter: `)`
+    --> src/events/mod.rs:1709:138
+     |
+1708 |         .for_each(|rug_data| {
+     |                  - closing delimiter possibly meant for this
+1709 |             if let Ok((mut rug_fuzz_0_ext)) = <([u8; 8]) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data)){
+     |                                                                                                                                          ^ unclosed delimiter
+...
+1713 |         );
+     |         ^ mismatched closing delimiter
+
+error: could not compile `quick-xml` due to 2 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `quick-xml` due to 2 previous errors
+
+        let _rug_st_tests_rug_89_rrrruuuugggg_test_rug = 0;
+ tests_rug_89 test_rug
+err tests_rug_89 test_rug
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error[E0425]: cannot find value `rug_fuzz_1` in this scope
+    --> src/events/mod.rs:1732:13
+     |
+1732 |             rug_fuzz_1 as &[u8],
+     |             ^^^^^^^^^^ help: a local variable with a similar name exists: `rug_fuzz_0`
+
+error[E0282]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |         |
+     |         type must be known at this point
+     |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+             - impl PartialEq for u8;
+             - impl PartialEq<serde_json::Value> for u8;
+     = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+     = note: 1 redundant requirement hidden
+     = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+Some errors have detailed explanations: E0282, E0283, E0425.
+For more information about an error, try `rustc --explain E0282`.
+error: could not compile `quick-xml` due to 3 previous errors
+
+        let _rug_st_tests_rug_92_rrrruuuugggg_test_set_name = 0;
+ tests_rug_92 test_set_name
+        let _rug_st_tests_rug_96_rrrruuuugggg_test_rug = 0;
+ tests_rug_96 test_rug
+err tests_rug_96 test_rug
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error[E0597]: `rug_fuzz_0_ext` does not live long enough
+    --> src/events/mod.rs:1759:18
+     |
+1759 | let rug_fuzz_0 = & rug_fuzz_0_ext;
+     |                  ^^^^^^^^^^^^^^^^ borrowed value does not live long enough
+1760 |         let mut p0: BytesStart<'static> = BytesStart::borrowed(rug_fuzz_0, rug_fuzz_1);
+     |                     ------------------- type annotation requires that `rug_fuzz_0_ext` is borrowed for `'static`
+...
+1766 | });    }
+     | - `rug_fuzz_0_ext` dropped here while still borrowed
+
+For more information about this error, try `rustc --explain E0597`.
+error: could not compile `quick-xml` due to previous error
+
+        let _rug_st_tests_rug_97_rrrruuuugggg_test_attributes = 0;
+ tests_rug_97 test_attributes
+err tests_rug_97 test_attributes
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error[E0597]: `rug_fuzz_0_ext` does not live long enough
+    --> src/events/mod.rs:1782:18
+     |
+1782 | let rug_fuzz_0 = & rug_fuzz_0_ext;
+     |                  ^^^^^^^^^^^^^^^^ borrowed value does not live long enough
+...
+1785 |         let start: BytesStart<'static> = BytesStart::borrowed(buf, name_len);
+     |                    ------------------- type annotation requires that `rug_fuzz_0_ext` is borrowed for `'static`
+...
+1788 | });    }
+     | - `rug_fuzz_0_ext` dropped here while still borrowed
+
+For more information about this error, try `rustc --explain E0597`.
+error: could not compile `quick-xml` due to previous error
+
+        let _rug_st_tests_rug_98_rrrruuuugggg_test_html_attributes = 0;
+ tests_rug_98 test_html_attributes
+err tests_rug_98 test_html_attributes
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error[E0425]: cannot find value `name` in this scope
+    --> src/events/mod.rs:1799:51
+     |
+1799 |         let p0: BytesStart = BytesStart::borrowed(name, name.len());
+     |                                                   ^^^^ not found in this scope
+
+error[E0425]: cannot find value `name` in this scope
+    --> src/events/mod.rs:1799:57
+     |
+1799 |         let p0: BytesStart = BytesStart::borrowed(name, name.len());
+     |                                                         ^^^^ not found in this scope
+
+error[E0282]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |         |
+     |         type must be known at this point
+     |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+             - impl PartialEq for u8;
+             - impl PartialEq<serde_json::Value> for u8;
+     = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+     = note: 1 redundant requirement hidden
+     = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+Some errors have detailed explanations: E0282, E0283, E0425.
+For more information about an error, try `rustc --explain E0282`.
+error: could not compile `quick-xml` due to 4 previous errors
+
+        let _rug_st_tests_rug_99_rrrruuuugggg_test_attributes_raw = 0;
+ tests_rug_99 test_attributes_raw
+        let _rug_st_tests_rug_100_rrrruuuugggg_test_try_get_attribute = 0;
+ tests_rug_100 test_try_get_attribute
+err tests_rug_100 test_try_get_attribute
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error[E0425]: cannot find value `rug_fuzz_1` in this scope
+    --> src/events/mod.rs:1835:29
+     |
+1835 |         let mut p1: &[u8] = rug_fuzz_1;
+     |                             ^^^^^^^^^^ help: a local variable with a similar name exists: `rug_fuzz_0`
+
+error[E0282]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |         |
+     |         type must be known at this point
+     |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+             - impl PartialEq for u8;
+             - impl PartialEq<serde_json::Value> for u8;
+     = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+     = note: 1 redundant requirement hidden
+     = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+Some errors have detailed explanations: E0282, E0283, E0425.
+For more information about an error, try `rustc --explain E0282`.
+error: could not compile `quick-xml` due to 3 previous errors
+
+        let _rug_st_tests_rug_101_rrrruuuugggg_test_new = 0;
+ tests_rug_101 test_new
+err tests_rug_101 test_new
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error[E0425]: cannot find value `rug_fuzz_1` in this scope
+    --> src/events/mod.rs:1851:44
+     |
+1851 |         let encoding: Option<&[u8]> = Some(rug_fuzz_1);
+     |                                            ^^^^^^^^^^ help: a local variable with a similar name exists: `rug_fuzz_0`
+
+error[E0425]: cannot find value `version` in this scope
+    --> src/events/mod.rs:1853:24
+     |
+1853 |         BytesDecl::new(version, encoding, standalone);
+     |                        ^^^^^^^ not found in this scope
+
+error[E0282]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |         |
+     |         type must be known at this point
+     |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+             - impl PartialEq for u8;
+             - impl PartialEq<serde_json::Value> for u8;
+     = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+     = note: 1 redundant requirement hidden
+     = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+Some errors have detailed explanations: E0282, E0283, E0425.
+For more information about an error, try `rustc --explain E0282`.
+error: could not compile `quick-xml` due to 4 previous errors
+
+        let _rug_st_tests_rug_102_rrrruuuugggg_sample = 0;
+ tests_rug_102 sample
+                let _rug_st_tests_rug_102_prepare_rrrruuuugggg_sample = 0;
+ tests_rug_102_prepare sample
+        let _rug_st_tests_rug_103_rrrruuuugggg_test_local_name = 0;
+ tests_rug_103 test_local_name
+        let _rug_st_tests_rug_104_rrrruuuugggg_test_rug = 0;
+ tests_rug_104 test_rug
+err tests_rug_104 test_rug
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error[E0425]: cannot find value `p0` in this scope
+    --> src/events/mod.rs:1909:42
+     |
+1909 |         BytesText::<'static>::from_plain(p0);
+     |                                          ^^ not found in this scope
+
+error[E0282]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |         |
+     |         type must be known at this point
+     |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+             - impl PartialEq for u8;
+             - impl PartialEq<serde_json::Value> for u8;
+     = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+     = note: 1 redundant requirement hidden
+     = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+Some errors have detailed explanations: E0282, E0283, E0425.
+For more information about an error, try `rustc --explain E0282`.
+error: could not compile `quick-xml` due to 3 previous errors
+
+        let _rug_st_tests_rug_105_rrrruuuugggg_test_from_plain_str = 0;
+ tests_rug_105 test_from_plain_str
+        let _rug_st_tests_rug_106_rrrruuuugggg_test_rug = 0;
+ tests_rug_106 test_rug
+err tests_rug_106 test_rug
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error: lifetime may not live long enough
+    --> src/events/mod.rs:1939:21
+     |
+1936 |         .for_each(|rug_data| {
+     |                    -------- has type `&'1 [u8]`
+...
+1939 |         let mut p0: events::BytesText<'static> = events::BytesText::from_plain_str(
+     |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^ type annotation requires that `'1` must outlive `'static`
+
+error: could not compile `quick-xml` due to previous error
+
+        let _rug_st_tests_rug_107_rrrruuuugggg_test_rug = 0;
+ tests_rug_107 test_rug
+err tests_rug_107 test_rug
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error: lifetime may not live long enough
+    --> src/events/mod.rs:1955:21
+     |
+1952 |         .for_each(|rug_data| {
+     |                    -------- has type `&'1 [u8]`
+...
+1955 |         let mut p0: events::BytesText<'static> = events::BytesText::from_plain_str(
+     |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^ type annotation requires that `'1` must outlive `'static`
+
+error: could not compile `quick-xml` due to previous error
+
+        let _rug_st_tests_rug_109_rrrruuuugggg_test_rug = 0;
+ tests_rug_109 test_rug
+err tests_rug_109 test_rug
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error: unexpected closing delimiter: `)`
+    --> src/events/mod.rs:1978:2
+     |
+1968 |     bolero::check!()
+     |                   -- block is empty, you might have not meant to close it
+...
+1978 | });    }
+     |  ^ unexpected closing delimiter
+
+error: mismatched closing delimiter: `)`
+    --> src/events/mod.rs:1970:160
+     |
+1969 | ...   .for_each(|rug_data| {
+     |                - closing delimiter possibly meant for this
+1970 | ...       if let Ok((mut rug_fuzz_0, mut rug_fuzz_1_ext)) = <(&str, [u8; 0]) as arbitrary::Arbitrary>::arbitrary(&mut arbitrary::Unstructured::new(rug_data)){
+     |                                                                                                                                                              ^ unclosed delimiter
+...
+1974 | ...   );
+     |       ^ mismatched closing delimiter
+
+error: could not compile `quick-xml` due to 2 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `quick-xml` due to 2 previous errors
+
+        let _rug_st_tests_rug_110_rrrruuuugggg_test_rug = 0;
+ tests_rug_110 test_rug
+err tests_rug_110 test_rug
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error: lifetime may not live long enough
+    --> src/events/mod.rs:1991:21
+     |
+1988 |         .for_each(|rug_data| {
+     |                    -------- has type `&'1 [u8]`
+...
+1991 |         let mut p0: BytesText<'static> = BytesText::from_plain_str(rug_fuzz_0);
+     |                     ^^^^^^^^^^^^^^^^^^ type annotation requires that `'1` must outlive `'static`
+
+error: could not compile `quick-xml` due to previous error
+
+        let _rug_st_tests_rug_112_rrrruuuugggg_test_rug = 0;
+ tests_rug_112 test_rug
+err tests_rug_112 test_rug
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error[E0425]: cannot find value `p0` in this scope
+    --> src/events/mod.rs:2015:62
+     |
+2015 |         BytesText::unescape_and_decode_with_custom_entities(&p0, &p1, &p2).unwrap();
+     |                                                              ^^ help: a local variable with a similar name exists: `p1`
+
+error[E0282]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |         |
+     |         type must be known at this point
+     |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+             - impl PartialEq for u8;
+             - impl PartialEq<serde_json::Value> for u8;
+     = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+     = note: 1 redundant requirement hidden
+     = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+Some errors have detailed explanations: E0282, E0283, E0425.
+For more information about an error, try `rustc --explain E0282`.
+error: could not compile `quick-xml` due to 3 previous errors
+
+        let _rug_st_tests_rug_113_rrrruuuugggg_test_rug = 0;
+ tests_rug_113 test_rug
+err tests_rug_113 test_rug
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error: lifetime may not live long enough
+    --> src/events/mod.rs:2033:22
+     |
+2030 |         .for_each(|rug_data| {
+     |                    -------- has type `&'1 [u8]`
+...
+2033 |         let mut v46: events::BytesText<'static> = events::BytesText::from_plain_str(
+     |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^ type annotation requires that `'1` must outlive `'static`
+
+error: could not compile `quick-xml` due to previous error
+
+        let _rug_st_tests_rug_114_rrrruuuugggg_test_rug = 0;
+ tests_rug_114 test_rug
+err tests_rug_114 test_rug
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error: lifetime may not live long enough
+    --> src/events/mod.rs:2055:22
+     |
+2052 |         .for_each(|rug_data| {
+     |                    -------- has type `&'1 [u8]`
+...
+2055 |         let mut v46: events::BytesText<'static> = events::BytesText::from_plain_str(
+     |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^ type annotation requires that `'1` must outlive `'static`
+
+error: could not compile `quick-xml` due to previous error
+
+        let _rug_st_tests_rug_115_rrrruuuugggg_test_rug = 0;
+ tests_rug_115 test_rug
+err tests_rug_115 test_rug
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error: unexpected closing delimiter: `}`
+    --> src/events/mod.rs:2075:8
+     |
+2062 |     fn test_rug() {
+     |                   - this opening brace...
+...
+2075 | });    }
+     | -      ^ unexpected closing delimiter
+     | |
+     | ...matches this closing brace
+
+error: mismatched closing delimiter: `}`
+    --> src/events/mod.rs:2067:18
+     |
+2058 | mod tests_rug_115 {
+     |                   - closing delimiter possibly meant for this
+...
+2067 |         .for_each(|rug_data| {
+     |                  ^ unclosed delimiter
+...
+2075 | });    }
+     | ^ mismatched closing delimiter
+
+error: mismatched closing delimiter: `)`
+    --> src/events/mod.rs:2058:19
+     |
+2058 | mod tests_rug_115 {
+     |                   ^ unclosed delimiter
+...
+2075 | });    }
+     |  ^ mismatched closing delimiter
+
+error: could not compile `quick-xml` due to 3 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `quick-xml` due to 3 previous errors
+
+        let _rug_st_tests_rug_120_rrrruuuugggg_test_rug = 0;
+ tests_rug_120 test_rug
+err tests_rug_120 test_rug
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error: lifetime may not live long enough
+    --> src/events/mod.rs:2095:21
+     |
+2092 |         .for_each(|rug_data| {
+     |                    -------- has type `&'1 [u8]`
+...
+2095 |         let mut p0: events::BytesText<'static> = events::BytesText::from_plain_str(
+     |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^ type annotation requires that `'1` must outlive `'static`
+
+error: could not compile `quick-xml` due to previous error
+
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml/./src/escapei.rs
+        let _rug_st_tests_llm_16_58_rrrruuuugggg_test_named_entity = 0;
+ tests_llm_16_58 test_named_entity
+err tests_llm_16_58 test_named_entity
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error[E0425]: cannot find value `rug_fuzz_1` in this scope
+    --> src/escapei.rs:1778:39
+     |
+1778 |         debug_assert_eq!(named_entity(rug_fuzz_1), Some(">"));
+     |                                       ^^^^^^^^^^ help: a local variable with a similar name exists: `rug_fuzz_0`
+
+error[E0425]: cannot find value `rug_fuzz_3` in this scope
+    --> src/escapei.rs:1780:39
+     |
+1780 |         debug_assert_eq!(named_entity(rug_fuzz_3), Some("'"));
+     |                                       ^^^^^^^^^^ help: a local variable with a similar name exists: `rug_fuzz_0`
+
+error[E0425]: cannot find value `rug_fuzz_5` in this scope
+    --> src/escapei.rs:1782:39
+     |
+1782 |         debug_assert_eq!(named_entity(rug_fuzz_5), None);
+     |                                       ^^^^^^^^^^ help: a local variable with a similar name exists: `rug_fuzz_0`
+
+error[E0282]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |         |
+     |         type must be known at this point
+     |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+             - impl PartialEq for u8;
+             - impl PartialEq<serde_json::Value> for u8;
+     = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+     = note: 1 redundant requirement hidden
+     = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+Some errors have detailed explanations: E0282, E0283, E0425.
+For more information about an error, try `rustc --explain E0282`.
+error: could not compile `quick-xml` due to 5 previous errors
+
+        let _rug_st_tests_llm_16_68_llm_16_67_rrrruuuugggg_test_push_utf8 = 0;
+ tests_llm_16_68_llm_16_67 test_push_utf8
+        let _rug_st_tests_llm_16_69_rrrruuuugggg_test_to_escape = 0;
+ tests_llm_16_69 test_to_escape
+        let _rug_st_tests_llm_16_70_rrrruuuugggg_test_to_partial_escape_less_than = 0;
+ tests_llm_16_70 test_to_partial_escape_less_than
+        let _rug_st_tests_llm_16_70_rrrruuuugggg_test_to_partial_escape_greater_than = 0;
+ tests_llm_16_70 test_to_partial_escape_greater_than
+        let _rug_st_tests_llm_16_70_rrrruuuugggg_test_to_partial_escape_ampersand = 0;
+ tests_llm_16_70 test_to_partial_escape_ampersand
+        let _rug_st_tests_llm_16_70_rrrruuuugggg_test_to_partial_escape_other = 0;
+ tests_llm_16_70 test_to_partial_escape_other
+        let _rug_st_tests_llm_16_74_rrrruuuugggg_test_unescape_with = 0;
+ tests_llm_16_74 test_unescape_with
+err tests_llm_16_74 test_unescape_with
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error[E0425]: cannot find value `rug_fuzz_1` in this scope
+    --> src/escapei.rs:1898:32
+     |
+1898 |         let expected1: &[u8] = rug_fuzz_1;
+     |                                ^^^^^^^^^^ help: a local variable with a similar name exists: `rug_fuzz_0`
+
+error[E0425]: cannot find value `rug_fuzz_3` in this scope
+    --> src/escapei.rs:1903:33
+     |
+1903 |         custom_entities2.insert(rug_fuzz_3.to_vec(), rug_fuzz_4.to_vec());
+     |                                 ^^^^^^^^^^ help: a local variable with a similar name exists: `rug_fuzz_0`
+
+error[E0425]: cannot find value `rug_fuzz_5` in this scope
+    --> src/escapei.rs:1904:33
+     |
+1904 |         custom_entities2.insert(rug_fuzz_5.to_vec(), rug_fuzz_6.to_vec());
+     |                                 ^^^^^^^^^^ help: a local variable with a similar name exists: `rug_fuzz_0`
+
+error[E0425]: cannot find value `rug_fuzz_7` in this scope
+    --> src/escapei.rs:1905:32
+     |
+1905 |         let expected2: &[u8] = rug_fuzz_7;
+     |                                ^^^^^^^^^^ help: a local variable with a similar name exists: `rug_fuzz_0`
+
+error[E0282]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |         |
+     |         type must be known at this point
+     |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+             - impl PartialEq for u8;
+             - impl PartialEq<serde_json::Value> for u8;
+     = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+     = note: 1 redundant requirement hidden
+     = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+Some errors have detailed explanations: E0282, E0283, E0425.
+For more information about an error, try `rustc --explain E0282`.
+error: could not compile `quick-xml` due to 6 previous errors
+
+        let _rug_st_tests_rug_1_rrrruuuugggg_test_rug = 0;
+ tests_rug_1 test_rug
+err tests_rug_1 test_rug
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error[E0425]: cannot find value `p0` in this scope
+    --> src/escapei.rs:1922:32
+     |
+1922 |         crate::escapei::escape(p0);
+     |                                ^^ not found in this scope
+
+error[E0282]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |         |
+     |         type must be known at this point
+     |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+             - impl PartialEq for u8;
+             - impl PartialEq<serde_json::Value> for u8;
+     = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+     = note: 1 redundant requirement hidden
+     = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+Some errors have detailed explanations: E0282, E0283, E0425.
+For more information about an error, try `rustc --explain E0282`.
+error: could not compile `quick-xml` due to 3 previous errors
+
+        let _rug_st_tests_rug_2_rrrruuuugggg_test_rug = 0;
+ tests_rug_2 test_rug
+err tests_rug_2 test_rug
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error[E0425]: cannot find value `p0` in this scope
+    --> src/escapei.rs:1934:40
+     |
+1934 |         crate::escapei::partial_escape(p0);
+     |                                        ^^ not found in this scope
+
+error[E0282]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |         |
+     |         type must be known at this point
+     |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+             - impl PartialEq for u8;
+             - impl PartialEq<serde_json::Value> for u8;
+     = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+     = note: 1 redundant requirement hidden
+     = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+Some errors have detailed explanations: E0282, E0283, E0425.
+For more information about an error, try `rustc --explain E0282`.
+error: could not compile `quick-xml` due to 3 previous errors
+
+        let _rug_st_tests_rug_4_rrrruuuugggg_test_rug = 0;
+ tests_rug_4 test_rug
+err tests_rug_4 test_rug
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error[E0425]: cannot find value `p0` in this scope
+    --> src/escapei.rs:1946:34
+     |
+1946 |         crate::escapei::unescape(p0).unwrap();
+     |                                  ^^ not found in this scope
+
+error[E0282]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |         |
+     |         type must be known at this point
+     |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+             - impl PartialEq for u8;
+             - impl PartialEq<serde_json::Value> for u8;
+     = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+     = note: 1 redundant requirement hidden
+     = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+Some errors have detailed explanations: E0282, E0283, E0425.
+For more information about an error, try `rustc --explain E0282`.
+error: could not compile `quick-xml` due to 3 previous errors
+
+        let _rug_st_tests_rug_7_rrrruuuugggg_test_rug = 0;
+ tests_rug_7 test_rug
+err tests_rug_7 test_rug
+   Compiling quick-xml v0.23.0 (/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml)
+error[E0425]: cannot find value `p0` in this scope
+    --> src/escapei.rs:1958:43
+     |
+1958 |         crate::escapei::parse_hexadecimal(p0);
+     |                                           ^^ not found in this scope
+
+error[E0282]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+error[E0283]: type annotations needed
+    --> src/events/attributes.rs:1886:9
+     |
+1886 |         debug_assert_eq!(attr.value(), & []);
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |         |
+     |         type must be known at this point
+     |         cannot infer type of the type parameter `U` declared on the function `assert_failed`
+     |
+     = note: multiple `impl`s satisfying `u8: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+             - impl PartialEq for u8;
+             - impl PartialEq<serde_json::Value> for u8;
+     = note: required for `[u8]` to implement `PartialEq<[_; 0]>`
+     = note: 1 redundant requirement hidden
+     = note: required for `&[u8]` to implement `~const PartialEq<&[_; 0]>`
+     = note: this error originates in the macro `$crate::assert_eq` which comes from the expansion of the macro `debug_assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying the generic arguments
+    -->  |/home/xiang/snap/rustup/common/rustup/toolchains/nightly-2022-12-10-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:53
+     |
+45   |                     $crate::panicking::assert_failed::<&[u8], &[_; 0]>(kind, &*left_val, &*right_val, $crate::option::Option::None);
+     |                                                     ++++++++++++++++++
+
+Some errors have detailed explanations: E0282, E0283, E0425.
+For more information about an error, try `rustc --explain E0282`.
+error: could not compile `quick-xml` due to 3 previous errors
+
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml/./src/rusty_monitor.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml/./src/errors.rs
+        let _rug_st_tests_llm_16_30_rrrruuuugggg_test_conversion_from_io_error = 0;
+ tests_llm_16_30 test_conversion_from_io_error
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml/./src/de/map.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml/./src/de/var.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml/./src/de/escape.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml/./src/de/mod.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml/./src/de/seq.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml/./src/lib.rs
+/mnt/sda/xiang/rustyunit/rustyunit_fuzz/quick-xml/./src/utils.rs
+done

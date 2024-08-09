@@ -1,0 +1,6 @@
+nom benchmarks {}
+empty  nom/benchmarks
+timeout driver nom/.
+nom nom {}
+empty  nom/.
+nom done

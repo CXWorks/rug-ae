@@ -1,0 +1,646 @@
+========================================
+    use super::*;
+
+use crate::*;
+    use gost94_core::Gost94Core;
+    use params::CryptoProParam;
+
+    #[test]
+    fn test_default_gost94_core_with_cryptopro_param() {
+        let core: Gost94Core<CryptoProParam> = Gost94Core::default();
+
+        assert_eq!(core.h, CryptoProParam::H0);
+        assert_eq!(core.n, [0; 4]);
+        assert_eq!(core.sigma, [0; 4]);
+    }
+}
+True
+========================================
+    use crate::gost94_core::Gost94Core;
+    use crate::params::CryptoProParam;
+    use digest::Reset;
+
+    #[test]
+    fn reset_test() {
+        let mut hasher = Gost94Core::<CryptoProParam>::default();
+        let initial_state = hasher.clone();
+        // Change the state.
+        hasher.n[0] = 123;
+        hasher.sigma[0] = 456;
+        hasher.h[0] = 78;
+        // Reset the hasher.
+        hasher.reset();
+        // After reset, the hasher should be in the initial state.
+        assert_eq!(hasher, initial_state);
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use digest::core_api::AlgorithmName;
+    use core::fmt;
+    use crate::Gost94Params;
+
+    struct DummyParameter;
+
+    impl Gost94Params for DummyParameter {
+        const NAME: &'static str = "Gost94-Dummy";
+        const SBOX: [u8; 128] = [0u8; 128];
+    }
+
+    #[test]
+    fn write_alg_name_test() {
+        struct Gost94Dummy;
+
+        impl Gost94Core<DummyParameter> for Gost94Dummy {}
+
+        let mut alg_name = fmt::format(fmt::Arguments::new_v1(
+            &["Gost94-Dummy"],
+            &[]
+        ));
+        let mut formatter = fmt::Formatter::new(&mut alg_name);
+        Gost94Dummy::write_alg_name(&mut formatter).unwrap();
+        
+        assert_eq!(alg_name, "Gost94-Dummy");
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::gost94_core::{Buffer, Gost94Core, Output};
+    use crate::params::CryptoProParam;
+    use crate::buffer::StaticBuffer;
+    use crate::consts::U32;
+    use digest::core_api::CoreWrapper;
+    use digest::core_api::{FixedOutputCore, UpdateCore, BufferKindUser, BlockSizeUser};
+
+    #[test]
+    fn test_finalize_fixed_core() {
+        let mut core: Gost94Core<CryptoProParam> = Gost94Core::default();
+        let expected_h = core.h;
+
+        let mut buffer = <Gost94Core<CryptoProParam> as BufferKindUser>::BufferKind::default();
+        let mut output = Output::<Gost94Core<CryptoProParam>>::default();
+
+        core.finalize_fixed_core(CoreWrapper::from_core(&mut core, &mut buffer), &mut output);
+
+        assert_eq!(Output::<Gost94Core<CryptoProParam>>::default().as_ref(), &core.h);
+
+        let block = GenericArray::default();
+        buffer.reset();
+        buffer.input_block(&block);
+
+        output = Output::<Gost94Core<CryptoProParam>>::default();
+        core.finalize_fixed_core(CoreWrapper::from_core(&mut core, &mut buffer), &mut output);
+
+        assert_eq!(Output::<Gost94Core<CryptoProParam>>::default().as_ref(), &expected_h);
+    }
+
+    #[test]
+    fn test_finalize_fixed_core_with_updates() {
+        let mut core: Gost94Core<CryptoProParam> = Gost94Core::default();
+        let mut buffer = <Gost94Core<CryptoProParam> as BufferKindUser>::BufferKind::default();
+        let blocks = GenericArray::default();
+
+        core.update_blocks(&[blocks, blocks]);
+
+        let mut output = Output::<Gost94Core<CryptoProParam>>::default();
+        core.finalize_fixed_core(CoreWrapper::from_core(&mut core, &mut buffer), &mut output);
+
+        let expected_h = core.h;
+        assert_eq!(Output::<Gost94Core<CryptoProParam>>::default().as_ref(), &expected_h);
+    }
+
+    #[test]
+    fn test_finalize_fixed_core_with_partial_block() {
+        let mut core: Gost94Core<CryptoProParam> = Gost94Core::default();
+        let mut buffer = <Gost94Core<CryptoProParam> as BufferKindUser>::BufferKind::default();
+
+        let data = [0u8; U32::USIZE / 2];
+        core.update(&data);
+
+        let mut output = Output::<Gost94Core<CryptoProParam>>::default();
+        core.finalize_fixed_core(CoreWrapper::from_core(&mut core, &mut buffer), &mut output);
+
+        assert_ne!(Output::<Gost94Core<CryptoProParam>>::default().as_ref(), &core.h);
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use digest::core_api::BlockSizeUser;
+    use digest::core_api::UpdateCore;
+    use generic_array::GenericArray;
+
+    #[test]
+    fn gost94_update_blocks() {
+        let mut hasher = Gost94Core::<CryptoProParam>::default();
+        let block1 = GenericArray::clone_from_slice(&[1; 32]);
+        let block2 = GenericArray::clone_from_slice(&[2; 32]);
+        let blocks = [block1, block2];
+
+        // Save initial state
+        let initial_h = hasher.h;
+        let initial_n = hasher.n;
+        let initial_sigma = hasher.sigma;
+
+        // Perform update_blocks
+        hasher.update_blocks(&blocks);
+
+        assert_ne!(hasher.h, initial_h, "Hash (h) should be changed after update_blocks");
+        assert_ne!(hasher.n, initial_n, "n should be changed after update_blocks");
+        assert_ne!(hasher.sigma, initial_sigma, "Sigma should be changed after update_blocks");
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::gost94_core::Gost94Core;
+    use crate::params::CryptoProParam;
+    use crate::params::Gost94Params;
+    use digest::Digest;
+    use hex_literal::hex;
+
+    #[test]
+    fn compress_functionality() {
+        let mut core = Gost94Core::<CryptoProParam>::default();
+        let initial_h = core.h;
+        let initial_sigma = core.sigma;
+
+        let block = [0u8; 32];
+        core.compress(&block);
+
+        assert_ne!(core.h, initial_h, "compress should change core.h");
+        assert_ne!(core.sigma, initial_sigma, "compress should change core.sigma");
+    }
+
+    #[test]
+    fn compress_expected_output() {
+        let mut core = Gost94Core::<CryptoProParam>::default();
+        let block = hex!("0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef");
+        let expected_h = core.h; // Provide the expected `h` value after compress
+        let expected_sigma = core.sigma; // Provide the expected `sigma` value after compress
+        
+        core.compress(&block);
+
+        assert_eq!(core.h, expected_h, "h after compress does not match expected");
+        assert_eq!(core.sigma, expected_sigma, "sigma after compress does not match expected");
+    }
+    
+    // Additional tests can be included to cover other scenarios as required.
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::params::CryptoProParam;
+    use crate::gost94_core::Gost94Core;
+    use digest::Digest;
+    use digest::generic_array::typenum::U32;
+    use digest::generic_array::GenericArray;
+
+    #[test]
+    fn f_test() {
+        // Test case setup
+        let mut core = Gost94Core::<CryptoProParam>::default();
+        let m = [0; 32];
+        let h0 = CryptoProParam::H0;
+        core.h = m;
+        
+        // We need to check post conditions to test f function
+        // Calling the `f` function
+        core.f(&m);
+
+        // Test expectations
+        // As CryptoProParam::H0 is zeroed and encryption for zero block with zero key produces zero block
+        // shuffle operation will also produce zero block. Thus if the `f` function is correct `h` field
+        // should stay zeroed.
+        assert_eq!(core.h, h0, "The `f` function should leave the `h` field unchanged for the zero input");
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::gost94_core::Gost94Core;
+    use crate::params::CryptoProParam;
+    use crate::params::Gost94Params;
+
+    type TestHash = Gost94Core<CryptoProParam>;
+
+    #[test]
+    fn shuffle_test() {
+        let mut hasher = TestHash::default();
+        let m = [
+            0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 
+            0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 
+            0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 
+            0x18, 0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E, 0x1F
+        ];
+        let s = [
+            0x1F, 0x1E, 0x1D, 0x1C, 0x1B, 0x1A, 0x19, 0x18, 
+            0x17, 0x16, 0x15, 0x14, 0x13, 0x12, 0x11, 0x10, 
+            0x0F, 0x0E, 0x0D, 0x0C, 0x0B, 0x0A, 0x09, 0x08, 
+            0x07, 0x06, 0x05, 0x04, 0x03, 0x02, 0x01, 0x00
+        ];
+        let initial_h = hasher.h;
+        hasher.shuffle(&m, &s);
+
+        // Example validation checks
+        // These checks have to be adjusted based on expected values
+        // assert_ne! to make sure shuffle modifies internal state h
+        assert_ne!(initial_h, hasher.h, "Shuffle should change inner state h");
+        
+        // You might want to compare the result with expected values
+        // assert_eq! to check if shuffle produce expected result
+        // let expected_h: [u8; 32] = [ /* expected values after shuffle with m and s */ ];
+        // assert_eq!(expected_h, hasher.h, "Shuffle should match expected final state h");
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::gost94_core::Gost94Core;
+    use crate::params::CryptoProParam;
+    use crate::params::Gost94Params;
+
+    #[test]
+    fn test_update_n() {
+        let mut hasher: Gost94Core<CryptoProParam> = Default::default();
+        let initial_n = hasher.n;
+
+        // Test that update_n with 0 doesn't change anything
+        hasher.update_n(0);
+        assert_eq!(hasher.n, initial_n, "update_n with zero length should not change anything");
+
+        // Test that update_n with actual length updates the `n` value correctly
+        hasher.update_n(1);
+        let mut expected_n = initial_n;
+        expected_n[0] += 8;
+        assert_eq!(hasher.n, expected_n, "update_n with length 1 should increase the first element of `n` by 8");
+
+        // Test update_n with a large input length and carry
+        hasher.update_n(usize::MAX);
+        assert!(hasher.n[0] < expected_n[0], "update_n with large input should overflow and carry to the next element");
+        assert!(hasher.n[1] > 0, "update_n with large input should carry to the next element of `n`");
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use params::CryptoProParam;
+
+    #[test]
+    fn update_sigma_test() {
+        let mut core = Gost94Core::<CryptoProParam>::default();
+        let m = [0u8; 32];
+
+        // Initial values of sigma should be all zeroes
+        assert_eq!(core.sigma, [0; 4]);
+
+        // After update_sigma with zero block, values should still be zeroes
+        core.update_sigma(&m);
+        assert_eq!(core.sigma, [0; 4]);
+
+        // Providing a block where each 8-byte chunk is 1
+        let m = [1u8; 32]; // 0x0101010101010101 repeated
+        core.update_sigma(&m);
+        // After update_sigma, sigma should be incremented by 1 in each 8-byte chunk
+        assert_eq!(core.sigma, [0x0101010101010101; 4]);
+
+        // Creating a block with distinct 8-byte chunks
+        let m = [
+            0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, // 0x0101010101010101
+            0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, // 0x0202020202020202
+            0x03, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03, // 0x0303030303030303
+            0x04, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04, // 0x0404040404040404
+        ];
+        core.update_sigma(&m);
+        assert_eq!(
+            core.sigma,
+            [
+                0x0101010101010101 + 0x0101010101010101,
+                0x0101010101010101 + 0x0202020202020202,
+                0x0101010101010101 + 0x0303030303030303,
+                0x0101010101010101 + 0x0404040404040404,
+            ]
+        );
+    }
+}
+True
+========================================
+    use crate::a;
+    use crate::Block;
+
+    #[test]
+    fn test_a_function() {
+        let input: Block = [
+            0x0, 0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8, 0x9, 0xA, 0xB, 0xC, 0xD, 0xE, 0xF,
+            0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1A, 0x1B, 0x1C, 0x1D,
+            0x1E, 0x1F,
+        ];
+        let expected: Block = [
+            0x8, 0x9, 0xA, 0xB, 0xC, 0xD, 0xE, 0xF, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17,
+            0x18, 0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E, 0x1F, 0x8 ^ 0x0, 0x9 ^ 0x1, 0xA ^ 0x2, 0xB ^ 0x3,
+            0xC ^ 0x4, 0xD ^ 0x5, 0xE ^ 0x6, 0xF ^ 0x7,
+        ];
+
+        let result = a(input);
+        assert_eq!(result, expected);
+    }
+}
+False
+========================================
+    use crate::adc;
+
+    #[test]
+    fn test_adc_no_carry() {
+        let mut a = 1u64;
+        let b = 2u64;
+        let mut carry = 0u64;
+        adc(&mut a, b, &mut carry);
+        assert_eq!(a, 3u64);
+        assert_eq!(carry, 0u64);
+    }
+
+    #[test]
+    fn test_adc_with_carry() {
+        let mut a = u64::MAX;
+        let b = 1u64;
+        let mut carry = 0u64;
+        adc(&mut a, b, &mut carry);
+        assert_eq!(a, 0u64);
+        assert_eq!(carry, 1u64);
+    }
+
+    #[test]
+    fn test_adc_with_carry_in() {
+        let mut a = u64::MAX;
+        let b = 0u64;
+        let mut carry = 1u64;
+        adc(&mut a, b, &mut carry);
+        assert_eq!(a, 0u64);
+        assert_eq!(carry, 1u64);
+    }
+
+    #[test]
+    fn test_adc_large_numbers() {
+        let mut a = u64::MAX - 1;
+        let b = 1u64;
+        let mut carry = 1u64;
+        adc(&mut a, b, &mut carry);
+        assert_eq!(a, 1u64);
+        assert_eq!(carry, 1u64);
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn test_encrypt() {
+        let mut msg = [0x32, 0x91, 0xAB, 0x09, 0xE3, 0xFA, 0x94, 0x92]; // Dummy plaintext
+        let key = [0x2B; 32]; // Dummy key (256 bits)
+        let sbox = [
+            0xFC, 0xEE, 0xDD, 0x11, 0xCF, 0x6E, 0x31, 0x16,
+            0xFB, 0xC4, 0xFA, 0xDA, 0x23, 0xC5, 0x04, 0x4D,
+            // ... (omitting the rest of the SBox for brevity)
+        ]; // Assuming the rest of the sbox is correctly filled (total 256 entries)
+
+        let mut original_msg = msg.clone(); // Keep a copy of the original message
+        encrypt(&mut original_msg, key, &sbox); // Encrypt the message
+
+        // Normally, we should decrypt the message here to check for the round-trip
+        // However, I noticed in the error message that the decrypt function is not implemented or out of scope, 
+        // thus we are not including the decryption check here.
+
+        // Pseudo-decryption would go here
+        // decrypt(&mut original_msg, key, &sbox); // this is not available
+
+        // Instead, we should compare the encrypted message to a known correct ciphertext
+        // For the purposes of this example, let's say the expected ciphertext is "fake",
+        // so the test should fail. Replace the following line with the correct expected ciphertext.
+        let expected_ciphertext = [0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]; // replace with actual expected ciphertext
+
+        assert_eq!(original_msg, expected_ciphertext,
+            "The ciphertext generated by encrypt() does not match the expected ciphertext.");
+    }
+}
+False
+========================================
+    use crate::gost94_core::g; // use this explicitly if g is public, otherwise use crate::g;
+    use crate::gost94_core::sbox::SBox; // Adjust this to point to actual SBox struct location within the crate
+
+    #[test]
+    fn test_g_function() {
+        let sbox = SBox::default(); // Adjust this to use the actual way to construct SBox, such as SBox::new() or an actual instance if SBox::default() is not available
+
+        let a: u32 = 0x12345678; // example input
+        let k: u32 = 0x9abcdef0; // example input
+
+        let result = g(a, k, &sbox);
+
+        // Calculate the expected result or use a predefined expected result
+        // For the test, you should pre-calculate the expected output of this function based on inputs and the SBox provided
+        let expected: u32 = 0x5f5f5f5f; // Replace with the actual expected result
+        // This is a placeholder value, and should be derived based on a manual calculation or expected behavior
+
+        assert_eq!(result, expected, "g(a, k, &sbox) did not return the expected result");
+    }
+}
+False
+========================================
+    use crate::p;
+    use crate::gost94_core::Block;
+
+    #[test]
+    fn test_p() {
+        // Example test case for demonstrative purposes
+        // Please replace with actual test cases for function behavior
+        let input = Block([
+            0xF0, 0xE1, 0xD2, 0xC3, 0xB4, 0xA5, 0x96, 0x87,
+            0x78, 0x69, 0x5A, 0x4B, 0x3C, 0x2D, 0x1E, 0x0F,
+            0xF0, 0xE1, 0xD2, 0xC3, 0xB4, 0xA5, 0x96, 0x87,
+            0x78, 0x69, 0x5A, 0x4B, 0x3C, 0x2D, 0x1E, 0x0F,
+            0xF0, 0xE1, 0xD2, 0xC3, 0xB4, 0xA5, 0x96, 0x87,
+            0x78, 0x69, 0x5A, 0x4B, 0x3C, 0x2D, 0x1E, 0x0F,
+            0xF0, 0xE1, 0xD2, 0xC3, 0xB4, 0xA5, 0x96, 0x87,
+            0x78, 0x69, 0x5A, 0x4B, 0x3C, 0x2D, 0x1E, 0x0F,
+        ]);
+
+        let expected = Block([
+            0xF0, 0xF0, 0xF0, 0xF0, 0xE1, 0xE1, 0xE1, 0xE1,
+            0xD2, 0xD2, 0xD2, 0xD2, 0xC3, 0xC3, 0xC3, 0xC3,
+            0xB4, 0xB4, 0xB4, 0xB4, 0xA5, 0xA5, 0xA5, 0xA5,
+            0x96, 0x96, 0x96, 0x96, 0x87, 0x87, 0x87, 0x87,
+            0x78, 0x78, 0x78, 0x78, 0x69, 0x69, 0x69, 0x69,
+            0x5A, 0x5A, 0x5A, 0x5A, 0x4B, 0x4B, 0x4B, 0x4B,
+            0x3C, 0x3C, 0x3C, 0x3C, 0x2D, 0x2D, 0x2D, 0x2D,
+            0x1E, 0x1E, 0x1E, 0x1E, 0x0F, 0x0F, 0x0F, 0x0F,
+        ]);
+
+        let result = p(input);
+        assert_eq!(result, expected, "The p function did not return the expected result.");
+    }
+}
+False
+========================================
+    use crate::psi; // We're in the same module, use super to reference the parent module
+    use crate::Block; // super is required to reference `Block` within the same module
+
+    #[test]
+    fn test_psi() {
+        let mut block = Block::default();
+        for i in 0..block.len() {
+            block[i] = i as u8;
+        }
+        
+        let original_block = block.clone();
+        psi(&mut block);
+        
+        let mut expected_block = Block::default();
+        expected_block[..30].copy_from_slice(&original_block[2..]);
+        expected_block[30..].copy_from_slice(&original_block[..2]);
+        
+        expected_block[30] ^= original_block[2];
+        expected_block[31] ^= original_block[3];
+        expected_block[30] ^= original_block[4];
+        expected_block[31] ^= original_block[5];
+        expected_block[30] ^= original_block[6];
+        expected_block[31] ^= original_block[7];
+        expected_block[30] ^= original_block[24];
+        expected_block[31] ^= original_block[25];
+        expected_block[30] ^= original_block[30];
+        expected_block[31] ^= original_block[31];
+        
+        assert_eq!(block, expected_block, "psi function did not produce expected output");
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn test_sbox() {
+        let test_sbox = [
+            [4, 10, 9, 2, 13, 8, 0, 14, 6, 11, 1, 12, 7, 15, 5, 3], // 0
+            [14, 11, 4, 12, 6, 13, 15, 10, 2, 3, 8, 1, 0, 7, 5, 9], // 1
+            [5, 8, 1, 13, 10, 3, 4, 2, 14, 15, 12, 7, 6, 0, 9, 11], // 2
+            [7, 13, 10, 1, 0, 8, 9, 15, 14, 4, 6, 12, 11, 2, 5, 3], // 3
+            [6, 12, 7, 1, 5, 15, 13, 8, 4, 10, 9, 14, 0, 3, 11, 2], // 4
+            [4, 11, 10, 0, 7, 2, 1, 13, 3, 6, 8, 5, 9, 12, 15, 14], // 5
+            [13, 11, 4, 1, 3, 15, 5, 9, 0, 10, 14, 7, 6, 8, 2, 12], // 6
+            [1, 15, 13, 0, 5, 7, 10, 4, 9, 2, 3, 14, 6, 11, 8, 12], // 7
+        ];
+
+        let test_pairs = [
+            (0x00000000, 0x00000000),
+            (0x00000001, 0x04081005),
+            (0x00000010, 0x04081050),
+            (0x00000100, 0x04081500),
+            (0x00001000, 0x040b0000),
+            (0x00010000, 0x0c000000),
+            (0x00100000, 0x40000000),
+            (0x01000000, 0x05000000),
+            (0x10000000, 0x01000000),
+            (0x11111111, 0x4c3b7b91),
+            (0xffffffff, 0x1adb9ef9),
+        ];
+
+        for (input, expected) in test_pairs {
+            assert_eq!(sbox(input, &test_sbox), expected);
+        }
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn test_x_function() {
+        let a = Block::from([0x0F; 32]);
+        let b = Block::from([0xF0; 32]);
+        let expected = Block::from([0xFF; 32]);
+        assert_eq!(x(&a, &b), expected);
+
+        let a = Block::from([0x00; 32]);
+        let b = Block::from([0x00; 32]);
+        let expected = Block::from([0x00; 32]);
+        assert_eq!(x(&a, &b), expected);
+
+        let a = Block::from([0xFF; 32]);
+        let b = Block::from([0x00; 32]);
+        let expected = Block::from([0xFF; 32]);
+        assert_eq!(x(&a, &b), expected);
+
+        let a = Block::from([0x55; 32]);
+        let b = Block::from([0xAA; 32]);
+        let expected = Block::from([0xFF; 32]);
+        assert_eq!(x(&a, &b), expected);
+    }
+}
+True
+========================================
+    use crate::x_mut;
+    type Block = [u8; 32];
+
+    #[test]
+    fn test_x_mut() {
+        let mut a = [0u8; 32];
+        let b = [0xffu8; 32];
+        x_mut(&mut a, &b);
+        assert_eq!(a, [0xff; 32]);
+
+        let mut a = [0xffu8; 32];
+        let b = [0xffu8; 32];
+        x_mut(&mut a, &b);
+        assert_eq!(a, [0x00; 32]);
+
+        let mut a = [0x55u8; 32];
+        let b = [0xffu8; 32];
+        x_mut(&mut a, &b);
+        assert_eq!(a, [0xaa; 32]);
+
+        let mut a = [0xaa; 32];
+        let b = [0; 32];
+        x_mut(&mut a, &b);
+        assert_eq!(a, [0xaa; 32]);
+
+        let mut a = [0x00; 32];
+        let b = [0x00; 32];
+        x_mut(&mut a, &b);
+        assert_eq!(a, [0x00; 32]);
+
+        let mut a = [0x00; 32];
+        let b = [0x55; 32];
+        x_mut(&mut a, &b);
+        assert_eq!(a, [0x55; 32]);
+
+        let mut a = [0xaa; 32];
+        let b = [0x55; 32];
+        x_mut(&mut a, &b);
+        assert_eq!(a, [0xff; 32]);
+    }
+}
+False
+hashes gost94 8 19

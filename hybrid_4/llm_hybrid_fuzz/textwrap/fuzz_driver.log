@@ -1,0 +1,3096 @@
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/textwrap/./src/line_ending.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/textwrap/./src/refill.rs
+err tests_llm_16_34 test_refill_with_options
+   Compiling textwrap v0.16.0 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/textwrap)
+error: expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `is`
+   --> src/refill.rs:338:20
+    |
+338 |             - This is
+    |                    ^^ expected one of 8 possible tokens
+
+error: could not compile `textwrap` due to previous error
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `textwrap` due to previous error
+
+err tests_llm_16_34 test_refill_with_bullet_points
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling textwrap v0.16.0 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/textwrap)
+error: expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `point`
+   --> src/refill.rs:360:22
+    |
+360 |             - Bullet point
+    |                      ^^^^^ expected one of 8 possible tokens
+
+error: could not compile `textwrap` due to previous error
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `textwrap` due to previous error
+
+err tests_llm_16_34 test_refill_with_shrinking_width
+    Blocking waiting for file lock on package cache
+   Compiling textwrap v0.16.0 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/textwrap)
+error: expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `text`
+   --> src/refill.rs:376:18
+    |
+376 |             Some text that
+    |                  ^^^^ expected one of 8 possible tokens
+
+error: could not compile `textwrap` due to previous error
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `textwrap` due to previous error
+
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/textwrap/./src/indentation.rs
+err tests_llm_16_23 test_dedent_varied_indentation
+   Compiling textwrap v0.16.0 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/textwrap)
+error: unknown start of token: \
+   --> src/indentation.rs:275:60
+    |
+275 |         debug_assert_eq!(dedent(rug_fuzz_0), "Indented line\nLess indented line\n");
+    |                                                            ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:275:80
+    |
+275 |         debug_assert_eq!(dedent(rug_fuzz_0), "Indented line\nLess indented line\n");
+    |                                                                                ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:275:81
+    |
+275 |         debug_assert_eq!(dedent(rug_fuzz_0), "Indented line\nLess indented line\n");
+    |                                                                                 ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+275 |         debug_assert_eq!(dedent(rug_fuzz_0), "Indented line\nLess indented line\n ");
+    |                                                                                  +
+
+error: prefix `spaces` is unknown
+   --> src/indentation.rs:281:48
+    |
+281 |         let rug_fuzz_0 = "    Single line with spaces";
+    |                                                ^^^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+281 |         let rug_fuzz_0 = "    Single line with spaces ";
+    |                                                      +
+
+error: prefix `spaces` is unknown
+   --> src/indentation.rs:282:64
+    |
+282 |         debug_assert_eq!(dedent(rug_fuzz_0), "Single line with spaces");
+    |                                                                ^^^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+282 |         debug_assert_eq!(dedent(rug_fuzz_0), "Single line with spaces ");
+    |                                                                      +
+
+error: unknown start of token: \
+   --> src/indentation.rs:288:27
+    |
+288 |         let rug_fuzz_0 = "\tSingle line with tab";
+    |                           ^
+
+error: prefix `tab` is unknown
+   --> src/indentation.rs:288:46
+    |
+288 |         let rug_fuzz_0 = "\tSingle line with tab";
+    |                                              ^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+288 |         let rug_fuzz_0 = "\tSingle line with tab ";
+    |                                                 +
+
+error: prefix `tab` is unknown
+   --> src/indentation.rs:289:64
+    |
+289 |         debug_assert_eq!(dedent(rug_fuzz_0), "Single line with tab");
+    |                                                                ^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+289 |         debug_assert_eq!(dedent(rug_fuzz_0), "Single line with tab ");
+    |                                                                   +
+
+error: unknown start of token: \
+   --> src/indentation.rs:300:47
+    |
+300 |         debug_assert_eq!(dedent(rug_fuzz_0), "\nIndented line with empty lines\n\n");
+    |                                               ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:300:79
+    |
+300 |         debug_assert_eq!(dedent(rug_fuzz_0), "\nIndented line with empty lines\n\n");
+    |                                                                               ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:300:81
+    |
+300 |         debug_assert_eq!(dedent(rug_fuzz_0), "\nIndented line with empty lines\n\n");
+    |                                                                                 ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:300:82
+    |
+300 |         debug_assert_eq!(dedent(rug_fuzz_0), "\nIndented line with empty lines\n\n");
+    |                                                                                  ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+300 |         debug_assert_eq!(dedent(rug_fuzz_0), "\nIndented line with empty lines\n\n ");
+    |                                                                                   +
+
+error: unknown start of token: \
+   --> src/indentation.rs:306:31
+    |
+306 |         let rug_fuzz_0 = "    \n    \n    ";
+    |                               ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:306:37
+    |
+306 |         let rug_fuzz_0 = "    \n    \n    ";
+    |                                     ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:307:47
+    |
+307 |         debug_assert_eq!(dedent(rug_fuzz_0), "\n\n");
+    |                                               ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:307:49
+    |
+307 |         debug_assert_eq!(dedent(rug_fuzz_0), "\n\n");
+    |                                                 ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:307:50
+    |
+307 |         debug_assert_eq!(dedent(rug_fuzz_0), "\n\n");
+    |                                                  ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+307 |         debug_assert_eq!(dedent(rug_fuzz_0), "\n\n ");
+    |                                                   +
+
+error: unknown start of token: \
+   --> src/indentation.rs:313:27
+    |
+313 |         let rug_fuzz_0 = "\t  Indented line\n\t\t  More indentation";
+    |                           ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:313:44
+    |
+313 |         let rug_fuzz_0 = "\t  Indented line\n\t\t  More indentation";
+    |                                            ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:313:46
+    |
+313 |         let rug_fuzz_0 = "\t  Indented line\n\t\t  More indentation";
+    |                                              ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:313:48
+    |
+313 |         let rug_fuzz_0 = "\t  Indented line\n\t\t  More indentation";
+    |                                                ^
+
+error: prefix `indentation` is unknown
+   --> src/indentation.rs:313:57
+    |
+313 |         let rug_fuzz_0 = "\t  Indented line\n\t\t  More indentation";
+    |                                                         ^^^^^^^^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+313 |         let rug_fuzz_0 = "\t  Indented line\n\t\t  More indentation ";
+    |                                                                    +
+
+error: unknown start of token: \
+   --> src/indentation.rs:314:62
+    |
+314 |         debug_assert_eq!(dedent(rug_fuzz_0), "  Indented line\n\t  More indentation\n");
+    |                                                              ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:314:64
+    |
+314 |         debug_assert_eq!(dedent(rug_fuzz_0), "  Indented line\n\t  More indentation\n");
+    |                                                                ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:314:84
+    |
+314 |         debug_assert_eq!(dedent(rug_fuzz_0), "  Indented line\n\t  More indentation\n");
+    |                                                                                    ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:314:85
+    |
+314 |         debug_assert_eq!(dedent(rug_fuzz_0), "  Indented line\n\t  More indentation\n");
+    |                                                                                     ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+314 |         debug_assert_eq!(dedent(rug_fuzz_0), "  Indented line\n\t  More indentation\n ");
+    |                                                                                      +
+
+error: prefix `newline` is unknown
+   --> src/indentation.rs:332:35
+    |
+332 |             Line without trailing newline";
+    |                                   ^^^^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+332 |             Line without trailing newline ";
+    |                                          +
+
+error: unknown start of token: \
+   --> src/indentation.rs:347:52
+    |
+347 |             dedent(rug_fuzz_0), "Some indented line\n\nAnother indented line\n"
+    |                                                    ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:347:54
+    |
+347 |             dedent(rug_fuzz_0), "Some indented line\n\nAnother indented line\n"
+    |                                                      ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:347:77
+    |
+347 |             dedent(rug_fuzz_0), "Some indented line\n\nAnother indented line\n"
+    |                                                                             ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:347:78
+    |
+347 |             dedent(rug_fuzz_0), "Some indented line\n\nAnother indented line\n"
+    |                                                                              ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+347 |             dedent(rug_fuzz_0), "Some indented line\n\nAnother indented line\n "
+    |                                                                               +
+
+error: prefix `line` is unknown
+   --> src/indentation.rs:367:34
+    |
+367 |         let rug_fuzz_0 = "Single line";
+    |                                  ^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+367 |         let rug_fuzz_0 = "Single line ";
+    |                                      +
+
+error: prefix `line` is unknown
+   --> src/indentation.rs:369:68
+    |
+369 |         debug_assert_eq!(indent(rug_fuzz_0, rug_fuzz_1), "  Single line");
+    |                                                                    ^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+369 |         debug_assert_eq!(indent(rug_fuzz_0, rug_fuzz_1), "  Single line ");
+    |                                                                        +
+
+error: unknown start of token: \
+   --> src/indentation.rs:375:38
+    |
+375 |         let rug_fuzz_0 = "First line.\nSecond line.\n";
+    |                                      ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:375:52
+    |
+375 |         let rug_fuzz_0 = "First line.\nSecond line.\n";
+    |                                                    ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:375:53
+    |
+375 |         let rug_fuzz_0 = "First line.\nSecond line.\n";
+    |                                                     ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+375 |         let rug_fuzz_0 = "First line.\nSecond line.\n ";
+    |                                                      +
+
+error: unknown start of token: \
+   --> src/indentation.rs:378:59
+    |
+378 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n  Second line.\n"
+    |                                                           ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:378:75
+    |
+378 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n  Second line.\n"
+    |                                                                           ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:378:76
+    |
+378 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n  Second line.\n"
+    |                                                                            ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+378 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n  Second line.\n "
+    |                                                                             +
+
+error: unknown start of token: \
+   --> src/indentation.rs:385:38
+    |
+385 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                      ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:385:40
+    |
+385 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                        ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:385:42
+    |
+385 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                          ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:385:56
+    |
+385 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                                        ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:385:57
+    |
+385 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                                         ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+385 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n ";
+    |                                                          +
+
+error: unknown start of token: \
+   --> src/indentation.rs:388:59
+    |
+388 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n\n\n  Second line.\n"
+    |                                                           ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:388:61
+    |
+388 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n\n\n  Second line.\n"
+    |                                                             ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:388:63
+    |
+388 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n\n\n  Second line.\n"
+    |                                                               ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:388:79
+    |
+388 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n\n\n  Second line.\n"
+    |                                                                               ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:388:80
+    |
+388 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n\n\n  Second line.\n"
+    |                                                                                ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+388 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n\n\n  Second line.\n "
+    |                                                                                 +
+
+error: unknown start of token: \
+   --> src/indentation.rs:395:36
+    |
+395 |         let rug_fuzz_0 = "foo = 123\n\nprint(foo)\n";
+    |                                    ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:395:38
+    |
+395 |         let rug_fuzz_0 = "foo = 123\n\nprint(foo)\n";
+    |                                      ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:395:50
+    |
+395 |         let rug_fuzz_0 = "foo = 123\n\nprint(foo)\n";
+    |                                                  ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:395:51
+    |
+395 |         let rug_fuzz_0 = "foo = 123\n\nprint(foo)\n";
+    |                                                   ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+395 |         let rug_fuzz_0 = "foo = 123\n\nprint(foo)\n ";
+    |                                                    +
+
+error: unknown start of token: \
+   --> src/indentation.rs:398:57
+    |
+398 |             indent(rug_fuzz_0, rug_fuzz_1), "# foo = 123\n#\n# print(foo)\n"
+    |                                                         ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:398:58
+    |
+398 |             indent(rug_fuzz_0, rug_fuzz_1), "# foo = 123\n#\n# print(foo)\n"
+    |                                                          ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+398 |             indent(rug_fuzz_0, rug_fuzz_1), "# foo = 123\n #\n# print(foo)\n"
+    |                                                           +
+
+error: unknown start of token: \
+   --> src/indentation.rs:398:60
+    |
+398 |             indent(rug_fuzz_0, rug_fuzz_1), "# foo = 123\n#\n# print(foo)\n"
+    |                                                            ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:398:61
+    |
+398 |             indent(rug_fuzz_0, rug_fuzz_1), "# foo = 123\n#\n# print(foo)\n"
+    |                                                             ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+398 |             indent(rug_fuzz_0, rug_fuzz_1), "# foo = 123\n#\n # print(foo)\n"
+    |                                                              +
+
+error: unknown start of token: \
+   --> src/indentation.rs:398:74
+    |
+398 |             indent(rug_fuzz_0, rug_fuzz_1), "# foo = 123\n#\n# print(foo)\n"
+    |                                                                          ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:398:75
+    |
+398 |             indent(rug_fuzz_0, rug_fuzz_1), "# foo = 123\n#\n# print(foo)\n"
+    |                                                                           ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+398 |             indent(rug_fuzz_0, rug_fuzz_1), "# foo = 123\n#\n# print(foo)\n "
+    |                                                                            +
+
+error: unknown start of token: \
+   --> src/indentation.rs:405:28
+    |
+405 |         let rug_fuzz_0 = " \t  Foo   ";
+    |                            ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:407:62
+    |
+407 |         debug_assert_eq!(indent(rug_fuzz_0, rug_fuzz_1), "-> \t  Foo   ");
+    |                                                              ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:413:31
+    |
+413 |         let rug_fuzz_0 = "Line\n\nAnother line";
+    |                               ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:413:33
+    |
+413 |         let rug_fuzz_0 = "Line\n\nAnother line";
+    |                                 ^
+
+error: prefix `line` is unknown
+   --> src/indentation.rs:413:43
+    |
+413 |         let rug_fuzz_0 = "Line\n\nAnother line";
+    |                                           ^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+413 |         let rug_fuzz_0 = "Line\n\nAnother line ";
+    |                                               +
+
+error: unknown start of token: \
+   --> src/indentation.rs:416:54
+    |
+416 |             indent(rug_fuzz_0, rug_fuzz_1), "=>  Line\n=>\n=>  Another line"
+    |                                                      ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:416:58
+    |
+416 |             indent(rug_fuzz_0, rug_fuzz_1), "=>  Line\n=>\n=>  Another line"
+    |                                                          ^
+
+error: prefix `line` is unknown
+   --> src/indentation.rs:416:72
+    |
+416 |             indent(rug_fuzz_0, rug_fuzz_1), "=>  Line\n=>\n=>  Another line"
+    |                                                                        ^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+416 |             indent(rug_fuzz_0, rug_fuzz_1), "=>  Line\n=>\n=>  Another line "
+    |                                                                            +
+
+error: unknown start of token: \
+   --> src/indentation.rs:423:31
+    |
+423 |         let rug_fuzz_0 = "Line\nAnother line";
+    |                               ^
+
+error: prefix `line` is unknown
+   --> src/indentation.rs:423:41
+    |
+423 |         let rug_fuzz_0 = "Line\nAnother line";
+    |                                         ^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+423 |         let rug_fuzz_0 = "Line\nAnother line ";
+    |                                             +
+
+error: unknown start of token: \
+   --> src/indentation.rs:425:63
+    |
+425 |         debug_assert_eq!(indent(rug_fuzz_0, rug_fuzz_1), "Line\nAnother line");
+    |                                                               ^
+
+error: prefix `line` is unknown
+   --> src/indentation.rs:425:73
+    |
+425 |         debug_assert_eq!(indent(rug_fuzz_0, rug_fuzz_1), "Line\nAnother line");
+    |                                                                         ^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+425 |         debug_assert_eq!(indent(rug_fuzz_0, rug_fuzz_1), "Line\nAnother line ");
+    |                                                                             +
+
+error: unknown start of token: \
+   --> src/indentation.rs:431:27
+    |
+431 |         let rug_fuzz_0 = "\nLine\nAnother line\n";
+    |                           ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:431:33
+    |
+431 |         let rug_fuzz_0 = "\nLine\nAnother line\n";
+    |                                 ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:431:47
+    |
+431 |         let rug_fuzz_0 = "\nLine\nAnother line\n";
+    |                                               ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:431:48
+    |
+431 |         let rug_fuzz_0 = "\nLine\nAnother line\n";
+    |                                                ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+431 |         let rug_fuzz_0 = "\nLine\nAnother line\n ";
+    |                                                 +
+
+error: unknown start of token: \
+   --> src/indentation.rs:434:48
+    |
+434 |             indent(rug_fuzz_0, rug_fuzz_1), "  \n  Line\n  Another line\n  "
+    |                                                ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:434:56
+    |
+434 |             indent(rug_fuzz_0, rug_fuzz_1), "  \n  Line\n  Another line\n  "
+    |                                                        ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:434:72
+    |
+434 |             indent(rug_fuzz_0, rug_fuzz_1), "  \n  Line\n  Another line\n  "
+    |                                                                        ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:441:38
+    |
+441 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                      ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:441:40
+    |
+441 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                        ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:441:42
+    |
+441 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                          ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:441:56
+    |
+441 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                                        ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:441:57
+    |
+441 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                                         ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+441 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n ";
+    |                                                          +
+
+error: unknown start of token: \
+   --> src/indentation.rs:444:58
+    |
+444 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n"
+    |                                                          ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:444:59
+    |
+444 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n"
+    |                                                           ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+444 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n #\n#\n#Second line.\n"
+    |                                                            +
+
+error: unknown start of token: \
+   --> src/indentation.rs:444:61
+    |
+444 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n"
+    |                                                             ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:444:62
+    |
+444 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n"
+    |                                                              ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+444 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n #\n#Second line.\n"
+    |                                                               +
+
+error: unknown start of token: \
+   --> src/indentation.rs:444:64
+    |
+444 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n"
+    |                                                                ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:444:65
+    |
+444 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n"
+    |                                                                 ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+444 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n #Second line.\n"
+    |                                                                  +
+
+error: unknown start of token: \
+   --> src/indentation.rs:444:79
+    |
+444 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n"
+    |                                                                               ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:444:80
+    |
+444 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n"
+    |                                                                                ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+444 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n "
+    |                                                                                 +
+
+error[E0765]: unterminated double quote string
+   --> src/indentation.rs:444:81
+    |
+444 |               indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n"
+    |  _________________________________________________________________________________^
+445 | |         );
+446 | |         let _rug_ed_tests_llm_16_24_rrrruuuugggg_indent_with_empty_lines_and_no_whitespace_prefix = 0;
+447 | |     }
+448 | | }
+    | |__^
+
+For more information about this error, try `rustc --explain E0765`.
+error: could not compile `textwrap` due to 92 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `textwrap` due to 92 previous errors
+
+err tests_llm_16_23 test_dedent_with_empty_lines
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling textwrap v0.16.0 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/textwrap)
+error: unknown start of token: \
+   --> src/indentation.rs:310:47
+    |
+310 |         debug_assert_eq!(dedent(rug_fuzz_0), "\nIndented line with empty lines\n\n");
+    |                                               ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:310:79
+    |
+310 |         debug_assert_eq!(dedent(rug_fuzz_0), "\nIndented line with empty lines\n\n");
+    |                                                                               ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:310:81
+    |
+310 |         debug_assert_eq!(dedent(rug_fuzz_0), "\nIndented line with empty lines\n\n");
+    |                                                                                 ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:310:82
+    |
+310 |         debug_assert_eq!(dedent(rug_fuzz_0), "\nIndented line with empty lines\n\n");
+    |                                                                                  ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+310 |         debug_assert_eq!(dedent(rug_fuzz_0), "\nIndented line with empty lines\n\n ");
+    |                                                                                   +
+
+error: unknown start of token: \
+   --> src/indentation.rs:316:31
+    |
+316 |         let rug_fuzz_0 = "    \n    \n    ";
+    |                               ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:316:37
+    |
+316 |         let rug_fuzz_0 = "    \n    \n    ";
+    |                                     ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:317:47
+    |
+317 |         debug_assert_eq!(dedent(rug_fuzz_0), "\n\n");
+    |                                               ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:317:49
+    |
+317 |         debug_assert_eq!(dedent(rug_fuzz_0), "\n\n");
+    |                                                 ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:317:50
+    |
+317 |         debug_assert_eq!(dedent(rug_fuzz_0), "\n\n");
+    |                                                  ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+317 |         debug_assert_eq!(dedent(rug_fuzz_0), "\n\n ");
+    |                                                   +
+
+error: unknown start of token: \
+   --> src/indentation.rs:323:27
+    |
+323 |         let rug_fuzz_0 = "\t  Indented line\n\t\t  More indentation";
+    |                           ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:323:44
+    |
+323 |         let rug_fuzz_0 = "\t  Indented line\n\t\t  More indentation";
+    |                                            ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:323:46
+    |
+323 |         let rug_fuzz_0 = "\t  Indented line\n\t\t  More indentation";
+    |                                              ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:323:48
+    |
+323 |         let rug_fuzz_0 = "\t  Indented line\n\t\t  More indentation";
+    |                                                ^
+
+error: prefix `indentation` is unknown
+   --> src/indentation.rs:323:57
+    |
+323 |         let rug_fuzz_0 = "\t  Indented line\n\t\t  More indentation";
+    |                                                         ^^^^^^^^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+323 |         let rug_fuzz_0 = "\t  Indented line\n\t\t  More indentation ";
+    |                                                                    +
+
+error: unknown start of token: \
+   --> src/indentation.rs:324:62
+    |
+324 |         debug_assert_eq!(dedent(rug_fuzz_0), "  Indented line\n\t  More indentation\n");
+    |                                                              ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:324:64
+    |
+324 |         debug_assert_eq!(dedent(rug_fuzz_0), "  Indented line\n\t  More indentation\n");
+    |                                                                ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:324:84
+    |
+324 |         debug_assert_eq!(dedent(rug_fuzz_0), "  Indented line\n\t  More indentation\n");
+    |                                                                                    ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:324:85
+    |
+324 |         debug_assert_eq!(dedent(rug_fuzz_0), "  Indented line\n\t  More indentation\n");
+    |                                                                                     ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+324 |         debug_assert_eq!(dedent(rug_fuzz_0), "  Indented line\n\t  More indentation\n ");
+    |                                                                                      +
+
+error: prefix `newline` is unknown
+   --> src/indentation.rs:342:35
+    |
+342 |             Line without trailing newline";
+    |                                   ^^^^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+342 |             Line without trailing newline ";
+    |                                          +
+
+error: unknown start of token: \
+   --> src/indentation.rs:357:52
+    |
+357 |             dedent(rug_fuzz_0), "Some indented line\n\nAnother indented line\n"
+    |                                                    ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:357:54
+    |
+357 |             dedent(rug_fuzz_0), "Some indented line\n\nAnother indented line\n"
+    |                                                      ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:357:77
+    |
+357 |             dedent(rug_fuzz_0), "Some indented line\n\nAnother indented line\n"
+    |                                                                             ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:357:78
+    |
+357 |             dedent(rug_fuzz_0), "Some indented line\n\nAnother indented line\n"
+    |                                                                              ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+357 |             dedent(rug_fuzz_0), "Some indented line\n\nAnother indented line\n "
+    |                                                                               +
+
+error: prefix `line` is unknown
+   --> src/indentation.rs:377:34
+    |
+377 |         let rug_fuzz_0 = "Single line";
+    |                                  ^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+377 |         let rug_fuzz_0 = "Single line ";
+    |                                      +
+
+error: prefix `line` is unknown
+   --> src/indentation.rs:379:68
+    |
+379 |         debug_assert_eq!(indent(rug_fuzz_0, rug_fuzz_1), "  Single line");
+    |                                                                    ^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+379 |         debug_assert_eq!(indent(rug_fuzz_0, rug_fuzz_1), "  Single line ");
+    |                                                                        +
+
+error: unknown start of token: \
+   --> src/indentation.rs:385:38
+    |
+385 |         let rug_fuzz_0 = "First line.\nSecond line.\n";
+    |                                      ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:385:52
+    |
+385 |         let rug_fuzz_0 = "First line.\nSecond line.\n";
+    |                                                    ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:385:53
+    |
+385 |         let rug_fuzz_0 = "First line.\nSecond line.\n";
+    |                                                     ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+385 |         let rug_fuzz_0 = "First line.\nSecond line.\n ";
+    |                                                      +
+
+error: unknown start of token: \
+   --> src/indentation.rs:388:59
+    |
+388 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n  Second line.\n"
+    |                                                           ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:388:75
+    |
+388 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n  Second line.\n"
+    |                                                                           ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:388:76
+    |
+388 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n  Second line.\n"
+    |                                                                            ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+388 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n  Second line.\n "
+    |                                                                             +
+
+error: unknown start of token: \
+   --> src/indentation.rs:395:38
+    |
+395 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                      ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:395:40
+    |
+395 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                        ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:395:42
+    |
+395 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                          ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:395:56
+    |
+395 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                                        ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:395:57
+    |
+395 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                                         ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+395 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n ";
+    |                                                          +
+
+error: unknown start of token: \
+   --> src/indentation.rs:398:59
+    |
+398 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n\n\n  Second line.\n"
+    |                                                           ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:398:61
+    |
+398 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n\n\n  Second line.\n"
+    |                                                             ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:398:63
+    |
+398 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n\n\n  Second line.\n"
+    |                                                               ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:398:79
+    |
+398 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n\n\n  Second line.\n"
+    |                                                                               ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:398:80
+    |
+398 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n\n\n  Second line.\n"
+    |                                                                                ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+398 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n\n\n  Second line.\n "
+    |                                                                                 +
+
+error: unknown start of token: \
+   --> src/indentation.rs:405:36
+    |
+405 |         let rug_fuzz_0 = "foo = 123\n\nprint(foo)\n";
+    |                                    ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:405:38
+    |
+405 |         let rug_fuzz_0 = "foo = 123\n\nprint(foo)\n";
+    |                                      ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:405:50
+    |
+405 |         let rug_fuzz_0 = "foo = 123\n\nprint(foo)\n";
+    |                                                  ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:405:51
+    |
+405 |         let rug_fuzz_0 = "foo = 123\n\nprint(foo)\n";
+    |                                                   ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+405 |         let rug_fuzz_0 = "foo = 123\n\nprint(foo)\n ";
+    |                                                    +
+
+error: unknown start of token: \
+   --> src/indentation.rs:408:57
+    |
+408 |             indent(rug_fuzz_0, rug_fuzz_1), "# foo = 123\n#\n# print(foo)\n"
+    |                                                         ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:408:58
+    |
+408 |             indent(rug_fuzz_0, rug_fuzz_1), "# foo = 123\n#\n# print(foo)\n"
+    |                                                          ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+408 |             indent(rug_fuzz_0, rug_fuzz_1), "# foo = 123\n #\n# print(foo)\n"
+    |                                                           +
+
+error: unknown start of token: \
+   --> src/indentation.rs:408:60
+    |
+408 |             indent(rug_fuzz_0, rug_fuzz_1), "# foo = 123\n#\n# print(foo)\n"
+    |                                                            ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:408:61
+    |
+408 |             indent(rug_fuzz_0, rug_fuzz_1), "# foo = 123\n#\n# print(foo)\n"
+    |                                                             ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+408 |             indent(rug_fuzz_0, rug_fuzz_1), "# foo = 123\n#\n # print(foo)\n"
+    |                                                              +
+
+error: unknown start of token: \
+   --> src/indentation.rs:408:74
+    |
+408 |             indent(rug_fuzz_0, rug_fuzz_1), "# foo = 123\n#\n# print(foo)\n"
+    |                                                                          ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:408:75
+    |
+408 |             indent(rug_fuzz_0, rug_fuzz_1), "# foo = 123\n#\n# print(foo)\n"
+    |                                                                           ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+408 |             indent(rug_fuzz_0, rug_fuzz_1), "# foo = 123\n#\n# print(foo)\n "
+    |                                                                            +
+
+error: unknown start of token: \
+   --> src/indentation.rs:415:28
+    |
+415 |         let rug_fuzz_0 = " \t  Foo   ";
+    |                            ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:417:62
+    |
+417 |         debug_assert_eq!(indent(rug_fuzz_0, rug_fuzz_1), "-> \t  Foo   ");
+    |                                                              ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:423:31
+    |
+423 |         let rug_fuzz_0 = "Line\n\nAnother line";
+    |                               ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:423:33
+    |
+423 |         let rug_fuzz_0 = "Line\n\nAnother line";
+    |                                 ^
+
+error: prefix `line` is unknown
+   --> src/indentation.rs:423:43
+    |
+423 |         let rug_fuzz_0 = "Line\n\nAnother line";
+    |                                           ^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+423 |         let rug_fuzz_0 = "Line\n\nAnother line ";
+    |                                               +
+
+error: unknown start of token: \
+   --> src/indentation.rs:426:54
+    |
+426 |             indent(rug_fuzz_0, rug_fuzz_1), "=>  Line\n=>\n=>  Another line"
+    |                                                      ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:426:58
+    |
+426 |             indent(rug_fuzz_0, rug_fuzz_1), "=>  Line\n=>\n=>  Another line"
+    |                                                          ^
+
+error: prefix `line` is unknown
+   --> src/indentation.rs:426:72
+    |
+426 |             indent(rug_fuzz_0, rug_fuzz_1), "=>  Line\n=>\n=>  Another line"
+    |                                                                        ^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+426 |             indent(rug_fuzz_0, rug_fuzz_1), "=>  Line\n=>\n=>  Another line "
+    |                                                                            +
+
+error: unknown start of token: \
+   --> src/indentation.rs:433:31
+    |
+433 |         let rug_fuzz_0 = "Line\nAnother line";
+    |                               ^
+
+error: prefix `line` is unknown
+   --> src/indentation.rs:433:41
+    |
+433 |         let rug_fuzz_0 = "Line\nAnother line";
+    |                                         ^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+433 |         let rug_fuzz_0 = "Line\nAnother line ";
+    |                                             +
+
+error: unknown start of token: \
+   --> src/indentation.rs:435:63
+    |
+435 |         debug_assert_eq!(indent(rug_fuzz_0, rug_fuzz_1), "Line\nAnother line");
+    |                                                               ^
+
+error: prefix `line` is unknown
+   --> src/indentation.rs:435:73
+    |
+435 |         debug_assert_eq!(indent(rug_fuzz_0, rug_fuzz_1), "Line\nAnother line");
+    |                                                                         ^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+435 |         debug_assert_eq!(indent(rug_fuzz_0, rug_fuzz_1), "Line\nAnother line ");
+    |                                                                             +
+
+error: unknown start of token: \
+   --> src/indentation.rs:441:27
+    |
+441 |         let rug_fuzz_0 = "\nLine\nAnother line\n";
+    |                           ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:441:33
+    |
+441 |         let rug_fuzz_0 = "\nLine\nAnother line\n";
+    |                                 ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:441:47
+    |
+441 |         let rug_fuzz_0 = "\nLine\nAnother line\n";
+    |                                               ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:441:48
+    |
+441 |         let rug_fuzz_0 = "\nLine\nAnother line\n";
+    |                                                ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+441 |         let rug_fuzz_0 = "\nLine\nAnother line\n ";
+    |                                                 +
+
+error: unknown start of token: \
+   --> src/indentation.rs:444:48
+    |
+444 |             indent(rug_fuzz_0, rug_fuzz_1), "  \n  Line\n  Another line\n  "
+    |                                                ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:444:56
+    |
+444 |             indent(rug_fuzz_0, rug_fuzz_1), "  \n  Line\n  Another line\n  "
+    |                                                        ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:444:72
+    |
+444 |             indent(rug_fuzz_0, rug_fuzz_1), "  \n  Line\n  Another line\n  "
+    |                                                                        ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:451:38
+    |
+451 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                      ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:451:40
+    |
+451 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                        ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:451:42
+    |
+451 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                          ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:451:56
+    |
+451 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                                        ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:451:57
+    |
+451 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                                         ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+451 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n ";
+    |                                                          +
+
+error: unknown start of token: \
+   --> src/indentation.rs:454:58
+    |
+454 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n"
+    |                                                          ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:454:59
+    |
+454 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n"
+    |                                                           ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+454 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n #\n#\n#Second line.\n"
+    |                                                            +
+
+error: unknown start of token: \
+   --> src/indentation.rs:454:61
+    |
+454 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n"
+    |                                                             ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:454:62
+    |
+454 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n"
+    |                                                              ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+454 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n #\n#Second line.\n"
+    |                                                               +
+
+error: unknown start of token: \
+   --> src/indentation.rs:454:64
+    |
+454 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n"
+    |                                                                ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:454:65
+    |
+454 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n"
+    |                                                                 ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+454 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n #Second line.\n"
+    |                                                                  +
+
+error: unknown start of token: \
+   --> src/indentation.rs:454:79
+    |
+454 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n"
+    |                                                                               ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:454:80
+    |
+454 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n"
+    |                                                                                ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+454 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n "
+    |                                                                                 +
+
+error[E0765]: unterminated double quote string
+   --> src/indentation.rs:454:81
+    |
+454 |               indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n"
+    |  _________________________________________________________________________________^
+455 | |         );
+456 | |         let _rug_ed_tests_llm_16_24_rrrruuuugggg_indent_with_empty_lines_and_no_whitespace_prefix = 0;
+457 | |     }
+458 | | }
+    | |__^
+
+For more information about this error, try `rustc --explain E0765`.
+error: could not compile `textwrap` due to 84 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `textwrap` due to 84 previous errors
+
+err tests_llm_16_23 test_dedent_do_not_strip_trailing_newline
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling textwrap v0.16.0 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/textwrap)
+error: prefix `newline` is unknown
+   --> src/indentation.rs:351:35
+    |
+351 |             Line without trailing newline";
+    |                                   ^^^^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+351 |             Line without trailing newline ";
+    |                                          +
+
+error: unknown start of token: \
+   --> src/indentation.rs:366:52
+    |
+366 |             dedent(rug_fuzz_0), "Some indented line\n\nAnother indented line\n"
+    |                                                    ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:366:54
+    |
+366 |             dedent(rug_fuzz_0), "Some indented line\n\nAnother indented line\n"
+    |                                                      ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:366:77
+    |
+366 |             dedent(rug_fuzz_0), "Some indented line\n\nAnother indented line\n"
+    |                                                                             ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:366:78
+    |
+366 |             dedent(rug_fuzz_0), "Some indented line\n\nAnother indented line\n"
+    |                                                                              ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+366 |             dedent(rug_fuzz_0), "Some indented line\n\nAnother indented line\n "
+    |                                                                               +
+
+error: prefix `line` is unknown
+   --> src/indentation.rs:386:34
+    |
+386 |         let rug_fuzz_0 = "Single line";
+    |                                  ^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+386 |         let rug_fuzz_0 = "Single line ";
+    |                                      +
+
+error: prefix `line` is unknown
+   --> src/indentation.rs:388:68
+    |
+388 |         debug_assert_eq!(indent(rug_fuzz_0, rug_fuzz_1), "  Single line");
+    |                                                                    ^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+388 |         debug_assert_eq!(indent(rug_fuzz_0, rug_fuzz_1), "  Single line ");
+    |                                                                        +
+
+error: unknown start of token: \
+   --> src/indentation.rs:394:38
+    |
+394 |         let rug_fuzz_0 = "First line.\nSecond line.\n";
+    |                                      ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:394:52
+    |
+394 |         let rug_fuzz_0 = "First line.\nSecond line.\n";
+    |                                                    ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:394:53
+    |
+394 |         let rug_fuzz_0 = "First line.\nSecond line.\n";
+    |                                                     ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+394 |         let rug_fuzz_0 = "First line.\nSecond line.\n ";
+    |                                                      +
+
+error: unknown start of token: \
+   --> src/indentation.rs:397:59
+    |
+397 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n  Second line.\n"
+    |                                                           ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:397:75
+    |
+397 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n  Second line.\n"
+    |                                                                           ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:397:76
+    |
+397 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n  Second line.\n"
+    |                                                                            ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+397 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n  Second line.\n "
+    |                                                                             +
+
+error: unknown start of token: \
+   --> src/indentation.rs:404:38
+    |
+404 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                      ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:404:40
+    |
+404 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                        ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:404:42
+    |
+404 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                          ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:404:56
+    |
+404 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                                        ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:404:57
+    |
+404 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                                         ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+404 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n ";
+    |                                                          +
+
+error: unknown start of token: \
+   --> src/indentation.rs:407:59
+    |
+407 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n\n\n  Second line.\n"
+    |                                                           ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:407:61
+    |
+407 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n\n\n  Second line.\n"
+    |                                                             ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:407:63
+    |
+407 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n\n\n  Second line.\n"
+    |                                                               ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:407:79
+    |
+407 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n\n\n  Second line.\n"
+    |                                                                               ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:407:80
+    |
+407 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n\n\n  Second line.\n"
+    |                                                                                ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+407 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n\n\n  Second line.\n "
+    |                                                                                 +
+
+error: unknown start of token: \
+   --> src/indentation.rs:414:36
+    |
+414 |         let rug_fuzz_0 = "foo = 123\n\nprint(foo)\n";
+    |                                    ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:414:38
+    |
+414 |         let rug_fuzz_0 = "foo = 123\n\nprint(foo)\n";
+    |                                      ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:414:50
+    |
+414 |         let rug_fuzz_0 = "foo = 123\n\nprint(foo)\n";
+    |                                                  ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:414:51
+    |
+414 |         let rug_fuzz_0 = "foo = 123\n\nprint(foo)\n";
+    |                                                   ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+414 |         let rug_fuzz_0 = "foo = 123\n\nprint(foo)\n ";
+    |                                                    +
+
+error: unknown start of token: \
+   --> src/indentation.rs:417:57
+    |
+417 |             indent(rug_fuzz_0, rug_fuzz_1), "# foo = 123\n#\n# print(foo)\n"
+    |                                                         ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:417:58
+    |
+417 |             indent(rug_fuzz_0, rug_fuzz_1), "# foo = 123\n#\n# print(foo)\n"
+    |                                                          ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+417 |             indent(rug_fuzz_0, rug_fuzz_1), "# foo = 123\n #\n# print(foo)\n"
+    |                                                           +
+
+error: unknown start of token: \
+   --> src/indentation.rs:417:60
+    |
+417 |             indent(rug_fuzz_0, rug_fuzz_1), "# foo = 123\n#\n# print(foo)\n"
+    |                                                            ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:417:61
+    |
+417 |             indent(rug_fuzz_0, rug_fuzz_1), "# foo = 123\n#\n# print(foo)\n"
+    |                                                             ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+417 |             indent(rug_fuzz_0, rug_fuzz_1), "# foo = 123\n#\n # print(foo)\n"
+    |                                                              +
+
+error: unknown start of token: \
+   --> src/indentation.rs:417:74
+    |
+417 |             indent(rug_fuzz_0, rug_fuzz_1), "# foo = 123\n#\n# print(foo)\n"
+    |                                                                          ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:417:75
+    |
+417 |             indent(rug_fuzz_0, rug_fuzz_1), "# foo = 123\n#\n# print(foo)\n"
+    |                                                                           ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+417 |             indent(rug_fuzz_0, rug_fuzz_1), "# foo = 123\n#\n# print(foo)\n "
+    |                                                                            +
+
+error: unknown start of token: \
+   --> src/indentation.rs:424:28
+    |
+424 |         let rug_fuzz_0 = " \t  Foo   ";
+    |                            ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:426:62
+    |
+426 |         debug_assert_eq!(indent(rug_fuzz_0, rug_fuzz_1), "-> \t  Foo   ");
+    |                                                              ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:432:31
+    |
+432 |         let rug_fuzz_0 = "Line\n\nAnother line";
+    |                               ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:432:33
+    |
+432 |         let rug_fuzz_0 = "Line\n\nAnother line";
+    |                                 ^
+
+error: prefix `line` is unknown
+   --> src/indentation.rs:432:43
+    |
+432 |         let rug_fuzz_0 = "Line\n\nAnother line";
+    |                                           ^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+432 |         let rug_fuzz_0 = "Line\n\nAnother line ";
+    |                                               +
+
+error: unknown start of token: \
+   --> src/indentation.rs:435:54
+    |
+435 |             indent(rug_fuzz_0, rug_fuzz_1), "=>  Line\n=>\n=>  Another line"
+    |                                                      ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:435:58
+    |
+435 |             indent(rug_fuzz_0, rug_fuzz_1), "=>  Line\n=>\n=>  Another line"
+    |                                                          ^
+
+error: prefix `line` is unknown
+   --> src/indentation.rs:435:72
+    |
+435 |             indent(rug_fuzz_0, rug_fuzz_1), "=>  Line\n=>\n=>  Another line"
+    |                                                                        ^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+435 |             indent(rug_fuzz_0, rug_fuzz_1), "=>  Line\n=>\n=>  Another line "
+    |                                                                            +
+
+error: unknown start of token: \
+   --> src/indentation.rs:442:31
+    |
+442 |         let rug_fuzz_0 = "Line\nAnother line";
+    |                               ^
+
+error: prefix `line` is unknown
+   --> src/indentation.rs:442:41
+    |
+442 |         let rug_fuzz_0 = "Line\nAnother line";
+    |                                         ^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+442 |         let rug_fuzz_0 = "Line\nAnother line ";
+    |                                             +
+
+error: unknown start of token: \
+   --> src/indentation.rs:444:63
+    |
+444 |         debug_assert_eq!(indent(rug_fuzz_0, rug_fuzz_1), "Line\nAnother line");
+    |                                                               ^
+
+error: prefix `line` is unknown
+   --> src/indentation.rs:444:73
+    |
+444 |         debug_assert_eq!(indent(rug_fuzz_0, rug_fuzz_1), "Line\nAnother line");
+    |                                                                         ^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+444 |         debug_assert_eq!(indent(rug_fuzz_0, rug_fuzz_1), "Line\nAnother line ");
+    |                                                                             +
+
+error: unknown start of token: \
+   --> src/indentation.rs:450:27
+    |
+450 |         let rug_fuzz_0 = "\nLine\nAnother line\n";
+    |                           ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:450:33
+    |
+450 |         let rug_fuzz_0 = "\nLine\nAnother line\n";
+    |                                 ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:450:47
+    |
+450 |         let rug_fuzz_0 = "\nLine\nAnother line\n";
+    |                                               ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:450:48
+    |
+450 |         let rug_fuzz_0 = "\nLine\nAnother line\n";
+    |                                                ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+450 |         let rug_fuzz_0 = "\nLine\nAnother line\n ";
+    |                                                 +
+
+error: unknown start of token: \
+   --> src/indentation.rs:453:48
+    |
+453 |             indent(rug_fuzz_0, rug_fuzz_1), "  \n  Line\n  Another line\n  "
+    |                                                ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:453:56
+    |
+453 |             indent(rug_fuzz_0, rug_fuzz_1), "  \n  Line\n  Another line\n  "
+    |                                                        ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:453:72
+    |
+453 |             indent(rug_fuzz_0, rug_fuzz_1), "  \n  Line\n  Another line\n  "
+    |                                                                        ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:460:38
+    |
+460 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                      ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:460:40
+    |
+460 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                        ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:460:42
+    |
+460 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                          ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:460:56
+    |
+460 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                                        ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:460:57
+    |
+460 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                                         ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+460 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n ";
+    |                                                          +
+
+error: unknown start of token: \
+   --> src/indentation.rs:463:58
+    |
+463 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n"
+    |                                                          ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:463:59
+    |
+463 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n"
+    |                                                           ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+463 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n #\n#\n#Second line.\n"
+    |                                                            +
+
+error: unknown start of token: \
+   --> src/indentation.rs:463:61
+    |
+463 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n"
+    |                                                             ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:463:62
+    |
+463 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n"
+    |                                                              ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+463 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n #\n#Second line.\n"
+    |                                                               +
+
+error: unknown start of token: \
+   --> src/indentation.rs:463:64
+    |
+463 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n"
+    |                                                                ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:463:65
+    |
+463 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n"
+    |                                                                 ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+463 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n #Second line.\n"
+    |                                                                  +
+
+error: unknown start of token: \
+   --> src/indentation.rs:463:79
+    |
+463 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n"
+    |                                                                               ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:463:80
+    |
+463 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n"
+    |                                                                                ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+463 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n "
+    |                                                                                 +
+
+error[E0765]: unterminated double quote string
+   --> src/indentation.rs:463:81
+    |
+463 |               indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n"
+    |  _________________________________________________________________________________^
+464 | |         );
+465 | |         let _rug_ed_tests_llm_16_24_rrrruuuugggg_indent_with_empty_lines_and_no_whitespace_prefix = 0;
+466 | |     }
+467 | | }
+    | |__^
+
+For more information about this error, try `rustc --explain E0765`.
+error: could not compile `textwrap` due to 66 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `textwrap` due to 66 previous errors
+
+err tests_llm_16_23 test_dedent_trailing_newline_when_input_lacks_one
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling textwrap v0.16.0 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/textwrap)
+error: prefix `newline` is unknown
+   --> src/indentation.rs:352:35
+    |
+352 |             Line without trailing newline";
+    |                                   ^^^^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+352 |             Line without trailing newline ";
+    |                                          +
+
+error: unknown start of token: \
+   --> src/indentation.rs:366:52
+    |
+366 |             dedent(rug_fuzz_0), "Some indented line\n\nAnother indented line\n"
+    |                                                    ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:366:54
+    |
+366 |             dedent(rug_fuzz_0), "Some indented line\n\nAnother indented line\n"
+    |                                                      ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:366:77
+    |
+366 |             dedent(rug_fuzz_0), "Some indented line\n\nAnother indented line\n"
+    |                                                                             ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:366:78
+    |
+366 |             dedent(rug_fuzz_0), "Some indented line\n\nAnother indented line\n"
+    |                                                                              ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+366 |             dedent(rug_fuzz_0), "Some indented line\n\nAnother indented line\n "
+    |                                                                               +
+
+error: prefix `line` is unknown
+   --> src/indentation.rs:386:34
+    |
+386 |         let rug_fuzz_0 = "Single line";
+    |                                  ^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+386 |         let rug_fuzz_0 = "Single line ";
+    |                                      +
+
+error: prefix `line` is unknown
+   --> src/indentation.rs:388:68
+    |
+388 |         debug_assert_eq!(indent(rug_fuzz_0, rug_fuzz_1), "  Single line");
+    |                                                                    ^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+388 |         debug_assert_eq!(indent(rug_fuzz_0, rug_fuzz_1), "  Single line ");
+    |                                                                        +
+
+error: unknown start of token: \
+   --> src/indentation.rs:394:38
+    |
+394 |         let rug_fuzz_0 = "First line.\nSecond line.\n";
+    |                                      ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:394:52
+    |
+394 |         let rug_fuzz_0 = "First line.\nSecond line.\n";
+    |                                                    ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:394:53
+    |
+394 |         let rug_fuzz_0 = "First line.\nSecond line.\n";
+    |                                                     ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+394 |         let rug_fuzz_0 = "First line.\nSecond line.\n ";
+    |                                                      +
+
+error: unknown start of token: \
+   --> src/indentation.rs:397:59
+    |
+397 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n  Second line.\n"
+    |                                                           ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:397:75
+    |
+397 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n  Second line.\n"
+    |                                                                           ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:397:76
+    |
+397 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n  Second line.\n"
+    |                                                                            ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+397 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n  Second line.\n "
+    |                                                                             +
+
+error: unknown start of token: \
+   --> src/indentation.rs:404:38
+    |
+404 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                      ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:404:40
+    |
+404 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                        ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:404:42
+    |
+404 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                          ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:404:56
+    |
+404 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                                        ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:404:57
+    |
+404 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                                         ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+404 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n ";
+    |                                                          +
+
+error: unknown start of token: \
+   --> src/indentation.rs:407:59
+    |
+407 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n\n\n  Second line.\n"
+    |                                                           ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:407:61
+    |
+407 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n\n\n  Second line.\n"
+    |                                                             ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:407:63
+    |
+407 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n\n\n  Second line.\n"
+    |                                                               ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:407:79
+    |
+407 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n\n\n  Second line.\n"
+    |                                                                               ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:407:80
+    |
+407 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n\n\n  Second line.\n"
+    |                                                                                ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+407 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n\n\n  Second line.\n "
+    |                                                                                 +
+
+error: unknown start of token: \
+   --> src/indentation.rs:414:36
+    |
+414 |         let rug_fuzz_0 = "foo = 123\n\nprint(foo)\n";
+    |                                    ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:414:38
+    |
+414 |         let rug_fuzz_0 = "foo = 123\n\nprint(foo)\n";
+    |                                      ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:414:50
+    |
+414 |         let rug_fuzz_0 = "foo = 123\n\nprint(foo)\n";
+    |                                                  ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:414:51
+    |
+414 |         let rug_fuzz_0 = "foo = 123\n\nprint(foo)\n";
+    |                                                   ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+414 |         let rug_fuzz_0 = "foo = 123\n\nprint(foo)\n ";
+    |                                                    +
+
+error: unknown start of token: \
+   --> src/indentation.rs:417:57
+    |
+417 |             indent(rug_fuzz_0, rug_fuzz_1), "# foo = 123\n#\n# print(foo)\n"
+    |                                                         ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:417:58
+    |
+417 |             indent(rug_fuzz_0, rug_fuzz_1), "# foo = 123\n#\n# print(foo)\n"
+    |                                                          ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+417 |             indent(rug_fuzz_0, rug_fuzz_1), "# foo = 123\n #\n# print(foo)\n"
+    |                                                           +
+
+error: unknown start of token: \
+   --> src/indentation.rs:417:60
+    |
+417 |             indent(rug_fuzz_0, rug_fuzz_1), "# foo = 123\n#\n# print(foo)\n"
+    |                                                            ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:417:61
+    |
+417 |             indent(rug_fuzz_0, rug_fuzz_1), "# foo = 123\n#\n# print(foo)\n"
+    |                                                             ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+417 |             indent(rug_fuzz_0, rug_fuzz_1), "# foo = 123\n#\n # print(foo)\n"
+    |                                                              +
+
+error: unknown start of token: \
+   --> src/indentation.rs:417:74
+    |
+417 |             indent(rug_fuzz_0, rug_fuzz_1), "# foo = 123\n#\n# print(foo)\n"
+    |                                                                          ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:417:75
+    |
+417 |             indent(rug_fuzz_0, rug_fuzz_1), "# foo = 123\n#\n# print(foo)\n"
+    |                                                                           ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+417 |             indent(rug_fuzz_0, rug_fuzz_1), "# foo = 123\n#\n# print(foo)\n "
+    |                                                                            +
+
+error: unknown start of token: \
+   --> src/indentation.rs:424:28
+    |
+424 |         let rug_fuzz_0 = " \t  Foo   ";
+    |                            ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:426:62
+    |
+426 |         debug_assert_eq!(indent(rug_fuzz_0, rug_fuzz_1), "-> \t  Foo   ");
+    |                                                              ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:432:31
+    |
+432 |         let rug_fuzz_0 = "Line\n\nAnother line";
+    |                               ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:432:33
+    |
+432 |         let rug_fuzz_0 = "Line\n\nAnother line";
+    |                                 ^
+
+error: prefix `line` is unknown
+   --> src/indentation.rs:432:43
+    |
+432 |         let rug_fuzz_0 = "Line\n\nAnother line";
+    |                                           ^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+432 |         let rug_fuzz_0 = "Line\n\nAnother line ";
+    |                                               +
+
+error: unknown start of token: \
+   --> src/indentation.rs:435:54
+    |
+435 |             indent(rug_fuzz_0, rug_fuzz_1), "=>  Line\n=>\n=>  Another line"
+    |                                                      ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:435:58
+    |
+435 |             indent(rug_fuzz_0, rug_fuzz_1), "=>  Line\n=>\n=>  Another line"
+    |                                                          ^
+
+error: prefix `line` is unknown
+   --> src/indentation.rs:435:72
+    |
+435 |             indent(rug_fuzz_0, rug_fuzz_1), "=>  Line\n=>\n=>  Another line"
+    |                                                                        ^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+435 |             indent(rug_fuzz_0, rug_fuzz_1), "=>  Line\n=>\n=>  Another line "
+    |                                                                            +
+
+error: unknown start of token: \
+   --> src/indentation.rs:442:31
+    |
+442 |         let rug_fuzz_0 = "Line\nAnother line";
+    |                               ^
+
+error: prefix `line` is unknown
+   --> src/indentation.rs:442:41
+    |
+442 |         let rug_fuzz_0 = "Line\nAnother line";
+    |                                         ^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+442 |         let rug_fuzz_0 = "Line\nAnother line ";
+    |                                             +
+
+error: unknown start of token: \
+   --> src/indentation.rs:444:63
+    |
+444 |         debug_assert_eq!(indent(rug_fuzz_0, rug_fuzz_1), "Line\nAnother line");
+    |                                                               ^
+
+error: prefix `line` is unknown
+   --> src/indentation.rs:444:73
+    |
+444 |         debug_assert_eq!(indent(rug_fuzz_0, rug_fuzz_1), "Line\nAnother line");
+    |                                                                         ^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+444 |         debug_assert_eq!(indent(rug_fuzz_0, rug_fuzz_1), "Line\nAnother line ");
+    |                                                                             +
+
+error: unknown start of token: \
+   --> src/indentation.rs:450:27
+    |
+450 |         let rug_fuzz_0 = "\nLine\nAnother line\n";
+    |                           ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:450:33
+    |
+450 |         let rug_fuzz_0 = "\nLine\nAnother line\n";
+    |                                 ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:450:47
+    |
+450 |         let rug_fuzz_0 = "\nLine\nAnother line\n";
+    |                                               ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:450:48
+    |
+450 |         let rug_fuzz_0 = "\nLine\nAnother line\n";
+    |                                                ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+450 |         let rug_fuzz_0 = "\nLine\nAnother line\n ";
+    |                                                 +
+
+error: unknown start of token: \
+   --> src/indentation.rs:453:48
+    |
+453 |             indent(rug_fuzz_0, rug_fuzz_1), "  \n  Line\n  Another line\n  "
+    |                                                ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:453:56
+    |
+453 |             indent(rug_fuzz_0, rug_fuzz_1), "  \n  Line\n  Another line\n  "
+    |                                                        ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:453:72
+    |
+453 |             indent(rug_fuzz_0, rug_fuzz_1), "  \n  Line\n  Another line\n  "
+    |                                                                        ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:460:38
+    |
+460 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                      ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:460:40
+    |
+460 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                        ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:460:42
+    |
+460 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                          ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:460:56
+    |
+460 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                                        ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:460:57
+    |
+460 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                                         ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+460 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n ";
+    |                                                          +
+
+error: unknown start of token: \
+   --> src/indentation.rs:463:58
+    |
+463 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n"
+    |                                                          ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:463:59
+    |
+463 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n"
+    |                                                           ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+463 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n #\n#\n#Second line.\n"
+    |                                                            +
+
+error: unknown start of token: \
+   --> src/indentation.rs:463:61
+    |
+463 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n"
+    |                                                             ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:463:62
+    |
+463 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n"
+    |                                                              ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+463 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n #\n#Second line.\n"
+    |                                                               +
+
+error: unknown start of token: \
+   --> src/indentation.rs:463:64
+    |
+463 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n"
+    |                                                                ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:463:65
+    |
+463 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n"
+    |                                                                 ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+463 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n #Second line.\n"
+    |                                                                  +
+
+error: unknown start of token: \
+   --> src/indentation.rs:463:79
+    |
+463 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n"
+    |                                                                               ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:463:80
+    |
+463 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n"
+    |                                                                                ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+463 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n "
+    |                                                                                 +
+
+error[E0765]: unterminated double quote string
+   --> src/indentation.rs:463:81
+    |
+463 |               indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n"
+    |  _________________________________________________________________________________^
+464 | |         );
+465 | |         let _rug_ed_tests_llm_16_24_rrrruuuugggg_indent_with_empty_lines_and_no_whitespace_prefix = 0;
+466 | |     }
+467 | | }
+    | |__^
+
+For more information about this error, try `rustc --explain E0765`.
+error: could not compile `textwrap` due to 66 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `textwrap` due to 66 previous errors
+
+err tests_llm_16_23 test_dedent_mixed_empty_and_non_empty_lines
+   Compiling textwrap v0.16.0 (/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/textwrap)
+error: unknown start of token: \
+   --> src/indentation.rs:367:52
+    |
+367 |             dedent(rug_fuzz_0), "Some indented line\n\nAnother indented line\n"
+    |                                                    ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:367:54
+    |
+367 |             dedent(rug_fuzz_0), "Some indented line\n\nAnother indented line\n"
+    |                                                      ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:367:77
+    |
+367 |             dedent(rug_fuzz_0), "Some indented line\n\nAnother indented line\n"
+    |                                                                             ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:367:78
+    |
+367 |             dedent(rug_fuzz_0), "Some indented line\n\nAnother indented line\n"
+    |                                                                              ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+367 |             dedent(rug_fuzz_0), "Some indented line\n\nAnother indented line\n "
+    |                                                                               +
+
+error: prefix `line` is unknown
+   --> src/indentation.rs:387:34
+    |
+387 |         let rug_fuzz_0 = "Single line";
+    |                                  ^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+387 |         let rug_fuzz_0 = "Single line ";
+    |                                      +
+
+error: prefix `line` is unknown
+   --> src/indentation.rs:389:68
+    |
+389 |         debug_assert_eq!(indent(rug_fuzz_0, rug_fuzz_1), "  Single line");
+    |                                                                    ^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+389 |         debug_assert_eq!(indent(rug_fuzz_0, rug_fuzz_1), "  Single line ");
+    |                                                                        +
+
+error: unknown start of token: \
+   --> src/indentation.rs:395:38
+    |
+395 |         let rug_fuzz_0 = "First line.\nSecond line.\n";
+    |                                      ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:395:52
+    |
+395 |         let rug_fuzz_0 = "First line.\nSecond line.\n";
+    |                                                    ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:395:53
+    |
+395 |         let rug_fuzz_0 = "First line.\nSecond line.\n";
+    |                                                     ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+395 |         let rug_fuzz_0 = "First line.\nSecond line.\n ";
+    |                                                      +
+
+error: unknown start of token: \
+   --> src/indentation.rs:398:59
+    |
+398 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n  Second line.\n"
+    |                                                           ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:398:75
+    |
+398 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n  Second line.\n"
+    |                                                                           ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:398:76
+    |
+398 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n  Second line.\n"
+    |                                                                            ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+398 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n  Second line.\n "
+    |                                                                             +
+
+error: unknown start of token: \
+   --> src/indentation.rs:405:38
+    |
+405 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                      ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:405:40
+    |
+405 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                        ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:405:42
+    |
+405 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                          ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:405:56
+    |
+405 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                                        ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:405:57
+    |
+405 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                                         ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+405 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n ";
+    |                                                          +
+
+error: unknown start of token: \
+   --> src/indentation.rs:408:59
+    |
+408 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n\n\n  Second line.\n"
+    |                                                           ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:408:61
+    |
+408 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n\n\n  Second line.\n"
+    |                                                             ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:408:63
+    |
+408 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n\n\n  Second line.\n"
+    |                                                               ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:408:79
+    |
+408 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n\n\n  Second line.\n"
+    |                                                                               ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:408:80
+    |
+408 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n\n\n  Second line.\n"
+    |                                                                                ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+408 |             indent(rug_fuzz_0, rug_fuzz_1), "  First line.\n\n\n  Second line.\n "
+    |                                                                                 +
+
+error: unknown start of token: \
+   --> src/indentation.rs:415:36
+    |
+415 |         let rug_fuzz_0 = "foo = 123\n\nprint(foo)\n";
+    |                                    ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:415:38
+    |
+415 |         let rug_fuzz_0 = "foo = 123\n\nprint(foo)\n";
+    |                                      ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:415:50
+    |
+415 |         let rug_fuzz_0 = "foo = 123\n\nprint(foo)\n";
+    |                                                  ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:415:51
+    |
+415 |         let rug_fuzz_0 = "foo = 123\n\nprint(foo)\n";
+    |                                                   ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+415 |         let rug_fuzz_0 = "foo = 123\n\nprint(foo)\n ";
+    |                                                    +
+
+error: unknown start of token: \
+   --> src/indentation.rs:418:57
+    |
+418 |             indent(rug_fuzz_0, rug_fuzz_1), "# foo = 123\n#\n# print(foo)\n"
+    |                                                         ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:418:58
+    |
+418 |             indent(rug_fuzz_0, rug_fuzz_1), "# foo = 123\n#\n# print(foo)\n"
+    |                                                          ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+418 |             indent(rug_fuzz_0, rug_fuzz_1), "# foo = 123\n #\n# print(foo)\n"
+    |                                                           +
+
+error: unknown start of token: \
+   --> src/indentation.rs:418:60
+    |
+418 |             indent(rug_fuzz_0, rug_fuzz_1), "# foo = 123\n#\n# print(foo)\n"
+    |                                                            ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:418:61
+    |
+418 |             indent(rug_fuzz_0, rug_fuzz_1), "# foo = 123\n#\n# print(foo)\n"
+    |                                                             ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+418 |             indent(rug_fuzz_0, rug_fuzz_1), "# foo = 123\n#\n # print(foo)\n"
+    |                                                              +
+
+error: unknown start of token: \
+   --> src/indentation.rs:418:74
+    |
+418 |             indent(rug_fuzz_0, rug_fuzz_1), "# foo = 123\n#\n# print(foo)\n"
+    |                                                                          ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:418:75
+    |
+418 |             indent(rug_fuzz_0, rug_fuzz_1), "# foo = 123\n#\n# print(foo)\n"
+    |                                                                           ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+418 |             indent(rug_fuzz_0, rug_fuzz_1), "# foo = 123\n#\n# print(foo)\n "
+    |                                                                            +
+
+error: unknown start of token: \
+   --> src/indentation.rs:425:28
+    |
+425 |         let rug_fuzz_0 = " \t  Foo   ";
+    |                            ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:427:62
+    |
+427 |         debug_assert_eq!(indent(rug_fuzz_0, rug_fuzz_1), "-> \t  Foo   ");
+    |                                                              ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:433:31
+    |
+433 |         let rug_fuzz_0 = "Line\n\nAnother line";
+    |                               ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:433:33
+    |
+433 |         let rug_fuzz_0 = "Line\n\nAnother line";
+    |                                 ^
+
+error: prefix `line` is unknown
+   --> src/indentation.rs:433:43
+    |
+433 |         let rug_fuzz_0 = "Line\n\nAnother line";
+    |                                           ^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+433 |         let rug_fuzz_0 = "Line\n\nAnother line ";
+    |                                               +
+
+error: unknown start of token: \
+   --> src/indentation.rs:436:54
+    |
+436 |             indent(rug_fuzz_0, rug_fuzz_1), "=>  Line\n=>\n=>  Another line"
+    |                                                      ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:436:58
+    |
+436 |             indent(rug_fuzz_0, rug_fuzz_1), "=>  Line\n=>\n=>  Another line"
+    |                                                          ^
+
+error: prefix `line` is unknown
+   --> src/indentation.rs:436:72
+    |
+436 |             indent(rug_fuzz_0, rug_fuzz_1), "=>  Line\n=>\n=>  Another line"
+    |                                                                        ^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+436 |             indent(rug_fuzz_0, rug_fuzz_1), "=>  Line\n=>\n=>  Another line "
+    |                                                                            +
+
+error: unknown start of token: \
+   --> src/indentation.rs:443:31
+    |
+443 |         let rug_fuzz_0 = "Line\nAnother line";
+    |                               ^
+
+error: prefix `line` is unknown
+   --> src/indentation.rs:443:41
+    |
+443 |         let rug_fuzz_0 = "Line\nAnother line";
+    |                                         ^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+443 |         let rug_fuzz_0 = "Line\nAnother line ";
+    |                                             +
+
+error: unknown start of token: \
+   --> src/indentation.rs:445:63
+    |
+445 |         debug_assert_eq!(indent(rug_fuzz_0, rug_fuzz_1), "Line\nAnother line");
+    |                                                               ^
+
+error: prefix `line` is unknown
+   --> src/indentation.rs:445:73
+    |
+445 |         debug_assert_eq!(indent(rug_fuzz_0, rug_fuzz_1), "Line\nAnother line");
+    |                                                                         ^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+445 |         debug_assert_eq!(indent(rug_fuzz_0, rug_fuzz_1), "Line\nAnother line ");
+    |                                                                             +
+
+error: unknown start of token: \
+   --> src/indentation.rs:451:27
+    |
+451 |         let rug_fuzz_0 = "\nLine\nAnother line\n";
+    |                           ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:451:33
+    |
+451 |         let rug_fuzz_0 = "\nLine\nAnother line\n";
+    |                                 ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:451:47
+    |
+451 |         let rug_fuzz_0 = "\nLine\nAnother line\n";
+    |                                               ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:451:48
+    |
+451 |         let rug_fuzz_0 = "\nLine\nAnother line\n";
+    |                                                ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+451 |         let rug_fuzz_0 = "\nLine\nAnother line\n ";
+    |                                                 +
+
+error: unknown start of token: \
+   --> src/indentation.rs:454:48
+    |
+454 |             indent(rug_fuzz_0, rug_fuzz_1), "  \n  Line\n  Another line\n  "
+    |                                                ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:454:56
+    |
+454 |             indent(rug_fuzz_0, rug_fuzz_1), "  \n  Line\n  Another line\n  "
+    |                                                        ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:454:72
+    |
+454 |             indent(rug_fuzz_0, rug_fuzz_1), "  \n  Line\n  Another line\n  "
+    |                                                                        ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:461:38
+    |
+461 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                      ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:461:40
+    |
+461 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                        ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:461:42
+    |
+461 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                          ^
+
+error: unknown start of token: \
+   --> src/indentation.rs:461:56
+    |
+461 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                                        ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:461:57
+    |
+461 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n";
+    |                                                         ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+461 |         let rug_fuzz_0 = "First line.\n\n\nSecond line.\n ";
+    |                                                          +
+
+error: unknown start of token: \
+   --> src/indentation.rs:464:58
+    |
+464 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n"
+    |                                                          ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:464:59
+    |
+464 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n"
+    |                                                           ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+464 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n #\n#\n#Second line.\n"
+    |                                                            +
+
+error: unknown start of token: \
+   --> src/indentation.rs:464:61
+    |
+464 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n"
+    |                                                             ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:464:62
+    |
+464 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n"
+    |                                                              ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+464 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n #\n#Second line.\n"
+    |                                                               +
+
+error: unknown start of token: \
+   --> src/indentation.rs:464:64
+    |
+464 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n"
+    |                                                                ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:464:65
+    |
+464 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n"
+    |                                                                 ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+464 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n #Second line.\n"
+    |                                                                  +
+
+error: unknown start of token: \
+   --> src/indentation.rs:464:79
+    |
+464 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n"
+    |                                                                               ^
+
+error: prefix `n` is unknown
+   --> src/indentation.rs:464:80
+    |
+464 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n"
+    |                                                                                ^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+464 |             indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n "
+    |                                                                                 +
+
+error[E0765]: unterminated double quote string
+   --> src/indentation.rs:464:81
+    |
+464 |               indent(rug_fuzz_0, rug_fuzz_1), "#First line.\n#\n#\n#Second line.\n"
+    |  _________________________________________________________________________________^
+465 | |         );
+466 | |         let _rug_ed_tests_llm_16_24_rrrruuuugggg_indent_with_empty_lines_and_no_whitespace_prefix = 0;
+467 | |     }
+468 | | }
+    | |__^
+
+For more information about this error, try `rustc --explain E0765`.
+error: could not compile `textwrap` due to 65 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `textwrap` due to 65 previous errors
+
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/textwrap/./src/word_splitters.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/textwrap/./src/wrap_algorithms.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/textwrap/./src/wrap.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/textwrap/./src/fill.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/textwrap/./src/wrap_algorithms/optimal_fit.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/textwrap/./src/fuzzing.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/textwrap/./src/word_separators.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/textwrap/./src/core.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/textwrap/./src/columns.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/textwrap/./src/lib.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/textwrap/./src/termwidth.rs
+/mnt/sda/xiang/llm4_human/llm_hybrid_fuzz/textwrap/./src/options.rs
+done

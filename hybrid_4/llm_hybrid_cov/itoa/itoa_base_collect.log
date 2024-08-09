@@ -1,0 +1,628 @@
+========================================
+    use crate::Buffer;
+    use std::clone::Clone;
+
+    #[test]
+    fn buffer_clone() {
+        let buffer = Buffer::new();
+        let buffer_clone = buffer.clone();
+        // Since Buffer::new() initializes an array with MaybeUninit::uninit(), 
+        // we can only assert that both buffers are instances of Buffer as there is no PartialEq for Buffer. 
+        // We can also check the pointer addresses to make sure that they are different instances.
+        assert_ne!(&buffer as *const _, &buffer_clone as *const _);
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use std::mem::MaybeUninit;
+
+    #[test]
+    fn buffer_default_creates_new_buffer() {
+        let buffer = <Buffer as std::default::Default>::default();
+        
+        let uninit_byte = MaybeUninit::<u8>::uninit();
+        let expected_bytes = [uninit_byte; I128_MAX_LEN];
+        
+        for i in 0..I128_MAX_LEN {
+            assert_eq!(unsafe { buffer.bytes[i].as_ptr().read() }, unsafe { expected_bytes[i].as_ptr().read() });
+        }
+    }
+}
+True
+========================================
+    use crate::private::Sealed;
+    use std::mem::MaybeUninit;
+
+    const I128_MAX_LEN: usize = 40; // Length of i128::MIN as a decimal string + 1 for the minus sign
+
+    #[test]
+    fn test_i128_write_positive() {
+        let mut buf = [MaybeUninit::uninit(); I128_MAX_LEN];
+        let num: i128 = 123456789;
+        let written = <i128 as Sealed>::write(num, &mut buf);
+        assert_eq!(written, "123456789");
+    }
+
+    #[test]
+    fn test_i128_write_negative() {
+        let mut buf = [MaybeUninit::uninit(); I128_MAX_LEN];
+        let num: i128 = -123456789;
+        let written = <i128 as Sealed>::write(num, &mut buf);
+        assert_eq!(written, "-123456789");
+    }
+
+    #[test]
+    fn test_i128_write_max() {
+        let mut buf = [MaybeUninit::uninit(); I128_MAX_LEN];
+        let num = i128::max_value();
+        let written = <i128 as Sealed>::write(num, &mut buf);
+        assert_eq!(written, &num.to_string());
+    }
+
+    #[test]
+    fn test_i128_write_min() {
+        let mut buf = [MaybeUninit::uninit(); I128_MAX_LEN];
+        let num = i128::min_value();
+        let written = <i128 as Sealed>::write(num, &mut buf);
+        assert_eq!(written, &num.to_string());
+    }
+
+    #[test]
+    fn test_i128_write_zero() {
+        let mut buf = [MaybeUninit::uninit(); I128_MAX_LEN];
+        let num: i128 = 0;
+        let written = <i128 as Sealed>::write(num, &mut buf);
+        assert_eq!(written, "0");
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use std::mem::MaybeUninit;
+
+    #[test]
+    fn test_write_positive_i16() {
+        let mut buffer: [MaybeUninit<u8>; 6] = unsafe { MaybeUninit::uninit().assume_init() };
+        let num: i16 = 1234;
+        let value_str = <i16 as private::Sealed>::write(num, &mut buffer);
+        assert_eq!(value_str, "1234");
+    }
+
+    #[test]
+    fn test_write_negative_i16() {
+        let mut buffer: [MaybeUninit<u8>; 6] = unsafe { MaybeUninit::uninit().assume_init() };
+        let num: i16 = -1234;
+        let value_str = <i16 as private::Sealed>::write(num, &mut buffer);
+        assert_eq!(value_str, "-1234");
+    }
+
+    #[test]
+    fn test_write_zero_i16() {
+        let mut buffer: [MaybeUninit<u8>; 6] = unsafe { MaybeUninit::uninit().assume_init() };
+        let num: i16 = 0;
+        let value_str = <i16 as private::Sealed>::write(num, &mut buffer);
+        assert_eq!(value_str, "0");
+    }
+
+    #[test]
+    fn test_write_min_value_i16() {
+        let mut buffer: [MaybeUninit<u8>; 6] = unsafe { MaybeUninit::uninit().assume_init() };
+        let num: i16 = i16::MIN;
+        let value_str = <i16 as private::Sealed>::write(num, &mut buffer);
+        assert_eq!(value_str, "-32768");
+    }
+
+    #[test]
+    fn test_write_max_value_i16() {
+        let mut buffer: [MaybeUninit<u8>; 6] = unsafe { MaybeUninit::uninit().assume_init() };
+        let num: i16 = i16::MAX;
+        let value_str = <i16 as private::Sealed>::write(num, &mut buffer);
+        assert_eq!(value_str, "32767");
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn test_write_positive() {
+        let num: i32 = 12345;
+        let mut buffer = [MaybeUninit::uninit(); 11];
+        let result = crate::write(num, &mut buffer);
+        assert_eq!(result, "12345");
+    }
+
+    #[test]
+    fn test_write_negative() {
+        let num: i32 = -12345;
+        let mut buffer = [MaybeUninit::uninit(); 11];
+        let result = crate::write(num, &mut buffer);
+        assert_eq!(result, "-12345");
+    }
+
+    #[test]
+    fn test_write_zero() {
+        let num: i32 = 0;
+        let mut buffer = [MaybeUninit::uninit(); 11];
+        let result = crate::write(num, &mut buffer);
+        assert_eq!(result, "0");
+    }
+
+    #[test]
+    fn test_write_max_int() {
+        let num: i32 = i32::MAX;
+        let mut buffer = [MaybeUninit::uninit(); 11];
+        let result = crate::write(num, &mut buffer);
+        assert_eq!(result, "2147483647");
+    }
+
+    #[test]
+    fn test_write_min_int() {
+        let num: i32 = i32::MIN;
+        let mut buffer = [MaybeUninit::uninit(); 11];
+        let result = crate::write(num, &mut buffer);
+        assert_eq!(result, "-2147483648");
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use std::mem::MaybeUninit;
+
+    #[test]
+    fn test_write_positive() {
+        let num: i64 = 12345;
+        let mut buf: [MaybeUninit<u8>; 20] = unsafe { MaybeUninit::uninit().assume_init() };
+        let result = <i64 as private::Sealed>::write(num, &mut buf);
+        assert_eq!(result, "12345");
+    }
+
+    #[test]
+    fn test_write_negative() {
+        let num: i64 = -12345;
+        let mut buf: [MaybeUninit<u8>; 20] = unsafe { MaybeUninit::uninit().assume_init() };
+        let result = <i64 as private::Sealed>::write(num, &mut buf);
+        assert_eq!(result, "-12345");
+    }
+
+    #[test]
+    fn test_write_zero() {
+        let num: i64 = 0;
+        let mut buf: [MaybeUninit<u8>; 20] = unsafe { MaybeUninit::uninit().assume_init() };
+        let result = <i64 as private::Sealed>::write(num, &mut buf);
+        assert_eq!(result, "0");
+    }
+
+    #[test]
+    fn test_write_max() {
+        let num: i64 = i64::MAX;
+        let mut buf: [MaybeUninit<u8>; 20] = unsafe { MaybeUninit::uninit().assume_init() };
+        let result = <i64 as private::Sealed>::write(num, &mut buf);
+        assert_eq!(result, "9223372036854775807");
+    }
+
+    #[test]
+    fn test_write_min() {
+        let num: i64 = i64::MIN;
+        let mut buf: [MaybeUninit<u8>; 20] = unsafe { MaybeUninit::uninit().assume_init() };
+        let result = <i64 as private::Sealed>::write(num, &mut buf);
+        assert_eq!(result, "-9223372036854775808");
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use std::mem::MaybeUninit;
+
+    #[test]
+    fn test_write_for_i8() {
+        let test_cases = [
+            (0_i8, "0"),
+            (-1_i8, "-1"),
+            (127_i8, "127"),
+            (-128_i8, "-128"),
+            (10_i8, "10"),
+            (-10_i8, "-10"),
+        ];
+
+        for &(value, expected) in test_cases.iter() {
+            let mut buffer: [MaybeUninit<u8>; 4] = unsafe {
+                std::mem::MaybeUninit::uninit().assume_init()
+            };
+            let result = <i8 as crate::Integer>::write(value, &mut buffer);
+
+            assert_eq!(result, expected, "Testing value: {}", value);
+        }
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use std::mem::MaybeUninit;
+
+    #[test]
+    fn test_write_positive_isize() {
+        let value: isize = 12345;
+        let mut buffer = [MaybeUninit::uninit(); 20];
+        let result = <isize as private::Sealed>::write(value, &mut buffer);
+        assert_eq!(result, "12345");
+    }
+    
+    #[test]
+    fn test_write_negative_isize() {
+        let value: isize = -12345;
+        let mut buffer = [MaybeUninit::uninit(); 20];
+        let result = <isize as private::Sealed>::write(value, &mut buffer);
+        assert_eq!(result, "-12345");
+    }
+    
+    #[test]
+    fn test_write_zero_isize() {
+        let value: isize = 0;
+        let mut buffer = [MaybeUninit::uninit(); 20];
+        let result = <isize as private::Sealed>::write(value, &mut buffer);
+        assert_eq!(result, "0");
+    }
+    
+    #[test]
+    fn test_write_small_isize() {
+        let value: isize = 5;
+        let mut buffer = [MaybeUninit::uninit(); 20];
+        let result = <isize as private::Sealed>::write(value, &mut buffer);
+        assert_eq!(result, "5");
+    }
+    
+    #[test]
+    fn test_write_large_isize() {
+        let value: isize = isize::MAX;
+        let mut buffer = [MaybeUninit::uninit(); 20];
+        let result = <isize as private::Sealed>::write(value, &mut buffer);
+        assert_eq!(result, &isize::MAX.to_string());
+    }
+    
+    #[test]
+    fn test_write_large_negative_isize() {
+        let value: isize = isize::MIN;
+        let mut buffer = [MaybeUninit::uninit(); 20];
+        let result = <isize as private::Sealed>::write(value, &mut buffer);
+        assert_eq!(result, &isize::MIN.to_string());
+    }
+}
+True
+========================================
+    use crate::private::Sealed;
+    use std::mem::MaybeUninit;
+
+    const U64_MAX_LEN: usize = 20;  // 20 bytes is enough for any u64
+    const U128_MAX_LEN: usize = 40; // u128::MAX is 39 digits long
+
+    #[test]
+    fn test_write_u128_positive() {
+        let test_cases = [
+            (0u128, "0"),
+            (1u128, "1"),
+            (u128::MAX, "340282366920938463463374607431768211455"),
+        ];
+
+        for &(value, expected) in test_cases.iter() {
+            let mut buf = [MaybeUninit::<u8>::uninit(); U128_MAX_LEN];
+            let result = unsafe {
+                // SAFETY: The `write` function expects a mutable reference to a `MaybeUninit` array,
+                // which we provide here. The function writes to the array without reading uninitialized
+                // values, and we only create a `&str` slice from the initialized part.
+                let slice = <u128 as Sealed>::write(value, &mut buf);
+                std::str::from_utf8_unchecked(std::mem::transmute(slice.as_bytes()))
+            };
+            assert_eq!(result, expected);
+        }
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use core::mem::MaybeUninit;
+
+    #[test]
+    fn test_write_u16() {
+        fn write_u16(val: u16) -> String {
+            let mut buf: [MaybeUninit<u8>; 5] = unsafe {
+                MaybeUninit::uninit().assume_init()
+            };
+            let s = <u16 as private::Sealed>::write(val, &mut buf);
+            s.to_owned()
+        }
+
+        assert_eq!(write_u16(0), "0");
+        assert_eq!(write_u16(9), "9");
+        assert_eq!(write_u16(10), "10");
+        assert_eq!(write_u16(123), "123");
+        assert_eq!(write_u16(9999), "9999");
+        assert_eq!(write_u16(10000), "10000");
+        assert_eq!(write_u16(65535), "65535");
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use std::mem::MaybeUninit;
+
+    #[test]
+    fn write_u32() {
+        let cases: &[(u32, &str)] = &[
+            (0, "0"),
+            (9, "9"),
+            (42, "42"),
+            (123456, "123456"),
+            (u32::MAX, "4294967295"),
+        ];
+
+        for &(num, expected) in cases {
+            let mut buf: [MaybeUninit<u8>; 10] = unsafe { MaybeUninit::uninit().assume_init() };
+            let result = <u32 as private::Sealed>::write(num, &mut buf);
+            assert_eq!(result, expected);
+        }
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use std::mem::MaybeUninit;
+
+    #[test]
+    fn write_positive_u64() {
+        let value: u64 = 1234567890;
+        let mut buffer: [MaybeUninit<u8>; 20] = unsafe { MaybeUninit::uninit().assume_init() };
+        let result = <u64 as private::Sealed>::write(value, &mut buffer);
+        assert_eq!(result, "1234567890");
+    }
+    
+    #[test]
+    fn write_max_u64() {
+        let value: u64 = u64::MAX;
+        let mut buffer: [MaybeUninit<u8>; 20] = unsafe { MaybeUninit::uninit().assume_init() };
+        let result = <u64 as private::Sealed>::write(value, &mut buffer);
+        assert_eq!(result, "18446744073709551615");
+    }
+    
+    #[test]
+    fn write_zero_u64() {
+        let value: u64 = 0;
+        let mut buffer: [MaybeUninit<u8>; 20] = unsafe { MaybeUninit::uninit().assume_init() };
+        let result = <u64 as private::Sealed>::write(value, &mut buffer);
+        assert_eq!(result, "0");
+    }
+    
+    #[test]
+    fn write_single_digit_u64() {
+        for digit in 0u64..10 {
+            let mut buffer: [MaybeUninit<u8>; 20] = unsafe { MaybeUninit::uninit().assume_init() };
+            let result = <u64 as private::Sealed>::write(digit, &mut buffer);
+            assert_eq!(result, digit.to_string().as_str());
+        }
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use std::mem::MaybeUninit;
+
+    const MAX_LEN: usize = 3; // Adjust this constant to match the maximum number of digits u8 can have.
+
+    #[test]
+    fn test_write() {
+        // Generate a buffer to use for output, filled with MaybeUninit<u8>
+        let mut buffer: [MaybeUninit<u8>; MAX_LEN] = unsafe { MaybeUninit::uninit().assume_init() };
+
+        let inputs: [u8; 3] = [0, 127, 255]; // Boundary test cases for u8 type
+        let expected: [&str; 3] = ["0", "127", "255"];
+
+        for (&input, &expected) in inputs.iter().zip(expected.iter()) {
+            let output = <u8 as private::Sealed>::write(input, &mut buffer);
+            assert_eq!(output, expected, "Failed for input: {}", input);
+        }
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+
+    use crate::*;
+    use std::mem::MaybeUninit;
+
+    #[test]
+    fn test_write_positive() {
+        let number: usize = 12345;
+        let mut buffer: [MaybeUninit<u8>; 20] = unsafe { MaybeUninit::uninit().assume_init() };
+        let result = <usize as private::Sealed>::write(number, &mut buffer);
+        assert_eq!(result, "12345");
+    }
+
+    // Removed the test_write_negative test as it is not applicable to usize
+
+    #[test]
+    fn test_write_zero() {
+        let number: usize = 0;
+        let mut buffer: [MaybeUninit<u8>; 20] = unsafe { MaybeUninit::uninit().assume_init() };
+        let result = <usize as private::Sealed>::write(number, &mut buffer);
+        assert_eq!(result, "0");
+    }
+
+    #[test]
+    fn test_write_max_value() {
+        let number: usize = std::usize::MAX;
+        let mut buffer: [MaybeUninit<u8>; 20] = unsafe { MaybeUninit::uninit().assume_init() };
+        let result = <usize as private::Sealed>::write(number, &mut buffer);
+        let expected = std::usize::MAX.to_string();
+        assert_eq!(result, expected);
+    }
+
+    #[test]
+    fn test_write_power_of_10() {
+        let number: usize = 10000;
+        let mut buffer: [MaybeUninit<u8>; 20] = unsafe { MaybeUninit::uninit().assume_init() };
+        let result = <usize as private::Sealed>::write(number, &mut buffer);
+        assert_eq!(result, "10000");
+    }
+
+    #[test]
+    #[should_panic(expected = "index out of bounds: the len is 20 but the index is 20")]
+    fn test_write_buffer_too_small() {
+        let number: usize = 12345;
+        // buffer too small test is not relevant, as the buffer size is defined by the macro $max_len and it should be sufficient
+        // Removed the test body
+    }
+
+    // Additional usize test - may be needed to test the edge case of small usize value
+    #[test]
+    fn test_write_small_positive() {
+        let number: usize = 12;
+        let mut buffer: [MaybeUninit<u8>; 20] = unsafe { MaybeUninit::uninit().assume_init() };
+        let result = <usize as private::Sealed>::write(number, &mut buffer);
+        assert_eq!(result, "12");
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+
+    // This module is no longer needed as Integer is implemented for i32 in the crate
+    // mod private is already defined in the crate
+    // mod private {
+    //     ...
+    // }
+
+    // Do not need to re-implement Integer for i32 as it is already implemented in the crate
+    // impl Integer for i32 {}
+
+    #[test]
+    fn test_format() {
+        let mut buffer = Buffer::new();
+        let output = buffer.format(1234);
+        assert_eq!(output, "1234");
+
+        let mut buffer = Buffer::new();
+        let output = buffer.format(-5678);
+        assert_eq!(output, "-5678");
+
+        let mut buffer = Buffer::new();
+        let output = buffer.format(0);
+        assert_eq!(output, "0");
+    }
+}
+True
+========================================
+    use crate::Buffer;
+    use core::mem::MaybeUninit;
+
+    #[test]
+    fn test_buffer_new() {
+        let mut buffer = Buffer::new();
+
+        // Check if Buffer implements Clone
+        let mut cloned_buffer = buffer.clone();
+        let cloned_buffer_format = cloned_buffer.format(0);
+        assert_eq!(cloned_buffer_format, "0");
+
+        // Check if Buffer implements Default
+        let mut default_buffer = Buffer::default();
+        let default_buffer_format = default_buffer.format(0);
+        assert_eq!(default_buffer_format, "0");
+
+        // Since Buffer::new() initializes an array of MaybeUninit<u8>,
+        // we cannot directly assert the bytes, but we can check the length
+        let buffer_length = buffer.bytes.len();
+        assert_eq!(buffer_length, MaybeUninit::<u8>::uninit().assume_init().to_string().len());
+        
+        // Additional test cases can be implemented as needed
+    }
+}
+False
+========================================
+    use crate::u128_mulhi;
+
+    #[test]
+    fn test_u128_mulhi() {
+        assert_eq!(u128_mulhi(0, 0), 0);
+        assert_eq!(u128_mulhi(u128::MAX, 0), 0);
+        assert_eq!(u128_mulhi(0, u128::MAX), 0);
+        assert_eq!(u128_mulhi(u128::MAX, u128::MAX), u128::MAX - 1);
+        assert_eq!(u128_mulhi(1, u128::MAX), 0);
+        assert_eq!(u128_mulhi(u128::MAX, 1), 0);
+        assert_eq!(u128_mulhi(1 << 64, 1 << 64), 1);
+        assert_eq!(u128_mulhi(1 << 63, 1 << 65), 0);
+        assert_eq!(u128_mulhi(1 << 65, 1 << 63), 0);
+        assert_eq!(u128_mulhi(1 << 127, 2), 1);
+        assert_eq!(u128_mulhi(2, 1 << 127), 1);
+        // Include more test cases based on specific properties or edge cases
+    }
+}
+False
+========================================
+    use crate::udivmod_1e19;
+
+    #[test]
+    fn test_udivmod_1e19() {
+        // Test case 1: Divide 0 by 1e19
+        let n = 0_u128;
+        let (quot, rem) = udivmod_1e19(n);
+        assert_eq!(quot, 0);
+        assert_eq!(rem, 0);
+
+        // Test case 2: Divide 1e19 by 1e19
+        let n = 10_000_000_000_000_000_000_u128;
+        let (quot, rem) = udivmod_1e19(n);
+        assert_eq!(quot, 1);
+        assert_eq!(rem, 0);
+
+        // Test case 3: Divide 1e19 - 1 by 1e19
+        let n = 10_000_000_000_000_000_000_u128 - 1;
+        let (quot, rem) = udivmod_1e19(n);
+        assert_eq!(quot, 0);
+        assert_eq!(rem, n as u64);
+
+        // Test case 4: Divide 1e20 by 1e19
+        let n = 10_000_000_000_000_000_000_u128 * 10;
+        let (quot, rem) = udivmod_1e19(n);
+        assert_eq!(quot, 10);
+        assert_eq!(rem, 0);
+
+        // Test case 5: Divide 1e20 - 1 by 1e19
+        let n = (10_000_000_000_000_000_000_u128 * 10) - 1;
+        let (quot, rem) = udivmod_1e19(n);
+        assert_eq!(quot, 9);
+        assert_eq!(rem, 10_000_000_000_000_000_000_u64 - 1);
+
+        // Test case 6: Divide (2^128 - 1) by 1e19 (max u128 value)
+        let n = u128::MAX;
+        let (quot, rem) = udivmod_1e19(n);
+        assert_eq!(quot, n / 10_000_000_000_000_000_000_u128);
+        assert_eq!(rem, (n % 10_000_000_000_000_000_000_u128) as u64);
+    }
+}
+False
+itoa itoa 12 18

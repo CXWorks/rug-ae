@@ -1,0 +1,440 @@
+========================================
+    use super::*;
+
+use crate::*;
+    use digest::core_api::AlgorithmName;
+    use std::fmt;
+
+    #[test]
+    fn test_write_alg_name() {
+        let mut output = String::new();
+        let mut formatter = fmt::Formatter::new(&mut output);
+        StreebogVarCore::write_alg_name(&mut formatter).unwrap();
+        assert_eq!(output, "Streebog");
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::consts::U64;
+    use crate::core_api::BlockSizeUser;
+    use crate::core_api::UpdateCore;
+    use crate::core_api::VariableOutputCore;
+    use crate::core_api::BlockSize;
+    use crate::StreebogVarCore;
+    use digest::InvalidOutputSize;
+    use digest::consts::U64;
+    use digest::generic_array::GenericArray;
+    use digest::Output;
+
+    #[test]
+    fn test_update_blocks() {
+        // Initialize the hasher with the desired output size
+        let output_size = 64;
+        let mut hasher = StreebogVarCore::new(output_size).unwrap();
+
+        // Create two blocks of data
+        let block_size = <StreebogVarCore as BlockSizeUser>::BlockSize::to_usize();
+        let data_block1 = GenericArray::clone_from_slice(&[0x00; 64][..block_size]);
+        let data_block2 = GenericArray::clone_from_slice(&[0x00; 64][..block_size]);
+        let blocks = &[data_block1, data_block2];
+
+        // Get the initial state of the sigma and n registers
+        let initial_n = hasher.n;
+        let initial_sigma = hasher.sigma;
+
+        // Call the `update_blocks` method on the hasher
+        hasher.update_blocks(blocks);
+
+        // Verify that both sigma and n registers have been updated
+        assert_ne!(hasher.n, initial_n, "Expected `n` to change after processing blocks");
+        assert_ne!(hasher.sigma, initial_sigma, "Expected `sigma` to change after processing blocks");
+        
+        // Verify that the hasher state (h register) has changed
+        let expected_h = [0; 64]; // Assuming initial h of StreebogVarCore is [0; 64]
+        assert_ne!(hasher.h, expected_h, "Expected `h` to change after processing blocks");
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use digest::core_api::{Buffer, VariableOutputCore};
+    use digest::InvalidOutputSize;
+    use crate::block::BlockSizeUser;
+    use crate::core_api::OutputSizeUser;
+    use crate::crate::StreebogVarCore;
+
+    #[test]
+    fn test_finalize_variable_core() {
+        let output_size = 64;
+        let mut hasher = StreebogVarCore::new(output_size).unwrap();
+        let data = b"test input data";
+        let mut buffer = Buffer::default();
+        buffer.initialize(data.len());
+        let mut output = vec![0u8; hasher.output_size()];
+        
+        buffer.update(data);
+        hasher.update_core(buffer.full_blocks());
+        buffer.set_pos(data.len());
+        hasher.finalize_variable_core(&mut buffer, &mut output);
+
+        let expected = &hasher.h[..output_size];
+        assert_eq!(output, expected);
+    }
+
+    #[test]
+    fn test_finalize_variable_core_with_error() {
+        let output_size = 30;
+        assert!(matches!(StreebogVarCore::new(output_size), Err(InvalidOutputSize)));
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::*;
+    use digest::core_api::VariableOutputCore;
+
+    #[test]
+    fn test_new_with_valid_output_sizes() {
+        // Output size 32 should create StreebogVarCore with h filled with 1
+        if let Ok(instance_32) = StreebogVarCore::new(32) {
+            assert_eq!(instance_32.h, [1; 64]);
+        } else {
+            panic!("StreebogVarCore::new(32) should not have failed");
+        }
+        
+        // Output size 64 should create StreebogVarCore with h filled with 0
+        if let Ok(instance_64) = StreebogVarCore::new(64) {
+            assert_eq!(instance_64.h, [0; 64]);
+        } else {
+            panic!("StreebogVarCore::new(64) should not have failed");
+        }
+    }
+    
+    #[test]
+    fn test_new_with_invalid_output_sizes() {
+        // Any other output size should return an error
+        let result = StreebogVarCore::new(0);
+        assert!(result.is_err());
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn test_compress() {
+        let block = [0u8; 64];
+        let msg_len = block.len() as u64;
+        let mut hasher = StreebogVarCore::new(64).unwrap();
+        let initial_n = hasher.n;
+        let initial_sigma = hasher.sigma;
+        
+        hasher.compress(&block, msg_len);
+
+        // Check that `n` (bit length of the message) has been incremented correctly
+        let expected_n = {
+            let mut temp_n = initial_n;
+            let mut carry = 0;
+            adc(&mut temp_n[0], msg_len * 8, &mut carry);
+            temp_n
+        };
+        assert_eq!(hasher.n, expected_n, "n should be incremented correctly");
+
+        // Check that `sigma` (the sum of the message blocks) has been incremented correctly
+        let expected_sigma = {
+            let mut temp_sigma = initial_sigma;
+            let block_as_u64 = from_bytes(&block);
+            let mut carry = 0;
+            for (sigma_val, &block_val) in temp_sigma.iter_mut().zip(block_as_u64.iter()) {
+                adc(sigma_val, block_val, &mut carry);
+            }
+            temp_sigma
+        };
+        assert_eq!(hasher.sigma, expected_sigma, "sigma should be incremented correctly");
+
+        // Check that the internal state `h` has been updated, this may involve a mock `g` function
+        // and storing the initial state of `h`. Since the actual `g` function implementation is not
+        // shown, it is not possible to predict the expected state of `h` after the `compress` call
+        // without more details on how `g` works.
+        // assert_eq!(hasher.h, expected_h, "h should be updated correctly");
+        
+        // This omitted assertion may be completed with a call to a mocked `g` function and
+        // a comparison with the `h` state returned, to validate that `compress` is updating `h` as expected.
+        // Since this is not practical without the details, the actual assertion should be omitted or
+        // replaced with a mock verification as needed.
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use digest::core_api::VariableOutputCore;
+    use digest::generic_array::GenericArray;
+    use digest::typenum::U64;
+
+    #[test]
+    fn g_function_test() {
+        let mut core = StreebogVarCore::new(64).unwrap();
+        let n = GenericArray::<u8, U64>::default();
+        let m = GenericArray::<u8, U64>::default();
+
+        let h_initial = core.h;
+        core.g(&n, &m);
+
+        let h_final = core.h;
+        // Verify that `h` has been updated correctly after `g` function
+        assert_ne!(h_initial, h_final, "Hash state `h` should change after calling `g` function");
+
+        // Reset core state
+        core.h = h_initial;
+
+        // Verify that `g` function is deterministic for the same `n` and `m`
+        core.g(&n, &m);
+        assert_eq!(h_final, core.h, "Calling `g` function with the same `n` and `m` should result in the same `h` state");
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use digest::core_api::CoreWrapper;
+    use digest::InvalidOutputSize;
+    use digest::UpdateCore;
+    use digest::{FixedOutput, FixedOutputReset, Update};
+    use generic_array::GenericArray;
+    use generic_array::typenum::U64;
+
+    #[test]
+    fn update_n_basic() {
+        let mut core = StreebogVarCore::new(64).unwrap();
+        let initial_n = core.n;
+
+        // The `update_n` function should update the first element of the `n` array
+        // by adding 8 times the `len` to it (since we multiply by 8 in the `update_n` method).
+        let len = 1u64;
+        core.update_n(len);
+
+        let expected_n = {
+            let mut tmp = initial_n;
+            tmp[0] += 8 * len;
+            tmp
+        };
+
+        assert_eq!(core.n, expected_n, "update_n should increment n[0] by 8 * len");
+    }
+
+    #[test]
+    fn update_n_with_carry() {
+        let mut core = StreebogVarCore::new(64).unwrap();
+        let mut initial_n = core.n;
+
+        // Set the initial value of `n[0]` to near the maximum so we get a carry
+        initial_n[0] = u64::MAX - 7;
+        core.n = initial_n;
+
+        let len = 1u64;
+        core.update_n(len);
+
+        let expected_n = {
+            let mut tmp = initial_n;
+            let carry = tmp[0].overflowing_add(8 * len).1 as u64;
+            tmp[0] = 0;
+            tmp[1] += carry;
+            tmp
+        };
+
+        assert_eq!(core.n, expected_n, "update_n should handle carry to n[1]");
+    }
+
+    #[test]
+    fn update_n_with_large_len() {
+        let mut core = StreebogVarCore::new(64).unwrap();
+        let initial_n = core.n;
+
+        let len = u64::MAX / 8;
+        core.update_n(len);
+
+        let expected_n = {
+            let mut tmp = initial_n;
+            tmp[0] += 8 * len;
+            tmp
+        };
+
+        assert_eq!(core.n, expected_n, "update_n with large len should update n[0] appropriately");
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::core_api::StreebogVarCore;
+    use digest::core_api::UpdateCore;
+    use digest::generic_array::typenum::U64;
+    use digest::generic_array::GenericArray;
+
+    #[test]
+    fn update_sigma_correctly_updates_sigma_value() {
+        let mut core = StreebogVarCore::new(64).unwrap();
+        let mut expected_sigma = [0u64; 8];
+        let block = GenericArray::default(); // Assuming all zeros block.
+
+        // Perform update with an all-zero block which should not change sigma
+        core.update_sigma(&block);
+        assert_eq!(core.sigma, expected_sigma);
+
+        // Update with a non-zero block and test
+        let non_zero_block = GenericArray::clone_from_slice(&[1u8; 64]); // Make non_zero_block a GenericArray
+        let non_zero_block_value = u64::from_le_bytes(*b"\x01\x00\x00\x00\x00\x00\x00\x00");
+        core.update_sigma(&non_zero_block);
+        expected_sigma[0] = non_zero_block_value;
+        assert_eq!(core.sigma, expected_sigma);
+
+        // Update with another block to test sigma accumulation
+        core.update_sigma(&non_zero_block);
+        expected_sigma[0] = non_zero_block_value * 2;
+        assert_eq!(core.sigma, expected_sigma);
+    }
+}
+False
+========================================
+    use crate::adc;
+
+    #[test]
+    fn test_adc_no_carry() {
+        let mut a: u64 = 123456789;
+        let b: u64 = 987654321;
+        let mut carry: u64 = 0;
+
+        adc(&mut a, b, &mut carry);
+
+        assert_eq!(a, 123456789 + 987654321);
+        assert_eq!(carry, 0);
+    }
+
+    #[test]
+    fn test_adc_with_carry() {
+        let mut a: u64 = u64::MAX;
+        let b: u64 = 1;
+        let mut carry: u64 = 0;
+
+        adc(&mut a, b, &mut carry);
+
+        assert_eq!(a, 0);
+        assert_eq!(carry, 1);
+    }
+
+    #[test]
+    fn test_adc_with_existing_carry() {
+        let mut a: u64 = u64::MAX - 1;
+        let b: u64 = 1;
+        let mut carry: u64 = 1;
+
+        adc(&mut a, b, &mut carry);
+
+        assert_eq!(a, 1);
+        assert_eq!(carry, 0);
+    }
+
+    #[test]
+    fn test_adc_with_large_numbers() {
+        let mut a: u64 = 0xFFFFFFFFFFFFFFFE;
+        let b: u64 = 0xFFFFFFFFFFFFFFFE;
+        let mut carry: u64 = 1;
+
+        adc(&mut a, b, &mut carry);
+
+        assert_eq!(a, 0xFFFFFFFFFFFFFFFD);
+        assert_eq!(carry, 1);
+    }
+}
+False
+========================================
+    use crate::from_bytes;
+    use crate::Block;
+
+    #[test]
+    fn test_from_bytes() {
+        let input_block: Block = [1, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0];
+        let result = from_bytes(&input_block);
+        let expected: [u64; 8] = [1, 2, 3, 4, 5, 6, 7, 8];
+        assert_eq!(result, expected);
+    }
+}
+False
+========================================
+    use crate::lps;
+    use crate::to_u64;
+
+    // SHUFFLED_LIN_TABLE is assumed to be defined in the same module as lps function.
+    // Therefore, it is not redefined here in tests.
+
+    #[test]
+    fn test_lps() {
+        // You should replace these values with actual test values.
+        let mut h = [0u8; 64]; // Placeholder for initial `h` value.
+        let n = [0u8; 64]; // Placeholder for `n` value.
+        
+        // Expected output should be calculated according to the actual values of `h` and `n`
+        let expected = [0u8; 64]; // Placeholder for expected result after `lps` is applied.
+        
+        lps(&mut h, &n);
+
+        let h_u64 = to_u64(&h);
+        let expected_u64 = to_u64(&expected);
+        
+        assert_eq!(h_u64, expected_u64, "lps function did not produce the expected output");
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn test_to_bytes() {
+        // Given an array of four u64 values
+        let input: [u64; 8] = [
+            0x0123456789abcdef,
+            0xfedcba9876543210,
+            0x0f1e2d3c4b5a6978,
+            0x89abcdef01234567,
+            0x0123456789abcdef,
+            0xfedcba9876543210,
+            0x0f1e2d3c4b5a6978,
+            0x89abcdef01234567,
+        ];
+
+        // When `to_bytes` is called
+        let output = to_bytes(&input);
+
+        // Then the output should be the little-endian byte representation of the input
+        let expected: [u8; 64] = [
+            0xef, 0xcd, 0xab, 0x89, 0x67, 0x45, 0x23, 0x01,
+            0x10, 0x32, 0x54, 0x76, 0x98, 0xba, 0xdc, 0xfe,
+            0x78, 0x69, 0x5a, 0x4b, 0x3c, 0x2d, 0x1e, 0x0f,
+            0x67, 0x45, 0x23, 0x01, 0xef, 0xcd, 0xab, 0x89,
+            0xef, 0xcd, 0xab, 0x89, 0x67, 0x45, 0x23, 0x01,
+            0x10, 0x32, 0x54, 0x76, 0x98, 0xba, 0xdc, 0xfe,
+            0x78, 0x69, 0x5a, 0x4b, 0x3c, 0x2d, 0x1e, 0x0f,
+            0x67, 0x45, 0x23, 0x01, 0xef, 0xcd, 0xab, 0x89,
+        ];
+
+        // The output should match the expected value
+        assert_eq!(output, expected, "to_bytes did not produce the expected output");
+    }
+}
+True
+hashes streebog 3 12

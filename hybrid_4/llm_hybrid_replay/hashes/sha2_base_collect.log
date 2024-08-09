@@ -1,0 +1,1656 @@
+========================================
+    use digest::core_api::AlgorithmName;
+    use crate::Sha256VarCore;
+    use core::fmt;
+    
+    #[test]
+    fn test_write_alg_name() {
+        let mut buffer = String::new();
+        let mut writer = fmt::Formatter::new(&mut buffer);
+        let _ = <Sha256VarCore as AlgorithmName>::write_alg_name(&mut writer);
+        assert_eq!(buffer, "Sha256");
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::*;
+    use core::fmt;
+    use digest::core_api::{UpdateCore, Block};
+    use digest::InvalidOutputSize;
+    use crate::core_api::BlockSizeUser;
+    use digest::consts::{U32, U64};
+
+    // This test will check the `update_blocks` function by updating the `Sha256VarCore` state with a single block, and ensuring that the state and block_len are updated correctly.
+    #[test]
+    fn test_update_blocks_single() {
+        let mut core = Sha256VarCore::new(32).unwrap();
+        let block = Block::<Sha256VarCore>::default();
+        core.update_blocks(&[block]);
+        assert_eq!(core.block_len, 1);
+    }
+
+    // This test will check that updating with multiple blocks results in the correct `block_len` and state changes.
+    #[test]
+    fn test_update_blocks_multiple() {
+        let mut core = Sha256VarCore::new(32).unwrap();
+        let block = Block::<Sha256VarCore>::default();
+        core.update_blocks(&[block, block]);
+        assert_eq!(core.block_len, 2);
+    }
+
+    // This test will check that updating with no blocks leaves the state unchanged.
+    #[test]
+    fn test_update_blocks_no_blocks() {
+        let mut core = Sha256VarCore::new(32).unwrap();
+        core.update_blocks(&[]);
+        assert_eq!(core.block_len, 0);
+    }
+
+    // This test will check that `update_blocks` updates the internal state with multiple calls.
+    #[test]
+    fn test_update_blocks_incremental() {
+        let mut core = Sha256VarCore::new(32).unwrap();
+        let block = Block::<Sha256VarCore>::default();
+        core.update_blocks(&[block]);
+        core.update_blocks(&[block]);
+        assert_eq!(core.block_len, 2);
+    }
+
+    // This test will check the behavior when updating with a block after there are blocks in the internal state.
+    #[test]
+    fn test_update_blocks_after_blocks() {
+        let mut core = Sha256VarCore::new(32).unwrap();
+        let block = Block::<Sha256VarCore>::default();
+        core.update_blocks(&[block, block]);
+        core.update_blocks(&[block]);
+        assert_eq!(core.block_len, 3);
+    }
+
+    // This test will check that the maximum block length does not overflow the `block_len` field.
+    // This test is relevant if the block_len field would ever be changed from u64 to a smaller type.
+    #[test]
+    fn test_update_blocks_max_len() {
+        let mut core = Sha256VarCore::new(32).unwrap();
+        let block = Block::<Sha256VarCore>::default();
+        let block_size = <Sha256VarCore as BlockSizeUser>::BlockSize::U64 as u64;
+        let max_blocks = u64::MAX / block_size;
+        for _ in 0..max_blocks {
+            core.update_blocks(&[block]);
+        }
+        assert_eq!(core.block_len, max_blocks);
+    }
+}
+True
+========================================
+    use crate::core_api::Sha256VarCore;
+    use digest::core_api::{Buffer, VariableOutputCore};
+    use digest::{FixedOutput, Update};
+    use hex_literal::hex;
+
+    #[test]
+    fn sha256_variable_core_finalize_empty() {
+        // Test case for empty input
+        let mut core = Sha256VarCore::new(32).unwrap();
+        let mut buffer = Buffer::<Sha256VarCore>::default();
+        let mut output = core.finalize_variable_core(&mut buffer).unwrap();
+
+        let result = hex::encode(output);
+        let expected = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"; // Empty SHA-256
+        assert_eq!(result, expected);
+    }
+
+    #[test]
+    fn sha256_variable_core_finalize_non_empty() {
+        // Test case for "abc" input
+        let input = b"abc";
+        let mut core = Sha256VarCore::new(32).unwrap();
+        let mut buffer = Buffer::<Sha256VarCore>::default();
+        
+        buffer.update(input);
+        core.update_blocks(&buffer.finalize_block());
+
+        let mut output = core.finalize_variable_core(&mut buffer).unwrap();
+
+        let result = hex::encode(output);
+        let expected = "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"; // SHA-256 for "abc"
+        assert_eq!(result, expected);
+    }
+
+    #[test]
+    #[should_panic(expected = "InvalidOutputSize")]
+    fn sha256_variable_core_finalize_invalid_size() {
+        // Test case for an invalid output size
+        let _ = Sha256VarCore::new(30).unwrap();
+    }
+}
+False
+========================================
+    use super::*; // Ideally, you should replace this with the actual imports you need
+
+use crate::*;
+    use crate::core_api::Sha256VarCore; // Replace with the actual path
+    use digest::core_api::VariableOutputCore; // Replace with the actual import path
+    use digest::InvalidOutputSize; // Replace with the actual import path
+
+    #[test]
+    fn test_sha256_var_core_new_valid_224() {
+        assert!(Sha256VarCore::new(28).is_ok());
+    }
+
+    #[test]
+    fn test_sha256_var_core_new_valid_256() {
+        assert!(Sha256VarCore::new(32).is_ok());
+    }
+
+    #[test]
+    fn test_sha256_var_core_new_invalid_size() {
+        assert!(Sha256VarCore::new(30).is_err());
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use digest::core_api::AlgorithmName;
+    use crate::core_api::Sha512VarCore;
+    use std::fmt::Write as _;
+    use std::fmt::Formatter;
+
+    #[test]
+    fn test_write_alg_name() {
+        let mut output = String::new();
+        let mut formatter = Formatter::new(&mut output);
+        let core = Sha512VarCore;
+        core.write_alg_name(&mut formatter).unwrap();
+        assert_eq!(output, "Sha512");
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::consts::State512;
+    use crate::core_api::Sha512VarCore;
+    use crate::core_api::UpdateCore;
+    use crate::core_api::Block;
+    use crate::core_api::InvalidOutputSize;
+    use digest::generic_array::typenum::U128;
+    use digest::generic_array::GenericArray;
+
+    #[test]
+    fn update_blocks_increases_block_length() {
+        let mut core = Sha512VarCore::new(64).unwrap();
+        let initial_block_len = core.block_len;
+        let block = GenericArray::<u8, U128>::default();
+        let blocks = [block; 1];
+        core.update_blocks(&blocks);
+        assert_eq!(core.block_len, initial_block_len + blocks.len() as u128);
+    }
+
+    #[test]
+    fn update_blocks_processes_multiple_blocks() {
+        let mut core = Sha512VarCore::new(64).unwrap();
+        let block = GenericArray::<u8, U128>::default();
+        let blocks = [block; 2];
+        core.update_blocks(&blocks);
+        assert_eq!(core.block_len, blocks.len() as u128);
+    }
+
+    #[test]
+    fn update_blocks_invalid_output_size_error() {
+        assert!(Sha512VarCore::new(16).is_err());
+    }
+
+    // Remove the stub implementation as the actual `compress512` from the crate is used
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::core_api::Sha512VarCore;
+    use crate::Sha512;
+    use digest::core_api::CoreWrapper;
+    use digest::crypto_common::{BlockSizeUser, InvalidOutputSize};
+    use digest::generic_array::GenericArray;
+    use digest::Digest;
+
+    #[test]
+    fn test_finalize_variable_core() {
+        // Output sizes to test: 28, 32, 48, 64 bytes
+        let output_sizes = [224, 256, 384, 512];
+        let input = b"The quick brown fox jumps over the lazy dog";
+        let hash = Sha512::digest(input);
+
+        for &bits in &output_sizes {
+            let bytes = bits / 8;
+            let mut digest = CoreWrapper::<Sha512VarCore>::new(bytes).unwrap();
+            digest.update(input);
+            let result = digest.finalize_variable();
+            assert_eq!(result.len(), bytes, "Output size for {} bits", bits);
+            assert!(result.as_slice() != &hash.as_slice()[..bytes], "Hash output for {} bits", bits);
+        }
+    }
+}
+False
+========================================
+    use crate::core_api::Sha512VarCore;
+    use digest::core_api::VariableOutputCore;
+    use digest::InvalidOutputSize;
+
+    #[test]
+    fn sha512_var_core_new_valid_output_sizes() {
+        assert!(Sha512VarCore::new(28).is_ok());
+        assert!(Sha512VarCore::new(32).is_ok());
+        assert!(Sha512VarCore::new(48).is_ok());
+        assert!(Sha512VarCore::new(64).is_ok());
+    }
+
+    #[test]
+    fn sha512_var_core_new_invalid_output_sizes() {
+        assert!(Sha512VarCore::new(0).is_err());
+        assert!(Sha512VarCore::new(1).is_err());
+        assert!(Sha512VarCore::new(27).is_err());
+        assert!(Sha512VarCore::new(29).is_err());
+        assert!(Sha512VarCore::new(31).is_err());
+        assert!(Sha512VarCore::new(33).is_err());
+        assert!(Sha512VarCore::new(47).is_err());
+        assert!(Sha512VarCore::new(49).is_err());
+        assert!(Sha512VarCore::new(63).is_err());
+        assert!(Sha512VarCore::new(65).is_err());
+        assert!(Sha512VarCore::new(100).is_err());
+        assert!(Sha512VarCore::new(usize::MAX).is_err());
+    }
+}
+True
+========================================
+    use crate::compress256;
+    use crate::digest::generic_array::GenericArray;
+    use crate::digest::generic_array::typenum::U64;
+
+    #[test]
+    fn test_compress256() {
+        let mut state = [
+            0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a,
+            0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19,
+        ];
+        let block = GenericArray::clone_from_slice(&[
+            0xd8, 0x9e, 0x05, 0xc1, 0x5a, 0x5a, 0x2b, 0xc3,
+            0x1e, 0x1f, 0x41, 0x67, 0x5d, 0x0d, 0x12, 0x0c,
+            0x9b, 0xc3, 0x3b, 0x35, 0x41, 0x05, 0x1b, 0x0e,
+            0x29, 0x12, 0x1d, 0x14, 0x57, 0x2b, 0x38, 0x0a,
+            0x29, 0x12, 0x1d, 0x14, 0x57, 0x2b, 0x38, 0x0a,
+            0x29, 0x12, 0x1d, 0x14, 0x57, 0x2b, 0x38, 0x0a,
+            0x29, 0x12, 0x1d, 0x14, 0x57, 0x2b, 0x38, 0x0a,
+            0x29, 0x12, 0x1d, 0x14, 0x57, 0x2b, 0x38, 0x0a,
+        ]);
+        let blocks = &[block];
+
+        compress256(&mut state, blocks);
+
+        let expected_state = [
+            // This state should be the state after compressing the block
+            // which should be calculated according to SHA-256 specification
+            // The following values are placeholders
+            0x00010203, 0x04050607, 0x08090a0b, 0x0c0d0e0f,
+            0x10111213, 0x14151617, 0x18191a1b, 0x1c1d1e1f,
+        ];
+
+        assert_eq!(state, expected_state, "SHA-256 compression failed");
+    }
+}
+False
+========================================
+    use crate::add;
+
+    #[test]
+    fn test_add() {
+        let a = [1, 2, 3, 4];
+        let b = [10, 20, 30, 40];
+        assert_eq!(add(a, b), [11, 22, 33, 44]);
+
+        let a = [u32::MAX, 0, u32::MAX, 0];
+        let b = [1, 1, 1, 1];
+        assert_eq!(add(a, b), [0, 1, 0, 1]);
+
+        let a = [0, u32::MAX, 0, u32::MAX];
+        let b = [1, 1, 1, 1];
+        assert_eq!(add(a, b), [1, 0, 1, 0]);
+    }
+}
+False
+========================================
+    use crate::compress;
+    use crate::sha256_digest_block_u32;
+
+    #[test]
+    fn test_compress_single_block() {
+        let mut state = [
+            0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a,
+            0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19,
+        ];
+        let block: [[u8; 64]; 1] = [
+            [
+                0xe3, 0xb0, 0xc4, 0x42, 0x98, 0xfc, 0x1c, 0x14, 0x9a, 0xfb, 0xf4, 0xc8, 0x99, 0x6f,
+                0xb9, 0x24, 0x27, 0xae, 0x41, 0xe4, 0x64, 0x9b, 0x93, 0x4c, 0xa4, 0x95, 0x99, 0x1b,
+                0x78, 0x52, 0xb8, 0x55, 0xb9, 0x7a, 0x31, 0x87, 0x3c, 0x73, 0x38, 0xf8, 0x25, 0xe3,
+                0x16, 0x33, 0xf4, 0x19, 0x42, 0x38, 0x44, 0x4e, 0xb8, 0xe8, 0xf1, 0x78, 0x88, 0x55,
+                0x60, 0x8c, 0xb9, 0x8b, 0xae, 0x85, 0xbd, 0x29, 0x04, 0x97, 0xea, 0xf1, 0x7e, 0x3b,
+            ],
+        ];
+
+        let expected_state = [
+            0xd298e8e8, 0x6986ab62, 0x9e5092de, 0x52aaf265,
+            0xa5de0a97, 0x3c6e8d0d, 0xe22a5e12, 0x6d4e8aaf,
+        ];
+
+        compress(&mut state, &block);
+
+        assert_eq!(state, expected_state);
+    }
+
+    #[test]
+    fn test_compress_multiple_blocks() {
+        let mut state = [
+            0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a,
+            0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19,
+        ];
+        let blocks: [[u8; 64]; 2] = [
+            [
+                0xe3, 0xb0, 0xc4, 0x42, 0x98, 0xfc, 0x1c, 0x14, 0x9a, 0xfb, 0xf4, 0xc8, 0x99, 0x6f,
+                0xb9, 0x24, 0x27, 0xae, 0x41, 0xe4, 0x64, 0x9b, 0x93, 0x4c, 0xa4, 0x95, 0x99, 0x1b,
+                0x78, 0x52, 0xb8, 0x55, 0xb9, 0x7a, 0x31, 0x87, 0x3c, 0x73, 0x38, 0xf8, 0x25, 0xe3,
+                0x16, 0x33, 0xf4, 0x19, 0x42, 0x38, 0x44, 0x4e, 0xb8, 0xe8, 0xf1, 0x78, 0x88, 0x55,
+                0x60, 0x8c, 0xb9, 0x8b, 0xae, 0x85, 0xbd, 0x29, 0x04, 0x97, 0xea, 0xf1, 0x7e, 0x3b,
+            ],
+            [
+                0x19, 0xfa, 0x61, 0xd7, 0x55, 0x22, 0xa4, 0x66, 0x9b, 0x44, 0xe3, 0x9c, 0x1d, 0x2e, 0x17,
+                0x26, 0xc5, 0x30, 0x23, 0x21, 0x30, 0xd4, 0x07, 0xf8, 0x9a, 0xfe, 0xe0, 0x96, 0x49, 0x97,
+                0xf7, 0xa7, 0x3e, 0x83, 0x19, 0x63, 0x10, 0xd5, 0x23, 0x95, 0x9c, 0x2d, 0x49, 0x34, 0x3a,
+                0x6a, 0xdf, 0x8e, 0x2e, 0x44, 0x0a, 0x96, 0x2d, 0x2b, 0xae, 0x4c, 0xee, 0x30, 0x1f, 0xfa,
+                0x00, 0xad, 0x7e, 0x2e, 0xf0, 0xfb, 0xc3, 0x22, 0x4b, 0x5b, 0x2b, 0x31, 0xb0, 0x2f, 0x00,
+            ],
+        ];
+
+        let expected_state = [
+            0x63f1799c, 0x5f9c3793, 0x2568c1a1, 0xdc297794,
+            0x0a8e72d6, 0x10f1e7e7, 0x2c174e53, 0x7e3cc7e2,
+        ];
+
+        compress(&mut state, &blocks);
+
+        assert_eq!(state, expected_state);
+    }
+}
+False
+========================================
+    // Use the correct path to the `or` function within the `soft` module
+    use crate::or;
+
+    #[test]
+    fn test_or() {
+        let a = [0b1100, 0b0011, 0b1010, 0b0101];
+        let b = [0b1010, 0b0101, 0b1100, 0b0011];
+        let result = or(a, b);
+        assert_eq!(result, [0b1110, 0b0111, 0b1110, 0b0111]);
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn schedule_test() {
+        // You'll need to provide actual values and expected results
+        // for v0, v1, v2, v3, and expected to test the schedule function.
+        let v0: [u32; 4] = [0, 0, 0, 0]; // Placeholder values
+        let v1: [u32; 4] = [0, 0, 0, 0]; // Placeholder values
+        let v2: [u32; 4] = [0, 0, 0, 0]; // Placeholder values
+        let v3: [u32; 4] = [0, 0, 0, 0]; // Placeholder values
+        let expected: [u32; 4] = [0, 0, 0, 0]; // Placeholder expected result
+
+        let result = schedule(v0, v1, v2, v3);
+
+        assert_eq!(result, expected);
+    }
+}
+True
+========================================
+    use crate::sha256_digest_block_u32;
+
+    // Direct application of the function simulating real usage scenario
+    #[test]
+    fn test_sha256_digest_block_u32() {
+        // Initial state of the SHA-256 as specified by the FIPS 180-4
+        let mut state: [u32; 8] = [
+            0x6a09e667,
+            0xbb67ae85,
+            0x3c6ef372,
+            0xa54ff53a,
+            0x510e527f,
+            0x9b05688c,
+            0x1f83d9ab,
+            0x5be0cd19,
+        ];
+
+        // Single block of 'abc' message
+        let block: [u32; 16] = [
+            0x61626380, 0x00000000, 0x00000000, 0x00000000,
+            0x00000000, 0x00000000, 0x00000000, 0x00000000,
+            0x00000000, 0x00000000, 0x00000000, 0x00000000,
+            0x00000000, 0x00000000, 0x00000000, 0x00000018,
+        ];
+
+        let expected: [u32; 8] = [
+            0xba7816bf, 0x8f01cfea, 0x414140de, 0x5dae2223,
+            0xb00361a3, 0x96177a9c, 0xb410ff61, 0xf20015ad,
+        ];
+
+        sha256_digest_block_u32(&mut state, &block);
+
+        assert_eq!(state, expected);
+    }
+}
+False
+========================================
+    use crate::sha256_digest_round_x2;
+
+    #[test]
+    fn test_sha256_digest_round_x2() {
+        let cdgh = [0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a];
+        let abef = [0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19];
+        let wk = [0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5];
+
+        let result = sha256_digest_round_x2(cdgh, abef, wk);
+
+        assert_eq!(result, [0x8f580c2f, 0x510e527f, 0x3a2c3a6f, 0x1f83d9ab]);
+        // The expected values should match the result of the calculation
+        // from the function when given the input values above. Keep in
+        // mind that you may need to adjust the expected values based on
+        // the actual function behavior and calculation.
+    }
+}
+False
+========================================
+    use crate::sha256load;
+
+    #[test]
+    fn test_sha256load() {
+        let v2 = [1, 2, 3, 4];
+        let v3 = [5, 6, 7, 8];
+        let result = sha256load(v2, v3);
+        assert_eq!(result, [8, 1, 2, 3]);
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::super::super::sha256load;
+    use crate::super::super::add;
+    use crate::super::super::xor;
+    use crate::super::super::or;
+    use crate::super::super::shr;
+    use crate::super::super::shl;
+
+    #[test]
+    fn test_sha256msg1() {
+        // Create example vectors to test
+        let v0: [u32; 4] = [0u32; 4];
+        let v1: [u32; 4] = [1u32; 4];
+        let expected: [u32; 4] = [0; 4]; // Assuming expected is to be replaced with an actual result
+        
+        // Perform the `sha256msg1` calculation
+        let result = sha256msg1(v0, v1);
+        
+        // Assert the result is as expected
+        assert_eq!(result, expected, "sha256msg1 did not produce the expected result.");
+    }
+}
+False
+========================================
+    use crate::super::sigma0x4;
+
+    #[test]
+    fn test_sigma0x4() {
+        // Define test cases
+        let test_cases = vec![
+            ([0x0, 0x0, 0x0, 0x0], [0x0, 0x0, 0x0, 0x0]),
+            ([0x12345678, 0x9abcdef0, 0x0fedcba9, 0x87654321], [0x11c6f4ad, 0x5efb0b5b, 0x21b7be2f, 0x1f4cd7e3]),
+            // ... include more test cases as necessary
+        ];
+
+        // Run tests
+        for (input, expected) in test_cases {
+            assert_eq!(sigma0x4(input), expected);
+        }
+    }
+}
+False
+========================================
+    use crate::sha256msg2;
+
+    #[test]
+    fn test_sha256msg2() {
+        let v4 = [0x1122_3344, 0x5566_7788, 0x99aa_bbcc, 0xddeeff00];
+        let v3 = [0x2211_3344, 0x6655_7788, 0xaabb_ccdd, 0xffeeddcc];
+
+        let result = sha256msg2(v4, v3);
+
+        assert_eq!(result, [
+            0x2df1_c372, // expected w19
+            0x6bd3_cb5b, // expected w18
+            0x1032_77e0, // expected w17
+            0x3ce6_3e66  // expected w16
+        ]);
+    }
+}
+False
+========================================
+    use crate::sha256swap;
+
+    #[test]
+    fn test_sha256swap() {
+        assert_eq!(sha256swap([1, 2, 3, 4]), [3, 4, 1, 2]);
+        assert_eq!(sha256swap([0, 0, 1, 1]), [1, 1, 0, 0]);
+        assert_eq!(sha256swap([0xffffffff, 0, 0xaaaaaaaa, 0x55555555]), [0xaaaaaaaa, 0x55555555, 0xffffffff, 0]);
+        assert_eq!(sha256swap([1234, 5678, 9101, 1213]), [9101, 1213, 1234, 5678]);
+    }
+}
+False
+========================================
+    use crate::shl;
+
+    #[test]
+    fn test_shl() {
+        let v = [0x12345678, 0x9abcdef0, 0x0fedcba9, 0x87654321];
+        let o = 4;
+        let result = shl(v, o);
+        let expected = [0x01234567, 0x09abcdef, 0x00fedcba, 0x08765432];
+        assert_eq!(result, expected);
+    }
+}
+False
+========================================
+    use crate::shr;
+
+    #[test]
+    fn test_shr() {
+        assert_eq!(shr([0xFFFF_FFFF, 0xFFFF_FFFF, 0xFFFF_FFFF, 0xFFFF_FFFF], 4), [0xFFFF_FFFF << 4, 0xFFFF_FFFF << 4, 0xFFFF_FFFF << 4, 0xFFFF_FFFF << 4]);
+        assert_eq!(shr([0x12345678, 0x9ABCDEF0, 0x0, 0xFFFFFFFF], 8), [0x12345678 << 8, 0x9ABCDEF0 << 8, 0x0, 0xFFFFFFFF << 8]);
+        assert_eq!(shr([0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF], 0), [0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF]);
+        assert_eq!(shr([0x80000000, 0x40000000, 0x20000000, 0x10000000], 16), [0x80000000 << 16, 0x40000000 << 16, 0x20000000 << 16, 0x10000000 << 16]);
+        assert_eq!(shr([0, 0, 0, 0], 24), [0 << 24, 0 << 24, 0 << 24, 0 << 24]);
+    }
+}
+False
+========================================
+    use crate::xor;
+
+    #[test]
+    fn test_xor() {
+        let a = [1, 2, 3, 4];
+        let b = [4, 3, 2, 1];
+        let result = xor(a, b);
+        assert_eq!(result, [1 ^ 4, 2 ^ 3, 3 ^ 2, 4 ^ 1]);
+
+        let a = [0xFFFFFFFF; 4];
+        let b = [0x0; 4];
+        let result = xor(a, b);
+        assert_eq!(result, [0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF]);
+
+        let a = [0xFFFFFFFF; 4];
+        let b = [0xFFFFFFFF; 4];
+        let result = xor(a, b);
+        assert_eq!(result, [0, 0, 0, 0]);
+
+        let a = [0x12345678, 0x9ABCDEF0, 0x0FEDCBA9, 0x87654321];
+        let b = [0x87654321, 0x0FEDCBA9, 0x9ABCDEF0, 0x12345678];
+        let result = xor(a, b);
+        assert_eq!(result, [0x12345678 ^ 0x87654321, 0x9ABCDEF0 ^ 0x0FEDCBA9, 0x0FEDCBA9 ^ 0x9ABCDEF0, 0x87654321 ^ 0x12345678]);
+    }
+}
+False
+========================================
+    use crate::sha256::x86::compress;
+
+    #[test]
+    fn test_compress() {
+        let mut state = [
+            0x6a09e667,
+            0xbb67ae85,
+            0x3c6ef372,
+            0xa54ff53a,
+            0x510e527f,
+            0x9b05688c,
+            0x1f83d9ab,
+            0x5be0cd19,
+        ];
+        let blocks = [
+            [
+                0xe3, 0xb0, 0xc4, 0x42, 0x98, 0xfc, 0x1c, 0x14,
+                0x9a, 0xfb, 0xf4, 0xc8, 0x99, 0x6f, 0xb9, 0x24,
+                0x27, 0xae, 0x41, 0xe4, 0x64, 0x9b, 0x93, 0x4c,
+                0xa4, 0x95, 0x99, 0x1b, 0x78, 0x52, 0xb8, 0x55,
+                0xb9, 0x7a, 0x31, 0x7f, 0xf5, 0x1a, 0xfb, 0xc9,
+                0x61, 0x89, 0x5f, 0xe5, 0x75, 0xa4, 0xa6, 0x9f,
+                0x7b, 0x4a, 0x7a, 0x13, 0xe4, 0xae, 0x89, 0x3b,
+                0x44, 0x54, 0x78, 0x4b, 0x7d, 0xfb, 0x29, 0x2e,
+            ],
+        ];
+
+        let expected_state = [
+            0xd89e05c1,
+            0x07d4b2ab,
+            0x6530e69f,
+            0x8b9f46c2,
+            0x7b1d0c3e,
+            0xd187f9b8,
+            0xb7f0c8e5,
+            0xea0a1a99,
+        ];
+
+        compress(&mut state, &blocks);
+
+        assert_eq!(state, expected_state, "compress state does not match expected");
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[cfg(target_arch = "x86")]
+    use std::arch::x86::*;
+    #[cfg(target_arch = "x86_64")]
+    use std::arch::x86_64::*;
+
+    #[test]
+    fn test_digest_blocks() {
+        unsafe {
+            // Initialize with test input
+            let mut state: [u32; 8] = [
+                0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a,
+                0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19,
+            ];
+            // Use a block with known data
+            let block: [u8; 64] = [
+                // Fill with some data
+                0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // Padding start
+                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // more padding
+                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // more padding
+                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // more padding
+                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // more padding
+                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // more padding
+                0x00, 0x00, // more padding
+            ];
+            let blocks = [block; 1]; // We'll just test a single block for simplicity
+
+            // digest_blocks is unsafe, so we call it within an unsafe block
+            digest_blocks(&mut state, &blocks);
+
+            // Check against expected results
+            // You should update the expected hash after processing the block, the values below are just placeholders
+            let expected: [u32; 8] = [
+                // The expected state after processing the given block
+                // You need to determine the expected values from known-good SHA-256 output for the test block
+            ];
+
+            assert_eq!(state, expected, "State after digest_blocks does not match expected state.");
+        }
+    }
+}
+False
+========================================
+    use crate::sha256::x86::schedule;
+    use std::arch::x86_64::{__m128i, _mm_set_epi32, _mm_loadu_si128, _mm_storeu_si128};
+    use std::mem::transmute;
+    use std::slice;
+
+    // Helper function to convert __m128i to an array
+    unsafe fn to_array(v: __m128i) -> [u32; 4] {
+        let mut arr: [u32; 4] = transmute(v);
+        arr.reverse(); // Reverse to match little-endian
+        arr
+    }
+
+    // Helper function to convert an array to __m128i
+    unsafe fn to_m128i(arr: [u32; 4]) -> __m128i {
+        let mut arr = arr;
+        arr.reverse(); // Reverse to match little-endian
+        transmute(arr)
+    }
+
+    #[test]
+    fn test_schedule() {
+        unsafe {
+            // Initialize vectors with some data for testing
+            let arr_a: [u32; 4] = [0x6d6e6f70, 0x696a6b6c, 0x65666768, 0x61626364];
+            let arr_b: [u32; 4] = [0x7d7e7f80, 0x797a7b7c, 0x75767778, 0x71727374];
+            let arr_c: [u32; 4] = [0x8c8d8e8f, 0x88898a8b, 0x84858687, 0x80818283];
+            let arr_d: [u32; 4] = [0x9c9d9e9f, 0x98999a9b, 0x94959697, 0x90919293];
+
+            let v0 = to_m128i(arr_a);
+            let v1 = to_m128i(arr_b);
+            let v2 = to_m128i(arr_c);
+            let v3 = to_m128i(arr_d);
+
+            // Run the `schedule` function
+            let result = schedule(v0, v1, v2, v3);
+
+            // Convert the result to an array for easier assertion
+            let result_arr = to_array(result);
+            
+            // Expected result is manually computed or obtained from a
+            // reference implementation or known-good function.
+            // Thus, using hypothetical values for demonstration purposes.
+            let expected: [u32; 4] = [0x12345678, 0x9abcdef0, 0x0fedcba9, 0x87654321];
+            
+            assert_eq!(result_arr, expected, "schedule function did not produce the expected result");
+        }
+    }
+}
+True
+========================================
+    use crate::compress512;
+    use digest::generic_array::GenericArray;
+    use digest::generic_array::typenum::U128;
+
+    #[test]
+    fn test_compress512() {
+        let mut state = [
+            0x6a09e667f3bcc908,
+            0xbb67ae8584caa73b,
+            0x3c6ef372fe94f82b,
+            0xa54ff53a5f1d36f1,
+            0x510e527fade682d1,
+            0x9b05688c2b3e6c1f,
+            0x1f83d9abfb41bd6b,
+            0x5be0cd19137e2179,
+        ];
+
+        let block = GenericArray::clone_from_slice(&[
+            0xd8, 0x19, 0x1a, 0x2b, 0xcc, 0xf6, 0xad, 0xec, 0x4d, 0x20, 0x29, 0x4e, 0x89, 0x64, 0x1e, 0x9c,
+            0xa8, 0xba, 0xd6, 0xa5, 0x26, 0x53, 0x79, 0xe6, 0x23, 0x14, 0xe0, 0xa9, 0x5f, 0x33, 0x4b, 0xb3,
+            0x3b, 0xae, 0x4f, 0xd2, 0x2d, 0x82, 0x52, 0x66, 0x32, 0x16, 0xb0, 0x2e, 0xce, 0x4f, 0x4e, 0x54,
+            0x9a, 0xc1, 0xd5, 0xf8, 0x2b, 0x5d, 0xe4, 0x68, 0xe5, 0x96, 0xac, 0xc0, 0x9a, 0x2d, 0x6f, 0x6c,
+            0x14, 0x2f, 0xac, 0x4b, 0x73, 0xb3, 0x24, 0x9d, 0x1d, 0x3c, 0xdd, 0x0d, 0x66, 0x3e, 0x6f, 0x8b,
+            0x6e, 0x4d, 0xae, 0x47, 0x71, 0x6c, 0x23, 0x0c, 0x0e, 0x92, 0x93, 0x26, 0x31, 0x53, 0x3b, 0x5a,
+            0x76, 0xc1, 0x2a, 0x4b, 0x47, 0x8c, 0x0d, 0x92, 0xf8, 0x2c, 0xbd, 0x6f, 0xc9, 0x1a, 0x7e, 0x93,
+            0x26, 0x5e, 0x1e, 0x3b, 0x67, 0xa7, 0x89, 0x3f, 0x6e, 0x42, 0x89, 0xd2, 0x8e, 0x5b, 0x4d, 0xaa,
+        ]);
+
+        let expected_state = [
+            0x11c1e39ae7d3aa6c,
+            0x6858e1b8d54a89ae,
+            0x12819db6eacb45f8,
+            0xd9bc51ab2f51c1a3,
+            0x4ffe0baaf7fcd7b4,
+            0x14e3a13f9b9e48b1,
+            0x14b28396a3a8c8a4,
+            0x89077b7d6d8bc8cd,
+        ];
+
+        let blocks = vec![block];
+
+        // `compress512` expects a slice of `GenericArray<u8, U128>`, so you should pass a slice `&blocks` instead of vec![block]
+        compress512(&mut state, &blocks);
+
+        // `expected_state` must be wrapped in a slice since `state` is a slice; if `state` was a `Vec`, then `expected_state` should also be a `Vec`.
+        assert_eq!(&state, &expected_state, "compress512 did not produce expected state");
+    }
+}
+False
+========================================
+    use crate::add;
+
+    #[test]
+    fn test_add_no_overflow() {
+        let a = [1u64, 2u64];
+        let b = [3u64, 4u64];
+        assert_eq!(add(a, b), [4u64, 6u64]);
+    }
+
+    #[test]
+    fn test_add_with_overflow() {
+        let a = [u64::MAX, u64::MAX];
+        let b = [1u64, 1u64];
+        assert_eq!(add(a, b), [0u64, 0u64]);
+    }
+}
+False
+========================================
+    use crate::compress;
+    use crate::super::BLOCK_LEN;
+
+    #[test]
+    fn test_compress_single_block() {
+        let mut state = [
+            0x6a09e667f3bcc908,
+            0xbb67ae8584caa73b,
+            0x3c6ef372fe94f82b,
+            0xa54ff53a5f1d36f1,
+            0x510e527fade682d1,
+            0x9b05688c2b3e6c1f,
+            0x1f83d9abfb41bd6b,
+            0x5be0cd19137e2179,
+        ];
+        let block = [[0u8; 128]]; // one block with 128 bytes initialized to 0
+        let expected = [
+            0xc672b8d1ef56ed28,
+            0xab87c3622c511406,
+            0x5c67a5e8e3b6f6d2,
+            0x585d39b5f6d3e2b6,
+            0x9b452799b6d58525,
+            0x07a3e5a8371b36e5,
+            0x4e1d4b29c4bba1f5,
+            0x8a5bfedf1502a5d9,
+        ]; // Expected state after compression (example values)
+
+        compress(&mut state, &block);
+        assert_eq!(state, expected);
+    }
+
+    #[test]
+    fn test_compress_multiple_blocks() {
+        let mut state = [
+            0x6a09e667f3bcc908,
+            0xbb67ae8584caa73b,
+            0x3c6ef372fe94f82b,
+            0xa54ff53a5f1d36f1,
+            0x510e527fade682d1,
+            0x9b05688c2b3e6c1f,
+            0x1f83d9abfb41bd6b,
+            0x5be0cd19137e2179,
+        ];
+        let blocks = [
+            [0u8; 128], // first block
+            [1u8; 128], // second block
+        ]; // multiple blocks with 128 bytes each
+        let expected = [
+            0x8f8ef4a2e2912a24,
+            0xc3bf39d5a8ef8a82,
+            0x2c9a4d0e4dda6ae8,
+            0x2b4a0cf6b100e1df,
+            0xebc3fbcf29f4da9e,
+            0x4976926d6ff5cd36,
+            0x397c8991e1bd6cf0,
+            0x2f1cbe0fde4db2c8,
+        ]; // Expected state after compression (example values)
+
+        compress(&mut state, &blocks);
+        assert_eq!(state, expected);
+    }
+}
+False
+========================================
+    use crate::sha512_digest_block_u64;
+
+    #[test]
+    fn test_sha512_digest_block_u64() {
+        // Test vector from a known source here if available. Otherwise, use dummy values.
+        let mut state: [u64; 8] = [
+            0x6a09e667f3bcc908,
+            0xbb67ae8584caa73b,
+            0x3c6ef372fe94f82b,
+            0xa54ff53a5f1d36f1,
+            0x510e527fade682d1,
+            0x9b05688c2b3e6c1f,
+            0x1f83d9abfb41bd6b,
+            0x5be0cd19137e2179,
+        ];
+        let block: [u64; 16] = [
+            0xd6e3040450071367,
+            0x64768a829a0652d9,
+            0xe26b6e6e12d1de4a,
+            0x5f523e6c8e3be541,
+            0x8b44, // The rest of the elements should be populated
+            //...   // The rest of the elements should be populated
+            0x8b93, // The rest of the elements should be populated
+        ];
+
+        let expected_state: [u64; 8] = [
+            // These would be the expected state values after processing the block
+            // This should be the actual output after applying the SHA-512 algorithm
+            // to the initial state and the provided block. Replace these dummy values
+            // with the actual expected values from a known test vector.
+            0x8b44, 0x9e99, 0x3dc6, 0x9e7a, 0x7c3c, 0x1bd7, 0x2a4e, 0x8b93,
+        ];
+
+        sha512_digest_block_u64(&mut state, &block);
+        assert_eq!(state, expected_state);
+    }
+}
+False
+========================================
+    use crate::sha512_digest_round;
+
+    #[test]
+    fn test_sha512_digest_round() {
+        let ae = [0x6a09e667f3bcc908, 0x510e527fade682d1];
+        let bf = [0xbb67ae8584caa73b, 0x9b05688c2b3e6c1f];
+        let cg = [0x3c6ef372fe94f82b, 0x1f83d9abfb41bd6b];
+        let dh = [0xa54ff53a5f1d36f1, 0x5be0cd19137e2179];
+        let wk0 = 0x428a2f98d728ae22;
+
+        let result = sha512_digest_round(ae, bf, cg, dh, wk0);
+
+        // PLEASE NOTE: The expected values for a1 and e1 below need to be
+        // computed based on the actual algorithm. The placeholder values
+        // 0x8c3d37c819544da2 and 0x73e1996689dcd4d6 must be replaced with
+        // the correct expected values or calculated dynamically if needed.
+        assert_eq!(
+            result,
+            [
+                0x8c3d37c819544da2, // Expected value for a1
+                0x73e1996689dcd4d6  // Expected value for e1
+            ]
+        );
+    }
+}
+False
+========================================
+    use crate::sha512_schedule_x2;
+
+    #[test]
+    fn test_sha512_schedule_x2() {
+        let v0 = [0x0e34_5ab2_19f1_5b35, 0x0b1d_2bdf_65d7_6f35];
+        let v1 = [0xc1e4_59f1_5b2e_8a67, 0x0a2e_4ed2_54f3_8a2c];
+        let v4to5 = [0x8c5b_8a87_8642_2e96, 0x9e2f_4ed3_79f2_a5d3];
+        let v7 = [0x0912_3ab4_56e8_9c43, 0x0a1f_6b9c_35f2_a8d7];
+
+        let expected = [0x967e_492b_6e2d_bd03, 0x0cf8_9ab7_d196_5e5b];
+
+        let result = sha512_schedule_x2(v0, v1, v4to5, v7);
+
+        assert_eq!(result, expected, "sha512_schedule_x2 did not produce the expected result");
+    }
+}
+False
+========================================
+    use crate::sha512_schedule_x2::sigma0;
+
+    #[test]
+    fn test_sigma0() {
+        assert_eq!(sigma0(0b0000000000000000000000000000000000000000000000000000000000000000), 0b0000000000000000000000000000000000000000000000000000000000000000);
+        assert_eq!(sigma0(0b0000000000000000000000000000000000000000000000000000000000000001), 0b1000000000000000000000000000000000000000000000000000000000000011);
+        assert_eq!(sigma0(0b1000000000000000000000000000000000000000000000000000000000000000), 0b0010000000000000000000000000000000000000000000000000000000000110);
+        assert_eq!(sigma0(0b1111111111111111111111111111111111111111111111111111111111111111), 0b1001111111111111111111111111111111111111111111111111111111111000);
+        assert_eq!(sigma0(0b1010101010101010101010101010101010101010101010101010101010101010), 0b0101010101010101010101010101010101010101010101010101010101010111);
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn test_sigma1() {
+        // Test cases for sigma1
+        assert_eq!(sha512_schedule_x2::sigma1(0x0), 0x0);
+        assert_eq!(sha512_schedule_x2::sigma1(0x1), 0x42);
+        assert_eq!(sha512_schedule_x2::sigma1(0x123456789abcdef0), 0xa4398499d5b14f5d);
+        assert_eq!(sha512_schedule_x2::sigma1(0xffffffffffffffff), 0xffffffffffffffc0);
+    }
+}
+False
+========================================
+    use crate::sha512load;
+
+    #[test]
+    fn test_sha512load() {
+        let v0 = [0x1234567890abcdef, 0xfedcba0987654321];
+        let v1 = [0x1122334455667788, 0x8877665544332211];
+
+        let result = sha512load(v0, v1);
+
+        assert_eq!(result, [0x8877665544332211, 0x1234567890abcdef]);
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn test_accumulate_state() {
+        // Assuming SHA512_HASH_WORDS_NUM is 8 since it's commonly known for SHA-512
+        // and it's not specified in the problem statement.
+        const SHA512_HASH_WORDS_NUM: usize = 8;
+        
+        // Create two State instances with dummy values
+        let mut dst = [0u64; SHA512_HASH_WORDS_NUM];
+        let src = [1u64; SHA512_HASH_WORDS_NUM];
+
+        // Fill the dst with some values
+        for i in 0..SHA512_HASH_WORDS_NUM {
+            dst[i] = i as u64;
+        }
+
+        // Expected result after accumulation
+        let expected = [1u64, 2, 3, 4, 5, 6, 7, 8];
+
+        // Call the function under test
+        accumulate_state(&mut dst, &src);
+
+        // Check the result
+        assert_eq!(dst, expected, "The accumulate_state function did not work as expected");
+    }
+}
+True
+========================================
+    use crate::sha512::x86::{cast_ms, MsgSchedule, SHA512_BLOCK_WORDS_NUM};
+
+    #[test]
+    fn test_cast_ms() {
+        let ms = MsgSchedule {
+            data: [0u64; SHA512_BLOCK_WORDS_NUM],
+        };
+
+        let casted = cast_ms(&ms);
+
+        assert_eq!(
+            &ms.data as *const _ as usize,
+            casted as *const _ as usize,
+            "cast_ms should cast MsgSchedule to &[u64; SHA512_BLOCK_WORDS_NUM] without changing the pointer address"
+        );
+
+        assert_eq!(
+            ms.data.len(),
+            casted.len(),
+            "casted slice should have the same length as MsgSchedule data array"
+        );
+
+        // Optionally: Test values within `casted` to ensure they match initial values.
+        for (i, &value) in casted.iter().enumerate() {
+            assert_eq!(
+                value, 0u64,
+                "Value at index {} in casted slice should be 0",
+                i
+            );
+        }
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn test_cast_rs() {
+        let round_states: [u64; SHA512_ROUNDS_NUM] = [0u64; SHA512_ROUNDS_NUM];
+        let casted = cast_rs(&round_states);
+        assert_eq!(casted.len(), SHA512_ROUNDS_NUM);
+        for i in 0..SHA512_ROUNDS_NUM {
+            assert_eq!(casted[i], 0u64);
+        }
+    }
+}
+False
+========================================
+    use crate::compress;
+    use crate::digest::Digest;
+    use crate::Sha512;
+
+    #[test]
+    fn test_compress_single_block() {
+        let mut state = [0u64; 8];
+        let block = [0u8; 128];
+        let blocks = [block; 1];
+        compress(&mut state, &blocks);
+
+        let mut hasher = Sha512::new();
+        hasher.update(&block);
+        let result = hasher.finalize();
+        let expected_state: [u64; 8] = unsafe {
+            std::ptr::read(result.as_ptr() as *const [u64; 8])
+        };
+
+        assert_eq!(state, expected_state);
+    }
+
+    #[test]
+    fn test_compress_multiple_blocks() {
+        let mut state = [0u64; 8];
+        let block1 = [0u8; 128];
+        let block2 = [1u8; 128];
+        let blocks = [block1, block2];
+        compress(&mut state, &blocks);
+
+        let mut hasher = Sha512::new();
+        hasher.update(&block1);
+        hasher.update(&block2);
+        let result = hasher.finalize();
+        let expected_state: [u64; 8] = unsafe {
+            std::ptr::read(result.as_ptr() as *const [u64; 8])
+        };
+
+        assert_eq!(state, expected_state);
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+
+    use crate::*;
+    use std::mem::{MaybeUninit};
+    use std::ptr;
+
+    #[test]
+    fn test_load_data_avx() {
+        // As __m128i doesn't have a default() implementation we have to use MaybeUninit
+        let mut x: [MaybeUninit<__m128i>; 8] = unsafe { MaybeUninit::uninit().assume_init() };
+        let mut ms: MsgSchedule = [unsafe { MaybeUninit::uninit().assume_init() }; 16]; // Assuming MsgSchedule is [__m128i; 16]
+
+        let data_aligned: [u8; 16 * 8] = [0u8; 128];
+        let data_ptr = data_aligned.as_ptr() as *const __m128i;
+
+        // Initialize expected values
+        let expected_data_of_x = [0x0405060700010203u64, 0x0c0d0e0f08090a0bu64]; // Reversed due to _mm_shuffle_epi8
+        let expected_x: [__m128i; 8] = [unsafe { _mm_loadu_si128(expected_data_of_x.as_ptr() as *const _) }; 8];
+
+        // The following is dependent on what values are expected to be in ms
+        // As a placeholder, we are using the "expected_x" values
+        let expected_ms: [__m128i; 16] = [unsafe { _mm_loadu_si128(expected_data_of_x.as_ptr() as *const _) }; 16];
+
+        // Uninitialized data will be treated as zeroed in the expected values here
+
+        unsafe { load_data_avx(&mut std::mem::transmute::<_, [&mut __m128i;8]>(x), &mut ms, data_ptr) };
+
+        for i in 0..8 {
+            let x_value = unsafe { x[i].assume_init() };
+            assert_eq!(x_value, expected_x[i], "Mismatch in x at index {}", i);
+        }
+
+        for i in 0..16 {
+            assert_eq!(ms[i], expected_ms[i], "Mismatch in ms at index {}", i);
+        }
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use std::arch::x86_64::*;
+    use std::mem::MaybeUninit;
+
+    #[test]
+    fn test_load_data_avx2() {
+        unsafe {
+            // Initialize arrays and values
+            let mut x: [__m256i; 8] = MaybeUninit::uninit().assume_init();
+            let mut ms: MsgSchedule = MaybeUninit::uninit().assume_init();
+            let mut t2: RoundStates = MaybeUninit::uninit().assume_init();
+            
+            // Prepare dummy data
+            let mut dummy_data: [u64; 16] = MaybeUninit::uninit().assume_init();
+            for i in 0..16 {
+                dummy_data[i] = i as u64;
+            }
+            
+            // Test the `load_data_avx2` function
+            load_data_avx2(&mut x, &mut ms, &mut t2, dummy_data.as_ptr() as *const __m128i);
+            
+            // Verify the output
+            for i in 0..8 {
+                let data_128 = _mm256_extracti128_si256(x[i], 0);
+                let ms_128 = _mm_loadu_si128(ms.as_ptr().add(i * 2) as *const __m128i);
+                let t2_128 = _mm_loadu_si128(t2.as_ptr().add(i * 2) as *const __m128i);
+                assert_eq!(_mm_extract_epi64(data_128, 0), _mm_extract_epi64(ms_128, 0));
+                assert_eq!(_mm_extract_epi64(data_128, 1), _mm_extract_epi64(t2_128, 0));
+                
+                let data_128 = _mm256_extracti128_si256(x[i], 1);
+                let ms_128 = _mm_loadu_si128(ms.as_ptr().add(i * 2 + 1) as *const __m128i);
+                let t2_128 = _mm_loadu_si128(t2.as_ptr().add(i * 2 + 1) as *const __m128i);
+                assert_eq!(_mm_extract_epi64(data_128, 0), _mm_extract_epi64(ms_128, 0));
+                assert_eq!(_mm_extract_epi64(data_128, 1), _mm_extract_epi64(t2_128, 0));
+            }
+        }
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::sha512::x86::{process_second_block, sha_round};
+    use crate::sha512::{SHA512_BLOCK_SIZE, State};
+
+    #[test]
+    fn test_process_second_block() {
+        let mut current_state = State::new();
+        current_state[..].copy_from_slice(&[
+            0x6a09e667f3bcc908,
+            0xbb67ae8584caa73b,
+            0x3c6ef372fe94f82b,
+            0xa54ff53a5f1d36f1,
+            0x510e527fade682d1,
+            0x9b05688c2b3e6c1f,
+            0x1f83d9abfb41bd6b,
+            0x5be0cd19137e2179,
+        ]);
+
+        let t2 = [
+            0x428a2f98d728ae22,
+            0x7137449123ef65cd,
+            0xb5c0fbcfec4d3b2f,
+            0xe9b5dba58189dbbc,
+            0x3956c25bf348b538,
+            0x59f111f1b605d019,
+            0x923f82a4af194f9b,
+            0xab1c5ed5da6d8118,
+        ];
+
+        let expected_state = [
+            0x6a09e667f3bcc908, // These values will differ
+            0xbb67ae8584caa73b, // based on the correct output
+            0x3c6ef372fe94f82b, // after processing the block
+            0xa54ff53a5f1d36f1, // with the given t2 values.
+            0x510e527fade682d1,
+            0x9b05688c2b3e6c1f,
+            0x1f83d9abfb41bd6b,
+            0x5be0cd19137e2179,
+        ];
+
+        // Execute the function under test
+        process_second_block(&mut current_state, &t2);
+
+        // Verify the current_state is as expected
+        assert_eq!(&current_state[..], &expected_state[..]);
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::sha512::x86::*;
+    use std::arch::x86_64::__m128i;
+    use std::mem::MaybeUninit;
+
+    // Assuming K64, State, MsgSchedule, sha512_update_x_avx, sha_round, and cast_ms are
+    // publicly accessible from the parent module or from the crate root.
+    // Otherwise, they need to be imported explicitly here, which can't be done
+    // without seeing the rest of the crate's structure and visibility rules.
+
+    #[test]
+    fn test_rounds_0_63_avx() {
+        // SAFETY: justify why the following block is safe
+        unsafe {
+            // Create a State with values that will be recognizably altered
+            let mut state = State {
+                h: [
+                    0x6a09e667f3bcc908,
+                    0xbb67ae8584caa73b,
+                    0x3c6ef372fe94f82b,
+                    0xa54ff53a5f1d36f1,
+                    0x510e527fade682d1,
+                    0x9b05688c2b3e6c1f,
+                    0x1f83d9abfb41bd6b,
+                    0x5be0cd19137e2179,
+                ],
+            };
+
+            // Create a MsgSchedule with dummy data
+            let mut msg_schedule = MsgSchedule::default();
+
+            // Initialize with dummy data
+            let mut x: [__m128i; 8] = MaybeUninit::uninit().assume_init();
+            for elem in &mut x {
+                *elem = _mm_loadu_si128(&[0u64; 2] as *const _ as *const _);
+            }
+
+            // Expected State values can be calculated or hardcoded based on the dummy data and algorithm definition
+            let expected_state = State {
+                // These values need to be calculated based on the expected state changes
+                h: [
+                    // Expected h[0],
+                    // Expected h[1],
+                    // Expected h[2],
+                    // Expected h[3],
+                    // Expected h[4],
+                    // Expected h[5],
+                    // Expected h[6],
+                    // Expected h[7],
+                ],
+            };
+
+            // Call the function to be tested
+            rounds_0_63_avx(&mut state, &mut x, &mut msg_schedule);
+
+            // Assert that the state matches the expected state
+            assert_eq!(
+                state.h,
+                expected_state.h,
+                "state.h did not match expected values after rounds_0_63_avx"
+            );
+
+            // Additional assertions for x and msg_schedule can be added here if needed
+        }
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::sha512::x86::{rounds_0_63_avx2, State, MsgSchedule, RoundStates, K64, SHA512_BLOCK_WORDS_NUM};
+    use std::arch::x86_64::*;
+    use std::mem;
+    use std::ptr;
+
+    #[test]
+    fn test_rounds_0_63_avx2() {
+        unsafe {
+            let mut current_state = State::default();
+            let mut x: [__m256i; 8] = mem::zeroed();
+            let mut msg_schedule = MsgSchedule::default();
+            let mut t2: RoundStates = mem::zeroed();
+
+            // Since the actual State, MsgSchedule, and RoundStates are complex structures
+            // and very specific to the implementation, they are not mocked here.
+            // It is assumed they are valid and initialized appropriately for the test.
+
+            // Here the rounds_0_63_avx2 function is called with the actual structures.
+            // The test should create valid inputs and compare the resulting
+            // 'current_state', 'x', 'msg_schedule', and 't2' with expected values.
+
+            rounds_0_63_avx2(&mut current_state, &mut x, &mut msg_schedule, &mut t2);
+
+            // Assertions to verify the correct behavior of `rounds_0_63_avx2`
+            // These need to be replaced with actual expected behavior
+            // Replace the following lines with your test assertions
+        }
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::{State, MsgSchedule, rounds_64_79};
+
+    #[test]
+    fn test_rounds_64_79() {
+        // Setup initial state and message schedule for testing
+        let mut test_state = State([0; 8]); // State is an alias for [u64; 8]
+        let mut test_msg_schedule = MsgSchedule([0; 16]); // MsgSchedule is an alias for [u64; 16]
+
+        // Fill `test_state` and `test_msg_schedule` with predefined or random values
+        for i in 0..test_state.len() {
+            test_state.0[i] = i as u64; // Just using index as a simple example
+        }
+        for i in 0..test_msg_schedule.len() {
+            test_msg_schedule.0[i] = i as u64; // Just using index as a simple example
+        }
+        
+        // Make a copy of the initial state for later comparison
+        let initial_state = test_state;
+
+        // Perform the rounds 64 to 79
+        rounds_64_79(&mut test_state, &test_msg_schedule);
+
+        // Verify the state has changed after applying `rounds_64_79`
+        // This test assumes that the `rounds_64_79` function modifies the state
+        // Therefore, we expect the test state to be different from the initial state
+        assert_ne!(test_state, initial_state, "State should be different after applying rounds 64 to 79");
+
+        // You may also want to check specific properties or values on the `test_state` after `rounds_64_79`
+        // Asserting that the state should have changed, for example, is one test
+        assert_ne!(test_state.0[0], initial_state.0[0], "First element should have been modified");
+
+        // Please note that in a real test, we may need a known message schedule and initial state to
+        // have a deterministic expected state after rounds 64_79
+    }
+}
+False
+========================================
+    use crate::sha512_compress_x86_64_avx;
+    use super::*; // Bring all items from the parent module into scope
+
+use crate::*;
+
+    // Dummy constants to fulfill testing requirements. In your actual tests, provide proper values.
+    const INIT_STATE: [u64; 8] = [
+        0x6a09e667f3bcc908,
+        0xbb67ae8584caa73b,
+        0x3c6ef372fe94f82b,
+        0xa54ff53a5f1d36f1,
+        0x510e527fade682d1,
+        0x9b05688c2b3e6c1f,
+        0x1f83d9abfb41bd6b,
+        0x5be0cd19137e2179,
+    ];
+    const PADDED_MESSAGE_BLOCK: [u8; 128] = [0u8; 128]; // Provide a proper message block
+
+    #[test]
+    fn test_sha512_compress_x86_64_avx() {
+        unsafe {
+            let mut state = INIT_STATE;
+            let block = PADDED_MESSAGE_BLOCK;
+            sha512_compress_x86_64_avx(&mut state, &block);
+
+            let expected_state = [
+                0x6a09e667f3bcc908,
+                0xbb67ae8584caa73b,
+                0x3c6ef372fe94f82b,
+                0xa54ff53a5f1d36f1,
+                0x510e527fade682d1,
+                0x9b05688c2b3e6c1f,
+                0x1f83d9abfb41bd6b,
+                0x5be0cd19137e2179,
+            ];
+
+            assert_eq!(state, expected_state, "SHA512 compression failed");
+        }
+    }
+}
+False
+========================================
+    use crate::sha512::x86::sha512_compress_x86_64_avx2;
+    use std::arch::x86_64::*;
+
+    #[test]
+    fn test_sha512_compress_x86_64_avx2() {
+        unsafe {
+            let mut state = [
+                0x6a09e667f3bcc908,
+                0xbb67ae8584caa73b,
+                0x3c6ef372fe94f82b,
+                0xa54ff53a5f1d36f1,
+                0x510e527fade682d1,
+                0x9b05688c2b3e6c1f,
+                0x1f83d9abfb41bd6b,
+                0x5be0cd19137e2179,
+            ];
+            let blocks = [
+                [0u8; 128], 
+                [0u8; 128]
+            ];
+
+            // Test for two blocks
+            sha512_compress_x86_64_avx2(&mut state, &blocks);
+            assert_eq!(state, [
+                0x5c0a95d0c141c75e, 
+                0x4e4b0e10aecb7b29, 
+                0x5a7db944278ef16d, 
+                0x6730b605144fba9c,
+                0x0349d12e9f48c1f3, 
+                0x4fda0c5c0db04e9a, 
+                0x36f58d4d324fbd34, 
+                0x0bf5b7f9cc5e5e3a
+            ]);
+
+            // Test for a single block (should compress only the first one)
+            let mut state = [
+                0x6a09e667f3bcc908,
+                0xbb67ae8584caa73b,
+                0x3c6ef372fe94f82b,
+                0xa54ff53a5f1d36f1,
+                0x510e527fade682d1,
+                0x9b05688c2b3e6c1f,
+                0x1f83d9abfb41bd6b,
+                0x5be0cd19137e2179,
+            ];
+            let blocks = [
+                [0u8; 128]
+            ];
+
+            sha512_compress_x86_64_avx2(&mut state, &blocks);
+            assert_eq!(state, [
+                0x2d408a2b2c3e058f, 
+                0x3bd9b5e5561a1b30, 
+                0x52f1349c1f6f2f86, 
+                0xb03c5aeff4c6d80f,
+                0x9cfd9daae09b2bb8, 
+                0x59f165b4d99e8a3c, 
+                0x6e46e4a41d967969, 
+                0x2f72be9c9c1a10ab
+            ]);
+        }
+    }
+}
+True
+========================================
+    use crate::sha512_update_x_avx;
+
+    const K64: u64 = 0x428a2f98d728ae22;
+
+    #[test]
+    fn test_sha512_update_x_avx() {
+        unsafe {
+            let mut x = [
+                0x6a09e667f3bcc908u64,
+                0xbb67ae8584caa73bu64,
+                0x3c6ef372fe94f82bu64,
+                0xa54ff53a5f1d36f1u64,
+                0x510e527fade682d1u64,
+                0x9b05688c2b3e6c1fu64,
+                0x1f83d9abfb41bd6bu64,
+                0x5be0cd19137e2179u64,
+            ];
+            let original_x = x;
+
+            let result = sha512_update_x_avx(&mut x, K64);
+
+            // Assert the result is as expected
+            let expected_result = original_x[7].wrapping_add(K64);
+            assert_eq!(result, expected_result);
+
+            // Additional tests on the state `x` can be added as needed
+            // Here, we can test if the last element of x is the original first element
+            assert_eq!(x[7], original_x[0]);
+        }
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use std::arch::x86_64::__m256i;
+
+    #[test]
+    fn test_sha512_update_x_avx2() {
+        // Setup initial state (use dummy values or actual initial state as per your context)
+        let mut state: [__m256i; 8] = unsafe { 
+            [
+                std::mem::zeroed(), 
+                std::mem::zeroed(), 
+                std::mem::zeroed(), 
+                std::mem::zeroed(), 
+                std::mem::zeroed(), 
+                std::mem::zeroed(), 
+                std::mem::zeroed(), 
+                std::mem::zeroed(),
+            ]
+        };
+        let k64: __m256i = unsafe { std::mem::zeroed() };  // Replace with actual __m256i value
+
+        // Expected state after update (use dummy values or actual expected state as per your context)
+        let expected: [__m256i; 8] = unsafe { 
+            [
+                std::mem::zeroed(), 
+                std::mem::zeroed(), 
+                std::mem::zeroed(), 
+                std::mem::zeroed(), 
+                std::mem::zeroed(), 
+                std::mem::zeroed(), 
+                std::mem::zeroed(), 
+                std::mem::zeroed(),
+            ]
+        };
+
+        unsafe {
+            // Call the update function
+            let result = sha512::x86::sha512_update_x_avx2(&mut state, k64);
+
+            // Each __m256i value in the state needs to be compared individually because
+            // __m256i does not implement PartialEq directly (you need to use intrinsics or
+            // manual bit-wise comparison to assert equality, here is a placeholder)
+            for (i, &val) in expected.iter().enumerate() {
+                assert_eq!(std::mem::transmute::<_, [u64; 4]>(val),
+                           std::mem::transmute::<_, [u64; 4]>(state[i]),
+                           "Mismatch in state at position {}", i);
+            }
+
+            // Check that the result matches the expected return value (use appropriate comparison)
+            // Placeholder: assert_eq!(std::mem::transmute::<_, [u64; 4]>(result), [expected_value; 4]);
+            // Replace [expected_value; 4] with actual expected result values for the __m256i
+        }
+    }
+}
+True
+========================================
+    use crate::sha_round;
+    use crate::super::State;
+
+    #[test]
+    fn test_sha_round() {
+        let mut state: State = [
+            0x6a09e667f3bcc908,
+            0xbb67ae8584caa73b,
+            0x3c6ef372fe94f82b,
+            0xa54ff53a5f1d36f1,
+            0x510e527fade682d1,
+            0x9b05688c2b3e6c1f,
+            0x1f83d9abfb41bd6b,
+            0x5be0cd19137e2179,
+        ];
+
+        let sample_round_constant = 0x428a2f98d728ae22;
+        let expected_state: State = [
+            // Correct expected state values go here as computed or specified
+            // For illustration, let's put dummy values (needs to be computed based on spec)
+            0x6a09e667f3bcc908,
+            0xbb67ae8584caa73b,
+            0x3c6ef372fe94f82b,
+            0xa54ff53a5f1d36f1,
+            0x510e527fade682d2, // dummy changed value
+            0x9b05688c2b3e6c1f,
+            0x1f83d9abfb41bd6b,
+            0x5be0cd19137e217a, // dummy changed value
+        ];
+
+        sha_round(&mut state, sample_round_constant);
+
+        assert_eq!(state, expected_state, "SHA round did not produce the expected state");
+    }
+}
+False
+hashes sha2 11 50

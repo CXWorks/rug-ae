@@ -1,0 +1,459 @@
+========================================
+    use crate::Tiger2Core;
+    use core::default::Default;
+
+    #[test]
+    fn default_test() {
+        let tiger2 = Tiger2Core::default();
+        assert_eq!(tiger2.block_len, 0);
+        assert_eq!(tiger2.state, [
+            0x0123_4567_89AB_CDEF,
+            0xFEDC_BA98_7654_3210,
+            0xF096_A5B4_C3B2_E187,
+        ]);
+    }
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::*;
+    use digest::{FixedOutput, Reset, Update};
+
+    #[test]
+    fn tiger2core_reset_test() {
+        let mut tiger2core = Tiger2Core::default();
+        let initial_state = tiger2core.clone();
+
+        // modify tiger2core
+        let data = [0u8; 32]; // some data to update the internal state
+        tiger2core.update(&data);
+
+        // Compute hash to change the state
+        let mut res = [0u8; 24];
+        tiger2core.finalize_fixed(&mut res);
+
+        tiger2core.reset();
+
+        // Check that tiger2core is reset to initial state by computing the hash again
+        let mut res_after_reset = [0u8; 24];
+        tiger2core.finalize_fixed(&mut res_after_reset);
+
+        assert_eq!(res_after_reset, res, "Tiger2Core::reset did not reset to initial state");
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use digest::core_api::AlgorithmName;
+    use std::fmt;
+
+    #[test]
+    fn test_write_alg_name() {
+        let mut alg_name = String::new();
+        let result = <Tiger2Core as AlgorithmName>::write_alg_name(&mut alg_name);
+        assert!(result.is_ok());
+        assert_eq!(&alg_name, "Tiger2");
+    }
+}
+False
+========================================
+    use digest::core_api::{FixedOutputCore, Buffer, UpdateCore};
+    use crate::{Tiger2Core, Block};
+    use crate::Tiger2CoreWrapper; // Suppose Tiger2CoreWrapper is the wrap of the Output for Tiger2Core
+    use digest::generic_array::GenericArray;
+    use digest::typenum::U24;
+
+    #[test]
+    fn finalize_fixed_core_test() {
+        let mut core = Tiger2Core::default();
+        let mut buffer = Buffer::<Tiger2Core>::default();
+        let mut out = Tiger2CoreWrapper(GenericArray::<u8, U24>::default());
+
+        // Example test: finalize with no data
+        core.finalize_fixed_core(&mut buffer, &mut out.0);
+
+        let expected = [
+            0x24, 0xF0, 0x13, 0x29, 0x6D, 0xBD, 0x0B, 0xEE, 
+            0x56, 0x53, 0x0F, 0x71, 0x26, 0x38, 0x26, 0x2F, 
+            0xD1, 0x6D, 0xF1, 0xB3, 0x53, 0x68, 0x75, 0xB1
+        ];
+        assert_eq!(out.0[..], expected);
+
+        let mut core = Tiger2Core::default();
+        let mut buffer = Buffer::<Tiger2Core>::default();
+        let mut out = Tiger2CoreWrapper(GenericArray::<u8, U24>::default());
+
+        // Example test: finalize with "abc" input
+        let data = b"abc";
+        let blocks = slice_as_blocks(data);
+        core.update_blocks(blocks);
+        core.finalize_fixed_core(&mut buffer, &mut out.0);
+
+        let expected = [
+            0x3A, 0x3A, 0x81, 0x9A, 0x9B, 0xEA, 0xF3, 0x0E,
+            0x1A, 0xBD, 0x4E, 0x71, 0x3D, 0x21, 0x0E, 0x4F,
+            0x0A, 0x91, 0x1A, 0x6B, 0x56, 0x64, 0x81, 0x50
+        ];
+        assert_eq!(out.0[..], expected);
+
+        // Adds a helper function to convert a slice into blocks
+        fn slice_as_blocks(data: &[u8]) -> &[Block<Tiger2Core>] {
+            use digest::core_api::BlockSizeUser;
+            let block_size = <Tiger2Core as BlockSizeUser>::BlockSize::U64 as usize;
+            assert!(data.len() >= block_size, "Data length is not enough to convert it as a block!");
+            // Now it should not require unsafe block as we check that data length is greater than or equal to block_size
+            let (block, _) = data.split_at(block_size);
+            core::slice::from_ref(unsafe { &*(block.as_ptr() as *const Block<Tiger2Core>) })
+        }
+    }
+}
+False
+========================================
+    use super::*; // Import everything from the parent module
+
+use crate::*;
+    use digest::core_api::{Block, UpdateCore};
+
+    // This function is expected to exist and perform the compression
+    // Given that it is not detailed here, it is assumed to be implemented elsewhere in the crate
+    fn compress(state: &mut [u64; 3], block: &[u8]) {
+        // Mock implementation of the compression function
+    }
+
+    #[test]
+    fn update_blocks_test() {
+        let mut core = Tiger2Core::default();
+        let initial_state = core.state;
+
+        // Prepare a block for update
+        // Mock Block is a placeholder for actual Block implementation
+        let block = Block::<Tiger2Core>::from([0u8; 64]); // Assuming Block size is 64 bytes (512 bits)
+        let blocks = &[block];
+
+        // Update state with single block
+        core.update_blocks(blocks);
+
+        // Check that block_len is incremented
+        assert_eq!(core.block_len, 1);
+
+        // Update with multiple blocks
+        let blocks = &[block, block, block]; // 3 blocks
+        core.update_blocks(blocks);
+
+        // Check that block_len is incremented by 3
+        assert_eq!(core.block_len, 4);
+
+        // Check that state is altered from the initial_state
+        assert!(core.state != initial_state);
+    }
+}
+True
+========================================
+    use crate::{TigerCore, State, S0};
+    use core::default::Default;
+
+    #[test]
+    fn default_initializes_correctly() {
+        let tiger_core: TigerCore = TigerCore::default();
+        assert_eq!(tiger_core.block_len, 0);
+        assert_eq!(tiger_core.state, State::S0);
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use digest::{Digest, FixedOutput, Update};
+
+    #[test]
+    fn reset_test() {
+        let mut hasher = TigerCore::default();
+        let mut digest_engine = digest::new();
+
+        digest_engine.update(&[0x42; 64]);
+
+        hasher.reset();
+        let state_after_reset = hasher.state; // Note: This attribute should be public or accessed through a method
+        let block_len_after_reset = hasher.block_len; // Note: This attribute should be public or accessed through a method
+
+        let default_hashes = TigerCore::default();
+        let default_state = default_hashes.state; // Note: This attribute should be public or accessed through a method
+        let default_block_len = default_hashes.block_len; // Note: This attribute should be public or accessed through a method
+
+        assert_eq!(state_after_reset, default_state);
+        assert_eq!(block_len_after_reset, default_block_len);
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use core::fmt;
+
+    struct MockFormatter {
+        output: String,
+    }
+
+    impl MockFormatter {
+        fn new() -> MockFormatter {
+            MockFormatter {
+                output: String::new(),
+            }
+        }
+    }
+
+    impl fmt::Write for MockFormatter {
+        fn write_str(&mut self, s: &str) -> fmt::Result {
+            self.output.push_str(s);
+            Ok(())
+        }
+    }
+
+    #[test]
+    fn test_write_alg_name() {
+        let mut formatter = MockFormatter::new();
+        let result = TigerCore::write_alg_name(&mut formatter);
+
+        assert!(result.is_ok());
+        assert_eq!(formatter.output, "Tiger");
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    // Update imports as per the error details
+    use digest::core_api::{Buffer, FixedOutputCore, UpdateCore, BlockInput};
+    use digest::{Reset, Output};
+
+    #[test]
+    fn test_finalize_fixed_core() {
+        let mut core = TigerCore::default();
+        let mut buffer = Buffer::<TigerCore>::default();
+        let mut output = Output::<TigerCore>::default();
+
+        // Buffer contents to simulate an update
+        let input_data = b"The quick brown fox jumps over the lazy dog";
+        // Explicitly create a slice of blocks
+        let mut blocks = Vec::<Block::<TigerCore>>::new();
+        for chunk in input_data.chunks(Block::<TigerCore>::to_usize()) {
+            // Ensure the chunk is the correct size
+            let mut block = GenericArray::default();
+            block[..chunk.len()].copy_from_slice(chunk);
+            blocks.push(block);
+        }
+        // Update blocks
+        core.update_blocks(&blocks);
+
+        // Output before finalization
+        let before_finalize = output.clone();
+
+        // Finalize and check the output
+        core.finalize_fixed_core(&mut buffer, &mut output);
+
+        // Output shouldn't be the same as before
+        assert_ne!(&before_finalize[..], &output[..], "Output should not remain unchanged after finalization.");
+
+        // Reset core and re-finalize with an empty buffer
+        core.reset();
+        let mut buffer = Buffer::<TigerCore>::default();
+        let mut output_after_reset = Output::<TigerCore>::default();
+        core.finalize_fixed_core(&mut buffer, &mut output_after_reset);
+
+        // Output after reset and finalization should be deterministic
+        assert_eq!(&output_after_reset[..], &output[..], "Output after reset and finalization should be the same for the same input.");
+
+        // Compare with known hash output
+        let expected_hash = b"\x24\xf0\x13\x0c\x63\x31\x96\x3f\x68\xc2\x9b\x35\x2b\x75\xb2\x82\x9c\x25\x12\x63\xeb\xfa\x9f\xa3\x32\x73\xa0\x3c\x2f\x9f\x78\x80";
+        assert_eq!(&output_after_reset[..], expected_hash, "Unexpected hash output value after finalization.");
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use digest::core_api::{Block, UpdateCore};
+
+    fn compress_mock(state: &mut State, _block: &[u8]) {
+        // Mock implementation of compress
+        // In a real-world scenario, you should implement compress logic here
+        // based on the Tiger hash algorithm
+        *state = [state[0].wrapping_add(1), state[1], state[2]];
+    }
+
+    #[test]
+    fn update_blocks_single_block() {
+        let mut core = TigerCore::default();
+        let initial_state = core.state;
+        let blocks = [Block::<TigerCore>::from([0u8; 64])]; // Block::from creates a Block from a byte array
+
+        // Replacing compress with compress_mock
+        core.update_blocks(&blocks);
+
+        assert_eq!(core.block_len, 1);
+        assert_ne!(core.state, initial_state, "State should have been updated by the compress function.");
+    }
+
+    #[test]
+    fn update_blocks_multiple_blocks() {
+        let mut core = TigerCore::default();
+        let initial_state = core.state;
+        let blocks = [
+            Block::<TigerCore>::from([0u8; 64]),
+            Block::<TigerCore>::from([1u8; 64]),
+            Block::<TigerCore>::from([2u8; 64]),
+        ];
+
+        // Replacing compress with compress_mock
+        core.update_blocks(&blocks);
+
+        assert_eq!(core.block_len, 3);
+        assert_ne!(core.state, initial_state, "State should have been updated by the compress function.");
+    }
+
+    #[test]
+    fn update_blocks_no_blocks() {
+        let mut core = TigerCore::default();
+        let initial_state = core.state;
+        let blocks: [Block<TigerCore>; 0] = [];
+
+        // Replacing compress with compress_mock
+        core.update_blocks(&blocks);
+
+        assert_eq!(core.block_len, 0);
+        assert_eq!(core.state, initial_state, "State should not have been updated.");
+    }
+}
+True
+========================================
+    use crate::compress;
+    use crate::State;
+
+    #[test]
+    fn test_compress() {
+        let mut initial_state: State = [0x0123456789ABCDEF, 0xFEDCBA9876543210, 0x0FEDCBA987654321];
+        let raw_block: [u8; 64] = [
+            0x01, 0x23, 0x45, 0x67, 0x89, 0xAB, 0xCD, 0xEF,
+            0xFE, 0xDC, 0xBA, 0x98, 0x76, 0x54, 0x32, 0x10,
+            // ... additional 48 bytes of data
+            // Right-padded with zeros for simplicity
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        ];
+
+        // UPDATE: Replace placeholder values with actual expected state values
+        // Example expected state, values should be determined from actual known output
+        let expected_state: State = [
+            0x0123456789ABCDEF, // Replace with actual expected state value
+            0xFEDCBA9876543210, // Replace with actual expected state value
+            0x0FEDCBA987654321, // Replace with actual expected state value
+        ];
+        
+        compress(&mut initial_state, &raw_block);
+
+        assert_eq!(initial_state, expected_state, "State after compression should match the expected state.");
+    }
+}
+True
+========================================
+    use crate::key_schedule;
+
+    #[test]
+    fn test_key_schedule() {
+        let mut x = [
+            0x0123456789ABCDEF,
+            0xFEDCBA9876543210,
+            0x0F1E2D3C4B5A6978,
+            0x8F9EADBCCBA98769,
+            0x7F8E9DACCB987654,
+            0x6E7F8C9DBA987563,
+            0x5D6C7B8A9C876542,
+            0x4C5B697A8B765431,
+        ];
+        let expected = [
+            0x50E5282C8B96224F,
+            0xA5CDB1E9F7BF0ED4,
+            0x6D5A6B16A03A8A8E,
+            0x7E9192F38D785E5F,
+            0x6F6E6D3E03EB6EB5,
+            0x72C0B7F579E0E5C9,
+            0x16FCCD5BA8A667AA,
+            0xDF4C66EF8337DD9F,
+        ];
+
+        key_schedule(&mut x);
+
+        assert_eq!(x, expected, "key_schedule did not produce the expected result");
+    }
+}
+False
+========================================
+    use crate::pass;
+
+    #[test]
+    fn test_pass() {
+        let mut a: u64 = 0x0123456789ABCDEF;
+        let mut b: u64 = 0xFEDCBA9876543210;
+        let mut c: u64 = 0x0F1E2D3C4B5A6978;
+        let x: [u64; 8] = [
+            0x1234567890ABCDEF,
+            0xFEDCBA9876543210,
+            0x0F1E2D3C4B5A6978,
+            0x0123456789ABCDEF,
+            0xFEDCBA9876543210,
+            0x0F1E2D3C4B5A6978,
+            0x0123456789ABCDEF,
+            0xFEDCBA9876543210,
+        ];
+        let mul: u8 = 5;
+
+        let a_initial = a;
+        let b_initial = b;
+        let c_initial = c;
+
+        // Apply the `pass` function
+        pass(&mut a, &mut b, &mut c, &x, mul);
+
+        // Check that the values of 'a', 'b', and 'c' have been changed
+        assert_ne!(a, a_initial);
+        assert_ne!(b, b_initial);
+        assert_ne!(c, c_initial);
+    }
+}
+False
+========================================
+    use crate::{round, T1, T2, T3, T4}; // Adjust the import path according to the actual module hierarchy
+
+    #[test]
+    fn test_round() {
+        // Initialize the T1, T2, T3, T4 tables if they are not initialized elsewhere
+        // These tables are assumed to be initialized, otherwise, they must be initialized before running the test
+        let mut a: u64 = 0x0123456789abcdef;
+        let mut b: u64 = 0xfedcba9876543210;
+        let mut c: u64 = 0x0fedcba987654321;
+        let x: u64 = 0x1fedcba987654321;
+        let mul: u8 = 5;
+
+        // Expected values are hypothetical here; adjust after calculating the expected values
+        let expected_a: u64 = 0x123456789abcdef0; // Expected value after round
+        let expected_b: u64 = 0xedcba9876543210f; // Expected value after round
+        let expected_c: u64 = 0x0fedcba987654320; // Expected value after the round (c ^= x)
+
+        round(&mut a, &mut b, &mut c, &x, mul);
+
+        assert_eq!(a, expected_a, "a did not match expected value after round");
+        assert_eq!(b, expected_b, "b did not match expected value after round");
+        assert_eq!(c, expected_c, "c did not match expected value after round");
+    }
+}
+False
+hashes tiger 4 14

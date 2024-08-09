@@ -1,0 +1,559 @@
+========================================
+    use crate::GroestlLongVarCore;
+    use digest::core_api::AlgorithmName;
+    use core::fmt::Write;
+
+    #[test]
+    fn test_write_alg_name() {
+        let mut output = core::fmt::Formatter::new(&mut String::new());
+        let result = GroestlLongVarCore::write_alg_name(&mut output);
+        assert!(result.is_ok());
+        assert_eq!(output.to_string(), "GroestlLong");
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use digest::core_api::{Block, BlockSizeUser, UpdateCore, VariableOutputCore};
+    use digest::InvalidOutputSize;
+
+    #[test]
+    fn update_blocks_empty() {
+        let mut core = GroestlLongVarCore::new(64).unwrap();
+        let blocks = [];
+        core.update_blocks(&blocks);
+
+        assert_eq!(core.blocks_len, 0);
+    }
+
+    #[test]
+    fn update_blocks_single() {
+        let mut core = GroestlLongVarCore::new(64).unwrap();
+        let block = Block::<GroestlLongVarCore>::default();
+        let blocks = [block; 1];
+        core.update_blocks(&blocks);
+
+        assert_eq!(core.blocks_len, 1);
+    }
+
+    #[test]
+    fn update_blocks_multiple() {
+        let mut core = GroestlLongVarCore::new(64).unwrap();
+        let block = Block::<GroestlLongVarCore>::default();
+        let blocks = [block; 3];
+        core.update_blocks(&blocks);
+
+        assert_eq!(core.blocks_len, 3);
+    }
+
+    #[test]
+    fn update_blocks_state_change() {
+        let mut core = GroestlLongVarCore::new(64).unwrap();
+        let initial_state = core.state.clone();
+        let block = Block::<GroestlLongVarCore>::default();
+        let blocks = [block; 1];
+        core.update_blocks(&blocks);
+
+        assert!(core.state != initial_state, "State should change after update_blocks");
+    }
+
+    #[test]
+    fn update_blocks_invalid_size() {
+        let result = GroestlLongVarCore::new(65);
+        assert!(result.is_err());
+    }
+}
+True
+========================================
+    use digest::core_api::CoreProxy;
+    use crate::{GroestlLongVarCore, compress1024, InvalidOutputSize};
+    use digest::consts::U64;
+    use digest::HashMarker;
+
+    #[test]
+    fn test_finalize_variable_core() -> Result<(), InvalidOutputSize> {
+        let mut hasher = GroestlLongVarCore::new(64)?;
+        let mut buffer = CoreProxy::new(&mut hasher);
+        let mut out = [0u8; 64];
+
+        buffer.core_mut().update_core(b"test message");
+        buffer.core_mut().finalize_variable_core(buffer.core_buffer_mut(), &mut out);
+
+        let expected_result = compress1024::p(&buffer.core().state);
+        let n = compress1024::COLS / 2;
+        let mut expected_out = [0u8; 64];
+        for (chunk, v) in expected_out.chunks_exact_mut(8).zip(expected_result[n..].iter()) {
+            chunk.copy_from_slice(&v.to_be_bytes());
+        }
+
+        assert_eq!(out, expected_out, "Hash of 'test message' should match expected output");
+        Ok(())
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::*;
+    use digest::core_api::VariableOutputCore;
+    use digest::InvalidOutputSize;
+    use digest::core_api::CoreWrapper;
+
+    #[test]
+    fn test_new_valid_output_size() {
+        let output_size = <CoreWrapper<GroestlLongVarCore> as VariableOutputCore>::OutputSize::USIZE / 2; // a valid output size
+        let groestl_instance = GroestlLongVarCore::new(output_size);
+        assert!(groestl_instance.is_ok());
+    }
+
+    #[test]
+    fn test_new_invalid_output_size() {
+        let output_size = <CoreWrapper<GroestlLongVarCore> as VariableOutputCore>::OutputSize::USIZE + 1; // an invalid output size
+        let groestl_instance = GroestlLongVarCore::new(output_size);
+        assert!(groestl_instance.is_err());
+    }
+
+    #[test]
+    fn test_new_output_size_edge() {
+        let output_size = <CoreWrapper<GroestlLongVarCore> as VariableOutputCore>::OutputSize::USIZE; // edge output size
+        let groestl_instance = GroestlLongVarCore::new(output_size);
+        assert!(groestl_instance.is_ok());
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use core::fmt;
+
+    #[test]
+    fn test_write_alg_name() {
+        let mut buffer = String::new();
+        let mut formatter = core::fmt::Formatter::new(&mut buffer);
+        GroestlShortVarCore::write_alg_name(&mut formatter).unwrap();
+        assert_eq!(buffer, "GroestlShort");
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use digest::core_api::{Block, UpdateCore};
+
+    #[test]
+    fn update_blocks_test() {
+        // Initialize a GroestlShortVarCore instance with a specific output size
+        let mut core = GroestlShortVarCore::new(32).unwrap();
+        let initial_state = core.state;
+
+        // Define the blocks to be processed
+        let block_data = [1u8; 64]; // Single block, 64 bytes
+        let blocks = [Block::<GroestlShortVarCore>::from(block_data)];
+
+        // Perform update_blocks on the core instance
+        core.update_blocks(&blocks);
+
+        // Check that state has changed after update_blocks
+        assert_ne!(initial_state, core.state, "State should be different after processing a block.");
+
+        // Check that blocks_len was incremented correctly
+        assert_eq!(core.blocks_len, 1, "blocks_len should be incremented by 1 after processing a block.");
+    }
+}
+True
+========================================
+    use digest::core_api::{Buffer, Output, UpdateCore, VariableOutputCore};
+    use digest::InvalidOutputSize;
+    use crate::GroestlShortVarCore;
+    use crate::compress512;
+
+    #[test]
+    fn finalize_variable_core_works() {
+        let output_size = 32;
+        let mut core = GroestlShortVarCore::new(output_size).expect("Valid output size");
+        let mut buffer = Buffer::new(&[0u8; GroestlShortVarCore::BlockSize::USIZE]);
+        buffer.update(&[0u8; 32]);
+        core.update_blocks(buffer.pad_with_len().unwrap());
+
+        let mut output = Output::<GroestlShortVarCore>::default();
+        core.finalize_variable_core(&mut buffer, &mut output);
+
+        let expected = Output::new(&[0u8; GroestlShortVarCore::OutputSize::USIZE]);
+        assert_eq!(&output[..], &expected[..], "Hash output does not match expected value.");
+    }
+
+    #[test]
+    fn finalize_variable_core_invalid_size() {
+        let output_size = 33; // Invalid output size
+        assert!(GroestlShortVarCore::new(output_size).is_err(), "InvalidOutputSize expected");
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use digest::InvalidOutputSize;
+
+    // Test `new` with a valid output size.
+    #[test]
+    fn test_new_valid_output_size() {
+        // Assuming `GroestlShortVarCore` and `compress512::COLS` are pub(in crate) or pub
+        // Provide a valid output size depending on the maximum output size allowed
+        let output_size = GroestlShortVarCore::OutputSize::USIZE; // Adjust based on the actual maximum allowed
+        assert!(GroestlShortVarCore::new(output_size).is_ok());
+    }
+
+    // Test `new` with an output size that is too large.
+    #[test]
+    fn test_new_invalid_output_size() {
+        // Assuming `GroestlShortVarCore` and `compress512::COLS` are pub(in crate) or pub
+        // Provide an invalid output size (larger than allowed maximum)
+        let output_size = GroestlShortVarCore::OutputSize::USIZE + 1; // Adjust based on the actual maximum allowed
+        assert!(matches!(
+            GroestlShortVarCore::new(output_size),
+            Err(InvalidOutputSize)
+        ));
+    }
+
+    // Test `new` with an output size of 0.
+    #[test]
+    fn test_new_output_size_zero() {
+        // Assuming `GroestlShortVarCore` is pub(in crate) or pub
+        // An output size of 0 is valid
+        let output_size = 0;
+        assert!(GroestlShortVarCore::new(output_size).is_ok());
+    }
+}
+False
+========================================
+    use super::*; // changed from crate to super to reference the parent module
+
+use crate::*;
+
+    #[test]
+    fn test_column() {
+        // Test data setup
+        // Assuming that COLS is a constant that is the number of columns
+        let test_x = [0u64; COLS];
+        // Assuming c is a valid permutation of indices for the test
+        let c = [0, 1, 2, 3, 4, 5, 6, 7]; 
+        
+        // Test with zero-initialized array and permutation
+        let result = column(&test_x, c);
+        // Since TABLE is a constant, and we're giving zero input
+        // the output should be the XOR of the first element of each TABLE row
+        let expected = TABLE.iter().enumerate().fold(0u64, |acc, (i, &row)| {
+            acc ^ row[0]
+        });
+        assert_eq!(result, expected, "column() did not return the expected value with zero-initialized input");
+
+        // Additional tests should be added for different non-zero combinations of x and c
+    }
+}
+True
+========================================
+    use crate::{compress, rndq, rndp, COLS, ROUNDS};
+
+    #[test]
+    fn test_compress() {
+        let mut h = [0u64; COLS];
+        let block = [0u8; 128];
+        compress(&mut h, &block);
+
+        // Check the initial state for the given zeroed `block`.
+        // You can add specific values for the state `h` before the `compress` call if needed.
+        let expected_h = [0u64; COLS]; // Replace with expected values
+        assert_eq!(h, expected_h, "compress with a zeroed block should result in an unchanged state or a known state");
+        
+        // Add more tests for different inputs.
+        // ...
+    }
+}
+False
+========================================
+    use crate::p;
+    const COLS: usize = 16;
+    // Removed ROUNDS constant as it is not being used in the unit test
+
+    #[test]
+    fn test_p_function() {
+        let h: [u64; COLS] = [0; COLS]; // Example input, replace with relevant test cases as needed
+        let expected: [u64; COLS] = [0; COLS]; // Expected output, replace with relevant test cases
+        
+        // Call the function under test with the example input
+        let result = p(&h);
+
+        // Assert that the function output matches the expected output
+        assert_eq!(result, expected, "p function did not produce the expected output");
+        
+        // Add more test cases as needed to test the functional behavior of `p`
+        // Example:
+        // let h: [u64; COLS] = [ // Appropriate test values ...]; 
+        // let expected: [u64; COLS] = [ // Expected output ...]; 
+        // assert_eq!(p(&h), expected);
+    }
+}
+False
+========================================
+    use super::*;
+
+use crate::*;
+    use crate::compress1024::rndp;
+
+    #[test]
+    fn test_rndp() {
+        let input = [
+            0x0000000000000000,
+            0x1111111111111111,
+            0x2222222222222222,
+            0x3333333333333333,
+            0x4444444444444444,
+            0x5555555555555555,
+            0x6666666666666666,
+            0x7777777777777777,
+            0x8888888888888888,
+            0x9999999999999999,
+            0xAAAAAAAAAAAAAAAA,
+            0xBBBBBBBBBBBBBBBB,
+            0xCCCCCCCCCCCCCCCC,
+            0xDDDDDDDDDDDDDDDD,
+            0xEEEEEEEEEEEEEEEE,
+            0xFFFFFFFFFFFFFFFF,
+        ];
+        let round_number = 0x0000000000000001;
+
+        let result = rndp(input, round_number);
+
+        let expected = [
+            column(&input, [0, 1, 2, 3, 4, 5, 6, 11]),
+            column(&input, [1, 2, 3, 4, 5, 6, 7, 12]),
+            column(&input, [2, 3, 4, 5, 6, 7, 8, 13]),
+            column(&input, [3, 4, 5, 6, 7, 8, 9, 14]),
+            column(&input, [4, 5, 6, 7, 8, 9, 10, 15]),
+            column(&input, [5, 6, 7, 8, 9, 10, 11, 0]),
+            column(&input, [6, 7, 8, 9, 10, 11, 12, 1]),
+            column(&input, [7, 8, 9, 10, 11, 12, 13, 2]),
+            column(&input, [8, 9, 10, 11, 12, 13, 14, 3]),
+            column(&input, [9, 10, 11, 12, 13, 14, 15, 4]),
+            column(&input, [10, 11, 12, 13, 14, 15, 0, 5]),
+            column(&input, [11, 12, 13, 14, 15, 0, 1, 6]),
+            column(&input, [12, 13, 14, 15, 0, 1, 2, 7]),
+            column(&input, [13, 14, 15, 0, 1, 2, 3, 8]),
+            column(&input, [14, 15, 0, 1, 2, 3, 4, 9]),
+            column(&input, [15, 0, 1, 2, 3, 4, 5, 10]),
+        ];
+
+        let mut xor_input = input;
+        for i in 0..COLS {
+            xor_input[i] ^= ((i as u64) << 60) ^ round_number;
+        }
+
+        assert_eq!(result, expected);
+        assert_eq!(result, rndp(xor_input, round_number)); // This test ensures round constants are applied correctly
+    }
+
+    fn column(x: &[u64; COLS], i: [usize; 8]) -> u64 {
+        // Mock of the column function, the implementation of this would depend on
+        // the actual implementation which hasn't been provided.
+        // This needs to be implemented for the test to be valid.
+        0
+    }
+
+    const COLS: usize = 16;
+}
+True
+========================================
+    use super::*;
+
+use crate::*;
+
+    // Assuming the COLS constant and the column function are defined and available in the scope
+    // COLS should be equal to 16 for this test, matching the number of elements in the returned array
+    const COLS: usize = 16;
+
+    // Mock of the column function - you should replace this with the actual function
+    // This is here to satisfy the call in the rndq function, as the actual implementation is not provided
+    fn column(_: &[u64; COLS], _: [usize; 8]) -> u64 {
+        0
+    }
+
+    #[test]
+    fn test_rndq() {
+        // Input setup for the test
+        let input_x: [u64; COLS] = [0; COLS]; // Example input, should be adjusted to appropriate test case
+        let input_r: u64 = 0; // Example round constant, should be adjusted to appropriate test case
+
+        // Expected output setup for the test, this should be replaced with the actual expected output
+        let expected_output: [u64; COLS] = [0; COLS]; // Example output, should be adjusted to appropriate test case
+
+        // Execute the function with the test input
+        let result = rndq(input_x, input_r);
+
+        // Assert the result matches the expected output
+        assert_eq!(expected_output, result);
+    }
+}
+True
+========================================
+    use crate::column;
+    use crate::table::TABLE;
+    use crate::COLS;
+
+    #[test]
+    fn test_column() {
+        let test_cases = vec![
+            (
+                [0x0001020304050607, 0x08090a0b0c0d0e0f, 0x1011121314151617, 0x18191a1b1c1d1e1f,
+                 0x2021222324252627, 0x28292a2b2c2d2e2f, 0x3031323334353637, 0x38393a3b3c3d3e3f],
+                [0, 1, 2, 3, 4, 5, 6, 7],
+            ),
+            // Add more test cases here
+        ];
+
+        for (x, c) in test_cases {
+            let mut expected_result = 0;
+            for i in 0..COLS {
+                let sl = 8 * (COLS - 1 - i);
+                let idx = ((x[c[i]] >> sl) & 0xFF) as usize;
+                expected_result ^= TABLE[i][idx];
+            }
+
+            let result = column(&x, c);
+            assert_eq!(result, expected_result, "column did not return the expected result for input x: {:?}, c: {:?}", x, c);
+        }
+    }
+}
+False
+========================================
+    use crate::compress;
+    use crate::COLS;
+    use crate::ROUNDS;
+
+    #[test]
+    fn test_compress() {
+        let mut h = [0u64; COLS];
+        let block = [0u8; 64];
+
+        // Compress with an all-zero block
+        let h_initial = h;
+        compress(&mut h, &block);
+
+        // Check that the state has changed
+        assert_ne!(h, h_initial, "State should change after compressing with an all-zero block");
+
+        // Compress with a non-zero block
+        let mut h_non_zero = [0u64; COLS];
+        let non_zero_block = [0xFFu8; 64];
+        compress(&mut h_non_zero, &non_zero_block);
+
+        // Check that the state has changed
+        assert_ne!(h_non_zero, h_initial, "State should change after compressing with a non-zero block");
+
+        // Check that the resulting state is different for different input blocks
+        assert_ne!(h, h_non_zero, "State after compressing with different input blocks should be different");
+    }
+}
+
+False
+========================================
+    use crate::p;
+
+    #[test]
+    fn test_p_identity() {
+        let h: [u64; super::COLS] = [0; super::COLS];
+        let result = p(&h);
+        assert_eq!(result, h);
+    }
+
+    #[test]
+    fn test_p_known_values() {
+        let h: [u64; super::COLS] = [0x12345678abcdef00, 0x9abcdef012345678, 0x0fedcba987654321, 0x1122334455667788, 0x8877665544332211, 0x7755664477332211, 0x3322110077556644, 0x1234567890abcdef];
+        let expected: [u64; super::COLS] = [0x8765432112345678, 0xabcdef0012345678, 0x9abcdef012345678, 0x0fedcba987654321, 0x6655443322110077, 0x5566447733221100, 0x2233110088766655, 0x4567890abcdef123];
+        let result = p(&h);
+        assert_eq!(result, expected);
+    }
+
+    #[test]
+    fn test_p_output_differs() {
+        let h: [u64; super::COLS] = [0x12345678abcdef00, 0x9abcdef012345678, 0x0fedcba987654321, 0x1122334455667788, 0x8877665544332211, 0x7755664477332211, 0x3322110077556644, 0x1234567890abcdef];
+        let result = p(&h);
+        assert_ne!(result, h);
+    }
+
+    #[test]
+    fn test_p_is_deterministic() {
+        let h: [u64; super::COLS] = [0x9abcdef012345678, 0x0fedcba987654321, 0x12345678abcdef00, 0x1122334455667788, 0x8877665544332211, 0x7755664477332211, 0x3322110077556644, 0x1234567890abcdef];
+        let first_result = p(&h);
+        let second_result = p(&h);
+        assert_eq!(first_result, second_result);
+    }
+
+    #[test]
+    fn test_p_with_round_changes() {
+        let h: [u64; super::COLS] = [0x12345678abcdef00, 0x9abcdef012345678, 0x0fedcba987654321, 0x1122334455667788, 0x8877665544332211, 0x7755664477332211, 0x3322110077556644, 0x1234567890abcdef];
+        let result_round_0 = p(&h);
+        let mut h_round_1 = h;
+        h_round_1[0] ^= 0x0100000000000000;
+        let result_round_1 = p(&h_round_1);
+        assert_ne!(result_round_0, result_round_1);
+    }
+}
+False
+========================================
+    use crate::rndp;
+
+    #[test]
+    fn test_rndp() {
+        const COLS: usize = 8;
+
+        let input: [u64; COLS] = [0; COLS];
+        let round: u64 = 1;
+
+        let expected: [u64; COLS] = [
+            0x8000000000000001 ^ round,
+            0x4000000000000001 ^ round,
+            0x2000000000000001 ^ round,
+            0x1000000000000001 ^ round,
+            0x0800000000000001 ^ round,
+            0x0400000000000001 ^ round,
+            0x0200000000000001 ^ round,
+            0x0100000000000001 ^ round,
+        ];
+
+        let output = rndp(input, round);
+
+        assert_eq!(output, expected, "rndp did not produce the expected output");
+    }
+}
+False
+========================================
+    use super::*; // Use super::* to import all public items from the parent module
+
+use crate::*;
+
+    #[test]
+    fn test_rndq() {
+        // Define test cases with input and expected output
+        let test_cases = [
+            // Add actual test cases here with appropriate input and expected output
+            // Example (you should replace this with real test cases)
+            (
+                [0x0; COLS], // input
+                1, // round constant
+                [0xf0e0d0c0b0a0908; COLS], // dummy expected output to match input type
+            ),
+        ];
+    
+        for (input, round, expected) in test_cases.iter() {
+            assert_eq!(rndq(*input, *round), *expected);
+        }
+    }
+}
+True
+hashes groestl 6 18

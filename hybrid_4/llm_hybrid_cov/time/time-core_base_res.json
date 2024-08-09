@@ -1,0 +1,1 @@
+{"convert::Day::per": false, "convert::Hour::per": true, "convert::Microsecond::per": true, "convert::Millisecond::per": false, "convert::Minute::per": false, "convert::Nanosecond::per": true, "convert::Second::per": true, "convert::Week::per": false, "util::days_in_year": false, "util::is_leap_year": false, "util::weeks_in_year": false}

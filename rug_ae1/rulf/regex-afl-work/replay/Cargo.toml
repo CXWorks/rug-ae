@@ -1,0 +1,307 @@
+[[bin]]
+name = "test_regex54"
+path = "replay_files/replay_regex54.rs"
+
+[[bin]]
+name = "test_regex49"
+path = "replay_files/replay_regex49.rs"
+
+[[bin]]
+name = "test_regex57"
+path = "replay_files/replay_regex57.rs"
+
+[[bin]]
+name = "test_regex52"
+path = "replay_files/replay_regex52.rs"
+
+[[bin]]
+name = "test_regex15"
+path = "replay_files/replay_regex15.rs"
+
+[[bin]]
+name = "test_regex42"
+path = "replay_files/replay_regex42.rs"
+
+[[bin]]
+name = "test_regex1"
+path = "replay_files/replay_regex1.rs"
+
+[[bin]]
+name = "test_regex67"
+path = "replay_files/replay_regex67.rs"
+
+[[bin]]
+name = "test_regex46"
+path = "replay_files/replay_regex46.rs"
+
+[[bin]]
+name = "test_regex70"
+path = "replay_files/replay_regex70.rs"
+
+[[bin]]
+name = "test_regex17"
+path = "replay_files/replay_regex17.rs"
+
+[[bin]]
+name = "test_regex40"
+path = "replay_files/replay_regex40.rs"
+
+[[bin]]
+name = "test_regex56"
+path = "replay_files/replay_regex56.rs"
+
+[[bin]]
+name = "test_regex53"
+path = "replay_files/replay_regex53.rs"
+
+[[bin]]
+name = "test_regex24"
+path = "replay_files/replay_regex24.rs"
+
+[[bin]]
+name = "test_regex26"
+path = "replay_files/replay_regex26.rs"
+
+[[bin]]
+name = "test_regex69"
+path = "replay_files/replay_regex69.rs"
+
+[[bin]]
+name = "test_regex21"
+path = "replay_files/replay_regex21.rs"
+
+[[bin]]
+name = "test_regex29"
+path = "replay_files/replay_regex29.rs"
+
+[[bin]]
+name = "test_regex58"
+path = "replay_files/replay_regex58.rs"
+
+[[bin]]
+name = "test_regex55"
+path = "replay_files/replay_regex55.rs"
+
+[[bin]]
+name = "test_regex44"
+path = "replay_files/replay_regex44.rs"
+
+[[bin]]
+name = "test_regex39"
+path = "replay_files/replay_regex39.rs"
+
+[[bin]]
+name = "test_regex64"
+path = "replay_files/replay_regex64.rs"
+
+[[bin]]
+name = "test_regex35"
+path = "replay_files/replay_regex35.rs"
+
+[[bin]]
+name = "test_regex38"
+path = "replay_files/replay_regex38.rs"
+
+[[bin]]
+name = "test_regex11"
+path = "replay_files/replay_regex11.rs"
+
+[[bin]]
+name = "test_regex16"
+path = "replay_files/replay_regex16.rs"
+
+[[bin]]
+name = "test_regex23"
+path = "replay_files/replay_regex23.rs"
+
+[[bin]]
+name = "test_regex28"
+path = "replay_files/replay_regex28.rs"
+
+[[bin]]
+name = "test_regex72"
+path = "replay_files/replay_regex72.rs"
+
+[[bin]]
+name = "test_regex34"
+path = "replay_files/replay_regex34.rs"
+
+[[bin]]
+name = "test_regex43"
+path = "replay_files/replay_regex43.rs"
+
+[[bin]]
+name = "test_regex18"
+path = "replay_files/replay_regex18.rs"
+
+[[bin]]
+name = "test_regex30"
+path = "replay_files/replay_regex30.rs"
+
+[[bin]]
+name = "test_regex27"
+path = "replay_files/replay_regex27.rs"
+
+[[bin]]
+name = "test_regex25"
+path = "replay_files/replay_regex25.rs"
+
+[[bin]]
+name = "test_regex0"
+path = "replay_files/replay_regex0.rs"
+
+[[bin]]
+name = "test_regex50"
+path = "replay_files/replay_regex50.rs"
+
+[[bin]]
+name = "test_regex71"
+path = "replay_files/replay_regex71.rs"
+
+[[bin]]
+name = "test_regex10"
+path = "replay_files/replay_regex10.rs"
+
+[[bin]]
+name = "test_regex45"
+path = "replay_files/replay_regex45.rs"
+
+[[bin]]
+name = "test_regex2"
+path = "replay_files/replay_regex2.rs"
+
+[[bin]]
+name = "test_regex73"
+path = "replay_files/replay_regex73.rs"
+
+[[bin]]
+name = "test_regex12"
+path = "replay_files/replay_regex12.rs"
+
+[[bin]]
+name = "test_regex31"
+path = "replay_files/replay_regex31.rs"
+
+[[bin]]
+name = "test_regex4"
+path = "replay_files/replay_regex4.rs"
+
+[[bin]]
+name = "test_regex68"
+path = "replay_files/replay_regex68.rs"
+
+[[bin]]
+name = "test_regex22"
+path = "replay_files/replay_regex22.rs"
+
+[[bin]]
+name = "test_regex61"
+path = "replay_files/replay_regex61.rs"
+
+[[bin]]
+name = "test_regex62"
+path = "replay_files/replay_regex62.rs"
+
+[[bin]]
+name = "test_regex48"
+path = "replay_files/replay_regex48.rs"
+
+[[bin]]
+name = "test_regex37"
+path = "replay_files/replay_regex37.rs"
+
+[[bin]]
+name = "test_regex47"
+path = "replay_files/replay_regex47.rs"
+
+[[bin]]
+name = "test_regex59"
+path = "replay_files/replay_regex59.rs"
+
+[[bin]]
+name = "test_regex32"
+path = "replay_files/replay_regex32.rs"
+
+[[bin]]
+name = "test_regex8"
+path = "replay_files/replay_regex8.rs"
+
+[[bin]]
+name = "test_regex41"
+path = "replay_files/replay_regex41.rs"
+
+[[bin]]
+name = "test_regex65"
+path = "replay_files/replay_regex65.rs"
+
+[[bin]]
+name = "test_regex5"
+path = "replay_files/replay_regex5.rs"
+
+[[bin]]
+name = "test_regex60"
+path = "replay_files/replay_regex60.rs"
+
+[[bin]]
+name = "test_regex3"
+path = "replay_files/replay_regex3.rs"
+
+[[bin]]
+name = "test_regex20"
+path = "replay_files/replay_regex20.rs"
+
+[[bin]]
+name = "test_regex33"
+path = "replay_files/replay_regex33.rs"
+
+[[bin]]
+name = "test_regex51"
+path = "replay_files/replay_regex51.rs"
+
+[[bin]]
+name = "test_regex6"
+path = "replay_files/replay_regex6.rs"
+
+[[bin]]
+name = "test_regex7"
+path = "replay_files/replay_regex7.rs"
+
+[[bin]]
+name = "test_regex19"
+path = "replay_files/replay_regex19.rs"
+
+[[bin]]
+name = "test_regex36"
+path = "replay_files/replay_regex36.rs"
+
+[[bin]]
+name = "test_regex13"
+path = "replay_files/replay_regex13.rs"
+
+[[bin]]
+name = "test_regex14"
+path = "replay_files/replay_regex14.rs"
+
+[[bin]]
+name = "test_regex63"
+path = "replay_files/replay_regex63.rs"
+
+[[bin]]
+name = "test_regex66"
+path = "replay_files/replay_regex66.rs"
+
+[[bin]]
+name = "test_regex9"
+path = "replay_files/replay_regex9.rs"
+
+[package]
+name = "hello"
+version = "0.1.0"
+authors = [ "xiang",]
+edition = "2018"
+
+[dependencies.regex]
+path = "../regex"
+
+[profile.release]
+debug = 1

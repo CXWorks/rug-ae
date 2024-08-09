@@ -1,0 +1,63 @@
+
+[package]
+name = "hello"
+version = "0.1.0"
+authors = ["xiang"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[profile.release]
+debug=1
+[dependencies]
+
+semver-parser={path="../semver-parser"}
+
+[[bin]]
+name="test_semver_parser6"
+path="replay_files/replay_semver_parser6.rs"
+
+
+[[bin]]
+name="test_semver_parser3"
+path="replay_files/replay_semver_parser3.rs"
+
+
+[[bin]]
+name="test_semver_parser4"
+path="replay_files/replay_semver_parser4.rs"
+
+
+[[bin]]
+name="test_semver_parser9"
+path="replay_files/replay_semver_parser9.rs"
+
+
+[[bin]]
+name="test_semver_parser7"
+path="replay_files/replay_semver_parser7.rs"
+
+
+[[bin]]
+name="test_semver_parser1"
+path="replay_files/replay_semver_parser1.rs"
+
+
+[[bin]]
+name="test_semver_parser5"
+path="replay_files/replay_semver_parser5.rs"
+
+
+[[bin]]
+name="test_semver_parser2"
+path="replay_files/replay_semver_parser2.rs"
+
+
+[[bin]]
+name="test_semver_parser0"
+path="replay_files/replay_semver_parser0.rs"
+
+
+[[bin]]
+name="test_semver_parser8"
+path="replay_files/replay_semver_parser8.rs"
+

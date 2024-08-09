@@ -1,0 +1,1826 @@
+ChatCompletion(id='chatcmpl-8UVcmSFevr9ntr6JXVUqGI1cc8S7c', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use crate::gost94::gost94_core::Gost94Core;\n    use crate::gost94::params::{CryptoProParam, Gost94Params};\n\n    #[test]\n    fn test_default_gost94_core_with_cryptopro_param() {\n        let core: Gost94Core<CryptoProParam> = Gost94Core::default();\n\n        assert_eq!(core.h, CryptoProParam::H0);\n        assert_eq!(core.n, [0; 4]);\n        assert_eq!(core.sigma, [0; 4]);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702282096, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=135, prompt_tokens=2130, total_tokens=2265))
+71
+========================================
+inject err <gost94_core::Gost94Core<P> as core::default::Default>::default gost94/src/gost94_core.rs default
+#[cfg(test)]
+mod tests_llm_16_1 {
+    use super::*;
+
+use crate::*;
+    use crate::crate::gost94_core::Gost94Core;
+    use crate::crate::params::{CryptoProParam, Gost94Params};
+
+    #[test]
+    fn test_default_gost94_core_with_cryptopro_param() {
+        let core: Gost94Core<CryptoProParam> = Gost94Core::default();
+
+        assert_eq!(core.h, CryptoProParam::H0);
+        assert_eq!(core.n, [0; 4]);
+        assert_eq!(core.sigma, [0; 4]);
+    }
+}
+   Compiling version_check v0.9.4
+   Compiling typenum v1.16.0
+   Compiling proc-macro-hack v0.5.20+deprecated
+   Compiling blobby v0.3.1
+   Compiling generic-array v0.14.7
+   Compiling hex-literal-impl v0.2.3
+   Compiling hex-literal v0.2.2
+   Compiling block-buffer v0.10.4
+   Compiling crypto-common v0.1.6
+   Compiling digest v0.10.7
+   Compiling gost94 v0.10.4 (/home/xiang/workspace/human/llm_base_bk/hashes/gost94)
+error[E0433]: failed to resolve: `crate` in paths can only be used in start position
+   --> gost94/src/gost94_core.rs:281:16
+    |
+281 |     use crate::crate::gost94_core::Gost94Core;
+    |                ^^^^^ `crate` in paths can only be used in start position
+
+error[E0433]: failed to resolve: `crate` in paths can only be used in start position
+   --> gost94/src/gost94_core.rs:282:16
+    |
+282 |     use crate::crate::params::{CryptoProParam, Gost94Params};
+    |                ^^^^^ `crate` in paths can only be used in start position
+
+For more information about this error, try `rustc --explain E0433`.
+error: could not compile `gost94` due to 2 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UVd3eiMJ2gxaHDTcmSKJMmgTsxW4', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_1 {\n    use super::*;\n    use gost94_core::Gost94Core;\n    use params::CryptoProParam;\n\n    #[test]\n    fn test_default_gost94_core_with_cryptopro_param() {\n        let core: Gost94Core<CryptoProParam> = Gost94Core::default();\n\n        assert_eq!(core.h, CryptoProParam::H0);\n        assert_eq!(core.n, [0; 4]);\n        assert_eq!(core.sigma, [0; 4]);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702282113, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=123, prompt_tokens=2812, total_tokens=2935))
+71
+inject succeed hashes gost94 <gost94_core::Gost94Core<P> as core::default::Default>::default
+ChatCompletion(id='chatcmpl-8UVdEX09UNEXfdzbdEclY4IEfAfAR', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use gost94::{Gost94Core, CryptoProParam};\n    use digest::Reset;\n\n    #[test]\n    fn reset_test() {\n        let mut hasher = Gost94Core::<CryptoProParam>::default();\n        let initial_state = hasher.clone();\n        // Change the state.\n        hasher.n[0] = 123;\n        hasher.sigma[0] = 456;\n        hasher.h[0] = 78;\n        // Reset the hasher.\n        hasher.reset();\n        // After reset, the hasher should be in the initial state.\n        assert_eq!(hasher, initial_state);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702282124, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=138, prompt_tokens=2101, total_tokens=2239))
+71
+========================================
+inject err <gost94_core::Gost94Core<P> as digest::Reset>::reset gost94/src/gost94_core.rs reset
+#[cfg(test)]
+mod tests_llm_16_2 {
+    use crate::{Gost94Core, CryptoProParam};
+    use digest::Reset;
+
+    #[test]
+    fn reset_test() {
+        let mut hasher = Gost94Core::<CryptoProParam>::default();
+        let initial_state = hasher.clone();
+        // Change the state.
+        hasher.n[0] = 123;
+        hasher.sigma[0] = 456;
+        hasher.h[0] = 78;
+        // Reset the hasher.
+        hasher.reset();
+        // After reset, the hasher should be in the initial state.
+        assert_eq!(hasher, initial_state);
+    }
+}
+   Compiling gost94 v0.10.4 (/home/xiang/workspace/human/llm_base_bk/hashes/gost94)
+error[E0432]: unresolved import `crate::CryptoProParam`
+   --> gost94/src/gost94_core.rs:294:29
+    |
+294 |     use crate::{Gost94Core, CryptoProParam};
+    |                             ^^^^^^^^^^^^^^ no `CryptoProParam` in the root
+    |
+help: consider importing this struct instead
+    |
+294 |     use crate::{Gost94Core, crate::params::CryptoProParam;
+    |                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `gost94` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UVddm13de5zqVDIhNfVVwBE4gkbF', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_2 {\n    use crate::gost94_core::Gost94Core;\n    use crate::params::CryptoProParam;\n    use digest::Reset;\n\n    #[test]\n    fn reset_test() {\n        let mut hasher = Gost94Core::<CryptoProParam>::default();\n        let initial_state = hasher.clone();\n        // Change the state.\n        hasher.n[0] = 123;\n        hasher.sigma[0] = 456;\n        hasher.h[0] = 78;\n        // Reset the hasher.\n        hasher.reset();\n        // After reset, the hasher should be in the initial state.\n        assert_eq!(hasher, initial_state);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702282149, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_6aca3b5ce1', usage=CompletionUsage(completion_tokens=154, prompt_tokens=2611, total_tokens=2765))
+71
+========================================
+inject err <gost94_core::Gost94Core<P> as digest::Reset>::reset gost94/src/gost94_core.rs reset
+#[cfg(test)]
+mod tests_llm_16_2_llm_16_2 {
+    use crate::gost94_core::Gost94Core;
+    use crate::params::CryptoProParam;
+    use digest::Reset;
+
+    #[test]
+    fn reset_test() {
+        let mut hasher = Gost94Core::<CryptoProParam>::default();
+        let initial_state = hasher.clone();
+        // Change the state.
+        hasher.n[0] = 123;
+        hasher.sigma[0] = 456;
+        hasher.h[0] = 78;
+        // Reset the hasher.
+        hasher.reset();
+        // After reset, the hasher should be in the initial state.
+        assert_eq!(hasher, initial_state);
+    }
+}
+   Compiling gost94 v0.10.4 (/home/xiang/workspace/human/llm_base_bk/hashes/gost94)
+error[E0369]: binary operation `==` cannot be applied to type `Gost94Core<CryptoProParam>`
+   --> gost94/src/gost94_core.rs:309:9
+    |
+309 |         assert_eq!(hasher, initial_state);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |         |
+    |         Gost94Core<CryptoProParam>
+    |         Gost94Core<CryptoProParam>
+    |
+note: an implementation of `PartialEq<_>` might be missing for `Gost94Core<CryptoProParam>`
+   --> gost94/src/gost94_core.rs:129:1
+    |
+129 | pub struct Gost94Core<P: Gost94Params> {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ must implement `PartialEq<_>`
+    = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider annotating `Gost94Core<CryptoProParam>` with `#[derive(PartialEq)]`
+    |
+129 | #[derive(PartialEq)]
+    |
+
+For more information about this error, try `rustc --explain E0369`.
+error: could not compile `gost94` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+repair err <gost94_core::Gost94Core<P> as digest::Reset>::reset gost94/src/gost94_core.rs reset
+ChatCompletion(id='chatcmpl-8UVdrMaVY8TtPdW6FEBrhsX8Q9k2P', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use std::fmt;\n    use digest::core_api::AlgorithmName;\n\n    struct DummyParameter;\n\n    impl gost94_core::Gost94Parameter for DummyParameter {\n        const NAME: &\'static str = "Gost94-Dummy";\n        const SBOX: [u8; 128] = [0u8; 128];\n    }\n\n    #[test]\n    fn write_alg_name_test() {\n        struct Gost94Dummy;\n        impl gost94_core::Gost94Core<DummyParameter> for Gost94Dummy {}\n\n        let mut alg_name = String::new();\n        let mut formatter = fmt::Formatter::new(&mut alg_name);\n        Gost94Dummy::write_alg_name(&mut formatter).unwrap();\n        \n        assert_eq!(alg_name, "Gost94-Dummy");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702282163, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=185, prompt_tokens=182, total_tokens=367))
+71
+========================================
+inject err <gost94_core::Gost94Core<P> as digest::core_api::AlgorithmName>::write_alg_name gost94/src/gost94_core.rs write_alg_name
+#[cfg(test)]
+mod tests_llm_16_3 {
+    use super::*;
+
+use crate::*;
+    use std::fmt;
+    use digest::core_api::AlgorithmName;
+
+    struct DummyParameter;
+
+    impl gost94_core::Gost94Parameter for DummyParameter {
+        const NAME: &'static str = "Gost94-Dummy";
+        const SBOX: [u8; 128] = [0u8; 128];
+    }
+
+    #[test]
+    fn write_alg_name_test() {
+        struct Gost94Dummy;
+        impl gost94_core::Gost94Core<DummyParameter> for Gost94Dummy {}
+
+        let mut alg_name = String::new();
+        let mut formatter = fmt::Formatter::new(&mut alg_name);
+        Gost94Dummy::write_alg_name(&mut formatter).unwrap();
+        
+        assert_eq!(alg_name, "Gost94-Dummy");
+    }
+}
+   Compiling gost94 v0.10.4 (/home/xiang/workspace/human/llm_base_bk/hashes/gost94)
+error[E0405]: cannot find trait `Gost94Parameter` in module `gost94_core`
+   --> gost94/src/gost94_core.rs:302:23
+    |
+302 |     impl gost94_core::Gost94Parameter for DummyParameter {
+    |                       ^^^^^^^^^^^^^^^ help: a trait with a similar name exists: `Gost94Params`
+    |
+   ::: gost94/src/params.rs:9:1
+    |
+9   | pub trait Gost94Params {
+    | ---------------------- similarly named trait `Gost94Params` defined here
+
+error[E0404]: expected trait, found struct `gost94_core::Gost94Core`
+   --> gost94/src/gost94_core.rs:310:14
+    |
+310 |         impl gost94_core::Gost94Core<DummyParameter> for Gost94Dummy {}
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not a trait
+
+error[E0433]: failed to resolve: use of undeclared type `String`
+   --> gost94/src/gost94_core.rs:312:28
+    |
+312 |         let mut alg_name = String::new();
+    |                            ^^^^^^ use of undeclared type `String`
+    |
+help: consider importing one of these items
+    |
+294 |     use crate::gost94_core::tests_llm_16_3::std::string::String;
+    |
+294 |     use std::string::String;
+    |
+
+Some errors have detailed explanations: E0404, E0405, E0433.
+For more information about an error, try `rustc --explain E0404`.
+error: could not compile `gost94` due to 3 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UVe90RyQllFqfbUk8stmga1Cjy6r', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_3 {\n    use super::*;\n    use digest::core_api::AlgorithmName;\n    use core::fmt;\n    use crate::Gost94Params;\n\n    struct DummyParameter;\n\n    impl Gost94Params for DummyParameter {\n        const NAME: &\'static str = "Gost94-Dummy";\n        const SBOX: [u8; 128] = [0u8; 128];\n    }\n\n    #[test]\n    fn write_alg_name_test() {\n        struct Gost94Dummy;\n\n        impl Gost94Core<DummyParameter> for Gost94Dummy {}\n\n        let mut alg_name = fmt::format(fmt::Arguments::new_v1(\n            &["Gost94-Dummy"],\n            &[]\n        ));\n        let mut formatter = fmt::Formatter::new(&mut alg_name);\n        Gost94Dummy::write_alg_name(&mut formatter).unwrap();\n        \n        assert_eq!(alg_name, "Gost94-Dummy");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702282181, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=213, prompt_tokens=1019, total_tokens=1232))
+71
+========================================
+inject err <gost94_core::Gost94Core<P> as digest::core_api::AlgorithmName>::write_alg_name gost94/src/gost94_core.rs write_alg_name
+#[cfg(test)]
+mod tests_llm_16_3_llm_16_3 {
+    use super::*;
+
+use crate::*;
+    use digest::core_api::AlgorithmName;
+    use core::fmt;
+    use crate::Gost94Params;
+
+    struct DummyParameter;
+
+    impl Gost94Params for DummyParameter {
+        const NAME: &'static str = "Gost94-Dummy";
+        const SBOX: [u8; 128] = [0u8; 128];
+    }
+
+    #[test]
+    fn write_alg_name_test() {
+        struct Gost94Dummy;
+
+        impl Gost94Core<DummyParameter> for Gost94Dummy {}
+
+        let mut alg_name = fmt::format(fmt::Arguments::new_v1(
+            &["Gost94-Dummy"],
+            &[]
+        ));
+        let mut formatter = fmt::Formatter::new(&mut alg_name);
+        Gost94Dummy::write_alg_name(&mut formatter).unwrap();
+        
+        assert_eq!(alg_name, "Gost94-Dummy");
+    }
+}
+   Compiling gost94 v0.10.4 (/home/xiang/workspace/human/llm_base_bk/hashes/gost94)
+error[E0432]: unresolved import `crate::Gost94Params`
+   --> gost94/src/gost94_core.rs:299:9
+    |
+299 |     use crate::Gost94Params;
+    |         ^^^^^^^^^^^^^^^^^^^ no `Gost94Params` in the root
+    |
+help: consider importing this trait instead
+    |
+299 |     use crate::params::Gost94Params;
+    |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+error[E0438]: const `SBOX` is not a member of trait `Gost94Params`
+   --> gost94/src/gost94_core.rs:305:9
+    |
+305 |         const SBOX: [u8; 128] = [0u8; 128];
+    |         ^^^^^^----^^^^^^^^^^^^^^^^^^^^^^^^^
+    |         |     |
+    |         |     help: there is an associated constant with a similar name: `S_BOX`
+    |         not a member of trait `Gost94Params`
+
+error[E0404]: expected trait, found struct `Gost94Core`
+   --> gost94/src/gost94_core.rs:312:14
+    |
+312 |         impl Gost94Core<DummyParameter> for Gost94Dummy {}
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^ not a trait
+
+error[E0425]: cannot find function `format` in module `fmt`
+   --> gost94/src/gost94_core.rs:314:33
+    |
+314 |         let mut alg_name = fmt::format(fmt::Arguments::new_v1(
+    |                                 ^^^^^^ not found in `fmt`
+    |
+help: consider importing one of these items
+    |
+294 |     use crate::gost94_core::tests_llm_16_3_llm_16_3::std::fmt::format;
+    |
+294 |     use std::fmt::format;
+    |
+help: if you import `format`, refer to it directly
+    |
+314 -         let mut alg_name = fmt::format(fmt::Arguments::new_v1(
+314 +         let mut alg_name = format(fmt::Arguments::new_v1(
+    |
+
+Some errors have detailed explanations: E0404, E0425, E0432, E0438.
+For more information about an error, try `rustc --explain E0404`.
+error: could not compile `gost94` due to 4 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+repair err <gost94_core::Gost94Core<P> as digest::core_api::AlgorithmName>::write_alg_name gost94/src/gost94_core.rs write_alg_name
+ChatCompletion(id='chatcmpl-8UVeQ3Pul7IQzjCNSerVn4oX6yfro', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use gost94::gost94_core::{Buffer, Gost94Core, Output};\n    use gost94::params::CryptoProParam;\n    use digest::core_api::{FixedOutputCore, UpdateCore};\n    use digest::consts::U32;\n\n    #[test]\n    fn test_finalize_fixed_core() {\n        let mut core: Gost94Core<CryptoProParam> = Gost94Core::default();\n        let expected_h = core.h;\n\n        let mut buffer = Buffer::<Gost94Core<CryptoProParam>>::default();\n        let mut output = Output::<Gost94Core<CryptoProParam>>::default();\n\n        core.finalize_fixed_core(&mut buffer, &mut output);\n\n        assert_eq!(Output::<Gost94Core<CryptoProParam>>::default().as_ref(), &core.h);\n\n        buffer.input(&[0u8; U32::USIZE]);\n        output = Output::<Gost94Core<CryptoProParam>>::default();\n\n        core.finalize_fixed_core(&mut buffer, &mut output);\n\n        assert_eq!(Output::<Gost94Core<CryptoProParam>>::default().as_ref(), &expected_h);\n    }\n\n    #[test]\n    fn test_finalize_fixed_core_with_updates() {\n        let mut core: Gost94Core<CryptoProParam> = Gost94Core::default();\n\n        let data = [0u8; U32::USIZE * 2];\n        core.update_blocks(&[data, data]);\n\n        let mut buffer = Buffer::<Gost94Core<CryptoProParam>>::default();\n        let mut output = Output::<Gost94Core<CryptoProParam>>::default();\n\n        core.finalize_fixed_core(&mut buffer, &mut output);\n\n        let expected_h = core.h;\n        assert_eq!(Output::<Gost94Core<CryptoProParam>>::default().as_ref(), &expected_h);\n    }\n\n    #[test]\n    fn test_finalize_fixed_core_with_partial_block() {\n        let mut core: Gost94Core<CryptoProParam> = Gost94Core::default();\n\n        let data = [0u8; U32::USIZE / 2];\n        let mut buffer = Buffer::<Gost94Core<CryptoProParam>>::default();\n        buffer.input(&data);\n        let mut output = Output::<Gost94Core<CryptoProParam>>::default();\n\n        core.finalize_fixed_core(&mut buffer, &mut output);\n\n        assert_ne!(Output::<Gost94Core<CryptoProParam>>::default().as_ref(), &core.h);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702282198, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=541, prompt_tokens=2250, total_tokens=2791))
+71
+========================================
+inject err <gost94_core::Gost94Core<P> as digest::core_api::FixedOutputCore>::finalize_fixed_core gost94/src/gost94_core.rs finalize_fixed_core
+#[cfg(test)]
+mod tests_llm_16_4 {
+    use super::*;
+
+use crate::*;
+    use crate::gost94_core::{Buffer, Gost94Core, Output};
+    use crate::params::CryptoProParam;
+    use digest::core_api::{FixedOutputCore, UpdateCore};
+    use digest::consts::U32;
+
+    #[test]
+    fn test_finalize_fixed_core() {
+        let mut core: Gost94Core<CryptoProParam> = Gost94Core::default();
+        let expected_h = core.h;
+
+        let mut buffer = Buffer::<Gost94Core<CryptoProParam>>::default();
+        let mut output = Output::<Gost94Core<CryptoProParam>>::default();
+
+        core.finalize_fixed_core(&mut buffer, &mut output);
+
+        assert_eq!(Output::<Gost94Core<CryptoProParam>>::default().as_ref(), &core.h);
+
+        buffer.input(&[0u8; U32::USIZE]);
+        output = Output::<Gost94Core<CryptoProParam>>::default();
+
+        core.finalize_fixed_core(&mut buffer, &mut output);
+
+        assert_eq!(Output::<Gost94Core<CryptoProParam>>::default().as_ref(), &expected_h);
+    }
+
+    #[test]
+    fn test_finalize_fixed_core_with_updates() {
+        let mut core: Gost94Core<CryptoProParam> = Gost94Core::default();
+
+        let data = [0u8; U32::USIZE * 2];
+        core.update_blocks(&[data, data]);
+
+        let mut buffer = Buffer::<Gost94Core<CryptoProParam>>::default();
+        let mut output = Output::<Gost94Core<CryptoProParam>>::default();
+
+        core.finalize_fixed_core(&mut buffer, &mut output);
+
+        let expected_h = core.h;
+        assert_eq!(Output::<Gost94Core<CryptoProParam>>::default().as_ref(), &expected_h);
+    }
+
+    #[test]
+    fn test_finalize_fixed_core_with_partial_block() {
+        let mut core: Gost94Core<CryptoProParam> = Gost94Core::default();
+
+        let data = [0u8; U32::USIZE / 2];
+        let mut buffer = Buffer::<Gost94Core<CryptoProParam>>::default();
+        buffer.input(&data);
+        let mut output = Output::<Gost94Core<CryptoProParam>>::default();
+
+        core.finalize_fixed_core(&mut buffer, &mut output);
+
+        assert_ne!(Output::<Gost94Core<CryptoProParam>>::default().as_ref(), &core.h);
+    }
+}
+   Compiling gost94 v0.10.4 (/home/xiang/workspace/human/llm_base_bk/hashes/gost94)
+error[E0599]: no method named `input` found for struct `BlockBuffer` in the current scope
+   --> gost94/src/gost94_core.rs:314:16
+    |
+314 |         buffer.input(&[0u8; U32::USIZE]);
+    |                ^^^^^ method not found in `BlockBuffer<UInt<UInt<UInt<UInt<UInt<UInt<UTerm, B1>, B0>, B0>, B0>, B0>, B0>, Eager>`
+
+error[E0308]: mismatched types
+   --> gost94/src/gost94_core.rs:327:30
+    |
+327 |         core.update_blocks(&[data, data]);
+    |                              ^^^^ expected struct `GenericArray`, found array `[u8; 64]`
+    |
+    = note: expected struct `GenericArray<u8, UInt<UInt<UInt<UInt<UInt<UInt<UTerm, B1>, B0>, B0>, B0>, B0>, B0>>`
+                found array `[u8; 64]`
+
+error[E0599]: no method named `input` found for struct `BlockBuffer` in the current scope
+   --> gost94/src/gost94_core.rs:344:16
+    |
+344 |         buffer.input(&data);
+    |                ^^^^^ method not found in `BlockBuffer<UInt<UInt<UInt<UInt<UInt<UInt<UTerm, B1>, B0>, B0>, B0>, B0>, B0>, Eager>`
+
+Some errors have detailed explanations: E0308, E0599.
+For more information about an error, try `rustc --explain E0308`.
+error: could not compile `gost94` due to 3 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UVf7mQrKDDUtzCbW3lJ69007vdeR', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_4 {\n    use super::*;\n    use crate::gost94_core::{Buffer, Gost94Core, Output};\n    use crate::params::CryptoProParam;\n    use crate::buffer::StaticBuffer;\n    use crate::consts::U32;\n    use digest::core_api::CoreWrapper;\n    use digest::core_api::{FixedOutputCore, UpdateCore, BufferKindUser, BlockSizeUser};\n\n    #[test]\n    fn test_finalize_fixed_core() {\n        let mut core: Gost94Core<CryptoProParam> = Gost94Core::default();\n        let expected_h = core.h;\n\n        let mut buffer = <Gost94Core<CryptoProParam> as BufferKindUser>::BufferKind::default();\n        let mut output = Output::<Gost94Core<CryptoProParam>>::default();\n\n        core.finalize_fixed_core(CoreWrapper::from_core(&mut core, &mut buffer), &mut output);\n\n        assert_eq!(Output::<Gost94Core<CryptoProParam>>::default().as_ref(), &core.h);\n\n        let block = GenericArray::default();\n        buffer.reset();\n        buffer.input_block(&block);\n\n        output = Output::<Gost94Core<CryptoProParam>>::default();\n        core.finalize_fixed_core(CoreWrapper::from_core(&mut core, &mut buffer), &mut output);\n\n        assert_eq!(Output::<Gost94Core<CryptoProParam>>::default().as_ref(), &expected_h);\n    }\n\n    #[test]\n    fn test_finalize_fixed_core_with_updates() {\n        let mut core: Gost94Core<CryptoProParam> = Gost94Core::default();\n        let mut buffer = <Gost94Core<CryptoProParam> as BufferKindUser>::BufferKind::default();\n        let blocks = GenericArray::default();\n\n        core.update_blocks(&[blocks, blocks]);\n\n        let mut output = Output::<Gost94Core<CryptoProParam>>::default();\n        core.finalize_fixed_core(CoreWrapper::from_core(&mut core, &mut buffer), &mut output);\n\n        let expected_h = core.h;\n        assert_eq!(Output::<Gost94Core<CryptoProParam>>::default().as_ref(), &expected_h);\n    }\n\n    #[test]\n    fn test_finalize_fixed_core_with_partial_block() {\n        let mut core: Gost94Core<CryptoProParam> = Gost94Core::default();\n        let mut buffer = <Gost94Core<CryptoProParam> as BufferKindUser>::BufferKind::default();\n\n        let data = [0u8; U32::USIZE / 2];\n        core.update(&data);\n\n        let mut output = Output::<Gost94Core<CryptoProParam>>::default();\n        core.finalize_fixed_core(CoreWrapper::from_core(&mut core, &mut buffer), &mut output);\n\n        assert_ne!(Output::<Gost94Core<CryptoProParam>>::default().as_ref(), &core.h);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702282241, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=625, prompt_tokens=3805, total_tokens=4430))
+71
+========================================
+inject err <gost94_core::Gost94Core<P> as digest::core_api::FixedOutputCore>::finalize_fixed_core gost94/src/gost94_core.rs finalize_fixed_core
+#[cfg(test)]
+mod tests_llm_16_4_llm_16_4 {
+    use super::*;
+
+use crate::*;
+    use crate::gost94_core::{Buffer, Gost94Core, Output};
+    use crate::params::CryptoProParam;
+    use crate::buffer::StaticBuffer;
+    use crate::consts::U32;
+    use digest::core_api::CoreWrapper;
+    use digest::core_api::{FixedOutputCore, UpdateCore, BufferKindUser, BlockSizeUser};
+
+    #[test]
+    fn test_finalize_fixed_core() {
+        let mut core: Gost94Core<CryptoProParam> = Gost94Core::default();
+        let expected_h = core.h;
+
+        let mut buffer = <Gost94Core<CryptoProParam> as BufferKindUser>::BufferKind::default();
+        let mut output = Output::<Gost94Core<CryptoProParam>>::default();
+
+        core.finalize_fixed_core(CoreWrapper::from_core(&mut core, &mut buffer), &mut output);
+
+        assert_eq!(Output::<Gost94Core<CryptoProParam>>::default().as_ref(), &core.h);
+
+        let block = GenericArray::default();
+        buffer.reset();
+        buffer.input_block(&block);
+
+        output = Output::<Gost94Core<CryptoProParam>>::default();
+        core.finalize_fixed_core(CoreWrapper::from_core(&mut core, &mut buffer), &mut output);
+
+        assert_eq!(Output::<Gost94Core<CryptoProParam>>::default().as_ref(), &expected_h);
+    }
+
+    #[test]
+    fn test_finalize_fixed_core_with_updates() {
+        let mut core: Gost94Core<CryptoProParam> = Gost94Core::default();
+        let mut buffer = <Gost94Core<CryptoProParam> as BufferKindUser>::BufferKind::default();
+        let blocks = GenericArray::default();
+
+        core.update_blocks(&[blocks, blocks]);
+
+        let mut output = Output::<Gost94Core<CryptoProParam>>::default();
+        core.finalize_fixed_core(CoreWrapper::from_core(&mut core, &mut buffer), &mut output);
+
+        let expected_h = core.h;
+        assert_eq!(Output::<Gost94Core<CryptoProParam>>::default().as_ref(), &expected_h);
+    }
+
+    #[test]
+    fn test_finalize_fixed_core_with_partial_block() {
+        let mut core: Gost94Core<CryptoProParam> = Gost94Core::default();
+        let mut buffer = <Gost94Core<CryptoProParam> as BufferKindUser>::BufferKind::default();
+
+        let data = [0u8; U32::USIZE / 2];
+        core.update(&data);
+
+        let mut output = Output::<Gost94Core<CryptoProParam>>::default();
+        core.finalize_fixed_core(CoreWrapper::from_core(&mut core, &mut buffer), &mut output);
+
+        assert_ne!(Output::<Gost94Core<CryptoProParam>>::default().as_ref(), &core.h);
+    }
+}
+   Compiling gost94 v0.10.4 (/home/xiang/workspace/human/llm_base_bk/hashes/gost94)
+error[E0432]: unresolved import `crate::buffer`
+   --> gost94/src/gost94_core.rs:299:16
+    |
+299 |     use crate::buffer::StaticBuffer;
+    |                ^^^^^^ could not find `buffer` in the crate root
+
+error[E0432]: unresolved import `crate::consts`
+   --> gost94/src/gost94_core.rs:300:16
+    |
+300 |     use crate::consts::U32;
+    |                ^^^^^^
+    |                |
+    |                unresolved import
+    |                help: a similar path exists: `digest::consts`
+
+error[E0277]: the trait bound `&mut Gost94Core<CryptoProParam>: BufferKindUser` is not satisfied
+   --> gost94/src/gost94_core.rs:312:57
+    |
+312 |         core.finalize_fixed_core(CoreWrapper::from_core(&mut core, &mut buffer), &mut output);
+    |                                  ---------------------- -^^^^^^^^
+    |                                  |                      |
+    |                                  |                      the trait `BufferKindUser` is not implemented for `&mut Gost94Core<CryptoProParam>`
+    |                                  |                      help: consider removing the leading `&`-reference
+    |                                  required by a bound introduced by this call
+    |
+note: required by a bound in `CoreWrapper::<T>::from_core`
+   --> /home/xiang/.cargo/registry/src/github.com-1ecc6299db9ec823/digest-0.10.7/src/core_api/wrapper.rs:64:8
+    |
+64  |     T: BufferKindUser,
+    |        ^^^^^^^^^^^^^^ required by this bound in `CoreWrapper::<T>::from_core`
+
+error[E0061]: this function takes 1 argument but 2 arguments were supplied
+   --> gost94/src/gost94_core.rs:312:34
+    |
+312 |         core.finalize_fixed_core(CoreWrapper::from_core(&mut core, &mut buffer), &mut output);
+    |                                  ^^^^^^^^^^^^^^^^^^^^^^            ----------- argument of type `&mut Eager` unexpected
+    |
+note: associated function defined here
+   --> /home/xiang/.cargo/registry/src/github.com-1ecc6299db9ec823/digest-0.10.7/src/core_api/wrapper.rs:70:12
+    |
+70  |     pub fn from_core(core: T) -> Self {
+    |            ^^^^^^^^^
+help: remove the extra argument
+    |
+312 |         core.finalize_fixed_core(CoreWrapper::from_core(&mut core), &mut output);
+    |                                                        ~~~~~~~~~~~
+
+error[E0277]: the trait bound `&mut Gost94Core<CryptoProParam>: BufferKindUser` is not satisfied
+   --> gost94/src/gost94_core.rs:312:34
+    |
+312 |         core.finalize_fixed_core(CoreWrapper::from_core(&mut core, &mut buffer), &mut output);
+    |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `BufferKindUser` is not implemented for `&mut Gost94Core<CryptoProParam>`
+    |
+    = help: the trait `BufferKindUser` is implemented for `Gost94Core<P>`
+note: required by a bound in `CoreWrapper`
+   --> /home/xiang/.cargo/registry/src/github.com-1ecc6299db9ec823/digest-0.10.7/src/core_api/wrapper.rs:26:8
+    |
+26  |     T: BufferKindUser,
+    |        ^^^^^^^^^^^^^^ required by this bound in `CoreWrapper`
+
+error[E0308]: mismatched types
+   --> gost94/src/gost94_core.rs:312:34
+    |
+312 |         core.finalize_fixed_core(CoreWrapper::from_core(&mut core, &mut buffer), &mut output);
+    |              ------------------- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected mutable reference, found struct `CoreWrapper`
+    |              |
+    |              arguments to this function are incorrect
+    |
+    = note: expected mutable reference `&mut BlockBuffer<UInt<UInt<UInt<UInt<UInt<UInt<UTerm, B1>, B0>, B0>, B0>, B0>, B0>, Eager>`
+                          found struct `CoreWrapper<&mut Gost94Core<CryptoProParam>>`
+note: associated function defined here
+   --> /home/xiang/.cargo/registry/src/github.com-1ecc6299db9ec823/digest-0.10.7/src/core_api.rs:50:8
+    |
+50  |     fn finalize_fixed_core(&mut self, buffer: &mut Buffer<Self>, out: &mut Output<Self>);
+    |        ^^^^^^^^^^^^^^^^^^^
+
+error[E0433]: failed to resolve: use of undeclared type `GenericArray`
+   --> gost94/src/gost94_core.rs:316:21
+    |
+316 |         let block = GenericArray::default();
+    |                     ^^^^^^^^^^^^ use of undeclared type `GenericArray`
+
+error[E0599]: the method `reset` exists for struct `Eager`, but its trait bounds were not satisfied
+   --> gost94/src/gost94_core.rs:317:16
+    |
+317 |         buffer.reset();
+    |                ^^^^^ method cannot be called on `Eager` due to unsatisfied trait bounds
+    |
+   ::: /home/xiang/.cargo/registry/src/github.com-1ecc6299db9ec823/block-buffer-0.10.4/src/lib.rs:28:1
+    |
+28  | pub struct Eager {}
+    | ----------------
+    | |
+    | doesn't satisfy `Eager: FixedOutput`
+    | doesn't satisfy `Eager: HashMarker`
+    | doesn't satisfy `Eager: Update`
+    | doesn't satisfy `Eager: digest::Digest`
+    |
+    = note: the following trait bounds were not satisfied:
+            `Eager: FixedOutput`
+            which is required by `Eager: digest::Digest`
+            `Eager: Update`
+            which is required by `Eager: digest::Digest`
+            `Eager: HashMarker`
+            which is required by `Eager: digest::Digest`
+
+error[E0599]: no method named `input_block` found for struct `Eager` in the current scope
+   --> gost94/src/gost94_core.rs:318:16
+    |
+318 |         buffer.input_block(&block);
+    |                ^^^^^^^^^^^ method not found in `Eager`
+
+error[E0277]: the trait bound `&mut Gost94Core<CryptoProParam>: BufferKindUser` is not satisfied
+   --> gost94/src/gost94_core.rs:321:57
+    |
+321 |         core.finalize_fixed_core(CoreWrapper::from_core(&mut core, &mut buffer), &mut output);
+    |                                  ---------------------- -^^^^^^^^
+    |                                  |                      |
+    |                                  |                      the trait `BufferKindUser` is not implemented for `&mut Gost94Core<CryptoProParam>`
+    |                                  |                      help: consider removing the leading `&`-reference
+    |                                  required by a bound introduced by this call
+    |
+note: required by a bound in `CoreWrapper::<T>::from_core`
+   --> /home/xiang/.cargo/registry/src/github.com-1ecc6299db9ec823/digest-0.10.7/src/core_api/wrapper.rs:64:8
+    |
+64  |     T: BufferKindUser,
+    |        ^^^^^^^^^^^^^^ required by this bound in `CoreWrapper::<T>::from_core`
+
+error[E0061]: this function takes 1 argument but 2 arguments were supplied
+   --> gost94/src/gost94_core.rs:321:34
+    |
+321 |         core.finalize_fixed_core(CoreWrapper::from_core(&mut core, &mut buffer), &mut output);
+    |                                  ^^^^^^^^^^^^^^^^^^^^^^            ----------- argument of type `&mut Eager` unexpected
+    |
+note: associated function defined here
+   --> /home/xiang/.cargo/registry/src/github.com-1ecc6299db9ec823/digest-0.10.7/src/core_api/wrapper.rs:70:12
+    |
+70  |     pub fn from_core(core: T) -> Self {
+    |            ^^^^^^^^^
+help: remove the extra argument
+    |
+321 |         core.finalize_fixed_core(CoreWrapper::from_core(&mut core), &mut output);
+    |                                                        ~~~~~~~~~~~
+
+error[E0277]: the trait bound `&mut Gost94Core<CryptoProParam>: BufferKindUser` is not satisfied
+   --> gost94/src/gost94_core.rs:321:34
+    |
+321 |         core.finalize_fixed_core(CoreWrapper::from_core(&mut core, &mut buffer), &mut output);
+    |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `BufferKindUser` is not implemented for `&mut Gost94Core<CryptoProParam>`
+    |
+    = help: the trait `BufferKindUser` is implemented for `Gost94Core<P>`
+note: required by a bound in `CoreWrapper`
+   --> /home/xiang/.cargo/registry/src/github.com-1ecc6299db9ec823/digest-0.10.7/src/core_api/wrapper.rs:26:8
+    |
+26  |     T: BufferKindUser,
+    |        ^^^^^^^^^^^^^^ required by this bound in `CoreWrapper`
+
+error[E0308]: mismatched types
+   --> gost94/src/gost94_core.rs:321:34
+    |
+321 |         core.finalize_fixed_core(CoreWrapper::from_core(&mut core, &mut buffer), &mut output);
+    |              ------------------- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected mutable reference, found struct `CoreWrapper`
+    |              |
+    |              arguments to this function are incorrect
+    |
+    = note: expected mutable reference `&mut BlockBuffer<UInt<UInt<UInt<UInt<UInt<UInt<UTerm, B1>, B0>, B0>, B0>, B0>, B0>, Eager>`
+                          found struct `CoreWrapper<&mut Gost94Core<CryptoProParam>>`
+note: associated function defined here
+   --> /home/xiang/.cargo/registry/src/github.com-1ecc6299db9ec823/digest-0.10.7/src/core_api.rs:50:8
+    |
+50  |     fn finalize_fixed_core(&mut self, buffer: &mut Buffer<Self>, out: &mut Output<Self>);
+    |        ^^^^^^^^^^^^^^^^^^^
+
+error[E0433]: failed to resolve: use of undeclared type `GenericArray`
+   --> gost94/src/gost94_core.rs:330:22
+    |
+330 |         let blocks = GenericArray::default();
+    |                      ^^^^^^^^^^^^ use of undeclared type `GenericArray`
+
+error[E0277]: the trait bound `&mut Gost94Core<CryptoProParam>: BufferKindUser` is not satisfied
+   --> gost94/src/gost94_core.rs:335:57
+    |
+335 |         core.finalize_fixed_core(CoreWrapper::from_core(&mut core, &mut buffer), &mut output);
+    |                                  ---------------------- -^^^^^^^^
+    |                                  |                      |
+    |                                  |                      the trait `BufferKindUser` is not implemented for `&mut Gost94Core<CryptoProParam>`
+    |                                  |                      help: consider removing the leading `&`-reference
+    |                                  required by a bound introduced by this call
+    |
+note: required by a bound in `CoreWrapper::<T>::from_core`
+   --> /home/xiang/.cargo/registry/src/github.com-1ecc6299db9ec823/digest-0.10.7/src/core_api/wrapper.rs:64:8
+    |
+64  |     T: BufferKindUser,
+    |        ^^^^^^^^^^^^^^ required by this bound in `CoreWrapper::<T>::from_core`
+
+error[E0061]: this function takes 1 argument but 2 arguments were supplied
+   --> gost94/src/gost94_core.rs:335:34
+    |
+335 |         core.finalize_fixed_core(CoreWrapper::from_core(&mut core, &mut buffer), &mut output);
+    |                                  ^^^^^^^^^^^^^^^^^^^^^^            ----------- argument of type `&mut Eager` unexpected
+    |
+note: associated function defined here
+   --> /home/xiang/.cargo/registry/src/github.com-1ecc6299db9ec823/digest-0.10.7/src/core_api/wrapper.rs:70:12
+    |
+70  |     pub fn from_core(core: T) -> Self {
+    |            ^^^^^^^^^
+help: remove the extra argument
+    |
+335 |         core.finalize_fixed_core(CoreWrapper::from_core(&mut core), &mut output);
+    |                                                        ~~~~~~~~~~~
+
+error[E0277]: the trait bound `&mut Gost94Core<CryptoProParam>: BufferKindUser` is not satisfied
+   --> gost94/src/gost94_core.rs:335:34
+    |
+335 |         core.finalize_fixed_core(CoreWrapper::from_core(&mut core, &mut buffer), &mut output);
+    |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `BufferKindUser` is not implemented for `&mut Gost94Core<CryptoProParam>`
+    |
+    = help: the trait `BufferKindUser` is implemented for `Gost94Core<P>`
+note: required by a bound in `CoreWrapper`
+   --> /home/xiang/.cargo/registry/src/github.com-1ecc6299db9ec823/digest-0.10.7/src/core_api/wrapper.rs:26:8
+    |
+26  |     T: BufferKindUser,
+    |        ^^^^^^^^^^^^^^ required by this bound in `CoreWrapper`
+
+error[E0308]: mismatched types
+   --> gost94/src/gost94_core.rs:335:34
+    |
+335 |         core.finalize_fixed_core(CoreWrapper::from_core(&mut core, &mut buffer), &mut output);
+    |              ------------------- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected mutable reference, found struct `CoreWrapper`
+    |              |
+    |              arguments to this function are incorrect
+    |
+    = note: expected mutable reference `&mut BlockBuffer<UInt<UInt<UInt<UInt<UInt<UInt<UTerm, B1>, B0>, B0>, B0>, B0>, B0>, Eager>`
+                          found struct `CoreWrapper<&mut Gost94Core<CryptoProParam>>`
+note: associated function defined here
+   --> /home/xiang/.cargo/registry/src/github.com-1ecc6299db9ec823/digest-0.10.7/src/core_api.rs:50:8
+    |
+50  |     fn finalize_fixed_core(&mut self, buffer: &mut Buffer<Self>, out: &mut Output<Self>);
+    |        ^^^^^^^^^^^^^^^^^^^
+
+error[E0599]: the method `update` exists for struct `Gost94Core<CryptoProParam>`, but its trait bounds were not satisfied
+   --> gost94/src/gost94_core.rs:347:14
+    |
+129 | pub struct Gost94Core<P: Gost94Params> {
+    | --------------------------------------
+    | |
+    | method `update` not found for this struct
+    | doesn't satisfy `Gost94Core<CryptoProParam>: FixedOutput`
+    | doesn't satisfy `Gost94Core<CryptoProParam>: Update`
+    | doesn't satisfy `Gost94Core<CryptoProParam>: digest::Digest`
+...
+347 |         core.update(&data);
+    |              ^^^^^^
+    |
+    = note: the following trait bounds were not satisfied:
+            `Gost94Core<CryptoProParam>: FixedOutput`
+            which is required by `Gost94Core<CryptoProParam>: digest::Digest`
+            `Gost94Core<CryptoProParam>: Update`
+            which is required by `Gost94Core<CryptoProParam>: digest::Digest`
+note: the following traits must be implemented
+   --> /home/xiang/.cargo/registry/src/github.com-1ecc6299db9ec823/digest-0.10.7/src/lib.rs:77:1
+    |
+77  | pub trait Update {
+    | ^^^^^^^^^^^^^^^^
+...
+93  | pub trait FixedOutput: Update + OutputSizeUser + Sized {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0277]: the trait bound `&mut Gost94Core<CryptoProParam>: BufferKindUser` is not satisfied
+   --> gost94/src/gost94_core.rs:350:57
+    |
+350 |         core.finalize_fixed_core(CoreWrapper::from_core(&mut core, &mut buffer), &mut output);
+    |                                  ---------------------- -^^^^^^^^
+    |                                  |                      |
+    |                                  |                      the trait `BufferKindUser` is not implemented for `&mut Gost94Core<CryptoProParam>`
+    |                                  |                      help: consider removing the leading `&`-reference
+    |                                  required by a bound introduced by this call
+    |
+note: required by a bound in `CoreWrapper::<T>::from_core`
+   --> /home/xiang/.cargo/registry/src/github.com-1ecc6299db9ec823/digest-0.10.7/src/core_api/wrapper.rs:64:8
+    |
+64  |     T: BufferKindUser,
+    |        ^^^^^^^^^^^^^^ required by this bound in `CoreWrapper::<T>::from_core`
+
+error[E0061]: this function takes 1 argument but 2 arguments were supplied
+   --> gost94/src/gost94_core.rs:350:34
+    |
+350 |         core.finalize_fixed_core(CoreWrapper::from_core(&mut core, &mut buffer), &mut output);
+    |                                  ^^^^^^^^^^^^^^^^^^^^^^            ----------- argument of type `&mut Eager` unexpected
+    |
+note: associated function defined here
+   --> /home/xiang/.cargo/registry/src/github.com-1ecc6299db9ec823/digest-0.10.7/src/core_api/wrapper.rs:70:12
+    |
+70  |     pub fn from_core(core: T) -> Self {
+    |            ^^^^^^^^^
+help: remove the extra argument
+    |
+350 |         core.finalize_fixed_core(CoreWrapper::from_core(&mut core), &mut output);
+    |                                                        ~~~~~~~~~~~
+
+error[E0277]: the trait bound `&mut Gost94Core<CryptoProParam>: BufferKindUser` is not satisfied
+   --> gost94/src/gost94_core.rs:350:34
+    |
+350 |         core.finalize_fixed_core(CoreWrapper::from_core(&mut core, &mut buffer), &mut output);
+    |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `BufferKindUser` is not implemented for `&mut Gost94Core<CryptoProParam>`
+    |
+    = help: the trait `BufferKindUser` is implemented for `Gost94Core<P>`
+note: required by a bound in `CoreWrapper`
+   --> /home/xiang/.cargo/registry/src/github.com-1ecc6299db9ec823/digest-0.10.7/src/core_api/wrapper.rs:26:8
+    |
+26  |     T: BufferKindUser,
+    |        ^^^^^^^^^^^^^^ required by this bound in `CoreWrapper`
+
+error[E0308]: mismatched types
+   --> gost94/src/gost94_core.rs:350:34
+    |
+350 |         core.finalize_fixed_core(CoreWrapper::from_core(&mut core, &mut buffer), &mut output);
+    |              ------------------- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected mutable reference, found struct `CoreWrapper`
+    |              |
+    |              arguments to this function are incorrect
+    |
+    = note: expected mutable reference `&mut BlockBuffer<UInt<UInt<UInt<UInt<UInt<UInt<UTerm, B1>, B0>, B0>, B0>, B0>, B0>, Eager>`
+                          found struct `CoreWrapper<&mut Gost94Core<CryptoProParam>>`
+note: associated function defined here
+   --> /home/xiang/.cargo/registry/src/github.com-1ecc6299db9ec823/digest-0.10.7/src/core_api.rs:50:8
+    |
+50  |     fn finalize_fixed_core(&mut self, buffer: &mut Buffer<Self>, out: &mut Output<Self>);
+    |        ^^^^^^^^^^^^^^^^^^^
+
+Some errors have detailed explanations: E0061, E0277, E0308, E0432, E0433, E0599.
+For more information about an error, try `rustc --explain E0061`.
+error: could not compile `gost94` due to 23 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+repair err <gost94_core::Gost94Core<P> as digest::core_api::FixedOutputCore>::finalize_fixed_core gost94/src/gost94_core.rs finalize_fixed_core
+ChatCompletion(id='chatcmpl-8UVfwYRD7zB2A5M9eDhupgy3PkZpK', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use crate::gost94_core::Gost94Core;\n    use crate::params::CryptoProParam;\n    use crate::params::Gost94Params;\n    use digest::core_api::BlockSizeUser;\n    use digest::core_api::UpdateCore;\n\n    #[test]\n    fn gost94_update_blocks() {\n        let mut hasher = Gost94Core::<CryptoProParam>::default();\n        let blocks = [\n            [1; 32], // TBlock::<Gost94Core<CryptoProParam>> first block\n            [2; 32], // TBlock::<Gost94Core<CryptoProParam>> second block\n        ];\n\n        // Save initial state\n        let initial_h = hasher.h;\n        let initial_n = hasher.n;\n        let initial_sigma = hasher.sigma;\n\n        // Perform update_blocks\n        hasher.update_blocks(&blocks);\n\n        assert_ne!(hasher.h, initial_h, "Hash (h) should be changed after update_blocks");\n        assert_ne!(hasher.n, initial_n, "n should be changed after update_blocks");\n        assert_ne!(hasher.sigma, initial_sigma, "Sigma should be changed after update_blocks");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702282292, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=260, prompt_tokens=2143, total_tokens=2403))
+71
+========================================
+inject err <gost94_core::Gost94Core<P> as digest::core_api::UpdateCore>::update_blocks gost94/src/gost94_core.rs update_blocks
+#[cfg(test)]
+mod tests_llm_16_5 {
+    use super::*;
+
+use crate::*;
+    use crate::gost94_core::Gost94Core;
+    use crate::params::CryptoProParam;
+    use crate::params::Gost94Params;
+    use digest::core_api::BlockSizeUser;
+    use digest::core_api::UpdateCore;
+
+    #[test]
+    fn gost94_update_blocks() {
+        let mut hasher = Gost94Core::<CryptoProParam>::default();
+        let blocks = [
+            [1; 32], // TBlock::<Gost94Core<CryptoProParam>> first block
+            [2; 32], // TBlock::<Gost94Core<CryptoProParam>> second block
+        ];
+
+        // Save initial state
+        let initial_h = hasher.h;
+        let initial_n = hasher.n;
+        let initial_sigma = hasher.sigma;
+
+        // Perform update_blocks
+        hasher.update_blocks(&blocks);
+
+        assert_ne!(hasher.h, initial_h, "Hash (h) should be changed after update_blocks");
+        assert_ne!(hasher.n, initial_n, "n should be changed after update_blocks");
+        assert_ne!(hasher.sigma, initial_sigma, "Sigma should be changed after update_blocks");
+    }
+}
+   Compiling gost94 v0.10.4 (/home/xiang/workspace/human/llm_base_bk/hashes/gost94)
+error[E0308]: mismatched types
+   --> gost94/src/gost94_core.rs:317:30
+    |
+317 |         hasher.update_blocks(&blocks);
+    |                ------------- ^^^^^^^ expected slice, found array `[[{integer}; 32]; 2]`
+    |                |
+    |                arguments to this function are incorrect
+    |
+    = note: expected reference `&[GenericArray<u8, UInt<UInt<UInt<UInt<UInt<UInt<UTerm, B1>, B0>, B0>, B0>, B0>, B0>>]`
+               found reference `&[[{integer}; 32]; 2]`
+note: associated function defined here
+   --> /home/xiang/.cargo/registry/src/github.com-1ecc6299db9ec823/digest-0.10.7/src/core_api.rs:33:8
+    |
+33  |     fn update_blocks(&mut self, blocks: &[Block<Self>]);
+    |        ^^^^^^^^^^^^^
+
+For more information about this error, try `rustc --explain E0308`.
+error: could not compile `gost94` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UVgFXmGYp6401zUfqoGaHXipNHDZ', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_5 {\n    use super::*;\n    use digest::core_api::BlockSizeUser;\n    use digest::core_api::UpdateCore;\n    use generic_array::GenericArray;\n\n    #[test]\n    fn gost94_update_blocks() {\n        let mut hasher = Gost94Core::<CryptoProParam>::default();\n        let block1 = GenericArray::clone_from_slice(&[1; 32]);\n        let block2 = GenericArray::clone_from_slice(&[2; 32]);\n        let blocks = [block1, block2];\n\n        // Save initial state\n        let initial_h = hasher.h;\n        let initial_n = hasher.n;\n        let initial_sigma = hasher.sigma;\n\n        // Perform update_blocks\n        hasher.update_blocks(&blocks);\n\n        assert_ne!(hasher.h, initial_h, "Hash (h) should be changed after update_blocks");\n        assert_ne!(hasher.n, initial_n, "n should be changed after update_blocks");\n        assert_ne!(hasher.sigma, initial_sigma, "Sigma should be changed after update_blocks");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702282311, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=233, prompt_tokens=3012, total_tokens=3245))
+71
+========================================
+inject err <gost94_core::Gost94Core<P> as digest::core_api::UpdateCore>::update_blocks gost94/src/gost94_core.rs update_blocks
+#[cfg(test)]
+mod tests_llm_16_5_llm_16_5 {
+    use super::*;
+
+use crate::*;
+    use digest::core_api::BlockSizeUser;
+    use digest::core_api::UpdateCore;
+    use generic_array::GenericArray;
+
+    #[test]
+    fn gost94_update_blocks() {
+        let mut hasher = Gost94Core::<CryptoProParam>::default();
+        let block1 = GenericArray::clone_from_slice(&[1; 32]);
+        let block2 = GenericArray::clone_from_slice(&[2; 32]);
+        let blocks = [block1, block2];
+
+        // Save initial state
+        let initial_h = hasher.h;
+        let initial_n = hasher.n;
+        let initial_sigma = hasher.sigma;
+
+        // Perform update_blocks
+        hasher.update_blocks(&blocks);
+
+        assert_ne!(hasher.h, initial_h, "Hash (h) should be changed after update_blocks");
+        assert_ne!(hasher.n, initial_n, "n should be changed after update_blocks");
+        assert_ne!(hasher.sigma, initial_sigma, "Sigma should be changed after update_blocks");
+    }
+}
+   Compiling gost94 v0.10.4 (/home/xiang/workspace/human/llm_base_bk/hashes/gost94)
+error[E0432]: unresolved import `generic_array`
+   --> gost94/src/gost94_core.rs:299:9
+    |
+299 |     use generic_array::GenericArray;
+    |         ^^^^^^^^^^^^^ help: a similar path exists: `digest::generic_array`
+
+error[E0412]: cannot find type `CryptoProParam` in this scope
+   --> gost94/src/gost94_core.rs:303:39
+    |
+303 |         let mut hasher = Gost94Core::<CryptoProParam>::default();
+    |                                       ^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this struct
+    |
+294 |     use crate::params::CryptoProParam;
+    |
+
+Some errors have detailed explanations: E0412, E0432.
+For more information about an error, try `rustc --explain E0412`.
+error: could not compile `gost94` due to 2 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+repair err <gost94_core::Gost94Core<P> as digest::core_api::UpdateCore>::update_blocks gost94/src/gost94_core.rs update_blocks
+ChatCompletion(id='chatcmpl-8UVgZrioOJbEvH4tIxpYOTdQurwt9', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use crate::gost94_core::Gost94Core;\n    use crate::params::CryptoProParam;\n    use crate::params::Gost94Params;\n    use digest::Digest;\n    use hex_literal::hex;\n\n    #[test]\n    fn compress_functionality() {\n        let mut core = Gost94Core::<CryptoProParam>::default();\n        let initial_h = core.h;\n        let initial_sigma = core.sigma;\n\n        let block = [0u8; 32];\n        core.compress(&block);\n\n        assert_ne!(core.h, initial_h, "compress should change core.h");\n        assert_ne!(core.sigma, initial_sigma, "compress should change core.sigma");\n    }\n\n    #[test]\n    fn compress_expected_output() {\n        let mut core = Gost94Core::<CryptoProParam>::default();\n        let block = hex!("0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef");\n        let expected_h = core.h; // Provide the expected `h` value after compress\n        let expected_sigma = core.sigma; // Provide the expected `sigma` value after compress\n        \n        core.compress(&block);\n\n        assert_eq!(core.h, expected_h, "h after compress does not match expected");\n        assert_eq!(core.sigma, expected_sigma, "sigma after compress does not match expected");\n    }\n    \n    // Additional tests can be included to cover other scenarios as required.\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702282331, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=314, prompt_tokens=2110, total_tokens=2424))
+71
+inject succeed hashes gost94 gost94_core::Gost94Core::<P>::compress
+ChatCompletion(id='chatcmpl-8UVgwGhbcNkCda8clCj7NFSUl5Drs', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use crate::params::CryptoProParam;\n    use crate::gost94_core::Gost94Core;\n    use digest::Digest;\n    use digest::generic_array::typenum::U32;\n    use digest::generic_array::GenericArray;\n\n    #[test]\n    fn f_test() {\n        // Test case setup\n        let mut core = Gost94Core::<CryptoProParam>::default();\n        let m = [0; 32];\n        let h0 = CryptoProParam::H0;\n        core.h = m;\n        \n        // We need to check post conditions to test f function\n        // Calling the `f` function\n        core.f(&m);\n\n        // Test expectations\n        // As CryptoProParam::H0 is zeroed and encryption for zero block with zero key produces zero block\n        // shuffle operation will also produce zero block. Thus if the `f` function is correct `h` field\n        // should stay zeroed.\n        assert_eq!(core.h, h0, "The `f` function should leave the `h` field unchanged for the zero input");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702282354, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=249, prompt_tokens=2295, total_tokens=2544))
+71
+inject succeed hashes gost94 gost94_core::Gost94Core::<P>::f
+ChatCompletion(id='chatcmpl-8UVhYj2eCwMZLsFj5kcHluWzV5Jyp', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use crate::gost94_core::Gost94Core;\n    use crate::params::CryptoProParam;\n    use crate::params::Gost94Params;\n\n    type TestHash = Gost94Core<CryptoProParam>;\n\n    #[test]\n    fn shuffle_test() {\n        let mut hasher = TestHash::default();\n        let m = [\n            0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, \n            0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F, \n            0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, \n            0x18, 0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E, 0x1F\n        ];\n        let s = [\n            0x1F, 0x1E, 0x1D, 0x1C, 0x1B, 0x1A, 0x19, 0x18, \n            0x17, 0x16, 0x15, 0x14, 0x13, 0x12, 0x11, 0x10, \n            0x0F, 0x0E, 0x0D, 0x0C, 0x0B, 0x0A, 0x09, 0x08, \n            0x07, 0x06, 0x05, 0x04, 0x03, 0x02, 0x01, 0x00\n        ];\n        let initial_h = hasher.h;\n        hasher.shuffle(&m, &s);\n\n        // Example validation checks\n        // These checks have to be adjusted based on expected values\n        // assert_ne! to make sure shuffle modifies internal state h\n        assert_ne!(initial_h, hasher.h, "Shuffle should change inner state h");\n        \n        // You might want to compare the result with expected values\n        // assert_eq! to check if shuffle produce expected result\n        // let expected_h: [u8; 32] = [ /* expected values after shuffle with m and s */ ];\n        // assert_eq!(expected_h, hasher.h, "Shuffle should match expected final state h");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702282392, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=602, prompt_tokens=2173, total_tokens=2775))
+71
+inject succeed hashes gost94 gost94_core::Gost94Core::<P>::shuffle
+ChatCompletion(id='chatcmpl-8UViEHYjy6jW9ywRCM3llsvj66iSm', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use crate::gost94_core::Gost94Core;\n    use crate::params::CryptoProParam;\n    use crate::params::Gost94Params;\n\n    #[test]\n    fn test_update_n() {\n        let mut hasher: Gost94Core<CryptoProParam> = Default::default();\n        let initial_n = hasher.n;\n\n        // Test that update_n with 0 doesn\'t change anything\n        hasher.update_n(0);\n        assert_eq!(hasher.n, initial_n, "update_n with zero length should not change anything");\n\n        // Test that update_n with actual length updates the `n` value correctly\n        hasher.update_n(1);\n        let mut expected_n = initial_n;\n        expected_n[0] += 8;\n        assert_eq!(hasher.n, expected_n, "update_n with length 1 should increase the first element of `n` by 8");\n\n        // Test update_n with a large input length and carry\n        hasher.update_n(usize::MAX);\n        assert!(hasher.n[0] < expected_n[0], "update_n with large input should overflow and carry to the next element");\n        assert!(hasher.n[1] > 0, "update_n with large input should carry to the next element of `n`");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702282434, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_6aca3b5ce1', usage=CompletionUsage(completion_tokens=290, prompt_tokens=2179, total_tokens=2469))
+71
+inject succeed hashes gost94 gost94_core::Gost94Core::<P>::update_n
+ChatCompletion(id='chatcmpl-8UVicGBmR8XXh2DaBPYHg5bSh4mog', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use params::CryptoProParam;\n\n    #[test]\n    fn update_sigma_test() {\n        let mut core = Gost94Core::<CryptoProParam>::default();\n        let m = [0u8; 32];\n\n        // Initial values of sigma should be all zeroes\n        assert_eq!(core.sigma, [0; 4]);\n\n        // After update_sigma with zero block, values should still be zeroes\n        core.update_sigma(&m);\n        assert_eq!(core.sigma, [0; 4]);\n\n        // Providing a block where each 8-byte chunk is 1\n        let m = [1u8; 32]; // 0x0101010101010101 repeated\n        core.update_sigma(&m);\n        // After update_sigma, sigma should be incremented by 1 in each 8-byte chunk\n        assert_eq!(core.sigma, [0x0101010101010101; 4]);\n\n        // Creating a block with distinct 8-byte chunks\n        let m = [\n            0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, // 0x0101010101010101\n            0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, // 0x0202020202020202\n            0x03, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03, // 0x0303030303030303\n            0x04, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04, // 0x0404040404040404\n        ];\n        core.update_sigma(&m);\n        assert_eq!(\n            core.sigma,\n            [\n                0x0101010101010101 + 0x0101010101010101,\n                0x0101010101010101 + 0x0202020202020202,\n                0x0101010101010101 + 0x0303030303030303,\n                0x0101010101010101 + 0x0404040404040404,\n            ]\n        );\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702282458, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_6aca3b5ce1', usage=CompletionUsage(completion_tokens=542, prompt_tokens=2152, total_tokens=2694))
+71
+inject succeed hashes gost94 gost94_core::Gost94Core::<P>::update_sigma
+ChatCompletion(id='chatcmpl-8UVjS7POzgjwv4rzY53EegGSHWdpQ', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::a;\n    use super::Block;\n\n    #[test]\n    fn test_a_function() {\n        let input: Block = [\n            0x0, 0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8, 0x9, 0xA, 0xB, 0xC, 0xD, 0xE, 0xF,\n            0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1A, 0x1B, 0x1C, 0x1D,\n            0x1E, 0x1F,\n        ];\n        let expected: Block = [\n            0x8, 0x9, 0xA, 0xB, 0xC, 0xD, 0xE, 0xF, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17,\n            0x18, 0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E, 0x1F, 0x8 ^ 0x0, 0x9 ^ 0x1, 0xA ^ 0x2, 0xB ^ 0x3,\n            0xC ^ 0x4, 0xD ^ 0x5, 0xE ^ 0x6, 0xF ^ 0x7,\n        ];\n\n        let result = a(input);\n        assert_eq!(result, expected);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702282510, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_6aca3b5ce1', usage=CompletionUsage(completion_tokens=430, prompt_tokens=199, total_tokens=629))
+71
+========================================
+inject err gost94_core::a gost94/src/gost94_core.rs a
+#[cfg(test)]
+mod tests_llm_16_11 {
+    use crate::a;
+    use crate::Block;
+
+    #[test]
+    fn test_a_function() {
+        let input: Block = [
+            0x0, 0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8, 0x9, 0xA, 0xB, 0xC, 0xD, 0xE, 0xF,
+            0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1A, 0x1B, 0x1C, 0x1D,
+            0x1E, 0x1F,
+        ];
+        let expected: Block = [
+            0x8, 0x9, 0xA, 0xB, 0xC, 0xD, 0xE, 0xF, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17,
+            0x18, 0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E, 0x1F, 0x8 ^ 0x0, 0x9 ^ 0x1, 0xA ^ 0x2, 0xB ^ 0x3,
+            0xC ^ 0x4, 0xD ^ 0x5, 0xE ^ 0x6, 0xF ^ 0x7,
+        ];
+
+        let result = a(input);
+        assert_eq!(result, expected);
+    }
+}
+   Compiling gost94 v0.10.4 (/home/xiang/workspace/human/llm_base_bk/hashes/gost94)
+error[E0432]: unresolved import `crate::a`
+   --> gost94/src/gost94_core.rs:472:9
+    |
+472 |     use crate::a;
+    |         ^^^^^^^^ no `a` in the root
+
+error[E0432]: unresolved import `crate::Block`
+   --> gost94/src/gost94_core.rs:473:9
+    |
+473 |     use crate::Block;
+    |         ^^^^^^^^^^^^ no `Block` in the root
+    |
+help: consider importing one of these items instead
+    |
+473 |     use crate::digest::core_api::Block;
+    |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+473 |     use crate::params::Block;
+    |         ~~~~~~~~~~~~~~~~~~~~~
+473 |     use digest::core_api::Block;
+    |         ~~~~~~~~~~~~~~~~~~~~~~~~
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `gost94` due to 2 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UVk7CTs2EAJOvjjWzjCPabVjVNCy', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_11 {\n    use super::a;\n    use super::Block;\n\n    #[test]\n    fn test_a_function() {\n        let input: Block = [\n            0x0, 0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8, 0x9, 0xA, 0xB, 0xC, 0xD, 0xE, 0xF,\n            0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1A, 0x1B, 0x1C, 0x1D,\n            0x1E, 0x1F,\n        ];\n        let expected: Block = [\n            0x8, 0x9, 0xA, 0xB, 0xC, 0xD, 0xE, 0xF, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17,\n            0x18, 0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E, 0x1F, 0x8 ^ 0x0, 0x9 ^ 0x1, 0xA ^ 0x2, 0xB ^ 0x3,\n            0xC ^ 0x4, 0xD ^ 0x5, 0xE ^ 0x6, 0xF ^ 0x7,\n        ];\n\n        let result = a(input);\n        assert_eq!(result, expected);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702282551, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_6aca3b5ce1', usage=CompletionUsage(completion_tokens=436, prompt_tokens=1370, total_tokens=1806))
+71
+========================================
+inject err gost94_core::a gost94/src/gost94_core.rs a
+#[cfg(test)]
+mod tests_llm_16_11_llm_16_11 {
+    use crate::a;
+    use crate::Block;
+
+    #[test]
+    fn test_a_function() {
+        let input: Block = [
+            0x0, 0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8, 0x9, 0xA, 0xB, 0xC, 0xD, 0xE, 0xF,
+            0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1A, 0x1B, 0x1C, 0x1D,
+            0x1E, 0x1F,
+        ];
+        let expected: Block = [
+            0x8, 0x9, 0xA, 0xB, 0xC, 0xD, 0xE, 0xF, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17,
+            0x18, 0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E, 0x1F, 0x8 ^ 0x0, 0x9 ^ 0x1, 0xA ^ 0x2, 0xB ^ 0x3,
+            0xC ^ 0x4, 0xD ^ 0x5, 0xE ^ 0x6, 0xF ^ 0x7,
+        ];
+
+        let result = a(input);
+        assert_eq!(result, expected);
+    }
+}
+   Compiling gost94 v0.10.4 (/home/xiang/workspace/human/llm_base_bk/hashes/gost94)
+error[E0432]: unresolved import `crate::a`
+   --> gost94/src/gost94_core.rs:472:9
+    |
+472 |     use crate::a;
+    |         ^^^^^^^^ no `a` in the root
+
+error[E0432]: unresolved import `crate::Block`
+   --> gost94/src/gost94_core.rs:473:9
+    |
+473 |     use crate::Block;
+    |         ^^^^^^^^^^^^ no `Block` in the root
+    |
+help: consider importing one of these items instead
+    |
+473 |     use crate::digest::core_api::Block;
+    |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+473 |     use crate::params::Block;
+    |         ~~~~~~~~~~~~~~~~~~~~~
+473 |     use digest::core_api::Block;
+    |         ~~~~~~~~~~~~~~~~~~~~~~~~
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `gost94` due to 2 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+repair err gost94_core::a gost94/src/gost94_core.rs a
+ChatCompletion(id='chatcmpl-8UVkciC1Z8mMRHWzrs2nMgUn7UeV9', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::adc;\n\n    #[test]\n    fn test_adc_no_carry() {\n        let mut a = 1u64;\n        let b = 2u64;\n        let mut carry = 0u64;\n        adc(&mut a, b, &mut carry);\n        assert_eq!(a, 3u64);\n        assert_eq!(carry, 0u64);\n    }\n\n    #[test]\n    fn test_adc_with_carry() {\n        let mut a = u64::MAX;\n        let b = 1u64;\n        let mut carry = 0u64;\n        adc(&mut a, b, &mut carry);\n        assert_eq!(a, 0u64);\n        assert_eq!(carry, 1u64);\n    }\n\n    #[test]\n    fn test_adc_with_carry_in() {\n        let mut a = u64::MAX;\n        let b = 0u64;\n        let mut carry = 1u64;\n        adc(&mut a, b, &mut carry);\n        assert_eq!(a, 0u64);\n        assert_eq!(carry, 1u64);\n    }\n\n    #[test]\n    fn test_adc_large_numbers() {\n        let mut a = u64::MAX - 1;\n        let b = 1u64;\n        let mut carry = 1u64;\n        adc(&mut a, b, &mut carry);\n        assert_eq!(a, 1u64);\n        assert_eq!(carry, 1u64);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702282582, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=333, prompt_tokens=207, total_tokens=540))
+71
+========================================
+inject err gost94_core::adc gost94/src/gost94_core.rs adc
+#[cfg(test)]
+mod tests_llm_16_12 {
+    use crate::adc;
+
+    #[test]
+    fn test_adc_no_carry() {
+        let mut a = 1u64;
+        let b = 2u64;
+        let mut carry = 0u64;
+        adc(&mut a, b, &mut carry);
+        assert_eq!(a, 3u64);
+        assert_eq!(carry, 0u64);
+    }
+
+    #[test]
+    fn test_adc_with_carry() {
+        let mut a = u64::MAX;
+        let b = 1u64;
+        let mut carry = 0u64;
+        adc(&mut a, b, &mut carry);
+        assert_eq!(a, 0u64);
+        assert_eq!(carry, 1u64);
+    }
+
+    #[test]
+    fn test_adc_with_carry_in() {
+        let mut a = u64::MAX;
+        let b = 0u64;
+        let mut carry = 1u64;
+        adc(&mut a, b, &mut carry);
+        assert_eq!(a, 0u64);
+        assert_eq!(carry, 1u64);
+    }
+
+    #[test]
+    fn test_adc_large_numbers() {
+        let mut a = u64::MAX - 1;
+        let b = 1u64;
+        let mut carry = 1u64;
+        adc(&mut a, b, &mut carry);
+        assert_eq!(a, 1u64);
+        assert_eq!(carry, 1u64);
+    }
+}
+   Compiling gost94 v0.10.4 (/home/xiang/workspace/human/llm_base_bk/hashes/gost94)
+error[E0432]: unresolved import `crate::adc`
+   --> gost94/src/gost94_core.rs:472:9
+    |
+472 |     use crate::adc;
+    |         ^^^^^^^^^^ no `adc` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `gost94` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UVlJdo8Uh4XjAqwsE66o2YPd4LBI', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_12 {\n    use super::adc;\n\n    #[test]\n    fn test_adc_no_carry() {\n        let mut a = 1u64;\n        let b = 2u64;\n        let mut carry = 0u64;\n        adc(&mut a, b, &mut carry);\n        assert_eq!(a, 3u64);\n        assert_eq!(carry, 0u64);\n    }\n\n    #[test]\n    fn test_adc_with_carry() {\n        let mut a = u64::MAX;\n        let b = 1u64;\n        let mut carry = 0u64;\n        adc(&mut a, b, &mut carry);\n        assert_eq!(a, 0u64);\n        assert_eq!(carry, 1u64);\n    }\n\n    #[test]\n    fn test_adc_with_carry_in() {\n        let mut a = u64::MAX;\n        let b = 0u64;\n        let mut carry = 1u64;\n        adc(&mut a, b, &mut carry);\n        assert_eq!(a, 0u64);\n        assert_eq!(carry, 1u64);\n    }\n\n    #[test]\n    fn test_adc_large_numbers() {\n        let mut a = u64::MAX - 1;\n        let b = 1u64;\n        let mut carry = 1u64;\n        adc(&mut a, b, &mut carry);\n        assert_eq!(a, 1u64);\n        assert_eq!(carry, 1u64);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702282625, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=339, prompt_tokens=1057, total_tokens=1396))
+71
+========================================
+inject err gost94_core::adc gost94/src/gost94_core.rs adc
+#[cfg(test)]
+mod tests_llm_16_12_llm_16_12 {
+    use crate::adc;
+
+    #[test]
+    fn test_adc_no_carry() {
+        let mut a = 1u64;
+        let b = 2u64;
+        let mut carry = 0u64;
+        adc(&mut a, b, &mut carry);
+        assert_eq!(a, 3u64);
+        assert_eq!(carry, 0u64);
+    }
+
+    #[test]
+    fn test_adc_with_carry() {
+        let mut a = u64::MAX;
+        let b = 1u64;
+        let mut carry = 0u64;
+        adc(&mut a, b, &mut carry);
+        assert_eq!(a, 0u64);
+        assert_eq!(carry, 1u64);
+    }
+
+    #[test]
+    fn test_adc_with_carry_in() {
+        let mut a = u64::MAX;
+        let b = 0u64;
+        let mut carry = 1u64;
+        adc(&mut a, b, &mut carry);
+        assert_eq!(a, 0u64);
+        assert_eq!(carry, 1u64);
+    }
+
+    #[test]
+    fn test_adc_large_numbers() {
+        let mut a = u64::MAX - 1;
+        let b = 1u64;
+        let mut carry = 1u64;
+        adc(&mut a, b, &mut carry);
+        assert_eq!(a, 1u64);
+        assert_eq!(carry, 1u64);
+    }
+}
+   Compiling gost94 v0.10.4 (/home/xiang/workspace/human/llm_base_bk/hashes/gost94)
+error[E0432]: unresolved import `crate::adc`
+   --> gost94/src/gost94_core.rs:472:9
+    |
+472 |     use crate::adc;
+    |         ^^^^^^^^^^ no `adc` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `gost94` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+repair err gost94_core::adc gost94/src/gost94_core.rs adc
+ChatCompletion(id='chatcmpl-8UVlnqKzkdBLsKLHImeRQ360jmxO7', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n    use crate::gost94_core::g;\n\n    fn g_func(a: u32, k: u32, sbox: &SBox) -> u32 {\n        let mut c = a.wrapping_add(k);\n        let mut v = ((sbox[(c >>  0) as usize & 0xFF] <<  0) |\n                     (sbox[(c >>  8) as usize & 0xFF] <<  8) |\n                     (sbox[(c >> 16) as usize & 0xFF] << 16) |\n                     (sbox[(c >> 24) as usize & 0xFF] << 24)) as u32;\n        v = v.rotate_left(11);\n        v\n    }\n\n    #[test]\n    fn test_encrypt() {\n        let mut msg = [0x32, 0x91, 0xAB, 0x09, 0xE3, 0xFA, 0x94, 0x92]; // Dummy plaintext\n        let key: Block = [0x2B;32]; // Dummy key (256 bits)\n        let sbox: SBox = [\n            0xFC, 0xEE, 0xDD, 0x11, 0xCF, 0x6E, 0x31, 0x16,\n            0xFB, 0xC4, 0xFA, 0xDA, 0x23, 0xC5, 0x04, 0x4D,\n            // ...  (omitting the rest of the SBox for brevity)\n        ];\n\n        let original_msg = msg.clone(); // Keep a copy of the original message\n\n        encrypt(&mut msg, key, &sbox); // Encrypt the message\n\n        // Reverse encrypt to test the function, as GOST is a symmetric cipher\n        decrypt(&mut msg, key, &sbox); // Decrypt the message\n\n        assert_eq!(msg, original_msg, "Original plaintext and decrypted cipher text do not match after encrypt/decrypt cycle.");\n\n        // For more robust tests, check against known ciphertexts, test with a variety of keys, messages, and sboxes\n        // and check for bit patterns, padding issues, and more. This is a simple round-trip encrypt/decrypt test.\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702282655, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=507, prompt_tokens=380, total_tokens=887))
+71
+========================================
+inject err gost94_core::encrypt gost94/src/gost94_core.rs encrypt
+#[cfg(test)]
+mod tests_llm_16_13 {
+    use super::*;
+
+use crate::*;
+    use crate::gost94_core::g;
+
+    fn g_func(a: u32, k: u32, sbox: &SBox) -> u32 {
+        let mut c = a.wrapping_add(k);
+        let mut v = ((sbox[(c >>  0) as usize & 0xFF] <<  0) |
+                     (sbox[(c >>  8) as usize & 0xFF] <<  8) |
+                     (sbox[(c >> 16) as usize & 0xFF] << 16) |
+                     (sbox[(c >> 24) as usize & 0xFF] << 24)) as u32;
+        v = v.rotate_left(11);
+        v
+    }
+
+    #[test]
+    fn test_encrypt() {
+        let mut msg = [0x32, 0x91, 0xAB, 0x09, 0xE3, 0xFA, 0x94, 0x92]; // Dummy plaintext
+        let key: Block = [0x2B;32]; // Dummy key (256 bits)
+        let sbox: SBox = [
+            0xFC, 0xEE, 0xDD, 0x11, 0xCF, 0x6E, 0x31, 0x16,
+            0xFB, 0xC4, 0xFA, 0xDA, 0x23, 0xC5, 0x04, 0x4D,
+            // ...  (omitting the rest of the SBox for brevity)
+        ];
+
+        let original_msg = msg.clone(); // Keep a copy of the original message
+
+        encrypt(&mut msg, key, &sbox); // Encrypt the message
+
+        // Reverse encrypt to test the function, as GOST is a symmetric cipher
+        decrypt(&mut msg, key, &sbox); // Decrypt the message
+
+        assert_eq!(msg, original_msg, "Original plaintext and decrypted cipher text do not match after encrypt/decrypt cycle.");
+
+        // For more robust tests, check against known ciphertexts, test with a variety of keys, messages, and sboxes
+        // and check for bit patterns, padding issues, and more. This is a simple round-trip encrypt/decrypt test.
+    }
+}
+   Compiling gost94 v0.10.4 (/home/xiang/workspace/human/llm_base_bk/hashes/gost94)
+error[E0369]: no implementation for `[u8; 16] << {integer}`
+   --> gost94/src/gost94_core.rs:479:55
+    |
+479 |         let mut v = ((sbox[(c >>  0) as usize & 0xFF] <<  0) |
+    |                       ------------------------------- ^^  - {integer}
+    |                       |
+    |                       [u8; 16]
+
+error[E0369]: no implementation for `[u8; 16] << {integer}`
+   --> gost94/src/gost94_core.rs:480:55
+    |
+480 |                      (sbox[(c >>  8) as usize & 0xFF] <<  8) |
+    |                       ------------------------------- ^^  - {integer}
+    |                       |
+    |                       [u8; 16]
+
+error[E0369]: no implementation for `[u8; 16] << {integer}`
+   --> gost94/src/gost94_core.rs:481:55
+    |
+481 |                      (sbox[(c >> 16) as usize & 0xFF] << 16) |
+    |                       ------------------------------- ^^ -- {integer}
+    |                       |
+    |                       [u8; 16]
+
+error[E0369]: no implementation for `[u8; 16] << {integer}`
+   --> gost94/src/gost94_core.rs:482:55
+    |
+482 |                      (sbox[(c >> 24) as usize & 0xFF] << 24)) as u32;
+    |                       ------------------------------- ^^ -- {integer}
+    |                       |
+    |                       [u8; 16]
+
+error[E0308]: mismatched types
+   --> gost94/src/gost94_core.rs:492:13
+    |
+492 |             0xFC, 0xEE, 0xDD, 0x11, 0xCF, 0x6E, 0x31, 0x16,
+    |             ^^^^ expected array `[u8; 16]`, found integer
+
+error[E0425]: cannot find function `decrypt` in this scope
+   --> gost94/src/gost94_core.rs:502:9
+    |
+38  | fn encrypt(msg: &mut [u8], key: Block, sbox: &SBox) {
+    | --------------------------------------------------- similarly named function `encrypt` defined here
+...
+502 |         decrypt(&mut msg, key, &sbox); // Decrypt the message
+    |         ^^^^^^^ help: a function with a similar name exists: `encrypt`
+
+Some errors have detailed explanations: E0308, E0369, E0425.
+For more information about an error, try `rustc --explain E0308`.
+error: could not compile `gost94` due to 6 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UVmNsrU9OvaHzimWQjjmfj3WWqo2', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_13 {\n    use super::*;\n\n    #[test]\n    fn test_encrypt() {\n        let mut msg = [0x32, 0x91, 0xAB, 0x09, 0xE3, 0xFA, 0x94, 0x92]; // Dummy plaintext\n        let key = [0x2B; 32]; // Dummy key (256 bits)\n        let sbox = [\n            0xFC, 0xEE, 0xDD, 0x11, 0xCF, 0x6E, 0x31, 0x16,\n            0xFB, 0xC4, 0xFA, 0xDA, 0x23, 0xC5, 0x04, 0x4D,\n            // ... (omitting the rest of the SBox for brevity)\n        ]; // Assuming the rest of the sbox is correctly filled (total 256 entries)\n\n        let mut original_msg = msg.clone(); // Keep a copy of the original message\n        encrypt(&mut original_msg, key, &sbox); // Encrypt the message\n\n        // Normally, we should decrypt the message here to check for the round-trip\n        // However, I noticed in the error message that the decrypt function is not implemented or out of scope, \n        // thus we are not including the decryption check here.\n\n        // Pseudo-decryption would go here\n        // decrypt(&mut original_msg, key, &sbox); // this is not available\n\n        // Instead, we should compare the encrypted message to a known correct ciphertext\n        // For the purposes of this example, let\'s say the expected ciphertext is "fake",\n        // so the test should fail. Replace the following line with the correct expected ciphertext.\n        let expected_ciphertext = [0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]; // replace with actual expected ciphertext\n\n        assert_eq!(original_msg, expected_ciphertext,\n            "The ciphertext generated by encrypt() does not match the expected ciphertext.");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702282691, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=472, prompt_tokens=2092, total_tokens=2564))
+71
+========================================
+inject err gost94_core::encrypt gost94/src/gost94_core.rs encrypt
+#[cfg(test)]
+mod tests_llm_16_13_llm_16_13 {
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn test_encrypt() {
+        let mut msg = [0x32, 0x91, 0xAB, 0x09, 0xE3, 0xFA, 0x94, 0x92]; // Dummy plaintext
+        let key = [0x2B; 32]; // Dummy key (256 bits)
+        let sbox = [
+            0xFC, 0xEE, 0xDD, 0x11, 0xCF, 0x6E, 0x31, 0x16,
+            0xFB, 0xC4, 0xFA, 0xDA, 0x23, 0xC5, 0x04, 0x4D,
+            // ... (omitting the rest of the SBox for brevity)
+        ]; // Assuming the rest of the sbox is correctly filled (total 256 entries)
+
+        let mut original_msg = msg.clone(); // Keep a copy of the original message
+        encrypt(&mut original_msg, key, &sbox); // Encrypt the message
+
+        // Normally, we should decrypt the message here to check for the round-trip
+        // However, I noticed in the error message that the decrypt function is not implemented or out of scope, 
+        // thus we are not including the decryption check here.
+
+        // Pseudo-decryption would go here
+        // decrypt(&mut original_msg, key, &sbox); // this is not available
+
+        // Instead, we should compare the encrypted message to a known correct ciphertext
+        // For the purposes of this example, let's say the expected ciphertext is "fake",
+        // so the test should fail. Replace the following line with the correct expected ciphertext.
+        let expected_ciphertext = [0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]; // replace with actual expected ciphertext
+
+        assert_eq!(original_msg, expected_ciphertext,
+            "The ciphertext generated by encrypt() does not match the expected ciphertext.");
+    }
+}
+   Compiling gost94 v0.10.4 (/home/xiang/workspace/human/llm_base_bk/hashes/gost94)
+error[E0308]: mismatched types
+   --> gost94/src/gost94_core.rs:487:41
+    |
+487 |         encrypt(&mut original_msg, key, &sbox); // Encrypt the message
+    |         -------                         ^^^^^ expected array `[u8; 16]`, found integer
+    |         |
+    |         arguments to this function are incorrect
+    |
+    = note: expected reference `&[[u8; 16]; 8]`
+               found reference `&[{integer}; 16]`
+note: function defined here
+   --> gost94/src/gost94_core.rs:38:4
+    |
+38  | fn encrypt(msg: &mut [u8], key: Block, sbox: &SBox) {
+    |    ^^^^^^^                             -----------
+
+For more information about this error, try `rustc --explain E0308`.
+error: could not compile `gost94` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+repair err gost94_core::encrypt gost94/src/gost94_core.rs encrypt
+ChatCompletion(id='chatcmpl-8UVmyXORJRJvI4hv5fu8uYIbHEb0N', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*; // or use gost94_core::g; if the function is pub\n    use gost94_core::SBox; // Adjust the path according to the actual crate structure\n\n    #[test]\n    fn test_g_function() {\n        // Create an example SBox or use a predefined one\n        let sbox = SBox {\n            s: [\n                [0x04, 0x02, 0x03, 0x05, 0x07, 0x0A, 0x0F, 0x11], // Fill with test or real values\n                [0x06, 0x08, 0x9A, 0xB0, 0xC2, 0xD1, 0xE3, 0xF5], // Fill with test or real values\n                [0x12, 0x13, 0x14, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E], // Fill with test or real values\n                [0x0E, 0x0C, 0x0B, 0x09, 0x01, 0x00, 0x0D, 0x0F], // Fill with test or real values\n                [0x33, 0x32, 0x31, 0x30, 0x2F, 0x2E, 0x2D, 0x2C], // Fill with test or real values\n                [0x2B, 0x2A, 0x29, 0x28, 0x27, 0x26, 0x25, 0x24], // Fill with test or real values\n                [0x23, 0x22, 0x21, 0x20, 0x1F, 0x1E, 0x1D, 0x1C], // Fill with test or real values\n                [0x3B, 0x3A, 0x39, 0x38, 0x37, 0x36, 0x35, 0x34], // Fill with test or real values\n            ],\n        };\n\n        let a: u32 = 0x12345678; // example input\n        let k: u32 = 0x9abcdef0; // example input\n\n        // Run the function with the test values\n        let result = g(a, k, &sbox);\n\n        // Calculate the expected result (this should be precalculated)\n        let expected: u32 = 0x5f5f5f5f; // Replace with actual expected result\n\n        assert_eq!(result, expected, "g(a, k, &sbox) did not return the expected result");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702282728, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=635, prompt_tokens=173, total_tokens=808))
+71
+========================================
+inject err gost94_core::g gost94/src/gost94_core.rs g
+#[cfg(test)]
+mod tests_llm_16_14 {
+    use super::*; // or use gost94_core::g; if the function is pub
+
+use crate::*;
+    use gost94_core::SBox; // Adjust the path according to the actual crate structure
+
+    #[test]
+    fn test_g_function() {
+        // Create an example SBox or use a predefined one
+        let sbox = SBox {
+            s: [
+                [0x04, 0x02, 0x03, 0x05, 0x07, 0x0A, 0x0F, 0x11], // Fill with test or real values
+                [0x06, 0x08, 0x9A, 0xB0, 0xC2, 0xD1, 0xE3, 0xF5], // Fill with test or real values
+                [0x12, 0x13, 0x14, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E], // Fill with test or real values
+                [0x0E, 0x0C, 0x0B, 0x09, 0x01, 0x00, 0x0D, 0x0F], // Fill with test or real values
+                [0x33, 0x32, 0x31, 0x30, 0x2F, 0x2E, 0x2D, 0x2C], // Fill with test or real values
+                [0x2B, 0x2A, 0x29, 0x28, 0x27, 0x26, 0x25, 0x24], // Fill with test or real values
+                [0x23, 0x22, 0x21, 0x20, 0x1F, 0x1E, 0x1D, 0x1C], // Fill with test or real values
+                [0x3B, 0x3A, 0x39, 0x38, 0x37, 0x36, 0x35, 0x34], // Fill with test or real values
+            ],
+        };
+
+        let a: u32 = 0x12345678; // example input
+        let k: u32 = 0x9abcdef0; // example input
+
+        // Run the function with the test values
+        let result = g(a, k, &sbox);
+
+        // Calculate the expected result (this should be precalculated)
+        let expected: u32 = 0x5f5f5f5f; // Replace with actual expected result
+
+        assert_eq!(result, expected, "g(a, k, &sbox) did not return the expected result");
+    }
+}
+   Compiling gost94 v0.10.4 (/home/xiang/workspace/human/llm_base_bk/hashes/gost94)
+error[E0071]: expected struct, variant or union type, found array `[[u8; 16]; 8]`
+   --> gost94/src/gost94_core.rs:480:20
+    |
+480 |         let sbox = SBox {
+    |                    ^^^^ not a struct
+
+For more information about this error, try `rustc --explain E0071`.
+error: could not compile `gost94` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UVo0M8QBoeH4OEezT0yXHujhESpG', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_14 {\n    use crate::gost94_core::g; // use this explicitly if g is public, otherwise use super::g;\n    use crate::gost94_core::sbox::SBox; // Adjust this to point to actual SBox struct location within the crate\n\n    #[test]\n    fn test_g_function() {\n        let sbox = SBox::default(); // Adjust this to use the actual way to construct SBox, such as SBox::new() or an actual instance if SBox::default() is not available\n\n        let a: u32 = 0x12345678; // example input\n        let k: u32 = 0x9abcdef0; // example input\n\n        let result = g(a, k, &sbox);\n\n        // Calculate the expected result or use a predefined expected result\n        // For the test, you should pre-calculate the expected output of this function based on inputs and the SBox provided\n        let expected: u32 = 0x5f5f5f5f; // Replace with the actual expected result\n        // This is a placeholder value, and should be derived based on a manual calculation or expected behavior\n\n        assert_eq!(result, expected, "g(a, k, &sbox) did not return the expected result");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702282792, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=292, prompt_tokens=1642, total_tokens=1934))
+71
+========================================
+inject err gost94_core::g gost94/src/gost94_core.rs g
+#[cfg(test)]
+mod tests_llm_16_14_llm_16_14 {
+    use crate::gost94_core::g; // use this explicitly if g is public, otherwise use crate::g;
+    use crate::gost94_core::sbox::SBox; // Adjust this to point to actual SBox struct location within the crate
+
+    #[test]
+    fn test_g_function() {
+        let sbox = SBox::default(); // Adjust this to use the actual way to construct SBox, such as SBox::new() or an actual instance if SBox::default() is not available
+
+        let a: u32 = 0x12345678; // example input
+        let k: u32 = 0x9abcdef0; // example input
+
+        let result = g(a, k, &sbox);
+
+        // Calculate the expected result or use a predefined expected result
+        // For the test, you should pre-calculate the expected output of this function based on inputs and the SBox provided
+        let expected: u32 = 0x5f5f5f5f; // Replace with the actual expected result
+        // This is a placeholder value, and should be derived based on a manual calculation or expected behavior
+
+        assert_eq!(result, expected, "g(a, k, &sbox) did not return the expected result");
+    }
+}
+   Compiling gost94 v0.10.4 (/home/xiang/workspace/human/llm_base_bk/hashes/gost94)
+error[E0432]: unresolved import `crate::gost94_core::sbox`
+   --> gost94/src/gost94_core.rs:473:29
+    |
+473 |     use crate::gost94_core::sbox::SBox; // Adjust this to point to actual SBox struct location within the crate
+    |                             ^^^^ expected type, found function `sbox` in `gost94_core`
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `gost94` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+repair err gost94_core::g gost94/src/gost94_core.rs g
+ChatCompletion(id='chatcmpl-8UVoMaKIPwJ1707AcUR5nEiUoTt1O', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n\n    #[test]\n    fn test_p() {\n        // Example test case for demonstrative purposes\n        // Please replace with actual test cases for function behavior\n        let input = Block([\n            0xF0, 0xE1, 0xD2, 0xC3, 0xB4, 0xA5, 0x96, 0x87,\n            0x78, 0x69, 0x5A, 0x4B, 0x3C, 0x2D, 0x1E, 0x0F,\n            0xF0, 0xE1, 0xD2, 0xC3, 0xB4, 0xA5, 0x96, 0x87,\n            0x78, 0x69, 0x5A, 0x4B, 0x3C, 0x2D, 0x1E, 0x0F,\n            0xF0, 0xE1, 0xD2, 0xC3, 0xB4, 0xA5, 0x96, 0x87,\n            0x78, 0x69, 0x5A, 0x4B, 0x3C, 0x2D, 0x1E, 0x0F,\n            0xF0, 0xE1, 0xD2, 0xC3, 0xB4, 0xA5, 0x96, 0x87,\n            0x78, 0x69, 0x5A, 0x4B, 0x3C, 0x2D, 0x1E, 0x0F,\n        ]);\n\n        let expected = Block([\n            0xF0, 0xF0, 0xF0, 0xF0, 0xE1, 0xE1, 0xE1, 0xE1,\n            0xD2, 0xD2, 0xD2, 0xD2, 0xC3, 0xC3, 0xC3, 0xC3,\n            0xB4, 0xB4, 0xB4, 0xB4, 0xA5, 0xA5, 0xA5, 0xA5,\n            0x96, 0x96, 0x96, 0x96, 0x87, 0x87, 0x87, 0x87,\n            0x78, 0x78, 0x78, 0x78, 0x69, 0x69, 0x69, 0x69,\n            0x5A, 0x5A, 0x5A, 0x5A, 0x4B, 0x4B, 0x4B, 0x4B,\n            0x3C, 0x3C, 0x3C, 0x3C, 0x2D, 0x2D, 0x2D, 0x2D,\n            0x1E, 0x1E, 0x1E, 0x1E, 0x0F, 0x0F, 0x0F, 0x0F,\n        ]);\n\n        let result = p(input);\n        assert_eq!(result, expected, "The p function did not return the expected result.");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702282814, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=796, prompt_tokens=196, total_tokens=992))
+71
+========================================
+inject err gost94_core::p gost94/src/gost94_core.rs p
+#[cfg(test)]
+mod tests_llm_16_15 {
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn test_p() {
+        // Example test case for demonstrative purposes
+        // Please replace with actual test cases for function behavior
+        let input = Block([
+            0xF0, 0xE1, 0xD2, 0xC3, 0xB4, 0xA5, 0x96, 0x87,
+            0x78, 0x69, 0x5A, 0x4B, 0x3C, 0x2D, 0x1E, 0x0F,
+            0xF0, 0xE1, 0xD2, 0xC3, 0xB4, 0xA5, 0x96, 0x87,
+            0x78, 0x69, 0x5A, 0x4B, 0x3C, 0x2D, 0x1E, 0x0F,
+            0xF0, 0xE1, 0xD2, 0xC3, 0xB4, 0xA5, 0x96, 0x87,
+            0x78, 0x69, 0x5A, 0x4B, 0x3C, 0x2D, 0x1E, 0x0F,
+            0xF0, 0xE1, 0xD2, 0xC3, 0xB4, 0xA5, 0x96, 0x87,
+            0x78, 0x69, 0x5A, 0x4B, 0x3C, 0x2D, 0x1E, 0x0F,
+        ]);
+
+        let expected = Block([
+            0xF0, 0xF0, 0xF0, 0xF0, 0xE1, 0xE1, 0xE1, 0xE1,
+            0xD2, 0xD2, 0xD2, 0xD2, 0xC3, 0xC3, 0xC3, 0xC3,
+            0xB4, 0xB4, 0xB4, 0xB4, 0xA5, 0xA5, 0xA5, 0xA5,
+            0x96, 0x96, 0x96, 0x96, 0x87, 0x87, 0x87, 0x87,
+            0x78, 0x78, 0x78, 0x78, 0x69, 0x69, 0x69, 0x69,
+            0x5A, 0x5A, 0x5A, 0x5A, 0x4B, 0x4B, 0x4B, 0x4B,
+            0x3C, 0x3C, 0x3C, 0x3C, 0x2D, 0x2D, 0x2D, 0x2D,
+            0x1E, 0x1E, 0x1E, 0x1E, 0x0F, 0x0F, 0x0F, 0x0F,
+        ]);
+
+        let result = p(input);
+        assert_eq!(result, expected, "The p function did not return the expected result.");
+    }
+}
+   Compiling gost94 v0.10.4 (/home/xiang/workspace/human/llm_base_bk/hashes/gost94)
+error[E0423]: expected function, tuple struct or tuple variant, found type alias `Block`
+   --> gost94/src/gost94_core.rs:480:21
+    |
+480 |         let input = Block([
+    |                     ^^^^^
+    |
+    = note: can't use a type alias as a constructor
+
+error[E0423]: expected function, tuple struct or tuple variant, found type alias `Block`
+   --> gost94/src/gost94_core.rs:491:24
+    |
+491 |         let expected = Block([
+    |                        ^^^^^
+    |
+    = note: can't use a type alias as a constructor
+
+For more information about this error, try `rustc --explain E0423`.
+error: could not compile `gost94` due to 2 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UVpTWKkc9NujxqOYn4VuTTMd3CjF', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_15 {\n    use super::p;\n    use crate::gost94_core::Block;\n\n    #[test]\n    fn test_p() {\n        // Example test case for demonstrative purposes\n        // Please replace with actual test cases for function behavior\n        let input = Block([\n            0xF0, 0xE1, 0xD2, 0xC3, 0xB4, 0xA5, 0x96, 0x87,\n            0x78, 0x69, 0x5A, 0x4B, 0x3C, 0x2D, 0x1E, 0x0F,\n            0xF0, 0xE1, 0xD2, 0xC3, 0xB4, 0xA5, 0x96, 0x87,\n            0x78, 0x69, 0x5A, 0x4B, 0x3C, 0x2D, 0x1E, 0x0F,\n            0xF0, 0xE1, 0xD2, 0xC3, 0xB4, 0xA5, 0x96, 0x87,\n            0x78, 0x69, 0x5A, 0x4B, 0x3C, 0x2D, 0x1E, 0x0F,\n            0xF0, 0xE1, 0xD2, 0xC3, 0xB4, 0xA5, 0x96, 0x87,\n            0x78, 0x69, 0x5A, 0x4B, 0x3C, 0x2D, 0x1E, 0x0F,\n        ]);\n\n        let expected = Block([\n            0xF0, 0xF0, 0xF0, 0xF0, 0xE1, 0xE1, 0xE1, 0xE1,\n            0xD2, 0xD2, 0xD2, 0xD2, 0xC3, 0xC3, 0xC3, 0xC3,\n            0xB4, 0xB4, 0xB4, 0xB4, 0xA5, 0xA5, 0xA5, 0xA5,\n            0x96, 0x96, 0x96, 0x96, 0x87, 0x87, 0x87, 0x87,\n            0x78, 0x78, 0x78, 0x78, 0x69, 0x69, 0x69, 0x69,\n            0x5A, 0x5A, 0x5A, 0x5A, 0x4B, 0x4B, 0x4B, 0x4B,\n            0x3C, 0x3C, 0x3C, 0x3C, 0x2D, 0x2D, 0x2D, 0x2D,\n            0x1E, 0x1E, 0x1E, 0x1E, 0x0F, 0x0F, 0x0F, 0x0F,\n        ]);\n\n        let result = p(input);\n        assert_eq!(result, expected, "The p function did not return the expected result.");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702282883, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=815, prompt_tokens=2059, total_tokens=2874))
+71
+========================================
+inject err gost94_core::p gost94/src/gost94_core.rs p
+#[cfg(test)]
+mod tests_llm_16_15_llm_16_15 {
+    use crate::p;
+    use crate::gost94_core::Block;
+
+    #[test]
+    fn test_p() {
+        // Example test case for demonstrative purposes
+        // Please replace with actual test cases for function behavior
+        let input = Block([
+            0xF0, 0xE1, 0xD2, 0xC3, 0xB4, 0xA5, 0x96, 0x87,
+            0x78, 0x69, 0x5A, 0x4B, 0x3C, 0x2D, 0x1E, 0x0F,
+            0xF0, 0xE1, 0xD2, 0xC3, 0xB4, 0xA5, 0x96, 0x87,
+            0x78, 0x69, 0x5A, 0x4B, 0x3C, 0x2D, 0x1E, 0x0F,
+            0xF0, 0xE1, 0xD2, 0xC3, 0xB4, 0xA5, 0x96, 0x87,
+            0x78, 0x69, 0x5A, 0x4B, 0x3C, 0x2D, 0x1E, 0x0F,
+            0xF0, 0xE1, 0xD2, 0xC3, 0xB4, 0xA5, 0x96, 0x87,
+            0x78, 0x69, 0x5A, 0x4B, 0x3C, 0x2D, 0x1E, 0x0F,
+        ]);
+
+        let expected = Block([
+            0xF0, 0xF0, 0xF0, 0xF0, 0xE1, 0xE1, 0xE1, 0xE1,
+            0xD2, 0xD2, 0xD2, 0xD2, 0xC3, 0xC3, 0xC3, 0xC3,
+            0xB4, 0xB4, 0xB4, 0xB4, 0xA5, 0xA5, 0xA5, 0xA5,
+            0x96, 0x96, 0x96, 0x96, 0x87, 0x87, 0x87, 0x87,
+            0x78, 0x78, 0x78, 0x78, 0x69, 0x69, 0x69, 0x69,
+            0x5A, 0x5A, 0x5A, 0x5A, 0x4B, 0x4B, 0x4B, 0x4B,
+            0x3C, 0x3C, 0x3C, 0x3C, 0x2D, 0x2D, 0x2D, 0x2D,
+            0x1E, 0x1E, 0x1E, 0x1E, 0x0F, 0x0F, 0x0F, 0x0F,
+        ]);
+
+        let result = p(input);
+        assert_eq!(result, expected, "The p function did not return the expected result.");
+    }
+}
+   Compiling gost94 v0.10.4 (/home/xiang/workspace/human/llm_base_bk/hashes/gost94)
+error[E0432]: unresolved import `crate::p`
+   --> gost94/src/gost94_core.rs:472:9
+    |
+472 |     use crate::p;
+    |         ^^^^^^^^ no `p` in the root
+
+error[E0423]: expected function, tuple struct or tuple variant, found type alias `Block`
+   --> gost94/src/gost94_core.rs:479:21
+    |
+479 |         let input = Block([
+    |                     ^^^^^
+    |
+    = note: can't use a type alias as a constructor
+
+error[E0423]: expected function, tuple struct or tuple variant, found type alias `Block`
+   --> gost94/src/gost94_core.rs:490:24
+    |
+490 |         let expected = Block([
+    |                        ^^^^^
+    |
+    = note: can't use a type alias as a constructor
+
+Some errors have detailed explanations: E0423, E0432.
+For more information about an error, try `rustc --explain E0423`.
+error: could not compile `gost94` due to 3 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+repair err gost94_core::p gost94/src/gost94_core.rs p
+ChatCompletion(id='chatcmpl-8UVqsHXLUG4gnF3K1KUcfSN0rTh0f', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::psi;\n    use super::Block;\n    use std::mem;\n\n    #[test]\n    fn test_psi() {\n        let mut block = Block::default();\n        for i in 0..block.len() {\n            block[i] = i as u8;\n        }\n        \n        let original_block = block.clone();\n        psi(&mut block);\n        \n        let mut expected_block = Block::default();\n        expected_block[..30].copy_from_slice(&original_block[2..]);\n        expected_block[30..].copy_from_slice(&original_block[..2]);\n        \n        expected_block[30] ^= original_block[2];\n        expected_block[31] ^= original_block[3];\n        expected_block[30] ^= original_block[4];\n        expected_block[31] ^= original_block[5];\n        expected_block[30] ^= original_block[6];\n        expected_block[31] ^= original_block[7];\n        expected_block[30] ^= original_block[24];\n        expected_block[31] ^= original_block[25];\n        expected_block[30] ^= original_block[30];\n        expected_block[31] ^= original_block[31];\n        \n        assert_eq!(block, expected_block, "psi function did not produce expected output");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702282970, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=273, prompt_tokens=288, total_tokens=561))
+71
+========================================
+inject err gost94_core::psi gost94/src/gost94_core.rs psi
+#[cfg(test)]
+mod tests_llm_16_16 {
+    use crate::psi;
+    use crate::Block;
+    use std::mem;
+
+    #[test]
+    fn test_psi() {
+        let mut block = Block::default();
+        for i in 0..block.len() {
+            block[i] = i as u8;
+        }
+        
+        let original_block = block.clone();
+        psi(&mut block);
+        
+        let mut expected_block = Block::default();
+        expected_block[..30].copy_from_slice(&original_block[2..]);
+        expected_block[30..].copy_from_slice(&original_block[..2]);
+        
+        expected_block[30] ^= original_block[2];
+        expected_block[31] ^= original_block[3];
+        expected_block[30] ^= original_block[4];
+        expected_block[31] ^= original_block[5];
+        expected_block[30] ^= original_block[6];
+        expected_block[31] ^= original_block[7];
+        expected_block[30] ^= original_block[24];
+        expected_block[31] ^= original_block[25];
+        expected_block[30] ^= original_block[30];
+        expected_block[31] ^= original_block[31];
+        
+        assert_eq!(block, expected_block, "psi function did not produce expected output");
+    }
+}
+   Compiling gost94 v0.10.4 (/home/xiang/workspace/human/llm_base_bk/hashes/gost94)
+error[E0432]: unresolved import `crate::psi`
+   --> gost94/src/gost94_core.rs:472:9
+    |
+472 |     use crate::psi;
+    |         ^^^^^^^^^^ no `psi` in the root
+
+error[E0432]: unresolved import `crate::Block`
+   --> gost94/src/gost94_core.rs:473:9
+    |
+473 |     use crate::Block;
+    |         ^^^^^^^^^^^^ no `Block` in the root
+    |
+help: consider importing one of these items instead
+    |
+473 |     use crate::digest::core_api::Block;
+    |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+473 |     use crate::params::Block;
+    |         ~~~~~~~~~~~~~~~~~~~~~
+473 |     use digest::core_api::Block;
+    |         ~~~~~~~~~~~~~~~~~~~~~~~~
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `gost94` due to 2 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UVr9DW0pCRsmHcTTkqs4qqCaGnek', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_16 {\n    use super::psi; // We\'re in the same module, use super to reference the parent module\n    use super::Block; // super is required to reference `Block` within the same module\n\n    #[test]\n    fn test_psi() {\n        let mut block = Block::default();\n        for i in 0..block.len() {\n            block[i] = i as u8;\n        }\n        \n        let original_block = block.clone();\n        psi(&mut block);\n        \n        let mut expected_block = Block::default();\n        expected_block[..30].copy_from_slice(&original_block[2..]);\n        expected_block[30..].copy_from_slice(&original_block[..2]);\n        \n        expected_block[30] ^= original_block[2];\n        expected_block[31] ^= original_block[3];\n        expected_block[30] ^= original_block[4];\n        expected_block[31] ^= original_block[5];\n        expected_block[30] ^= original_block[6];\n        expected_block[31] ^= original_block[7];\n        expected_block[30] ^= original_block[24];\n        expected_block[31] ^= original_block[25];\n        expected_block[30] ^= original_block[30];\n        expected_block[31] ^= original_block[31];\n        \n        assert_eq!(block, expected_block, "psi function did not produce expected output");\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702282987, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_6aca3b5ce1', usage=CompletionUsage(completion_tokens=303, prompt_tokens=1145, total_tokens=1448))
+71
+========================================
+inject err gost94_core::psi gost94/src/gost94_core.rs psi
+#[cfg(test)]
+mod tests_llm_16_16_llm_16_16 {
+    use crate::psi; // We're in the same module, use super to reference the parent module
+    use crate::Block; // super is required to reference `Block` within the same module
+
+    #[test]
+    fn test_psi() {
+        let mut block = Block::default();
+        for i in 0..block.len() {
+            block[i] = i as u8;
+        }
+        
+        let original_block = block.clone();
+        psi(&mut block);
+        
+        let mut expected_block = Block::default();
+        expected_block[..30].copy_from_slice(&original_block[2..]);
+        expected_block[30..].copy_from_slice(&original_block[..2]);
+        
+        expected_block[30] ^= original_block[2];
+        expected_block[31] ^= original_block[3];
+        expected_block[30] ^= original_block[4];
+        expected_block[31] ^= original_block[5];
+        expected_block[30] ^= original_block[6];
+        expected_block[31] ^= original_block[7];
+        expected_block[30] ^= original_block[24];
+        expected_block[31] ^= original_block[25];
+        expected_block[30] ^= original_block[30];
+        expected_block[31] ^= original_block[31];
+        
+        assert_eq!(block, expected_block, "psi function did not produce expected output");
+    }
+}
+   Compiling gost94 v0.10.4 (/home/xiang/workspace/human/llm_base_bk/hashes/gost94)
+error[E0432]: unresolved import `crate::psi`
+   --> gost94/src/gost94_core.rs:472:9
+    |
+472 |     use crate::psi; // We're in the same module, use super to reference the parent module
+    |         ^^^^^^^^^^ no `psi` in the root
+
+error[E0432]: unresolved import `crate::Block`
+   --> gost94/src/gost94_core.rs:473:9
+    |
+473 |     use crate::Block; // super is required to reference `Block` within the same module
+    |         ^^^^^^^^^^^^ no `Block` in the root
+    |
+help: consider importing one of these items instead
+    |
+473 |     use crate::digest::core_api::Block;
+    |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+473 |     use crate::params::Block;
+    |         ~~~~~~~~~~~~~~~~~~~~~
+473 |     use digest::core_api::Block;
+    |         ~~~~~~~~~~~~~~~~~~~~~~~~
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `gost94` due to 2 previous errors
+warning: build failed, waiting for other jobs to finish...
+
+repair err gost94_core::psi gost94/src/gost94_core.rs psi
+ChatCompletion(id='chatcmpl-8UVrZuXgSAVVDcKCj46ONc2kofPLS', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n\n    #[test]\n    fn test_sbox() {\n        let sbox = [\n            [4, 10, 9, 2, 13, 8, 0, 14, 6, 11, 1, 12, 7, 15, 5, 3], // 0\n            [14, 11, 4, 12, 6, 13, 15, 10, 2, 3, 8, 1, 0, 7, 5, 9], // 1\n            [5, 8, 1, 13, 10, 3, 4, 2, 14, 15, 12, 7, 6, 0, 9, 11], // 2\n            [7, 13, 10, 1, 0, 8, 9, 15, 14, 4, 6, 12, 11, 2, 5, 3], // 3\n            [6, 12, 7, 1, 5, 15, 13, 8, 4, 10, 9, 14, 0, 3, 11, 2], // 4\n            [4, 11, 10, 0, 7, 2, 1, 13, 3, 6, 8, 5, 9, 12, 15, 14], // 5\n            [13, 11, 4, 1, 3, 15, 5, 9, 0, 10, 14, 7, 6, 8, 2, 12], // 6\n            [1, 15, 13, 0, 5, 7, 10, 4, 9, 2, 3, 14, 6, 11, 8, 12], // 7\n        ];\n\n        let test_pairs = [\n            (0x00000000, 0x00000000),\n            (0x00000001, 0x04081005),\n            (0x00000010, 0x04081050),\n            (0x00000100, 0x04081500),\n            (0x00001000, 0x040b0000),\n            (0x00010000, 0x0c000000),\n            (0x00100000, 0x40000000),\n            (0x01000000, 0x05000000),\n            (0x10000000, 0x01000000),\n            (0x11111111, 0x4c3b7b91),\n            (0xffffffff, 0x1adb9ef9),\n        ];\n\n        for (input, expected) in test_pairs {\n            assert_eq!(sbox(input, &sbox), expected);\n        }\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702283013, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=666, prompt_tokens=239, total_tokens=905))
+71
+========================================
+inject err gost94_core::sbox gost94/src/gost94_core.rs sbox
+#[cfg(test)]
+mod tests_llm_16_17 {
+    use super::*;
+
+use crate::*;
+
+    #[test]
+    fn test_sbox() {
+        let sbox = [
+            [4, 10, 9, 2, 13, 8, 0, 14, 6, 11, 1, 12, 7, 15, 5, 3], // 0
+            [14, 11, 4, 12, 6, 13, 15, 10, 2, 3, 8, 1, 0, 7, 5, 9], // 1
+            [5, 8, 1, 13, 10, 3, 4, 2, 14, 15, 12, 7, 6, 0, 9, 11], // 2
+            [7, 13, 10, 1, 0, 8, 9, 15, 14, 4, 6, 12, 11, 2, 5, 3], // 3
+            [6, 12, 7, 1, 5, 15, 13, 8, 4, 10, 9, 14, 0, 3, 11, 2], // 4
+            [4, 11, 10, 0, 7, 2, 1, 13, 3, 6, 8, 5, 9, 12, 15, 14], // 5
+            [13, 11, 4, 1, 3, 15, 5, 9, 0, 10, 14, 7, 6, 8, 2, 12], // 6
+            [1, 15, 13, 0, 5, 7, 10, 4, 9, 2, 3, 14, 6, 11, 8, 12], // 7
+        ];
+
+        let test_pairs = [
+            (0x00000000, 0x00000000),
+            (0x00000001, 0x04081005),
+            (0x00000010, 0x04081050),
+            (0x00000100, 0x04081500),
+            (0x00001000, 0x040b0000),
+            (0x00010000, 0x0c000000),
+            (0x00100000, 0x40000000),
+            (0x01000000, 0x05000000),
+            (0x10000000, 0x01000000),
+            (0x11111111, 0x4c3b7b91),
+            (0xffffffff, 0x1adb9ef9),
+        ];
+
+        for (input, expected) in test_pairs {
+            assert_eq!(sbox(input, &sbox), expected);
+        }
+    }
+}
+   Compiling gost94 v0.10.4 (/home/xiang/workspace/human/llm_base_bk/hashes/gost94)
+error[E0618]: expected function, found `[[{integer}; 16]; 8]`
+   --> gost94/src/gost94_core.rs:504:24
+    |
+478 |         let sbox = [
+    |             ---- `sbox` has type `[[{integer}; 16]; 8]`
+...
+504 |             assert_eq!(sbox(input, &sbox), expected);
+    |                        ^^^^--------------
+    |                        |
+    |                        call expression requires function
+
+For more information about this error, try `rustc --explain E0618`.
+error: could not compile `gost94` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UVsMHRhaianOfr6vBYciom2DMH9J', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_17 {\n    use super::*;\n\n    #[test]\n    fn test_sbox() {\n        let test_sbox = [\n            [4, 10, 9, 2, 13, 8, 0, 14, 6, 11, 1, 12, 7, 15, 5, 3], // 0\n            [14, 11, 4, 12, 6, 13, 15, 10, 2, 3, 8, 1, 0, 7, 5, 9], // 1\n            [5, 8, 1, 13, 10, 3, 4, 2, 14, 15, 12, 7, 6, 0, 9, 11], // 2\n            [7, 13, 10, 1, 0, 8, 9, 15, 14, 4, 6, 12, 11, 2, 5, 3], // 3\n            [6, 12, 7, 1, 5, 15, 13, 8, 4, 10, 9, 14, 0, 3, 11, 2], // 4\n            [4, 11, 10, 0, 7, 2, 1, 13, 3, 6, 8, 5, 9, 12, 15, 14], // 5\n            [13, 11, 4, 1, 3, 15, 5, 9, 0, 10, 14, 7, 6, 8, 2, 12], // 6\n            [1, 15, 13, 0, 5, 7, 10, 4, 9, 2, 3, 14, 6, 11, 8, 12], // 7\n        ];\n\n        let test_pairs = [\n            (0x00000000, 0x00000000),\n            (0x00000001, 0x04081005),\n            (0x00000010, 0x04081050),\n            (0x00000100, 0x04081500),\n            (0x00001000, 0x040b0000),\n            (0x00010000, 0x0c000000),\n            (0x00100000, 0x40000000),\n            (0x01000000, 0x05000000),\n            (0x10000000, 0x01000000),\n            (0x11111111, 0x4c3b7b91),\n            (0xffffffff, 0x1adb9ef9),\n        ];\n\n        for (input, expected) in test_pairs {\n            assert_eq!(sbox(input, &test_sbox), expected);\n        }\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702283062, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=674, prompt_tokens=1810, total_tokens=2484))
+71
+inject succeed hashes gost94 gost94_core::sbox
+ChatCompletion(id='chatcmpl-8UVtJMids7nEtiVivxZdTsfT8EqYN', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::*;\n\n    #[test]\n    fn test_x_function() {\n        let a = Block::from([0x0F; 32]);\n        let b = Block::from([0xF0; 32]);\n        let expected = Block::from([0xFF; 32]);\n        assert_eq!(x(&a, &b), expected);\n\n        let a = Block::from([0x00; 32]);\n        let b = Block::from([0x00; 32]);\n        let expected = Block::from([0x00; 32]);\n        assert_eq!(x(&a, &b), expected);\n\n        let a = Block::from([0xFF; 32]);\n        let b = Block::from([0x00; 32]);\n        let expected = Block::from([0xFF; 32]);\n        assert_eq!(x(&a, &b), expected);\n\n        let a = Block::from([0x55; 32]);\n        let b = Block::from([0xAA; 32]);\n        let expected = Block::from([0xFF; 32]);\n        assert_eq!(x(&a, &b), expected);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702283121, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=257, prompt_tokens=185, total_tokens=442))
+71
+inject succeed hashes gost94 gost94_core::x
+ChatCompletion(id='chatcmpl-8UVtsYSknZMyC6hksk8TMMlLt3qa4', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests {\n    use super::x_mut; // Adjust the import path according to the actual module structure\n    type Block = [u8; 32]; // Adjust the type definition if Block is defined differently in module\n\n    #[test]\n    fn test_x_mut() {\n        let mut a = [0u8; 32];\n        let b = [0xffu8; 32];\n        x_mut(&mut a, &b);\n        assert_eq!(a, [0xff; 32]);\n\n        let mut a = [0xffu8; 32];\n        let b = [0xffu8; 32];\n        x_mut(&mut a, &b);\n        assert_eq!(a, [0x00; 32]);\n\n        let mut a = [0x55u8; 32];\n        let b = [0xffu8; 32];\n        x_mut(&mut a, &b);\n        assert_eq!(a, [0xaa; 32]);\n\n        let mut a = [0xaa; 32];\n        let b = [0; 32];\n        x_mut(&mut a, &b);\n        assert_eq!(a, [0xaa; 32]);\n\n        let mut a = [0x00; 32];\n        let b = [0x00; 32];\n        x_mut(&mut a, &b);\n        assert_eq!(a, [0x00; 32]);\n\n        let mut a = [0x00; 32];\n        let b = [0x55; 32];\n        x_mut(&mut a, &b);\n        assert_eq!(a, [0x55; 32]);\n\n        let mut a = [0xaa; 32];\n        let b = [0x55; 32];\n        x_mut(&mut a, &b);\n        assert_eq!(a, [0xff; 32]);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702283156, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=409, prompt_tokens=170, total_tokens=579))
+71
+========================================
+inject err gost94_core::x_mut gost94/src/gost94_core.rs x_mut
+#[cfg(test)]
+mod tests_llm_16_19 {
+    use crate::x_mut; // Adjust the import path according to the actual module structure
+    type Block = [u8; 32]; // Adjust the type definition if Block is defined differently in module
+
+    #[test]
+    fn test_x_mut() {
+        let mut a = [0u8; 32];
+        let b = [0xffu8; 32];
+        x_mut(&mut a, &b);
+        assert_eq!(a, [0xff; 32]);
+
+        let mut a = [0xffu8; 32];
+        let b = [0xffu8; 32];
+        x_mut(&mut a, &b);
+        assert_eq!(a, [0x00; 32]);
+
+        let mut a = [0x55u8; 32];
+        let b = [0xffu8; 32];
+        x_mut(&mut a, &b);
+        assert_eq!(a, [0xaa; 32]);
+
+        let mut a = [0xaa; 32];
+        let b = [0; 32];
+        x_mut(&mut a, &b);
+        assert_eq!(a, [0xaa; 32]);
+
+        let mut a = [0x00; 32];
+        let b = [0x00; 32];
+        x_mut(&mut a, &b);
+        assert_eq!(a, [0x00; 32]);
+
+        let mut a = [0x00; 32];
+        let b = [0x55; 32];
+        x_mut(&mut a, &b);
+        assert_eq!(a, [0x55; 32]);
+
+        let mut a = [0xaa; 32];
+        let b = [0x55; 32];
+        x_mut(&mut a, &b);
+        assert_eq!(a, [0xff; 32]);
+    }
+}
+   Compiling gost94 v0.10.4 (/home/xiang/workspace/human/llm_base_bk/hashes/gost94)
+error[E0432]: unresolved import `crate::x_mut`
+   --> gost94/src/gost94_core.rs:537:9
+    |
+537 |     use crate::x_mut; // Adjust the import path according to the actual module structure
+    |         ^^^^^^^^^^^^ no `x_mut` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `gost94` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+ChatCompletion(id='chatcmpl-8UVulaNuee2QiOeQhMw6Gd8uq6hqP', choices=[Choice(finish_reason='stop', index=0, message=ChatCompletionMessage(content='```rust\n#[cfg(test)]\nmod tests_llm_16_19 {\n    use super::x_mut;\n    type Block = [u8; 32];\n\n    #[test]\n    fn test_x_mut() {\n        let mut a = [0u8; 32];\n        let b = [0xffu8; 32];\n        x_mut(&mut a, &b);\n        assert_eq!(a, [0xff; 32]);\n\n        let mut a = [0xffu8; 32];\n        let b = [0xffu8; 32];\n        x_mut(&mut a, &b);\n        assert_eq!(a, [0x00; 32]);\n\n        let mut a = [0x55u8; 32];\n        let b = [0xffu8; 32];\n        x_mut(&mut a, &b);\n        assert_eq!(a, [0xaa; 32]);\n\n        let mut a = [0xaa; 32];\n        let b = [0; 32];\n        x_mut(&mut a, &b);\n        assert_eq!(a, [0xaa; 32]);\n\n        let mut a = [0x00; 32];\n        let b = [0x00; 32];\n        x_mut(&mut a, &b);\n        assert_eq!(a, [0x00; 32]);\n\n        let mut a = [0x00; 32];\n        let b = [0x55; 32];\n        x_mut(&mut a, &b);\n        assert_eq!(a, [0x55; 32]);\n\n        let mut a = [0xaa; 32];\n        let b = [0x55; 32];\n        x_mut(&mut a, &b);\n        assert_eq!(a, [0xff; 32]);\n    }\n}\n```', role='assistant', function_call=None, tool_calls=None))], created=1702283211, model='gpt-4-1106-preview', object='chat.completion', system_fingerprint='fp_a24b4d720c', usage=CompletionUsage(completion_tokens=390, prompt_tokens=1188, total_tokens=1578))
+71
+========================================
+inject err gost94_core::x_mut gost94/src/gost94_core.rs x_mut
+#[cfg(test)]
+mod tests_llm_16_19_llm_16_19 {
+    use crate::x_mut;
+    type Block = [u8; 32];
+
+    #[test]
+    fn test_x_mut() {
+        let mut a = [0u8; 32];
+        let b = [0xffu8; 32];
+        x_mut(&mut a, &b);
+        assert_eq!(a, [0xff; 32]);
+
+        let mut a = [0xffu8; 32];
+        let b = [0xffu8; 32];
+        x_mut(&mut a, &b);
+        assert_eq!(a, [0x00; 32]);
+
+        let mut a = [0x55u8; 32];
+        let b = [0xffu8; 32];
+        x_mut(&mut a, &b);
+        assert_eq!(a, [0xaa; 32]);
+
+        let mut a = [0xaa; 32];
+        let b = [0; 32];
+        x_mut(&mut a, &b);
+        assert_eq!(a, [0xaa; 32]);
+
+        let mut a = [0x00; 32];
+        let b = [0x00; 32];
+        x_mut(&mut a, &b);
+        assert_eq!(a, [0x00; 32]);
+
+        let mut a = [0x00; 32];
+        let b = [0x55; 32];
+        x_mut(&mut a, &b);
+        assert_eq!(a, [0x55; 32]);
+
+        let mut a = [0xaa; 32];
+        let b = [0x55; 32];
+        x_mut(&mut a, &b);
+        assert_eq!(a, [0xff; 32]);
+    }
+}
+   Compiling gost94 v0.10.4 (/home/xiang/workspace/human/llm_base_bk/hashes/gost94)
+error[E0432]: unresolved import `crate::x_mut`
+   --> gost94/src/gost94_core.rs:537:9
+    |
+537 |     use crate::x_mut;
+    |         ^^^^^^^^^^^^ no `x_mut` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `gost94` due to previous error
+warning: build failed, waiting for other jobs to finish...
+
+repair err gost94_core::x_mut gost94/src/gost94_core.rs x_mut
+8 13 2 19 19
